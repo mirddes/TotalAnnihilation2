@@ -1,0 +1,82 @@
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'Impacts',
+            Cue = 'UEF_Expl_Med_Impact',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Land_Gen_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'Impacts',
+            Cue = 'Impact_Water_Splash_UEF',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'NOMADS',
+        'PROJECTILE',
+        'INDIRECTFIRE',
+        'TACTICAL',
+        'MISSILE',
+    },
+    Defense = {
+        Health = 2,
+        MaxHealth = 2,
+    },
+    Display = {
+        CameraFollowTimeout = 2,
+        CameraFollowsProjectile = true,
+        ImpactEffects = {
+            Type = 'Medium01',
+        },
+        Mesh = {
+            LODs = {
+                {
+                    LODCutoff = 150,
+                    AlbedoName = '/projectiles/NTacticalMissile1/NTacticalMissile1_albedo.dds',
+                    MeshName = '/projectiles/NTacticalMissile1/NTacticalMissile1_lod0.scm',
+                    ShaderName = 'TMeshAlpha',
+                },
+            },
+        },
+        StrategicIconSize = 3,
+        UniformScale = 0.1,
+    },
+    Economy = {
+        BuildCostEnergy = 3600,
+        BuildCostMass = 250,
+        BuildTime = 2400,
+    },
+    General = {
+        Category = 'Missile',
+        Faction = 'NOMADS',
+        EntityCategory = {
+            'NOMADS',
+            'PROJECTILE',
+            'INDIRECTFIRE',
+            'TACTICAL',
+            'MISSILE',
+        },
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        Acceleration = 3,
+        DestroyOnWater = false,
+        InitialSpeed = 5,
+        LifeTime = 30,
+        MaxSpeed = 20,
+        RotationalVelocity = 0,
+        RotationalVelocityRange = 0,
+        TrackTarget = true,
+        TrackTargetGround = true,
+        TurnRate = 1,
+        UseGravity = false,
+        VelocityAlign = true,
+    },
+}

@@ -1,0 +1,14 @@
+name = "SCTA Rebalance Mod"
+version = 1
+copyright = "Dragun123@2020"
+description = "Makes TA Factions from SCTA Mod cost in line with modern factions. With an exceptional amount of help from Balthazar with actual coding process. And thank you to Chriskila, MassAttack and Lich for helping to test."
+author = "Dragun123"
+uid = "6defa425-09d7-498f-8c44-a05d4b7785c5"
+selectable = true
+enabled = true
+exclusive = false
+ui_only = false
+requires = {}
+conflicts = {}
+before = {}
+after = {}

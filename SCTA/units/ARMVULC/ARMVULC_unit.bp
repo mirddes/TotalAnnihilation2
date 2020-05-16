@@ -1,0 +1,233 @@
+#ARM Vulcan - Rapid Fire Plasma Cannon
+#ARMVULC
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SRVLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 27,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'INDIRECTFIRE',
+        'OVERLAYINDIRECTFIRE',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of buzzsaw
+	'LEVEL3',
+	'STRATEGIC',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1400,
+        MaxHealth = 1400,
+    },
+    Description = 'Rapid Fire Plasma Cannon',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel','Stone','BuildPlate'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Spindle','Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Flare'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 479111,
+        BuildCostMass = 45198,
+        BuildTime = 587421,
+    },
+    Footprint = {
+        SizeX = 3,
+        SizeZ = 3,
+	MaxSlope = 0.625,
+    },
+    General = {
+	BuildAngle = 12712,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Vulcan',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Rapid Fire Plasma Cannon',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 3, 
+        SkirtSizeZ = 3,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 1.5,
+    SelectionCenterOffsetZ = -1,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 3,
+    SizeZ = 3,
+    StrategicIconName = 'icon_structure3_artillery',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'XPLONUK4',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 1000,
+            AlternateDamageRadius = 3.125, 
+            DamageType = 'Normal',
+            DisplayName = 'ARMVULC_WEAPON',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+            FiringTolerance = 1.65,	
+	    FiringRandomness = 2,
+            Label = 'ARMVULC_WEAPON',
+            MaxRadius = 193,
+            MuzzleSalvoDelay = 0, 
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 50,
+            EnergyChargeForFirstShot = false,
+            EnergyRequired = 2000,
+            ProjectileId = '/mods/SCTA/projectiles/ARMVULC_WEAPON/ARMVULC_WEAPON_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Flare',
+                    },
+                    RackBone = 'Barrel01',
+                },
+                {
+                    MuzzleBones = {
+                        'Flare',
+                    },
+                    RackBone = 'Barrel02',
+                },
+                {
+                    MuzzleBones = {
+                        'Flare',
+                    },
+                    RackBone = 'Barrel03',
+                },
+                {
+                    MuzzleBones = {
+                        'Flare',
+                    },
+                    RackBone = 'Barrel04',
+                },
+            },
+            RackRecoilDistance = -10,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 4,
+            RackSlavedToTurret = false,
+            RateOfFire = 4,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Flare',
+            TurretBonePitch = 'Neck',
+            TurretBoneYaw = 'Turret',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 2,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 5,
+            Turreted = true,
+        },
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageFriendly = true,
+            DamageRadius = 16.125,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageRadius = 16.125,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMVULC/ARMVULC_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

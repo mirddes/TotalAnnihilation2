@@ -1,0 +1,158 @@
+#ARM Moho Metal Maker - Converts Energy into Metal
+#ARMMMKR
+#
+#Blueprint created by Raevn
+
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLON1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLON1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLOFF1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 25,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+        'MASSPRODUCTION',
+        'ECONOMIC',
+	'TEXTUREANIM',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core mmm
+	'ENERGY',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 400,
+        MaxHealth = 400,
+    },
+    Description = 'Converts Energy into Metal',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 8,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'a',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 9350,
+        BuildCostMass = 58,
+        BuildTime = 34980,
+        ProductionPerSecondMass = 16,
+	MaintenanceConsumptionPerSecondEnergy = 800,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Moho Metal Maker',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Converts Energy into Metal',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4, 
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 3.5,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_mass',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #LARGE_BUILDING
+            Damage = 1800,
+            DamageRadius = 12.5,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMMMKR/ARMMMKR_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

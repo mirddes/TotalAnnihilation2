@@ -1,0 +1,174 @@
+#ARM Radar Tower - Radar Tower
+#ARMRAD
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADARDE1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 11,
+    Categories = {
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+	'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'RADAR',
+        'OVERLAYRADAR',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'RAD',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 51,
+        MaxHealth = 51,
+    },
+    Description = 'Radar Tower',
+    Display = {
+        Abilities = {
+            'Radar',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'CamoflageC','MetalBarrel'},
+		DestructionProjectiles = {
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMRAD_debris01_proj.bp',
+				Bone = 'Dish_01',
+			},
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMRAD_debris01_proj.bp',
+				Bone = 'Dish_02',
+			},
+		},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0, 'Radar'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 750,
+        BuildCostMass = 49,
+        BuildTime = 1137,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 5,
+	ProductionPerSecondEnergy = 5,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+	UnitName = 'Radar Tower',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 22, 
+	RadarRadius = 90,
+    },
+    Interface = {
+        HelpText = 'Radar Tower',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 4.5,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure1_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMRAD/ARMRAD_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,194 @@
+#ARM Invader - Crawling Bomb
+#ARMVADER
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVSML5',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVSML5',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVSML5',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LARGEGUN',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'WEAPON',
+	'LEVEL2',
+	'NOTAIR',
+	'NOTSUB',
+	'KAMIKAZI',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 185,
+        MaxHealth = 185,
+    },
+    Description = 'Crawling Bomb',
+    Display = {
+        Abilities = {
+            'Kamikazi',
+        },
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 5473,
+        BuildCostMass = 61,
+        BuildTime = 7901,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 0.1,
+        ProductionPerSecondEnergy = 0.1,
+    },
+    Footprint = {
+	SizeX = 1,
+	SizeZ = 1,
+	MaxSlope = 2,
+	MaxWaterDepth = 7,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Invader',
+    },
+    Intel = {
+        VisionRadius = 6,
+    },
+    Interface = {
+        HelpText = 'Crawling Bomb',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+        MotionType = 'RULEUMT_Amphibious',
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.96,
+        MaxBrake = 4.68,
+        MaxSpeed = 0.7875,
+        TurnRate = 230,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 0.5,
+    SelectionSizeZ = 0.5,
+    SelectionThickness = 0.25,
+    SizeX = 1,
+    SizeZ = 1,
+    StrategicIconName = 'icon_land2_bomb', --'icon_bot2_bomb',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'LARGEGUN',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 0, #Doubles up with death, so death damage subtracted
+	    DamageRadius = 8.59375,
+            DamageType = 'Normal',
+            DisplayName = 'CRAWL_BLAST',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 360,
+            Label = 'CRAWL_BLAST',
+            MaxRadius = 5,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+	    MuzzleVelocity = 1,
+	    ProjectileId = '/mods/SCTA/projectiles/CRAWL_BLAST/CRAWL_BLAST_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+                    RackBone = 'Muzzle',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 1,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+        },
+        { #CRAWL_BLASTSML
+            Damage = 1200,
+            DamageFriendly = true,
+            DamageRadius = 8.59375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #CRAWL_BLAST
+            Damage = 2500,
+            DamageRadius = 8.59375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+}

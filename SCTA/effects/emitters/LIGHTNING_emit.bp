@@ -1,0 +1,12 @@
+TrailEmitterBlueprint {
+	Lifetime = -1.00,
+	TrailLength = 3.5,
+	Size = 0.3,
+	SortOrder = 0,
+	BlendMode = 0,
+	TextureRepeatRate = 1,
+	LODCutoff = 250,
+	RepeatTexture = [[/mods/SCTA/textures/particles/trail_lightning.dds]],
+	RampTexture = [[/mods/SCTA/textures/particles/ramp_lightning.dds]],
+}
+

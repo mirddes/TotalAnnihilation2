@@ -1,0 +1,55 @@
+#CORE The Can Laser
+#CORE_CANLASER
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASRHIT1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASRHIT1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASRHIT1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASRHIT1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'DIRECTFIRE'
+    },
+    Display = {
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'CORE',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
+        Faction = 'CORE',
+        Weapon = 'CORE_CANLASER',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 43.75,
+        Lifetime = 3,
+    },
+}

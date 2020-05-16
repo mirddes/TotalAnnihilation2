@@ -1,0 +1,234 @@
+#CORE Pyro - Assault Kbot
+#CORPYRO
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'CORE',
+        'KBOT',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 700,
+        MaxHealth = 700,
+    },
+    Description = 'Assault Kbot',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'lloarm'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2200,
+        BuildCostMass = 260,
+        BuildTime = 3750,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 1.1,
+        ProductionPerSecondEnergy = 1.1,
+    },
+    Footprint = {
+	SizeX = 2,
+	SizeZ = 2,
+	MaxSlope = 1.0625,
+	MaxWaterDepth = 1.5625,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Pyro',
+    },
+    Intel = {
+        VisionRadius = 15,
+    },
+    Interface = {
+        HelpText = 'Assault Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 6.59,
+        MaxSpeed = 2.86,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 156,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+
+# Sound Played via script
+--[[
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'FLAMHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+--]]
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 0, #damage is caused in script
+	    AlternateDamageRadius = 1,
+            DamageType = 'Normal',
+            DisplayName = 'FLAMETHROWER',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 0,
+            FiringRandomness = 1, #Correct Value?
+            Label = 'FLAMETHROWER',
+            MaxRadius = 10,
+            MuzzleSalvoDelay = 0.04,
+            MuzzleSalvoSize = 17,
+	    MuzzleVelocity = 11.75,
+            ProjectileId = '/mods/SCTA/projectiles/FLAMETHROWER/FLAMETHROWER_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'firept',
+                    },
+                    RackBone = 'ruparm',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1, 
+            RateOfFire = 0.83, #Should be 25, but can't go that high
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'firept',
+            TurretBonePitch = 'ruparm',
+            TurretBoneYaw = 'torso',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 45,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/units/ARMZEUS/ARMZEUS_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

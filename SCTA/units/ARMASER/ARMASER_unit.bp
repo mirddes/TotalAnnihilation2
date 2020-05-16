@@ -1,0 +1,187 @@
+#ARM Eraser - Radar Jammer
+#ARMASER
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADJAM1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSTOP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADJAM1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADJAM1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'INTELLIGENCE',
+        'OVERLAYCOUNTERINTEL',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'NOWEAPON',
+	'JAM',
+	'LEVEL2',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 305,
+        MaxHealth = 305,
+    },
+    Description = 'Radar Jammer',
+    Display = {
+        Abilities = {
+            'Radar Jammer',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'ForkEnd'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1326,
+        BuildCostMass = 73,
+        BuildTime = 4937,
+	NaturalProducer = true,
+	MaintenanceConsumptionPerSecondEnergy = 10,
+	ProductionPerSecondEnergy = 10,
+    },
+    Footprint = {
+	SizeX = 2,
+	SizeZ = 2,
+	MaxSlope = 2,
+	MaxWaterDepth = 7,
+    },
+    General = {
+        Category = 'Utility',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Stop = true,
+        },
+        ToggleCaps = {
+            RULEUTC_StealthToggle = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Eraser',
+    },
+    Intel = {
+	FreeIntel = true,
+	RadarStealth = true,
+        VisionRadius = 13,
+	RadarStealthFieldRadius = 31,
+    },
+    Interface = {
+        HelpText = 'Mobile Radar Jammer',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 36,
+        MaxSpeed = 1.875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 156.25,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 1.5,
+    SizeZ = 2,
+    StrategicIconName = 'icon_land2_counterintel', --'icon_bot2_counterintel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMASER/ARMASER_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

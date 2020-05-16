@@ -1,0 +1,68 @@
+#CORE Rapier Rocket
+#VTOL_ROCKET
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'ROCKLIT3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'ROCKLIT3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'ROCKLIT3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'ROCKLIT3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSMED',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'MISSILE',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/missile_mesh.bp',
+        StrategicIconSize = 1,
+        UniformScale = 0.16,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+       	    'CORE',
+            'PROJECTILE',
+       	    'MISSILE',
+        },
+        Faction = 'CORE',
+        Weapon = 'VTOL_ROCKET',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 6.25,
+        Acceleration = 3.1875,
+        MaxSpeed = 21.875,
+	TrackTarget = false,
+	TurnSpeed = 0,
+        Lifetime = 30,
+        UseGravity = false,
+        VelocityAlign = true,
+    },
+}

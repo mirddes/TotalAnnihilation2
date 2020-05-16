@@ -1,0 +1,230 @@
+#CORE Pillager - Mobile Artillery
+#CORMART
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TCORMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TCORST0P',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'INDIRECTFIRE',
+        'OVERLAYINDIRECTFIRE',
+
+	--TA Categories
+        'CORE',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 600,
+        MaxHealth = 600,
+    },
+    Description = 'Mobile Artillery',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Tredside','MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'sleeve'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1535,
+        BuildCostMass = 251,
+        BuildTime = 4523,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 0.5,
+        ProductionPerSecondEnergy = 0.5,
+    },
+    Footprint = {
+	SizeX = 3,
+	SizeZ = 3,
+	MaxSlope = 0.75,
+    },
+    General = {
+        Category = 'Indirect Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Pillager',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Mobile Artillery',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.432,
+        MaxBrake = 0.36,
+        MaxSpeed = 1.6875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 58,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.75,
+    SelectionCenterOffsetZ = -0.75,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_artillery',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 140,
+	    AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'CORE_ARTILLERY',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+	    FiringRandomness = 2,
+            Label = 'CORE_ARTILLERY',
+            MaxRadius = 38.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 19.375,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_ARTILLERY/CORE_ARTILLERY_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'flare',
+                    },
+                    RackBone = 'barrel',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.34,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'flare',
+            TurretBonePitch = 'sleeve',
+            TurretBoneYaw = 'turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 50,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORMART/CORMART_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

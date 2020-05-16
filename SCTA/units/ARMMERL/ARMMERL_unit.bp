@@ -1,0 +1,224 @@
+#ARM Merl - Mobile Rocket Launcher
+#ARMMERL
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSTOP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 7,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'INDIRECTFIRE',
+	'ROCKET',
+        'OVERLAYINDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 540,
+        MaxHealth = 540,
+    },
+    Description = 'Mobile Rocket Launcher',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Tredside','ArmCockpit'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Door_01', 'Door_02'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2746,
+        BuildCostMass = 462,
+        BuildTime = 8592,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 0.5,
+        ProductionPerSecondEnergy = 0.5,
+    },
+    Footprint = {
+	SizeX = 3,
+	SizeZ = 3,
+	MaxSlope = 1,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Indirect Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Merl',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Mobile Rocket Launcher',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.54,
+        MaxBrake = 0.972,
+        MaxSpeed = 2.25,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 71,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_missile',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_HighArc',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 500,
+	    AlternateDamageRadius = 3,
+            DamageType = 'Normal',
+            DisplayName = 'ARMTRUCK_ROCKET',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+                Seabed = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+            FiringTolerance = 21.98,
+            Label = 'ARMTRUCK_ROCKET',
+            MaxRadius = 50,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 0,
+            ProjectileId = '/mods/SCTA/projectiles/ARMTRUCK_ROCKET/ARMTRUCK_ROCKET_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+		    HideMuzzle = true,
+                    RackBone = 'Muzzle',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.083,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            WeaponCategory = 'Indirect Fire',
+	    WeaponUnpacks = true,
+            WeaponRepackTimeout = 3,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMMERL/ARMMERL_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

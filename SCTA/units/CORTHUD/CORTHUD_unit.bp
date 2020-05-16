@@ -1,0 +1,237 @@
+#CORE Thud - Artillery Kbot
+#CORTHUD
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'CORE',
+        'KBOT',
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 800,
+        MaxHealth = 800,
+    },
+    Description = 'Artillery Kbot',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'rgun', 'lgun'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1161,
+        BuildCostMass = 147,
+        BuildTime = 2171,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.6,
+        ProductionPerSecondEnergy = 0.6,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.875,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Thud',
+    },
+    Intel = {
+        VisionRadius = 15,
+    },
+    Interface = {
+        HelpText = 'Artillery Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.295898424,
+        MaxBrake = 6.591796884,
+        MaxSpeed = 2.11875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 164,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionCenterOffsetZ = -0.75,
+    SelectionSizeX = 1.0,
+    SelectionSizeZ = 1.0,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 1.75,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNON1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 80,
+            AlternateDamageRadius = 1.5, 
+            DamageType = 'Normal',
+            DisplayName = 'CORE_THUD',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            Label = 'CORE_THUD',
+            MaxRadius = 14.375,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 13.125,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_THUD/CORE_THUD_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'rmuzzle',
+                    },
+                    RackBone = 'rgun',
+                },
+                {
+                    MuzzleBones = {
+                        'lmuzzle',
+                    },
+                    RackBone = 'lgun',
+                },
+            },
+            RackRecoilDistance = -2,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.53,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'aimmuzzle',
+            TurretBonePitch = 'gun',
+            TurretBoneYaw = 'torso',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 45,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+            WeaponCategory = 'Direct Fire',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORTHUD/CORTHUD_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

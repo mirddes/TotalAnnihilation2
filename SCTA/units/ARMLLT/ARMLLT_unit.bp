@@ -1,0 +1,218 @@
+#ARM L.L.T. - Light Laser Tower
+#ARMLLT
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 10,
+    Categories = {
+        'BUILTBYT1AIR',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+	'ARM',
+	'DEFENSIVE',
+	'WEAPON',
+	'LEVEL1',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 750,
+        MaxHealth = 750,
+    },
+    Description = 'Light Laser Tower',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Turret_Barrel'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2546,
+        BuildCostMass = 262,
+        BuildTime = 4662,
+        StorageEnergy = 100,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.875,
+    },
+    General = {
+        BuildAngle = 32768,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'L.L.T.',
+    },
+    Intel = {
+        VisionRadius = 24,
+    },
+    Interface = {
+        HelpText = 'Light Laser Tower',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 2, 
+        SkirtSizeZ = 2,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionCenterOffsetZ = -0.5,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 3,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'LASRFIR3',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            EnergyRequired = 10,
+            Damage = 60,
+            AlternateDamageRadius = 0.25,
+            DamageType = 'Normal',
+            DisplayName = 'ARM_LIGHTLASER',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 2.75,
+            Label = 'ARM_LIGHTLASER',
+            MaxRadius = 18.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 56.25,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_LIGHTLASER/ARM_LIGHTLASER_proj.bp',
+            EnergyRequired = 10,
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle',
+                    },
+                    RackBone = 'Turret_Barrel',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 1.92,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS'
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Turret_Muzzle',
+            TurretBonePitch = 'Turret_Barrel',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 200,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 300,
+            Turreted = true,
+        },
+        { #MEDIUM_BUILDINGEX
+            Damage = 100,
+            DamageFriendly = true,
+            DamageRadius = 3.28,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #MEDIUM_BUILDING
+            Damage = 100,
+            DamageRadius = 10.16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMLLT/ARMLLT_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,201 @@
+#CORE Hive - Light Carrier
+#CORCARRY
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    AI = {
+	RefuelingRepairAmount = 200,
+        RefuelingMultiplier = 50,
+	StagingPlatformScanRadius = 300,
+        ShowAssistRangeOnSelect = true,
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+        'REPAIR',
+
+	--Additional Categories
+	'NAVAL',
+	'MOBILE',
+	#'STRATEGIC',
+        'AIRSTAGINGPLATFORM',
+	#'CARRIER',
+        'OVERLAYRADAR',
+        'OVERLAYMISC',
+
+	--TA Categories
+	'CORE',
+	'SHIP',
+	'LEVEL2',	#Bug in TA: 'LEVEL1'
+	'CARRY',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3500,
+        MaxHealth = 3500,
+    },
+    Description = 'Light Carrier',
+    Display = {
+        Abilities = {
+            'Air Repair Pad',
+        },
+	DestructionEffects = {
+		#DefaultProjectileCategories = {'ArmShip','ArmBui','Helipad'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'CORCARRY','Attachpoint01','Attachpoint02'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'dish'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'wake1','wake2'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 11715,
+        BuildCostMass = 1379,
+        BuildTime = 25271,
+	BuildRate = 200,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 380,
+        MaintenanceConsumptionPerSecondEnergy = 45,
+    },
+    Footprint = {
+        SizeX = 6,
+        SizeZ = 6,
+	MinWaterDepth = 1.875,
+    },
+    General = {
+        Category = 'Ship',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Stop = true,
+            RULEUCC_Transport = true,
+        },
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Hive',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 22,
+	RadarRadius = 111,
+    },
+    Interface = {
+        HelpText = 'Light Carrier',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.36,
+        MaxBrake = 0.72,
+        MaxSpeed = 4.125,
+        TurnRate = 10.5,
+        MotionType = 'RULEUMT_Water',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 3,
+    SelectionSizeZ = 5,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 3,
+    SizeZ = 9,
+    StrategicIconName = 'icon_ship2_air',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        Class1AttachSize = 1,
+        Class2AttachSize = 1,
+        Class3AttachSize = 1,
+        RepairRate = 200,
+	StorageSlots = 0,
+    },
+    Weapon = {
+        { #CRAWL_BLAST
+            Damage = 2500,
+            DamageFriendly = true,
+            DamageRadius = 8.59375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #CRAWL_BLAST
+            Damage = 2500,
+            DamageRadius = 8.59375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORCARRY/CORCARRY_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

@@ -1,0 +1,195 @@
+#ARM Hovercraft Platform - Builds Hovercraft
+#ARMHP
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVERSL1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVEROK1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	ConstructStop = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'UNITDONE',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 25,
+    Categories = {
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+	'FACTORY',
+        'RALLYPOINT',
+        'SHOWQUEUE',
+
+	--Additional Categories
+	'STRUCTURE',
+	'CONSTRUCTION',
+
+	--TA Categories
+	'ARM',
+	'PLANT',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_F',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3005,
+        MaxHealth = 3005,
+    },
+    Description = 'Builds Hovercraft',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Construction','BuildMuzzle','BuildPlate'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'plate1','plate2', 0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'muzzle1', 'muzzle2'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'muzzle1','muzzle2'},
+	BuildAttachBone = 'pad',
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 5277,
+        BuildCostMass = 2007, 
+        BuildTime = 18520,
+	BuildRate = 200,
+        BuildableCategory = {
+            'HOVER LEVEL1 ARM',
+        },
+	InitialRallyX = 0,
+	InitialRallyZ = 7.5,
+        StorageMass = 200,
+        StorageEnergy = 200,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 8,
+        SizeZ = 7,
+    },
+    General = {
+        Category = 'Factory',
+        Classification = 'RULEUC_Factory',
+        CommandCaps = {
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        ConstructionBar = true,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+	UnitName = 'Hovercraft Platform',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Builds Hovercraft',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 8,
+        SkirtSizeZ = 7,
+	BuildAreaX = 4,
+	BuildAreaZ = 4,
+	CloseAreaX = 4,
+	CloseAreaZ = 7,
+        OccupyRects = {
+            # offsetX offsetZ  sizeX sizeZ, offset from center of unit
+            -3,
+            0,
+            1,
+            3,
+
+            3,
+            0,
+            1,
+            3,
+        },
+    },
+    SelectionSizeX = 4,
+    SelectionSizeZ = 3.5,
+    SelectionThickness = 0.25,
+    SizeX = 8,
+    SizeY = 2.5,
+    SizeZ = 7,
+    StrategicIconName = 'icon_factory2_land',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #LARGE_BUILDING
+            Damage = 1800,
+            DamageRadius = 12.5,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMHP/ARMHP_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

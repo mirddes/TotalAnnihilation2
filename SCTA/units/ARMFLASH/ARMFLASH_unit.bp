@@ -1,0 +1,228 @@
+#ARM Flash - Fast Assault Tank
+#ARMFLASH
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARMMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARMST0P',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+	'ARMFLASH',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 625,
+        MaxHealth = 625,
+    },
+    Description = 'Fast Assault Tank',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Tredside','MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 870,
+        BuildCostMass = 106,
+        BuildTime = 1676,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.5,
+        ProductionPerSecondEnergy = 0.5,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+	MaxWaterDepth = 0.75,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Flash',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Fast Assault Tank',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.612,
+        MaxBrake = 0.72,
+        MaxSpeed = 3.75,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 78,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 1,
+    SizeZ = 2,
+    StrategicIconName = 'icon_land1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ARMSML2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 8,
+            AlternateDamageRadius = 0.25,
+            FiringRandomness = 1,
+            DamageType = 'Normal',
+            DisplayName = 'EMG',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 32.97,
+            Label = 'EMG',
+            MaxRadius = 11.25,
+            MuzzleSalvoDelay = 0.1,
+            MuzzleSalvoSize = 3,
+	    MuzzleVelocity = 18.75,
+            ProjectileId = '/mods/SCTA/projectiles/EMG/EMG_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle_01',
+                    },
+                    RackBone = 'Turret_Recoil_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle_02',
+                    },
+                    RackBone = 'Turret_Recoil_02',
+                },
+            },
+            RackRecoilDistance = 0, #-1.4,
+            RackReloadTimeout = 0.4,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 3,
+            RateOfFire = 10,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Muzzle_Aim',
+            TurretBonePitch = 'Turret_Barrel',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 90,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFLASH/ARMFLASH_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

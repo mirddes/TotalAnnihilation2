@@ -1,0 +1,159 @@
+#ARM Floating Metal Maker - Converts Energy into Metal
+#ARMFMKR
+#
+#Blueprint created by Raevn
+
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLON1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLON1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'METLOFF1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 17,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'MASSPRODUCTION',
+        'ECONOMIC',
+	'TEXTUREANIM',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core float mm
+	'METAL',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 110,
+        MaxHealth = 110,
+    },
+    Description = 'Converts Energy into Metal',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 8,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1480,
+        BuildCostMass = 1,
+        BuildTime = 2958,
+        ProductionPerSecondMass = 1,
+	MaintenanceConsumptionPerSecondEnergy = 60,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 3,
+        SizeZ = 3,
+	MinWaterDepth = 0.6875,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Floating Metal Maker',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Converts Energy into Metal',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 3, 
+        SkirtSizeZ = 3, 
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_structure1_mass',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFMKR/ARMFMKR_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+        },
+    },
+}

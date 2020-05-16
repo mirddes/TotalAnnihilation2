@@ -1,0 +1,158 @@
+#CORE Solar Collector - Produces Energy
+#CORSOLAR
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SOLAR2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SOLAR2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+
+	--TA Categories
+	'CORE',
+	'ENERGY',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 320,
+        MaxHealth = 320,
+    },
+    Description = 'Produces Energy',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'wing1','wing2','wing3','wing4'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 790,
+        BuildCostMass = 141,
+        BuildTime = 2416,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 20,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 5,
+    },
+    General = {
+	BuildAngle = 32768,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+	UnitName = 'Solar Collector',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 5,
+        SkirtSizeZ = 5,
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 1.75,
+    SizeZ = 5,
+    StrategicIconName = 'icon_structure1_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORSOLAR/CORSOLAR_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

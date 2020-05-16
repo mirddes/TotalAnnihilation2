@@ -1,0 +1,49 @@
+PropBlueprint {
+    Categories = {
+        'RECLAIMABLE',
+	'NOSMOKE',
+    },
+    Defense = {
+        Health = 24000,
+        MaxHealth = 24000,
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+		    NormalName = '/mods/SCTA/meshes/wrecks/Wreck_NormalsTS.dds',
+		    SpecularName = '/mods/SCTA/meshes/wrecks/Wreck_SpecTeam.dds',
+		    AlbedoName = '/mods/SCTA/meshes/wrecks/Wreck_Albedo.dds',
+		    MeshName = 'ARMTL_dead_lod0.scm',
+                    ShaderName = 'Unit',
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        ReclaimEnergyMax = 0,
+        ReclaimMassMax = 723,
+        ReclaimTime = 10,
+    },
+    Footprint = {
+        OccupancyCaps = 3,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    Interface = {
+        HelpText = 'Wreckage',
+    },
+    Physics = {
+        BlockPath = true,
+    },
+    SeabedOffset = 0.75,
+    ScriptClass = 'TAWreckage',
+    ScriptModule = '/mods/SCTA/lua/TAWreckage.lua',
+    SizeX = 3,
+    SizeY = 1.25,
+    SizeZ = 3,
+    CollisionOffsetY = -0.75,
+}

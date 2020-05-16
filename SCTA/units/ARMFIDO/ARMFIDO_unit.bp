@@ -1,0 +1,233 @@
+#ARM Fido - Assault Kbot
+#ARMFIDO
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1000,
+        MaxHealth = 1000,
+    },
+    Description = 'Assault Kbot',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Torso', 'Pelvis'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Barrel'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 3556,
+        BuildCostMass = 398,
+        BuildTime = 10827,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 0.8,
+        ProductionPerSecondEnergy = 0.8,
+    },
+    Footprint = {
+	SizeX = 2,
+	SizeZ = 2,
+	MaxSlope = 0.875,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Fido',
+    },
+    Intel = {
+        VisionRadius = 15,
+    },
+    Interface = {
+        HelpText = 'Assault Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 10.8,
+        MaxSpeed = 3.28125,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 148,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionCenterOffsetZ = -0.5,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 120,
+	    AlternateDamageRadius = 0.25,
+            DamageType = 'Normal',
+            DisplayName = 'GAUSS',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 0,
+            Label = 'GAUSS',
+            MaxRadius = 30,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+	    MuzzleVelocity = 28.125,
+            ProjectileId = '/mods/SCTA/projectiles/GAUSS/GAUSS_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+                    RackBone = 'Barrel',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.385,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Muzzle',
+            TurretBonePitch = 'Barrel',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFIDO/ARMFIDO_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

@@ -1,0 +1,203 @@
+#ARM Adv. Construction Kbot - Tech Level 2
+#ARMACK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'NANLATH1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	StartReclaim = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RECLAIM1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'ENGINEER',
+        'REPAIR',
+        'RECLAIM',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'PATROLHELPER',
+        'SHOWQUEUE',
+
+	--Additional Categories
+        'MOBILE',
+	'CONSTRUCTION',
+	'LAND',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'LEVEL2',
+	'CONSTR',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_B',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1040,
+        MaxHealth = 1040,
+    },
+    Description = 'Tech Level 2',
+    Display = {
+        Abilities = {
+            'Adv. Construction Unit',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Construction','BuildMuzzle'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Pelvis'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Build_Muzzle_01','Build_Muzzle_02','Left_Upper_Leg','Right_Upper_Leg'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'Build_Muzzle_01','Build_Muzzle_02'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 5784,
+        BuildCostMass = 300,
+        BuildRate = 160,
+        BuildTime = 13432,
+        BuildableCategory = {
+            'BUILTBYT2KBOT ARM',
+        },
+        MaxBuildDistance = 3.75,
+        StorageEnergy = 100,
+        StorageMass = 100,
+	NaturalProducer = true,
+	ProductionPerSecondEnergy = 17,
+	ProductionPerSecondMass = 0.5,
+	MaintenanceConsumptionPerSecondEnergy = 0.1,
+    },
+    Footprint = {
+	MaxSlope = 1.25,
+	MaxWaterDepth = 1.5625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+        Category = 'Construction',
+        Classification = 'RULEUC_Engineer',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = true,
+            RULEUCC_Repair = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        SelectionPriority = 3,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Adv. Construction Kbot',
+    },
+    Intel = {
+        VisionRadius = 16,
+    },
+    Interface = {
+        HelpText = 'Tech Level 2',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 6.48,
+        MaxBrake = 21.6,
+        MaxSpeed = 1.125,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 166,
+        MaxSteerForce = 10,
+        StandUpright = true,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2.5,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot2_engineer',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMACK/ARMACK_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

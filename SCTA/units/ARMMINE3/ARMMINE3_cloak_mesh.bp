@@ -1,0 +1,13 @@
+MeshBlueprint {
+    IconFadeInZoom = 130,
+    LODs = {
+        {
+            MeshName = 'ARMMINE3_lod0.scm',
+            AlbedoName = 'ARMMINE3_Albedo.dds',
+            NormalsName = '/mods/SCTA/textures/common/normalsTS.dds',
+            SpecularName = 'ARMMINE3_Specteam.dds',
+            ShaderName = 'CommandFeedback', -- TACloak
+            LODCutoff = 500,
+        },
+    },
+}

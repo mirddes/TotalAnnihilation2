@@ -1,0 +1,180 @@
+#ARM Peeper - Air Scout
+#ARMPEEP
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARAC',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TakeOff = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Landing = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    Air = {
+        AutoLandTime = 1,
+        BankFactor = 0,
+	BankForward = false,
+        CanFly = true,
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'AIR',
+	'SCOUT',
+
+	--TA Categories
+        'ARM',
+        'VTOL',
+	'CTRL_V',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 80,
+        MaxHealth = 80,
+    },
+    Description = 'Air Scout',
+    Display = {
+	DestructionEffects = {
+		DestructionDebrisUseLocalVelocity = true,
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCategories = {'ArmCockpit'},
+		FlashSize = 10,
+		FlashTime = 10,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1475,
+        BuildCostMass = 40,
+        BuildTime = 2585,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.2,
+        ProductionPerSecondEnergy = 0.2,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+        Category = 'Utility',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Peeper',
+    },
+    Intel = {
+        VisionRadius = 22,
+	FreeIntel = true,
+	RadarRadius = 44, 
+    },
+    Interface = {
+        HelpText = 'Air Scout',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = 11.25,
+        MotionType = 'RULEUMT_Air',
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 18,
+        MaxBrake = 324,
+        MaxSpeed = 22.5,
+        TurnRate = 132,
+	RotateOnSpot = true,
+	MinSpeedPercent = 0,
+	MaxSteerForce = 100,
+	TurnRadius = 0,
+	FuelRechargeRate = 999999,
+	FuelUseTime = 999999,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 1,
+    SizeZ = 2,
+    StrategicIconName = 'icon_fighter1_intel',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        AirClass = true,
+        TransportClass = 1,
+    },
+    Weapon = {
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+}

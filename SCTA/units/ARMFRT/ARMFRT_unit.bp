@@ -1,0 +1,224 @@
+#ARM Defender - NS - Missile Tower - Naval Series
+#ARMFRT
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 22,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'ANTIAIR',
+        'OVERLAYDIRECTFIRE',
+	'OVERLAYANTIAIR',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core floating mt
+	'SPECIAL',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 252,
+        MaxHealth = 252,
+    },
+    Description = 'Missile Tower - Naval Series',
+    Display = {
+	DestructionEffects = {
+		DestructionProjectiles = {
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMRL_debris01_proj.bp',
+				Bone = 'barrel',
+			},
+		},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'turret',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 987,
+        BuildCostMass = 71,
+        BuildTime = 2163,
+	MaintenanceConsumptionPerSecondEnergy = 0.1,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+	MinWaterDepth = 3,
+    },
+    General = {
+        BuildAngle = 16384,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Defender - NS',
+    },
+    Intel = {
+        VisionRadius = 22,
+    },
+    Interface = {
+        HelpText = 'Missile Tower - Naval Series',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4,  
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionCenterOffsetZ = -0.75,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 4,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure2_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 46,
+            AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'ARMFRT_MISSILE',
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 43.96,
+            Label = 'ARMFRT_MISSILE',
+            MaxRadius = 43.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 29.375,
+            ProjectileId = '/mods/SCTA/projectiles/ARMFRT_MISSILE/ARMFRT_MISSILE_proj.bp',
+            ProjectileLifetime = 1,
+
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'muzzle',
+                    },
+                    RackBone = 'launcher',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.5,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS'
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'muzzle',
+            TurretBonePitch = 'launcher',
+            TurretBoneYaw = 'turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 250,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 250,
+            Turreted = true,
+        },
+        { #DUMMY WEAPON FOR ANTI AIR ATTACK RINGS
+            Fake = true,
+            Label = 'ANTIAIR_RING',
+            MaxRadius = 43.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            RackBones = {{MuzzleBones = {}}},
+            RackRecoilDistance = 0,
+	    RangeCategory = 'UWRC_AntiAir',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFRT/ARMFRT_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+        },
+    },
+}

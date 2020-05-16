@@ -1,0 +1,252 @@
+#CORE Crasher - Missile Kbot
+#CORCRASH
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+	'ANTIAIR',
+        'OVERLAYDIRECTFIRE',
+	'OVERLAYANTIAIR',
+
+	--TA Categories
+        'CORE',
+        'KBOT',
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 480,
+        MaxHealth = 480,
+    },
+    Description = 'Missile Kbot',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Pelvis'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'GunBase'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Pelvis',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1224,
+        BuildCostMass = 129,
+        BuildTime = 2636,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.6,
+        ProductionPerSecondEnergy = 0.6,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.875,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Anti Air',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Crasher',
+    },
+    Intel = {
+        VisionRadius = 18,
+    },
+    Interface = {
+        HelpText = 'Anti-Air Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 5.4,
+        MaxSpeed = 2.34375,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 166,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKLIT1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 32,
+            AlternateDamageRadius = 1.5, 
+            DamageType = 'Normal',
+            DisplayName = 'CORKBOT_MISSILE',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+                Seabed = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 49.45,
+            Label = 'CORKBOT_MISSILE',
+            MaxRadius = 36.875,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 28.125,
+            ProjectileId = '/mods/SCTA/projectiles/CORKBOT_MISSILE/CORKBOT_MISSILE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle1',
+                    },
+                    RackBone = 'Gun1',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle2',
+                    },
+                    RackBone = 'Gun2',
+                },
+            },
+            RackRecoilDistance = -1.5,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.4,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Muzzle1',
+            TurretBonePitch = 'GunBase',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 150,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 225,
+            Turreted = true,
+        },
+        { #DUMMY WEAPON FOR ANTI AIR ATTACK RINGS
+            Fake = true,
+            Label = 'ANTIAIR_RING',
+            MaxRadius = 36.875,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            RackBones = {{MuzzleBones = {}}},
+            RackRecoilDistance = 0,
+	    RangeCategory = 'UWRC_AntiAir',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORCRASH/CORCRASH_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

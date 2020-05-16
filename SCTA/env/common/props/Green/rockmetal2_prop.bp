@@ -1,0 +1,24 @@
+PropBlueprint {
+    Categories = {
+        'INVULNERABLE',
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 0,
+            LODs = {
+                {
+                    AlbedoName = 'rockmetal2_albedo.dds',
+                    LODCutoff = 500,
+                    ShaderName = 'TMeshNoLighting',
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Interface = {
+        HelpText = 'massDeposit',
+    },
+    Physics = {
+        BlockPath = false,
+    },
+}

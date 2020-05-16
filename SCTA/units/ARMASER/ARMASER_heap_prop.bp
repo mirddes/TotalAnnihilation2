@@ -1,0 +1,41 @@
+PropBlueprint {
+    Categories = {
+        'RECLAIMABLE',
+    },
+    Defense = {
+        Health = 144,
+        MaxHealth = 144,
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+		    NormalName = '/mods/SCTA/meshes/wrecks/Wreck_NormalsTS.dds',
+		    SpecularName = '/mods/SCTA/meshes/wrecks/Wreck_SpecTeam.dds',
+		    AlbedoName = '/mods/SCTA/meshes/wrecks/Wreck_Albedo.dds',
+		    MeshName = '/mods/SCTA/meshes/wrecks/1x1a_lod0.scm',
+                    ShaderName = 'Unit',
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        ReclaimEnergyMax = 0,
+        ReclaimMassMax = 24,
+        ReclaimTime = 10,
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        BlockPath = false,
+    },
+    ScriptClass = 'TAWreckage',
+    ScriptModule = '/mods/SCTA/lua/TAWreckage.lua',
+    SizeX = 1,
+    SizeY = 0.25,
+    SizeZ = 1,
+}

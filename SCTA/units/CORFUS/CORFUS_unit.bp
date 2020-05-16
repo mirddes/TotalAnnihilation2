@@ -1,0 +1,139 @@
+#CORE Fusion Power Plant - Produces Energy
+#CORFUS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'FUSION2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 14,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+
+	--TA Categories
+	'CORE',
+	'ENERGY',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3000,
+        MaxHealth = 3000,
+    },
+    Description = 'Produces Energy',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 37865,
+        BuildCostMass = 5004,
+        BuildTime = 94281,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 1050,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 5,
+    },
+    General = {
+	BuildAngle = 16384,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Secret',
+	UnitName = 'Fusion Power Plant',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 5,
+        SkirtSizeZ = 5,
+    },
+    SelectionSizeX = 2.75,
+    SelectionSizeZ = 2.75,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 3,
+    SizeZ = 5,
+    StrategicIconName = 'icon_structure3_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageFriendly = true,
+            DamageRadius = 16.125,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #NUCLEAR_MISSILE
+            Damage = 5500,
+            DamageRadius = 16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORFUS/CORFUS_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

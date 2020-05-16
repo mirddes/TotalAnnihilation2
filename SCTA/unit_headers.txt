@@ -1,0 +1,201 @@
+ARMAAP:     #ARM Adv. Aircraft Plant - Produces Aircraft
+ARMAAS:     #ARM Archer - Anti-Air Ship
+ARMACA:     #ARM Adv. Construction Aircraft - Tech Level 2
+ARMACK:     #ARM Adv. Construction Kbot - Tech Level 2
+ARMACSUB:   #ARM Adv Construction Sbu - Tech Level 2
+ARMACV:     #ARM Adv. Construction Vehicle - Tech Level 2
+ARMAH:      #ARM Swatter - Anti-Air Hovercraft
+ARMALAB:    #ARM Adv. Kbot Lab - Produces Kbots
+ARMAMB:     #ARM Ambusher - Pop-up Heavy Cannon
+ARMAMD:     #ARM Protector - Anti Missile Defense System
+ARMANAC:    #ARM Anaconda - Hovertank
+ARMANNI:    #ARM Annihilator - Energy Weapon
+ARMAP:      #ARM Aircraft Plant - Produces Aircraft
+ARMARAD:    #ARM Advanced Radar Tower - Long Range Radar Tower
+ARMASER:    #ARM Eraser - Radar Jammer
+ARMASON:    #ARM Advanced Sonar Station - Extended Sonar
+ARMASP:     #ARM Air Repair Pad - Automatically repairs aircraft
+ARMASY:     #ARM Adv. Shipyard - Produces Ships
+ARMATL:     #ARM Advanced Torpedo Launcher - Advanced Torpedo Launcher
+ARMATLAS:   #ARM Atlas - Air Transport
+ARMAVP:     #ARM Adv. Vehicle Plant - Produces Vehicles
+ARMAWAC:    #ARM Eagle - Radar Plane
+ARMBATS:    #ARM Millennium - Battleship
+ARMBRAWL:   #ARM Brawler - Gunship
+ARMBRTHA:   #ARM Big Bertha - Long Range Plasma Cannon
+ARMBULL:    #ARM Bulldog - Heavy Assault Tank
+ARMCA:      #ARM Construction Aircraft - Tech Level 1
+ARMCARRY:   #ARM Colossus - Light Carrier
+ARMCH:      #ARM Construction Hovercraft - Tech Level 1
+ARMCK:      #ARM Construction Kbot - Tech Level 1
+ARMCKFUS:   #ARM Cloakable Fusion Reactor - Produces Energy
+ARMCOM:     #ARM Commander - Commander
+ARMCROC:    #ARM Triton - Amphibious Tank
+ARMCRUS:    #ARM Conqueror - Cruiser
+ARMCS:      #ARM Construction Ship - Tech Level 1
+ARMCV:      #ARM Construction Vehicle - Tech Level 1
+ARMDECOM:   #ARM Decoy Commander - Decoy Commander
+ARMDRAG:    #ARM Dragon's Teeth - Perimeter Defence
+ARMESTOR:   #ARM Energy Storage - Increases Energy Storage
+ARMFARK:    #ARM FARK - Fast Assist-Repair Kbot
+ARMFAST:    #ARM Zipper - Fast Attack Kbot
+ARMFAV:     #ARM Jeffy - Fast Attack Vehicle
+ARMFDRAG:   #ARM Floating Dragon's Teeth - Floating Dragon's Teeth
+ARMFHLT:    #ARM Stingray - Floating Heavy Laser Tower
+ARMFIDO:    #ARM Fido - Assault Kbot
+ARMFIG:     #ARM Freedom Fighter - Fighter
+ARMFLAK:    #ARM Flakker - Anti-Air Flak Gun
+ARMFLASH:   #ARM Flash - Fast Assault Tank
+ARMFLEA:    #ARM Flea - Fast Light Scout Kbot
+ARMFMKR:    #ARM Floating Metal Maker - Converts Energy into Metal
+ARMFORT:    #ARM Fortification Wall - Perimeter Defence
+ARMFRT:     #ARM Defender - NS - Missile Tower - Naval Series
+ARMFUS:     #ARM Fusion Reactor - Produces Energy
+ARMGEO:     #ARM Geothermal Powerplant - Produces Energy
+ARMGUARD:   #ARM Guardian - Plasma Battery
+ARMHAM:     #ARM Hammer - Artillery Kbot
+ARMHAWK:    #ARM Hawk - Stealth Fighter
+ARMHLT:     #ARM Sentinel - Heavy Laser Tower
+ARMHP:      #ARM Hovercraft Platform - Builds Hovercraft
+ARMJAM:     #ARM Jammer - Mobile Radar Jammer
+ARMJETH:    #ARM Jethro - Anti-Air Kbot
+ARMLAB:     #ARM Kbot Lab - Produces Kbots
+ARMLANCE:   #ARM Lancet - Torpedo Bomber
+ARMLATNK:   #ARM Panther - Lightning Tank
+ARMLLT:     #ARM L.L.T. - Light Laser Tower
+ARMMAKR:    #ARM Metal Maker - Converts Energy into Metal
+ARMMANNI:   #ARM Penetrator - Mobile Energy Weapon
+ARMMART:    #ARM Luger - Mobile Artillery
+ARMMERL:    #ARM Merl - Mobile Rocket Launcher
+ARMMEX:     #ARM Metal Extractor - Extracts Metal
+ARMMH:      #ARM Wombat - Hovercraft Rocket Launcher
+ARMMINE1:   #ARM Tiny - Low Damage, Med. Range Mine
+ARMMINE2:   #ARM Area Mine - Low Damage, Large Range Mine
+ARMMINE3:   #ARM Focused Mine - Med. Damage, Small Range Mine
+ARMMINE4:   #ARM HE Area Mine - Med. Damage, Large Range Mine
+ARMMINE5:   #ARM Precision Mine - High Damage, Small Range Mine
+ARMMINE6:   #ARM Nuclear Mine - Nuclear Mine
+ARMMLV:     #ARM Mine Layer Vehicle - Tech Level 1
+ARMMMKR:    #ARM Moho Metal Maker - Converts Energy into Metal
+ARMMOHO:    #ARM Moho Mine - Advanced Metal Extractor
+ARMMSHIP:   #ARM Ranger - Missile Ship
+ARMMSTOR:   #ARM Metal Storage - Increases Metal Storage
+ARMPEEP:    #ARM Peeper - Air Scout
+ARMPNIX:    #ARM Pheonix - Bomber
+ARMPT:      #ARM Skeeter - Scout Ship
+ARMPW:      #ARM Peewee - Infantry Kbot
+ARMRAD:     #ARM Radar Tower - Radar Tower
+ARMRL:      #ARM Defender - Missile Tower
+ARMROCK:    #ARM Rocko - Rocket Kbot
+ARMROY:     #ARM Crusader - Destroyer
+ARMSAM:     #ARM Samson - Mobile Missile Launcher
+ARMSEER:    #ARM Seer - Mobile Radar
+ARMSH:      #ARM Skimmer - Scout Hovercraft
+ARMSILO:    #ARM Retaliator - Nuclear Missile Launcher
+ARMSOLAR:   #ARM Solar Collector - Produces Energy
+ARMSONAR:   #ARM Sonar Station - Locates Water Units
+ARMSPID:    #ARM Spider - Spider Assault Vehicle
+ARMSTUMP:   #ARM Stumpy - Medium Assault Tank
+ARMSUB:     #ARM Lurker - Submarine
+ARMSUBK:    #ARM Pirahna - Submarine Killer
+ARMSY:      #ARM Shipyard - Produces Ships
+ARMTARG:    #ARM Targeting Facility - Automatic Radar Targeting
+ARMTHUND:   #ARM Thunder - Bomber
+ARMTIDE:    #ARM Tidal Generator - Produces Energy
+ARMTL:      #ARM Torpedo Launcher - Torpedo Launcher
+ARMUWES:    #ARM Underwater Energy Storage - Increases Energy Storage
+ARMUWFUS:   #ARM Underwater Fusion Plant - Produces Energy
+ARMUWMEX:   #ARM Under Water Metal Extractor - Extracts Metal
+ARMUWMS:    #ARM Underwater Metal Storage - Increases Metal Storage
+ARMVADER:   #ARM Invader - Crawling Bomb
+ARMVP:      #ARM Vehicle Plant - Produces Vehicles
+ARMVULC:    #ARM Vulcan - Rapid Fire Plasma Cannon
+ARMWAR:     #ARM Warrior - Medium Infantry Kbot
+ARMWIN:     #ARM Wind Generator - Produces Energy
+ARMYORK:    #ARM Phalanx - Mobile Flak Vehicle
+ARMZEUS:    #ARM Zeus - Assault Kbot
+CORAAP:     #CORE Adv. Aircraft Plant - Produces Aircraft
+CORACA:     #CORE Adv. Construction Aircraft - Tech Level 2
+CORACK:     #CORE Adv. Construction Kbot - Tech Level 2
+CORACV:     #CORE Adv. Construction Vehicle - Tech Level 2
+CORAK:      #CORE A.K. - Infantry Kbot
+CORALAB:    #CORE Adv. Kbot Lab - Produces Kbots
+CORAP:      #CORE Aircraft Plant - Produces Aircraft
+CORAPE:     #CORE Rapier - Gunship
+CORARAD:    #CORE Advanced Radar Tower - Long Range Radar Tower
+CORASP:     #CORE Air Repair Pad - Automatically repairs aircraft
+CORASY:     #CORE Adv. Shipyard - Produces Ships
+CORAVP:     #CORE Adv. Vehicle Plant - Produces Vehicles
+CORBATS:    #CORE Warlord - Battleship
+CORCA:      #CORE Construction Aircraft - Tech Level 1
+CORCAN:     #CORE The Can - Armored Assault Kbot
+CORCARRY:   #CORE Hive - Light Carrier
+CORCK:      #CORE Construction Kbot - Tech Level 1
+CORCOM:     #CORE Commander - Commander
+CORCRASH:   #CORE Crasher - Missile Kbot
+CORCRUS:    #CORE Executioner - Cruiser
+CORCS:      #CORE Construction Ship - Tech Level 1
+CORCV:      #CORE Construction Vehicle - Tech Level 1
+CORDOOM:    #CORE Doomsday Machine - Energy Weapon
+CORDRAG:    #CORE Dragon's Teeth - Perimeter Defence
+CORESTOR:   #CORE Energy Storage - Increases Energy Storage
+CORETER:    #CORE Deleter - Mobile Radar Jammer
+CORFAV:     #CORE Weasel - Scout
+CORFINK:    #CORE Fink - Air Scout
+CORFMD:     #CORE Fortitude Missile Defense - Anti Missile Defense System
+CORFUS:     #CORE Fusion Power Plant - Produces Energy
+CORGATOR:   #CORE Instigator - Assault Tank
+CORGEO:     #CORE Geothermal Powerplant - Produces Energy
+CORGOL:     #CORE Goliath - Very Heavy Assault Tank
+CORHLT:     #CORE Gaat Gun - Heavy Laser Tower
+CORHURC:    #CORE Hurricane - Strategic Bomber
+CORINT:     #CORE Intimidator - Long Range Plasma Cannon
+CORKROG:    #CORE Krogoth - Experimental Kbot
+CORLAB:     #CORE Kbot Lab - Produces Kbots
+CORLEVLR:   #CORE Leveler - Riot Tank
+CORLLT:     #CORE Light Laser Tower - Light Laser Tower
+CORMAKR:    #CORE Metal Maker - Converts Energy into Metal
+CORMART:    #CORE Pillager - Mobile Artillery
+CORMEX:     #CORE Metal Extractor - Extracts Metal
+CORMINE1:   #CORE M-104 - Low Damage, Med. Range Mine
+CORMINE2:   #CORE M-209 - Low Damage, Large Range Mine
+CORMIST:    #CORE Slasher - Missile Launcher
+CORMOHO:    #CORE Moho Mine - Advanced Metal Extractor
+CORMSHIP:   #CORE Hydra - Missile Ship
+CORMSTOR:   #CORE Metal Storage - Increases Metal Storage
+CORPLAS:    #CORE Immolator - Plasma Tower
+CORPT:      #CORE Searcher - Scout Ship
+CORPUN:     #CORE Punisher - Plasma Battery
+CORPYRO:    #CORE Pyro - Assault Kbot
+CORRAD:     #CORE Radar Tower - Radar Tower
+CORRAID:    #CORE Raider - Medium Assault Tank
+CORREAP:    #CORE Reaper - Heavy Assault Tank
+CORRL:      #CORE Pulverizer - Missile Tower
+CORROACH:   #CORE Roach - Crawling Bomb
+CORROY:     #CORE Enforcer - Destroyer
+CORSEAL:    #CORE Crock - Amphibious Tank
+CORSHAD:    #CORE Shadow - Bomber
+CORSHARK:   #CORE Shark - Submarine Killer
+CORSILO:    #CORE Silencer - Nuclear Missile Launcher
+CORSOLAR:   #CORE Solar Collector - Produces Energy
+CORSONAR:   #CORE Sonar Station - Sonar Station
+CORSPEC:    #CORE Spectre - Radar Jammer
+CORSTORM:   #CORE Storm - Rocket Kbot
+CORSUB:     #CORE Snake - Submarine
+CORSY:      #CORE Shipyard - Produces Ships
+CORTARG:    #CORE Targeting Facility - Automatic Radar Targeting
+CORTHUD:    #CORE Thud - Artillery Kbot
+CORTIDE:    #CORE Tidal Generator - Produces Energy
+CORTITAN:   #CORE Titan - Torpedo Bomber
+CORTL:      #CORE Torpedo Launcher - Torpedo Launcher
+CORVALK:    #CORE Valyrie - Air Transport
+CORVAMP:    #CORE Vamp - Stealth Fighter
+CORVENG:    #CORE Avenger - Fighter
+CORVP:      #CORE Vehicle Plant - Produces Vehicles
+CORVRAD:    #CORE Informer - Mobile Radar
+CORVROC:    #CORE Diplomat - Mobile Rocket Launcher
+CORWIN:     #CORE Wind Generator - Produces Energy
+UAL0001:    #ARM Commander - Commander
+UEL0001:    #ARM Commander - Commander
+URL0001:    #CORE Commander - Commander
+XSL0001:    #CORE Commander - Commander

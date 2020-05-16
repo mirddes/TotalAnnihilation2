@@ -1,0 +1,307 @@
+#CORE Enforcer - Destroyer
+#CORROY
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'NAVAL',
+	'DIRECTFIRE',
+	'DESTROYER',
+        'OVERLAYINDIRECTFIRE',
+        'OVERLAYANTINAVY',
+        'OVERLAYSONAR',
+
+	--TA Categories
+        'CORE',
+        'SHIP',
+	'LEVEL1', #BUG: LEVEL2 in TA
+	'WEAPON',
+	'ANTISUB',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2870,
+        MaxHealth = 2870,
+    },
+    Description = 'Destroyer',
+    Display = {
+        Abilities = {
+            'Anti-Sub',
+            'Sonar',
+        },
+
+	DestructionEffects = {
+#		DefaultProjectileCategories = {'ArmShip','ArmPanel3','MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'turret','CORROY'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'barrel1','barrel2'},
+				EmitterBlueprint = {
+	    				'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},	
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'wake1','wake2'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 4505,
+        BuildCostMass = 887,
+        BuildTime = 13368,
+        ProductionPerSecondEnergy = 1.9,
+        MaintenanceConsumptionPerSecondEnergy = 1.9,
+	NaturalProducer = true,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+	MinWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Ship',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Enforcer',
+    },
+    Intel = {
+        VisionRadius = 21, 
+        WaterVisionRadius = 19, 
+	SonarRadius = 19,
+    },
+    Interface = {
+        HelpText = 'Destroyer',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.329589828,
+        MaxBrake = 0.659179692,
+        MaxSpeed = 5.49375,
+        TurnRate = 21,
+        MotionType = 'RULEUMT_Water',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.75,
+    SelectionSizeZ = 3.00,
+    SelectionThickness = 0.25,
+    SizeX = 2.5,
+    SizeY = 2.75,
+    SizeZ = 4.25,
+    StrategicIconName = 'icon_ship1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 180,
+            AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'CORE_ROY',
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+            FiringRandomness = 0,
+            FiringTolerance = 0,
+            Label = 'CORE_ROY',
+            MaxRadius = 41.25,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 18.75,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_ROY/CORE_ROY_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'flarea1',
+                    },
+                    RackBone = 'barrel1',
+                },
+                {
+                    MuzzleBones = {
+                        'flarea2',
+                    },
+                    RackBone = 'barrel2',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.42,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'flarea1',
+            TurretBonePitch = 'sleeves',
+            TurretBoneYaw = 'turret',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 40,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 70,
+            Turreted = true,
+        },
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'TORPEDO1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 80,
+            AlternateDamageRadius = 0.5,
+            DamageType = 'Normal',
+            DisplayName = 'COREDEPTHCHARGE',
+            FireTargetLayerCapsTable = {
+                Water = 'Water|Sub|Seabed',
+            },
+            RangeCategory = 'UWRC_AntiNavy',
+	    FiringTolerance = 360,
+            Label = 'COREDEPTHCHARGE',
+            MaxRadius = 25,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 6.25,
+            ProjectileId = '/mods/SCTA/projectiles/COREDEPTHCHARGE/COREDEPTHCHARGE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'depthCharge',
+                    },
+                    RackBone = 'depthCharge',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.38,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, HOVER',
+            TurretBoneMuzzle = 'depthCharge',
+            TurretBonePitch = 'depthCharge',
+            TurretBoneYaw = 'depthCharge',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 3600,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 3600,
+            Turreted = true,
+        },
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORROY/CORROY_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

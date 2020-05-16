@@ -1,0 +1,63 @@
+#ARM Stumpy Cannon
+#ARM_LIGHTCANNON
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSSML',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+        'DIRECTFIRE'
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/Plasma_mesh.bp',
+        UniformScale = 0.16,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'ARM',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
+        Faction = 'ARM',
+        Weapon = 'ARM_LIGHTCANNON',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 10.625,
+        Lifetime = 30,
+        UseGravity = true,
+    },
+}

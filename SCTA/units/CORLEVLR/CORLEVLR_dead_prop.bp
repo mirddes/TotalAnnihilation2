@@ -1,0 +1,48 @@
+PropBlueprint {
+    Categories = {
+        'RECLAIMABLE',
+    },
+    Defense = {
+        Health = 300,
+        MaxHealth = 300,
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+		    NormalName = '/mods/SCTA/meshes/wrecks/Wreck_NormalsTS.dds',
+		    SpecularName = '/mods/SCTA/meshes/wrecks/Wreck_SpecTeam.dds',
+		    MeshName = 'CORLEVLR_dead_lod0.scm',
+                    ShaderName = 'Unit',
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        ReclaimEnergyMax = 0,
+        ReclaimMassMax = 233,
+        ReclaimTime = 10,
+    },
+    Footprint = {
+        OccupancyCaps = 3,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    Interface = {
+        HelpText = 'Wreckage',
+    },
+    Physics = {
+        BlockPath = true,
+    },
+    Wreckage = {
+	Blueprint = '/units/CORLEVLR/CORLEVLR_heap_prop.bp',
+    },
+    ScriptClass = 'TAWreckage',
+    ScriptModule = '/mods/SCTA/lua/TAWreckage.lua',
+    SizeX = 2,
+    SizeY = 0.75,
+    SizeZ = 2,
+}

@@ -1,0 +1,160 @@
+#ARM Wind Generator - Produces Energy
+#ARMWIN
+#
+#Blueprint created by Raevn
+
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'WINDGEN1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+	'WIND',
+
+	--TA Categories
+	'ARM',
+	'ENERGY',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 176,
+        MaxHealth = 176,
+    },
+    Description = 'Produces Energy',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'CamoflageC'},
+		DestructionProjectiles = {
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMWIN_debris01_proj.bp',
+				Bone = 'Blades',
+			},
+		},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Blades','Turret'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 509,
+        BuildCostMass = 52,
+        BuildTime = 1603,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 15,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Wind Generator',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4, 
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionCenterOffsetX = -0.4,
+    SelectionSizeX = 2.25,
+    SelectionSizeZ = 2.25,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 6,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure1_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMWIN/ARMWIN_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

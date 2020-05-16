@@ -1,0 +1,195 @@
+#CORE Krogoth Gantry - Builds Krogoths
+#CORGANT
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'GANTSEL1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'GANTOK2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	ConstructStop = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'GANTOK1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 15,
+    Categories = {
+        'BUILTBYT2KBOT',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+        'FACTORY',
+        'RALLYPOINT',
+        'SHOWQUEUE',
+
+        --Additional Categories
+        'STRUCTURE',
+        'CONSTRUCTION',
+
+        --TA Categories
+        'CORE',
+        'PLANT',
+        'LEVEL3',
+        'NOWEAPON',
+        'NOTAIR',
+        'NOTSUB',
+        'CTRL_F',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3050,
+        MaxHealth = 3050,
+    },
+    Description = 'Builds Krogoths',
+    Display = {
+        DestructionEffects = {
+            DefaultProjectileCategories = {'Construction','BuildMuzzle','BuildPlate', 'CorBld'},
+            DestructionEmitters = {
+                {
+                    EmitterBone = {0, 'cranetop','clamp1','clamp2','clamp3','clamp4'},
+                    EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+                    EmitterSize = 1.25,
+                },
+                {
+                    EmitterBone = {'arm1a','arm2a','arm3a','arm4a'},
+                    EmitterBlueprint = {
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+                    },
+                    EmitterSize = 0.35,
+                },
+            },
+        },
+        BuildBones = {'nano1','nano2','nano3','nano4'},
+        BuildAttachBone = 'base',
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+                    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 9574,
+        BuildCostMass = 6587, 
+        BuildTime = 41937,
+        BuildRate = 200,
+        BuildableCategory = {
+            'CORKROG',
+        },
+        InitialRallyX = 0,
+        InitialRallyZ = 7.5,
+        StorageMass = 800,
+        StorageEnergy = 1400,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 9,
+        SizeZ = 9,
+    },
+    General = {
+        Category = 'Factory',
+        Classification = 'RULEUC_Factory',
+        CommandCaps = {
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+	UnitName = 'Krogoth Gantry',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Builds Krogoth',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 9,
+        SkirtSizeZ = 9,
+	BuildAreaX = 3,
+	BuildAreaZ = 3,
+	CloseAreaX = 5,
+	CloseAreaZ = 5,
+        OccupyRects = {
+            # offsetX offsetZ  sizeX sizeZ, offset from center of unit
+            0,
+            -4.5,
+            4.5,
+            1,
+
+            -4,
+            1,
+            1,
+            3.5,
+
+            4,
+            1,
+            1,
+            3.5,
+        },
+    },
+    SelectionSizeX = 4.5,
+    SelectionSizeZ = 4.5,
+    SelectionThickness = 0.25,
+    SizeX = 9,
+    SizeY = 2.5,
+    SizeZ = 9,
+    StrategicIconName = 'icon_factory3_land',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #LARGE_BUILDING
+            Damage = 1800,
+            DamageRadius = 12.5,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORGANT/CORGANT_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

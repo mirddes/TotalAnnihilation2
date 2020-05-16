@@ -1,0 +1,55 @@
+#CORE Krogoth Laser
+#CORKROG_HEAD
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'DIRECTFIRE'
+    },
+    Display = {
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'CORE',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
+        Faction = 'CORE',
+        Weapon = 'CORKROG_HEAD',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 62.5,
+        Lifetime = 3,
+    },
+}

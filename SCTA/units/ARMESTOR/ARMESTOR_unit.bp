@@ -1,0 +1,145 @@
+#ARM Energy Storage - Increases Energy Storage
+#ARMESTOR
+#
+#Blueprint created by Raevn
+
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'STORNGY1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'BUILTBYT1AIR',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ENERGYSTORAGE',
+        'ECONOMIC',
+	'TEXTUREANIM',
+
+	--TA Categories
+	'ARM',
+	'ENERGY',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'STORAGE',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1000,
+        MaxHealth = 1000,
+    },
+    Description = 'Increases Energy Storage',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Stone','EnergyStorage','CorBld'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 8,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2430,
+        BuildCostMass = 240,
+        BuildTime = 12710,
+        StorageEnergy = 3000,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Energy Storage',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Increases Energy Storage',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4, 
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 4,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure1_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #ESTOR_BUILDINGEX
+            Damage = 900,
+            DamageFriendly = true,
+            DamageRadius = 4.6875,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #CRAWL_BLASTSML
+            Damage = 1200,
+            DamageRadius = 8.59375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMESTOR/ARMESTOR_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

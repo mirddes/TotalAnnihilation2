@@ -1,0 +1,55 @@
+#ARM Spider Paralyser Weapon
+#ARM_PARALYSER
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASHIT',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASHIT',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASHIT',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LASHIT',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+        'PARALYSER'
+    },
+    Display = {
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'ARM',
+            'PROJECTILE',
+            'PARALYSER',
+        },
+        Faction = 'ARM',
+        Weapon = 'ARM_PARALYSER',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 37.5,
+        Lifetime = 3,
+    },
+}

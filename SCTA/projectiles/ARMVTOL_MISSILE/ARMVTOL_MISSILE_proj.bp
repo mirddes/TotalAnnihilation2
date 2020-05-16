@@ -1,0 +1,71 @@
+#ARM Freedom Fighter Missile
+#ARMVTOL_MISSILE
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML2',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML2',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML2',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML2',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSMED',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+        'ANTIAIR',
+        'MISSILE',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/missile_mesh.bp',
+        StrategicIconSize = 1,
+        UniformScale = 0.16,
+    },
+    General = {
+        Category = 'Anti Air',
+        EntityCategory = {
+       	    'ARM',
+            'PROJECTILE',
+   	    'ANTIAIR',
+       	    'MISSILE',
+        },
+        Faction = 'ARM',
+        Weapon = 'ARMVTOL_MISSILE',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        Acceleration = 9.125,
+        DestroyOnWater = true,
+        InitialSpeed = 26.25,
+        LeadTarget = false,
+        Lifetime = 30,
+        MaxSpeed = 30,
+        TrackTarget = true,
+        TurnRate = 91,
+        UseGravity = true,
+        VelocityAlign = true,
+    },
+}

@@ -1,0 +1,137 @@
+#CORE Geothermal Powerplant - Produces Energy
+#CORGEO
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'GEOTHRM2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 13,
+    Categories = {
+        'BUILTBYT1AIR',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1HOVER',
+        'SELECTABLE',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+	'HYDROCARBON',
+
+	--TA Categories
+	'CORE',
+	'ENERGY',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 930,
+        MaxHealth = 930,
+    },
+    Description = 'Produces Energy',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Abilities = {
+            'Geothermal',
+        },
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 9375,
+        BuildCostMass = 505,
+        BuildTime = 12875,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 250,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+	UnitName = 'Geothermal Powerplant',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 4,
+        SkirtSizeZ = 4,
+	BuildRestriction = 'RULEUBR_OnHydrocarbonDeposit',
+    },
+    SelectionSizeX = 2.3,
+    SelectionSizeZ = 2.3,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 2.5,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure2_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #NUCLEAR_MISSILE
+            Damage = 5500,
+            DamageRadius = 16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+}

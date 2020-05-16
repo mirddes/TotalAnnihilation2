@@ -1,0 +1,150 @@
+-- ****************************************************************************
+-- **
+-- **  File     :  /cdimage/lua/formations.lua
+-- **  Author(s):
+-- **
+-- **  Summary  :
+-- **
+-- **  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+-- ****************************************************************************
+--
+-- Basic create formation scripts
+
+function CategorizeUnits(formationUnits)
+    local unitsList = {
+        Land = {
+            Bot1 = {}, Bot2 = {}, Bot3 = {}, Bot4 = {},
+            Tank1 = {}, Tank2 = {}, Tank3 = {}, Tank4 = {},
+            Sniper1 = {}, Sniper2 = {}, Sniper3 = {}, Sniper4 = {},
+            Art1 = {}, Art2 = {}, Art3 = {}, Art4 = {},
+            AA1 = {}, AA2 = {}, AA3 = {},
+            Com1 = {}, Com2 = {}, Com3 = {}, Com4 = {},
+            Util1 = {}, Util2 = {}, Util3 = {}, Util4 = {},
+            Shields = {},
+            RemainingCategory = {},
+
+            UnitTotal = 0,
+            AreaTotal = 0,
+            FootprintCounts = {},
+            FootprintSizes = {},
+        },
+
+        Air = {
+            Ground1 = {}, Ground2 = {}, Ground3 = {},
+            Trans1 = {}, Trans2 = {}, Trans3 = {},
+            Bomb1 = {}, Bomb2 = {}, Bomb3 = {},
+            AA1 = {}, AA2 = {}, AA3 = {},
+            AN1 = {}, AN2 = {}, AN3 = {},
+            AIntel1 = {}, AIntel2 = {}, AIntel3 = {},
+            AExper = {},
+            AEngineer = {},
+            RemainingCategory = {},
+
+            UnitTotal = 0,
+            AreaTotal = 0,
+            FootprintCounts = {},
+            FootprintSizes = {},
+        },
+
+        Naval = {
+            CarrierCount = {},
+            BattleshipCount = {},
+            DestroyerCount = {},
+            CruiserCount = {},
+            FrigateCount = {},
+            LightCount = {},
+            NukeSubCount = {},
+            MobileSonarCount = {},
+            RemainingCategory = {},
+
+            UnitTotal = 0,
+            AreaTotal = 0,
+            FootprintCounts = {},
+            FootprintSizes = {},
+        },
+
+        Subs = {
+            SubCount = {},
+
+            UnitTotal = 0,
+            AreaTotal = 0,
+            FootprintCounts = {},
+            FootprintSizes = {},
+        },
+    }
+
+    local categoryTables = {Land = LandCategories, Air = AirCategories, Naval = NavalCategories, Subs = SubCategories}
+
+    -- Loop through each unit to get its category and size
+    for _, u in formationUnits do
+
+        LOG("unit="..u:GetUnitId())
+        LOG("  categories.DIRECTFIRE:"..repr(EntityCategoryContains(categories.DIRECTFIRE,u)))
+        LOG("  categories.CONSTRUCTION:"..repr(EntityCategoryContains(categories.CONSTRUCTION,u)))
+        LOG("  categories.SNIPER:"..repr(EntityCategoryContains(categories.SNIPER,u)))
+        LOG("  categories.LAND:"..repr(EntityCategoryContains(categories.LAND,u)))
+        LOG("  DirectFire:"..repr(EntityCategoryContains(DirectFire,u)))
+        LOG("  categories.SCOUT:"..repr(EntityCategoryContains(categories.SCOUT,u)))
+        LOG("  categories.BOT:"..repr(EntityCategoryContains(categories.BOT,u)))
+        LOG("  categories.TECH2:"..repr(EntityCategoryContains(categories.TECH2,u)))
+        LOG("  LandCategories[Bot2]:"..repr(EntityCategoryContains(LandCategories["Bot2"],u)))
+
+        local identified = false
+        for type, table in categoryTables do
+            for cat, _ in table do
+                if EntityCategoryContains(table[cat], u) then
+                    LOG("unit="..u:GetUnitId()..", type="..type..", category="..repr(cat)..", yes EntityCategoryContains")
+                    local bp = u:GetBlueprint()
+                    local fs = math.max(bp.Footprint.SizeX, bp.Footprint.SizeZ)
+                    local id = bp.BlueprintId
+
+                    if not unitsList[type][cat][fs] then
+                        unitsList[type][cat][fs] = {Count = 0, Categories = {}}
+                    end
+                    unitsList[type][cat][fs].Count = unitsList[type][cat][fs].Count + 1
+                    unitsList[type][cat][fs].Categories[id] = categories[id]
+                    unitsList[type].FootprintCounts[fs] = (unitsList[type].FootprintCounts[fs] or 0) + 1
+
+                    if cat == "RemainingCategory" then
+                        LOG('*FORMATION DEBUG: Unit ' .. u:GetUnitId() .. ' does not match any ' .. type .. ' categories.')
+                    end
+                    unitsList[type].UnitTotal = unitsList[type].UnitTotal + 1
+                    identified = true
+                    break
+                else
+                    LOG("unit="..u:GetUnitId()..", type="..type..", category="..repr(cat)..", no EntityCategoryContains")
+                end
+            end
+
+            if identified then
+                break
+            end
+        end
+        if not identified then
+            WARN('*FORMATION DEBUG: Unit ' .. u:GetUnitId() .. ' was excluded from the formation because its layer could not be determined.')
+        end
+    end
+
+    -- Loop through each category and combine the types within into a single filter category for each size
+    for type, table in categoryTables do
+        for cat, _ in table do
+            if unitsList[type][cat] then
+                for fs, data in unitsList[type][cat] do
+                    local filter = nil
+                    for _, category in data.Categories do
+                        if not filter then
+                            filter = category
+                        else
+                            filter = filter + category
+                        end
+                    end
+                    unitsList[type][cat][fs] = {Count = data.Count, Filter = filter}
+                end
+            end
+        end
+    end
+
+    CalculateSizes(unitsList)
+
+    return unitsList
+end

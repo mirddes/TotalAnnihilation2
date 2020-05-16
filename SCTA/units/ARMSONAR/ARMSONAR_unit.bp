@@ -1,0 +1,168 @@
+#ARM Sonar Station - Locates Water Units
+#ARMSONAR
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONARDE1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 12,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+	'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'SONAR',
+	'NAVAL',
+	'TEXTUREANIM',
+        'OVERLAYSONAR',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'SONAR',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    CollisionOffsetY = -0.75,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 50,
+        MaxHealth = 50,
+    },
+    Description = 'Locates Water Units',
+    Display = {
+        Abilities = {
+            'Sonar',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 6,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                  LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 403,
+        BuildCostMass = 20,
+        BuildTime = 912,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 9,
+	MaintenanceConsumptionPerSecondEnergy = 9,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MinWaterDepth = 0.5,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Sonar Station',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 11,
+	SonarRadius = 74,
+	WaterVisionRadius = 11,
+    },
+    Interface = {
+        HelpText = 'Locates Water Units',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 2, 
+        SkirtSizeZ = 2, 
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure1_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSONAR/ARMSONAR_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+            Seabed = true,
+            Sub = true,
+        },
+    },
+}

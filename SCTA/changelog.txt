@@ -1,0 +1,60 @@
+v18
+- fix hover tank formations (ability to move multiple selected hovers)
+- fix pelican ability to shoot while on water
+
+v17
+- disable assist build nukes/antinukes as per original total annihilation
+- maybe fix for sometimes inability to damage a factory
+- fix some floating units inability to take damage from torps
+- move core morty to adv kbot lab build menus (was incorrectly in level kbot lab build menu)
+- remove krogoth from adv kbot lab build menu (should only be in gantry build menu)
+
+v16
+- add unit: arm pelican
+- add unit: core morty
+- finish core gantry to enable building krogoths
+
+v15
+- fix nuke explosion
+- replicate TA area damage more accurately
+
+v14
+- fix icon paths in factions.lua
+- adjust bomber release timing due to revert to OTA cruising alitude
+- give core access to arm eagle in lieu of core vulture
+- fix wreckage reclaim values
+- hook factions to fix issues with undefined faction when constructing  user interface for selected units
+
+v13
+- change mod icon to core commander because core commander is boss
+- alternative strategic icons for some units in lieu of being able to load the custom ones in a sim mod
+- give core access to arm adv construction sub in lieu of its own adv construction sub
+- fix a few unit formation categories (still many more remain undefined though)
+- fix path to debris textures for some units
+- fix commander regenrate to match authentic TA regen rate
+- revert all aircraft cruising altitude to authentic TA values (missile turrets were unable to kill peepers with Raevn's x2 increase)
+
+v12
+- fix for zombie unit-being-built when factory destroyed
+
+v11
+- fix missing import for core commander
+- add wind data for more maps
+- disable arm/core spawn when aeon/sera is selected so that aeon/sera can be used as an AI opponent
+- reduce mex footprint for compatibility with supcom maps
+- add arm equivalent units to core build menus for many missing core units:
+  underwater storage, underwater mex, cloaking fusion, flak cannon, floating metal maker, dragons teeth, fort walls, buzzsaw
+- increase commander build range by factor of 2 compared to authentic TA
+- self destruct units being carried in a transport when the transport is self destructed (thus enabling aerial roach bombing)
+- revert atlas/valkyrie cruising altitude to authentic TA values (thus enabling effective aerial roach bombing)
+
+v10
+- enable supcom selection priority
+- enable FA specific footprint for Commander2x2 and Vehicle3x3 for better formations
+- fix crash on cloak
+
+v9
+- working with FAF with some features disabled to work as a simple sim mod
+
+v7
+- import Raevn's last version

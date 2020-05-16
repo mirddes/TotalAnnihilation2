@@ -1,0 +1,112 @@
+#CORE Dragon's Teeth - Perimeter Defence
+#CORDRAG
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    BuildIconSortPriority = 17,
+    Categories = {
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+	'UNSELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+        'BENIGN',
+
+	--Additional Categories
+	'STRUCTURE',
+        'DEFENSE',
+        'WALL',
+	'NOEXPLOSION',
+	'NOSMOKE',
+
+	--TA Categories
+	'CORE',
+	'METAL',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3600,
+        MaxHealth = 3600,
+    },
+    Description = 'Perimeter Defence',
+    Display = {
+        Abilities = {
+            'Wall',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		FlashSize = 0,
+		FlashTime = 0,
+	},
+        Mesh = {
+	    IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 300,
+        BuildCostMass = 11,
+        BuildTime = 565,
+    },
+    Footprint = {
+	MaxSlope = 2,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+	BuildAngle = 8192,
+        CapCost = 0,
+        Category = 'Defense',
+        Classification = 'RULEUC_MiscSupport',
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Dragons Teeth',
+    },
+    Intel = {
+        VisionRadius = 0,
+    },
+    Interface = {
+        HelpText = 'Perimeter Defence',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    LifeBarRender = false,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+    },
+    SizeX = 2,
+    SizeY = 1.25,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure_wall',
+    StrategicIconSortPriority = 0,
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/meshes/rockteeth/rockteeth_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

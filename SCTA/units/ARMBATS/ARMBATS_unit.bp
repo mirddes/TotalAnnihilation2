@@ -1,0 +1,314 @@
+#ARM Millennium - Battleship
+#ARMBATS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 5,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'NAVAL',
+	'DIRECTFIRE',
+	'BATTLESHIP',
+        'OVERLAYINDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'SHIP',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 5720,
+        MaxHealth = 5720,
+    },
+    Description = 'Battleship',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'ArmShip','ArmBui', 'MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret_01','Turret_02','ARMBATS','Wake_01','Wake_02'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Turret_01_Barrel_01','Turret_02_Muzzle_01','Turret_01_Barrel_03','Turret_01_Muzzle_02','Turret_02_Barrel_03','Turret_02_Barrel_03'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 20731,
+        BuildCostMass = 4404,
+        BuildTime = 42730,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 50,
+        MaintenanceConsumptionPerSecondEnergy = 48,
+    },
+    Footprint = {
+        SizeX = 6,
+        SizeZ = 6,
+	MinWaterDepth = 1.875,
+    },
+    General = {
+        Category = 'Ship',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Millennium',
+    },
+    Intel = {
+        VisionRadius = 22, 
+    },
+    Interface = {
+        HelpText = 'Battleship',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.18,
+        MaxBrake = 0.648,
+        MaxSpeed = 3.75,
+        TurnRate = 11,
+        MotionType = 'RULEUMT_Water',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 5,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 3.5,
+    SizeZ = 8,
+    StrategicIconName = 'icon_ship2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #ARM_BATS
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 260,
+            AlternateDamageRadius = 2,
+            DamageType = 'Normal',
+            DisplayName = 'ARM_BATS',
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+            FiringRandomness = 0,
+            FiringTolerance = 0,
+            Label = 'ARM_BATSa',
+            MaxRadius = 78.125,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 21.875,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_BATS/ARM_BATS_proj.bp',
+            RackBones = {
+                {    
+                    MuzzleBones = {
+                        'Turret_02_Muzzle_01',
+                    },
+                    RackBone = 'Turret_02_Barrel_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_02_Muzzle_02',
+                    },
+                    RackBone = 'Turret_02_Barrel_02',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_02_Muzzle_03',
+                    },
+                    RackBone = 'Turret_02_Barrel_03',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.45,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Turret_02_Muzzle_02',
+            TurretBonePitch = 'Turret_02',
+            TurretBoneYaw = 'Turret_02',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 30,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 55,
+            Turreted = true,
+        },
+        { #ARM_BATS
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 260,
+            DamageRadius = 2,
+            DamageType = 'Normal',
+            DisplayName = 'ARM_BATS',
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water',
+            },
+	    RangeCategory = 'UWRC_IndirectFire',
+            FiringRandomness = 0,
+            FiringTolerance = 0,
+            Label = 'ARM_BATSb',
+            MaxRadius = 78.125,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 21.875,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_BATS/ARM_BATS_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Turret_01_Muzzle_01',
+                    },
+                    RackBone = 'Turret_01_Barrel_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_01_Muzzle_02',
+                    },
+                    RackBone = 'Turret_01_Barrel_02',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_01_Muzzle_03',
+                    },
+                    RackBone = 'Turret_01_Barrel_03',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.45,
+            TargetCheckInterval = 2.2,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TurretBoneMuzzle = 'Turret_01_Muzzle_02',
+            TurretBonePitch = 'Turret_01',
+            TurretBoneYaw = 'Turret_01',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 30,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 55,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMBATS/ARMBATS_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

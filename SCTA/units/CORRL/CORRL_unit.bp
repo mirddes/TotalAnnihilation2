@@ -1,0 +1,230 @@
+#CORE Pulverizer - Missile Tower
+#CORRL
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 15,
+    Categories = {
+        'BUILTBYT1AIR',
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1HOVER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'DIRECTFIRE',
+	'ANTIAIR',
+        'OVERLAYDIRECTFIRE',
+	'OVERLAYANTIAIR',
+
+	--TA Categories
+	'CORE',
+	'SPECIAL',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 300,
+        MaxHealth = 300,
+    },
+    Description = 'Missile Tower',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret', 0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 805,
+        BuildCostMass = 76,
+        BuildTime = 1749,
+    },
+    Footprint = {
+        SizeX = 3,
+        SizeZ = 3,
+	MaxSlope = 1.25,
+    },
+    General = {
+        BuildAngle = 0,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Pulverizer',
+    },
+    Intel = {
+        VisionRadius = 22,
+    },
+    Interface = {
+        HelpText = 'Missile Tower',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 3, 
+        SkirtSizeZ = 3,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionCenterOffsetZ = -0.125,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 4,
+    SizeZ = 3,
+    StrategicIconName = 'icon_structure2_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = { 				 				
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 45,
+            AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'CORRL_MISSILE',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 55,
+            Label = 'CORRL_MISSILE',
+            MaxRadius = 43.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 28.75,
+            ProjectileId = '/mods/SCTA/projectiles/CORRL_MISSILE/CORRL_MISSILE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle1',
+                    },
+                    RackBone = 'Turret',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle2',
+                    },
+                    RackBone = 'Turret',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle3',
+                    },
+                    RackBone = 'Turret',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.5,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS'
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Muzzle2',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'Turret',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 250,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 250,
+            Turreted = true,
+        },
+        { #DUMMY WEAPON FOR ANTI AIR ATTACK RINGS
+            Fake = true,
+            Label = 'ANTIAIR_RING',
+            MaxRadius = 43.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            RackBones = {{MuzzleBones = {}}},
+            RackRecoilDistance = 0,
+	    RangeCategory = 'UWRC_AntiAir',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORRL/CORRL_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

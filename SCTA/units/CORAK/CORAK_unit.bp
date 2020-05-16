@@ -1,0 +1,229 @@
+#CORE A.K. - Infantry Kbot
+#CORAK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVTNY1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVTNY1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVTNY1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'CORE',
+        'KBOT',
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 265,
+        MaxHealth = 265,
+    },
+    Description = 'Infantry Kbot',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 696,
+        BuildCostMass = 56,
+        BuildTime = 1523,
+        MaintenanceConsumptionPerSecondEnergy = 0.3,
+        ProductionPerSecondEnergy = 0.3,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 1.0625,
+	MaxWaterDepth = 0.0625,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'A.K.',
+    },
+    Intel = {
+        VisionRadius = 17,
+    },
+    Interface = {
+        HelpText = 'Infantry Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.225,
+        MaxBrake = 6.592,
+        MaxSpeed = 3.296,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 181,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'LASRFIR1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 30,
+            AlternateDamageRadius = 0.25,
+            FiringRandomness = 0,
+            DamageType = 'Normal',
+            DisplayName = 'CORE_LASER',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+                Seabed = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 0,
+            Label = 'CORE_LASER',
+            MaxRadius = 11.25,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+	    MuzzleVelocity = 25,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_LASER/CORE_LASER_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'rmuzzle',
+                    },
+                    RackBone = 'rloarm',
+                },
+                {
+                    MuzzleBones = {
+                        'lmuzzle',
+                    },
+                    RackBone = 'lloarm',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 1.16,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'rmuzzle',
+            TurretBonePitch = 'ruparm',
+            TurretBoneDualMuzzle = 'lmuzzle',
+            TurretBoneDualPitch = 'luparm',
+            TurretBoneYaw = 'torso',
+            TurretDualManipulators = true,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 45,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+        },
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORAK/CORAK_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

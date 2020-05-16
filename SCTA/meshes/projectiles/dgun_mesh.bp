@@ -1,0 +1,8 @@
+MeshBlueprint {
+	LODs = {
+		{
+			ShaderName = 'TMeshNoLighting',
+			LODCutoff = 500,
+		},
+	},
+}

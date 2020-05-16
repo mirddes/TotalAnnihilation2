@@ -1,0 +1,49 @@
+PropBlueprint {
+    Categories = {
+        'RECLAIMABLE',
+    },
+    Defense = {
+        Health = 680,
+        MaxHealth = 680,
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+		    NormalName = '/mods/SCTA/meshes/wrecks/Wreck_NormalsTS.dds',
+		    SpecularName = '/mods/SCTA/meshes/wrecks/Wreck_SpecTeam.dds',
+		    AlbedoName = '/mods/SCTA/meshes/wrecks/Wreck_Albedo.dds',
+		    MeshName = 'ARMWAR_dead_lod0.scm',
+                    ShaderName = 'Unit',
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        ReclaimEnergyMax = 0,
+        ReclaimMassMax = 157,
+        ReclaimTime = 10,
+    },
+    Footprint = {
+        OccupancyCaps = 3,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    Interface = {
+        HelpText = 'Wreckage',
+    },
+    Physics = {
+        BlockPath = true,
+    },
+    Wreckage = {
+	Blueprint = '/units/ARMWAR/ARMWAR_heap_prop.bp',
+    },
+    ScriptClass = 'TAWreckage',
+    ScriptModule = '/mods/SCTA/lua/TAWreckage.lua',
+    SizeX = 2,
+    SizeY = 1,
+    SizeZ = 2,
+}

@@ -1,0 +1,63 @@
+#CORE Crock Cannon
+#CORE_MEDIUMCANNON
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSMED',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'DIRECTFIRE'
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/Plasma_mesh.bp',
+        UniformScale = 0.16,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'CORE',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
+        Faction = 'CORE',
+        Weapon = 'CORE_MEDIUMCANNON',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 13.75,
+        Lifetime = 30,
+        UseGravity = true,
+    },
+}

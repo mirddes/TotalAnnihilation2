@@ -1,0 +1,239 @@
+#ARM Hammer - Artillery Kbot
+#ARMHAM
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 800,
+        MaxHealth = 800,
+    },
+    Description = 'Artillery Kbot',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'RightBarrel', 'LeftBarrel'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1187,
+        BuildCostMass = 151,
+        BuildTime = 2340,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.6,
+        ProductionPerSecondEnergy = 0.6,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.875,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Hammer',
+    },
+    Intel = {
+        VisionRadius = 16,
+    },
+    Interface = {
+        HelpText = 'Artillery Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 6.591796884,
+        MaxSpeed = 2.0625,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 164,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionCenterOffsetZ = -0.75,
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNON1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 85,
+            AlternateDamageRadius = 1.25, 
+            DamageType = 'Normal',
+            DisplayName = 'ARM_HAM',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            Label = 'ARM_HAM',
+            MaxRadius = 20,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 13.125,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_HAM/ARM_HAM_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'RightMuzzle',
+                    },
+                    RackBone = 'RightBarrel',
+                },
+                {
+                    MuzzleBones = {
+                        'LeftMuzzle',
+                    },
+                    RackBone = 'LeftBarrel',
+                },
+            },
+            RackRecoilDistance = -2,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.51,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Aim_Muzzle',
+            TurretBonePitch = 'Arms',
+            TurretBoneYaw = 'Torso',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+            WeaponCategory = 'Direct Fire',
+	    WeaponUnpacks = true,
+            WeaponRepackTimeout = 3,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMHAM/ARMHAM_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

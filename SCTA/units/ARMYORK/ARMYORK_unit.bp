@@ -1,0 +1,244 @@
+#ARM Phalanx - Mobile Flak Vehicle
+#ARMYORK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSTOP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 9,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'ANTIAIR',
+        'OVERLAYANTIAIR',
+
+	--TA Categories
+        'ARM',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL2',	#Bug in TA: 'LEVEL2'
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 621,
+        MaxHealth = 621,
+    },
+    Description = 'Mobile Flak Vehicle',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 10500,
+        BuildCostMass = 830,
+        BuildTime = 20380,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.5,
+        ProductionPerSecondEnergy = 0.5,
+    },
+    Footprint = {
+	MaxSlope = 1,
+	MaxWaterDepth = 0.75,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Anti Air',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Phalanx',
+    },
+    Intel = {
+        VisionRadius = 19,
+    },
+    Interface = {
+        HelpText = 'Mobile Flak Vehicle',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 1.08,
+        MaxBrake = 0.432,
+        MaxSpeed = 2.26875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 84,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeZ = 2,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANLITE2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 0,
+            AlternateDamageRadius = 3.28,
+	    EdgeEffectiveness = 0.9,
+            FiringRandomness = 0,
+            DamageType = 'Normal',
+            DisplayName = 'ARMYORK_GUN',
+            FireTargetLayerCapsTable = {
+                Land = 'Air',
+                Seabed = 'Air',
+            },
+	    RangeCategory = 'UWRC_AntiAir',
+            FiringTolerance = 4.2,
+            Label = 'ARMYORK_GUN',
+            MaxRadius = 42.5,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 4,
+            MuzzleVelocity = 56.25,
+            ProjectileId = '/mods/SCTA/projectiles/ARMYORK_GUN/ARMYORK_GUN_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle_01',
+                    },
+                    RackBone = 'Barrel_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle_02',
+                    },
+                    RackBone = 'Barrel_02',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle_03',
+                    },
+                    RackBone = 'Barrel_03',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle_04',
+                    },
+                    RackBone = 'Barrel_04',
+                },
+            },
+            RackRecoilDistance = -4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 4,
+            RackSlavedToTurret = false,
+            RateOfFire = 1.81,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TurretBoneMuzzle = 'Turret',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 90,
+            TurretPitchSpeed = 600,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 650,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMYORK/ARMYORK_heap_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

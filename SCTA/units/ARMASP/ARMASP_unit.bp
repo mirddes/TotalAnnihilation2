@@ -1,0 +1,179 @@
+#ARM Air Repair Pad - Automatically repairs aircraft
+#ARMASP
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'PAIRACTV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'PLABWORK',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	ConstructStop = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'UNITDONE',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    AI = {
+        RefuelingMultiplier = 50,
+	RefuelingRepairAmount = 200,
+	StagingPlatformScanRadius = 300,
+        ShowAssistRangeOnSelect = true,
+    },
+    BuildIconSortPriority = 20,
+    Categories = {
+        'BUILTBYT2VEHICLE',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2AIR',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'STRATEGIC',
+        'AIRSTAGINGPLATFORM',
+        'OVERLAYMISC',
+
+	--TA Categories
+	'ARM',
+	'REPAIRPAD',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 680,
+        MaxHealth = 680,
+    },
+    Description = 'Automatically repairs aircraft',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Stone','Helipad','BuildMuzzle'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Attachpoint01'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Build_Nozzle_01','Build_Nozzle_02'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'Build_Nozzle_01','Build_Nozzle_02'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 8510,
+        BuildCostMass = 425,
+        BuildTime = 21953,
+	BuildRate = 200,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 10,
+	StorageEnergy = 100,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 1024,
+        Category = 'Strategic',
+        Classification = 'RULEUC_MiscSupport',
+        CommandCaps = {
+            RULEUCC_Transport = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Air Repair Pad',
+    },
+    Intel = {
+        VisionRadius = 11,
+    },
+    Interface = {
+        HelpText = 'Automatically repairs aircraft',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 4,
+        SkirtSizeZ = 4,
+    },
+    SelectionSizeX = 2.25,
+    SelectionSizeZ = 2.25,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 2,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_air',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        Class1AttachSize = 1,
+        Class2AttachSize = 1,
+        Class3AttachSize = 1,
+        RepairRate = 200,
+	StorageSlots = 0,
+    },
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMASP/ARMASP_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

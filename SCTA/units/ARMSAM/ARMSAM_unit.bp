@@ -1,0 +1,243 @@
+#ARM Samson - Mobile Missile Launcher
+#ARMSAM
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VARMSTOP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+	'ANTIAIR',
+        'OVERLAYDIRECTFIRE',
+        'OVERLAYANTIAIR',
+
+	--TA Categories
+        'ARM',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL1',	#Bug in TA: 'LEVEL2'
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 650,
+        MaxHealth = 650,
+    },
+    Description = 'Mobile Missile Launcher',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Tredside','ArmCockpit'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1027,
+        BuildCostMass = 119,
+        BuildTime = 1941,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.5,
+        ProductionPerSecondEnergy = 0.5,
+    },
+    Footprint = {
+	MaxSlope = 1,
+	MaxWaterDepth = 0.75,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Anti Air',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Samson',
+    },
+    Intel = {
+        VisionRadius = 15,
+    },
+    Interface = {
+        HelpText = 'Mobile Missile Launcher',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 1.08,
+        MaxBrake = 0.432,
+        MaxSpeed = 2.8125,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 84,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeZ = 2,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land1_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 40,
+            AlternateDamageRadius = 1.5,
+            FiringRandomness = 0,
+            DamageType = 'Normal',
+            DisplayName = 'ARMTRUCK_MISSILE',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+                Seabed = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 45.96,
+            Label = 'ARMTRUCK_MISSILE',
+            MaxRadius = 37.5,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 28.125,
+            ProjectileId = '/mods/SCTA/projectiles/ARMTRUCK_MISSILE/ARMTRUCK_MISSILE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle_01',
+                    },
+                    RackBone = 'Turret_Barrel',
+                },
+                {
+                    MuzzleBones = {
+                        'Turret_Muzzle_02',
+                    },
+                    RackBone = 'Turret_Barrel',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.4,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Turret_Barrel',
+            TurretBonePitch = 'Turret_Barrel',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 150,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 250,
+            Turreted = true,
+        },
+        { #DUMMY WEAPON FOR ANTI AIR ATTACK RINGS
+            Fake = true,
+            Label = 'ANTIAIR_RING',
+            MaxRadius = 37.5,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            RackBones = {{MuzzleBones = {}}},
+            RackRecoilDistance = 0,
+	    RangeCategory = 'UWRC_AntiAir',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSAM/ARMSAM_dead_prop.bp',
+        WreckageLayers = {
+            Seabed = true,
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,8 @@
+MeshBlueprint {
+	LODs = {
+		{
+			ShaderName = 'Unit',
+			LODCutoff = 500,
+		},
+	},
+}

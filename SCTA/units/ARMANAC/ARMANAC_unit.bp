@@ -1,0 +1,232 @@
+#ARM Anaconda - Hovertank
+#ARMANAC
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVMDSL1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVMDOK1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVMDOF1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'DIRECTFIRE',
+        'LAND',
+
+	--TA Categories
+        'ARM',
+        'HOVER',
+	'WEAPON',
+	'LEVEL1',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 880,
+        MaxHealth = 880,
+    },
+    Description = 'Hovertank',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel','ArmHover'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	IdleEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/hover_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02','Wake_03','Wake_04'},
+	},
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/hover_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02','Wake_03','Wake_04'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2856,
+        BuildCostMass = 272,
+        BuildTime = 8115,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 2.6,
+        ProductionPerSecondEnergy = 2.6,
+    },
+    Footprint = {
+	MaxSlope = 1,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Anaconda',
+    },
+    Intel = {
+        VisionRadius = 18,
+    },
+    Interface = {
+        HelpText = 'Hovertank',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 2.16,
+        MaxBrake = 3.24,
+        MaxSpeed = 4.875,
+        MotionType = 'RULEUMT_Hover',
+        TurnRate = 41,
+        MaxSteerForce = 100,
+	RotateOnSpot = true,
+	TurnFacingRate = 41,
+	WobbleFactor = 0.5,
+	WobbleSpeed = 0.25,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeZ = 3,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANLITE3',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 80,
+            AlternateDamageRadius = 0.5,
+            FiringRandomness = 0,
+            DamageType = 'Normal',
+            DisplayName = 'ARMANAC_WEAPON',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            Label = 'ARMANAC_WEAPON',
+            MaxRadius = 18.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 21.875,
+            ProjectileId = '/mods/SCTA/projectiles/ARMANAC_WEAPON/ARMANAC_WEAPON_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'muzzle',
+                    },
+                    RackBone = 'recoil',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.83,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'muzzle',
+            TurretBonePitch = 'barrel',
+            TurretBoneYaw = 'turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 80,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 170,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMANAC/ARMANAC_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Water = true,
+        },
+    },
+}

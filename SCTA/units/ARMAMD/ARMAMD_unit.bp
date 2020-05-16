@@ -1,0 +1,217 @@
+#ARM Protector - Anti Missile Defense System
+#ARMAMD
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'LOADWTR2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 19,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+        'ANTIMISSILE',
+        'SILO',
+	'NOCUSTOMTARGET',
+        'OVERLAYDEFENSE',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'DEFENSIVE',
+	'WEAPON',
+	'LEVEL3',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 780,
+        MaxHealth = 780,
+    },
+    Description = 'Anti Missile Defense System',
+    Display = {
+        Abilities = {
+            'Anti-Nuke',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Door_01','Door_02','Door_03','Door_04'},
+				EmitterBlueprint = {
+	    				'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 88000,
+        BuildCostMass = 1437,
+        BuildTime = 95678,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_SiloBuildTactical = true,
+            RULEUCC_Stop = true,
+            RULEUCC_RetaliateToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Protector',
+    },
+    Intel = {
+        VisionRadius = 10,
+    },
+    Interface = {
+        HelpText = 'Anti Missile Defense System',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 3,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_antimissile',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 100,
+            EdgeEffectiveness = 1,
+            DamageRadius = 10,
+            DamageType = 'Normal',
+            DisplayName = 'AMD_ROCKET',
+            FireTargetLayerCapsTable = {
+                Land = 'Air',
+                Air = 'Air',
+            },
+	    RangeCategory = 'UWRC_Countermeasure',
+            Label = 'AMD_ROCKET',
+            MaxRadius = 125,
+            FiringTolerance = 360,
+            MuzzleSalvoDelay = 0, 
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 1,
+            ProjectileId = '/mods/SCTA/projectiles/AMD_ROCKET/AMD_ROCKET_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Rocket',
+                    },
+                    RackBone = 'Turret',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 10,
+            TargetCheckInterval = 1,
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            WeaponRepackTimeout = 4,
+            WeaponUnpacks = true,
+
+            ForceSingleFire = true,
+            CountedProjectile = true,
+            InitialProjectileStorage = 0,
+            MaxProjectileStorage = 99,
+            TargetRestrictOnlyAllow = 'STRATEGIC MISSILE',
+            TargetType = 'RULEWTT_Projectile',
+            EffectiveRadius = 125,
+            TrackingRadius = 2048,
+            WeaponCategory = 'Missile',
+            Turreted = false,
+
+
+        },
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageFriendly = true,
+            DamageRadius = 16.125,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #CRAWL_BLASTSML
+            Damage = 1200,
+            DamageRadius = 17.375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMAMD/ARMAMD_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,199 @@
+#CORE Construction Kbot - Tech Level 1
+#CORCK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'NANLATH2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	StartReclaim = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RECLAIM1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	DeathExplosion = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'ENGINEER',
+        'REPAIR',
+        'RECLAIM',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'PATROLHELPER',
+        'SHOWQUEUE',
+
+	--Additional Categories
+        'MOBILE',
+	'CONSTRUCTION',
+	'LAND',
+
+	--TA Categories
+        'CORE',
+        'KBOT',
+	'LEVEL1',
+	'CONSTR',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_B',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 710,
+        MaxHealth = 710,
+    },
+    Description = 'Tech Level 1',
+    Display = {
+        Abilities = {
+            'Construction Unit',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Construction','BuildMuzzle'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	BuildBones = {'BuildNozzle'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2540,
+        BuildCostMass = 130,
+        BuildRate = 80,
+        BuildTime = 5818,
+        BuildableCategory = {
+            'BUILTBYT1KBOT CORE',
+        },
+        MaxBuildDistance = 2.5,
+        StorageEnergy = 50,
+        StorageMass = 50,
+	ProductionPerSecondEnergy = 8.5,
+	ProductionPerSecondMass = 0.25,
+	NaturalProducer = true,
+	MaintenanceConsumptionPerSecondEnergy = 0.2,
+    },
+    Footprint = {
+	MaxSlope = 1.25,
+	MaxWaterDepth = 1.5625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+        Category = 'Construction',
+        Classification = 'RULEUC_Engineer',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = true,
+            RULEUCC_Repair = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        SelectionPriority = 3,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Construction Kbot',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Tech Level 1',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.852,
+        MaxBrake = 7.2,
+        MaxSpeed = 1.6875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 154.4,
+        MaxSteerForce = 10,
+        StandUpright = true,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_engineer',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORCK/CORCK_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

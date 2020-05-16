@@ -1,0 +1,61 @@
+---- start -----------------
+Recorder version:3.9.2.416
+Reading settings stored in: D:\games\Total Annihilation\taesc.ini
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+DLL.DirectPlayCreate
+ + lpGUID : {00000000-0000-0000-0000000000000000}
+initialization finished
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+LOBBY2.CreateCompoundAddress
+LOBBY2.CreateCompoundAddress
+TDPlay.Open, dwFlags = $00000002
+initialization finished
+!IDPLAY2(3).CreatePlayer - 27548
+ + lpidPlayer                : 43152134
+ + pPlayerName.lpszLongName  : mirddes
+ + pPlayerName.lpszShortName : mirddes
+ + hEvent                    : 0
+ + dwDataSize                : 21
+ + dwFlags                   : 0
+Player #1: mirddes
+Player #2: Antz
+Player #3: Kookoocrac
+"player Kookoocrac left"
+!IDPLAY(23).DestroyPlayer(43152130 ) - 77578
+The player ID is not recognized as a valid player ID for this game session.
+Player #3: Kookoocrac
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$00
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$00
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$01
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$01
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$02
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$02
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$03
+From Kookoocrac to Everyone, unknown packet : $24 #$24#$01#$73#$92#$02#$03
+"player Kookoocrac left"
+!IDPLAY(23).DestroyPlayer(43152129 ) - 396811
+The player ID is not recognized as a valid player ID for this game session.
+Player #3: Lemon dice
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$00
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$00
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$01
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$01
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$02
+From Lemon dice to Everyone, unknown packet : $24 #$24#$00#$73#$92#$02#$02
+loading started
+setting 43152128 to 0
+setting 43152132 to 1000
+setting 43152134 to 2000
+---- end -------------------
+---- reopened --------------
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+---- end -------------------

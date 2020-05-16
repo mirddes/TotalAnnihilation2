@@ -1,0 +1,220 @@
+#ARM Advanced Torpedo Launcher - Advanced Torpedo Launcher
+#ARMATL
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TORPADV2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TORPADV1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'BUILTBYT2SUB',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'DIRECTFIRE',
+	'ANTINAVY',
+	'NAVAL',
+	'NOSMOKE',
+	'UNDERWATER',
+        'OVERLAYANTINAVY',
+        'OVERLAYSONAR',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'WEAPON',
+	'TORP',
+	'LEVEL2',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    CollisionOffsetY = -0,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 520,
+        MaxHealth = 520,
+    },
+    Description = 'Advanced Torpedo Launcher',
+    Display = {
+        Abilities = {
+            'Anti-Sub',
+            'Sonar',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 4942,
+        BuildCostMass = 1762,
+        BuildTime = 6262,
+	NaturalProducer = true,
+	ProductionPerSecondEnergy = 0.1,
+	MaintenanceConsumptionPerSecondEnergy = 0.1,
+    },
+    Footprint = {
+        MinWaterDepth = 3,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 16384,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 2,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Advanced Torpedo Launcher',
+    },
+    Intel = {
+	FreeIntel = true,
+        SonarRadius = 40,
+        VisionRadius = 9,
+        WaterVisionRadius = 9,
+    },
+    Interface = {
+        HelpText = 'Advanced Torpedo Launcher',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = -3,
+        BuildOnLayerCaps = {
+            LAYER_Sub = true,
+        },
+        SkirtSizeX = 4,
+        SkirtSizeZ = 4,
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.5,
+    SizeX = 4,
+    SizeY = 2,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_antinavy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'TORPEDO1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            Damage = 1000,
+            AlternateDamageRadius = 0.5,
+            DamageType = 'Normal',
+            DisplayName = 'ARMATL_TORPEDO',
+            FireTargetLayerCapsTable = {
+                Sub = 'Seabed|Sub|Water',
+            },
+            RangeCategory = 'UWRC_AntiNavy',
+	    FiringTolerance = 25,
+            Label = 'ARMATL_TORPEDO',
+            MaxRadius = 40.625,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 3.75,
+            ProjectileId = '/mods/SCTA/projectiles/ARMATL_TORPEDO/ARMATL_TORPEDO_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'muzzle',
+                    },
+                    RackBone = 'launcher',
+                },
+            },
+            RackRecoilDistance = -5,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.22,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, HOVER',
+            TurretBoneMuzzle = 'muzzle',
+            TurretBonePitch = 'turret',
+            TurretBoneYaw = 'turret',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 0,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 80,
+	    Turreted = true,
+        },
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMATL/ARMATL_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+            Seabed = true,
+            Sub = true,
+        },
+    },
+}

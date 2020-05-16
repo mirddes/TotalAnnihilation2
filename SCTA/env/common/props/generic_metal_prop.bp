@@ -1,0 +1,24 @@
+PropBlueprint {
+    Categories = {
+        'INVULNERABLE',
+    },
+    Display = {
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+		    MeshName = 'generic_lod0.scm',
+                    AlbedoName = 'generic_albedo.dds',
+                    LODCutoff = 500,
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Interface = {
+        HelpText = 'massDeposit',
+    },
+    Physics = {
+        BlockPath = false,
+    },
+}

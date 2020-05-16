@@ -1,0 +1,158 @@
+#CORE Targeting Facility - Automatic Radar Targeting
+#CORTARG
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARGSEL2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARGON2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TARGOFF2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 12,
+    Categories = {
+        'BUILTBYT2VEHICLE',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2AIR',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'TARGETING',
+	'TEXTUREANIM',
+
+	--TA Categories
+	'CORE',
+	'SPECIAL',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1800,
+        MaxHealth = 1800,
+    },
+    Description = 'Automatic Radar Targeting',
+    Display = {
+        Abilities = {
+            'Radar Targeting',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	TextureAnimationFrames = 6,
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 141148,
+        BuildCostMass = 14982,
+        BuildTime = 161287,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 1300,
+	ProductionPerSecondEnergy = 0,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+	UnitName = 'Targeting Facility',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Automatic Radar Targeting',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 5,
+        SkirtSizeZ = 4,
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 4,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #LARGE_BUILDING
+            Damage = 1800,
+            DamageRadius = 12.5,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORTARG/CORTARG_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

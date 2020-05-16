@@ -1,0 +1,254 @@
+#ARM Spider - Spider Assault Vehicle
+#ARMSPID
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPIDER',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPIDER',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPIDER',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 5,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'PARALYZER',
+	'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+        'ARM',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL2',
+	'WEAPON',
+	'PARAL',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 450,
+        MaxHealth = 450,
+    },
+    Description = 'Spider Assault Vehicle',
+    Display = {
+        Abilities = {
+            'All Terrain',
+            'Paralyzer',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'ArmCockpit'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0, 'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Leg1','Leg2','Leg3','Leg4','Leg5','Leg6'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+			EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Turret',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2200,
+        BuildCostMass = 230,
+        BuildTime = 6075,
+	NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 0.7,
+        ProductionPerSecondEnergy = 0.7,
+    },
+    Footprint = {
+	SizeX = 1,
+	SizeZ = 1,
+	MaxSlope=255,
+    },
+    General = {
+        Category = 'Utility',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Spider',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Spider Assault Vehicle',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 5.493,
+        MaxBrake = 0.838,
+        MaxSpeed = 2.861,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 168,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'LASRLIT1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },            
+	    Buffs = {
+                {
+                    Add = {
+                        OnImpact = true,
+                    },
+                    AppliedToTarget = true,
+                    BuffType = 'STUN',
+                    Duration = 1, #0.9,
+                    Radius = 2, #0.25,
+                    TargetAllow = 'TECH1',
+                },
+	    },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 0,
+	    AlternateDamageRadius = 1, #0.25,
+            DamageType = 'Normal',
+            DisplayName = 'ARM_PARALYZER',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 0,
+            Label = 'ARM_PARALYZER',
+            MaxRadius = 13.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 37.5,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_PARALYZER/ARM_PARALYZER_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle_01',
+                    },
+                    RackBone = 'Barrel_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Muzzle_02',
+                    },
+                    RackBone = 'Barrel_02',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = -1.25,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 0.83,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Aim_muzzle',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'Turret',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 90,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 90,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSPID/ARMSPID_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

@@ -1,0 +1,254 @@
+#ARM Jethro - Anti-Air Kbot
+#ARMJETH
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'LAND',
+	'DIRECTFIRE',
+	'ANTIAIR',
+        'OVERLAYDIRECTFIRE',
+	'OVERLAYANTIAIR',
+
+	--TA Categories
+        'ARM',
+        'KBOT',
+	'LEVEL1',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 470,
+        MaxHealth = 470,
+    },
+    Description = 'Anti-Air Kbot',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Torso'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'LeftLauncher', 'RightLauncher'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	SmokeBone = 'Torso',
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1219,
+        BuildCostMass = 128,
+        BuildTime = 2631,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.4,
+        ProductionPerSecondEnergy = 0.4,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.875,
+	MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Anti Air',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Jethro',
+    },
+    Intel = {
+        VisionRadius = 18,
+    },
+    Interface = {
+        HelpText = 'Anti-Air Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.6,
+        MaxBrake = 5.4,
+        MaxSpeed = 2.625,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 167,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot1_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKLIT1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 31,
+            AlternateDamageRadius = 1.5, 
+            DamageType = 'Normal',
+            DisplayName = 'ARMKBOT_MISSILE',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Air|Seabed',
+                Seabed = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 49.45,
+            Label = 'ARMKBOT_MISSILE',
+            MaxRadius = 37.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 28.125,
+            ProjectileId = '/mods/SCTA/projectiles/ARMKBOT_MISSILE/ARMKBOT_MISSILE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'RightMuzzle',
+                    },
+                    RackBone = 'RightLauncher',
+                },
+                {
+                    MuzzleBones = {
+                        'LeftMuzzle',
+                    },
+                    RackBone = 'LeftLauncher',
+                },
+            },
+            RackRecoilDistance = -1.5,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.42,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Torso',
+            TurretBonePitch = 'Torso',
+            TurretBoneYaw = 'Torso',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 0,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 275.06,
+            Turreted = true,
+	    WeaponUnpacks = true,
+            WeaponRepackTimeout = 3,
+        },
+        { #DUMMY WEAPON FOR ANTI AIR ATTACK RINGS
+            Fake = true,
+            Label = 'ANTIAIR_RING',
+            MaxRadius = 37.75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            RackBones = {{MuzzleBones = {}}},
+            RackRecoilDistance = 0,
+	    RangeCategory = 'UWRC_AntiAir',
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMJETH/ARMJETH_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

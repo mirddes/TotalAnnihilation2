@@ -1,0 +1,184 @@
+#ARM Eagle - Radar Plane
+#ARMAWAC
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARAC',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TakeOff = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Landing = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    Air = {
+        AutoLandTime = 1,
+        BankFactor = 0,
+	BankForward = false,
+        CanFly = true,
+    },
+    BuildIconSortPriority = 6,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'AIR',
+	'INTELLIGENCE',
+	'RADAR',
+        'OVERLAYRADAR',
+
+	--TA Categories
+        'ARM',
+        'CORE', -- in lieu of core vulture
+        'VTOL',
+	'CTRL_V',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 110,
+        MaxHealth = 110,
+    },
+    Description = 'Radar Plane',
+    Display = {
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DestructionDebrisUseLocalVelocity = true,
+		DefaultProjectileCategories = {'ArmCockpit'},
+		FlashSize = 10,
+		FlashTime = 10,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 8062,
+        BuildCostMass = 165,
+        BuildTime = 12819,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 23,
+        ProductionPerSecondEnergy = 23,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Utility',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Eagle',
+    },
+    Intel = {
+        VisionRadius = 22,
+	FreeIntel = true,
+	RadarRadius = 103, 
+    },
+    Interface = {
+        HelpText = 'Radar Plane',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = 10,
+        MotionType = 'RULEUMT_Air',
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.42,
+        MaxBrake = 144,
+        MaxSpeed = 17.25,
+        TurnRate = 58,
+	RotateOnSpot = true,
+	MinSpeedPercent = 0,
+	MaxSteerForce = 100,
+	TurnRadius = 0,
+	FuelRechargeRate = 999999,
+	FuelUseTime = 999999,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1,
+    SizeZ = 3,
+    StrategicIconName = 'icon_fighter2_intel',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        AirClass = true,
+        TransportClass = 1,
+    },
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+}

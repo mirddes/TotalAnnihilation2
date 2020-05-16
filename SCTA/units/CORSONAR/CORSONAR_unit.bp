@@ -1,0 +1,166 @@
+#CORE Sonar Station - Sonar Station
+#CORSONAR
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONAR2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONARDE2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 12,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+	'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'SONAR',
+	'NAVAL',
+        'OVERLAYSONAR',
+
+	--TA Categories
+	'CORE',
+	'SPECIAL',
+	'SONAR',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    CollisionOffsetY = -0.75,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 52,
+        MaxHealth = 52,
+    },
+    Description = 'Sonar Station',
+    Display = {
+        Abilities = {
+            'Sonar',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                  LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 399,
+        BuildCostMass = 20,
+        BuildTime = 900,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 8,
+	MaintenanceConsumptionPerSecondEnergy = 8,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MinWaterDepth = 0.5,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Sonar Station',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 11,
+	SonarRadius = 76,
+	WaterVisionRadius = 11,
+    },
+    Interface = {
+        HelpText = 'Sonar Station',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 2, 
+        SkirtSizeZ = 2, 
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+    },
+    SelectionSizeX = 1.4,
+    SelectionSizeZ = 1.2,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure1_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORSONAR/CORSONAR_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+            Seabed = true,
+            Sub = true,
+        },
+    },
+}

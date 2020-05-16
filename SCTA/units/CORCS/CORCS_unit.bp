@@ -1,0 +1,206 @@
+#CORE Construction Ship - Tech Level 1
+#CORCS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'NANLATH2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	StartReclaim = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RECLAIM2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'ENGINEER',
+        'REPAIR',
+        'RECLAIM',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'PATROLHELPER',
+        'SHOWQUEUE',
+
+	--Additional Categories
+        'MOBILE',
+	'CONSTRUCTION',
+	'NAVAL',
+
+	--TA Categories
+        'CORE',
+        'SHIP',
+	'LEVEL1',
+	'CONSTR',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_B',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1150,
+        MaxHealth = 1150,
+    },
+    Description = 'Tech Level 1',
+    Display = {
+        Abilities = {
+            'Construction Unit',
+        },
+	DestructionEffects = {
+#		DefaultProjectileCategories = {'Construction','ArmShip','BuildMuzzle'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'door1','door2'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'nano'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'wake1','wake2'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2375,
+        BuildCostMass = 260,
+        BuildRate = 125,
+        BuildTime = 5537,
+        BuildableCategory = {
+            'BUILTBYT1SHIP CORE',
+        },
+        MaxBuildDistance = 3.75,
+        StorageEnergy = 50,
+        StorageMass = 50,
+	NaturalProducer = true,
+	ProductionPerSecondEnergy = 7,
+	ProductionPerSecondMass = 0.3,
+	MaintenanceConsumptionPerSecondEnergy = 0.1,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+	MinWaterDepth = 1.875,
+    },
+    General = {
+        Category = 'Construction',
+        Classification = 'RULEUC_Engineer',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = true,
+            RULEUCC_Repair = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        SelectionPriority = 3,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Construction Ship',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Tech Level 1',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.288,
+        MaxBrake = 1.512,
+        MaxSpeed = 3.9375,
+        MotionType = 'RULEUMT_Water',
+        TurnRate = 34,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 3,
+    SelectionThickness = 0.25,
+    SizeX = 2.5,
+    SizeY = 2,
+    SizeZ = 4,
+    StrategicIconName = 'icon_land1_engineer', --'icon_ship1_engineer',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORCS/CORCS_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

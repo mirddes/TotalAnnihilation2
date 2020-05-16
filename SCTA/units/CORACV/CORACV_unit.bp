@@ -1,0 +1,201 @@
+#CORE Adv. Construction Vehicle - Tech Level 2
+#CORACV
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VCORMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VCORSTOP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'NANLATH2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	StartReclaim = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RECLAIM2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'ENGINEER',
+        'REPAIR',
+        'RECLAIM',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'PATROLHELPER',
+        'SHOWQUEUE',
+
+	--Additional Categories
+        'MOBILE',
+	'CONSTRUCTION',
+	'LAND',
+
+	--TA Categories
+        'CORE',
+        'VEHICLE',	#'TANK' in TA
+	'LEVEL2',
+	'CONSTR',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_B',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1220,
+        MaxHealth = 1220,
+    },
+    Description = 'Tech Level 2',
+    Display = {
+        Abilities = {
+            'Adv. Construction Unit',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Construction','Tredside','ArmCockpit','BuildMuzzle'},
+
+		DestructionEmitters = {		{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'nozzle','door1','door2'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'nozzle'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 4504,
+        BuildCostMass = 455,
+        BuildRate = 200,
+        BuildTime = 10806,
+        BuildableCategory = {
+            'BUILTBYT2VEHICLE CORE',
+        },
+        MaxBuildDistance = 3.75,
+        StorageEnergy = 100,
+        StorageMass = 100,
+	NaturalProducer = true,
+	ProductionPerSecondEnergy = 21,
+	ProductionPerSecondMass = 0.5,
+	MaintenanceConsumptionPerSecondEnergy = 0.2,
+    },
+    Footprint = {
+	MaxSlope = 1,
+	MaxWaterDepth = 1.125,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Construction',
+        Classification = 'RULEUC_Engineer',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = true,
+            RULEUCC_Repair = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        SelectionPriority = 3,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Adv. Construction Vehicle',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Tech Level 2',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.576,
+        MaxBrake = 1.08,
+        MaxSpeed = 2.8125,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 35,
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.75,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 2.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_engineer',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORACV/CORACV_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

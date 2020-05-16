@@ -1,0 +1,169 @@
+#ARM Advanced Sonar Station - Extended Sonar
+#ARMASON
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SONARDE1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'BUILTBYT2SUB',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'SONAR',
+	'NAVAL',
+	'TEXTUREANIM',
+        'OVERLAYSONAR',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'SONAR',
+	'LEVEL2',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 320,
+        MaxHealth = 320,
+    },
+    Description = 'Extended Sonar',
+    Display = {
+        Abilities = {
+            'Sonar',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 6,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                  LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2469,
+        BuildCostMass = 163,
+        BuildTime = 6152,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 22,
+	MaintenanceConsumptionPerSecondEnergy = 22,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+	MinWaterDepth = 1.5,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Advanced Sonar Station',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 11,
+	SonarRadius = 140,
+	WaterVisionRadius = 11,
+    },
+    Interface = {
+        HelpText = 'Extended Sonar',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4, 
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 2.25,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMASON/ARMASON_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+            Seabed = true,
+            Sub = true,
+        },
+    },
+}

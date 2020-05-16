@@ -1,0 +1,27 @@
+---- start -----------------
+Recorder version:3.9.2.416
+Reading settings stored in: D:\games\Total Annihilation\taesc.ini
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+DLL.DirectPlayCreate
+ + lpGUID : {00000000-0000-0000-0000000000000000}
+initialization finished
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+LOBBY2.CreateCompoundAddress
+LOBBY2.CreateCompoundAddress
+TDPlay.Open, dwFlags = $00000002
+initialization finished
+!IDPLAY2(3).CreatePlayer - 31767
+ + lpidPlayer                : 22586715
+ + pPlayerName.lpszLongName  : mirddes
+ + pPlayerName.lpszShortName : mirddes
+ + hEvent                    : 0
+ + dwDataSize                : 21
+ + dwFlags                   : 0
+Player #1: mirddes
+!IDPLAY(23).DestroyPlayer(22586715 ) - 81470

@@ -1,0 +1,214 @@
+#ARM Retaliator - Nuclear Missile Launcher
+#ARMSILO
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SERVROC1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 17,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'INDIRECTFIRE',
+        'NUKE',
+        'SILO',
+	'NOCUSTOMTARGET',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'WEAPON',
+	'LEVEL3',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2300,
+        MaxHealth = 2300,
+    },
+    Description = 'Nuclear Missile Launcher',
+    Display = {
+        Abilities = {
+            'Nuke',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Door_01','Door_02'},
+				EmitterBlueprint = {
+	    				'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 52134,
+        BuildCostMass = 1010,
+        BuildTime = 178453,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 5,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_SiloBuildNuke = true,
+            RULEUCC_Stop = true,
+            RULEUCC_Nuke = true,
+            RULEUCC_RetaliateToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Retaliator',
+    },
+    Intel = {
+        VisionRadius = 22,
+    },
+    Interface = {
+        HelpText = 'Nuclear Missile Launcher',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 5, 
+        SkirtSizeZ = 5,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 3,
+    SizeZ = 5,
+    StrategicIconName = 'icon_structure3_missile',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'MISICBM1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 5500,
+            DamageRadius = 16, 
+            DamageType = 'Normal',
+            DisplayName = 'NUCLEAR_MISSILE',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water',
+            },
+            Label = 'NUCLEAR_MISSILE',
+            MaxRadius = 4096, 
+            MuzzleSalvoDelay = 0, 
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 0,
+            ProjectileId = '/mods/SCTA/projectiles/NUCLEAR_MISSILE/NUCLEAR_MISSILE_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+		    HideMuzzle = true,
+                    RackBone = 'Muzzle',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RateOfFire = 1,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            WeaponRepackTimeout = 4,
+            WeaponUnpacks = true,
+
+	    NukeWeapon = true,
+            ManualFire = 1,
+            CountedProjectile = true,
+            ForceSingleFire = true,
+            InitialProjectileStorage = 0,
+            MaxProjectileStorage = 99,
+            ForceSingleFire = true,
+        },
+        { #ATOMIC_BLASTSML
+            Damage = 1000,
+            DamageFriendly = true,
+            DamageRadius = 16.25,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #NUCLEAR_MISSILE
+            Damage = 5500,
+            DamageRadius = 16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSILO/ARMSILO_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

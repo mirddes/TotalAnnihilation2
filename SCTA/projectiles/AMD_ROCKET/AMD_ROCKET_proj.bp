@@ -1,0 +1,78 @@
+#Anti Nuke Rocket
+#AMD_ROCKET
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSLRG',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+	'STRATEGIC',
+	'ANTIMISSILE',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/amdrocket_mesh.bp',
+        StrategicIconSize = 1,
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 10000,
+        BuildCostMass = 200,
+        BuildTime = 120,
+    },
+    General = {
+        Category = 'Anti Missile',
+        EntityCategory = {
+       	    'ARM',
+            'PROJECTILE',
+	    'STRATEGIC',
+	    'ANTIMISSILE',
+        },
+        Faction = 'ARM',
+        Weapon = 'AMD_ROCKET',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        Acceleration = 3.75,
+        DestroyOnWater = true,
+	InitialSpeed = 0,
+        LeadTarget = true,
+        Lifetime = 999,
+        MaxSpeed = 50,
+        TrackTarget = false,
+        TurnRate = 180,
+        UseGravity = false,
+        VelocityAlign = true,
+    	HitAssignedTarget = true,
+    },
+    StrategicIconName = '/mods/SCTA/textures/ui/common/game/strategicicons/projectiles/icon_strategic_antinuke.dds',
+}

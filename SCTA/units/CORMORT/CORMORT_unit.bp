@@ -1,0 +1,231 @@
+#CORE Morty - Mobile Mortar Kbot
+#CORMORT
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORMOVE',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'KBCORST0P',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+        --Additional Categories
+        'MOBILE',
+        'LAND',
+        'DIRECTFIRE',
+        'OVERLAYDIRECTFIRE',
+
+        --TA Categories
+        'CORE',
+        'KBOT',
+        'LEVEL2',
+        'WEAPON',
+        'NOTAIR',
+        'NOTSUB',
+        'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 920,
+        MaxHealth = 920,
+    },
+    Description = 'Mobile Mortar Kbot',
+    Display = {
+        DestructionEffects = {
+            DestructionEmitters = {
+                {
+                    EmitterBone = {'Torso'},
+                    EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+                    EmitterSize = 1.25,
+                },
+                {
+                    EmitterBone = {'Barrel'},
+                    EmitterBlueprint = {
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+                            '/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+                    },
+                    EmitterSize = 1.25,
+                },
+            },
+        },
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+                    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2865,
+        BuildCostMass = 321,
+        BuildTime = 7527,
+        NaturalProducer=true,
+        MaintenanceConsumptionPerSecondEnergy = 1,
+        ProductionPerSecondEnergy = 1,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+        MaxSlope = 0.875,
+        MaxWaterDepth = 0.75,
+    },
+    General = {
+        Category = 'Direct Fire',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Morty',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Mobile Mortar Kbot',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        LayerChangeOffsetHeight = -2.00,
+        BackUpDistance = 0,
+        MaxSpeedReverse = 0,
+        MaxAcceleration = 3.96,
+        MaxBrake = 6.591796884,
+        MaxSpeed = 2.11875,
+        MotionType = 'RULEUMT_Land',
+        TurnRate = 164,
+        StandUpright = true,
+        MaxSteerForce = 10,
+    },
+    SelectionCenterOffsetZ = -0.75,
+    SelectionSizeX = 1.0,
+    SelectionSizeZ = 1.0,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_bot2_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANNON1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_LowArc',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 55,
+            AlternateDamageRadius = 1.125,
+            DamageType = 'Normal',
+            DisplayName = 'CORE_MORT',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Seabed = 'Land|Water|Seabed',
+            },
+            RangeCategory = 'UWRC_DirectFire',
+            Label = 'CORE_MORT',
+            MinRadius = 16,
+            MaxRadius = 41,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 18.125,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_THUD/CORE_THUD_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Flare',
+                    },
+                    RackBone = 'Barrel',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.690,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Flare',
+            TurretBonePitch = 'Support',
+            TurretBoneYaw = 'Torso',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 180,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORMORT/CORMORT_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Seabed = true,
+        },
+    },
+}

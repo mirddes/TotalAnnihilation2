@@ -1,0 +1,214 @@
+#CORE Adv. Construction Aircraft - Tech Level 2
+#CORACA
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLCRAC',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLCRMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLCRLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TakeOff = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLCRMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Landing = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLCRLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'NANLATH2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	StartReclaim = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RECLAIM2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    Air = {
+        AutoLandTime = 1,
+        BankFactor = 0,
+	BankForward = true,
+        CanFly = true,
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'ENGINEER',
+        'REPAIR',
+        'RECLAIM',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'PATROLHELPER',
+        'SHOWQUEUE',
+
+	--Additional Categories
+        'MOBILE',
+	'CONSTRUCTION',
+	'AIR',
+
+	--TA Categories
+        'CORE',
+        'VTOL',
+	'CTRL_V',
+	'LEVEL2',
+	'CONSTR',
+	'NOWEAPON',
+	'NOTSUB',
+	'CTRL_B',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 370,
+        MaxHealth = 370,
+    },
+    Description = 'Tech Level 2',
+    Display = {
+        Abilities = {
+            'Adv. Construction Unit',
+        },
+	ReclaimEmitter = 'nanolathe.bp',
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DestructionDebrisUseLocalVelocity = true,
+		#DefaultProjectileCategories = {'Construction','ArmCockpit'},
+		FlashSize = 10,
+		FlashTime = 10,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+	BuildBones = {'nozzle'},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 12824,
+        BuildCostMass = 231,
+        BuildTime = 26001,        
+	BuildRate = 100,
+        BuildableCategory = {
+            'BUILTBYT2AIR CORE',
+        },
+        MaxBuildDistance = 3.75,
+        StorageEnergy = 100,
+        StorageMass = 100,
+	ProductionPerSecondEnergy = 22,
+	ProductionPerSecondMass = 0.5,
+	NaturalProducer = true,
+	MaintenanceConsumptionPerSecondEnergy = 0.3,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+        Category = 'Construction',
+        Classification = 'RULEUC_Engineer',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_Reclaim = true,
+            RULEUCC_Repair = true,
+            RULEUCC_Stop = true,
+        },
+        ConstructionBar = true,
+        SelectionPriority = 3,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Adv. Construction Aircraft',
+    },
+    Intel = {
+        VisionRadius = 18,
+    },
+    Interface = {
+        HelpText = 'Tech Level 2',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = 4.375,
+        MotionType = 'RULEUMT_Air',
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 2.52,
+        MaxBrake = 54,
+        MaxSpeed = 14.0625,
+        TurnRate = 21,
+	RotateOnSpot = true,
+	MinSpeedPercent = 0,
+	MaxSteerForce = 100,
+	TurnRadius = 0,
+	FuelRechargeRate = 999999,
+	FuelUseTime = 999999,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 1,
+    SizeZ = 2,
+    StrategicIconName = 'icon_land2_engineer', --'icon_fighter2_engineer',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        AirClass = true,
+        TransportClass = 1,
+    },
+    Weapon = {
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+}

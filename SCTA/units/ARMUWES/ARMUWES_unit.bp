@@ -1,0 +1,147 @@
+#ARM Underwater Energy Storage - Increases Energy Storage
+#ARMUWES
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'STORNGY1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 14,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ENERGYSTORAGE',
+        'ECONOMIC',
+	'NOSMOKE',
+	'TEXTUREANIM',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core storage
+	'ENERGY',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1447,
+        MaxHealth = 1447,
+    },
+    Description = 'Increases Energy Storage',
+    Display = {
+	TextureAnimationFrames = 8,
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2950,
+        BuildCostMass = 284,
+        BuildTime = 1447,
+        StorageEnergy = 4000,
+    },
+    Footprint = {
+        MinWaterDepth = 1.875,
+	MaxSlope = 1.25,
+        SizeX = 4,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Underwater Energy Storage',
+    },
+    Intel = {
+        VisionRadius = 9,
+    },
+    Interface = {
+        HelpText = 'Increases Energy Storage',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4, 
+        BuildOnLayerCaps = {
+            LAYER_Seabed = true,
+        },
+    },
+    SelectionSizeX = 2.25,
+    SelectionSizeZ = 2.25,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 2.5,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure1_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #ESTOR_BUILDINGEX
+            Damage = 900,
+            DamageFriendly = true,
+            DamageRadius = 4.6875,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #ESTOR_BUILDING
+            Damage = 1900,
+            DamageRadius = 13.125,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMUWES/ARMUWES_dead_prop.bp',
+        WreckageLayers = {
+            Seabed = true,
+        },
+    },
+}

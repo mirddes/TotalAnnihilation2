@@ -1,0 +1,66 @@
+#ARM Advanced Torpedo Launcher Torpedo Weapon
+#ARMATL_TORPEDO
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLODEP1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLODEP1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLODEP1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLODEP1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+        'DIRECTFIRE',
+	'ANTINAVY',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/AdvTorpedo_mesh.bp', #Change
+        UniformScale = 0.16,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'ARM',
+            'PROJECTILE',
+            'DIRECTFIRE',
+	    'ANTINAVY',
+        },
+        Faction = 'ARM',
+        Weapon = 'ARMATL_TORPEDO',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+	Acceleration = 1.25,
+        DestroyOnWater = false,
+        InitialSpeed = 3.75,
+	MaxSpeed = 5.625,
+        Lifetime = 10,
+        StayUnderwater = true,
+        TrackTarget = true,
+        TurnRate = 250,
+        VelocityAlign = true,
+        UseGravity = false,
+    },
+}

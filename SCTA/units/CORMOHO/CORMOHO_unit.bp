@@ -1,0 +1,167 @@
+#CORE Moho Mine - Advanced Metal Extractor
+#CORMOHO
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'MOHOON2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'MOHORUN2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'MOHOOFF2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 15,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+        'MASSPRODUCTION',
+        'MASSEXTRACTION',
+        'ECONOMIC',
+
+	--TA Categories
+	'CORE',
+	'METAL',
+	'EXTRACTOR',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1465,
+        MaxHealth = 1465,
+    },
+    Description = 'Advanced Metal Extractor',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'CORMOHO'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'shell'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 9121,
+        BuildCostMass = 1450,
+        BuildTime = 32500,
+        MaintenanceConsumptionPerSecondEnergy = 12,
+	#TODO: proper value?
+        ProductionPerSecondMass = 6.6,
+    },
+    Footprint = {
+        SizeX = 5,
+        SizeZ = 5,
+	MaxSlope = 0.625,
+    },
+    General = {
+	BuildAngle = 2048,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Moho Mine',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Advanced Metal Extractor',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        FlattenSkirt = true,
+        SkirtSizeX = 5,
+        SkirtSizeZ = 5,
+        BuildRestriction = 'RULEUBR_OnMassDeposit',
+    },
+    SelectionSizeX = 3,
+    SelectionSizeZ = 3,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 3,
+    SizeZ = 5,
+    StrategicIconName = 'icon_structure3_mass',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORMOHO/CORMOHO_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,240 @@
+#CORE Snake - Submarine
+#CORSUB
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUCORSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUCORMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUCORSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 3,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'NAVAL',
+    'T1SUBMARINE',
+	'ANTINAVY',
+	'NOSMOKE',
+        'OVERLAYANTINAVY',
+
+	--Weapon Damage Category
+	'NORMALSUB',
+
+	--TA Categories
+        'CORE',
+        'UNDERWATER',
+	'LEVEL1',
+	'TORP',
+	'WEAPON',
+	'NOTAIR',
+	'CTRL_W',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 590,
+        MaxHealth = 590,
+    },
+    Description = 'Submarine',
+    Display = {
+        Abilities = {
+            'Anti-Sub',
+            'Sonar',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/sub_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'wake'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 3902,
+        BuildCostMass = 1199,
+        BuildTime = 9729,
+	ProductionPerSecondEnergy = 0.4,
+	MaintenanceConsumptionPerSecondEnergy = 0.4,
+	NaturalProducer = true,
+    },
+    Footprint = {
+        SizeX = 3,
+        SizeZ = 3,
+	MinWaterDepth = 1.25,
+    },
+    General = {
+        Category = 'Submarine',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Snake',
+    },
+    Intel = {
+	FreeIntel = true,
+        SonarRadius = 25,
+        VisionRadius = 7,
+        WaterVisionRadius = 7,
+    },
+    Interface = {
+        HelpText = 'Submarine',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = -1.25,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 1.08,
+        MaxBrake = 7.2,
+        MaxSpeed = 3.84375,
+        TurnRate = 42,
+        MotionType = 'RULEUMT_SurfacingSub',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.75,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1.5,
+    SizeZ = 3,
+    StrategicIconName = 'icon_sub1_antinavy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'TORPEDO2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 370,
+	    AlternateDamageRadius = 0.5,
+            DamageType = 'Normal',
+            DisplayName = 'CORE_TORPEDO',
+            FireTargetLayerCapsTable = {
+                Sub = 'Seabed|Sub|Water',
+            },
+            RangeCategory = 'UWRC_AntiNavy',
+            Label = 'CORE_TORPEDO',
+            MaxRadius = 25,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 6.25,
+            ProjectileId = '/mods/SCTA/projectiles/CORE_TORPEDO/CORE_TORPEDO_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'flare',
+                    },
+                    RackBone = 'flare',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.37,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, HOVER',
+            TurretBoneMuzzle = 'flare',
+            TurretBonePitch = 'flare',
+            TurretBoneYaw = 'flare',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 36000,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 36000,
+            Turreted = true,
+        },
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORSUB/CORSUB_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

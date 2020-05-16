@@ -1,0 +1,112 @@
+#ARM Fortification Wall - Perimeter Defence
+#ARMFORT
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    BuildIconSortPriority = 22,
+    Categories = {
+        'BUILTBYT2VEHICLE',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2AIR',
+	'UNSELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+        'BENIGN',
+
+	--Additional Categories
+	'STRUCTURE',
+        'DEFENSE',
+        'WALL',
+	'NOEXPLOSION',
+	'NOSMOKE',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core walls
+	'METAL',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2000,
+        MaxHealth = 2000,
+    },
+    Description = 'Perimeter Defence',
+    Display = {
+        Abilities = {
+            'Wall',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		FlashSize = 0,
+		FlashTime = 0,
+	},
+        Mesh = {
+	    IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 675,
+        BuildCostMass = 27,
+        BuildTime = 965,
+    },
+    Footprint = {
+	MaxSlope = 2,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+	BuildAngle = 0,
+        CapCost = 0,
+        Category = 'Defense',
+        Classification = 'RULEUC_MiscSupport',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Fortification Wall',
+    },
+    Intel = {
+        VisionRadius = 0,
+    },
+    Interface = {
+        HelpText = 'Perimeter Defence',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    LifeBarRender = false,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+    },
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure_wall',
+    StrategicIconSortPriority = 0,
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFORT/ARMFORT_heap_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

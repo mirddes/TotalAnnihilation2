@@ -1,0 +1,12 @@
+TrailEmitterBlueprint {
+	Lifetime = -1.00,
+	TrailLength = 0.75,
+	Size = 0.02,
+	SortOrder = 0,
+	BlendMode = 0,
+	TextureRepeatRate = 1,
+	LODCutoff = 250,
+	RepeatTexture = [[/mods/SCTA/textures/particles/trail_laser.dds]],
+	RampTexture = [[/mods/SCTA/textures/particles/ramp_laser_green.dds]],
+}
+

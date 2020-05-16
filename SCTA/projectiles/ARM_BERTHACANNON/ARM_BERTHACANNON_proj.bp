@@ -1,0 +1,63 @@
+#ARM Bertha Cannon
+#ARM_BERTHACANNON
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK1',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSLRG',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+        'INDIRECTFIRE'
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/Plasma_mesh.bp',
+        UniformScale = 0.16,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Indirect Fire',
+        EntityCategory = {
+            'ARM',
+            'PROJECTILE',
+            'INDIRECTFIRE',
+        },
+        Faction = 'ARM',
+        Weapon = 'ARM_BERTHACANNON',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        DestroyOnWater = true,
+        InitialSpeed = 50,
+        Lifetime = 30,
+        UseGravity = true,
+    },
+}

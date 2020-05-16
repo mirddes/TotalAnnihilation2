@@ -1,0 +1,69 @@
+#ARM Merl Rocket
+#ARMTRUCK_ROCKET
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSMED',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'ROCKET',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/corvrocket_mesh.bp',
+        StrategicIconSize = 1,
+        UniformScale = 0.16,
+    },
+    General = {
+        Category = 'Anti Air',
+        EntityCategory = {
+       	    'CORE',
+            'PROJECTILE',
+   	    'ROCKET',
+        },
+        Faction = 'CORE',
+        Weapon = 'CORTRUCK_ROCKET',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        Acceleration = 2,
+        DestroyOnWater = true,
+	InitialSpeed = 0,
+        LeadTarget = false,
+        Lifetime = 30,
+        MaxSpeed = 23,
+        TrackTarget = false,
+        TurnRate = 133,
+        UseGravity = false,
+        VelocityAlign = true,
+    },
+}

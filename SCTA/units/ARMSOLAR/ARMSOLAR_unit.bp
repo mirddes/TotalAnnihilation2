@@ -1,0 +1,177 @@
+#ARM Solar Collector - Produces Energy
+#ARMSOLAR
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SOLAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SOLAR1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'BUILTBYT1KBOT',
+        'BUILTBYT1VEHICLE',
+        'BUILTBYT1AIR',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+
+	--TA Categories
+	'ARM',
+	'ENERGY',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 326,
+        MaxHealth = 326,
+    },
+    Description = 'Produces Energy',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Stone', 'ArmSolar'},
+		DestructionProjectiles = {
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMSOLAR_debris_proj.bp',
+				Bone = 'Dish_01',
+			},
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMSOLAR_debris_proj.bp',
+				Bone = 'Dish_02',
+			},
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMSOLAR_debris_proj.bp',
+				Bone = 'Dish_03',
+			},
+			{
+				ProjectileBlueprint = '/mods/SCTA/effects/entities/Debris/Pieces/ARMSOLAR_debris_proj.bp',
+				Bone = 'Dish_04',
+			},
+		},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Dish_01','Dish_02','Dish_03','Dish_04'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 760,
+        BuildCostMass = 145,
+        BuildTime = 2495,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 20,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 5,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+	UnitName = 'Solar Collector',
+    },
+    Intel = {
+        VisionRadius = 13,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 5,
+        SkirtSizeZ = 5,
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2.5,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 2.5,
+    SizeZ = 5,
+    StrategicIconName = 'icon_structure1_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSOLAR/ARMSOLAR_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

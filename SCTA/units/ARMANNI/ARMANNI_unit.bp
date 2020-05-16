@@ -1,0 +1,226 @@
+#ARM Annihilator - Energy Weapon
+#ARMANNI
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'ANNI',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 18,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'DIRECTFIRE',
+	'TEXTUREANIM',
+        'OVERLAYDIRECTFIRE',
+
+	--TA Categories
+	'ARM',
+	'SPECIAL',
+	'WEAPON',
+	'LEVEL3',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1410,
+        MaxHealth = 1410,
+    },
+    Description = 'Energy Weapon',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret_Top','ARMANNI', 'Lower_Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Case_01','Case_02','Case_03','Case_04','Barrel'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+			{
+				EmitterBone = {'Barrel_Muzzle','Container_01','Container_02'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.25,
+			},
+		},
+	},
+	TextureAnimationFrames = 8,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 25025,
+        BuildCostMass = 3985,
+        BuildTime = 75071,
+    },
+    Footprint = {
+        SizeX = 4,
+        SizeZ = 4,
+	MaxSlope = 0.625,
+    },
+    General = {
+        BuildAngle = 4096,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Annihilator',
+    },
+    Intel = {
+        VisionRadius = 24,
+	RadarRadius = 75,
+	FreeIntel = true,
+    },
+    Interface = {
+        HelpText = 'Energy Weapon',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 4, 
+        SkirtSizeZ = 4,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 4,
+    SizeY = 3,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_directfire',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ANNIGUN1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 2500,
+            AlternateDamageRadius = 0.25,
+            DamageType = 'Normal',
+            DisplayName = 'ARM_TOTAL_ANNIHILATOR',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            FiringTolerance = 2.75,
+            Label = 'ARM_TOTAL_ANNIHILATOR',
+            MaxRadius = 75,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 62.5,
+            ProjectileId = '/mods/SCTA/projectiles/ARM_TOTAL_ANNIHILATOR/ARM_TOTAL_ANNIHILATOR_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Barrel_Muzzle',
+                    },
+                    RackBone = 'Barrel',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            EnergyChargeForFirstShot = false,
+            EnergyRequired = 2000,
+            RateOfFire = 0.2,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS'
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Barrel_Muzzle',
+            TurretBonePitch = 'Turret_Top',
+            TurretBoneYaw = 'Lower_Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 50,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 50,
+            Turreted = true,
+	    WeaponUnpacks = true,
+            WeaponRepackTimeout = 3,
+	    
+        },
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageFriendly = true,
+            DamageRadius = 16.125,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #CRAWL_BLASTSML
+            Damage = 1200,
+            DamageRadius = 8.59375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMANNI/ARMANNI_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

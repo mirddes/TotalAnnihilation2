@@ -1,0 +1,36 @@
+ProjectileBlueprint {
+    Display = {
+        ImpactEffects = {
+            Type = 'Small01',
+            Scale = 1.0,
+        },
+	Mesh = {
+		LODs = {
+			{
+				ShaderName = 'TMeshNoLighting',
+				AlbedoName = '/mods/SCTA/meshes/projectiles/Debris/circuits_Albedo.dds',
+				SpecularName = '/mods/SCTA/meshes/projectiles/Debris/DebrisGeneric_SpecTeam.dds',
+			    	MeshName = '/mods/SCTA/meshes/projectiles/Debris/Debris2x2_lod0.scm',
+				LODCutoff = 500,
+			},
+		},
+	},
+        UniformScale = 0.8,
+    },
+    Physics = {
+        MinBounceCount = 1,
+        MaxBounceCount = 5,
+        DestroyOnWater = true,
+        DirectionX = 0,
+        DirectionXRange = 1,
+        DirectionY = 1,
+        DirectionZ = 0,
+        DirectionZRange = 1,
+        InitialSpeed = 3.25,
+        InitialSpeedRange = 3.25,
+        MaxSpeed = 7,
+        RotationalVelocity = 360,
+        RotationalVelocityRange = 180,
+        VelocityAlign = false,
+    },
+}

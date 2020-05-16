@@ -1,0 +1,38 @@
+#CORE Pyro Flamethrower
+#FLAMETHROWER
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'DIRECTFIRE'
+    },
+    Display = {
+	#Better way of doing this?
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/Plasma_mesh.bp',
+        UniformScale = 0,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'CORE',
+            'PROJECTILE',
+            'DIRECTFIRE',
+        },
+        Faction = 'CORE',
+        Weapon = 'FLAMETHROWER',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        CollideEntity = false,
+        DestroyOnWater = true,
+        InitialSpeed = 11.75,
+        Lifetime = 4,
+        UseGravity = false,
+    },
+}

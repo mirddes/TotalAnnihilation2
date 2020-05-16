@@ -1,0 +1,150 @@
+#ARM Cloakable Fusion Reactor - Produces Energy
+#ARMCKFUS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'FUSION1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLONUK3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 24,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+        'ECONOMIC',
+	'ENERGYPRODUCTION',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core cloaker
+	'ENERGY',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2200,
+        MaxHealth = 2200,
+    },
+    Description = 'Produces Energy',
+    Display = {
+        Abilities = {
+            'Cloak'
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'Stone'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 42058,
+        BuildCostMass = 5420,
+        BuildTime = 105487,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 1000,
+	MaintenanceConsumptionPerSecondEnergy = 450,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 5,
+        SizeZ = 4,
+    },
+    General = {
+	BuildAngle = 4096,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+	ToggleCaps = {
+		RULEUTC_CloakToggle = true,
+	},
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+	UnitName = 'Cloakable Fusion Reactor',
+    },
+    Intel = {
+        FreeIntel = true,
+        VisionRadius = 13,
+	Cloak = true,
+    },
+    Interface = {
+        HelpText = 'Produces Energy',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 5,
+        SkirtSizeZ = 4,
+    },
+    SelectionSizeX = 2.5,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 5,
+    SizeY = 3,
+    SizeZ = 4,
+    StrategicIconName = 'icon_structure3_energy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #ATOMIC_BLAST
+            Damage = 2000,
+            DamageFriendly = true,
+            DamageRadius = 16.125,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #NUCLEAR_MISSILE
+            Damage = 5500,
+            DamageRadius = 16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMCKFUS/ARMCKFUS_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

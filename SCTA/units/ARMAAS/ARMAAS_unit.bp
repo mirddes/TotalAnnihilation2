@@ -1,0 +1,400 @@
+#ARM Archer - Anti-Air Ship
+#ARMAAS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SHARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 7,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'NAVAL',
+	'ANTIAIR',
+	'LIGHTBOAT',
+        'OVERLAYDIRECTFIRE',
+        'OVERLAYANTIAIR',
+
+	--TA Categories
+        'ARM',
+        'CORE', -- in lieu of core shredder
+        'SHIP',
+	'LEVEL2',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2360,
+        MaxHealth = 2360,
+    },
+    Description = 'Anti-Air Ship',
+    Display = {
+        Abilities = {
+            'Anti-Air',
+        },
+	DestructionEffects = {
+		DefaultProjectileCategories = {'ArmShip','MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {0, 'turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'launcher1','launcher2'},
+				EmitterBlueprint = {
+	    				'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 17058,
+        BuildCostMass = 1358,
+        BuildTime = 38628,
+	NaturalProducer = true,
+        ProductionPerSecondEnergy = 7,
+        MaintenanceConsumptionPerSecondEnergy = 7,
+    },
+    Footprint = {
+        SizeX = 3,
+        SizeZ = 3,
+	MinWaterDepth = 1.875,
+    },
+    General = {
+        Category = 'Ship',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Archer',
+    },
+    Intel = {
+        VisionRadius = 22,
+    },
+    Interface = {
+        HelpText = 'Anti-Air Ship',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 0.396,
+        MaxBrake = 0.648,
+        MaxSpeed = 5.625,
+        TurnRate = 26,
+        MotionType = 'RULEUMT_Water',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 2,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 2,
+    SizeZ = 6,
+    StrategicIconName = 'icon_ship2_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 57,
+            AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'ARMAAS_WEAPON1',
+	    FiringTolerance = 43.95,
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            Label = 'ARMAAS_WEAPON1',
+            MaxRadius = 44.375,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 26.875,
+            ProjectileId = '/mods/SCTA/projectiles/ARMAAS_WEAPON1/ARMAAS_WEAPON1_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'launcher1a',
+                    },
+                    RackBone = 'launcher1',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher1b',
+                    },
+                    RackBone = 'launcher1',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher1c',
+                    },
+                    RackBone = 'launcher1',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher1d',
+                    },
+                    RackBone = 'launcher1',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.5,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'launcher1',
+            TurretBonePitch = 'launcher1',
+            TurretBoneYaw = 'launcher1',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 90,
+            TurretPitchSpeed = 230,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 255,
+            Turreted = true,
+        },
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'ROCKHVY2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamagesFriendly = true,
+            Damage = 57,
+            AlternateDamageRadius = 1.5,
+            DamageType = 'Normal',
+            DisplayName = 'ARMAAS_WEAPON2',
+            FireTargetLayerCapsTable = {
+                Water = 'Land|Water|Air|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+	    FiringTolerance = 43.95,
+            Label = 'ARMAAS_WEAPON2',
+            MaxRadius = 44.375,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 26.875,
+            ProjectileId = '/mods/SCTA/projectiles/ARMAAS_WEAPON1/ARMAAS_WEAPON1_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'launcher2a',
+                    },
+                    RackBone = 'launcher2',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher2b',
+                    },
+                    RackBone = 'launcher2',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher2c',
+                    },
+                    RackBone = 'launcher2',
+                },
+                {
+                    MuzzleBones = {
+                        'launcher2d',
+                    },
+                    RackBone = 'launcher2',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.5,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'launcher2',
+            TurretBonePitch = 'launcher2',
+            TurretBoneYaw = 'launcher2',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 90,
+            TurretPitchSpeed = 230,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 255,
+            Turreted = true,
+        },
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANLITE2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 0,
+            AlternateDamageRadius = 3.75, 
+            DamageType = 'Normal',
+            DisplayName = 'ARMAAS_WEAPON3',
+            FireTargetLayerCapsTable = {
+                Water = 'Air',
+            },
+	    RangeCategory = 'UWRC_AntiAir',
+            FiringTolerance = 4.214,	
+	    FiringRandomness = 0.5,
+	    EdgeEffectiveness = 0.9,
+            Label = 'ARMAAS_WEAPON3',
+            MaxRadius = 46.875, 
+            MuzzleSalvoDelay = 0, 
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 59.375,
+            ProjectileId = '/mods/SCTA/projectiles/ARMAAS_WEAPON3/ARMAAS_WEAPON3_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'muzzle1',
+                    },
+                    RackBone = 'barrel1',
+                },
+                {
+                    MuzzleBones = {
+                        'muzzle2',
+                    },
+                    RackBone = 'barrel2',
+                },
+            },
+            RackRecoilDistance = -2.4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 1.42,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TurretBoneMuzzle = 'turret',
+            TurretBonePitch = 'turret',
+            TurretBoneYaw = 'turretbase',
+            TurretPitch = 0,
+            TurretPitchRange = 90,
+            TurretPitchSpeed = 730,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 755,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMAAS/ARMAAS_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

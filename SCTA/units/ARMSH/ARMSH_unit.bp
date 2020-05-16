@@ -1,0 +1,232 @@
+#ARM Skimmer - Scout Hovercraft
+#ARMSH
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVSMSL1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVSMOK1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'HOVSMOF1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'SCOUT',
+        'OVERLAYDIRECTFIRE',
+        'LAND',
+
+	--TA Categories
+        'ARM',
+        'HOVER',
+	'LEVEL1',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 200,
+        MaxHealth = 200,
+    },
+    Description = 'Scout Hovercraft',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'ArmCockpit','ArmHover'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	IdleEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/hover_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02','Wake_03','Wake_04'},
+	},
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/hover_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake_01','Wake_02','Wake_03','Wake_04'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1169,
+        BuildCostMass = 76,
+        BuildTime = 3388,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 2.6,
+        ProductionPerSecondEnergy = 2.6,
+    },
+    Footprint = {
+	MaxSlope = 1,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Scout',
+        Classification = 'RULEUC_MilitaryVehicle',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_CallTransport = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Skimmer',
+    },
+    Intel = {
+        VisionRadius = 18,
+    },
+    Interface = {
+        HelpText = 'Scout Hovercraft',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 3.96,
+        MaxBrake = 1.8,
+        MaxSpeed = 6.9375,
+        MotionType = 'RULEUMT_Hover',
+        TurnRate = 51,
+        MaxSteerForce = 100,
+	RotateOnSpot = true,
+	TurnFacingRate = 51,
+	WobbleFactor = 0.5,
+	WobbleSpeed = 0.25,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeZ = 2.25,
+    SizeZ = 3,
+    StrategicIconName = 'icon_land2_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'LASRFAST',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 45,
+            AlternateDamageRadius = 0.25,
+            FiringRandomness = 0,
+            DamageType = 'Normal',
+            DisplayName = 'ARMSH_WEAPON',
+            FireTargetLayerCapsTable = {
+                Land = 'Land|Water|Seabed',
+                Water = 'Land|Water|Seabed',
+            },
+	    RangeCategory = 'UWRC_DirectFire',
+            Label = 'ARMSH_WEAPON',
+            MaxRadius = 13.125,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 28.125,
+            ProjectileId = '/mods/SCTA/projectiles/ARMSH_WEAPON/ARMSH_WEAPON_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+                    RackBone = 'Turret',
+                },
+            },
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 1.25,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, UNDERWATER',
+            TurretBoneMuzzle = 'Muzzle',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 100,
+            TurretYaw = 0,
+            TurretYawRange = 180,
+            TurretYawSpeed = 150,
+            Turreted = true,
+        },
+        { #BIG_UNITEX
+            Damage = 50,
+            DamageFriendly = true,
+            DamageRadius = 3.4375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #BIG_UNIT
+            Damage = 350,
+            DamageRadius = 3.4375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSH/ARMSH_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+            Water = true,
+        },
+    },
+}

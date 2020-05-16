@@ -1,0 +1,52 @@
+#CORE Commander Disintegrator
+#CORE_DISINTEGRATOR
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMAS2',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'CORE',
+        'PROJECTILE',
+        'DIRECTFIRE',
+	'DISINTEGRATOR',
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/dgun_mesh.bp',
+        UniformScale = 0.16,
+        StrategicIconSize = 1,
+    },
+    General = {
+        Category = 'Direct Fire',
+        EntityCategory = {
+            'CORE',
+            'PROJECTILE',
+            'DIRECTFIRE',
+	    'DISINTEGRATOR',
+        },
+        Faction = 'CORE',
+        Weapon = 'CORE_DISINTEGRATOR',
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        CollideSurface = false,
+        CollideEntity = false,
+        DestroyOnWater = true,
+        InitialSpeed = 12.5,
+        Lifetime = 2,
+        LeadTarget = false,
+        TrackTarget = true,
+        TrackTargetGround = true,
+        VelocityAlign = true,
+        UseGravity = false,
+        TurnRate = 360,
+    },
+}

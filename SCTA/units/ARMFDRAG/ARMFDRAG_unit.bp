@@ -1,0 +1,104 @@
+#ARM Floating Dragon's Teeth - Floating Dragon's Teeth
+#ARMFDRAG
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    BuildIconSortPriority = 24,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+	'UNSELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+        'BENIGN',
+
+	--Additional Categories
+	'STRUCTURE',
+        'DEFENSE',
+        'WALL',
+	'NOEXPLOSION',
+	'NOSMOKE',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core floating teeth
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    CollisionOffsetY = -1,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 3500,
+        MaxHealth = 3500,
+    },
+    Description = "Floating Dragon's Teeth",
+    Display = {
+        Abilities = {
+            'Wall',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		FlashSize = 0,
+		FlashTime = 0,
+	},
+        Mesh = {
+	    IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 600,
+        BuildCostMass = 20,
+        BuildTime = 930,
+    },
+    Footprint = {
+	MaxSlope = 2.25,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+	BuildAngle = 8192,
+        CapCost = 0,
+        Category = 'Defense',
+        Classification = 'RULEUC_MiscSupport',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = "Floating Dragon's Teeth",
+    },
+    Intel = {
+        VisionRadius = 0,
+    },
+    Interface = {
+        HelpText = "Floating Dragon's Teeth",
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    LifeBarRender = false,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+    },
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure_wall',
+    StrategicIconSortPriority = 0,
+}

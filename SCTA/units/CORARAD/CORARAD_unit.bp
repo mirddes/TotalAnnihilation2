@@ -1,0 +1,169 @@
+#CORE Advanced Radar Tower - Long Range Radar Tower
+#CORARAD
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADADVN2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADADVN2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'RADADDE2',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOSML3',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 1,
+    Categories = {
+        'BUILTBYT2VEHICLE',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2AIR',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'INTELLIGENCE',
+	'RADAR',
+        'OVERLAYRADAR',
+
+	--TA Categories
+	'CORE',
+	'SPECIAL',
+	'LEVEL3',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_R',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 130,
+        MaxHealth = 130,
+    },
+    Description = 'Long Range Radar Tower',
+    Display = {
+        Abilities = {
+            'Radar',
+        },
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0, 'turret'},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'dish'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 1920,
+        BuildCostMass = 122,
+        BuildTime = 4960,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 17,
+	ProductionPerSecondEnergy = 17,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 2,
+        SizeZ = 2,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Intelligence',
+        Classification = 'RULEUC_Sensor',
+        ToggleCaps = {
+            RULEUTC_IntelToggle = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Secret',
+	UnitName = 'Advanced Radar Tower',
+    },
+    Intel = {
+	FreeIntel = true,
+        VisionRadius = 22, 
+	RadarRadius = 180,
+    },
+    Interface = {
+        HelpText = 'Long Range Radar Tower',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+    },
+    SelectionSizeX = 1.25,
+    SelectionSizeZ = 1.25,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 3,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure3_intel',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORARAD/CORARAD_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

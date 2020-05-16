@@ -1,0 +1,17 @@
+#Dummy Weapon
+#DUMMY
+#
+#Blueprint created by Raevn
+
+ProjectileBlueprint {
+    Categories = {
+        'PROJECTILE',
+    },
+    General = {
+        EntityCategory = {
+            'PROJECTILE',
+        },
+        Faction = 'DUMMY',
+        Weapon = 'DUMMY',
+    },
+}

@@ -1,0 +1,209 @@
+#ARM Flakker - Anti-Air Flak Gun
+#ARMFLAK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'TWRTURN3',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED1',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 21,
+    Categories = {
+        'BUILTBYT2AIR',
+        'BUILTBYT2KBOT',
+        'BUILTBYT2VEHICLE',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH3',
+
+	--Additional Categories
+	'STRUCTURE',
+	'DEFENSE',
+	'ANTIAIR',
+        'OVERLAYANTIAIR',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core flakker
+	'LEVEL3',
+	'STRATEGIC',
+	'WEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1524,
+        MaxHealth = 1524,
+    },
+    Description = 'Anti-Air Flak Gun',
+    Display = {
+	DestructionEffects = {
+		DefaultProjectileCategories = {'MetalBarrel'},
+		DestructionEmitters = {
+			{
+				EmitterBone = {'Turret', 0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 17425,
+        BuildCostMass = 1069,
+        BuildTime = 38010,
+    },
+    Footprint = {
+        SizeX = 2,
+        SizeZ = 2,
+	MaxSlope = 0.625,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Defense',
+        Classification = 'RULEUC_Weapon',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Secret',
+        UnitName = 'Flakker',
+    },
+    Intel = {
+        VisionRadius = 22,
+    },
+    Interface = {
+        HelpText = 'Anti-Air Flak Gun',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        SkirtSizeX = 2, 
+        SkirtSizeZ = 2,  
+        BuildOnLayerCaps = {
+            LAYER_Land = true,
+        },
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 1,
+    SelectionThickness = 0.25,
+    SizeX = 2,
+    SizeY = 2,
+    SizeZ = 2,
+    StrategicIconName = 'icon_structure3_antiair',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'CANLITE2',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+            DamageFriendly = true,
+            Damage = 0,
+            AlternateDamageRadius = 3.75, 
+            DamageType = 'Normal',
+            DisplayName = 'ARMFLAK_GUN',
+            FireTargetLayerCapsTable = {
+                Land = 'Air',
+            },
+	    RangeCategory = 'UWRC_AntiAir',
+            FiringTolerance = 4.214,	
+	    FiringRandomness = 0.5,
+            Label = 'ARMFLAK_GUN',
+            MaxRadius = 43.75, 
+            MuzzleSalvoDelay = 0, 
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 59.375,
+            ProjectileId = '/mods/SCTA/projectiles/ARMFLAK_GUN/ARMFLAK_GUN_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Flare_01',
+                    },
+                    RackBone = 'Barrel_01',
+                },
+                {
+                    MuzzleBones = {
+                        'Flare_02',
+                    },
+                    RackBone = 'Barrel_02',
+                },
+            },
+            RackRecoilDistance = -4,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 1.67,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE',
+            TurretBoneMuzzle = 'Turret',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'TurretBase',
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 550,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 700,
+            Turreted = true,
+        },
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #MEDIUM_BUILDING
+            Damage = 1400,
+            DamageRadius = 10.16,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMFLAK/ARMFLAK_dead_prop.bp',
+        WreckageLayers = {
+            Land = true,
+        },
+    },
+}

@@ -1,0 +1,197 @@
+#ARM Atlas - Air Transport
+#ARMATLAS
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARAC',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        TakeOff = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARMV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Landing = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'VTOLARLD',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    AI = {
+        BeaconName = 'UAB5102',
+    },
+    Air = {
+        AutoLandTime = 1,
+        BankFactor = 0,
+	BankForward = false,
+        CanFly = true,
+        TransportHoverHeight = 5.625,
+    },
+    BuildIconSortPriority = 4,
+    Categories = {
+        'SELECTABLE',
+        'TECH1',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'AIR',
+        'TRANSPORTATION',
+        'TRANSPORTFOCUS',
+        'CANTRANSPORTCOMMANDER',
+
+	--TA Categories
+        'ARM',
+        'VTOL',
+	'CTRL_V',
+	'TPORT',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 150,
+        MaxHealth = 150,
+    },
+    Description = 'Air Transport',
+    Display = {
+        Abilities = {
+            'Transport',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DestructionDebrisUseLocalVelocity = true,
+		DefaultProjectileCategories = {'ArmCockpit'},
+		FlashSize = 10,
+		FlashTime = 10,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/fire_smoke_emit.bp',
+		Scale = 1,
+		Bones = {'Flame_01','Flame_02','Flame_03'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2479,
+        BuildCostMass = 107,
+        BuildTime = 5500,
+	NaturalProducer = true,
+        MaintenanceConsumptionPerSecondEnergy = 0.6,
+        ProductionPerSecondEnergy = 0.6,
+    },
+    Footprint = {
+	MaxSlope = 0.625,
+        SizeX = 3,
+        SizeZ = 3,
+    },
+    General = {
+        Category = 'Transport',
+        Classification = 'RULEUC_MilitaryAircraft',
+        CommandCaps = {
+            RULEUCC_CallTransport = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Stop = true,
+            RULEUCC_Ferry = true,
+            RULEUCC_Transport = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        UnitName = 'Atlas',
+    },
+    Intel = {
+        VisionRadius = 15,
+    },
+    Interface = {
+        HelpText = 'Air Transport',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = 5.625,
+        MotionType = 'RULEUMT_Air',
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 1.44,
+        MaxBrake = 36,
+        MaxSpeed = 13.125,
+        TurnRate = 21,
+	RotateOnSpot = true,
+	MinSpeedPercent = 0,
+	MaxSteerForce = 100,
+	TurnRadius = 0,
+	FuelRechargeRate = 999999,
+	FuelUseTime = 999999,
+    },
+    SelectionSizeX = 1.5,
+    SelectionSizeZ = 1.5,
+    SelectionThickness = 0.25,
+    SizeX = 3,
+    SizeY = 1,
+    SizeZ = 3,
+    StrategicIconName = 'icon_gunship1_transport',
+    StrategicIconSortPriority = 0,
+    Transport = {
+        AirClass = true,
+        Class2AttachSize = 1,
+        Class3AttachSize = 1,
+        TransportClass = 1,
+    },
+    Weapon = {
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+}

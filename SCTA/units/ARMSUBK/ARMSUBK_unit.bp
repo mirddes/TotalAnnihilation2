@@ -1,0 +1,240 @@
+#ARM Pirahna - Submarine Killer
+#ARMSUBK
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUARMSEL',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StartMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUARMMOV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        StopMove = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SUARMSTP',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 2,
+    Categories = {
+        'SELECTABLE',
+        'TECH2',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+
+	--Additional Categories
+        'MOBILE',
+	'NAVAL',
+    'T2SUBMARINE',
+	'ANTINAVY',
+	'NOSMOKE',
+        'OVERLAYANTINAVY',
+
+	--Weapon Damage Category
+	'ADVANCEDSUB',
+
+	--TA Categories
+        'ARM',
+        'UNDERWATER',
+	'LEVEL2',
+	'TORP',
+	'WEAPON',
+	'NOTAIR',
+	'CTRL_W',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 290,
+        MaxHealth = 290,
+    },
+    Description = 'Submarine Killer ',
+    Display = {
+        Abilities = {
+            'Anti-Sub',
+            'Sonar',
+        },
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	MovementEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/sub_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Wake'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 5481,
+        BuildCostMass = 1448,
+        BuildTime = 17767,
+	ProductionPerSecondEnergy = 0.5,
+	MaintenanceConsumptionPerSecondEnergy = 0.5,
+	NaturalProducer = true,
+    },
+    Footprint = {
+        SizeX = 3,
+        SizeZ = 3,
+	MinWaterDepth = 0.9375,
+    },
+    General = {
+        Category = 'Submarine',
+        Classification = 'RULEUC_MilitaryShip',
+        CommandCaps = {
+            RULEUCC_Attack = true,
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Advanced',
+        UnitName = 'Pirahna',
+    },
+    Intel = {
+        SonarRadius = 30,
+        VisionRadius = 9,
+        WaterVisionRadius = 9,
+	FreeIntel = true,
+    },
+    Interface = {
+        HelpText = 'Submarine Killer',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        Elevation = -1.25,
+	BackUpDistance = 0,
+	MaxSpeedReverse = 0,
+        MaxAcceleration = 7.2,
+        MaxBrake = 12.96,
+        MaxSpeed = 4.5,
+        TurnRate = 102,
+        MotionType = 'RULEUMT_SurfacingSub',
+        MaxSteerForce = 10,
+    },
+    SelectionSizeX = 1,
+    SelectionSizeZ = 2,
+    SelectionThickness = 0.25,
+    SizeX = 1.5,
+    SizeY = 1.25,
+    SizeZ = 3.5,
+    StrategicIconName = 'icon_sub2_antinavy',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        {
+            Audio = {
+                Fire = Sound {
+                    Bank = 'TA_Sound',
+                    Cue = 'TORPEDO1',
+                    LodCutoff = 'Weapon_LodCutoff',
+                },
+            },
+            BallisticArc = 'RULEUBA_None',
+            CollideFriendly = false,
+	    DamageFriendly = true,
+            Damage = 200,
+	    AlternateDamageRadius = 0.5,
+            DamageType = 'Normal',
+            DisplayName = 'ARMSMART_TORPEDO',
+            FireTargetLayerCapsTable = {
+                Sub = 'Seabed|Sub|Water',
+            },
+            RangeCategory = 'UWRC_AntiNavy',
+            Label = 'ARMSMART_TORPEDO',
+            MaxRadius = 23.4375,
+            MuzzleSalvoDelay = 0,
+            MuzzleSalvoSize = 1,
+            MuzzleVelocity = 6.25,
+            ProjectileId = '/mods/SCTA/projectiles/ARMSMART_TORPEDO/ARMSMART_TORPEDO_proj.bp',
+            RackBones = {
+                {
+                    MuzzleBones = {
+                        'Muzzle',
+                    },
+                    RackBone = 'Turret',
+                },
+            },
+            RackFireTogether = false,
+            RackRecoilDistance = 0,
+            RackReloadTimeout = 0,
+            RackSalvoChargeTime = 0,
+            RackSalvoReloadTime = 0,
+            RackSalvoSize = 1,
+            RackSlavedToTurret = false,
+            RateOfFire = 0.43,
+            TargetCheckInterval = 1,
+            TargetPriorities = {
+                'ALLUNITS',
+            },
+            TargetRestrictDisallow = 'UNTARGETABLE, HOVER',
+            TurretBoneMuzzle = 'Muzzle',
+            TurretBonePitch = 'Turret',
+            TurretBoneYaw = 'Turret',
+            TurretDualManipulators = false,
+            TurretPitch = 0,
+            TurretPitchRange = 360,
+            TurretPitchSpeed = 36000,
+            TurretYaw = 0,
+            TurretYawRange = 360,
+            TurretYawSpeed = 36000,
+            Turreted = true,
+            WeaponCategory = 'Direct Fire',
+        },
+        { #SMALL_UNITEX
+            Damage = 30,
+            DamageFriendly = true,
+            DamageRadius = 0.9375,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_UNIT
+            Damage = 200,
+            DamageRadius = 2.34375,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMSUBK/ARMSUBK_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+	    Sub = true,
+	    Seabed = true,
+        },
+    },
+}

@@ -1,0 +1,9 @@
+---- start -----------------
+Recorder version:3.9.2.416
+Reading settings stored in: \\purple\games\Total Annihilation\taesc.ini
+DLL.DirectPlayLobbyCreateA
+ + lpGUID : {}
+TLobby.Create
+LOBBY.GetConnectionSettings
+Exception: System Error.  Code: 1813.
+The specified resource type cannot be found in the image file

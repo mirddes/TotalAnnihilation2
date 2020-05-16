@@ -1,0 +1,177 @@
+#ARM Under Water Metal Extractor - Extracts Metal
+#ARMUWMEX
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'WATEREX1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Activate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'WATEREX1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+        Deactivate = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'WATEREX1',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED2',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 16,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'BUILTBYT1HOVER',
+        'BUILTBYCOMMANDER',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH1',
+
+	--Additional Categories
+	'STRUCTURE',
+        'MASSPRODUCTION',
+        'MASSEXTRACTION',
+        'ECONOMIC',
+	'UNDERWATER',
+
+	--TA Categories
+	'ARM',
+    'CORE', -- in lieu of core uw mex
+	'METAL',
+	'EXTRACTOR',
+	'LEVEL1',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 330,
+        MaxHealth = 330,
+    },
+    Description = 'Extracts Metal',
+    Display = {
+	DestructionEffects = {
+		DefaultFlamingProjectileCountMin = 0,
+		DefaultFlamingProjectileCountMax = 0,
+		DefaultProjectileCountMin = 0,
+		DefaultProjectileCountMax = 0,
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'Arms'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+	IdleEffects = {
+		Emitter = '/mods/SCTA/effects/emitters/uwmex_wake_emit.bp',
+		Scale = 0.5,
+		Bones = {'Emitter1','Emitter2','Emitter3'},
+	},
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2074,
+        BuildCostMass = 130,
+        BuildTime = 4175,
+        MaintenanceConsumptionPerSecondEnergy = 2,
+        ProductionPerSecondMass = 2.2,
+    },
+    General = {
+	BuildAngle = 8192,
+        Category = 'Economy',
+        Classification = 'RULEUC_Resource',
+        SelectionPriority = 5,
+        FactionName = 'ARM',
+        TechLevel = 'RULEUTL_Basic',
+        ToggleCaps = {
+            RULEUTC_ProductionToggle = true,
+        },
+        UnitName = 'Underwater Metal Extractor',
+    },
+    Intel = {
+        VisionRadius = 9,
+    },
+    Interface = {
+        HelpText = 'Extracts Metal',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Seabed = true,
+        },
+        FlattenSkirt = true,
+        MeshExtentsX = 1.25,
+        MeshExtentsY = 1.25,
+        MeshExtentsZ = 1.25,
+        SkirtOffsetX = -0.5,
+        SkirtOffsetZ = -0.5,
+        SkirtSizeX = 2,
+        SkirtSizeZ = 2,
+        BuildRestriction = 'RULEUBR_OnMassDeposit',
+    },
+    SelectionSizeX = 0.65,
+    SelectionSizeZ = 0.65,
+    SelectionThickness = 0.6,
+    SizeX = 0.75,
+    SizeY = 1.4,
+    SizeZ = 0.75,
+    StrategicIconName = 'icon_structure1_mass',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #SMALL_BUILDINGEX
+            Damage = 40,
+            DamageFriendly = true,
+            DamageRadius = 6.406,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #SMALL_BUILDING
+            Damage = 900,
+            DamageRadius = 6.406,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/ARMUWMEX/ARMUWMEX_dead_prop.bp',
+        WreckageLayers = {
+            Seabed = true,
+        },
+    },
+}

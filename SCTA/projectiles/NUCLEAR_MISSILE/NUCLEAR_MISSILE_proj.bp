@@ -1,0 +1,84 @@
+#Nuclear Missile Rocket
+#NUCLEAR_MISSILE
+#
+#Projectile created by Raevn
+
+ProjectileBlueprint {
+    Audio = {
+        Impact = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactUnit = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactShield = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactTerrain = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOMED4',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+        ImpactWater = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'SPLSLRG',
+            LodCutoff = 'Weapon_LodCutoff',
+        },
+    },
+    Categories = {
+        'ARM',
+        'PROJECTILE',
+	'STRATEGIC',
+	'MISSILE',
+    },
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 1,
+        MaxHealth = 1,
+    },
+    Display = {
+        MeshBlueprint = '/mods/SCTA/meshes/projectiles/ballmiss_mesh.bp',
+        StrategicIconSize = 1,
+        UniformScale = 0.16,
+    },
+    #DesiredShooterCap = 1,
+    Economy = {
+        BuildCostEnergy = 180000,
+        BuildCostMass = 2000,
+        BuildTime = 180,
+    },
+    General = {
+        Category = 'Anti Air',
+        EntityCategory = {
+       	    'ARM',
+            'PROJECTILE',
+	    'STRATEGIC',
+	    'MISSILE',
+        },
+        Faction = 'ARM',
+        Weapon = 'NUCLEAR_MISSILE',
+	EdgeEffectiveness = 0.25,
+    },
+    Interface = {
+        HelpText = 0,
+    },
+    Physics = {
+        Acceleration = 3.125,
+        DestroyOnWater = true,
+	InitialSpeed = 0,
+        LeadTarget = false,
+        Lifetime = 999,
+        MaxSpeed = 21.875,
+        TrackTarget = false,
+        TurnRate = 180,
+        UseGravity = false,
+        VelocityAlign = true,
+    },
+    StrategicIconName = '/mods/SCTA/textures/ui/common/game/strategicicons/projectiles/icon_strategic_nuke.dds',
+}

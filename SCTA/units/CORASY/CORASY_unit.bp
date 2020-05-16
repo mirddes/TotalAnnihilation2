@@ -1,0 +1,207 @@
+#CORE Adv. Shipyard - Produces Ships
+#CORASY
+#
+#Blueprint created by Raevn
+
+UnitBlueprint {
+    Audio = {
+        UISelection = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'PSHPACTV',
+            LodCutoff = 'UnitMove_LodCutoff',
+        },
+	Construct = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'PSHPWORK',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	ConstructStop = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'UNITDONE',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+	Destroyed = Sound {
+            Bank = 'TA_Sound',
+            Cue = 'XPLOLRG4',
+            LodCutoff = 'UnitMove_LodCutoff',
+	},
+    },
+    BuildIconSortPriority = 0,
+    Categories = {
+        'BUILTBYT1SHIP',
+        'SELECTABLE',
+        'DRAGBUILD',
+        'VISIBLETORECON',
+        'RECLAIMABLE',
+        'TECH2',
+	'FACTORY',
+        'RALLYPOINT',
+        'SHOWQUEUE',
+
+	--Additional Categories
+	'STRUCTURE',
+	'CONSTRUCTION',
+	'NAVAL',
+
+	--TA Categories
+	'CORE',
+	'PLANT',
+	'LEVEL2',
+	'NOWEAPON',
+	'NOTAIR',
+	'NOTSUB',
+	'CTRL_F',
+    },
+    CollisionOffsetY = -0.5,
+    Defense = {
+        ArmorType = 'Normal',
+        Health = 2325,
+        MaxHealth = 2325,
+    },
+    Description = 'Produces Ships',
+    Display = {
+	DestructionEffects = {
+		DestructionEmitters = {
+			{
+				EmitterBone = {0},
+				EmitterBlueprint = {'/mods/SCTA/effects/emitters/napalm_fire_emit.bp'},
+				EmitterSize = 1.25,
+			},
+			{
+				EmitterBone = {'gun1','gun2'},
+				EmitterBlueprint = {
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_01_emit.bp',
+			    		'/mods/SCTA/effects/emitters/terran_missile_hit_03_emit.bp',
+    					'/mods/SCTA/effects/emitters/terran_missile_hit_04_emit.bp',
+				},
+				EmitterSize = 0.35,
+			},
+		},
+	},
+	BuildBones = {'beam1','beam2'},
+	TextureAnimationFrames = 4,
+	BuildAttachBone = 0,
+        Mesh = {
+            IconFadeInZoom = 130,
+            LODs = {
+                {
+                    LODCutoff = 500,
+                    ShaderName = 'Unit',
+		    NormalsName = '/mods/SCTA/textures/common/normalsTS.dds'
+                },
+            },
+        },
+        UniformScale = 0.16,
+    },
+    Economy = {
+        BuildCostEnergy = 2325,
+        BuildCostMass = 2460, 
+        BuildTime = 13080,
+	BuildRate = 200,
+	NaturalProducer = true,
+	ProductionPerSecondMass = 1,
+	InitialRallyX = 0,
+	InitialRallyZ = 7.5,
+        BuildableCategory = {
+            'SHIP LEVEL2 CORE',
+            'ADVANCEDSUB LEVEL2 CORE',
+        },
+        StorageMass = 200,
+        StorageEnergy = 200,
+    },
+    Footprint = {
+        SizeX = 8,
+        SizeZ = 8,
+	MinWaterDepth = 1.875,
+    },
+    General = {
+        Category = 'Factory',
+        Classification = 'RULEUC_Factory',
+        CommandCaps = {
+            RULEUCC_Guard = true,
+            RULEUCC_Move = true,
+            RULEUCC_Patrol = true,
+            RULEUCC_Pause = true,
+            RULEUCC_RetaliateToggle = true,
+            RULEUCC_Stop = true,
+        },
+        SelectionPriority = 5,
+        ConstructionBar = true,
+        FactionName = 'CORE',
+        TechLevel = 'RULEUTL_Advanced',
+	UnitName = 'Adv. Shipyard',
+    },
+    Intel = {
+        VisionRadius = 14,
+    },
+    Interface = {
+        HelpText = 'Produces Ships',
+    },
+    LifeBarHeight = 0.25,
+    LifeBarOffset = 0.5,
+    LifeBarSize = 2,
+    Physics = {
+        BuildOnLayerCaps = {
+            LAYER_Water = true,
+        },
+        SkirtSizeX = 8,
+        SkirtSizeZ = 8,
+	BuildAreaX = 6,
+	BuildAreaZ = 6,
+        OccupyRects = {
+            # offsetX offsetZ  sizeX sizeZ, offset from center of unit
+            -4,
+            -4,
+            0.5,
+            0.5,
+
+            3,
+            3,
+            0.5,
+            0.5,
+
+            3,
+            -4,
+            0.5,
+            0.5,
+
+            -4,
+            3,
+            0.5,
+            0.5,
+        },
+    },
+    SelectionSizeX = 4.75,
+    SelectionSizeZ = 4.75,
+    SelectionThickness = 0.25,
+    SizeX = 8,
+    SizeY = 2.5,
+    SizeZ = 8,
+    StrategicIconName = 'icon_factory2_naval',
+    StrategicIconSortPriority = 0,
+    Weapon = {
+        { #LARGE_BUILDINGEX
+            Damage = 300,
+            DamageFriendly = true,
+            DamageRadius = 3.75,
+            DamageType = 'Normal',
+            DummyWeapon = true,
+            Label = 'DeathWeapon',
+        },
+        { #LARGE_BUILDING
+            Damage = 1800,
+            DamageRadius = 12.5,
+            DummyWeapon = true,
+            Label = 'SuicideWeapon',
+        },
+    },
+    Wreckage = {
+	UseCustomMesh = true,
+        Blueprint = '/mods/SCTA/units/CORASY/CORASY_dead_prop.bp',
+        WreckageLayers = {
+            Water = true,
+            Seabed = true,
+            Sub = true,
+        },
+    },
+}

@@ -1,0 +1,47 @@
+[Manhole01]
+	{
+	world=urban;
+	description=Manhole;
+	category=steamvents;
+	animating=1;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=urbanvent;
+	seqname=urbanvent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[Manhole02]
+	{
+	world=urban;
+	description=Manhole;
+	category=steamvents;
+	animating=1;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=urbanvent;
+	seqname=urbanvent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[Manhole03]
+	{
+	world=urban;
+	description=Manhole;
+	category=steamvents;
+	animating=1;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=urbanvent;
+	seqname=urbanvent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

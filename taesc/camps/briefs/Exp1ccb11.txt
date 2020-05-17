@@ -1,0 +1,13 @@
+MISSION 11.1GCORE
+Arm has secured a staging area on one of the ice floes! This is not good, as their reinforcements now arrive unhampered.
+
+INTELL-TAP:
+You now have an extensive arsenal with which to delay and destroy Arm forces. Do not be timid about using them.
+
+Final adjustments have been made to the implosion device. Finish up here and return to the glacial fortress.
+
+The device will be activated when you return.
+
+&RDestroy all of the Arm units.&
+
+DO SO NOW.

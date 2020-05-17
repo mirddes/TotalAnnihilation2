@@ -1,0 +1,556 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, body, shell01, lathe01a, nano01a, lathe01b, nano01b, lathe01c, nano01c,
+	   shell02, lathe02a, nano02a, lathe02b, nano02b, lathe02c, nano02c, 
+	   bits, edge01, edge02, edge03, edge04, edge05, edge06, fus,
+	   fus01, fus02, fus03, fus04, pipes, pad, target, cover, shell01a, shell02a,
+	   noshade03, noshade04, noshade06, arrow;
+
+static-var  spray, statechg_DesiredState, statechg_StateChanging, firing;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome ; 
+
+// Signal definitions
+#define SIG_ACTIVATE			2
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		turn shell01 to z-axis <-90.000000> speed <10.000000>;
+		turn shell02 to z-axis <90.000000> speed <10.000000>;
+		sleep 683;
+	}
+	sleep 34;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		turn shell01 to z-axis <0.000000> speed <10.000000>;
+		turn shell02 to z-axis <0.000000> speed <10.000000>;
+		sleep 683;
+	}
+	sleep 34;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var Func_Var_4;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			Func_Var_4 = Rand( 1, 4 );
+			if( Func_Var_4 == 1 )
+			{
+				emit-sfx smoketype from fus01;
+			}
+			if( Func_Var_4 == 2 )
+			{
+				emit-sfx smoketype from fus04;
+			}
+			if( Func_Var_4 == 3 )
+			{
+				emit-sfx smoketype from edge05;
+			}
+			if( Func_Var_4 == 4 )
+			{
+				emit-sfx smoketype from edge06;
+			}
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+OpenYard()
+{
+	set YARD_OPEN to 1;
+	while( !get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 1;
+	}
+	set BUGGER_OFF to 0;
+}
+
+CloseYard()
+{
+	set YARD_OPEN to 0;
+	while( get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 0;
+	}
+	set BUGGER_OFF to 0;
+}
+
+Go()
+{
+	dont-cache shell01;
+	dont-cache shell01a;
+	dont-cache lathe01a;
+	dont-cache lathe01b;
+	dont-cache lathe01c;
+	dont-cache shell02;
+	dont-cache shell02a;
+	dont-cache lathe02a;
+	dont-cache lathe02b;
+	dont-cache lathe02c;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache shell01;
+	cache shell01a;
+	cache lathe01a;
+	cache lathe01b;
+	cache lathe01c;
+	cache shell02;
+	cache shell02a;
+	cache lathe02a;
+	cache lathe02b;
+	cache lathe02c;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	hide cover;
+	
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+	move target to z-axis [2.00] now;
+	
+	firing = 0;	
+	hide arrow;
+	
+	dont-shade arrow;
+	dont-cache arrow;
+		
+	dont-shade shell01;
+	dont-shade shell01a;
+	dont-shade lathe01a;
+	dont-shade lathe01a;
+	dont-shade lathe01b;
+	dont-shade lathe01c;
+	dont-shade shell02;
+	dont-shade shell02a;
+	dont-shade lathe02a;
+	dont-shade lathe02b;
+	dont-shade lathe02c;
+	
+	dont-shade pad;
+	
+	dont-shade noshade03;
+	dont-shade noshade04;
+	dont-shade noshade06;
+	
+	dont-shade cover;
+	dont-cache cover;
+	
+	spray = 1;
+	call-script InitState();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+	
+	show cover;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( spray == 1 )
+	{
+		piecenum = nano01a;
+	}
+	if( spray == 2 )
+	{
+		piecenum = nano01b;
+	}
+	if( spray == 3 )
+	{
+		piecenum = nano01c;
+	}
+	if( spray == 4 )
+	{
+		piecenum = nano02a;
+	}
+	if( spray == 5 )
+	{
+		piecenum = nano02b;
+	}
+	if( spray == 6 )
+	{
+		piecenum = nano02c;
+	}
+	++spray;
+	if( spray == 7 )
+	{
+		spray = 1;
+	}
+}
+
+Activate()
+{
+	signal SIG_ACTIVATE;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	set-signal-mask 0;
+	start-script RequestState(1);
+}
+
+StartBuilding()
+{
+//	spin target around y-axis speed <30.005495>;
+}
+
+StopBuilding()
+{
+//	stop-spin target around y-axis;
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = target;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	
+	if( heading > <90.00> AND heading < <270.00> )
+	{
+		turn target to y-axis <180.00> now;
+		move target to z-axis [-2.00] now;
+		return(1);
+	}
+	
+	turn target to y-axis <0.00> now;
+	move target to z-axis [2.00] now;
+	while (firing)
+	{
+		sleep 50;
+	}	
+	return(1);
+}
+
+FireTertiary()
+{
+	signal 8;
+	set-signal-mask 8;
+	if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+	{			
+		firing = 1;
+		show arrow;
+		move arrow to y-axis [5.00] now;
+		move arrow to z-axis [40.00] now;
+		move arrow to z-axis [50.00] speed [20.00];
+		sleep 500;
+		move arrow to z-axis [40.00] now;
+		move arrow to z-axis [50.00] speed [20.00];
+		sleep 500;
+		move arrow to z-axis [40.00] now;
+		move arrow to z-axis [50.00] speed [20.00];
+		sleep 500;
+		move arrow to z-axis [40.00] now;
+		move arrow to z-axis [50.00] speed [20.00];
+		sleep 500;
+		hide arrow;
+		firing = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = target;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = target;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode body type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+}

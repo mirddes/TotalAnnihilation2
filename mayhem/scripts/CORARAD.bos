@@ -1,0 +1,106 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, turret, dish;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade dish;
+	dont-shade turret;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	spin turret around y-axis speed <20>;
+	spin dish around x-axis speed <-200>;
+}
+
+Deactivate()
+{
+	spin turret around y-axis speed <0>;
+	spin dish around x-axis speed <0>;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode dish type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode dish type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode dish type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP2;
+	explode dish type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+}

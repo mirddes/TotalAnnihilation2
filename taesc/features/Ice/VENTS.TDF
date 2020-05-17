@@ -1,0 +1,67 @@
+[IceVent01]
+	{
+	world=Ice;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=icevents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[IceVent02]
+	{
+	world=Ice;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=icevents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[IceVent03]
+	{
+	world=Ice;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=icevents;
+	seqname=vent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[IceVent04]
+	{
+	world=Ice;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=icevents;
+	seqname=vent04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}

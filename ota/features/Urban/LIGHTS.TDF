@@ -1,0 +1,286 @@
+[Light01]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=80;
+	filename=u-lights;
+	seqname=u-light01;
+	seqnameshad=u-lightshad01;
+	seqnamereclamate=u-lightrec01;
+	metal=25;
+
+	seqnamedie=u-lightboom01;
+	featuredead=lightscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light02]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=110;
+	filename=u-lights;
+	seqname=u-light02;
+	seqnameshad=u-lightshad02;
+	seqnamereclamate=u-lightrec02;
+	metal=25;
+
+	seqnamedie=u-lightboom01;
+	featuredead=lightscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light03]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=30;
+	filename=u-lights;
+	seqname=u-light03;
+	seqnameshad=u-lightshad03;
+	seqnamereclamate=u-lightrec03;
+	metal=25;
+
+	seqnamedie=u-lightboom03;
+	featuredead=lightscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light04]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=95;
+	filename=u-lights;
+	seqname=u-light04;
+	seqnameshad=u-lightshad04;
+	seqnamereclamate=u-lightrec04;
+	metal=25;
+
+	seqnamedie=u-lightboom02;
+	featuredead=lightscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light05]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=50;
+	filename=u-lights;
+	seqname=u-light05;
+	seqnameshad=u-lightshad05;
+	seqnamereclamate=u-lightrec05;
+	metal=25;
+
+	seqnamedie=u-lightboom02;
+	featuredead=lightscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light06]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=30;
+	filename=u-lights;
+	seqname=u-light06;
+	seqnameshad=u-lightshad06;
+	seqnamereclamate=u-lightrec06;
+	metal=25;
+
+	seqnamedie=u-lightboom02;
+	featuredead=lightscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light07]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=50;
+	filename=u-lights;
+	seqname=u-light07;
+	seqnameshad=u-lightshad07;
+	seqnamereclamate=u-lightrec07;
+	metal=25;
+
+	seqnamedie=u-lightboom02;
+	featuredead=lightscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[Light08]
+	{
+	world=urban;
+	description=Streetlight;
+	category=machines;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=98;
+	filename=u-lights;
+	seqname=u-light08;
+	seqnameshad=u-lightshad08;
+	seqnamereclamate=u-lightrec08;
+	metal=25;
+
+	seqnamedie=u-lightboom01;
+	featuredead=lightscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=lightscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=100;
+	}
+
+[LightScar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=u-lights;
+	seqname=u-lightscar01;
+
+	featuredead=LightScar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[LightScar02]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=u-lights;
+	seqname=u-lightscar02;
+
+	featuredead=LightScar02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+

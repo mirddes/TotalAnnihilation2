@@ -1,0 +1,12 @@
+MISSION 25.004ARMCP
+Exterminer la ligue Core une bonne fois pour toutes. Lancer le Commandeur à l'assaut du dôme de contrôle.
+
+&YPRIORITE ABSOLUE&
+La Conscience Centrale est entre nos mains. Nous possédons le cerveau de l'ennemi. Il reste maintenant à détruire son coeur. Anéantissez le dôme de contrôle pour mettre fin à la peste Core.
+
+INFOS STRATEGIQUES
+Les derniers survivants de l'empire Core se sont rassemblés dans le Dôme de Contrôle. C'est là que se trouve le Commandeur Core. Détruisez-le. Brûlez la totalité des unités ennemies. N'oubliez pas qu'il suffit d'un minuscule élément d'intelligence ennemi pour faire renaître la civilisation Core. Soyez vigilant et impitoyable.
+
+Placez-vous au sommet du dôme de contrôle. &RAchevez-les tous!&
+
+FIN

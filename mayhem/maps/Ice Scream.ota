@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Ice Scream;
+	missiondescription=15 X 39  Screaming won't be all you do on this forbidding world.;
+	planet=Ice;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=23;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=3800;
+	maxwindspeed=5000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 3, 4, 5, 6, 7, 8;
+	size=15 x 39;
+	memory=64 mb;
+	useonlyunits=Ice Scream.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=2352;
+				ZPos=8256;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=3856;
+				ZPos=14016;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=6304;
+				ZPos=4176;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=480;
+				ZPos=4800;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=6528;
+				ZPos=9648;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=6640;
+				ZPos=17488;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=4416;
+				ZPos=720;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=768;
+				ZPos=18736;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=3600;
+				ZPos=5456;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=1232;
+				ZPos=13744;
+				}
+			}
+		}
+	}

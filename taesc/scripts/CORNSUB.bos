@@ -1,0 +1,338 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, base, body, turret1, turret2, launcher, rocket, prop1,  
+	   bubbles1, bubbles2, bubbles3, bubbles4, cage, door1, door2, tower ;
+
+static-var  restore_delay, statechg_DesiredState, statechg_StateChanging, ready, salvo_3, gun_3;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM2			4
+#define SIG_AIM3			8
+#define SIG_MOVE			32
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent*healthpercent;
+	if( healthpercent < 66 )
+	{
+		emit-sfx 256 | 3 from base;
+		sleep sleeptime;
+		emit-sfx 256 | 3 from turret1;
+		
+		if( Rand( 1, 66 ) > healthpercent )
+		{
+			emit-sfx 256 | 3 from body;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from turret2;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from turret1;
+			sleep sleeptime;
+		}
+	}
+	start-script smokeunit();
+}
+
+activatescr()
+{
+	if( TRUE )
+	{
+		turn rocket to y-axis <0.000000> now;
+	}
+	if( TRUE )
+	{
+		turn door1 to z-axis <-180> speed <90>;
+		turn door2 to z-axis <180> speed <90>;
+		sleep 925;
+	}
+	if( TRUE )
+	{
+		move launcher to y-axis [8.526276] speed [6];
+		sleep 575;
+	}
+	sleep 25;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		turn rocket to y-axis <0.000000> speed <80.016484>;
+		wait-for-turn rocket around y-axis;
+		sleep 800;
+	}
+	
+	if( TRUE )
+	{
+		move launcher to y-axis [0.000000] speed [6];
+		sleep 800;
+	}
+	if( TRUE )
+	{
+		turn door1 to z-axis <0> speed <90>;
+		turn door2 to z-axis <0> speed <90>;
+		sleep 30000;
+	}
+	sleep 25;
+}
+
+Go()
+{
+	show rocket;
+	show prop1;
+	
+	call-script activatescr();
+	ready = 1;
+}
+
+Stop()
+{
+	ready = 0;
+	call-script deactivatescr();
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}	
+
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	
+	SET ACTIVATION to 100;
+	SET ARMORED to 1;
+
+	ready = 0;
+	restore_delay = 3000;
+	gun_3 = 0;
+	salvo_3 = 2;
+	
+	call-script InitState();
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+		
+	turn body to y-axis <0.00> speed <16.016484>;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from bubbles1;
+		emit-sfx 256 | 3 from bubbles2;
+		emit-sfx 256 | 3 from bubbles3;
+		emit-sfx 256 | 3 from bubbles4;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+
+RestoreTertiary()
+{
+	sleep 12000;
+	set-signal-mask 0; 
+	turn turret1 to y-axis <0.000000> speed <80.000000>;
+	turn turret2 to y-axis <0.000000> speed <80.000000>;
+}
+
+
+
+RestoreAfterDelay()
+{
+	sleep 24000;
+//	sleep restore_delay;
+	set-signal-mask 0;
+	turn rocket to y-axis <0.00> speed <80.016484>;
+	start-script RequestState(1);
+}
+
+AimPrimary(heading, pitch)
+{
+	start-script RequestState(0);
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	while( !ready )
+	{
+		sleep 250;
+	}		
+	turn rocket to y-axis heading speed <80.016484>;
+	wait-for-turn rocket around y-axis;
+	start-script RestoreAfterDelay();
+	
+	return(1);
+}
+
+FirePrimary()
+{
+	hide rocket;
+	hide prop1;
+	
+	ready = 0;
+	start-script RequestState(1);
+}
+
+AimFromPrimary(a)
+{
+	a = launcher;
+}
+
+QueryPrimary(a)
+{
+	a = launcher;
+}
+
+//=============================================================
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM3;
+	set-signal-mask SIG_AIM3;
+	if( salvo_3 == 2 )
+	{
+		turn turret1 to y-axis heading speed <360>;
+	}
+	if( salvo_3 == 3 )
+	{
+		turn turret2 to y-axis heading speed <360>;
+	}
+	wait-for-turn turret1 around y-axis;
+	wait-for-turn turret2 around y-axis;
+	start-script RestoreTertiary();
+	return (1);
+}
+
+FireTertiary()
+{
+	var gun_3_tmp;
+	gun_3_tmp = gun_3;
+	++gun_3;
+	if( gun_3 == 2 )
+	{
+		gun_3 = 0;
+	}
+	if( gun_3_tmp == 0 )
+	{
+		salvo_3 = 3;
+		sleep 150;
+	}
+	if( gun_3_tmp == 1 )
+	{
+		salvo_3 = 2;
+		sleep 150;
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( salvo_3 == 2 )
+		piecenum = flare1;
+	if( salvo_3 == 3 )
+		piecenum = flare2;
+}
+
+AimFromTertiary(piecenum)
+{
+	if( gun_3 == 0 )
+		piecenum = turret1;
+	if( gun_3 == 1 )
+		piecenum = turret2;
+}
+
+
+
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type BITMAPONLY | BITMAP1;
+		explode bubbles2 type BITMAPONLY | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type FALL | BITMAP1;
+		explode bubbles2 type FALL | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode bubbles2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode bubbles1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode bubbles2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret1 type BITMAPONLY | BITMAP1;
+	explode turret2 type BITMAPONLY | BITMAP5;
+}

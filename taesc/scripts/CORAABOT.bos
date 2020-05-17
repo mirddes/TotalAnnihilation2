@@ -1,0 +1,313 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece	flare1, flare2, flare3, flare4, base, body, counterbody, spine, counterspine, torso, 
+		lhipalign1, lhip1, lcounterhip1, lleg1, lhipalign2, lhip2, lcounterhip2, lleg2,
+		rhipalign1, rhip1, rcounterhip1, rleg1, rhipalign2, rhip2, rcounterhip2, rleg2,
+		turret, sleeve, pod1, pod2, pod3, pod4,
+		lleg1b, lleg1c, lleg2b, lleg2c, rleg1b, rleg1c, rleg2b, rleg2c ;
+
+
+static-var speed1, speed2, speed3, moving, facing, facing3, nextbarrel, firing, restore_delay, gun_1;
+
+// Signal definitions
+#define FBIMAXVELOCITY [0.9] * 12
+
+#define SIG_AIM				2
+
+Walking()
+{
+	set-signal-mask 8;
+	sleep 66;
+	while (1)
+	{
+//		move lfoot1 to y-axis 0 speed speed3;
+//		move rfoot2 to y-axis 0 speed speed3;
+		move lcounterhip1 to z-axis [-2] speed speed1;
+		move rcounterhip2 to z-axis [-2] speed speed1;
+		move rcounterhip1 to z-axis [2] speed speed2;
+		move lcounterhip2 to z-axis [2] speed speed2;
+//		move rfoot1 to y-axis [5] speed speed2;
+//		move lfoot2 to y-axis [5] speed speed2;
+		if (moving == 2)
+		{
+			move counterspine to z-axis [2] speed speed2;
+		}
+//		turn body to y-axis (0 - facing3) speed <45>;
+//		turn spine to y-axis facing3 speed <45>;
+//		turn torso to y-axis (0 - facing3) speed <45>;
+		turn lhip1 to y-axis facing3 speed <45>;
+		turn lhip2 to y-axis facing3 speed <45>;
+		turn rhip1 to y-axis facing3 speed <45>;
+		turn rhip2 to y-axis facing3 speed <45>;
+		turn lleg1 to y-axis (0 - facing3) speed <45>;
+		turn lleg2 to y-axis (0 - facing3) speed <45>;
+		turn rleg1 to y-axis (0 - facing3) speed <45>;
+		turn rleg2 to y-axis (0 - facing3) speed <45>;
+//		wait-for-move rfoot1 along y-axis;
+		move counterspine to z-axis 0 speed speed1;
+//		turn body to y-axis (0 - facing3) speed <0.25>;
+//		turn spine to y-axis facing3 speed <0.25>;
+//		turn torso to y-axis (0 - facing3) speed <0.25>;
+		turn lhip1 to y-axis facing3 speed <0.25>;
+		turn lhip2 to y-axis facing3 speed <0.25>;
+		turn rhip1 to y-axis facing3 speed <0.25>;
+		turn rhip2 to y-axis facing3 speed <0.25>;
+		turn lleg1 to y-axis (0 - facing3) speed <0.25>;
+		turn lleg2 to y-axis (0 - facing3) speed <0.25>;
+		turn rleg1 to y-axis (0 - facing3) speed <0.25>;
+		turn rleg2 to y-axis (0 - facing3) speed <0.25>;
+		wait-for-move rcounterhip1 along z-axis;
+		wait-for-move lcounterhip1 along z-axis;
+//		move rfoot1 to y-axis 0 speed speed3;
+//		move lfoot2 to y-axis 0 speed speed3;
+		move rcounterhip1 to z-axis [-2] speed speed1;
+		move lcounterhip2 to z-axis [-2] speed speed1;
+		move lcounterhip1 to z-axis [2] speed speed2;
+		move rcounterhip2 to z-axis [2] speed speed2;
+//		move lfoot1 to y-axis [5] speed speed2;
+//		move rfoot2 to y-axis [5] speed speed2;
+		if (moving == 2)
+		{
+			move counterspine to z-axis [2] speed speed1;
+		}
+//		turn body to y-axis (0 - facing3) speed <45>;
+//		turn spine to y-axis facing3 speed <45>;
+//		turn torso to y-axis (0 - facing3) speed <45>;
+		turn lhip1 to y-axis facing3 speed <45>;
+		turn lhip2 to y-axis facing3 speed <45>;
+		turn rhip1 to y-axis facing3 speed <45>;
+		turn rhip2 to y-axis facing3 speed <45>;
+		turn lleg1 to y-axis (0 - facing3) speed <45>;
+		turn lleg2 to y-axis (0 - facing3) speed <45>;
+		turn rleg1 to y-axis (0 - facing3) speed <45>;
+		turn rleg2 to y-axis (0 - facing3) speed <45>;
+//		wait-for-move lfoot1 along y-axis;
+		move counterspine to z-axis 0 speed speed1;
+//		turn body to y-axis (0 - facing3) speed <0.25>;
+//		turn spine to y-axis facing3 speed <0.25>;
+//		turn torso to y-axis (0 - facing3) speed <0.25>;
+		turn lhip1 to y-axis facing3 speed <0.25>;
+		turn lhip2 to y-axis facing3 speed <0.25>;
+		turn rhip1 to y-axis facing3 speed <0.25>;
+		turn rhip2 to y-axis facing3 speed <0.25>;
+		turn lleg1 to y-axis (0 - facing3) speed <0.25>;
+		turn lleg2 to y-axis (0 - facing3) speed <0.25>;
+		turn rleg1 to y-axis (0 - facing3) speed <0.25>;
+		turn rleg2 to y-axis (0 - facing3) speed <0.25>;
+		wait-for-move lcounterhip1 along z-axis;
+		wait-for-move rcounterhip1 along z-axis;
+	}
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+StartMoving()
+{
+	signal 4;
+	facing=0;
+	if (!moving)
+	{
+		signal 16;
+		start-script Walking();
+	}
+	moving=2;
+}
+
+StopMoving()
+{
+	signal 8;
+	set-signal-mask 16;
+	sleep 1;
+	moving=0;
+	move lcounterhip1 to z-axis 0 speed speed1;
+	move lcounterhip2 to z-axis 0 speed speed1;
+	move rcounterhip1 to z-axis 0 speed speed1;
+	move rcounterhip2 to z-axis 0 speed speed1;
+//	move lfoot1 to y-axis 0 speed speed1;
+//	move lfoot2 to y-axis 0 speed speed1;
+//	move rfoot1 to y-axis 0 speed speed1;
+//	move rfoot2 to y-axis 0 speed speed1;
+	move counterspine to z-axis 0 speed speed1;
+	stop-spin body around y-axis;
+}
+
+Create(facing2)
+{
+	speed1=FBIMAXVELOCITY;
+	speed2=speed1 * 2;
+	speed3=speed1 * 15;
+	moving=0;
+	
+	firing=0;
+	facing=0;
+	
+	gun_1 = 0;
+	
+	restore_delay = 3000;
+	
+//	start-script StopMoving();
+	start-script SmokeUnit();
+/*	
+	while (1)
+	{
+		facing2 = get XZ_ATAN(0);
+		facing3 = facing2 - facing;
+		turn base to y-axis facing2 now;
+		turn counterbody to y-axis (0 - facing2) now;
+		turn counterspine to y-axis facing2 now;
+		turn lhipalign1 to y-axis (0 - facing2) now;
+		turn lhipalign2 to y-axis (0 - facing2) now;
+		turn rhipalign1 to y-axis (0 - facing2) now;
+		turn rhipalign2 to y-axis (0 - facing2) now;
+		turn lcounterhip1 to y-axis facing2 now;
+		turn lcounterhip2 to y-axis facing2 now;
+		turn rcounterhip1 to y-axis facing2 now;
+		turn rcounterhip2 to y-axis facing2 now;
+		sleep 66;
+	}
+*/
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 5;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	turn turret to y-axis <0.000000> speed <270.021978>;
+	turn sleeve to x-axis <0.000000> speed <270.510989>;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <540.021978>;
+	turn sleeve to x-axis <0.000000> - pitch speed <540.010989>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	if( gun_1 == 0 )
+	{
+		sleep 150;
+	}
+	if( gun_1 == 1 )
+	{
+		sleep 150;
+	}
+	if( gun_1 == 2 )
+	{
+		sleep 150;
+	}
+	if( gun_1 == 3 )
+	{
+		sleep 150;
+	}
+	++gun_1;
+	if( gun_1 == 4 )
+	{
+		gun_1 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode rleg1 type BITMAPONLY | BITMAP1;
+		explode rleg2 type BITMAPONLY | BITMAP1;
+		explode sleeve type BITMAPONLY | BITMAP1;
+		explode lleg1 type BITMAPONLY | BITMAP1;
+		explode lleg2 type BITMAPONLY | BITMAP5;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode rleg1 type FALL | BITMAP1;
+		explode rleg2 type FALL | BITMAP1;
+		explode sleeve type FALL | BITMAP1;
+		explode lleg1 type FALL | BITMAP1;
+		explode lleg2 type FALL | BITMAP5;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode rleg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode rleg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP5;
+}

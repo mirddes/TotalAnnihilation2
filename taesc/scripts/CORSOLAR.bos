@@ -1,0 +1,500 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, shell, leg1, leg2, leg3, leg4, wing1, wing2,
+       wing3, wing4;
+
+static-var  Static_Var_1, statechg_DesiredState, statechg_StateChanging;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome ; 
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Go()
+{
+	move shell to y-axis [0.000000] now;
+	move shell to y-axis [4.089996] speed [8.000000];
+	sleep 462;
+	
+	move leg1 to x-axis [4.450000] speed [9.000000];
+	move leg1 to z-axis [4.489996] speed [9.000000];
+	move leg2 to x-axis [-4.550000] speed [9.000000];
+	move leg2 to z-axis [4.500000] speed [9.000000];
+	move leg3 to x-axis [-4.339996] speed [9.000000];
+	move leg3 to z-axis [-4.450000] speed [9.000000];
+	move leg4 to x-axis [4.400000] speed [9.000000];
+	move leg4 to z-axis [-4.379999] speed [9.000000];
+	turn wing1 to z-axis <0.000000> speed <0.000000>;
+	sleep 472;
+	
+	turn wing1 to z-axis <-90.021978> speed <242.000000>;
+	turn wing2 to z-axis <90.021978> speed <242.000000>;
+	sleep 372;
+	
+	turn wing1 to z-axis <-225.054945> speed <365.000000>;
+	turn wing2 to z-axis <225.054945> speed <365.000000>;
+	sleep 381;
+	
+	move wing3 to y-axis [0.300000] speed [1.000000];
+	move wing4 to y-axis [0.300000] speed [1.000000];
+	sleep 226;
+	
+	move wing3 to y-axis [0.000000] speed [0.000000];
+	move wing4 to y-axis [0.000000] speed [0.000000];
+	turn wing3 to x-axis <-90.021978> speed <246.000000>;
+	turn wing4 to x-axis <91.021978> speed <249.000000>;
+	sleep 365;
+	
+	move wing3 to y-axis [0.300000] speed [0.000000];
+	move wing4 to y-axis [0.300000] speed [0.000000];
+	turn wing3 to x-axis <-225.054945> speed <446.000000>;
+	turn wing4 to x-axis <225.054945> speed <442.000000>;
+	sleep 312;
+		
+	set ARMORED to 0;
+	if(( shield_on || dome_on))
+	{
+		set ARMORED to 1;
+	}
+}
+
+Stop()
+{
+	set ARMORED to 1;
+	
+	move shell to y-axis [4.089996] now;
+	move leg1 to x-axis [4.450000] now;
+	move leg1 to z-axis [4.489996] now;
+	move leg2 to x-axis [-4.550000] now;
+	move leg2 to z-axis [4.500000] now;
+	move leg3 to x-axis [-4.339996] now;
+	move leg3 to z-axis [-4.450000] now;
+	move leg4 to x-axis [4.400000] now;
+	move leg4 to z-axis [-4.379999] now;
+	move wing3 to y-axis [0.300000] now;
+	move wing3 to y-axis [0.000000] speed [0.000000];
+	move wing4 to y-axis [0.300000] now;
+	move wing4 to y-axis [0.000000] speed [0.000000];
+	turn wing1 to z-axis <-225.054945> now;
+	turn wing2 to z-axis <225.054945> now;
+	turn wing3 to x-axis <-225.054945> now;
+	turn wing3 to x-axis <-90.021978> speed <321.000000>;
+	turn wing4 to x-axis <225.054945> now;
+	turn wing4 to x-axis <91.021978> speed <318.000000>;
+	sleep 433;
+
+	move wing3 to y-axis [0.300000] speed [0.000000];
+	move wing4 to y-axis [0.300000] speed [0.000000];
+	turn wing3 to x-axis <0.000000> speed <207.000000>;
+	turn wing4 to x-axis <0.000000> speed <210.000000>;
+	sleep 434;
+
+	move wing3 to y-axis [0.000000] speed [1.000000];
+	move wing4 to y-axis [0.000000] speed [1.000000];
+	sleep 204;
+
+	turn wing1 to z-axis <-90.021978> speed <324.000000>;
+	turn wing2 to z-axis <90.021978> speed <324.000000>;
+	sleep 429;
+
+	turn wing1 to z-axis <0.000000> speed <209.000000>;
+	turn wing2 to z-axis <0.000000> speed <209.000000>;
+	sleep 429;
+
+	move leg1 to x-axis [0.000000] speed [11.000000];
+	move leg1 to z-axis [0.000000] speed [11.000000];
+	move leg2 to x-axis [0.000000] speed [11.000000];
+	move leg2 to z-axis [0.000000] speed [11.000000];
+	move leg3 to x-axis [0.000000] speed [11.000000];
+	move leg3 to z-axis [0.000000] speed [11.000000];
+	move leg4 to x-axis [0.000000] speed [11.000000];
+	move leg4 to z-axis [0.000000] speed [11.000000];
+	turn wing1 to z-axis <0.000000> speed <0.000000>;
+	sleep 381;
+
+	move shell to y-axis [0.000000] speed [12.000000];
+	sleep 337;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+	Static_Var_1 = 0;
+	set ARMORED to 0;
+	
+	dont-shade base;
+	dont-shade leg1;
+	dont-shade leg2;
+	dont-shade leg3;
+	dont-shade leg4;
+	dont-shade shell;
+	dont-shade wing1;
+	dont-shade wing2;
+	dont-shade wing3;
+	dont-shade wing4;
+	dont-cache leg1;
+	dont-cache leg2;
+	dont-cache leg3;
+	dont-cache leg4;
+	dont-cache shell;
+	dont-cache wing1;
+	dont-cache wing2;
+	dont-cache wing3;
+	dont-cache wing4;
+	
+	call-script InitState();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get ACTIVATION )
+	{
+		Static_Var_1 = 1;
+	}
+	if( Static_Var_1 )
+	{
+		if(( !shield_on || !dome_on))
+		{
+			signal 2;
+			set-signal-mask 2;
+			set ACTIVATION to 0;
+			sleep 8000;
+			Static_Var_1 = 0;
+			set ACTIVATION to 100;
+		}	
+	}
+}
+
+
+
+SweetSpot(piecenum)
+{
+	piecenum = shell;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode leg1 type BITMAPONLY | BITMAP1;
+		explode leg2 type BITMAPONLY | BITMAP1;
+		explode leg3 type BITMAPONLY | BITMAP1;
+		explode leg4 type BITMAPONLY | BITMAP5;
+		explode shell type BITMAPONLY | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP1;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP1;
+		explode wing4 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode leg1 type SHATTER | BITMAP1;
+		explode leg2 type SHATTER | BITMAP1;
+		explode leg3 type BITMAPONLY | BITMAP1;
+		explode leg4 type BITMAPONLY | BITMAP5;
+		explode shell type BITMAPONLY | BITMAP1;
+		explode wing1 type FALL | BITMAP1;
+		explode wing2 type FALL | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP1;
+		explode wing4 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode leg1 type SHATTER | BITMAP1;
+		explode leg2 type SHATTER | BITMAP1;
+		explode leg3 type BITMAPONLY | BITMAP1;
+		explode leg4 type BITMAPONLY | BITMAP5;
+		explode shell type BITMAPONLY | BITMAP1;
+		explode wing1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP1;
+		explode wing4 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode leg1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode leg2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode leg3 type BITMAPONLY | BITMAP1;
+	explode leg4 type BITMAPONLY | BITMAP5;
+	explode shell type BITMAPONLY | BITMAP1;
+	explode wing1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing3 type BITMAPONLY | BITMAP1;
+	explode wing4 type BITMAPONLY | BITMAP5;
+}

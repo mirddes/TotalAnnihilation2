@@ -1,0 +1,406 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  rflare, lflare, torso, ruparm, luparm, rloarm, lloarm, pelvis,
+       rthigh, lthigh, lleg, rleg, rfoot, lfoot, ground, rguncap,
+       lguncap, llaser, rlaser, head;
+
+static-var  bMoving, bAiming, gun_1, Waterdepth_4, Walking_5;
+
+Walk()
+{
+	Walking_5 = 1;
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.540] now;
+			turn rthigh to x-axis <10.692> speed <480>;
+			turn lthigh to x-axis <-53.489> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <5.747> speed <480>;
+				turn luparm to x-axis <38.670> speed <480>;
+				turn ruparm to x-axis <-18.093> speed <480>;
+				turn rloarm to x-axis <48.956> speed <480>;
+				turn lloarm to x-axis <48.956> speed <480>;
+			}
+			turn lleg to x-axis <53.489> speed <480>;
+			turn rleg to x-axis <53.489> speed <480>;
+			turn rfoot to x-axis <-37.846> speed <480>;
+			sleep 90;
+			move pelvis to y-axis [-0.300] now;
+			turn rthigh to x-axis <-10.280> speed <480>;
+			turn lthigh to x-axis <-41.549> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <3.280> speed <480>;
+				turn luparm to x-axis <32.093> speed <480>;
+				turn ruparm to x-axis <-11.093> speed <480>;
+				turn rloarm to x-axis <48.956> speed <480>;
+				turn lloarm to x-axis <48.956> speed <480>;
+			}
+			turn lleg to x-axis <41.967> speed <480>;
+			turn rleg to x-axis <81.879> speed <480>;
+			turn rfoot to x-axis <-31.258> speed <480>;
+			sleep 70;
+			move pelvis to y-axis [-0.150] now;
+			turn rthigh to x-axis <-18.093> speed <480>;
+			turn lthigh to x-axis <-24.681> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <0> speed <480>;
+				turn luparm to x-axis <27.148> speed <480>;
+				turn ruparm to x-axis <-7.401> speed <480>;
+			}
+			turn lleg to x-axis <24.681> speed <480>;
+			turn rleg to x-axis <85.582> speed <480>;
+			turn rfoot to x-axis <-23.027> speed <480>;
+			if( Waterdepth_4 == 3 )
+			{
+				emit-sfx 259 from lfoot;
+			}
+			sleep 50;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [0] now;
+			turn rthigh to x-axis <-42.379> speed <480>;
+			turn lthigh to x-axis <5.335> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <-3.280> speed <480>;
+				turn luparm to x-axis <8.214> speed <480>;
+				turn ruparm to x-axis <9.027> speed <480>;
+				turn rloarm to x-axis <48.956> speed <480>;
+				turn lloarm to x-axis <48.956> speed <480>;
+			}
+			turn lleg to x-axis <6.571> speed <480>;
+			turn lfoot to x-axis <-9.027> speed <480>;
+			turn rleg to x-axis <104.516> speed <480>;
+			turn rfoot to x-axis <0> speed <480>;
+			sleep 40;
+			move pelvis to y-axis [-0.200] now;
+			turn rthigh to x-axis <-69.945> speed <480>;
+			turn lthigh to x-axis <14.802> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <-6.159> speed <480>;
+				turn luparm to x-axis <-3.692> speed <480>;
+				turn ruparm to x-axis <17.681> speed <480>;
+			}
+			turn lleg to x-axis <15.214> speed <480>;
+			turn lfoot to x-axis <-25.093> speed <480>;
+			turn rleg to x-axis <107.401> speed <480>;
+			sleep 50;
+			move pelvis to y-axis [-0.400] now;
+			turn rthigh to x-axis <-75.291> speed <480>;
+			turn lthigh to x-axis <20.137> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <-8.214> speed <480>;
+				turn luparm to x-axis <-10.280> speed <480>;
+				turn ruparm to x-axis <25.093> speed <480>;
+			}
+			turn lleg to x-axis <26.324> speed <480>;
+			turn lfoot to x-axis <-33.725> speed <480>;
+			turn rleg to x-axis <64.604> speed <480>;
+			if( Waterdepth_4 == 3 )
+			{
+				emit-sfx 259 from rfoot;
+			}
+			sleep 70;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.550] now;
+			turn rthigh to x-axis <-56.780> speed <480>;
+			turn lthigh to x-axis <24.258> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <-6.159> speed <480>;
+				turn luparm to x-axis <-23.857> speed <480>;
+				turn ruparm to x-axis <31.258> speed <480>;
+				turn rloarm to x-axis <48.956> speed <480>;
+				turn lloarm to x-axis <48.956> speed <480>;
+			}
+			turn lleg to x-axis <38.670> speed <480>;
+			turn lfoot to x-axis <-38.670> speed <480>;
+			turn rleg to x-axis <56.780> speed <480>;
+			sleep 90;
+			move pelvis to y-axis [-0.300] now;
+			turn rthigh to x-axis <-44.846> speed <480>;
+			turn lthigh to x-axis <5.335> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <-3.280> speed <480>;
+				turn luparm to x-axis <-16.038> speed <480>;
+				turn ruparm to x-axis <19.725> speed <480>;
+			}
+			turn lleg to x-axis <67.071> speed <480>;
+			turn rfoot to x-axis <-12.324> speed <480>;
+			sleep 70;
+			move pelvis to y-axis [-0.140] now;
+			turn rthigh to x-axis <-22.615> speed <480>;
+			turn lthigh to x-axis <-12.736> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <0> speed <480>;
+				turn luparm to x-axis <-1.637> speed <480>;
+				turn ruparm to x-axis <10.280> speed <480>;
+			}
+			turn lleg to x-axis <79.412> speed <480>;
+			turn lfoot to x-axis <-27.967> speed <480>;
+			turn rleg to x-axis <37.027> speed <480>;
+			turn rfoot to x-axis <-15.626> speed <480>;
+			if( Waterdepth_4 == 3 )
+			{
+				emit-sfx 259 from lfoot;
+			}
+			sleep 50;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [0] now;
+			turn rthigh to x-axis <2.868> speed <480>;
+			turn lthigh to x-axis <-42.379> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <3.280> speed <480>;
+				turn luparm to x-axis <11.505> speed <480>;
+				turn ruparm to x-axis <1.225> speed <480>;
+				turn rloarm to x-axis <48.956> speed <480>;
+				turn lloarm to x-axis <48.956> speed <480>;
+			}
+			turn lleg to x-axis <90.104> speed <480>;
+			turn lfoot to x-axis <-15.214> speed <480>;
+			turn rleg to x-axis <6.571> speed <480>;
+			turn rfoot to x-axis <-9.434> speed <480>;
+			sleep 40;
+			move pelvis to y-axis [-0.190] now;
+			turn rthigh to x-axis <13.159> speed <480>;
+			turn lthigh to x-axis <-57.192> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <6.159> speed <480>;
+				turn luparm to x-axis <21.390> speed <480>;
+				turn ruparm to x-axis <-6.989> speed <480>;
+			}
+			turn rfoot to x-axis <-19.324> speed <480>;
+			sleep 50;
+			move pelvis to y-axis [-0.400] now;
+			turn rthigh to x-axis <16.445> speed <480>;
+			turn lthigh to x-axis <-67.071> speed <480>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <8.214> speed <480>;
+				turn luparm to x-axis <25.093> speed <480>;
+				turn ruparm to x-axis <-12.324> speed <480>;
+			}
+			turn lleg to x-axis <55.549> speed <480>;
+			turn lfoot to x-axis <-2.868> speed <480>;
+			turn rleg to x-axis <24.681> speed <480>;
+			turn rfoot to x-axis <-33.324> speed <480>;
+			if( Waterdepth_4 == 3 )
+			{
+				emit-sfx 259 from rfoot;
+			}
+			sleep 70;
+		}
+	}
+	Walking_5 = 0;
+	move pelvis to y-axis [0] speed [1];
+	turn rthigh to x-axis <0> speed <200>;
+	turn rleg to x-axis <0> speed <200>;
+	turn rfoot to x-axis <0> speed <200>;
+	turn lthigh to x-axis <0> speed <200>;
+	turn lleg to x-axis <0> speed <200>;
+	turn lfoot to x-axis <0> speed <200>;
+	if( !bAiming )
+	{
+		turn torso to y-axis <0> speed <90>;
+		turn rloarm to x-axis <90> speed <200>;
+		turn ruparm to x-axis <0> speed <200>;
+		turn lloarm to x-axis <90> speed <200>;
+		turn luparm to x-axis <0> speed <200>;
+	}
+}
+
+Create()
+{
+	hide rflare;
+	hide lflare;
+	bMoving = FALSE;
+	bAiming = FALSE;
+	gun_1 = rflare;
+	Waterdepth_4 = 0;
+	Walking_5 = 0;
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+	if( !Walking_5 )
+	{
+		start-script Walk();
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Waterdepth_4 = Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	set-signal-mask 0;
+	bAiming = FALSE;
+	turn torso to y-axis <0> speed <90>;
+	turn rloarm to x-axis <90> speed <45>;
+	turn lloarm to x-axis <90> speed <45>;
+	turn ruparm to x-axis <0> speed <45>;
+	turn luparm to x-axis <0> speed <45>;
+}
+
+AimFromPrimary(piecenum)
+{
+	if( gun_1 < 2 )
+	{
+		piecenum = ruparm;
+		return(0);
+	}
+	piecenum = luparm;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 < 2 )
+	{
+		piecenum = rflare;
+		return(0);
+	}
+	piecenum = lflare;
+}
+
+FirePrimary()
+{
+	if( gun_1 < 2 )
+	{
+		sleep 150;
+		move rguncap to z-axis [-0.9] now;
+		move rguncap to z-axis [0] speed [3];
+		++gun_1;
+		return (0);
+	}
+	sleep 150;
+	move lguncap to z-axis [-0.9] now;
+	move lguncap to z-axis [0] speed [3];
+	++gun_1;
+	if( gun_1 > 3 )
+	{
+		gun_1 = 0;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !bAiming)
+	{
+		bAiming = TRUE;
+		turn luparm to x-axis <0> speed <200>;
+		turn ruparm to x-axis <0> speed <200>;
+		turn lloarm to x-axis <0> speed <200>;
+		turn rloarm to x-axis <0> speed <200>;
+		wait-for-turn lloarm around x-axis;
+		wait-for-turn rloarm around x-axis;
+		wait-for-turn luparm around x-axis;
+		wait-for-turn ruparm around x-axis;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn torso to y-axis heading speed <230>;
+	turn luparm to x-axis <0> - pitch speed <60>;
+	turn ruparm to x-axis <0> - pitch speed <60>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	wait-for-turn ruparm around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	hide rflare;
+	hide lflare;
+	if( Waterdepth_4 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode ruparm type BITMAPONLY | BITMAP2;
+		explode luparm type BITMAPONLY | BITMAP3;
+		explode pelvis type BITMAPONLY | BITMAP1;
+		explode rthigh type BITMAPONLY | BITMAP2;
+		explode lthigh type BITMAPONLY | BITMAP3;
+		explode lleg type BITMAPONLY | BITMAP4;
+		explode rleg type BITMAPONLY | BITMAP5;
+		explode rfoot type BITMAPONLY | BITMAP1;
+		explode lfoot type BITMAPONLY | BITMAP2;
+		explode llaser type FALL | BITMAP3;
+		explode rlaser type FALL | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode ruparm type FALL | BITMAP2;
+		explode luparm type FALL | BITMAP3;
+		explode pelvis type FALL | BITMAP1;
+		explode rthigh type FALL | BITMAP2;
+		explode lthigh type FALL | BITMAP3;
+		explode lleg type FALL | BITMAP4;
+		explode rleg type FALL | BITMAP5;
+		explode rfoot type FALL | BITMAP1;
+		explode lfoot type FALL | BITMAP2;
+		explode ground type FALL | BITMAP3;
+		explode lguncap type FALL | SMOKE | BITMAP1;
+		explode rguncap type FALL | SMOKE | BITMAP2;
+		explode head type FALL | BITMAP1;
+		explode llaser type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode rlaser type FALL | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode torso type BITMAPONLY | BITMAP1;
+	explode ruparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode luparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode head type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode rguncap type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rguncap type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode llaser type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rlaser type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

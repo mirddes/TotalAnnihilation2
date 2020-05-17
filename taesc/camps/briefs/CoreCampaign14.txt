@@ -1,0 +1,10 @@
+MISSION 14.2CORE
+
+INTELL-TAP:
+A small Arm garrison has been isolated. This should be a mop-up exercise. The garrison is small and poorly defended. Capture as many structures as possible and set up a base. 
+
+&YExpect meteor showers.&
+
+&RCapture the structures and destroy the Arm units.&
+
+DO SO NOW.

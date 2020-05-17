@@ -1,0 +1,107 @@
+
+[GlobalHeader]
+	{
+	missionname=Kill the Middle;
+	missiondescription=13 X 13  Powerful player in middle of map on island.;
+	planet=Lava;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=20;
+	lavaworld=1;
+	killmul=50;
+	timemul=0;
+	minwindspeed=500;
+	maxwindspeed=5000;
+	gravity=112;
+	numplayers=2, 3;
+	size=13 x 13;
+	memory=16 mb;
+	useonlyunits=Kill The Middle.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=50;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos2;
+				XPos=6166;
+				ZPos=714;
+				}
+			[special1]
+				{
+				specialwhat=StartPos1;
+				XPos=1376;
+				ZPos=5856;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=3392;
+				ZPos=3280;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=5472;
+				ZPos=5504;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=832;
+				ZPos=496;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=2480;
+				ZPos=992;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=2560;
+				ZPos=992;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=2736;
+				ZPos=1008;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=2864;
+				ZPos=976;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=3008;
+				ZPos=992;
+				}
+			}
+		}
+	}

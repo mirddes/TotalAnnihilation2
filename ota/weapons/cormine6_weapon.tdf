@@ -1,0 +1,33 @@
+[cormine6]
+	{
+	ID=74;
+	name=Nuclear Mine;
+	rendertype=4;
+	ballistic=1;
+	
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=400;
+	areaofeffect=400;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	edgeeffectiveness=0.15;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=4300;
+		ARMCOM=2900;
+		CORCOM=2900;
+		}
+	}

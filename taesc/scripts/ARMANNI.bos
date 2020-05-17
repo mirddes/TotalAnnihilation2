@@ -1,0 +1,1013 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, flare, case5, case6, case1, case2, case4, case3,
+       plate1, arm, container1, container2, door1, barrel, energy, door2,
+       plate2, radar, gun, turret, armor1, armor2, armor3, armor4, armor5,
+       doodads, sphere, this;
+
+static-var  open, restore_delay, statechg_DesiredState, statechg_StateChanging;
+static-var	shield_on, charge_on, nbr_charge, nbr_shield, dome_on, nbr_dome; 
+static-var  firedelay, firing, upgraded, building, busy;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_HIT 			4
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Unit's maxdamage value (not percentage)
+#ifndef HEALTH_VAL
+#define HEALTH_VAL 76
+#endif
+
+// Is unit cloaked
+#ifndef CLOAKED
+#define CLOAKED 77
+#endif
+
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_charge = 0;
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_CHARGE)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						
+						if (distance > MOBILE_RADIUS_6)			//60-90 seconds
+						{
+							shgen_count = 0;
+						}
+						if (distance <= MOBILE_RADIUS_6)		//60 seconds
+						{
+							shgen_count = 5;
+						}
+						if (distance <= MOBILE_RADIUS_5)		//45 seconds
+						{
+							shgen_count = 4;
+						}
+						if (distance <= MOBILE_RADIUS_4)		//30 seconds
+						{
+							shgen_count = 3;
+						}
+						if (distance <= MOBILE_RADIUS_3)		//15 seconds
+						{
+							shgen_count = 2;
+						}
+						if (distance <= BOOST_RADIUS)
+						{
+							shgen_count = 1;
+							++nbr_charge;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_charge>=2)
+		{
+			if(!charge_on)
+			{
+				charge_on = 1;
+				sleep 1;
+				firedelay = 0;
+//				if (upgraded)
+//				{
+//					firedelay = 0;
+//				}
+			}
+		}
+		if(nbr_charge<2)
+		{
+			if(charge_on)
+			{
+				charge_on = 0;
+				sleep 1;
+				firedelay = 4350;
+//				if (upgraded)
+//				{
+//					firedelay = 500;
+//				}
+			}
+		}	
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open OR upgraded)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open OR upgraded)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		sleep rand(3000,4000);
+		if(shgen_count == 0)
+		{
+			sleep rand(60000,90000);
+		}
+		if(shgen_count == 1)
+		{
+			sleep rand(3000,4000);
+		}
+		if(shgen_count == 2)
+		{
+			sleep rand(8500,13500);
+		}
+		if(shgen_count == 3)
+		{
+			sleep rand(22500,28500);
+		}
+		if(shgen_count == 4)
+		{
+			sleep rand(30000,43500);
+		}
+		if(shgen_count == 5)
+		{
+			sleep rand(45000,58500);
+		}
+	}
+}	
+
+upgrade()
+{
+	var xz, x, z, unit_ID, distance;
+	var max, min;
+	max = get MAX_ID;
+	min = get MIN_ID;
+	var myid;
+	myid= get MY_ID;
+	
+	for (unit_ID = min; unit_ID <= max; ++unit_ID)
+	{
+		if(unit_ID != myid)
+		{
+			if(get UNIT_HEIGHT(unit_ID) == 1331056)
+			{
+				xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+				SECURE_XZ;
+				distance=get XZ_HYPOT(xz);
+				if (distance <= [25])
+				{
+					if (get UNIT_IS_ON_THIS_COMP(get(MY_ID)))
+					{
+						if (get UNIT_IS_ON_THIS_COMP(unit_ID))
+						{
+							drop-unit unit_ID;
+							attach-unit unit_ID to this;
+						}
+					}
+					show doodads;
+					show sphere;
+					show radar;
+					
+					upgraded = 1;
+					set ARMORED to 1;
+					set INBUILDSTANCE to 0;
+					return(0);
+				}
+			}
+		}
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon()
+{
+	signal SIG_HIT;
+	set-signal-mask SIG_HIT;
+	if(upgraded)
+	{
+		show armor1;
+		sleep 100;
+		show armor2;
+		sleep 100;
+		show armor3;
+		sleep 100;
+		show armor4;
+		sleep 100;
+		show armor5;
+				
+		sleep 5000;
+		
+		hide armor5;
+		sleep 100;
+		hide armor4;
+		sleep 100;
+		hide armor3;
+		sleep 100;
+		hide armor2;
+		sleep 100;
+		hide armor1;
+		sleep 100;
+	}
+}
+
+RestoreAfterDelay()
+{
+	sleep 16000;
+	set-signal-mask 0;
+	
+	if ( !building)
+	
+	{
+		set ACTIVATION to 0;
+	
+		busy = 1;
+		open = 0;
+		
+		stop-spin radar around x-axis;
+		turn radar to x-axis <0.000000> speed <100.021978>;
+		wait-for-turn radar around x-axis;
+		
+		stop-spin turret around y-axis;
+		stop-spin gun around x-axis;
+		turn turret to y-axis <0.000000> speed <100.000000>;
+		turn gun to x-axis <0.000000> speed <100.000000>;
+		move plate1 to y-axis [6.300000] now;
+		move case5 to y-axis [-7.300000] now;
+		move case6 to y-axis [-7.350000] now;
+		move arm to y-axis [5.600000] now;
+		move barrel to z-axis [9.689996] now;
+		move container1 to x-axis [2.039996] now;
+		move container2 to x-axis [-1.900000] now;
+		move plate2 to x-axis [-2.350000] now;
+		move door2 to x-axis [1.600000] now;
+		move door1 to z-axis [-1.639996] now;
+		move energy to z-axis [3.239996] now;
+		turn case1 to z-axis <89.406593> now;
+		turn case2 to z-axis <-90.021978> now;
+		turn case3 to z-axis <-90.021978> now;
+		turn case4 to z-axis <89.406593> now;
+		turn container1 to z-axis <90.620879> now;
+		turn container2 to z-axis <-90.021978> now;
+		turn door2 to z-axis <91.840659> now;
+		turn radar to x-axis <93.049451> now;
+		turn radar to x-axis <0.000000> speed <364.000000>;
+		turn door1 to x-axis <87.576923> now;
+		sleep 128;
+		wait-for-turn turret around y-axis;
+		wait-for-turn gun around x-axis;
+	
+		move plate2 to x-axis [0.000000] speed [36.000000];
+		sleep 129;
+	
+		move door2 to x-axis [0.000000] speed [12.000000];
+		sleep 130;
+		
+		turn door2 to z-axis <0.000000> speed <354.000000>;
+		sleep 130;
+	
+		move barrel to z-axis [0.000000] speed [72.000000];
+		move energy to z-axis [0.000000] speed [24.000000];
+		sleep 131;
+	
+		move door1 to z-axis [0.000000] speed [12.000000];
+		sleep 127;
+	
+		turn door1 to x-axis <0.000000> speed <338.000000>;
+		sleep 128;
+	
+		move container1 to x-axis [0.000000] speed [12.000000];
+		move container2 to x-axis [0.000000] speed [12.000000];
+		sleep 130;
+	
+		turn container2 to z-axis <0.000000> speed <346.000000>;
+		sleep 130;
+		
+		turn container1 to z-axis <0.000000> speed <347.000000>;
+		sleep 131;
+	
+		move arm to y-axis [0.000000] speed [40.000000];
+		sleep 130;
+		
+		move plate1 to y-axis [0.000000] speed [48.000000];
+		sleep 130;
+	
+		turn case3 to z-axis <0.000000> speed <348.000000>;
+		sleep 129;
+	
+		turn case4 to z-axis <0.000000> speed <345.000000>;
+		sleep 129;
+	
+		turn case2 to z-axis <0.000000> speed <344.000000>;
+		sleep 131;
+	
+		turn case1 to z-axis <0.000000> speed <346.000000>;
+		sleep 129;
+	
+		move case5 to y-axis [0.000000] speed [56.000000];
+		move case6 to y-axis [0.000000] speed [56.000000];
+		sleep 130;
+	
+		cache arm;
+		cache barrel;
+		cache case1;
+		cache case2;
+		cache case3;
+		cache case4;
+		cache case5;
+		cache case6;
+		cache container1;
+		cache container2;
+		cache door1;
+		cache door2;
+		cache energy;
+		cache flare;
+		cache gun;
+		cache plate1;
+		cache plate2;
+		cache radar;
+		cache turret;
+		
+		set ARMORED to 1;
+		
+		busy = 0;
+	}
+}
+
+
+Create()
+{
+	nbr_charge = 0;
+	nbr_shield = 0;
+	nbr_dome = 0;
+	
+	charge_on = 0;
+	shield_on = 0;
+	dome_on = 0;
+	
+	firedelay = 4350;
+	firing = 0;
+	
+	upgraded = 0;
+	building = 0;
+	
+	hide radar;
+	
+	move case5 to y-axis [0.000000] now;
+	move case5 to y-axis [-7.300000] now;
+	move case6 to y-axis [0.000000] now;
+	move case6 to y-axis [-7.350000] now;
+	turn case1 to z-axis <89.016484> now;
+	turn case2 to z-axis <-90.021978> now;
+	turn case4 to z-axis <89.016484> now;
+	turn case3 to z-axis <-90.021978> now;
+	move plate1 to y-axis [6.300000] now;
+	move arm to y-axis [5.600000] now;
+	turn container1 to z-axis <90.021978> now;
+	turn container2 to z-axis <-90.021978> now;
+	move container1 to x-axis [2.039996] now;
+	move container2 to x-axis [-1.900000] now;
+	turn door1 to x-axis <87.016484> now;
+	move door1 to z-axis [-1.639996] now;
+	move barrel to z-axis [9.689996] now;
+	move energy to z-axis [3.239996] now;
+	turn door2 to z-axis <91.021978> now;
+	move door2 to x-axis [1.600000] now;
+	move plate2 to x-axis [-2.350000] now;
+	turn radar to x-axis <93.021978> now;
+
+	hide doodads;
+	hide sphere;
+	
+	hide armor1;
+	hide armor2;	
+	hide armor3;
+	hide armor4;
+	hide armor5;
+	
+	dont-shade arm;
+	dont-shade barrel;
+	dont-shade case1;
+	dont-shade case2;
+	dont-shade case3;
+	dont-shade case4;
+	dont-shade case5;
+	dont-shade case6;
+	dont-shade container1;
+	dont-shade container2;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade energy;
+	dont-shade flare;
+	dont-shade gun;
+	dont-shade plate1;
+	dont-shade plate2;
+	dont-shade radar;
+	dont-shade turret;
+	hide flare;
+	
+	dont-shade doodads;
+	dont-shade sphere;
+	
+	open = 1;
+	busy = 0;
+
+	set INBUILDSTANCE to 1;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+
+//	restore_delay = 3000;
+
+	sleep 50;
+	
+	set ACTIVATION to 1;
+	
+	dont-cache arm;
+	dont-cache barrel;
+	dont-cache case1;
+	dont-cache case2;
+	dont-cache case3;
+	dont-cache case4;
+	dont-cache case5;
+	dont-cache case6;
+	dont-cache container1;
+	dont-cache container2;
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache energy;
+	dont-cache flare;
+	dont-cache gun;
+	dont-cache plate1;
+	dont-cache plate2;
+	dont-cache radar;
+	dont-cache turret;
+	spin radar around x-axis speed <100.021978>;
+
+	set-signal-mask SIG_AIM;
+	start-script RestoreAfterDelay();
+}
+
+AimPrimary(heading, pitch)
+{
+	while( busy OR building )
+	{
+		sleep 250;
+	}
+
+	if( !open )
+	{
+		busy = 1;
+		
+		set ACTIVATION to 1;
+		
+		dont-cache arm;
+		dont-cache barrel;
+		dont-cache case1;
+		dont-cache case2;
+		dont-cache case3;
+		dont-cache case4;
+		dont-cache case5;
+		dont-cache case6;
+		dont-cache container1;
+		dont-cache container2;
+		dont-cache door1;
+		dont-cache door2;
+		dont-cache energy;
+		dont-cache flare;
+		dont-cache gun;
+		dont-cache plate1;
+		dont-cache plate2;
+		dont-cache radar;
+		dont-cache turret;
+		
+		sleep 1;
+		
+		spin radar around x-axis speed <100.021978>;
+	
+		move case5 to y-axis [0.000000] now;
+		move case5 to y-axis [-7.300000] speed [56.000000];
+		move case6 to y-axis [0.000000] now;
+		move case6 to y-axis [-7.350000] speed [56.000000];
+		
+		sleep 128;
+
+		turn case1 to z-axis <89.016484> speed <344.000000>;
+		sleep 129;
+
+		turn case2 to z-axis <-90.021978> speed <346.000000>;
+		sleep 130;
+
+		turn case4 to z-axis <89.016484> speed <344.000000>;
+		sleep 129;
+
+		turn case3 to z-axis <-90.021978> speed <344.000000>;
+		sleep 131;
+
+		move plate1 to y-axis [6.300000] speed [48.000000];
+		sleep 129;
+	
+		move arm to y-axis [5.600000] speed [40.000000];
+		sleep 129;
+	
+		turn container1 to z-axis <90.021978> speed <348.000000>;
+		sleep 129;
+
+		turn container2 to z-axis <-90.021978> speed <346.000000>;
+		sleep 129;
+	
+		move container1 to x-axis [2.039996] speed [12.000000];
+		move container2 to x-axis [-1.900000] speed [12.000000];
+		sleep 131;
+	
+		turn door1 to x-axis <87.016484> speed <338.000000>;
+		sleep 130;
+	
+		move door1 to z-axis [-1.639996] speed [12.000000];
+		sleep 129;
+	
+		move barrel to z-axis [9.689996] speed [72.000000];
+		move energy to z-axis [3.239996] speed [24.000000];
+		sleep 128;
+
+		turn door2 to z-axis <91.021978> speed <354.000000>;
+		sleep 129;
+	
+		move door2 to x-axis [1.600000] speed [12.000000];
+		sleep 132;
+	
+		move plate2 to x-axis [-2.350000] speed [16.000000];
+		sleep 127;
+
+		turn radar to x-axis <93.021978> speed <358.000000>;
+		sleep 129;
+	
+		open = 1;
+		busy = 0;
+		
+		set ARMORED to 0;
+		
+		if( ( shield_on ) OR upgraded OR ( dome_on ) )
+//		if (shield_on OR upgraded)
+		{
+			set ARMORED to 1;
+		}
+	}
+
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	
+	turn turret to y-axis heading speed <50.010989>;
+	turn gun to x-axis <0.000000> - pitch speed <50.010989>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	while( firing )
+	{
+		sleep 50;
+	}
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+TargetCleared(Func_Var_1)
+{
+	stop-spin turret around y-axis;
+	stop-spin gun around x-axis;
+}
+
+FirePrimary()
+{
+	firing = 1;
+	show flare;
+	sleep 150;
+	hide flare;
+	sleep firedelay;
+	firing = 0;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = this;
+}
+
+StartBuilding()
+{
+	building = 1;
+	set INBUILDSTANCE to 0;
+	sleep 1;
+	
+	busy = 1;
+	
+	set ACTIVATION to 1;
+	
+	dont-cache arm;
+	dont-cache barrel;
+	dont-cache case1;
+	dont-cache case2;
+	dont-cache case3;
+	dont-cache case4;
+	dont-cache case5;
+	dont-cache case6;
+	dont-cache container1;
+	dont-cache container2;
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache energy;
+	dont-cache flare;
+	dont-cache gun;
+	dont-cache plate1;
+	dont-cache plate2;
+	dont-cache radar;
+	dont-cache turret;
+		
+	sleep 1;
+	
+	spin radar around x-axis speed <100.021978>;
+	
+	move case5 to y-axis [0.000000] now;
+	move case5 to y-axis [-7.300000] speed [56.000000];
+	move case6 to y-axis [0.000000] now;
+	move case6 to y-axis [-7.350000] speed [56.000000];
+	
+	sleep 128;
+
+	turn case1 to z-axis <89.016484> speed <344.000000>;
+	sleep 129;
+
+	turn case2 to z-axis <-90.021978> speed <346.000000>;
+	sleep 130;
+
+	turn case4 to z-axis <89.016484> speed <344.000000>;
+	sleep 129;
+
+	turn case3 to z-axis <-90.021978> speed <344.000000>;
+	sleep 131;
+
+	move plate1 to y-axis [6.300000] speed [48.000000];
+	sleep 129;
+	
+	move arm to y-axis [5.600000] speed [40.000000];
+	sleep 129;
+	
+	turn container1 to z-axis <90.021978> speed <348.000000>;
+	sleep 129;
+
+	turn container2 to z-axis <-90.021978> speed <346.000000>;
+	sleep 129;
+	
+	move container1 to x-axis [2.039996] speed [12.000000];
+	move container2 to x-axis [-1.900000] speed [12.000000];
+	sleep 131;
+	
+	turn door1 to x-axis <87.016484> speed <338.000000>;
+	sleep 130;
+	
+	move door1 to z-axis [-1.639996] speed [12.000000];
+	sleep 129;
+	
+	move barrel to z-axis [9.689996] speed [72.000000];
+	move energy to z-axis [3.239996] speed [24.000000];
+	sleep 128;
+
+	turn door2 to z-axis <91.021978> speed <354.000000>;
+	sleep 129;
+	
+	move door2 to x-axis [1.600000] speed [12.000000];
+	sleep 132;
+	
+	move plate2 to x-axis [-2.350000] speed [16.000000];
+	sleep 127;
+
+	turn radar to x-axis <93.021978> speed <358.000000>;
+	sleep 129;
+	
+	open = 1;
+	busy = 0;
+		
+	set ARMORED to 0;
+		
+	if (shield_on OR upgraded)
+	{
+		set ARMORED to 1;
+	}	
+	
+}
+
+
+StopBuilding()
+{
+
+	building = 0;
+	sleep 1;
+	set INBUILDSTANCE to 1;
+	call-script upgrade();
+	start-script RestoreAfterDelay();
+}
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode case1 type BITMAPONLY | BITMAP1;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP1;
+		explode case5 type BITMAPONLY | BITMAP1;
+		explode case6 type BITMAPONLY | BITMAP1;
+		explode container1 type BITMAPONLY | BITMAP5;
+		explode container2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode energy type BITMAPONLY | BITMAP1;
+//		explode flare type BITMAPONLY | BITMAP5;
+		explode gun type BITMAPONLY | BITMAP1;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP1;
+		explode radar type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode case1 type BITMAPONLY | BITMAP1;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP1;
+		explode case5 type BITMAPONLY | BITMAP1;
+		explode case6 type BITMAPONLY | BITMAP1;
+		explode container1 type BITMAPONLY | BITMAP5;
+		explode container2 type BITMAPONLY | BITMAP1;
+		explode door1 type FALL | BITMAP1;
+		explode door2 type FALL | BITMAP1;
+		explode energy type FALL | BITMAP1;
+//		explode flare type FALL | BITMAP5;
+		explode gun type SHATTER | BITMAP1;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP1;
+		explode radar type FALL | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode case1 type BITMAPONLY | BITMAP1;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP1;
+		explode case5 type BITMAPONLY | BITMAP1;
+		explode case6 type BITMAPONLY | BITMAP1;
+		explode container1 type BITMAPONLY | BITMAP1;
+		explode container2 type BITMAPONLY | BITMAP5;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode energy type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//		explode flare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode gun type SHATTER | BITMAP5;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP1;
+		explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm type BITMAPONLY | BITMAP1;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode case1 type BITMAPONLY | BITMAP1;
+	explode case2 type BITMAPONLY | BITMAP5;
+	explode case3 type BITMAPONLY | BITMAP1;
+	explode case4 type BITMAPONLY | BITMAP1;
+	explode case5 type BITMAPONLY | BITMAP1;
+	explode case6 type BITMAPONLY | BITMAP1;
+	explode container1 type BITMAPONLY | BITMAP1;
+	explode container2 type BITMAPONLY | BITMAP5;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode energy type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//	explode flare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gun type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode plate1 type BITMAPONLY | BITMAP1;
+	explode plate2 type BITMAPONLY | BITMAP1;
+	explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP1;
+}

@@ -1,0 +1,68 @@
+[ARMAH_WEAPON]
+	{
+	ID=196;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=650;
+	reloadtime=2.1;
+	weapontimer=5;
+	weaponvelocity=690;
+	startvelocity=420;
+	weaponacceleration=164;
+	turnrate=50000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=49;
+		ARMTHUND=105;
+		ARMBRAWL=105;
+		ARMPEEP=105;
+		ARMFIG=105;
+		ARMCA=105;
+		ARMACA=105;
+		ARMATLAS=105;
+		ARMPNIX=105;
+		ARMHAWK=105;
+		ARMLANCE=105;
+		CORFINK=105;
+		CORVENG=105;
+		CORVAMP=105;
+		CORHURC=105;
+		CORTITAN=105;
+		CORACA=105;
+		CORSHAD=105;
+		CORAPE=105;
+		CORCA=105;
+		CORVALK=105;
+		
+		}
+	}

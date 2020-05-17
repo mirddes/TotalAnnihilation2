@@ -1,0 +1,104 @@
+[Shrub1]
+	{
+	world=greenworld;
+	description=Foliage;
+	category=shrubs;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=trees;
+	seqname=shrubs1;
+	seqnameshad=empty;
+	seqnamereclamate=shrubs1rec;
+	energy=20;
+
+	seqnameburn=shruburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=smudge04;
+	featuredead=smudge04;  
+	featurereclamate=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[Shrub2]
+	{
+	world=greenworld;
+	description=Foliage;
+	category=shrubs;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=trees;
+	seqname=shrubs2;
+	seqnameshad=empty;
+	seqnamereclamate=shrubs2rec;
+	energy=20;
+
+	seqnameburn=shruburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=smudge02;
+	featuredead=smudge02;  
+	featurereclamate=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}
+
+[Shrub3]
+	{
+	world=greenworld;
+	description=Foliage;
+	category=shrubs;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=trees;
+	seqname=shrubs3;
+	seqnameshad=empty;
+	seqnamereclamate=shrubs3rec;
+        energy = 20;
+
+	seqnameburn=shruburn;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=smudge01;
+	featuredead=smudge01;  
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	hitdensity=5;
+	}

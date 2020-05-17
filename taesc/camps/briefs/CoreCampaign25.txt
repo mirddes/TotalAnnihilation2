@@ -1,0 +1,8 @@
+MISSION 25.4CORE
+
+INTELL-TAP:
+The final mission. Arm has been pushed into the hills for one last stand. The Arm Commander will be with his units. Destroy him as well.
+
+&RDestroy Arm.&
+
+DO SO NOW.

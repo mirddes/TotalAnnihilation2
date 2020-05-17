@@ -1,0 +1,593 @@
+[MarsGlyph01]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph01;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph02]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph02;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph03]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph03;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph04]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph04;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph05]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph05;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph06]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph06;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph07]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph07;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph08]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph08;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph09]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph09;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph10]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph10;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph11]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph11;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph12]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph12;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph13]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph13;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph14]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph14;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph15]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph15;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph16]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph16;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph17]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph17;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph18]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph18;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph19]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph19;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph20]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph20;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph21]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph21;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph22]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph22;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph23]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph23;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph24]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph03;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph25]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph25;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph26]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph26;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsGlyph27]
+	{
+	world=mars;
+	description=Glyph;
+	category=glyph;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsglyphs;
+	seqname=glyph01hold;
+	seqnameshad=glyph27;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=250;
+	damage=32009;
+	indestructible=1;
+	}

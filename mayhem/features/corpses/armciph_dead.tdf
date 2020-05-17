@@ -1,0 +1,35 @@
+[armciph_dead]
+{
+world=All Worlds;
+description=Cipher Wreckage;
+category=arm_corpses;
+object=armciph_dead;
+featuredead=armciph_heap;
+footprintx=2;
+footprintz=2;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=371;
+damage=1329;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armciph_heap]
+{
+world=All Worlds;
+description=Cipher Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=5;
+blocking=0;
+hitdensity=100;
+metal=185;
+damage=1329;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

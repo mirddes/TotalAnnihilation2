@@ -1,0 +1,7 @@
+MISSION 21.1CORE
+Alle Einheiten der ARM zerstören. Aegus sichern.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Aegus ist der Mond von Empyrrean (&R99%,Irrtum:1%&). Er ist die ideale Ausgangsplattform für den endgültigen Schlag gegen die Heimatwelt der ARM (&R82%,Irrtum:3%&). Die geringe Schwerkraft des Mondes und das Fehlen von Atmosphäre bzw. Wasser machen diesen Auftrag zu einer Mission für Bodentruppen (&R99,Irrtum:5%&).  Sichern Sie Aegus für die CORE.
+
+WALTEN SIE IHRES AMTES.

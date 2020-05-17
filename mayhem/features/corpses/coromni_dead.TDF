@@ -1,0 +1,35 @@
+[coromni_dead]
+{
+world=All Worlds;
+description=Omni Wreckage;
+category=core_corpses;
+object=coromni_dead;
+featuredead=coromni_heap;
+footprintx=5;
+footprintz=5;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=1788;
+damage=2960;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coromni_heap]
+{
+world=All Worlds;
+description=Omni Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=894;
+damage=3850;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

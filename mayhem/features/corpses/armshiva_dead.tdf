@@ -1,0 +1,54 @@
+[armshiva_dead]
+{
+World=All Worlds;
+Description=Shiva Wreckage;
+Category=core_corpses;
+Object=armshiva_dead;
+FeatureDead=armshiva_heap;
+FootPrintx=5;
+FootPrintz=5;
+Height=36;
+Blocking=1;
+HitDensity=105;
+Metal=17621;
+Damage=16352;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+[armshiva_heap]
+{
+World=All Worlds;
+Description=Shiva Rubble;
+Category=heaps;
+Object=5x5d;
+FeatureDead=armshiva_heap2;
+FootPrintx=5;
+FootPrintz=5;
+Height=2;
+Blocking=0;
+HitDensity=105;
+Metal=11013;
+Damage=16352;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+[armshiva_heap2]
+{
+World=All Worlds;
+Description=Shiva Rubble;
+Category=heaps;
+Object=4x4d;
+FootPrintx=5;
+FootPrintz=5;
+Height=2;
+Blocking=0;
+HitDensity=105;
+Metal=5506;
+Damage=16352;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+

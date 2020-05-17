@@ -1,0 +1,36 @@
+[armdrake_dead]
+{
+world=All Worlds;
+description=Drake Wreckage;
+category=core_corpses;
+object=armdrake_dead;
+featuredead=armdrake_heap;
+footprintx=3;
+footprintz=3;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=19200;
+damage=24678;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armdrake_heap]
+{
+world=All Worlds;
+description=Drake Wreckage;
+category=heaps;
+object=4x4e;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=9600;
+damage=24678;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

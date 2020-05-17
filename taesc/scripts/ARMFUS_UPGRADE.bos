@@ -1,0 +1,19 @@
+piece base, upgrade, wtf ;
+
+#include "sfxtype.h"
+#include "exptype.h"
+Create()
+	{
+		set ARMORED to 1;
+		move wtf to y-axis [10] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1000;
+		}
+		hide wtf;
+	}
+
+SweetSpot(piecenum)
+{
+	piecenum = wtf;
+}	

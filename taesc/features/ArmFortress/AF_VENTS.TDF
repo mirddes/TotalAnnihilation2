@@ -1,0 +1,19 @@
+[Arm Fortress Vent 1]
+	{
+	world=Armfortress;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=AF_VENTS;
+	seqname=af_vent_01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+
+

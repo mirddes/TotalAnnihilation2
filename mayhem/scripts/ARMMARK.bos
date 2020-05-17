@@ -1,0 +1,236 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  head, Rthigh, Rshin, Rfoot, Lshin, Lfoot, Lthigh, rdish,
+       ldish, base;
+
+static-var  Moving_1;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from head;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	Moving_1 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	spin rdish around x-axis speed <100>;
+	spin ldish around x-axis speed <-100>;
+}
+
+Deactivate()
+{
+	turn rdish to x-axis <0> speed <100>;
+	turn ldish to x-axis <0> speed <-100>;
+	wait-for-turn rdish around x-axis;
+	wait-for-turn ldish around x-axis;
+}
+
+StartMoving()
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	Moving_1 = 1;
+	while( Moving_1 )
+	{
+		if( Moving_1 )
+		{
+			turn head to x-axis <5.884615> speed <300>;
+			turn head to y-axis <-5.357143> speed <300>;
+			turn Rthigh to x-axis <-49.065934> speed <300>;
+			turn Rshin to x-axis <40.137363> speed <300>;
+			turn Rfoot to x-axis <-8.109890> speed <300>;
+			turn Lshin to x-axis <60> speed <300>;
+			turn Lfoot to x-axis <-54.335165> speed <300>;
+			sleep 140;
+			turn head to x-axis <10.175824> speed <300>;
+			turn head to y-axis <-10.175824> speed <300>;
+			turn Lthigh to x-axis <7.697802> speed <300>;
+			turn Rthigh to x-axis <-42.164835> speed <300>;
+			turn Rshin to x-axis <50.274725> speed <300>;
+			turn Rfoot to x-axis <-16.818681> speed <300>;
+			turn Lshin to x-axis <64.065934> speed <300>;
+			turn Lfoot to x-axis <-23.109890> speed <300>;
+			sleep 148;
+		}
+		if( Moving_1 )
+		{
+			turn head to x-axis <15> speed <300>;
+			turn head to y-axis <-15> speed <300>;
+			turn Lthigh to x-axis <15.406593> speed <300>;
+			turn Rthigh to x-axis <-35.269231> speed <300>;
+			turn Rshin to x-axis <60.417582> speed <300>;
+			turn Rfoot to x-axis <-25.538462> speed <300>;
+			turn Lshin to x-axis <68.115385> speed <300>;
+			turn Lfoot to x-axis <8.109890> speed <300>;
+			sleep 145;
+			turn head to x-axis <7.500000> speed <300>;
+			turn head to y-axis <-8> speed <300>;
+			turn Lthigh to x-axis <-16.818681> speed <300>;
+			turn Rthigh to x-axis <-17.637363> speed <300>;
+			turn Rfoot to x-axis <-39.939560> speed <300>;
+			turn Lshin to x-axis <54.126374> speed <300>;
+			turn Lfoot to x-axis <0> speed <300>;
+			sleep 146;
+		}
+		if( Moving_1 )
+		{
+			turn head to x-axis <5.357143> speed <300>;
+			turn head to y-axis <5.357143> speed <300>;
+			turn Lthigh to x-axis <-49.065934> speed <300>;
+			turn Rthigh to x-axis <0> speed <300>;
+			turn Rfoot to x-axis <-54.335165> speed <300>;
+			turn Lshin to x-axis <40.137363> speed <300>;
+			turn Lfoot to x-axis <-8.109890> speed <300>;
+			sleep 145;
+			turn head to x-axis <10.175824> speed <300>;
+			turn head to y-axis <10.175824> speed <300>;
+			turn Lthigh to x-axis <-42.164835> speed <300>;
+			turn Rthigh to x-axis <7.500000> speed <300>;
+			turn Rshin to x-axis <64.269231> speed <300>;
+			turn Rfoot to x-axis <-23.109890> speed <300>;
+			turn Lshin to x-axis <50.076923> speed <300>;
+			turn Lfoot to x-axis <-16.615385> speed <300>;
+			sleep 147;
+		}
+		if( Moving_1 )
+		{
+			turn head to x-axis <15> speed <300>;
+			turn head to y-axis <15> speed <300>;
+			turn Lthigh to x-axis <-35.269231> speed <300>;
+			turn Rthigh to x-axis <15> speed <300>;
+			turn Rshin to x-axis <68.115385> speed <300>;
+			turn Rfoot to x-axis <8.109890> speed <300>;
+			turn Lshin to x-axis <60> speed <300>;
+			turn Lfoot to x-axis <-25.137363> speed <300>;
+			sleep 147;
+			turn head to x-axis <8.565934> speed <300>;
+			turn head to y-axis <8.565934> speed <300>;
+			turn Lthigh to x-axis <-17.637363> speed <300>;
+			turn Rthigh to x-axis <-17> speed <300>;
+			turn Rshin to x-axis <54.126374> speed <300>;
+			turn Rfoot to x-axis <0> speed <300>;
+			turn Lshin to x-axis <60> speed <300>;
+			turn Lfoot to x-axis <-39.736264> speed <300>;
+			sleep 148;
+		}
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+	set-signal-mask 0;
+	Moving_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = head;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode head type BITMAPONLY | BITMAP2;
+		explode ldish type BITMAPONLY | BITMAP3;
+		explode Lfoot type BITMAPONLY | BITMAP4;
+		explode Lshin type BITMAPONLY | BITMAP5;
+		explode Lthigh type BITMAPONLY | BITMAP1;
+		explode rdish type BITMAPONLY | BITMAP2;
+		explode Rfoot type BITMAPONLY | BITMAP3;
+		explode Rshin type BITMAPONLY | BITMAP4;
+		explode Rthigh type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type FALL | BITMAP1;
+		explode head type SHATTER | BITMAP2;
+		explode ldish type FALL | BITMAP3;
+		explode Lfoot type FALL | BITMAP4;
+		explode Lshin type FALL | BITMAP5;
+		explode Lthigh type FALL | BITMAP1;
+		explode rdish type FALL | BITMAP2;
+		explode Rfoot type FALL | BITMAP3;
+		explode Rshin type FALL | BITMAP4;
+		explode Rthigh type FALL | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode head type SHATTER | BITMAP2;
+		explode ldish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Lshin type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rdish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Rshin type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode head type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode ldish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Lshin type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rdish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rshin type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

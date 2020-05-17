@@ -1,0 +1,36 @@
+[ARMLPRIS_DEAD]
+{
+world=All Worlds;
+description=Extinguisher Wreckage;
+category=arm_corpses;
+object=armlpris_dead;
+featuredead=ARMLPRIS_heap;
+footprintx=5;
+footprintz=5;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=7088;
+damage=12600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMLPRIS_heap]
+{
+world=All Worlds;
+description=Extinguisher Wreckage;
+category=arm_corpses;
+object=5x5b;
+footprintx=5;
+footprintz=5;
+height=5;
+blocking=0;
+hitdensity=100;
+metal=3544;
+damage=12600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

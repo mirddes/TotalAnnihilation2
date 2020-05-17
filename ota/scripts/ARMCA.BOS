@@ -1,0 +1,97 @@
+// Arm Air Construction Unit
+
+piece base;
+
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armca\activatescr.bos"
+#include "..\anim3d\armca\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+#define ACTIVATECMD call-script activatescr();
+#define DEACTIVATECMD call-script deactivatescr();
+#include "StateChg.h"
+
+Create()
+	{
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding()
+	{
+	set INBUILDSTANCE to TRUE;
+	}
+
+
+StopBuilding()
+	{
+	set INBUILDSTANCE to FALSE;
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	piecenum = base;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP2;
+		explode wing1 type	BITMAPONLY | BITMAP4;
+		explode wing2 type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP2;
+		explode wing1 type	BITMAPONLY | BITMAP4;
+		explode wing2 type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP2;
+		explode wing1 type	BITMAPONLY | BITMAP4;
+		explode wing2 type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	// If severity is over 50, the unit just disintigrated.
+	corpsetype = 3;
+
+	explode base type	BITMAPONLY | BITMAP2;
+	explode wing1 type	BITMAPONLY | BITMAP4;
+	explode wing2 type	BITMAPONLY | BITMAP5;
+	return( 0 );
+	}

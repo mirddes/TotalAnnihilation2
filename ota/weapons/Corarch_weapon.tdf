@@ -1,0 +1,178 @@
+[CORARCH_WEAPON1]
+	{
+	ID=178;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=710;
+	reloadtime=2;
+	weapontimer=5;
+	weaponvelocity=450;
+	startvelocity=430;
+	weaponacceleration=121;
+	turnrate=30000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=57;
+		ARMTHUND=108;
+		ARMBRAWL=108;
+		ARMPEEP=108;
+		ARMFIG=108;
+		ARMCA=108;
+		ARMACA=108;
+		ARMATLAS=108;
+		ARMPNIX=108;
+		ARMHAWK=108;
+		ARMLANCE=108;
+		CORFINK=108;
+		CORVENG=108;
+		CORVAMP=108;
+		CORHURC=108;
+		CORTITAN=108;
+		CORACA=108;
+		CORSHAD=108;
+		CORAPE=108;
+		CORCA=108;
+		CORVALK=108;
+		}
+	}
+
+[CORARCH_WEAPON2]
+	{
+	ID=179;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=710;
+	reloadtime=2;
+	weapontimer=5;
+	weaponvelocity=450;
+	startvelocity=430;
+	weaponacceleration=121;
+	turnrate=30000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=57;
+		ARMTHUND=108;
+		ARMBRAWL=108;
+		ARMPEEP=108;
+		ARMFIG=108;
+		ARMCA=108;
+		ARMACA=108;
+		ARMATLAS=108;
+		ARMPNIX=108;
+		ARMHAWK=108;
+		ARMLANCE=108;
+		CORFINK=108;
+		CORVENG=108;
+		CORVAMP=108;
+		CORHURC=108;
+		CORTITAN=108;
+		CORACA=108;
+		CORSHAD=108;
+		CORAPE=108;
+		CORCA=108;
+		CORVALK=108;
+		}
+	}
+
+[CORARCH_WEAPON3]
+	{
+	ID=180;
+	name=Flak Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	toairweapon=1;
+
+	range=750;
+	reloadtime=0.7;
+	weapontimer=1;
+	weaponvelocity=950;
+	areaofeffect=125;
+	edgeeffectiveness=0.90;
+
+	soundstart=canlite2;
+	soundhit=xplomed2;
+
+	minbarrelangle=-24;
+	
+	accuracy=1000;
+	tolerance=767;	
+	burnblow=1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	color=1;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=146;
+		}
+	}

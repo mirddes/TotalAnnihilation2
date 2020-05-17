@@ -1,0 +1,35 @@
+[ARMSPDC_dead]
+{
+world=All Worlds;
+description=Con Spider Wreckage;
+category=arm_corpses;
+object=ARMSPDC_dead;
+featuredead=ARMSPDC_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=201;
+damage=634;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMSPDC_heap]
+{
+world=All Worlds;
+description=Con Spider Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=100;
+damage=634;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

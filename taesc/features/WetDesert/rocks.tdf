@@ -1,0 +1,1026 @@
+[WetRock01]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=31;
+	filename=wetrocks;
+	seqname=rock01;
+	seqnameshad=rock01shad;
+	seqnamereclamate=rock01rec;
+	metal=50;
+	
+	seqnamedie=rock01boom;
+	featurereclamate=wetrock01scar; 
+	featuredead=wetcrush32;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock01Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock01scar;
+	seqnameshad=;
+
+	featuredead=wetrock01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock02]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=38;
+	filename=wetrocks;
+	seqname=rock02;
+	seqnameshad=rock02shad;
+	seqnamereclamate=rock02rec;
+      metal=25;
+	
+	seqnamedie=rock02boom;	
+	featurereclamate=wetrock02scar;
+	featuredead=wetcrush22;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock02Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock02scar;
+	seqnameshad=;
+
+	featuredead=wetrock02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock03]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=26;
+	filename=wetrocks;
+	seqname=rock03;
+	seqnameshad=rock03shad;
+	seqnamereclamate=rock03rec;
+	metal=50;
+	
+	seqnamedie=rock03boom;
+	featurereclamate=wetrock03scar;
+	featuredead=wetcrush22;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock03Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock03scar;
+	seqnameshad=;
+
+	featuredead=wetrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock04]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=67;
+	filename=wetrocks;
+	seqname=rock04;
+	seqnameshad=rock04shad;
+	seqnamereclamate=rock04rec;
+	metal=150;
+	
+	seqnamedie=rock04boom;
+	featurereclamate=wetrock04scar;
+	featuredead=wetcrush74;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock04Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=0;
+	filename=wetscars;
+	seqname=rock04scar;
+	seqnameshad=;
+
+	featuredead=wetrock04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock05]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=80;
+	filename=wetrocks;
+	seqname=rock05;
+	seqnameshad=rock05shad;
+	seqnamereclamate=rock05rec;
+	metal=100;
+	
+	seqnamedie=rock05boom;
+	featurereclamate=wetrock05scar;
+	featuredead=wetcrush22;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock05Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock05scar;
+	seqnameshad=;
+
+	featuredead=wetrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock06]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=57;
+	filename=wetrocks;
+	seqname=rock06;
+	seqnameshad=rock06shad;
+	seqnamereclamate=rock06rec;
+	metal=75;
+	
+	seqnamedie=rock06boom;
+	featurereclamate=wetrock06scar;
+	featuredead=wetcrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock06Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rock06scar;
+	seqnameshad=;
+
+	featuredead=wetrock06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock07]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=80;
+	filename=wetrocks;
+	seqname=rock07;
+	seqnameshad=rock07shad;
+	seqnamereclamate=rock07rec;
+	metal=100;
+	
+	seqnamedie=rock07boom;
+	featurereclamate=wetrock07scar;
+	featuredead=wetcrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock07Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rock07scar;
+	seqnameshad=;
+
+	featuredead=wetrock07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock08]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=32;
+	filename=wetrocks;
+	seqname=rock08;
+	seqnameshad=rock08shad;
+	seqnamereclamate=rock08rec;
+	metal=50;
+	
+	seqnamedie=rock08boom;
+	featurereclamate=wetrock08scar;
+	featuredead=wetcrush32;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock08Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock08scar;
+	seqnameshad=;
+
+	featuredead=wetrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock09]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=60;
+	filename=wetrocks;
+	seqname=rock09;
+	seqnameshad=rock09shad;
+	seqnamereclamate=rock09rec;
+	metal=75;
+	
+	seqnamedie=rock09boom;
+	featurereclamate=wetrock09scar;
+	featuredead=wetcrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock09Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rock09scar;
+	seqnameshad=;
+
+	featuredead=wetrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock10]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=1;
+	filename=wetrocks;
+	seqname=rock10;
+	seqnameshad=rock10shad;
+	seqnamereclamate=rock10rec;
+	metal=25;
+
+	featurereclamate=wetrock10scar;
+	featuredead=wetrock10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock10Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=0;
+	filename=wetscars;
+	seqname=rock10scar;
+	seqnameshad=;
+
+	featuredead=wetrock10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock11]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=wetrocks;
+	seqname=rock11;
+	seqnameshad=rock11shad;
+	seqnamereclamate=rock11rec;
+	metal=25;
+
+	featurereclamate=wetrock11scar;
+	featuredead=wetrock11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock11Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=wetscars;
+	seqname=rock11scar;
+	seqnameshad=;
+
+	featuredead=wetrock11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock12]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=wetrocks;
+	seqname=rock12;
+	seqnameshad=rock12shad;
+	seqnamereclamate=rock12rec;
+	metal=25;
+	
+	seqnamedie=rock12boom;
+	featurereclamate=wetrock12scar;
+	featuredead=wetcrush22;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock12Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock12scar;
+	seqnameshad=;
+
+	featuredead=wetrock12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock13]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=112;
+	filename=wetrocks;
+	seqname=rock13;
+	seqnameshad=rock13shad;
+	seqnamereclamate=rock13rec;
+	metal=75;
+	
+	seqnamedie=rock13boom;
+	featurereclamate=wetrock13scar;
+	featuredead=wetcrush32;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock13Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock13scar;
+	seqnameshad=;
+
+	featuredead=wetrock13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock14]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=wetrocks;
+	seqname=rock14;
+	seqnameshad=rock14shad;
+	seqnamereclamate=rock14rec;
+	metal=75;
+	
+	seqnamedie=rock14boom;
+	featurereclamate=wetrock14scar;
+	featuredead=wetcrush33;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock14Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rock14scar;
+	seqnameshad=;
+
+	featuredead=wetrock14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock15]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=45;
+	filename=wetrocks;
+	seqname=rock15;
+	seqnameshad=rock15shad;
+	seqnamereclamate=rock15rec;
+	metal=50;
+	
+	seqnamedie=rock15boom;
+	featurereclamate=wetrock15scar;
+	featuredead=wetcrush33;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock15Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rock15scar;
+	seqnameshad=;
+
+	featuredead=wetrock15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetRock16]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=wetrocks;
+	seqname=rock16;
+	seqnameshad=rock16shad;
+	seqnamereclamate=rock16rec;
+	metal=25;
+	
+	seqnamedie=rock16boom;
+	featurereclamate=wetrock16scar;
+	featuredead=wetcrush32;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetRock16Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rock16scar;
+	seqnameshad=;
+
+	featuredead=wetrock16scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetCrush74]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=0;
+	filename=wetcrush;
+	seqname=rockcrush74;
+	seqnameshad=rockcrush74shad;
+	seqnamereclamate=rockcrush74rec;
+	metal=75;
+	
+	seqnamedie=rockcrush74boom;
+	featurereclamate=wetcrush74scar; 
+	featuredead=wetcrush74scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetCrush74Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=0;
+	filename=wetscars;
+	seqname=rockcrush74scar;
+	seqnameshad=;
+
+	featuredead=wetcrush74scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetCrush43]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=wetcrush;
+	seqname=rockcrush43;
+	seqnameshad=rockcrush43shad;
+	seqnamereclamate=rockcrush43rec;
+	metal=50;
+	
+	seqnamedie=rockcrush43boom;
+	featurereclamate=wetcrush43scar; 
+	featuredead=wetcrush43scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetCrush43Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rockcrush43scar;
+	seqnameshad=;
+
+	featuredead=wetcrush43scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetCrush33]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=wetcrush;
+	seqname=rockcrush33;
+	seqnameshad=rockcrush33shad;
+	seqnamereclamate=rockcrush33rec;
+	metal=50;
+	
+	seqnamedie=rockcrush33boom;
+	featurereclamate=wetcrush33scar; 
+	featuredead=wetcrush33scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetCrush33Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=wetscars;
+	seqname=rockcrush33scar;
+	seqnameshad=;
+
+	featuredead=wetcrush33scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetCrush32]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetcrush;
+	seqname=rockcrush32;
+	seqnameshad=rockcrush32shad;
+	seqnamereclamate=rockcrush32rec;
+	metal=25;
+	
+	seqnamedie=rockcrush32boom;
+	featurereclamate=wetcrush32scar; 
+	featuredead=wetcrush32scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetCrush32Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rockcrush32scar;
+	seqnameshad=;
+
+	featuredead=wetcrush32scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[WetCrush22]
+	{
+	world=WetDesert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetcrush;
+	seqname=rockcrush22;
+	seqnameshad=rockcrush22shad;
+	seqnamereclamate=rockcrush22rec;
+	metal=25;
+	
+	seqnamedie=rockcrush22boom;
+	featurereclamate=wetcrush22scar; 
+	featuredead=wetcrush22scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[WetCrush22Scar]
+	{
+	world=WetDesert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=wetscars;
+	seqname=rockcrush22scar;
+	seqnameshad=;
+
+	featuredead=wetcrush22scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

@@ -1,0 +1,10 @@
+MISIÓN 22.002CLANCP
+Destruir la reserva de energía.
+
+&YPRIORIDAD&
+El Núcleo posee un gran complejo energético en las coordenadas 6551:447. De aquí extrae gran parte de la energía necesaria para defender su planeta. Debemos &Rdestruir esa reserva de energía&. Suponemos que la destrucción de este complejo debilitará la Conciencia Central del Núcleo lo suficiente como para dar la victoria al Clan.
+
+INFORMACIÓN
+La reserva consta de numerosas estructuras para la acumulación y almacenamiento de energía a lo largo de los canales de alcantarillado que llevan al norte. Cruza los canales y destrúyelos todos.
+ 
+FIN

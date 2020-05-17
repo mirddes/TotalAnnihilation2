@@ -1,0 +1,35 @@
+[cortp_dead]
+{
+world=All Worlds;
+description=Terraplant Wreckage;
+category=core_corpses;
+object=CORTP_dead;
+featuredead=cortp_heap;
+footprintx=10;
+footprintz=9;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=1216;
+damage=2632;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cortp_heap]
+{
+world=All Worlds;
+description=Terraplant Wreckage;
+category=heaps;
+object=7x7d;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=608;
+damage=2632;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,3203 @@
+// unit sounds
+
+[ARM_KBOT]		
+	{
+	select1=kbarmsel;
+	ok1=kbarmmov;
+	arrived1=kbarmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	capture=capture1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_KBOT]		
+	{
+	select1=kbcorsel;
+	ok1=kbcormov;
+	arrived1=kbcorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	capture=capture2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CKBOT]		
+	{
+	select1=kbarmsel;
+	ok1=kbarmmov;
+	arrived1=kbarmstp;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+
+	}
+[COR_CKBOT]		
+	{
+	select1=kbcorsel;
+	ok1=kbcormov;
+	arrived1=kbcorstp;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_JAM]		
+	{
+	select1=radjam2;
+	ok1=kbcormov;
+	arrived1=kbcorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam2;
+	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_VJAM]
+	{
+	select1=radjam2;
+	ok1=vcormove;
+	arrived1=vcorstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam2;
+	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SJAM]
+	{
+	select1=radjam2;
+	ok1=shcormov;
+	arrived1=shcorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam2;
+	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_JAM]		
+	{
+	select1=radjam1;
+	ok1=kbarmmov;
+	arrived1=kbarmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam1;
+	deactivate=radjam1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_VJAM]
+	{
+	select1=radjam1;
+	ok1=varmmove;
+	arrived1=varmstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam1;
+	deactivate=radjam1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SJAM]
+	{ 
+	select1=radjam1;
+	ok1=sharmmov;
+	arrived1=sharmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam1;
+	deactivate=radjam1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_TANK]		
+	{
+	select1=tarmsel;
+	ok1=tarmmove;
+	arrived1=tarmst0p;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_TANK]		
+	{
+	select1=tcorsel;
+	ok1=tcormove;
+	arrived1=tcorst0p;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_VEHICLE]		
+	{
+	select1=varmsel;
+	ok1=varmmove;
+	arrived1=varmstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+[CORE_VEHICLE]		
+	{
+	select1=vcorsel;
+	ok1=vcormove;
+	arrived1=vcorstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CVEHICLE]		
+	{
+	select1=varmsel;
+	ok1=varmmove;
+	arrived1=varmstop;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CVEHICLE]		
+	{
+	select1=vcorsel;
+	ok1=vcormove;
+	arrived1=vcorstop;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_VTOL]		
+	{
+	select1=vtolarac;
+	ok1=vtolarmv;
+	load=loadair;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_VTOL]		
+	{
+	select1=vtolcrac;
+	ok1=vtolcrmv;
+	load=loadair;
+	arrived1=vtolcrld;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CVTOL]		
+	{
+	select1=vtolarac;
+	ok1=vtolarmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CVTOL]		
+	{
+	select1=vtolcrac;
+	ok1=vtolcrmv;
+	arrived1=vtolcrld;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[building]		// Plant
+	{
+	select1=build;
+	unitcomplete=untdone1;
+	underattack=warning1;
+	build=lathelrg;
+	repair=lathelrg;
+	working=build;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_FUS]		
+	{
+	select1=fusion2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	underattack=warning1;
+	activate=powerup;
+	deactivate=powerdown;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_FUS]		
+	{
+	select1=fusion1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	underattack=warning1;
+	activate=powerup;
+	deactivate=powerdown;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_GEO]		
+	{
+	select1=geothrm2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_GEO]		
+	{
+	select1=geothrm1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_MSTOR]		
+	{
+	select1=stormtl2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_MSTOR]		
+	{
+	select1=stormtl1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_ESTOR]		
+	{
+	select1=storngy2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_ESTOR]		
+	{
+	select1=storngy1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_RADAR]		
+	{
+	select1=radar1;
+	underattack=warning1;
+	working=radar1;
+	activate=radar1;
+	deactivate=radarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_RADAR]		
+	{
+	select1=radar2;
+	underattack=warning1;
+	working=radar2;
+	activate=radar1;
+	deactivate=radarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_ADVRADAR]		
+	{
+	select1=radadvn1;
+	underattack=warning1;
+	working=radar2;
+	activate=radadvn1;
+	deactivate=radadde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_ADVRADAR]		
+	{
+	select1=radadvn2;
+	underattack=warning1;
+	working=radar2;
+	activate=radadvn2;
+	deactivate=radadde2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SONAR]		
+	{
+	select1=sonar1;
+	underattack=warning1;
+	//working=servsml1;
+	activate=sonar1;
+	deactivate=sonarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SONAR]		
+	{
+	select1=sonar2;
+	underattack=warning1;
+	//working=servsml1;
+	activate=sonar2;
+	deactivate=sonarde2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_WIND]		
+	{
+	select1=windgen1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_WIND]		
+	{
+	select1=windgen2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_MEX]		// metal ex
+	{
+	select1=mexon1;
+	underattack=warning1;
+	working=mexrun1;
+	activate=mexrun1;
+	deactivate=mexoff1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_MEX]		// metal ex
+	{
+	select1=mexon2;
+	underattack=warning1;
+	working=mexrun2;
+	activate=mexrun2;
+	deactivate=mexoff2;	
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_MAKER]		
+	{
+	select1=metlon2;
+	underattack=warning1;
+	working=metlrun2;
+	activate=metlon2;
+	deactivate=metloff2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_MAKER]		
+	{
+	select1=metlon1;
+	underattack=warning1;
+	working=metlrun1;
+	activate=metlon1;
+	deactivate=metloff1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_MOHO]		
+	{
+	select1=mohoon2;
+	underattack=warning1;
+	working=mohorun2;
+	activate=mohorun2;
+	deactivate=mohooff2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_MOHO]		
+	{
+	select1=mohoon1;
+	underattack=warning1;
+	working=mohorun1;
+	activate=mohorun1;
+	deactivate=mohooff1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[AIRPLANT]		
+	{
+	select1=pairactv;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=pairwork;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[KBOTPLANT]		
+	{
+	select1=plabactv;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=plabwork;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[SHIPYARD]		
+	{
+	select1=pshpactv;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=pshpwork;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[TANKPLANT]		
+	{
+	select1=pvehactv;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=pvehwork;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[Adv_Kbot]		// Adv Kbot
+	{
+	select1=servlrg1;
+	ok1=servlrg1;
+	arrived1=servlrg1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARMPW]		// ARMPW
+	{
+	select1=servtny2;
+	ok1=servtny2;
+	arrived1=servtny2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORAK]		// CORAK
+	{
+	select1=servtny1;
+	ok1=servtny1;
+	arrived1=servtny1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[GATE]		
+	{  
+	select1=drone1;
+	ok1=drone1;
+	cant1=cantdo4;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=build2;
+	repair=build2;
+	working=build2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SHIP]		
+	{ 
+	select1=sharmsel;
+	ok1=sharmmov;
+	arrived1=sharmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SHIP]		
+	{ 
+	select1=shcorsel;
+	ok1=shcormov;
+	arrived1=shcorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CSHIP]		
+	{ 
+	select1=sharmsel;
+	ok1=sharmmov;
+	arrived1=sharmstp;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CSHIP]		
+	{ 
+	select1=shcorsel;
+	ok1=shcormov;
+	arrived1=shcorstp;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SUB]		
+	{ 
+	select1=suarmsel;
+	ok1=suarmmov;
+	arrived1=suarmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SUB]		
+	{ 
+	select1=sucorsel;
+	ok1=sucormov;
+	arrived1=sucorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_COM]		// Ship
+	{
+	select1=kcarmsel;
+	unitcomplete=kcarmmov;
+	ok1=kcarmmov;
+	arrived1=kcarmstp;
+	cant1=cantdo4;
+	underattack=warning2;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	activate=evolve;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	capture=capture1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_COM]		// Ship
+	{
+	select1=kccorsel;
+	unitcomplete=kccorsel;
+	ok1=kcormov;
+	arrived1=kccorstp;
+	cant1=cantdo4;
+	underattack=warning2;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	activate=evolve;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	Capture=capture2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SOLAR]		
+	{
+	select1=solar1;
+	underattack=warning1;
+	activate=solar1;
+	deactivate=solar1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SOLAR]		
+	{
+	select1=solar2;
+	underattack=warning1;
+	activate=solar2;
+	deactivate=solar2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_TIDE]		
+	{
+	select1=tidegen1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_TIDE]		
+	{
+	select1=tidegen2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_BRTHA]	
+	{  
+	select1=Servlrg3;
+	ok1=Servlrg3;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_INT]		
+	{  
+	select1=Servlrg4;
+	ok1=Servlrg4;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_DOOM]		
+	{  
+	select1=doom;
+	ok1=doom;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_ANNI]		
+	{  
+	select1=anni;
+	ok1=anni;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_FMD]		
+	{  
+	select1=loadwtr1;
+	ok1=loadwtr1;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_AMD]		
+	{  
+	select1=loadwtr2;
+	ok1=loadwtr2;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[NUC]		
+	{  
+	select1=servroc1;
+	ok1=servroc1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[GUARD]		
+	{  
+	select1=twrturn3;
+	ok1=twrturn3;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[HLT]		
+	{  
+	select1=twractv3;
+	ok1=twractv3;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+
+[LLT]		
+	{  
+	select1=servmed2;
+	ok1=servmed2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[VADER]
+	{
+	select1=servsml5;
+	ok1=servsml5;
+	arrived1=servsml5;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ROACH]		
+	{
+	select1=servsml6;
+	ok1=servsml6;
+	arrived1=servsml6;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[HOVER]
+	{
+	select1=phiblgto;
+	ok1=phiblgto;
+	arrived1=phiblgof;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MAVERICK]		// Arm Maverick
+	{
+	select1=mavbsel1;
+	ok1=mavbok1;
+	arrived1=kbarmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE]			// Mine
+	{
+	select1=minesel1;
+	ok1=servsml6;
+	arrived1=servsml6;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE2]			// Mine 2
+	{
+	select1=minesel2;
+	ok1=servsml6;
+	arrived1=servsml6;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE3]			// Mine 3
+	{
+	select1=minesel3;
+	ok1=servsml6;
+	arrived1=servsml6;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE4]			// Mine 4
+	{
+	select1=minesel4;
+	ok1=servsml6;
+	arrived1=servsml6;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE5]			// Mine 5
+	{
+	select1=range1;
+	ok1=cancel1;
+	arrived1=cancel1;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=beep5;
+	deactivate=beep5;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[MINE6]			// Mine 6
+	{
+	select1=range2;
+	ok1=cancel2;
+	arrived1=cancel2;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=beep6;
+	deactivate=beep6;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[KROGOTH]		
+	{
+	select1=krogsel1;
+	ok1=krogok1;
+	arrived1=krogstp1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_UWFUSION]		
+	{
+	select1=watfusn2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_UWFUSION]		
+	{
+	select1=watfusn1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HOVER_PLANT]		
+	{
+	select1=hoversl1;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=hoverok1;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HOVER_PLANT]		
+	{
+	select1=hoversl2;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=hoverok2;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_UWMEX]		// underwater metal ex
+	{
+	select1=waterex1;
+	underattack=warning1;
+	working=waterex1;
+	activate=waterex1;
+	deactivate=waterex1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_UWMEX]		// underwater metal ex
+	{
+	select1=waterex2;
+	underattack=warning1;
+	working=waterex2;
+	activate=waterex2;
+	deactivate=waterex2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_JAMSUB]		
+	{ 
+	select1=watrjam1;
+	ok1=suarmmov;
+	arrived1=suarmstp;
+	build=watnano1;
+	repair=repair1;
+	working=reclaim1;
+	activate=watrjam1;
+	deactivate=watrjam1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_JAMSUB]		
+	{ 
+	select1=watrjam2;
+	ok1=suarmmov;
+	arrived1=suarmstp;
+	build=watnano2;
+	repair=repair1;
+	working=reclaim1;
+	activate=watrjam2;
+	deactivate=watrjam2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_GANTRY]		// The Gantry
+	{
+	select1=gantsel1;
+	unitcomplete=gantok1;
+	underattack=warning1;
+	build=gantok2;
+	repair=lathelrg;
+	working=build;
+	activate=gantok2;
+	deactivate=gantok1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SNIPE]		// Adv Kbot
+	{
+	select1=snipsel2;
+	ok1=snipok2;
+	arrived1=snipstp2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_AMPHIB]		// Arm Amphib Kbot
+	{
+	select1=amphsel1;
+	ok1=amphok1;
+	arrived1=amphstp1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CHOVER]		// Arm Con Hovercraft
+	{ 
+	select1=hovmdsl1;
+	ok1=hovmdok1;
+	arrived1=hovmdof1;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CHOVER]		// Core Con Hovercraft
+	{ 
+	select1=hovmdsl2;
+	ok1=hovmdok2;
+	arrived1=hovmdof2;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HOVER_BIG]	// Core Large Hovercraft
+	{
+	select1=hovlgsl2;
+	ok1=hovlgok2;
+	arrived1=hovlgof2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HOVER_BIG]		// Arm Large Hovercraft
+	{
+	select1=hovlgsl1;
+	ok1=hovlgok1;
+	arrived1=hovlgof1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HOVER_MID]		// Core Medium Hovercraft
+	{
+	select1=hovmdsl2;
+	ok1=hovmdok2;
+	arrived1=hovmdof2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HOVER_MID]		// Arm Medium Hovercraft
+	{
+	select1=hovmdsl1;
+	ok1=hovmdok1;
+	arrived1=hovmdof1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HOVER_SM]		// Core Small Hovercraft
+	{
+	select1=hovsmsl2;
+	ok1=hovsmok2;
+	arrived1=hovsmof2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HOVER_SM]		// Arm Small Hovercraft
+	{
+	select1=hovsmsl1;
+	ok1=hovsmok1;
+	arrived1=hovmdof1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_RECTOR]		// Arm Rez KBot
+	{
+	select1=Necrsel1;
+	ok1=Necrok1;
+	arrived1=Necrnan1;
+	cant1=cantdo4;
+	working=reclaim2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_NECRO]		// Core Rez KBot
+	{
+	select1=Necrsel2;
+	ok1=Necrok2;
+	arrived1=Necrnan2;
+	cant1=cantdo4;
+	working=reclaim2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SEAPLN_PLANT]	// Arm Seaplane Platform
+	{
+	select1=seaplsl1;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=seaplok1;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SEAPLN_PLANT]	// Core Seaplane Platform
+	{
+	select1=seaplsl2;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=seaplok2;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_TARG]		// Core Targeting Building
+	{
+	select1=Targsel2;
+	underattack=warning1;
+	working=Targsel2;
+	activate=Targon2;
+	deactivate=Targoff2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_TARG]		// Arm Targeting Building
+	{
+	select1=Targsel1;
+	underattack=warning1;
+	working=Targsel1;
+	activate=Targon1;
+	deactivate=Targoff1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_UWMETSTOR]		// Arm Underwater Metal Storage
+	{
+	select1=watstor1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_UWMESTOR]		// Core Underwater Metal Storage
+	{
+	select1=watstor2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CUDA]		// Arm Suicide Torpedo
+	{
+	select1=torsel1;
+	ok1=torpok1;
+	arrived1=torpok1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_HAMMERHEAD]	// Core Suicide Torpedo
+	{
+	select1=torsel2;
+	ok1=torpok2;
+	arrived1=torpok2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ADV_TORPLAUNCH]	// Advanced Torpedo Launcher	
+	{  
+	select1=torpadv2;
+	ok1=torpadv1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARMSS]			// Arm Sea Serpant
+	{
+	select1=sserpsel;
+	ok1=sserpok;
+	arrived1=sserpstp;
+	cant1=cantdo4;
+	build=watnano2;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORSCORP]		// Core Scorpion
+	{
+	select1=scorpsel;
+	ok1=scorpok;
+	arrived1=scorpstp;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SEAPLN]		// Arm Sea Plane
+	{
+	select1=seapsel1;
+	ok1=vtolcrmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CSEAPLN]		// Arm Construction Sea Plane
+	{
+	select1=seapsel1;
+	ok1=vtolcrmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_SEAPLN]		// Core Sea Plane
+	{
+	select1=seapsel2;
+	ok1=vtolcrmv;
+	arrived1=vtolcrld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_CSEAPLN]		// Core Construction Sea Plane
+	{
+	select1=seapsel2;
+	ok1=vtolcrmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[COR_SEASONAR]		// Core Sonar Plane
+	{
+	select1=seasonr2;
+	ok1=vtolcrmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SEASONAR]		// Arm Sonar Plane
+	{
+	select1=seasonr1;
+	ok1=vtolarmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CSUB]		
+	{ 
+	select1=suarmsel;
+	ok1=suarmmov;
+	arrived1=suarmstp;
+	build=watnano1;
+	repair=repair1;
+	working=reclaim1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CSUB]		
+	{ 
+	select1=sucorsel;
+	ok1=sucormov;
+	arrived1=sucorstp;
+	cant1=cantdo4;
+	build=watnano2;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[VIPE]		
+	{  
+	select1=servmed1;
+	ok1=servmed1;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[PUN]		
+	{  
+	select1=twrturn4;
+	ok1=twrturn4;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[RL]		
+	{  
+	select1=twractv1;
+	ok1=twractv1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[SUMO]		
+	{
+	select1=sumo_sel;
+	ok1=sumo_move;
+	arrived1=sumo_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[SNIPE]		
+	{
+	select1=snipe_sel;
+	ok1=snipe_move;
+	arrived1=snipe_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CKFUS]		
+	{
+	select1=drone3;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	activate=powerup;
+	deactivate=powerdown;
+	underattack=warning3;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_CKFUS]		
+	{
+	select1=drone3;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	activate=powerup;
+	deactivate=powerdown;
+	underattack=warning3;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_SPY]		
+	{
+	select1=mavbot1;
+	ok1=mavbot2;
+	arrived1=mavbot2;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	capture=capture1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_SPY]		
+	{
+	select1=turlgso2;
+	ok1=turlgso1;
+	arrived1=turlong1;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	capture=capture2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[BEACON]		
+	{
+	select1=drone3;
+	working=drone3;
+	activate=drone3;
+	deactivate=drone3;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[ARM_KRADAR]
+{
+	select1=akradsel;
+	ok1=kbarmmov;
+	arrived1=kbarmstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[CORE_KRADAR]
+{
+	select1=ckradsel;
+	ok1=kbcormov;
+	arrived1=kbcorstp;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[ARM_VRADAR]
+{
+	select1=avradsel;
+	ok1=varmmove;
+	arrived1=varmstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[CORE_VRADAR]
+{
+	select1=cvradsel;
+	ok1=vcormove;
+	arrived1=vcorstop;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[ARM_ARADAR]
+{
+	select1=aaradsel;
+	ok1=vtolarmv;
+	arrived1=vtolarld;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[CORE_ARADAR]
+{
+	select1=caradsel;
+	ok1=vtolcrmv;
+	arrived1=vtolcrld;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+}
+
+[PB]		
+	{  
+	select1=servmed3;
+	ok1=servmed3;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_GANT]		
+	{
+	select1=agantsl1;
+	working=agantwk1;
+	activate=agantok1;
+	deactivate=agantsp1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[MECH]
+	{  
+	select1=mech_sel;
+	ok1=mech_move;
+	arrived1=mech_stop;
+	cant1=mech_cant;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[JUGG]		
+	{
+	select1=sumo_sel;
+	ok1=jugg_move;
+	arrived1=sumo_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+//	activate=radjam2;
+//	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CRAWL]		
+	{
+	select1=crawl_sel;
+	ok1=crawl_ok;
+	arrived1=crawl_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[SPEC]		
+	{
+	select1=spec_sel;
+	ok1=spec_move;
+	arrived1=spec_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+	
+[ARM_BIGTANK]		
+	{
+	select1=bigtank_sel1;
+	ok1=bigtank_move1;
+	arrived1=bigtank_stop1;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;
+//	activate=radjam1;
+//	deactivate=radjam1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_ASAM]		
+	{
+	select1=bigtank_sel1;
+	ok1=bigtank_move1;
+	arrived1=bigtank_stop1;
+	cant1=cantdo4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	underattack=warning1;	
+	activate=radadvn1;
+	deactivate=radadde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+	
+[CORE_BIGTANK]		
+	{
+	select1=bigtank_sel2;
+	ok1=bigtank_move2;
+	arrived1=bigtank_stop2;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+//	activate=radjam2;
+//	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_AMIST]		
+	{
+	select1=bigtank_sel2;
+	ok1=bigtank_move2;
+	arrived1=bigtank_stop2;
+	cant1=cantdo4;
+	build=nanlath2;
+	repair=repair2;
+	working=reclaim1;
+	underattack=warning1;
+	activate=radadvn2;
+	deactivate=radadde2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[BIG_SHIP]		
+	{ 
+	select1=bigship_sel;
+	ok1=bigship_move;
+	arrived1=bigship_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[BIG_SUB]		
+	{ 
+	select1=bigsub_sel;
+	ok1=bigsub_move;
+	arrived1=bigsub_sel;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+
+[ARM_TPORT]		
+	{
+	select1=tport_sel1;
+	activate=tport_sel1;
+	deactivate=tport_sel1;
+	ok1=tport_sel1;
+	build=build1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[CORE_TPORT]		
+	{
+	select1=tport_sel2;
+	activate=tport_sel2;
+	deactivate=tport_sel2;
+	ok1=tport_sel2;
+	build=build2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[ARM_NODE]		
+	{
+	select1=nodesl;
+	working=nodesl;
+	activate=nodesl;
+	arrived1=nodesl;
+	deactivate=nodesl;
+	ok1=nodeok;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[CORE_NODE]		
+	{
+	select1=nodesl;
+	working=nodesl;
+	activate=nodesl;
+	arrived1=nodesl;
+	deactivate=nodesl;
+	ok1=nodeok;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+
+[CORE_SCRAM]		
+	{
+	select1=sonarjam;
+	underattack=warning1;
+	working=sonarjam;
+	activate=sonarjam;
+	deactivate=sonarde2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[FWGATE]		
+	{
+	select1=servmd02;
+	activate=servmd02;
+	deactivate=energyn2;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_MED]		
+	{
+	select1=med_sel1;
+	underattack=warning1;
+	working=med_sel1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_MED]		
+	{
+	select1=med_sel2;
+	underattack=warning1;
+	working=med_sel2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[SPIDER]			// TA POWER Improved spider unit sounds
+	{
+	select1=spider;
+	ok1=spider2;
+	arrived1=spider1;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_JAMSPD]		// TA POWER Radar jammer spider unit sounds
+	{
+	select1=radjam4;
+	ok1=spider2;
+	arrived1=spider1;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam1;
+	deactivate=radjam3;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_RADSPD]		// TA POWER Radar spider unit sounds
+	{
+	select1=radar3;
+	ok1=spider2;
+	arrived1=spider1;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radar1;
+	deactivate=radarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CSPD]			// TA POWER Construction spider unit sounds 
+	{
+	select1=spiderse;
+	ok1=spider2;
+	arrived1=spider4;
+	build=nanlath1;
+	repair=repair1;
+	working=reclaim1;
+	capture=capture1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_COSPD]   		// TA POWER Spiders with destructive weapons
+	{
+	select1=spider3;
+	ok1=spider2;
+	arrived1=spider4;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_EMPSPD]   		// TA POWER EMP Bomb Spider
+	{
+	select1=spdemp1;
+	ok1=spider2;
+	arrived1=spdemp2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_BIGSPD]   		// TA POWER Big Spider unit sounds
+	{
+	select1=bigspd1;
+	ok1=spider2;
+	arrived1=bigspd2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_ULAB]			
+	{
+	select1=ulab_sel;
+	underattack=warning1;
+	build=ulab_bld;
+	repair=ulab_bld;
+	working=ulab_bld;
+	activate=ulab_ok1;
+	deactivate=ulab_ok2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_MKL]					
+	{
+	select1=mkl_sel;
+	ok1=mkl_move;
+	arrived1=mkl_stop1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_CRAB]					
+	{
+	select1=crab_sel;
+	ok1=crab_move1;
+	ok2=crab_move2;
+	arrived1=crab_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}	
+	
+[ARM_BIGVTOL]		
+	{
+	select1=bigvtol_sel1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	ok1=bigvtol_on1;
+	arrived1=bigvtol_off1;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_BIGVTOL]		
+	{
+	select1=bigvtol_sel2;
+	ok1=bigvtol_on2;
+	arrived1=bigvtol_off2;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_OMNI]		
+	{
+	select1=omni_sel1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	underattack=warning1;
+	activate=omni_on1;
+	deactivate=omni_off1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_OMNI]		
+	{
+	select1=omni_sel2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	underattack=warning1;
+	activate=omni_on2;
+	deactivate=omni_off2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HRAD]		
+	{
+	select1=radar1;
+	ok1=hovsmok1;
+	arrived1=hovmdof1;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radar1;
+	deactivate=radarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HRAD]		
+	{
+	select1=radar2;
+	ok1=hovsmok2;
+	arrived1=hovsmof2;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radar1;
+	deactivate=radarde1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_HJAM]		
+	{
+	select1=radjam1;
+	ok1=hovsmok1;
+	arrived1=hovmdof1;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam1;
+	deactivate=radjam1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_HJAM]		
+	{
+	select1=radjam2;
+	ok1=hovsmok2;
+	arrived1=hovsmof2;
+	cant1=cantdo4;
+	underattack=warning1;
+	activate=radjam2;
+	deactivate=radjam2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[NOMADFAC1]		
+	{
+	select1=pvehactv;
+	unitcomplete=untdone;
+	underattack=warning1;
+	build=pvehwork;
+	//working=mexrun;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[NOMAD1]
+	{ 
+	select1=drone3;
+	ok1=drone3;
+	arrived1=drone3;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	build=vtolarld;
+	}
+
+[ARM_SHGEN]		
+	{
+	select1=omni_sel1;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	underattack=warning1;
+	activate=omni_on1;
+	deactivate=omni_off1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+
+
+[CORE_SHGEN]		
+	{
+	select1=omni_sel2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	underattack=warning1;
+	activate=omni_on2;
+	deactivate=omni_off2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[TAAR]
+	{  
+	select1=taar_sel;
+	ok1=taar_move;
+	arrived1=taar_stop;
+	cant1=cantdo4;
+	underattack=warning1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[ARM_FORGE]		
+	{
+	select1=forge_sel1;
+	cloak=kloak1;
+	uncloak=kloak1un;
+	underattack=warning3;
+	activate=forge_on1;
+	deactivate=forge_off1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[CORE_FORGE]		
+	{
+	select1=forge_sel2;
+	cloak=kloak2;
+	uncloak=kloak2un;
+	underattack=warning3;
+	activate=forge_on2;
+	deactivate=forge_off2;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+	
+
+[TALINF]		
+	{
+	select1=talinf_select;
+	ok1=talinf_move;
+	arrived1=talinf_select;
+	cant1=talinf_select;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[TAL_MOHO]		
+	{
+	select1=talmoho_sel;
+	underattack=warning1;
+	working=talmoho_on;
+	activate=talmoho_on;
+	deactivate=talmoho_off;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+[TAL_UFO]
+	{ 
+	select1=drone3;
+	ok1=drone3;
+	arrived1=drone3;
+	cant1=cantdo4;
+	underattack=warning1;
+	count5=count1;
+	count4=count2;
+	count3=count3;
+	count2=count4;
+	count1=count5;
+	count0=count6;
+	canceldestruct=cancel2;
+	}
+
+

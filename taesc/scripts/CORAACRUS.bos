@@ -1,0 +1,1249 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  lflare1a, lflare1b, lflare1c, lflare2a, lflare2b, lflare2c, 
+	   mflare1a, mflare1b, mflare1c, mflare1d, mflare2a, mflare2b, mflare2c, mflare2d,
+	   rflare1a, rflare1b, rflare2a, rflare2b, rflare3a, rflare3b,     
+	   base, body, legs, pentagons, deck, hull, wake1, wake2, wake3, wake4,  
+	   ltur1, lslv1, lbar1a,  lbar1b,  lbar1c, ltur2, lslv2, lbar2a,  lbar2b,  lbar2c, 
+	   mtur1, mslv1, mtur2, mslv2, rtur1, rslv1, rtur2, rslv2, rtur3, rslv3, 
+	   lupleg1, lupleg2, lupleg3, rupleg1, rupleg2, rupleg3,
+	   llega1, llega2, llega3, llegb1, llegb2, llegb3, llegc1, llegc2, llegc3,
+	   rlega1, rlega2, rlega3, rlegb1, rlegb2, rlegb3, rlegc1, rlegc2, rlegc3,
+	   engine_1, pod_a_1, pod_b_1, engine_2, pod_a_2, pod_b_2, engine_3, pod_a_3, pod_b_3;
+
+static-var  onland, moving, ready, turning, swimming, gun_1, gun_2, gun_3, salvo_1, salvo_2, salvo_3, firing, firedelay;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_AIM_3			8
+#define SIG_R				16
+#define SIG_MOVE			32
+
+
+walk()
+{
+	if((moving || turning) && ready)
+	{
+		TURN rupleg1 to y-axis <0> SPEED <30>;
+		TURN rupleg1 to z-axis <0> SPEED <30>;
+		TURN rupleg2 to z-axis <15> SPEED <30>;
+		TURN rupleg3 to y-axis <16.5> SPEED <30>;
+		TURN rupleg3 to z-axis <0> SPEED <30>;
+		TURN lupleg1 to y-axis <-19.5> SPEED <30>;
+		TURN lupleg1 to z-axis <0> SPEED <30>;
+		TURN lupleg2 to y-axis <0> SPEED <30>;
+		TURN lupleg2 to z-axis <0> SPEED <30>;
+		TURN lupleg3 to y-axis <-14.5> SPEED <30>;
+		TURN lupleg3 to z-axis <-22.5> SPEED <30>;
+		SLEEP 225;
+	}
+	if((moving || turning) && ready)
+	{
+		TURN rupleg2 to y-axis <16.5> SPEED <30>;
+		TURN rupleg2 to z-axis <15> SPEED <30>;
+		TURN lupleg1 to y-axis <0> SPEED <30>;
+		TURN lupleg2 to z-axis <-15> SPEED <30>;
+		TURN lupleg3 to z-axis <1> SPEED <30>;
+		TURN rupleg1 to z-axis <15> SPEED <30>;
+		TURN rupleg3 to y-axis <0> SPEED <30>;
+		TURN rupleg3 to z-axis <0> SPEED <30>;
+		SLEEP 225;
+	}
+	if((moving || turning) && ready)
+	{
+		TURN lupleg2 to y-axis <-15> SPEED <30>;
+		TURN lupleg2 to z-axis <-15> SPEED <30>;
+		TURN lupleg3 to y-axis <1.5> SPEED <30>;
+		TURN rupleg2 to y-axis <16.5> SPEED <30>;
+		TURN rupleg2 to z-axis <0> SPEED <30>;
+		TURN rupleg3 to z-axis <15> SPEED <30>;
+		TURN rupleg1 to y-axis <27> SPEED <30>;
+		TURN rupleg1 to z-axis <15> SPEED <30>;
+		TURN lupleg1 to y-axis <0> SPEED <30>;
+		TURN lupleg1 to z-axis <-15> SPEED <30>;
+		SLEEP 225;
+	}
+	if((moving || turning) && ready)
+	{
+		TURN lupleg2 to y-axis <-18> SPEED <30>;
+		TURN lupleg2 to z-axis <0> SPEED <30>;
+		TURN lupleg3 to y-axis <0> SPEED <30>;
+		TURN lupleg3 to z-axis <-22.5> SPEED <30>;
+		TURN rupleg2 to y-axis <0> SPEED <30>;
+		TURN rupleg2 to z-axis <0> SPEED <30>;
+		TURN rupleg3 to y-axis <16.5> SPEED <30>;
+		TURN rupleg1 to y-axis <21> SPEED <30>;
+		TURN rupleg1 to z-axis <0> SPEED <30>;
+		TURN rupleg3 to z-axis <15> SPEED <30>;
+		TURN lupleg1 to y-axis <-19.5> SPEED <30>;
+		TURN lupleg1 to z-axis <-15> SPEED <30>;
+		SLEEP 225;
+	}
+}
+
+transform()
+{
+	turn lupleg1 to y-axis <-22.500000> now;
+	turn lupleg3 to y-axis <22.500000> now;
+	turn rupleg1 to y-axis <22.500000> now;
+	turn rupleg3 to y-axis <-22.500000> now;
+
+	hide hull;
+
+	show body;
+	show lupleg1;
+	show lupleg2;
+	show lupleg3;
+	show rupleg1;
+	show rupleg2;
+	show rupleg3;
+
+	show llega1;
+	show llega2;
+	show llega3;
+	
+	show llegb1;
+	show llegb2;
+	show llegb3;
+	
+	show llegc1;
+	show llegc2;
+	show llegc3;
+	
+	show rlega1;
+	show rlega2;
+	show rlega3;
+	
+	show rlegb1;
+	show rlegb2;
+	show rlegb3;
+	
+	show rlegc1;
+	show rlegc2;
+	show rlegc3;
+
+	cache body;
+	cache hull;
+	cache deck;
+	cache pentagons;
+		
+	cache ltur1;
+	cache lslv1;
+	cache lbar1a;
+	cache lbar1b;
+	cache lbar1c;
+	
+	cache ltur2;
+	cache lslv2;
+	cache lbar2a;
+	cache lbar2b;
+	cache lbar2c;
+	
+	cache mtur1;
+	cache mslv1;
+	
+	cache mtur2;
+	cache mslv2;
+		
+	cache rtur1;
+	cache rslv1;
+		
+	cache rtur2;
+	cache rslv2;
+		
+	cache rtur3;
+	cache rslv3;
+			
+	cache lupleg1;
+	cache lupleg2;
+	cache lupleg3;
+	cache rupleg1;
+	cache rupleg2;
+	cache rupleg3;
+	
+	cache llega1;
+	cache llega2;
+	cache llega3;
+	
+	cache llegb1;
+	cache llegb2;
+	cache llegb3;
+	
+	cache llegc1;
+	cache llegc2;
+	cache llegc3;
+	
+	cache rlega1;
+	cache rlega2;
+	cache rlega3;
+	
+	cache rlegb1;
+	cache rlegb2;
+	cache rlegb3;
+	
+	cache rlegc1;
+	cache rlegc2;
+	cache rlegc3;
+	
+	cache engine_1;
+	cache pod_a_1;
+	cache pod_b_1;
+	cache engine_2;
+	cache pod_a_2;
+	cache pod_b_2;
+	cache engine_3;
+	cache pod_a_3;
+	cache pod_b_3;
+
+	move  body to y-axis [5.576782] speed [3.000000];
+
+	move lupleg1 to x-axis [0] speed [4];
+	move lupleg2 to x-axis [0] speed [4];
+	move lupleg3 to x-axis [0] speed [4];
+	move rupleg1 to x-axis [0] speed [4];
+	move rupleg2 to x-axis [0] speed [4];
+	move rupleg3 to x-axis [0] speed [4];
+	
+//	move lupleg1 to y-axis [0] speed [1];
+//	move lupleg2 to y-axis [0] speed [1];
+//	move lupleg3 to y-axis [0] speed [1];
+//	move rupleg1 to y-axis [0] speed [1];
+//	move rupleg2 to y-axis [0] speed [1];
+//	move rupleg3 to y-axis [0] speed [1];
+
+	turn rlegc1 to z-axis <0.000000> speed <30>;
+	turn rlegc2 to z-axis <0.000000> speed <30>;
+	turn rlegc3 to z-axis <0.000000> speed <30>;
+	turn llegc1 to z-axis <0.000000> speed <30>;
+	turn llegc2 to z-axis <0.000000> speed <30>;
+	turn llegc3 to z-axis <0.000000> speed <30>;
+	
+	sleep 100;
+	
+	turn rlega1 to y-axis <10.000000> speed <10.000000>;
+	turn rlega2 to y-axis <-10.000000> speed <10.000000>;
+
+	turn llega1 to y-axis <-10.000000> speed <10.000000>;
+	turn llega2 to y-axis <10.000000> speed <10.000000>;
+
+	turn rlega3 to y-axis <-30.000000> speed <10.000000>;
+	turn llega3 to y-axis <30.000000> speed <10.000000>;
+
+	sleep 74;
+	
+//	wait-for-move lupleg1 along y-axis;
+	wait-for-move lupleg1 along x-axis;
+	
+	sleep 100;
+	
+	
+	ready = 1;
+}
+		
+
+reform()
+{
+	dont-cache body;
+	dont-cache hull;
+	dont-cache deck;
+	dont-cache pentagons;
+		
+	dont-cache ltur1;
+	dont-cache lslv1;
+	dont-cache lbar1a;
+	dont-cache lbar1b;
+	dont-cache lbar1c;
+	
+	dont-cache ltur2;
+	dont-cache lslv2;
+	dont-cache lbar2a;
+	dont-cache lbar2b;
+	dont-cache lbar2c;
+	
+	dont-cache mtur1;
+	dont-cache mslv1;
+		
+	dont-cache mtur2;
+	dont-cache mslv2;
+		
+	dont-cache rtur1;
+	dont-cache rslv1;
+	
+	dont-cache rtur2;
+	dont-cache rslv2;
+		
+	dont-cache rtur3;
+	dont-cache rslv3;
+			
+	dont-cache lupleg1;
+	dont-cache lupleg2;
+	dont-cache lupleg3;
+	dont-cache rupleg1;
+	dont-cache rupleg2;
+	dont-cache rupleg3;
+	
+	dont-cache llega1;
+	dont-cache llega2;
+	dont-cache llega3;
+	
+	dont-cache llegb1;
+	dont-cache llegb2;
+	dont-cache llegb3;
+	
+	dont-cache llegc1;
+	dont-cache llegc2;
+	dont-cache llegc3;
+	
+	dont-cache rlega1;
+	dont-cache rlega2;
+	dont-cache rlega3;
+	
+	dont-cache rlegb1;
+	dont-cache rlegb2;
+	dont-cache rlegb3;
+	
+	dont-cache rlegc1;
+	dont-cache rlegc2;
+	dont-cache rlegc3;
+
+	dont-cache engine_1;
+	dont-cache pod_a_1;
+	dont-cache pod_b_1;
+	dont-cache engine_2;
+	dont-cache pod_a_2;
+	dont-cache pod_b_2;
+	dont-cache engine_3;
+	dont-cache pod_a_3;
+	dont-cache pod_b_3;
+
+	ready=0;
+	
+	wait-for-turn lupleg1 around y-axis;
+	wait-for-turn lupleg2 around y-axis;
+	wait-for-turn lupleg3 around y-axis;
+	wait-for-turn rupleg1 around y-axis;
+	wait-for-turn rupleg2 around y-axis;
+	wait-for-turn rupleg3 around y-axis;
+	
+	wait-for-turn lupleg1 around z-axis;
+	wait-for-turn lupleg2 around z-axis;
+	wait-for-turn lupleg3 around z-axis;
+	wait-for-turn rupleg1 around z-axis;
+	wait-for-turn rupleg2 around z-axis;
+	wait-for-turn rupleg3 around z-axis;
+	
+	turn rlega1 to y-axis <0> speed <10.000000>;
+	turn rlega2 to y-axis <0> speed <10.000000>;
+	turn llega1 to y-axis <0> speed <10.000000>;
+	turn llega2 to y-axis <0> speed <10.000000>;
+	turn rlega3 to y-axis <0> speed <10.000000>;
+	turn llega3 to y-axis <0> speed <10.000000>;
+
+	turn lupleg1 to y-axis <-22.5> speed <20.000000>;
+	turn lupleg2 to y-axis <0> speed <20.000000>;
+	turn lupleg3 to y-axis <22.5> speed <20.000000>;
+	turn rupleg1 to y-axis <22.5> speed <20.000000>;
+	turn rupleg2 to y-axis <0> speed <20.000000>;
+	turn rupleg3 to y-axis <-22.5> speed <20.000000>;
+	
+	turn lupleg1 to z-axis <0> speed <20.000000>;
+	turn lupleg2 to z-axis <0> speed <20.000000>;
+	turn lupleg3 to z-axis <0> speed <20.000000>;
+	turn rupleg1 to z-axis <0> speed <20.000000>;
+	turn rupleg2 to z-axis <0> speed <20.000000>;
+	turn rupleg3 to z-axis <0> speed <20.000000>;
+
+	move lupleg1 to x-axis [10.000000] speed [2];
+	move lupleg2 to x-axis [10.000000] speed [2];
+	move lupleg3 to x-axis [10.000000] speed [2];
+	move rupleg1 to x-axis [-10.000000] speed [2];
+	move rupleg2 to x-axis [-10.000000] speed [2];
+	move rupleg3 to x-axis [-10.000000] speed [2];
+	
+//	move lupleg1 to y-axis [-2.255111] speed [.5];
+//	move lupleg2 to y-axis [-2.255111] speed [.5];
+//	move lupleg3 to y-axis [-2.255111] speed [.5];
+//	move rupleg1 to y-axis [-2.255111] speed [.5];
+//	move rupleg2 to y-axis [-2.255111] speed [.5];
+//	move rupleg3 to y-axis [-2.255111] speed [.5];
+
+	turn rlegc1 to z-axis <-90.000000> speed <30>;
+	turn rlegc2 to z-axis <-90.000000> speed <30>;
+	turn rlegc3 to z-axis <-90.000000> speed <30>;
+	turn llegc1 to z-axis <90.000000> speed <30>;
+	turn llegc2 to z-axis <90.000000> speed <30>;
+	turn llegc3 to z-axis <90.000000> speed <30>;
+	
+	move  body to y-axis [0] speed [3.000000];
+	
+//	wait-for-move lupleg1 along y-axis;
+	wait-for-move lupleg1 along x-axis;
+
+	sleep 500;
+
+	show hull;
+	hide body;
+	
+	hide lupleg1;
+	hide lupleg2;
+	hide lupleg3;
+	hide rupleg1;
+	hide rupleg2;
+	hide rupleg3;
+	
+	hide llega1;
+	hide llega2;
+	hide llega3;
+	
+	hide llegb1;
+	hide llegb2;
+	hide llegb3;
+	
+	hide llegc1;
+	hide llegc2;
+	hide llegc3;
+	
+	hide rlega1;
+	hide rlega2;
+	hide rlega3;
+	
+	hide rlegb1;
+	hide rlegb2;
+	hide rlegb3;
+	
+	hide rlegc1;
+	hide rlegc2;
+	hide rlegc3;
+
+	sleep 74;
+}	
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl()
+{
+	var transformed;
+	var preang;
+	var ang;
+	transformed = 0;
+	while( TRUE )
+	{
+		ang = get XZ_ATAN(-419);
+		turning = 0;
+		if (ang != preang)
+		{
+			turning = 1;
+		}
+		sleep 100;
+		preang = ang;
+		
+		onland = (get GROUND_HEIGHT(get PIECE_XZ(base)) - get PIECE_Y(base)) > 0;
+		
+	//	onland = 1;
+		if(onland && !transformed)
+		{
+			call-script transform();
+			transformed = 1;
+		}
+		if(!onland && transformed)
+		{
+			call-script reform();
+			transformed = 0;
+		}
+		if( moving || turning)
+		{
+			if(!onland && !transformed)
+			{
+//				call-script swim();
+				if(swimming != 0)
+				{
+					emit-sfx 2 from wake1;
+					emit-sfx 2 from wake2;
+					emit-sfx 2 from wake3;
+					emit-sfx 2 from wake4;
+					
+					sleep 300;
+				
+				}
+			}
+			if(onland && transformed)
+			{
+				call-script walk();
+			}
+		}
+		if( !moving )
+		{
+			sleep 100;
+		}
+	}
+}
+
+
+
+setSFXoccupy(Func_Var_1)
+{
+	swimming = Func_Var_1;
+}
+
+Create()
+{
+	set ARMORED to 1;
+	
+	turning = 0;
+	ready = 0;
+
+	gun_1 = 0;
+	gun_2 = 6;
+	gun_3 = 14;
+	salvo_1 = 0;
+	salvo_2 = 2;
+	salvo_3 = 4;
+	
+	firing = 0;
+	firedelay = 1350;
+	
+	move lupleg1 to x-axis [10.000000] now;
+	move lupleg2 to x-axis [10.000000] now;
+	move lupleg3 to x-axis [10.000000] now;
+	move rupleg1 to x-axis [-10.000000] now;
+	move rupleg2 to x-axis [-10.000000] now;
+	move rupleg3 to x-axis [-10.000000] now;
+	
+//	move lupleg1 to y-axis [-2.255111] now;
+//	move lupleg2 to y-axis [-2.255111] now;
+//	move lupleg3 to y-axis [-2.255111] now;
+//	move rupleg1 to y-axis [-2.255111] now;
+//	move rupleg2 to y-axis [-2.255111] now;
+//	move rupleg3 to y-axis [-2.255111] now;
+
+	turn rlegc1 to z-axis <-90.000000> now;
+	turn rlegc2 to z-axis <-90.000000> now;
+	turn rlegc3 to z-axis <-90.000000> now;
+	turn llegc1 to z-axis <90.000000> now;
+	turn llegc2 to z-axis <90.000000> now;
+	turn llegc3 to z-axis <90.000000> now;
+
+//	turn lupleg1 to y-axis <-22.500000> now;
+//	turn lupleg3 to y-axis <22.500000> now;
+//	turn rupleg1 to y-axis <22.500000> now;
+//	turn rupleg3 to y-axis <-22.500000> now;
+
+	show hull;
+	hide body;
+		
+	hide lupleg1;
+	hide lupleg2;
+	hide lupleg3;
+	hide rupleg1;
+	hide rupleg2;
+	hide rupleg3;
+	
+	hide llega1;
+	hide llega2;
+	hide llega3;
+	
+	hide llegb1;
+	hide llegb2;
+	hide llegb3;
+	
+	hide llegc1;
+	hide llegc2;
+	hide llegc3;
+	
+	hide rlega1;
+	hide rlega2;
+	hide rlega3;
+	
+	hide rlegb1;
+	hide rlegb2;
+	hide rlegb3;
+	
+	hide rlegc1;
+	hide rlegc2;
+	hide rlegc3;
+	
+	dont-cache body;
+	dont-cache hull;
+	dont-cache deck;
+	dont-cache pentagons;
+		
+	dont-cache ltur1;
+	dont-cache lslv1;
+	dont-cache lbar1a;
+	dont-cache lbar1b;
+	dont-cache lbar1c;
+	
+	dont-cache ltur2;
+	dont-cache lslv2;
+	dont-cache lbar2a;
+	dont-cache lbar2b;
+	dont-cache lbar2c;
+	
+	dont-cache mtur1;
+	dont-cache mslv1;
+	
+	dont-cache mtur2;
+	dont-cache mslv2;
+	
+	dont-cache rtur1;
+	dont-cache rslv1;
+	
+	dont-cache rtur2;
+	dont-cache rslv2;
+		
+	dont-cache rtur3;
+	dont-cache rslv3;
+		
+	dont-cache lupleg1;
+	dont-cache lupleg2;
+	dont-cache lupleg3;
+	dont-cache rupleg1;
+	dont-cache rupleg2;
+	dont-cache rupleg3;
+	
+	dont-cache lupleg1;
+	dont-cache lupleg2;
+	dont-cache lupleg3;
+	dont-cache rupleg1;
+	dont-cache rupleg2;
+	dont-cache rupleg3;
+	
+	dont-cache llega1;
+	dont-cache llega2;
+	dont-cache llega3;
+	
+	dont-cache llegb1;
+	dont-cache llegb2;
+	dont-cache llegb3;
+	
+	dont-cache llegc1;
+	dont-cache llegc2;
+	dont-cache llegc3;
+	
+	dont-cache rlega1;
+	dont-cache rlega2;
+	dont-cache rlega3;
+	
+	dont-cache rlegb1;
+	dont-cache rlegb2;
+	dont-cache rlegb3;
+	
+	dont-cache rlegc1;
+	dont-cache rlegc2;
+	dont-cache rlegc3;
+	
+	dont-cache engine_1;
+	dont-cache pod_a_1;
+	dont-cache pod_b_1;
+	dont-cache engine_2;
+	dont-cache pod_a_2;
+	dont-cache pod_b_2;
+	dont-cache engine_3;
+	dont-cache pod_a_3;
+	dont-cache pod_b_3;
+
+	hide lflare1a;
+	hide lflare1b;
+	hide lflare1c;
+	hide lflare2a;
+	hide lflare2b;
+	hide lflare2c;
+
+	dont-cache lflare1a;
+	dont-cache lflare1b;
+	dont-cache lflare1c;
+	dont-cache lflare2a;
+	dont-cache lflare2b;
+	dont-cache lflare2c;
+
+	onland = 1;
+	moving = 0;
+	
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+	
+
+RestoreAll()
+{
+	signal SIG_R;
+	set-signal-mask SIG_R;
+	sleep 15000;
+
+	turn ltur1 to y-axis <0> speed <75>;
+	turn lslv1 to x-axis <0> speed <75>;
+	turn ltur2 to y-axis <0> speed <75>;
+	turn lslv2 to x-axis <0> speed <75>;
+	
+	turn mtur1 to y-axis <0> speed <180>;
+	turn mslv1 to x-axis <0> speed <80>;
+	turn mtur2 to y-axis <0> speed <180>;
+	turn mslv2 to x-axis <0> speed <90>;
+	
+	turn rslv1 to y-axis <0> speed <180>;
+	turn rslv1 to x-axis <0> speed <90>;
+	turn rslv2 to y-axis <0> speed <180>;
+	turn rslv2 to x-axis <0> speed <90>;
+	turn rslv3 to y-axis <0> speed <180>;
+	turn rslv3 to x-axis <0> speed <90>;
+}
+
+
+
+StartMoving()
+{
+	moving=1;
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+}
+
+StopMoving()
+{
+	moving=0;
+	signal SIG_MOVE;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+
+	if ( salvo_1 == 0 )
+	{
+		turn ltur1 to y-axis heading speed <150>;
+		turn lslv1 to x-axis <0.000000> - pitch speed <75>;
+	}
+	if ( salvo_1 == 1 )
+	{
+		turn ltur2 to y-axis heading speed <150>;
+		turn lslv2 to x-axis <0.000000> - pitch speed <75>;
+	}	
+	wait-for-turn ltur1 around y-axis;
+	wait-for-turn lslv1 around x-axis;
+	wait-for-turn ltur2 around y-axis;
+	wait-for-turn lslv2 around x-axis;
+	while( firing )
+	{
+		sleep 50;
+	}
+	start-script RestoreAll();
+	return (1);
+}
+
+FirePrimary()
+{
+	var gun_1_tmp;
+	gun_1_tmp = gun_1;
+	++gun_1;
+	
+	if( gun_1 == 6 )
+	{
+		gun_1 = 0;
+	}
+	if( gun_1_tmp == 0 )
+	{
+		firing = 1;
+		salvo_1 = 0;
+		show lflare1a;
+		sleep 150;
+		hide lflare1a;
+		sleep firedelay;
+		firing = 0;
+	}	
+	if( gun_1_tmp == 1 )
+	{
+		firing = 1;
+		salvo_1 = 0;
+		show lflare1b;
+		sleep 150;
+		hide lflare1b;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_1_tmp == 2 )
+	{
+		firing = 1;
+		salvo_1 = 1;
+		show lflare1c;
+		sleep 150;
+		hide lflare1c;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_1_tmp == 3 )
+	{
+		firing = 1;
+		salvo_1 = 1;
+		show lflare2a;
+		sleep 150;
+		hide lflare2a;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_1_tmp == 4 )
+	{
+		firing = 1;
+		salvo_1 = 1;
+		show lflare2b;
+		sleep 150;
+		hide lflare2b;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_1_tmp == 5 )
+	{
+		firing = 1;
+		salvo_1 = 0;
+		show lflare2c;
+		sleep 150;
+		hide lflare2c;
+		sleep firedelay;
+		firing = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	if( salvo_1 == 0 )
+		piecenum = ltur1;
+	if( salvo_1 == 1 )
+		piecenum = ltur2;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = lflare1a;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = lflare1b;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = lflare1c;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = lflare2a;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = lflare2b;
+	}
+	if( gun_1 == 5 )
+	{
+		piecenum = lflare2c;
+	}
+}
+
+//*******************************************************************************
+
+AimSecondary(heading, pitch)
+{
+	signal SIG_AIM_2;
+	set-signal-mask SIG_AIM_2;
+	
+	if ( salvo_2 == 2 )
+	{
+		turn mtur1 to y-axis heading speed <360>;
+		turn mslv1 to x-axis <0.000000> - pitch speed <180>;
+	}
+	if ( salvo_2 == 3 )
+	{
+		turn mtur2 to y-axis heading speed <360>;
+		turn mslv2 to x-axis <0.000000> - pitch speed <180>;
+	}	
+	wait-for-turn mtur1 around y-axis;
+	wait-for-turn mslv1 around x-axis;
+	wait-for-turn mtur2 around y-axis;
+	wait-for-turn mslv2 around x-axis;
+	
+	start-script RestoreAll();
+	return (1);
+}
+
+FireSecondary()
+{
+	var gun_2_tmp;
+	gun_2_tmp = gun_2;
+	++gun_2;
+	
+	if( gun_2 == 14 )
+	{
+		gun_2 = 6;
+	}
+	
+	if( gun_2_tmp == 6 )
+	{
+		salvo_2 = 2;
+		sleep 50;
+	}	
+	if( gun_2_tmp == 7 )
+	{
+		salvo_2 = 2;
+		sleep 50;
+	}
+	if( gun_2_tmp == 8 )
+	{
+		salvo_2 = 2;
+		sleep 50;
+	}
+	if( gun_2_tmp == 9 )
+	{
+		salvo_2 = 3;
+		sleep 50;
+	}
+	if( gun_2_tmp == 10 )
+	{
+		salvo_2 = 3;
+		sleep 50;
+	}
+	if( gun_2_tmp == 11 )
+	{
+		salvo_2 = 3;
+		sleep 50;
+	}
+	if( gun_2_tmp == 12 )
+	{
+		salvo_2 = 3;
+		sleep 50;
+	}
+	if( gun_2_tmp == 13 )
+	{
+		salvo_2 = 2;
+		sleep 50;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	if( salvo_2 == 2 )
+		piecenum = mtur1;
+	if( salvo_2 == 3 )
+		piecenum = mtur2;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_2 == 6 )
+	{
+		piecenum = mflare1a;
+	}
+	if( gun_2 == 7 )
+	{
+		piecenum = mflare1b;
+	}
+	if( gun_2 == 8 )
+	{
+		piecenum = mflare1c;
+	}
+	if( gun_2 == 9 )
+	{
+		piecenum = mflare1d;
+	}
+	if( gun_2 == 10 )
+	{
+		piecenum = mflare2a;
+	}
+	if( gun_2 == 11 )
+	{
+		piecenum = mflare2b;
+	}
+	if( gun_2 == 12 )
+	{
+		piecenum = mflare2c;
+	}
+	if( gun_2 == 13 )
+	{
+		piecenum = mflare2d;
+	}
+}
+
+//**********************************************************************************
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM_3;
+	set-signal-mask SIG_AIM_3;
+	
+	if ( salvo_3 == 4 )
+	{
+		turn rslv1 to y-axis heading speed <360>;
+		turn rslv1 to x-axis <0.000000> - pitch speed <180>;
+	}
+	if ( salvo_3 == 5 )
+	{
+		turn rslv2 to y-axis heading speed <360>;
+		turn rslv2 to x-axis <0.000000> - pitch speed <180>;
+	}	
+	if ( salvo_3 == 6 )
+	{
+		turn rslv3 to y-axis heading speed <360>;
+		turn rslv3 to x-axis <0.000000> - pitch speed <180>;
+	}	
+	
+	wait-for-turn rslv1 around y-axis;
+	wait-for-turn rslv1 around x-axis;
+	wait-for-turn rslv2 around y-axis;
+	wait-for-turn rslv2 around x-axis;
+	wait-for-turn rslv3 around y-axis;
+	wait-for-turn rslv3 around x-axis;
+
+	start-script RestoreAll();
+	return (1);
+}
+
+FireTertiary()
+{
+	var gun_3_tmp;
+	gun_3_tmp = gun_3;
+	++gun_3;
+	
+	if( gun_3 == 20 )
+	{
+		gun_3 = 14;
+	}
+	if( gun_3_tmp == 14 )
+	{
+		salvo_3 = 4;
+		sleep 150;
+	}	
+	if( gun_3_tmp == 15 )
+	{
+		salvo_3 = 5;
+		sleep 150;
+	}
+	if( gun_3_tmp == 16 )
+	{
+		salvo_3 = 5;
+		sleep 150;
+	}
+	if( gun_3_tmp == 17 )
+	{
+		salvo_3 = 6;
+		sleep 150;
+	}
+	if( gun_3_tmp == 18 )
+	{
+		salvo_3 = 6;
+		sleep 150;
+	}
+	if( gun_3_tmp == 19 )
+	{
+		salvo_3 = 4;
+		sleep 150;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	if( salvo_3 == 4 )
+		piecenum = rtur1;
+	if( salvo_3 == 5 )
+		piecenum = rtur2;
+	if( salvo_3 == 6 )
+		piecenum = rtur3;
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_3 == 14 )
+	{
+		piecenum = rflare1a;
+	}
+	if( gun_3 == 15 )
+	{
+		piecenum = rflare1b;
+	}
+	if( gun_3 == 16 )
+	{
+		piecenum = rflare2a;
+	}
+	if( gun_3 == 17 )
+	{
+		piecenum = rflare2b;
+	}
+	if( gun_3 == 18 )
+	{
+		piecenum = rflare3a;
+	}
+	if( gun_3 == 19 )
+	{
+		piecenum = rflare3b;
+	}
+}
+
+
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+
+Killed(severity, corpsetype)
+{
+	hide lflare1a;
+	hide lflare1b;
+	hide lflare1c;
+	hide lflare2a;
+	hide lflare2b;
+	hide lflare2c;
+	
+	if( onland == 0 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 2;
+			explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode rtur1 type BITMAPONLY | BITMAP1;
+			explode rtur2 type BITMAPONLY | BITMAP5;
+			explode rtur3 type BITMAPONLY | BITMAP5;
+			explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			return (0);
+		}
+		if( severity <= 50 )
+		{
+			corpsetype = 3;
+			explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode rtur1 type BITMAPONLY | BITMAP1;
+			explode rtur2 type BITMAPONLY | BITMAP5;
+			explode rtur3 type BITMAPONLY | BITMAP5;
+			explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			return (0);
+		}
+		if( severity <= 99 )
+		{
+			corpsetype = 4;
+			explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode rtur1 type BITMAPONLY | BITMAP1;
+			explode rtur2 type BITMAPONLY | BITMAP5;
+			explode rtur3 type BITMAPONLY | BITMAP5;
+			explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+			return (0);
+		}
+		corpsetype = 4;
+		explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode rtur1 type BITMAPONLY | BITMAP1;
+		explode rtur2 type BITMAPONLY | BITMAP5;
+		explode rtur3 type BITMAPONLY | BITMAP5;
+		explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+//		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		corpsetype = 1;
+		explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode rtur1 type BITMAPONLY | BITMAP1;
+		explode rtur2 type BITMAPONLY | BITMAP5;
+		explode rtur3 type BITMAPONLY | BITMAP5;
+		explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 3;
+		explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode rtur1 type BITMAPONLY | BITMAP1;
+		explode rtur2 type BITMAPONLY | BITMAP5;
+		explode rtur3 type BITMAPONLY | BITMAP5;
+		explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 4;
+		explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode rtur1 type BITMAPONLY | BITMAP1;
+		explode rtur2 type BITMAPONLY | BITMAP5;
+		explode rtur3 type BITMAPONLY | BITMAP5;
+		explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 4;
+	explode lbar1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode lbar1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode rslv2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode rslv3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode rtur1 type BITMAPONLY | BITMAP1;
+	explode rtur2 type BITMAPONLY | BITMAP5;
+	explode rtur3 type BITMAPONLY | BITMAP5;
+	explode wake1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+}
+	
+	
+	
+	

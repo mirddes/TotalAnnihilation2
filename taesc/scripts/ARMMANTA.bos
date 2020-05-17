@@ -1,0 +1,179 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, stealthed, w1, w2, d1, d2, d3, torp;
+
+static-var  cloaked;
+
+// Signal definitions
+#define SIG_MOVE			2
+#define SIG_FIRE			4
+#define BANK_MORE 80
+#define BANK_LESS 40
+#define BANK_DAMP_SPEED <30>
+#define BANK_REFRESH 300// Put some time long enough for the unit to have travelled a while, but short enough so the script doesn't have a too long reaction time
+#define BANK_SIGNIFICATIVE_SPEED [1]// Actually, it's not a speed, but a distance, the distance covered during BANK_REFRESH. If that distance is too low, the difference between the two xz is deemed too low to get a significative angle out of it. Since half of digit are lost when x and z get packed into xz, any distance under 65536=[0.4] will lose all its significative digits and so will be unuseable.
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent*healthpercent;
+	if( healthpercent < 66 )
+	{
+		emit-sfx 256 | 3 from body;
+		sleep sleeptime;
+		emit-sfx 256 | 3 from d3;
+		if( Rand( 1, 66 ) > healthpercent )
+		{
+			emit-sfx 256 | 3 from d1;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from d3;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from body;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from d2;
+			sleep sleeptime;
+		}
+	}
+	start-script smokeunit();
+}
+
+BankClerck()
+{
+	var present_xz, past_xz, banking_angle;
+	while(1)
+	{
+		present_xz=get PIECE_XZ(base);
+		banking_angle=0;
+		if (get XZ_HYPOT(present_xz - past_xz)>=BANK_SIGNIFICATIVE_SPEED)
+			{
+			banking_angle=(0 - (((get XZ_ATAN(past_xz - present_xz))*BANK_MORE)/BANK_LESS));
+			}
+		turn base to z-axis banking_angle speed BANK_DAMP_SPEED;
+		past_xz=present_xz;
+		sleep BANK_REFRESH;
+	}
+}
+
+Create()
+{
+	dont-cache stealthed;
+	hide body;
+	start-script SmokeUnit();
+	//start-script BankClerck();
+	set ACTIVATION to TRUE;
+	cloaked = 1;
+	Set ARMORED to 1;
+	
+}
+/*
+Activate()
+{
+	hide base;
+	hide tail;
+	hide bridge;
+	show stealthed;
+}
+
+Deactivate()
+{
+	show base;
+	show tail;
+	show bridge;
+	hide stealthed;
+}
+*/
+
+tick()
+{
+	signal SIG_FIRE;
+	set-signal-mask SIG_FIRE;
+	sleep 20500;
+	explode base type BITMAPONLY | BITMAP5;
+//	set ACTIVATION to TRUE;
+	cloaked = 1;
+	hide body;
+	show stealthed;
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from w1;
+		emit-sfx 256 | 3 from w2;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+FirePrimary()
+{
+	if(cloaked == 1)
+	{
+		explode base type BITMAPONLY | BITMAP5;
+//		set ACTIVATION to FALSE;
+		show body;
+		hide stealthed;
+		cloaked = 0;
+	}
+//	gun_1 = !gun_1;
+	start-script tick();
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = torp;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode w1 type BITMAPONLY | BITMAP1;
+		explode w2 type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode w1 type BITMAPONLY | BITMAP1;
+		explode w2 type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode w1 type BITMAPONLY | BITMAP1;
+		explode w2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode w1 type BITMAPONLY | BITMAP1;
+	explode w2 type BITMAPONLY | BITMAP1;
+	explode body type BITMAPONLY | BITMAP1;
+}

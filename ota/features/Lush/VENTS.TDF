@@ -1,0 +1,47 @@
+[LushVent01]
+	{
+	world=lush;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushvents;
+	seqname=geovent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[LushVent02]
+	{
+	world=lush;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushvents;
+	seqname=geovent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[LushVent03]
+	{
+	world=lush;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushvents;
+	seqname=geovent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

@@ -1,0 +1,263 @@
+[CrystalSpire01]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=7;
+	footprintz=7;
+	height=420;
+	filename=crys-spire;
+	seqname=crystalspire01;
+	seqnameshad=crys-spireshad01;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire02]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=240;
+	filename=crys-spire;
+	seqname=crystalspire02;
+	seqnameshad=crys-spireshad02;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire03]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=160;
+	filename=crys-spire;
+	seqname=crystalspire03;
+	seqnameshad=crys-spireshad03;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire04]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=120;
+	filename=crys-spire;
+	seqname=crystalspire04;
+	seqnameshad=crys-spireshad04;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire05]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=8;
+	height=140;
+	filename=crys-spire;
+	seqname=crystalspire05;
+	seqnameshad=crys-spireshad05;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire06]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=8;
+	height=200;
+	filename=crys-spire;
+	seqname=crystalspire06;
+	seqnameshad=crys-spireshad06;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire07]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=7;
+	height=340;
+	filename=crys-spire;
+	seqname=crystalspire07;
+	seqnameshad=crys-spireshad07;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire08]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=8;
+	height=160;
+	filename=crys-spire;
+	seqname=crystalspire08;
+	seqnameshad=crys-spireshad08;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire09]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=7;
+	height=180;
+	filename=crys-spire;
+	seqname=crystalspire09;
+	seqnameshad=crys-spireshad09;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire10]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=100;
+	filename=crys-spire;
+	seqname=crystalspire10;
+	seqnameshad=crys-spireshad10;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[CrystalSpire11]
+	{
+	world=crystal;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=400;
+	filename=crys-spire;
+	seqname=crystalspire11;
+	seqnameshad=crys-spireshad11;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

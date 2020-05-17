@@ -1,0 +1,131 @@
+// Arm rocket truck script
+
+piece base,rocket;
+
+static-var ready, restore_delay;
+
+#define	SIG_AIM	2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armmerl\activatescr.bos"
+#include "..\anim3d\armmerl\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "hitweap.h"
+
+Go()
+	{
+	show rocket;
+	call-script activatescr();
+	ready = TRUE;
+	}
+
+Stop()
+	{
+	ready = FALSE;
+	call-script deactivatescr();
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	ready = FALSE;
+	restore_delay = 3000;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+AimPrimary(heading,pitch)
+	{
+	start-script RequestState( ACTIVE );
+	signal SIG_AIM;				// kill off other aim scripts
+	set-signal-mask SIG_AIM;	// so other scripts can kill us
+	while (!ready)
+		{
+		sleep( 250 );
+		}
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	hide rocket;
+	ready = FALSE;
+	start-script RequestState( INACTIVE );
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=rocket;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode arm type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode door1 type	BITMAPONLY | BITMAP3;
+		explode door2 type	BITMAPONLY | BITMAP4;
+		explode plate type	BITMAPONLY | BITMAP5;
+		explode rocket type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode arm type	FALL | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode door1 type	FALL | BITMAP3;
+		explode door2 type	FALL | BITMAP4;
+		explode plate type	BITMAPONLY | BITMAP5;
+		explode rocket type	SHATTER | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode arm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode plate type	BITMAPONLY | BITMAP5;
+		explode rocket type	SHATTER | BITMAP1;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode arm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode plate type	BITMAPONLY | BITMAP5;
+	explode rocket type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	return( 0 );
+	}

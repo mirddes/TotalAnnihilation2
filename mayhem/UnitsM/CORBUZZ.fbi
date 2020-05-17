@@ -1,0 +1,60 @@
+[UNITINFO]
+{
+UnitName=CORBUZZ;
+Version=1.2;
+Side=CORE;
+Objectname=CORBUZZ;
+Designation=F-MPS4;
+Name=Buzzsaw;
+Description=Rapid Fire Plasma Cannon (6k E per shot);
+FootprintX=5;
+FootprintZ=5;
+BuildCostEnergy=662648;
+BuildCostMetal=38790;
+MaxDamage=6400;
+MaxWaterDepth=0;
+MaxSlope=10;
+EnergyUse=0;
+BuildTime=775800;
+BMcode=0;
+Builder=0;
+ThreeD=1;
+ZBuffer=1;
+NoAutoFire=1;
+SightDistance=300;
+SoundCategory=COR_INT;
+ExplodeAs=ATOMIC_BLAST;
+SelfDestructAs=ATOMIC_BLAST;
+Category=ALL CORE LEVEL3 CTRL_X NOTAIR NOTSUB;
+TEDClass=FORT;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+YardMap=
+.ooo.
+ooooo
+ooooo
+ooooo
+.ooo.;
+Corpse=corbuzz_dead;
+GermanName=Kettensäge;
+GermanDescription=Schnellfeuer-Plasmakanone;
+UnitNumber=297;
+FrenchName=Scie Bourdonnante;
+Frenchdescription=Canon Plasma Tir Rapide;
+firestandorders=1;
+StandingFireOrder=0;
+canstop=1;
+SpanishName=Buzzsaw;
+SpanishDescription=Cañón de plasma rápido;
+ItalianName=Buzzsaw;
+ItalianDescription=Cannone rapido al plasma;
+ShootMe=1;
+DefaultMissionType=GUARD_NOMOVE;
+buildangle=8192;
+canattack=1;
+Weapon1=corbuzz_weapon;
+wpri_BadTargetCategory=CTRL_V;
+BadTargetCategory=LEVEL1;
+NoChaseCategory=ALL;
+ActivateWhenBuilt=1;
+onoffable=1;
+}

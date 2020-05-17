@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Acid Foursome;
+	missiondescription=13 X 13  Open plains and small lakes.;
+	planet=Acid;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=1000;
+	maxwindspeed=2000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=1;
+	waterdamage=10;
+	numplayers=2, 4;
+	size=13 x 13;
+	memory=32 mb;
+	useonlyunits=Acid Foursome.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Acid;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=256;
+				ZPos=272;
+				}
+			[special1]
+				{
+				specialwhat=StartPos3;
+				XPos=5920;
+				ZPos=256;
+				}
+			[special2]
+				{
+				specialwhat=StartPos2;
+				XPos=5904;
+				ZPos=5936;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=208;
+				ZPos=5936;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=2832;
+				ZPos=432;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=2784;
+				ZPos=1984;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=2720;
+				ZPos=3840;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=2864;
+				ZPos=5872;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=320;
+				ZPos=2448;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=5376;
+				ZPos=2976;
+				}
+			}
+		}
+	}

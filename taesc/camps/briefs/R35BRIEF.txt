@@ -1,0 +1,10 @@
+Mission R35: Rainforest Construction
+
+Not expecting your arrival, the Arm have moved only a light screen of units into the area.  Build up our energy supply and destroy all enemy forces you come across.
+
+Your orders are to find the steam vent somewhere to the south of the Snake's Spine River and build a Geothermal Powerplant.
+Suggestions:
+You will have to build a factory in order to create a construction unit to build the Geothermal Powerplant.  Also use the factory to build anti-aircraft units as enemy aircraft have been sighted in the area.
+
+Battle Tactics:
+Select all offensive aircraft using CTRL+P (for select all VToLs with weapons).

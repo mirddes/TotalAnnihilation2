@@ -1,0 +1,1219 @@
+[anemone01]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie01;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone02]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie02;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone03]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie03;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone04]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie04;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone05]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie05;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone06]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie06;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone07]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie07;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone08]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie08;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone09]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie09;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone10]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie10;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone11]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie11;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone12]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie12;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone13]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie13;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone14]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie14;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone15]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie15;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone16]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie16;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone17]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie17;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone18]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie18;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone19]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie19;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone20]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie20;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone21]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie21;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone22]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie22;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone23]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie23;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone24]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie24;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone25]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie25;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone26]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie26;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone27]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie27;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone28]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie28;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone29]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie29;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone30]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie30;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone31]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie31;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone32]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie32;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone33]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie33;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone34]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie34;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone35]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie35;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone36]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie36;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone37]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie37;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone38]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie38;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone39]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie39;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone40]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie40;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone41]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie41;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone42]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie42;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone43]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie43;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone44]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie44;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone45]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie45;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone46]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie46;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone47]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie47;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone48]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie48;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone49]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie49;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone50]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie50;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone51]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie51;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone52]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie52;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[anemone53]
+	{
+	world=water;
+	description=Anemone;
+	category=anemones;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=anemones;
+	seqname=anemonie53;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

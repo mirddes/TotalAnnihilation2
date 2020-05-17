@@ -1,0 +1,14 @@
+MISSIONE 3.0003ARME
+Recuperare le unità Spider ATV. &YUna Spider deve sopravvivere.& Portare una di esse alla base.
+
+PRIORITÀ 1
+Un gruppo di Spider ATV sperimentali è stato isolato dietro la linea del nemico; tali unità sono munite di un’arma paralizzante, ma sarà compito vostro liberare la strada della loro fuga. Questa nuova tecnologia non deve cadere nelle mani sbagliate. 
+
+INFORMAZIONI UTILI
+L’esercito Core ha mandato in avanscoperta numerose pattuglie: costruite rapidamente la vostra base e recuperate un carro armato Spider. 
+
+&G Le nuove tecnologie accelerano il recupero dell’energia e dei metalli.&
+
+
+FINE
+

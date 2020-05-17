@@ -1,0 +1,35 @@
+[armarl_dead]
+{
+world=All Worlds;
+description=Warden Wreckage;
+category=arm_corpses;
+object=armarl_dead;
+featuredead=armarl_heap;
+footprintx=3;
+footprintz=3;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=432;
+damage=956;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armarl_heap]
+{
+world=All Worlds;
+description=Warden Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=216;
+damage=956;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

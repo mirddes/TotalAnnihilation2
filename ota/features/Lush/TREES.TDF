@@ -1,0 +1,829 @@
+[LushTree01]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+	seqname=talltree1;
+	seqnameshad=tallshadow1;
+	seqnamereclamate=talltree1rec;
+	energy=250;
+
+	seqnameburn=tree1burn;
+	seqnameburnshad=;
+	featureburnt=Lush01crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=talltree3boom;
+	featuredead=tallsmudge;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tallsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush01crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+
+	seqname=talltree1crisp;
+	seqnameshad=crispshadow1;
+	seqnamereclamate=talltree1crec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+
+	seqnamedie=talltree2cboom;
+	featuredead=tallsmudge;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tallsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush02]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+	seqname=talltree2;
+	seqnameshad=tallshadow2;
+	seqnamereclamate=talltree2rec;
+    	energy=250;
+
+	seqnameburn=tree2burn;
+	
+	featureburnt=Lush02crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=talltree3boom;
+	featuredead=tallsmudge2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tallsmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush02crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+
+	seqname=talltree2crisp;
+	seqnameshad=crispshadow2;
+	seqnamereclamate=talltree2crec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+
+	seqnamedie=talltree2cboom;
+	featuredead=tallsmudge2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tallsmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush03]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+	seqname=talltree3;
+	seqnameshad=tallshadow3;
+	seqnamereclamate=talltree3rec;
+    	energy=250;
+
+	seqnameburn=tree3burn;
+	
+	featureburnt=Lush03crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=40;
+	burnweapon=TreeBurn;
+
+	seqnamedie=talltree3boom;
+	featuredead=tallsmudge;	
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tallsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[Lush03crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tall-tree;
+
+	seqname=talltree3crisp;
+	seqnameshad=crispshadow3;
+	seqnamereclamate=talltree3crec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+
+	seqnamedie=talltree2cboom;
+	featuredead=tallsmudge;	
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tallsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush04]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+	seqname=tree04;
+	seqnameshad=treeshadow04;
+	seqnamereclamate=tree04rec;
+    	energy=250;
+
+	seqnameburn=tree04burn;
+	
+	featureburnt=Lush04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=50;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree05boom;
+	featuredead=shortsmudge;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=shortsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[Lush04crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+
+	seqname=tree04crisp;
+	seqnameshad=crispshadow04;
+	seqnamereclamate=tree04crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree06crispboom;
+	featuredead=shortsmudge;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=shortsmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush05]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+	seqname=tree05;
+	seqnameshad=treeshadow05;
+	seqnamereclamate=tree05rec;
+  	energy=250;
+
+	seqnameburn=tree05burn;
+	
+	featureburnt=Lush05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=50;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree05boom;
+	featuredead=shortsmudge2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=shortsmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush05crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+
+	seqname=tree05crisp;
+	seqnameshad=crispshadow05;
+	seqnamereclamate=tree05crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree06crispboom;
+	featuredead=shortsmudge2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=shortsmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush06]
+	{
+	world=lush;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+	seqname=tree06;
+	seqnameshad=treeshadow06;
+	seqnamereclamate=tree06rec;
+    	energy=250;
+
+	seqnameburn=tree06burn;
+	
+	featureburnt=Lush06crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=50;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree05boom;
+	featuredead=shortsmudge3;	
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=shortsmudge3;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush06crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=short-tree;
+
+	seqname=tree06crisp;
+	seqnameshad=crispshadow06;
+	seqnamereclamate=tree06crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree06crispboom;
+	featuredead=shortsmudge3;	
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=shortsmudge3;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush07]
+	{
+	world=lush;
+	description=Oolok Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+	seqname=tree07;
+	seqnameshad=treeshadow07;
+	seqnamereclamate=tree07rec;
+    	energy=150;
+	metal=50;
+
+	seqnameburn=tree07burn;
+	seqnameburnshad=;
+	featureburnt=Lush07crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree07boom;
+	featuredead=tubertreesmudge2;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush07crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+
+	seqname=tree07crisp;
+	seqnameshad=crispshadow07;
+	seqnamereclamate=tree07crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree09crispboom;
+	featuredead=tubertreesmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush08]
+	{
+	world=lush;
+	description=Oolok Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+	seqname=tree08;
+	seqnameshad=treeshadow08;
+	seqnamereclamate=tree08rec;
+    	energy=150;
+	metal=50;
+
+	seqnameburn=tree08burn;
+	seqnameburnshad=;
+	featureburnt=Lush08crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree07boom;
+	featuredead=tubertreesmudge2;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush08crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+
+	seqname=tree08crisp;
+	seqnameshad=crispshadow08;
+	seqnamereclamate=tree08crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree09crispboom;
+	featuredead=tubertreesmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush09]
+	{
+	world=lush;
+	description=Oolok Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+	seqname=tree09;
+	seqnameshad=treeshadow09;
+	seqnamereclamate=tree09rec;
+    	energy=150;
+	metal=50;
+
+	seqnameburn=tree09burn;
+	seqnameburnshad=;
+	featureburnt=Lush09crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=70;
+	burnweapon=TreeBurn;
+
+	seqnamedie=tree07boom;
+	featuredead=tubertreesmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Lush09crisp]
+	{
+	world=lush;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=tuber-tree;
+
+	seqname=tree09crisp;
+	seqnameshad=crispshadow09;
+	seqnamereclamate=tree09crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=tree09crispboom;
+	featuredead=tubertreesmudge2;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=tubertreesmudge;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[tallsmudge]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=tall-tree;
+	seqname=tallsmudge;
+
+	featuredead=tallsmudge;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[tallsmudge2]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=tall-tree;
+	seqname=tallsmudge2;
+
+	featuredead=tallsmudge2;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[shortsmudge]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=short-tree;
+	seqname=shortsmudge;
+
+	featuredead=shortsmudge;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[shortsmudge2]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=short-tree;
+	seqname=shortsmudge2;
+
+	featuredead=shortsmudge2;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[shortsmudge3]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=short-tree;
+	seqname=shortsmudge3;
+
+	featuredead=shortsmudge3;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[tubertreesmudge]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=tuber-tree;
+	seqname=tubertreesmudge;
+
+	featuredead=tubertreesmudge;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[tubertreesmudge2]
+	{
+	world=lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=tuber-tree;
+	seqname=tubertreesmudge2;
+
+	featuredead=tubertreesmudge2;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+

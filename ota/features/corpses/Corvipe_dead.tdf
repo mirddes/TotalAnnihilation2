@@ -1,0 +1,38 @@
+[Corvipe_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=Corvipe_dead;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=1717;
+	damage=1502;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[Corvipe_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2f;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=859;
+	damage=751;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+

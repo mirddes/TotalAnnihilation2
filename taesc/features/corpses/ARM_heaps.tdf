@@ -1,0 +1,2425 @@
+
+[armaap_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6a;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=863;
+	damage=693;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+[armahp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=8;
+	footprintz=7;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=856;
+	damage=1127;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armalab_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=783;
+	damage=967;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armamd_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5b;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=323;
+	damage=780;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armanni_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1402;
+	damage=1938;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armap_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6b;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=191;
+	damage=462;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armarad_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=31;
+	damage=30;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armarl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3f;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=301;
+	damage=1431;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armasp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=106;
+	damage=425;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armavp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7d;
+	footprintx=7;
+	footprintz=7;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=775;
+	damage=1008;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armbrtha_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1506;	
+	damage=2025;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armehp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=18;
+	footprintz=18;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2750;
+	damage=2817;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armelab_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7b;
+	footprintx=10;
+	footprintz=10;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=3058;
+	damage=2418;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armemp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=901;
+	damage=575;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfab_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=9;
+	footprintz=9;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=3007;
+	damage=1734;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armestor_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=48;
+	damage=250;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfield_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=380;
+	damage=947;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armflak_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=160;
+	damage=476;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1539;				
+	damage=968;				
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armgant_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=armgant_dead2;
+	footprintx=18;
+	footprintz=18;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2830;
+	damage=2522;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armgate_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6b;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=336;
+	damage=718;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armgen_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=373;
+	damage=420;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armgeo_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=130;
+	damage=220;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armguard_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=487;
+	damage=1981;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhlt_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=146;
+	damage=768;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=8;
+	footprintz=7;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=233;
+	damage=751;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armjammer_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=97;
+	damage=46;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armlab_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5b;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=155;
+	damage=645;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armllt_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=24;
+	damage=187;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmakr_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=14;
+	damage=36;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmex_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3b;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=12;
+	damage=42;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmmkr_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=297;
+	damage=400;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmoho_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=188;
+	damage=786;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmstor_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4e;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=76;
+	damage=332;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armomni_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=645;
+	damage=643;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armrad_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=12;
+	damage=12;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armrl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=22;
+	damage=73;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsbertha_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=12;
+	footprintz=12;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=13005;		
+	damage=3375;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7b;
+	footprintx=10;
+	footprintz=10;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=4617;
+	damage=2906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armshgen_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1268;
+	damage=855;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsilo_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2020;
+	damage=862;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsmb_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2760;
+	damage=4056;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsms_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7a;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=343;
+	damage=1993;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsolar_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5b;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=36;
+	damage=65;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armstun_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5d;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1245;
+	damage=2115;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armtech_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7b;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1253;
+	damage=1499;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwes_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=57;
+	damage=1447;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1777;
+	damage=3078;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwmex_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=19;
+	damage=330;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwmfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=164;
+	damage=640;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwmmm_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=405;
+	damage=2000;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armuwmmoho_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=724;
+	damage=944;
+	reclaimable=1;
+	seqnamereclamate=tree1reclamate;
+	}
+[armveil_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=127;
+	damage=147;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armvp_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6a;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=163;
+	damage=672;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armwin_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=15;
+	damage=49;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+
+//MOBILES
+
+[armaabot_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=206;
+	damage=481;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armach_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=158;
+	damage=250;
+	reclaimable=1;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armack_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=111;
+	damage=208;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armacv_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=121;
+	damage=376;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armafav_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=85;
+	damage=270;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armah_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=30;
+	damage=187;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+}
+[armamph_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=96;
+	damage=240;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+}
+[armanac_heap]
+{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=75;
+	damage=458;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+}
+[armasam_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=480;
+	damage=923;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armaser_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=1x1a;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=36;
+	damage=113;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armaspid_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6a;
+	footprintx=6;
+	footprintz=6;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=3600;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armbull_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3f;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=175;
+	damage=1313;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armcbt_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1080;
+	damage=4287;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armcerb_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4b;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2160;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armcharger_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=465;
+	damage=722;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armch_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=68;
+	damage=180;
+	reclaimable=1;
+
+	seqnamereclamate=tree1reclamate;
+	}
+[armck_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=45;
+	damage=175;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armcroc_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=111;
+	damage=922;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armcv_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=54;
+	damage=239;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armech_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=281;
+	damage=462;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armeck_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=202;
+	damage=270;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armecv_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4f;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=216;
+	damage=604;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfark_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=125;
+	damage=207;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfast_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2e;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=56;
+	damage=148;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfav_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2f;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=9;
+	damage=24;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfido_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=124;
+	damage=625;	
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+
+[armflash_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=26;
+	damage=150;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armflea_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=1x1a;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=31;
+	damage=18;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+
+[armham_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2e;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=41;
+	damage=180;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armharl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=272;
+	damage=548;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhart_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=330;
+	damage=585;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhbats_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7c;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=5636;
+	damage=5040;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhcar_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=367;
+	damage=990;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhcrus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7d;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2496;
+	damage=5906;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhflak_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=189;
+	damage=412;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhjam_heap]
+	{
+	world=All Worlds;
+	description=Metal Shards;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	blocking=0;
+	hitdensity=5;
+	metal=45;
+	damage=125;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhroy_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=746;
+	damage=3150;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhspid_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=565;
+	damage=3231;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhstun_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=206;
+	damage=656;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhtank_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=362;
+	damage=1558;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+
+[armjam_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3b;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=48;
+	damage=172;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armjav_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=67;
+	damage=208;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armjeth_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=29;
+	damage=117;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armlatnk_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=110;
+	damage=412;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armlgtnk_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1620;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armlh_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=56;
+	damage=208;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmanni_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=488;
+	damage=1625;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmark_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=23;
+	damage=108;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmart_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3e;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=98;
+	damage=393;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmav_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2e;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=163;
+	damage=435;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmbt_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4c;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=720;
+	damage=5250;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmcv_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7c;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=5780;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmech_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=6936;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmerl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3f;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=127;
+	damage=323;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmh_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=97;
+	damage=135;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armmlv_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3b;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=43;
+	damage=300;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armnh_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=43;
+	damage=35;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armnova_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1922;
+	damage=2420;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armpw_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2f;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=13;
+	damage=75;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armrock_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=31;
+	damage=162;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsam_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=32;
+	damage=243;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armscab_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=258;
+	damage=526;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armseer_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=21;
+	damage=180;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsh_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=18;
+	damage=50;
+	reclaimable=1;
+
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsiege_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=3060;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armsnipe_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=233;
+	damage=1200;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armspid_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=71;
+	damage=225;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armspot_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=94;
+	damage=195;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armspy_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=128;
+	damage=67;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armstump_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=48;
+	damage=532;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armst_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3a;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=131;
+	damage=541;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armtsub_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=6x6b;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=675;
+	damage=5062;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armvcar_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7c;
+	footprintx=11;
+	footprintz=11;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2843;
+	damage=5906;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armwar_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=65;
+	damage=372;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armyork_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=129;
+	damage=465;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armzeus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2e;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=100;
+	damage=711;		
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+
+//VTOLS
+
+
+[armaca_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2a;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=135;
+	damage=120;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armatlas_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3c;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=26;
+	damage=75;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armbrawl_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=117;
+	damage=517;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armca_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2c;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=60;
+	damage=70;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armfig_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2b;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=24;
+	damage=122;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armhawk_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2f;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=71;
+	damage=191;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armlance_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5d;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=189;
+	damage=462;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armnomad_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5a;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=1240;
+	damage=1032;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armpeep_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2d;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=10;
+	damage=20;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armpnix_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=2x2e;
+	footprintx=2;
+	footprintz=2;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=156;
+	damage=470;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}
+[armthund_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=3x3d;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=35;
+	damage=120;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	  seqnamereclamate=tree1reclamate;
+	}

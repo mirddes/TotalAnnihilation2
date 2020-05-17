@@ -1,0 +1,49 @@
+[Generic Unit]
+	{
+	description = Just Plain 'ol boring units;
+	}
+
+[Plant]
+	{
+	description = Unit Creation plant;
+	}
+
+[Vtol]
+	{
+	description = Some type of units;
+	}
+
+[KBOT]
+	{
+	description = Some type of units;
+	}
+
+[Ship]
+	{
+	description = Some type of units;
+	}
+
+[Tank]
+	{
+	description = Some type of units;
+	}
+
+[Special]
+	{
+	description = Some type of units;
+	}
+
+[Metal]
+	{
+	description = Some type of units;
+	}
+
+[Energy]
+	{
+	description = Some type of units;
+	}
+
+[Underwater]
+	{
+	description = Some type of units;
+	}

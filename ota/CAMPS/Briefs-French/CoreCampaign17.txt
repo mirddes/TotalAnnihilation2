@@ -1,0 +1,7 @@
+MISSION 17.1CORE
+Détruisez les porte-avions ennemis.
+
+STATISTIQUES DE PROBABILITES:
+L'océan de Nigh Pilago est infesté d'unités navales ennemies (&R83%, marge d'erreur:1%&). Nous avons réussi à intercepter des informations qui indiquent que l'Arm possède un nouveau type de porte-avions surpuissant (&R86%, marge d'erreur:4%&). Ce vaisseau est non seulement capable de réparer des unités volantes, mais il peut aussi produire une quantité impressionnante d'énergie (&R69%, marge d'erreur:5%&). Eliminez tous les porte-avions que vous trouverez.
+
+Exécution

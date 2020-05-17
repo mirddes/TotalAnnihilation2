@@ -1,0 +1,339 @@
+[ARMATLAS] {}
+[ARMFIG] {}
+[ARMPEEP] {}
+[ARMTHUND] {}
+
+[ARMAWAC] {}
+[ARMBRAWL] {}
+[ARMHAWK] {}
+[ARMLANCE] {}
+[ARMPNIX] {}
+
+[ARMANAC] {}
+[ARMAH] {}
+[ARMMH] {}
+[ARMSH] {}
+[ARMTHOVR] {}
+
+[ARMFLEA] {}
+[ARMHAM] {}
+[ARMJETH] {}
+[ARMPW] {}
+[ARMROCK] {}
+[ARMWAR] {}
+
+[ARMAMPH] {}
+[ARMASER] {}
+[ARMCOM] {}
+[ARMDECOM] {}
+[ARMFARK] {}
+[ARMFAST] {}
+[ARMFIDO] {}
+[ARMMARK] {}
+[ARMMAV] {}
+[ARMRECTR] {}
+[ARMSNIPE] {}
+[ARMSPY] {}
+[ARMVADER] {}
+[ARMZEUS] {}
+
+[ARMPT] {}
+[ARMROY] {}
+[ARMSS] {}
+[ARMSUB] {}
+[ARMTSHIP] {}
+
+[ARMAAS] {}
+[ARMBATS] {}
+[ARMCARRY] {}
+[ARMCRUS] {}
+[ARMMSHIP] {}
+[ARMSCRAM] {}
+[ARMSJAM] {}
+[ARMSUBK] {}
+
+[ARMSEAP] {}
+[ARMSEHAK] {}
+[ARMSFIG] {}
+
+[ARMFAV] {}
+[ARMFLASH] {}
+[ARMMLV] {}
+[ARMSAM] {}
+[ARMSTUMP] {}
+
+[ARMBULL] {}
+[ARMCROC] {}
+[ARMJAM] {}
+[ARMLATNK] {}
+[ARMMANNI] {}
+[ARMLMART] {}
+[ARMMERL] {}
+[ARMSCAB] {}
+[ARMSCORP] {}
+[ARMSEER] {}
+[ARMSPID] {}
+[ARMYORK] {}
+
+[ARMDRAG] {}
+[ARMESTOR] {}
+[ARMGEO] {}
+[ARMGUARD] {}
+[ARMHLT] {}
+[ARMLLT] {}
+[ARMMAKR] {}
+[ARMMEX] {}
+[ARMMSTOR] {}
+[ARMRAD] {}
+[ARMRL] {}
+[ARMSOLAR] {}
+[ARMWIN] {}
+
+[ARMAMB] {}
+[ARMAMD] {}
+[ARMANNI] {}
+[ARMARAD] {}
+[ARMASP] {}
+[ARMBRTHA] {}
+[ARMCKFUS] {}
+[ARMEMP] {}
+[ARMFLAK] {}
+[ARMFORT] {}
+[ARMFUS] {}
+[ARMMMKR] {}
+[ARMMOHO] {}
+[ARMSILO] {}
+[ARMTARG] {}
+[ARMVULC] {}
+
+[ARMBEAC] {}
+[ARMDEV1] {}
+[ARMGATE] {}
+
+[ARMMINE1] {}
+[ARMMINE2] {}
+[ARMMINE3] {}
+[ARMMINE4] {}
+[ARMMINE5] {}
+[ARMMINE6] {}
+
+[ARMFDRAG] {}
+[ARMFHLT] {}
+[ARMFMKR] {}
+[ARMFRT] {}
+[ARMSONAR] {}
+[ARMTIDE] {}
+[ARMTL] {}
+[ARMUWES] {}
+[ARMUWMEX] {}
+[ARMUWMS] {}
+
+[ARMASON] {}
+[ARMATL] {}
+[ARMUWFUS] {}
+
+[ARMAAP] {}
+[ARMALAB] {}
+[ARMASY] {}
+[ARMAVP] {}
+[ARMHP] {}
+[ARMPLAT] {}
+
+[ARMAP] {}
+[ARMLAB] {}
+[ARMSY] {}
+[ARMVP] {}
+
+[ARMACA] {}
+[ARMACK] {}
+[ARMACSUB] {}
+[ARMACV] {}
+[ARMCH] {}
+[ARMCSA] {}
+
+[ARMCA] {}
+[ARMCK] {}
+[ARMCS] {}
+[ARMCV] {}
+
+[CORBVALK] {}
+[CORFINK] {}
+[CORSHAD] {}
+[CORVALK] {}
+[CORVENG] {}
+
+[CORAPE] {}
+[CORAWAC] {}
+[CORHURC] {}
+[CORTITAN] {}
+[CORVAMP] {}
+
+[CORAH] {}
+[CORMH] {}
+[CORSH] {}
+[CORSNAP] {}
+[CORTHOVR] {}
+
+[CORAK] {}
+[CORCRASH] {}
+[CORSTORM] {}
+[CORTHUD] {}
+
+[CORAMPH] {}
+[CORCAN] {}
+[CORCOM] {}
+[CORDECOM] {}
+[CORFAST] {}
+[CORKROG] {}
+[CORHRK] {}
+[CORMORT] {}
+[CORNECRO] {}
+[CORPYRO] {}
+[CORROACH] {}
+[CORSCORP] {}
+[CORSNIPE] {}
+[CORSPEC] {}
+[CORSPY] {}
+[CORSUMO] {}
+[CORVOYR] {}
+
+[CORPT] {}
+[CORROY] {}
+[CORSS] {}
+[CORSUB] {}
+[CORTSHIP] {}
+
+[CORARCH] {}
+[CORBATS] {}
+[CORCARRY] {}
+[CORCRUS] {}
+[CORMSHIP] {}
+[CORSHARK] {}
+[CORSJAM] {}
+[CORSSUB] {}
+
+[CORFAV] {}
+[CORFING] {}
+[CORGATOR] {}
+[CORLEVLR] {}
+[CORMIST] {}
+[CORMLV] {}
+[CORRAID] {}
+[CORTRUCK] {}
+
+[CORETER] {}
+[CORGOL] {}
+[CORMABM] {}
+[CORMART] {}
+[CORREAP] {}
+[CORSEAL] {}
+[CORSENT] {}
+[CORVRAD] {}
+[CORBCRAT] {}
+
+[CORDRAG] {}
+[CORESTOR] {}
+[CORGEO] {}
+[CORHLT] {}
+[CORLLT] {}
+[CORMAKR] {}
+[CORMEX] {}
+[CORMSTOR] {}
+[CORPLAS] {}
+[CORPUN] {}
+[CORRAD] {}
+[CORRL] {}
+[CORSOLAR] {}
+[CORVIPE] {}
+[CORWIN] {}
+
+[CORARAD] {}
+[CORASP] {}
+[CORBUZZ] {}
+[CORCKFUS] {}
+[CORDOOM] {}
+[CORFMD] {}
+[CORFLAK] {}
+[CORFORT] {}
+[CORFUS] {}
+[CORINT] {}
+[CORMMKR] {}
+[CORMOHO] {}
+[CORSILO] {}
+[CORTARG] {}
+[CORTOAST] {}
+[CORTRON] {}
+
+[CORBEAC] {}
+[CORBUILD] {}
+[CORDEV1] {}
+[CORGATE] {}
+
+[CORMINE1] {}
+[CORMINE2] {}
+[CORMINE3] {}
+[CORMINE4] {}
+[CORMINE5] {}
+[CORMINE6] {}
+
+[CORFDRAG] {}
+[CORFHLT] {}
+[CORFMKR] {}
+[CORFRT] {}
+[CORSONAR] {}
+[CORTIDE] {}
+[CORTL] {}
+[CORUWES] {}
+[CORUWMEX] {}
+[CORUWMS] {}
+
+[CORASON] {}
+[CORATL] {}
+[CORUWFUS] {}
+
+[CORAAP] {}
+[CORALAB] {}
+[CORASY] {}
+[CORAVP] {}
+[CORGANT] {}
+[CORHP] {}
+[CORPLAT] {}
+
+[CORAP] {}
+[CORLAB] {}
+[CORSY] {}
+[CORVP] {}
+
+[CORACA] {}
+[CORACK] {}
+[CORACSUB] {}
+[CORACV] {}
+[CORCH] {}
+[CORCSA] {}
+
+[CORCA] {}
+[CORCK] {}
+[CORCS] {}
+[CORCV] {}
+
+[AAIEMP] {}
+[AAISILO] {}
+[ARMAIVP] {}
+
+[AAIBRAWL] {}
+[AAIFIG] {}
+[AAIHAWK] {}
+[AAILANCE] {}
+[AAIPNIX] {}
+[AAITHUND] {}
+
+[CAISILO] {}
+[CAITRON] {}
+[CAIGANT] {}
+
+[CAIAPE] {}
+[CAIHURC] {}
+[CAISHAD] {}
+[CAITITAN] {}
+[CAIVAMP] {}
+[CAIVENG] {}

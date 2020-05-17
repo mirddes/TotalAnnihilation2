@@ -1,0 +1,242 @@
+#define TA
+
+piece base, prism, fire1, fire2, fire3, fire4, armbase, armgun, laser, glow, hole;
+
+static-var side, newheading, prismhit, prismlife, sidestomove;
+
+#include "exptype.h"
+
+Create()
+{
+	side=1;
+	newheading=0;
+	prismhit=1;
+	prismlife=1;
+	hide laser;
+	dont-cache laser;
+	dont-shade armbase;
+	dont-shade armgun;
+	dont-shade prism;
+	while (get BUILD_PERCENT_LEFT)
+		{
+		sleep 400;
+		}
+	prismhit=0;
+	}
+	
+QueryPrimary(piecenum)
+	{
+	if (side==1)
+		{
+		piecenum=fire1;
+		}
+	if (side==2)
+		{
+		piecenum=fire2;
+		}
+	if (side==3)
+		{
+		piecenum=fire3;
+		}
+	}
+	
+AimFromPrimary(piecenum)
+{
+	piecenum=prism;
+}
+	
+AimPrimary(heading,pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while (!prismlife)
+	{
+		sleep 100;
+	}
+	newheading=heading + ((4 - side) * <120>);
+	newheading=newheading - ((newheading / <360>) * <360>);
+	if ((newheading <= <180>) && (newheading > <60>))
+		{
+		sidestomove=1;
+		}
+	if ((newheading < <300>) && (newheading > <180>))
+		{
+		sidestomove = -1;
+		}
+	if (sidestomove)
+		{
+		if (side==1)
+			{
+			if (sidestomove==1)
+				{
+				turn armbase to y-axis <60> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [7.838934] speed [50];
+				move armbase to z-axis [13.413002] speed [86];
+				wait-for-move armbase along x-axis;
+				wait-for-move armbase along z-axis;
+				turn armbase to y-axis <120> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=2;
+				}
+			if (sidestomove== -1)
+				{
+				turn armbase to y-axis <300> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [-7.838934] speed [50];
+				move armbase to z-axis [13.413002] speed [86];
+				wait-for-move armbase along x-axis;
+				wait-for-move armbase along z-axis;
+				turn armbase to y-axis <240> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=3;
+				}
+			sidestomove=0;
+			}
+		if (side==2)
+			{
+			if (sidestomove==1)
+				{
+				turn armbase to y-axis <180> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [-7.838934] speed [100];
+				wait-for-move armbase along x-axis;
+				turn armbase to y-axis <240> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=3;
+				}
+			if (sidestomove== -1)
+				{
+				turn armbase to y-axis <60> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [0] speed [50];
+				move armbase to z-axis [0] speed [86];
+				wait-for-move armbase along x-axis;
+				wait-for-move armbase along z-axis;
+				turn armbase to y-axis <0> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=1;
+				}
+			sidestomove=0;
+			}
+		if (side==3)
+			{
+			if (sidestomove==1)
+				{
+				turn armbase to y-axis <300> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [0] speed [50];
+				move armbase to z-axis [0] speed [86];
+				wait-for-move armbase along x-axis;
+				wait-for-move armbase along z-axis;
+				turn armbase to y-axis <0> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=1;
+				}
+			if (sidestomove== -1)
+				{
+				turn armbase to y-axis <180> speed <100>;
+				wait-for-turn armbase around y-axis;
+				move armbase to x-axis [7.838934] speed [100];
+				wait-for-move armbase along x-axis;
+				turn armbase to y-axis <120> speed <100>;
+				wait-for-turn armbase around y-axis;
+				side=2;
+				}
+			sidestomove=0;
+			}		
+		}	
+	return (TRUE);
+	}
+	
+FirePrimary()
+	{
+	show laser;
+	sleep 300;
+	hide laser;
+	}
+	
+QuerySecondary(piecenum)
+	{
+	piecenum=fire4;
+	}
+	
+AimFromSecondary(piecenum)
+	{
+	piecenum=prism;
+	}
+	
+AimSecondary(heading,pitch)
+	{
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	while (prismlife)
+		{
+		sleep 100;
+		}
+	turn armgun to y-axis heading now;
+	turn armgun to x-axis (0 - pitch) speed <150>;
+	wait-for-turn armgun around x-axis;
+	return (TRUE);
+	}
+	
+HitByWeapon()
+{
+	if (!prismhit)
+	{
+		prismhit = 1;
+		++prismlife;
+		if( prismlife > 10 )
+		{
+			set ACTIVATION to TRUE;
+			prismlife = 0;
+			set ARMORED to TRUE;
+			explode prism type SHATTER | BITMAP5;
+			explode prism type SHATTER | BITMAP5;
+			explode prism type SHATTER | BITMAP5;
+			explode prism type SHATTER | BITMAP5;
+			explode prism type SHATTER | BITMAP5;
+			move prism to y-axis [-15] now;
+			dont-cache hole;
+			dont-cache glow;
+			sleep 4000;
+			set ACTIVATION to FALSE;
+			cache glow;
+			cache hole;
+			move prism to y-axis [0] speed [5];
+			show prism;
+			wait-for-move prism along y-axis;
+			set ARMORED to FALSE;
+			prismlife=1;
+			turn armgun to y-axis <0> now;
+		}
+		sleep 33;
+		prismhit=0;
+	}
+}
+			
+	
+SweetSpot(piecenum)
+{
+	piecenum=fire1;
+}
+	
+Killed(severity,corpsetype)
+{
+	if (severity <= 50)
+	{
+		corpsetype=1;
+	}
+	if (severity > 50)
+	{
+		corpsetype=3;
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode prism type SHATTER | BITMAP5;
+	explode prism type SHATTER | BITMAP5;
+	explode prism type SHATTER | BITMAP5;
+	explode prism type SHATTER | BITMAP5;
+	explode prism type SHATTER | BITMAP5;
+}

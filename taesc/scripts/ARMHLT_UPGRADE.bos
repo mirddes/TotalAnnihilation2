@@ -1,0 +1,27 @@
+piece  base, house, hole, height;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+
+Create()
+	{
+		set ARMORED to 1;
+		turn house to y-axis <60> now;
+		dont-shade house;
+		dont-shade hole;
+		move house to y-axis [10] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1;
+		}
+		hide house;
+		hide hole;
+	}
+
+SweetSpot(piecenum)
+{
+	piecenum = house;
+}	
+
+//3.174558

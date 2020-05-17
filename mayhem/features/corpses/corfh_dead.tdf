@@ -1,0 +1,34 @@
+[corfh_DEAD]
+{
+world=All Worlds;
+description=Slugger Wreckage;
+category=core_corpses;
+object=corfh_dead;
+featuredead=corfh_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=758;
+damage=1820;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfh_HEAP]
+{
+world=All Worlds;
+description=Slugger Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+blocking=0;
+hitdensity=5;
+metal=379;
+damage=1838;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

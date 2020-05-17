@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=Evad River Confluence;
+	missiondescription=11 X 10 map.  Intermittent winds;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=0;
+	maxwindspeed=2000;
+	gravity=112;
+	numplayers=2, 3;
+	size=11 x 10;
+	memory=24 mb;
+	useonlyunits=Evad River Confluence.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=5136;
+				ZPos=1360;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=2432;
+				ZPos=4192;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=1280;
+				ZPos=768;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=128;
+				ZPos=3792;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=5264;
+				ZPos=4720;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=3152;
+				ZPos=176;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=2048;
+				ZPos=192;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=1168;
+				ZPos=4752;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=5424;
+				ZPos=2928;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=2944;
+				ZPos=4672;
+				}
+			}
+		}
+	}

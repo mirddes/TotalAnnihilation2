@@ -1,0 +1,10 @@
+MISSIONE 18.004ARMR
+Le forze Core hanno preso degli ostaggi! Distruggete tutti gli avversari per vendicarli!
+
+&YPRIORITÀ&
+L’esercito Core ha catturato e minacciato di torturare alcune delle nostre unità. Se dovesse tenere fede a questa affermazione, sarebbe necessario reclamare vendetta! Non costruite... &RDistruggete tutte le unità nemiche sul campo!&
+
+INFORMAZIONI UTILI
+Fate attenzione alle piogge di meteoriti.
+
+FINE

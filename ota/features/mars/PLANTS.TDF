@@ -1,0 +1,775 @@
+[MarsPlant01]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant01;
+	seqnameshad=plant01shad;
+	seqnamereclamate=plant01rec;
+	energy=50;
+
+	seqnameburn=plant01flame;
+	seqnameburnshad=plant01shad;
+	featureburnt=MarsPlant01crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant01boom;
+	featuredead=scar09;
+	featurereclamate=MarsPlant01gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant01Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant01crisp;
+	seqnameshad=plant01shad;
+	seqnamereclamate=plant01crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant01crispboom;
+	featuredead=scar09;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant01gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant02]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant02;
+	seqnameshad=plant02shad;
+	seqnamereclamate=plant02rec;
+	energy=100;
+
+	seqnameburn=plant02flame;
+	seqnameburnshad=plant02shad;
+	featureburnt=MarsPlant02crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant02boom;
+	featuredead=scar07;
+	featurereclamate=MarsPlant02gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant02Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant02crisp;
+	seqnameshad=plant02shad;
+	seqnamereclamate=plant02crisprec;
+    	energy=75;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant02crispboom;
+	featuredead=scar07;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant02gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant03]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant03;
+	seqnameshad=plant03shad;
+	seqnamereclamate=plant03rec;
+	energy=200;
+
+	seqnameburn=plant03flame;
+	seqnameburnshad=plant03shad;
+	featureburnt=MarsPlant03crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant03boom;
+	featuredead=scar08;
+	featurereclamate=MarsPlant03gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant03Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant03crisp;
+	seqnameshad=plant03shad;
+	seqnamereclamate=plant03crisprec;
+    	energy=75;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant03crispboom;
+	featuredead=scar08;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant03gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant04]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant04;
+	seqnameshad=plant04shad;
+	seqnamereclamate=plant04rec;
+	energy=200;
+	burnweapon=TreeBurn;
+
+	seqnameburn=plant04flame;
+	seqnameburnshad=plant04shad;
+	featureburnt=MarsPlant04crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant04boom;
+	featuredead=scar08;
+	featurereclamate=MarsPlant04gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant04Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant04crisp;
+	seqnameshad=plant04shad;
+	seqnamereclamate=plant04crisprec;
+    	energy=75;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant04crispboom;
+	featuredead=scar08;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant04gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant05]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant05;
+	seqnameshad=plant05shad;
+	seqnamereclamate=plant05rec;
+	energy=100;
+
+	seqnameburn=plant05flame;
+	seqnameburnshad=plant05shad;
+	featureburnt=MarsPlant05crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant05boom;
+	featuredead=scar07;
+	featurereclamate=MarsPlant05gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant05Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant05crisp;
+	seqnameshad=plant05shad;
+	seqnamereclamate=plant05crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant05crispboom;
+	featuredead=scar07;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant05gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant06]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant06;
+	seqnameshad=plant06shad;
+	seqnamereclamate=plant06rec;
+	energy=100;
+
+	seqnameburn=plant06flame;
+	seqnameburnshad=plant06shad;
+	featureburnt=MarsPlant06crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant06boom;
+	featuredead=scar07;
+	featurereclamate=MarsPlant06gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant06Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant06crisp;
+	seqnameshad=plant06shad;
+	seqnamereclamate=plant06crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant06crispboom;
+	featuredead=scar07;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant06gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant07]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant07;
+	seqnameshad=plant07shad;
+	seqnamereclamate=plant07rec;
+	energy=50;
+
+	seqnameburn=plant07flame;
+	seqnameburnshad=plant07shad;
+	featureburnt=MarsPlant07crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=plant07boom;
+	featuredead=scar09;
+	featurereclamate=MarsPlant07gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant07Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant07crisp;
+	seqnameshad=plant07shad;
+	seqnamereclamate=plant07crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant07crispboom;
+	featuredead=scar09;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant07gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant08]
+	{
+	world=mars;
+	description=Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants;
+	seqname=plant08;
+	seqnameshad=plant08shad;
+	seqnamereclamate=plant08rec;
+	energy=200;
+	burnweapon=TreeBurn;
+
+	seqnameburn=plant08flame;
+	seqnameburnshad=plant08shad;
+	featureburnt=MarsPlant08crisp;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant08boom;
+	featuredead=scar08;
+	featurereclamate=MarsPlant08gone;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant08Crisp]
+	{
+	world=mars;
+	description=Burnt Plant;
+	category=plants;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants2;
+
+	seqname=plant08crisp;
+	seqnameshad=plant08shad;
+	seqnamereclamate=plant08crisprec;
+    	energy=75;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=plant08crispboom;
+	featuredead=scar08;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=MarsPlant08gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[MarsPlant01Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant01gone;
+
+	featuredead=marsplant01gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant01gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant02Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant02gone;
+
+	featuredead=marsplant02gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant02gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant03Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant03gone;
+
+	featuredead=marsplant03gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant03gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant04Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant04gone;
+
+	featuredead=marsplant04gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant04gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant05Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant05gone;
+
+	featuredead=marsplant05gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant05gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant06Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant06gone;
+
+	featuredead=marsplant06gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant06gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant07Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant07gone;
+
+	featuredead=marsplant07gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant07gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[MarsPlant08Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsplants3;
+	seqname=plant08gone;
+
+	featuredead=marsplant08gone;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=marsplant08gone;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

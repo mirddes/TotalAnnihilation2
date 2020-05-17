@@ -1,0 +1,10 @@
+MISSION 15.3CORE
+
+INTELL-TAP:
+Arm has assembled an Annihilator weapon on the other side of Xantippe's Abyss. The one crossing is well guarded. Capture the Bertha Cannon to the east and use it to weaken the Arm defenses sufficiently to destroy the Annihilator.
+
+&YExpect meteor showers.&
+
+&RCapture an Arm Bertha. Destroy the ARM Annihilator.&
+
+DO SO NOW.

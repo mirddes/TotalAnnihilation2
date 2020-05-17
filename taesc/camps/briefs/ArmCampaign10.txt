@@ -1,0 +1,10 @@
+MISSION 10.0002ARMT
+Destroy all Core units and structures. 
+
+&YPRIORITY &
+Core emplacements entrenched within the windblown formation known as the Bromid Maze must be destroyed in order to secure Tergiverse IV.
+
+INFO FEED
+A Zipper scouting team has been isolated to the West. Rescue the team if you can. Their weapons and swiftness will be helpful on this Mission. If you are able to capture and interrogate a Core unit, their knowledge will become your knowledge - especially helpful in the Maze.
+
+END

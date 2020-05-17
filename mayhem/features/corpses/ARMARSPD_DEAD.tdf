@@ -1,0 +1,35 @@
+[armarspd_dead]
+{
+world=All Worlds;
+description=MARS Wreckage;
+category=arm_corpses;
+object=armarspd_dead;
+featuredead=armarspd_heap;
+footprintx=3;
+footprintz=3;
+height=25;
+blocking=1;
+hitdensity=100;
+metal=336;
+damage=928;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armarspd_heap]
+{
+world=All Worlds;
+description=MARS Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=168;
+damage=928;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

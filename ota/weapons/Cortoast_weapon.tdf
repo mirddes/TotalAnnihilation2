@@ -1,0 +1,34 @@
+
+[CORTOAST_GUN]
+	{
+	ID=44;
+	name=Pop-up Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=885;
+	reloadtime=3.2;
+	weaponvelocity=380;
+	areaofeffect=105;
+	soundstart=cannhvy5;
+	soundhit=xplomed2;
+	minbarrelangle=-40;	
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=295;
+		}
+	}
+

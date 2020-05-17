@@ -1,0 +1,238 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  GP, Base, Box, Fire, Guard1, Guard2, Guard3, Guard4,
+       LFwheel, LRwheel, RFwheel, RRwheel;
+
+static-var  Moving_1, Busy_2;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	set ARMORED to 1;
+	Moving_1 = 1;
+	Busy_2 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	if( !Moving_1 )
+	{
+		move Guard1 to x-axis [-3.050] now;
+		move Guard1 to y-axis [-3.350] now;
+		move Guard2 to x-axis [-3.050] now;
+		move Guard2 to y-axis [-3.350] now;
+		move Guard2 to y-axis [0.000] speed [12.000];
+		move Guard3 to x-axis [3.050] now;
+		move Guard3 to y-axis [-3.330] now;
+		move Guard4 to x-axis [3.050] now;
+		move Guard4 to y-axis [-3.350] now;
+		move Guard4 to y-axis [0.000] speed [12.000];
+		move LFwheel to x-axis [2.000] now;
+		move LRwheel to x-axis [2.000] now;
+		move RFwheel to x-axis [-2.000] now;
+		move RRwheel to x-axis [-2.000] now;
+		sleep 260;
+		move Guard1 to y-axis [0.000] speed [12.000];
+		move Guard2 to x-axis [0.000] speed [11.000];
+		move Guard3 to y-axis [0.000] speed [12.000];
+		move Guard4 to x-axis [0.000] speed [11.000];
+		sleep 265;
+		move Guard1 to x-axis [0.000] speed [11.000];
+		move Guard3 to x-axis [0.000] speed [11.000];
+		move LRwheel to x-axis [0.000] speed [7.000];
+		move RRwheel to x-axis [0.000] speed [7.000];
+		sleep 265;
+		move LFwheel to x-axis [0.000] speed [7.000];
+		move RFwheel to x-axis [0.000] speed [7.000];
+		sleep 275;
+		spin LFwheel around x-axis speed <150.000>;
+		spin RFwheel around x-axis speed <150.000>;
+		spin LRwheel around x-axis speed <150.000>;
+		spin RRwheel around x-axis speed <150.000>;
+		set ARMORED to 0;
+		Moving_1 = 1;
+	}
+}
+
+StopMoving()
+{
+	if( Moving_1 )
+	{
+		spin LFwheel around x-axis speed <0.000>;
+		spin RFwheel around x-axis speed <0.000>;
+		spin LRwheel around x-axis speed <0.000>;
+		spin RRwheel around x-axis speed <0.000>;
+		move LFwheel to x-axis [0.000] now;
+		move LFwheel to x-axis [2.000] speed [7.000];
+		move RFwheel to x-axis [0.000] now;
+		move RFwheel to x-axis [-2.000] speed [7.000];
+		sleep 256;
+		move Guard1 to x-axis [-3.050] speed [11.000];
+		move Guard3 to x-axis [3.050] speed [11.000];
+		move LRwheel to x-axis [2.000] speed [7.000];
+		move RRwheel to x-axis [-2.000] speed [7.000];
+		sleep 266;
+		move Guard1 to y-axis [-3.350] speed [12.000];
+		move Guard2 to x-axis [-3.050] speed [11.000];
+		move Guard3 to y-axis [-3.330] speed [12.000];
+		move Guard4 to x-axis [3.050] speed [11.000];
+		sleep 265;
+		move Guard2 to y-axis [-3.350] speed [12.000];
+		move Guard4 to y-axis [-3.350] speed [12.000];
+		set ARMORED to 1;
+		sleep 275;
+		Moving_1 = 0;
+	}
+}
+
+RestoreAfterDelay(sleeptime)
+{
+	Busy_2 = 1;
+	sleeptime = Rand( 2000, 6000 );
+	sleep sleeptime;
+	sleeptime = 12000 - sleeptime;
+	Busy_2 = 0;
+	sleep sleeptime;
+	set-signal-mask 0;
+	turn Box to x-axis <0.000> speed <100.000>;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( Busy_2 )
+	{
+		sleep 300;
+	}
+	turn Box to x-axis <-90.000> speed <100.000>;
+	sleep Rand( 600, 3000 );
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Fire;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode Base type BITMAPONLY | BITMAP1;
+		explode Box type BITMAPONLY | BITMAP2;
+		explode Fire type BITMAPONLY | BITMAP3;
+		explode Guard1 type BITMAPONLY | BITMAP4;
+		explode Guard2 type BITMAPONLY | BITMAP5;
+		explode Guard3 type BITMAPONLY | BITMAP1;
+		explode Guard4 type BITMAPONLY | BITMAP2;
+		explode LFwheel type BITMAPONLY | BITMAP3;
+		explode LRwheel type BITMAPONLY | BITMAP4;
+		explode RFwheel type BITMAPONLY | BITMAP5;
+		explode RRwheel type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode Base type BITMAPONLY | BITMAP1;
+		explode Box type SHATTER | BITMAP2;
+		explode Fire type FALL | BITMAP3;
+		explode Guard1 type FALL | BITMAP4;
+		explode Guard2 type FALL | BITMAP5;
+		explode Guard3 type FALL | BITMAP1;
+		explode Guard4 type FALL | BITMAP2;
+		explode LFwheel type FALL | BITMAP3;
+		explode LRwheel type FALL | BITMAP4;
+		explode RFwheel type FALL | BITMAP5;
+		explode RRwheel type FALL | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode Base type BITMAPONLY | BITMAP1;
+		explode Box type SHATTER | BITMAP2;
+		explode Fire type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode Guard1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode Guard2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode Guard3 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode Guard4 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode LFwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode LRwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode RFwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode RRwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	explode Base type BITMAPONLY | BITMAP1;
+	explode Box type FALL | EXPLODE_ON_HIT | BITMAP2;
+	explode Fire type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode Guard1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode Guard2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode Guard3 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode Guard4 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode LFwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode LRwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode RFwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode RRwheel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+}

@@ -1,0 +1,10 @@
+MISSION 21.001ARMCP
+Destroy all Core units in the area. Establish a secure foothold on Core Prime. 
+
+&YPRIORITY CRITICAL&
+Establish a base as quickly as possible, to defend against counter attacks. Then scour the area for any remaining Core units. We will use this beginning to bring about Core's ending!
+
+INFO FEED
+Core Prime is a world encased in metal. &GA Metal Extractor will extract metal wherever it is placed.& Metal should not be a problem, Core resistance will be! Move swiftly to eliminate all Core units, plants, and labs. 
+ 
+END

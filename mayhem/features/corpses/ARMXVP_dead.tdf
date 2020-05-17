@@ -1,0 +1,35 @@
+[ARMXVP_dead]
+{
+world=All Worlds;
+description=Heavy VP Wreckage;
+category=arm_corpses;
+object=ARMXVP_dead;
+featuredead=ARMXVP_heap;
+footprintx=10;
+footprintz=8;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=6000;
+damage=6800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMXVP_heap]
+{
+world=All Worlds;
+description=Heavy VP Wreckage;
+category=arm_corpses;
+object=7x7d;
+footprintx=9;
+footprintz=7;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=3000;
+damage=7600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

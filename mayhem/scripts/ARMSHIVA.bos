@@ -1,0 +1,584 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  misflare, launcher, missleeve, misturret, pivot, flare, barrel1, barrel2,
+       barrel3, barrel4, back1, back2, back3, back4, swivel, sleeve,
+       turret, toes1, toes2, toes3, toes4, foot1, foot2, foot3, 
+       foot4, leg1, leg2, leg3, leg4, front, rear, left,
+       right, body, base;
+
+static-var  Moving_1, Aiming_2, gun_1, gun_3, restore_6, reset_7, walking_8, 
+            x_slope, z_slope, terrain_code;
+
+RestoreAfterDelay()
+{
+	sleep 8000;
+	if( !restore_6 )
+	{
+		signal 2;
+		signal 4;
+		gun_1 = 0;
+		Aiming_2 = 0;
+		turn turret to y-axis <0> speed <24>;
+		turn sleeve to x-axis <0> speed <15>;
+		turn pivot to y-axis <0> speed <24>;
+		turn misturret to y-axis <0> speed <120>;
+		turn missleeve to x-axis 0 speed <60>;
+		move missleeve to y-axis [0] speed [2];
+	}
+	reset_7 = 0;
+}
+
+setSFXoccupy(setSFXoccupy_argument)
+{
+	terrain_code = setSFXoccupy_argument;
+	// 0 -> Transported: Unit is being loaded
+	// 1 -> Sea: Unit does not have upright=1 and is going into sea. Or unit has upright=1 and is going into shore. (From unloading, or ground, or deep sea for upright unit)
+	// 2 -> Sea: Unit has upright=1 and goes into deep sea. (From shore, or unloading)
+	// 3 -> ????
+	// 4 -> Land: Unit is being created, goes from sea (or shore if upright=1) to dry ground, or is unloaded
+	
+	// I dunno if shore stand for shallow water or low level ground.
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( restore_6 AND !reset_7 )
+		{
+			restore_6 = 0;
+			reset_7 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+Walk()
+{
+	walking_8 = 1;
+	while( Moving_1 )
+	{
+		if( Moving_1 )
+		{
+			move leg2 to y-axis [1] speed [1.2];
+			turn leg4 to y-axis <45> speed <42>;
+			turn leg2 to y-axis <-15> speed <72>;
+			turn foot4 to y-axis <-15> speed <21>;
+			turn foot2 to y-axis <5> speed <36>;
+			turn toes4 to y-axis <-30> speed <21>;
+			turn toes2 to y-axis <10> speed <36>;
+			move foot4 to y-axis [1] speed [6];
+			move foot2 to y-axis [1] speed [3];
+			if( !Aiming_2 )
+			{
+				turn body to z-axis <0> speed <12>;
+			}
+			sleep 150;
+		}
+		if( Moving_1 )
+		{
+			move leg1 to y-axis [0] speed [2];
+			turn leg3 to y-axis <0> speed <60>;
+			turn leg1 to y-axis <45> speed <60>;
+			turn foot3 to y-axis <0> speed <20>;
+			turn foot1 to y-axis <-15> speed <20>;
+			turn toes3 to y-axis <0> speed <40>;
+			turn toes1 to y-axis <-30> speed <40>;
+			move foot3 to y-axis [1.5] speed [3];
+			move foot1 to y-axis [0] speed [12];
+			sleep 300;
+		}
+		if( Moving_1 )
+		{
+			move leg2 to y-axis [0] speed [2];
+			turn leg4 to y-axis <45> speed <60>;
+			turn leg2 to y-axis <0> speed <60>;
+			turn foot4 to y-axis <-15> speed <20>;
+			turn foot2 to y-axis <0> speed <20>;
+			turn toes4 to y-axis <-30> speed <40>;
+			turn toes2 to y-axis <0> speed <40>;
+			move foot4 to y-axis [1.5] speed [3];
+			move foot2 to y-axis [0] speed [12];
+			if( !Aiming_2 )
+			{
+				turn body to z-axis <-5> speed <12>;
+			}
+			sleep 150;
+		}
+		if( Moving_1 )
+		{
+			move leg3 to y-axis [1] speed [1.2];
+			turn leg3 to y-axis <-30> speed <72>;
+			turn leg1 to y-axis <0> speed <42>;
+			turn foot3 to y-axis <10> speed <24>;
+			turn foot1 to y-axis <0> speed <14>;
+			turn toes3 to y-axis <20> speed <48>;
+			turn toes1 to y-axis <0> speed <28>;
+			move foot3 to y-axis [1] speed [3];
+			move foot1 to y-axis [1] speed [6];
+			sleep 300;
+		}
+		if( Moving_1 )
+		{
+			move leg4 to y-axis [1] speed [1.2];
+			turn leg4 to y-axis <15> speed <72>;
+			turn leg2 to y-axis <-45> speed <42>;
+			turn foot4 to y-axis <-5> speed <24>;
+			turn foot2 to y-axis <15> speed <14>;
+			turn toes4 to y-axis <-10> speed <48>;
+			turn toes2 to y-axis <30> speed <28>;
+			move foot4 to y-axis [1] speed [3];
+			move foot2 to y-axis [1] speed [6];
+			if( !Aiming_2 )
+			{
+				turn body to z-axis <0> speed <12>;
+			}
+			sleep 150;
+		}
+		if( Moving_1 )
+		{
+			move leg3 to y-axis [0] speed [2];
+			turn leg3 to y-axis <-45> speed <60>;
+			turn leg1 to y-axis <0> speed <60>;
+			turn foot3 to y-axis <15> speed <20>;
+			turn foot1 to y-axis <0> speed <20>;
+			turn toes3 to y-axis <30> speed <40>;
+			turn toes1 to y-axis <0> speed <40>;
+			move foot3 to y-axis [0] speed [12];
+			move foot1 to y-axis [1.5] speed [3];
+			sleep 300;
+		}
+		if( Moving_1 )
+		{
+			move leg4 to y-axis [0] speed [2];
+			turn leg4 to y-axis <0> speed <60>;
+			turn leg2 to y-axis <-45> speed <60>;
+			turn foot4 to y-axis <0> speed <20>;
+			turn foot2 to y-axis <15> speed <20>;
+			turn toes4 to y-axis <0> speed <40>;
+			turn toes2 to y-axis <30> speed <40>;
+			move foot4 to y-axis [0] speed [12];
+			move foot2 to y-axis [1.5] speed [3];
+			if( !Aiming_2 )
+			{
+				turn body to z-axis <5> speed <12>;
+			}
+			sleep 150;
+		}
+		if( Moving_1 )
+		{
+			move leg1 to y-axis [1] speed [1.2];
+			turn leg3 to y-axis <0> speed <42>;
+			turn leg1 to y-axis <30> speed <72>;
+			turn foot3 to y-axis <0> speed <14>;
+			turn foot1 to y-axis <-10> speed <24>;
+			turn toes3 to y-axis <0> speed <28>;
+			turn toes1 to y-axis <-20> speed <48>;
+			move foot3 to y-axis [1] speed [6];
+			move foot1 to y-axis [1] speed [3];
+			sleep 300;
+		}
+	}
+	walking_8 = 0;
+	sleep 200;
+	if( !Moving_1 )
+	{
+		move leg4 to y-axis [0] speed [2.5];
+		move leg3 to y-axis [0] speed [2.5];
+		move leg2 to y-axis [0] speed [2.5];
+		move leg1 to y-axis [0] speed [2.5];
+		turn leg4 to y-axis <15> speed <60>;
+		turn leg3 to y-axis <-15> speed <60>;
+		turn leg2 to y-axis <-15> speed <60>;
+		turn leg1 to y-axis <15> speed <60>;
+		turn foot4 to y-axis <-6> speed <24>;
+		turn foot3 to y-axis <6> speed <24>;
+		turn foot2 to y-axis <6> speed <24>;
+		turn foot1 to y-axis <-6> speed <24>;
+		turn toes4 to y-axis <-6> speed <24>;
+		turn toes3 to y-axis <6> speed <24>;
+		turn toes2 to y-axis <6> speed <24>;
+		turn toes1 to y-axis <-6> speed <24>;
+		move foot4 to y-axis [0] speed [6];
+		move foot3 to y-axis [0] speed [6];
+		move foot2 to y-axis [0] speed [6];
+		move foot1 to y-axis [0] speed [6];
+		turn body to z-axis <0> speed <12>;
+		if( !Aiming_2 )
+		{
+			turn missleeve to x-axis 0 speed <60>;
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	gun_1 = 0;
+	gun_3 = 0;
+	Moving_1 = FALSE;
+	Aiming_2 = 0;
+	restore_6 = 0;
+	reset_7 = 0;
+	walking_8 = 0;
+	x_slope = 0;
+	z_slope = 0;
+	hide misflare;
+	hide flare;
+	dont-cache flare;
+	spin flare around z-axis speed <600>;
+	turn leg4 to y-axis <15> NOW;
+	turn leg3 to y-axis <-15> NOW;
+	turn leg2 to y-axis <-15> NOW;
+	turn leg1 to y-axis <15> NOW;
+	turn foot4 to y-axis <-6> NOW;
+	turn foot3 to y-axis <6> NOW;
+	turn foot2 to y-axis <6> NOW;
+	turn foot1 to y-axis <-6> NOW;
+	turn toes4 to y-axis <-6> NOW;
+	turn toes3 to y-axis <6> NOW;
+	turn toes2 to y-axis <6> NOW;
+	turn toes1 to y-axis <-6> NOW;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	/*if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+TargetCleared(which)
+	{
+	stop-spin turret around y-axis;
+	stop-spin sleeve around x-axis;
+	}
+
+StartMoving()
+{
+	Moving_1 = TRUE;
+	if( Walking_8 )
+	{
+		return(0);
+	}
+	start-script walk();
+	var unitturreting, last_pos, lxsnxs, lzsnzs;
+	unitturreting=get XZ_ATAN(7);
+	last_pos=get PIECE_XZ(body);
+	while( Moving_1 )
+	{
+		lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(rear)) - get GROUND_HEIGHT(get PIECE_XZ(front)), get XZ_HYPOT(get PIECE_XZ(rear) - get PIECE_XZ(front)));
+		while(x_slope>32768)
+		{
+			x_slope=x_slope - 65536;
+		}
+		z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(right)) - get GROUND_HEIGHT(get PIECE_XZ(left)), get XZ_HYPOT(get PIECE_XZ(right) - get PIECE_XZ(left)));
+		while(z_slope>32768)
+		{
+			z_slope=z_slope - 65536;
+		}
+		if(terrain_code==0 )// Transported: inhibit slope leaning
+		{
+			x_slope=0;
+			z_slope=0;
+		}		
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+			{lxsnxs=0 - lxsnxs;}// absoluted
+		if(lzsnzs<0)
+			{lzsnzs=0 - lzsnzs;}// absoluted
+		turn body to x-axis x_slope speed lxsnxs*3.33;
+		turn body to z-axis z_slope speed lzsnzs*3.33;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	Moving_1 = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = swivel;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimPrimary(heading, pitch)
+{
+	Aiming_2 = 1;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <30>;
+	turn sleeve to x-axis <0> - pitch speed <12>;
+	turn pivot to y-axis <0> - heading speed <30>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	restore_6 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	++gun_1;
+	show flare;
+	move flare to z-axis [-7] speed [500];
+	turn turret to x-axis <-5> speed <80>;
+	if( gun_1 == 1 )
+	{
+		move back1 to z-axis [-7] speed [500];
+		sleep 150;
+		move back1 to z-axis [0] speed [10];
+	}
+	if( gun_1 == 2 )
+	{
+		move back2 to z-axis [-7] speed [500];
+		sleep 150;
+		move back2 to z-axis [0] speed [10];
+	}
+	if( gun_1 == 3 )
+	{
+		move back3 to z-axis [-7] speed [500];
+		sleep 150;
+		move back3 to z-axis [0] speed [10];
+	}
+	if( gun_1 == 4 )
+	{
+		move back4 to z-axis [-7] speed [500];
+		sleep 150;
+		move back4 to z-axis [0] speed [10];
+		gun_1 = 0;
+	}
+	hide flare;
+	move flare to z-axis [0] NOW;
+	turn turret to x-axis <0> speed <20>;
+	sleep 100;
+	turn swivel to z-axis <90> * gun_1 speed <600>;
+	turn barrel1 to z-axis <-90> * gun_1 speed <600>;
+	turn barrel2 to z-axis <-90> * gun_1 speed <600>;
+	turn barrel3 to z-axis <-90> * gun_1 speed <600>;
+	turn barrel4 to z-axis <-90> * gun_1 speed <600>;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = misturret;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = misflare;
+}
+
+AimTertiary(heading, pitch)
+{
+	move missleeve to y-axis [1] speed [2];
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	Aiming_2 = 1;
+	turn misturret to y-axis heading speed <320>;
+	turn missleeve to x-axis <0> - pitch speed <240>;
+	wait-for-turn misturret around y-axis;
+	wait-for-turn missleeve around x-axis;
+	restore_6 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	++gun_3;
+	if( gun_3 == 6 )
+	{
+		gun_3 = 0;
+	}
+	show misflare;
+	sleep 100;
+	hide misflare;
+	sleep 100;
+	turn launcher to z-axis <60> * gun_3 speed <240>;
+	return(0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	hide misflare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode misturret type FALL | BITMAP1;
+		explode missleeve type BITMAPONLY | BITMAP2;
+		explode launcher type BITMAPONLY | BITMAP3;
+		explode barrel1 type BITMAPONLY | BITMAP2;
+		explode barrel2 type BITMAPONLY | BITMAP2;
+		explode barrel3 type BITMAPONLY | BITMAP2;
+		explode barrel4 type BITMAPONLY | BITMAP2;
+		explode back1 type FALL | BITMAP3;
+		explode back2 type FALL | BITMAP4;
+		explode back3 type FALL | BITMAP3;
+		explode back4 type FALL | BITMAP4;
+		explode foot1 type BITMAPONLY | BITMAP1;
+		explode foot2 type BITMAPONLY | BITMAP4;
+		explode foot3 type BITMAPONLY | BITMAP2;
+		explode foot4 type BITMAPONLY | BITMAP5;
+		explode leg1 type BITMAPONLY | BITMAP5;
+		explode leg2 type BITMAPONLY | BITMAP2;
+		explode leg3 type BITMAPONLY | BITMAP4;
+		explode leg4 type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode misturret type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode launcher type BITMAPONLY | BITMAP2;
+		explode missleeve type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type BITMAPONLY | BITMAP2;
+		explode barrel2 type BITMAPONLY | BITMAP2;
+		explode barrel3 type BITMAPONLY | BITMAP2;
+		explode barrel4 type BITMAPONLY | BITMAP2;
+		explode back1 type FALL | SMOKE | BITMAP3;
+		explode back2 type FALL | SMOKE | BITMAP4;
+		explode back3 type FALL | SMOKE | BITMAP3;
+		explode back4 type FALL | SMOKE | BITMAP4;
+		explode foot1 type BITMAPONLY | BITMAP1;
+		explode foot2 type BITMAPONLY | BITMAP4;
+		explode foot3 type BITMAPONLY | BITMAP2;
+		explode foot4 type BITMAPONLY | BITMAP5;
+		explode leg1 type BITMAPONLY | BITMAP5;
+		explode leg2 type BITMAPONLY | BITMAP2;
+		explode leg3 type BITMAPONLY | BITMAP4;
+		explode leg4 type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode sleeve type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode missleeve type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode misturret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode launcher type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type BITMAPONLY | BITMAP2;
+		explode barrel2 type BITMAPONLY | BITMAP2;
+		explode barrel3 type BITMAPONLY | BITMAP2;
+		explode barrel4 type BITMAPONLY | BITMAP2;
+		explode back1 type FALL | SMOKE | BITMAP3;
+		explode back2 type FALL | SMOKE | BITMAP4;
+		explode back3 type FALL | SMOKE | BITMAP3;
+		explode back4 type FALL | SMOKE | BITMAP4;
+		explode foot1 type BITMAPONLY | BITMAP1;
+		explode foot2 type BITMAPONLY | BITMAP4;
+		explode foot3 type BITMAPONLY | BITMAP2;
+		explode foot4 type BITMAPONLY | BITMAP5;
+		explode leg1 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode leg2 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode leg3 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode leg4 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 4;
+	explode sleeve type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode missleeve type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode misturret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode launcher type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel1 type BITMAPONLY | BITMAP2;
+	explode barrel2 type BITMAPONLY | BITMAP2;
+	explode barrel3 type BITMAPONLY | BITMAP2;
+	explode barrel4 type BITMAPONLY | BITMAP2;
+	explode back1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode back2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode back3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode back4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode foot1 type BITMAPONLY | BITMAP1;
+	explode foot2 type BITMAPONLY | BITMAP4;
+	explode foot3 type BITMAPONLY | BITMAP2;
+	explode foot4 type BITMAPONLY | BITMAP5;
+	explode leg1 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode leg2 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg3 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode leg4 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP5;
+}

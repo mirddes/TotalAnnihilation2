@@ -1,0 +1,13 @@
+MISSION 6.0001ARMTH
+Secure a beachhead on Thalassean. Set up a base, build a shipyard, and destroy all Core units in the area. 
+
+&Y*PRIORITY CRITICAL*&
+Thalassean stands between Core and Empyrrean. It is critical that you secure Thalassean for Arm.
+
+INFO FEED
+&RWARNING! WARNING! WARNING!&
+Expect armed guards on the Thalassean side of the Gate! Be ready for instant defensive action.
+
+Though you may have the element of surprise when you step through the Gate, Core will rally quickly. &GPrepare your defenses as quickly as possible.& 
+
+END

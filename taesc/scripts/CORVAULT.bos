@@ -1,0 +1,481 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+#define UPGRADE_RADIUS [205]
+
+piece  base, tower, frame, glow, energy, bits, bytes, sphere, pipes, poop, cube, boxes,
+	   metal, fan1, fan2, metal2, dome ;
+
+static-var  Static_Var_1, statechg_DesiredState, statechg_StateChanging;
+static-var shield_on, charge_on, nbr_charge, nbr_shield, dome_on, nbr_dome ;  
+
+
+#define SIG_ACTIVATE			2
+
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+#define armestor 2966258
+#define corestor 2402830
+#define talestor 9999999
+#define armses 3811741
+#define corses 2992413
+#define talses 9999999
+#define cornova_upgrade 3600001
+#define corvault 11309369
+
+
+#define armestorSize ([12.8] + [1])
+#define armsesSize ([19.2] + [2])
+#define corestorSize ([12.8] + [1])
+#define corsesSize ([19.2] + [2])
+#define talestorSize ([12.8] + [1])
+#define talsesSize ([19.2] + [2])
+#define cornova_upgradeSize ([38.4] + [8])
+#define corvaultSize ([38.4] + [8])
+
+#define mySize corvaultSize
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from sphere;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+/*
+Go()
+{
+	set ACTIVATION to 1;// was 1
+	hide glow;
+	hide glow2;
+	show energy;
+	show energy2;
+
+}
+
+Stop()
+{
+	set ACTIVATION to 0;// was 0
+	hide energy;
+	hide energy2;
+	show glow;
+	show glow2;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+*/
+
+Detect()
+{
+	charge_on = 0;
+	
+	sleep rand(500,5000);
+	var distance, unit_ID, xz, x, z ;
+	var max, min, height;
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+//	var h;
+//	var shgen_id;
+//	var shgen_count;
+	
+	while (1)
+	{
+		nbr_charge = 0;
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+//		shgen_count = 0;
+		
+	for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+						//	shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+						//	shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+						//	shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+						//	shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_CHARGE)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= BOOST_RADIUS)
+						{
+							++nbr_charge;
+//							++nbr_charge;
+						}
+					}
+				}
+				if((get UNIT_BUILD_PERCENT_LEFT(unit_ID)) == 0)
+				{
+					height = get UNIT_HEIGHT(unit_ID);
+					if((height == corvault))
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= mySize + cornova_upgradeSize)
+						{
+							++nbr_charge;
+							++nbr_charge;
+							++nbr_charge;
+						}
+					}
+				}
+			}
+			if((!get UNIT_ALLIED(unit_ID)) == 1)	
+			{	
+				if(get UNIT_HEIGHT(unit_id)==METAL_UPGRADE_HEIGHT)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==100)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						{
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+						}
+					}
+				}
+			}
+		}
+		if (nbr_charge < 6)
+		{
+			charge_on = 0;
+			
+			set ACTIVATION to 0;// was 0
+			hide energy;
+			show glow;
+			hide dome;
+			show sphere;
+			
+//			spin fan1 around y-axis speed <-180.000000>;
+//			spin fan2 around y-axis speed <-180.000000>;
+			
+		}
+		if (nbr_charge >= 6)
+		{
+			charge_on = 1;
+			
+//			start-script RequestState(1);
+
+			set ACTIVATION to 1;// was 1
+			hide glow;
+			show energy;
+			show dome;
+			hide sphere;
+			
+//			spin fan1 around y-axis speed <-720.000000>;
+//			spin fan2 around y-axis speed <-720.000000>;
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+	}
+}
+
+
+
+Create()
+{
+	nbr_charge = 0;
+	nbr_shield = 0;
+	nbr_dome = 0;	
+	
+	charge_on = 0;
+	shield_on = 0;
+	dome_on =0;
+		
+	dont-shade base;
+
+	dont-shade frame;
+	dont-shade sphere;
+	
+	dont-shade glow;
+	
+	dont-cache glow;
+		
+	dont-cache energy;
+	
+	dont-cache dome;
+	
+	hide dome;
+	hide energy;
+
+	dont-shade fan1;
+	dont-shade fan2;
+	
+//	hide glow_shad;
+	
+
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+//	show glow_shad;
+
+//	spin fan1 around y-axis speed <-180.000000>;
+//	spin fan2 around y-axis speed <-180.000000>;
+
+}
+/*
+Activate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+}
+
+Deactivate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+}
+*/
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode fan1 type BITMAPONLY | BITMAP1;
+		explode fan2 type BITMAPONLY | BITMAP1;
+		explode cube type BITMAPONLY | BITMAP1;
+		explode poop type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode fan1 type SHATTER | BITMAP1;
+		explode fan2 type FALL | BITMAP1;
+		explode cube type FALL | BITMAP5;
+		explode poop type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode fan1 type BITMAPONLY | BITMAP1;
+		explode fan2 type SHATTER | BITMAP1;
+		explode cube type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode poop type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode fan1 type BITMAPONLY | BITMAP1;
+	explode fan2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode cube type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode poop type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

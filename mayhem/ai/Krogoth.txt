@@ -1,0 +1,197 @@
+//Krogoth AI for the map Krogoth Encounter adjusted for Total Mayhem
+// Almost entirely based on categories except for factories
+
+Weight ARM 0.2
+Weight CORE 0.2
+
+Weight CORKROG 4
+
+// Resources and initial build
+Weight AIAMEXC 20
+Weight AICMEXC 20
+Weight AIAUWMEXC 2
+Weight AICUWMEXC 2
+Weight AIAMEX 3
+Weight AICMEX 3
+Weight AIAUWMEX 0.4
+Weight AICUWMEX 0.4
+Weight METAL 2
+Weight ENERGY 3
+Weight CTRL_I 0
+Weight ARMVP 1.2
+Weight CORVP 1.2
+Weight ARMLAB 1.2
+Weight CORLAB 1.2
+Weight ARMAP 0.6
+Weight CORAP 0.6
+Limit ARMSOLAR 5
+Limit CORSOLAR 5
+Limit ARMPOPSOL 5
+Limit CORPOPSOL 5
+Limit ARMTIDE 5
+Limit CORTIDE 5
+Limit METAL 10
+Limit ENERGY 20
+
+// encourages advanced units
+
+Weight CTRL_B 3
+Weight ARMACK 6
+Weight CORACK 6
+Weight ARMACV 6
+Weight CORACV 6
+Weight ARMACA 6
+Weight CORACA 6
+Weight CTRL_X 1
+Weight ANTI 0.5
+Weight LEVEL3 6
+Weight ARMMAKEANTI 10
+Weight CORMAKEANTI 10
+Limit ARMMAKEANTI 1000
+Limit CORMAKEANTI 1000
+
+// adjust unit build
+
+Weight NOAI 0
+Weight CTRL_F 2
+Weight CTRL_R 0.25
+Weight CTRL_Q 6
+Weight CTRL_L 0.5
+Weight CTRL_X 3
+Weight GR 3
+Weight CTRL_P 4
+
+Limit CTRL_R 1
+Limit CTRL_I 0
+Limit CTRL_F 4
+Limit ARMSY 1
+Limit CORHP 0
+Limit CORPLAT 0
+Limit ARMHP 0
+Limit ARMPLAT 0
+
+//EASY THERE IS NO EASY WAY.
+
+plan easy
+
+Limit AIBOOST 0
+Limit AIC 1
+Limit ARMMEX 25
+Limit CORMEX 25
+Limit ARMUWMEX 5
+Limit CORUWMEX 5
+Limit ARMMEXUP 5
+Limit CORMEXUP 5
+Weight L3G 2
+Weight L3A 1
+Limit GR 30
+Limit L3G 50
+Limit L3A 50
+Limit CTRL_P 40
+Limit CTRL_L 6
+Limit CTRL_Q 10
+Limit ARMMOHO 6
+Limit CORMOHO 6
+Limit CTRL_B 4
+
+//Factories
+
+Limit ARMAAP 4
+Limit ARMAVP 4
+Limit ARMALAB 4
+Limit ARMSHLT 5
+Limit ARMXVP 4
+Limit ARMSYARD 3
+
+Limit CORAAP 4
+Limit CORAVP 4
+Limit CORALAB 4
+Limit CORGANT 5
+Limit CORXVP 4
+Limit CORSYARD 3
+
+//MEDIUM KROGOTH KNOWS NO MODERATION
+
+plan medium
+
+Limit AIC 1
+Limit AIAMEX 3
+Limit AICMEX 3
+Limit AIAUWMEX 1
+Limit AICUWMEX 1
+Limit ARMMEX 20
+Limit CORMEX 20
+Limit ARMUWMEX 5
+Limit CORUWMEX 5
+Limit ARMMEXUP 5
+Limit CORMEXUP 5
+Weight L3G 3
+Weight L3A 2
+Limit GR 45
+Limit L3G 100
+Limit L3A 100
+Limit CTRL_P 60
+Limit CTRL_L 9
+Limit CTRL_Q 15
+Limit ARMMOHO 10
+Limit CORMOHO 10
+Limit CTRL_B 6
+
+//Factories
+
+Limit ARMAAP 5
+Limit ARMAVP 5
+Limit ARMALAB 5
+Limit ARMSHLT 10
+Limit ARMXVP 8
+Limit ARMSYARD 6
+
+Limit ARMAAP 5
+Limit ARMAVP 5
+Limit ARMALAB 5
+Limit CORGANT 10
+Limit CORXVP 8
+Limit CORSYARD 6
+
+// -------------- HARD. VERY VERY HARD.
+
+plan hard
+
+Limit AIC 2
+Limit AIAMEX 25
+Limit AICMEX 25
+Limit AIAUWMEX 5
+Limit AICUWMEX 5
+Limit ARMMEX 0
+Limit CORMEX 0
+Limit ARMUWMEX 0
+Limit CORUWMEX 0
+Limit ARMMEXUP 10
+Limit CORMEXUP 10
+Weight L3G 4
+Weight L3A 3
+Limit GR 60
+Limit L3G 300
+Limit L3A 300
+Limit CTRL_P 90
+Limit CTRL_L 12
+Limit CTRL_Q 20
+Limit ARMMOHO 20
+Limit CORMOHO 20
+Limit CTRL_B 9
+
+//Factories
+
+Limit ARMAAP 6
+Limit ARMAVP 6
+Limit ARMALAB 6
+Limit ARMSHLT 20
+Limit ARMXVP 16
+Limit ARMSYARD 9
+
+Limit ARMAAP 6
+Limit ARMAVP 6
+Limit ARMALAB 6
+Limit CORGANT 20
+Limit CORXVP 16
+Limit ARMSYARD 9

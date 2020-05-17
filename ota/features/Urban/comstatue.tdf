@@ -1,0 +1,212 @@
+[comstat01]
+	{
+	world=urban;
+	description=Public Art;
+	category=monuments;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=240;
+	filename=statue;
+	seqname=comstat01;
+	seqnameshad=comstatshad01;
+	seqnamereclamate=comstatrec01;
+	metal=8757;
+
+	seqnamedie=comstatboom01;
+	featuredead=comscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=comscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=1000;
+	}
+
+[comstat02]
+	{
+	world=urban;
+	description=Public Art;
+	category=monuments;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=275;
+	filename=statue;
+	seqname=comstat02;
+	seqnameshad=comstatshad02;
+	seqnamereclamate=comstatrec02;
+	metal=8997;
+
+	seqnamedie=comstatboom02;
+	featuredead=comscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=comscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=1000;
+	}
+
+[pasta01]
+	{
+	world=urban;
+	description=Public Art;
+	category=monuments;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=240;
+	filename=statue;
+	seqname=pasta;
+	seqnameshad=pastashad;
+	seqnamereclamate=pastarec;
+	metal=6549;
+
+	seqnamedie=pastaboom;
+	featuredead=pastascar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=pastascar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=80;
+	damage=850;
+	}
+
+[Widget19]
+	{
+	world=urban;
+	description=Public Hygiene Pod;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=50;
+	filename=statue;
+	seqname=hygiene;
+	seqnameshad=hygieneshad;
+	seqnamereclamate=hygienerec;
+	metal=100;
+
+	seqnamedie=hygieneboom;
+	featuredead=hygienescar;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=hygienescar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=80;
+	damage=850;
+	}
+
+
+[comscar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=statue;
+	seqname=comscar01;
+
+	featuredead=comscar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[comscar02]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=statue;
+	seqname=comscar02;
+
+	featuredead=comscar02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[hygienescar]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=statue;
+	seqname=hygienescar;
+
+	featuredead=hygienescar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Pastascar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=statue;
+	seqname=pastascar;
+
+	featuredead=pastascar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

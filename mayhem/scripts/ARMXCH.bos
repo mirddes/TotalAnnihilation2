@@ -1,0 +1,340 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  f1, f2, f3, f4, f5, f6, f7, f8,
+       ground, base, beam, nanogun, door1, door2, plate, post,
+       beam2, nanogun2, post2, turret, turret2, launchers, lids, wake1,
+       wake2, wake3, wake4, wake5, wake6, wake7, wake8;
+
+static-var  fx_1, build_2, request_3, busy_4, ready_5,
+            nano_6, gun_7, missile_8, delay_9;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	//set GRANT_UNITINFO to 1;
+	//get SET_UNITINFO(uiHealTime,20);
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from ground;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+StartMoving(count)
+{
+	signal 8;
+	set-signal-mask 8;
+	while (TRUE)
+	{
+		count = 0;
+		if( fx_1 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		while( count < 9 )
+		{
+			turn ground to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <35>;
+			++count;
+			sleep 33;
+		}
+	}
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	fx_1 = Func_Var_1;
+}
+
+RequestState(sleeptime)
+{
+	while( ( !busy_4 ) AND request_3 != ready_5 )
+	{
+		busy_4 = 1;
+		if( request_3 AND ( !ready_5 ) )
+		{
+			turn door1 to z-axis <0.00> now;
+			turn door1 to z-axis <80.00> speed <120.00>;
+			turn door2 to z-axis <0.00> now;
+			turn door2 to z-axis <-80.00> speed <120.00>;
+			move door1 to y-axis [-2.00] speed [2.00];
+			move door2 to y-axis [-2.00] speed [2.00];
+			move plate to y-axis [4.00] speed [5.00];
+			sleep 688;
+			turn post to x-axis <90.00> speed <131.00>;
+			turn post2 to x-axis <90.00> speed <131.00>;
+			turn nanogun to x-axis <-90.00> speed <131.00>;
+			turn nanogun2 to x-axis <-90.00> speed <131.00>;
+			turn turret to y-axis build_2 speed <180.00>;
+			turn turret2 to y-axis build_2 speed <180.00>;
+			sleep 600;
+			wait-for-turn turret around y-axis;
+			wait-for-turn turret2 around y-axis;
+			sleeptime = Rand(1,500);
+			sleep sleeptime;
+			set INBUILDSTANCE to 1;
+			ready_5 = 1;
+		}
+		if( ( !request_3 ) AND ready_5 )
+		{
+			ready_5 = 0;
+			set INBUILDSTANCE to 0;
+			turn turret to y-axis <0.00> speed <180.00>;
+			turn turret2 to y-axis <0.00> speed <180.00>;
+			move door1 to y-axis [-2.00] now;
+			move door2 to y-axis [-2.00] now;
+			move plate to y-axis [4.00] now;
+			turn door1 to z-axis <-67.00> now;
+			turn door2 to z-axis <67.00> now;
+			turn post to x-axis <90.00> now;
+			turn post2 to x-axis <90.00> now;
+			turn post to x-axis <0.00> speed <197.00>;
+			turn post2 to x-axis <0.00> speed <197.00>;
+			turn nanogun to x-axis <-90.00> now;
+			turn nanogun2 to x-axis <-90.00> now;
+			turn nanogun to x-axis <0.00> speed <197.00>;
+			turn nanogun2 to x-axis <0.00> speed <197.00>;
+			sleep 457;
+			wait-for-turn turret around y-axis;
+			move door1 to y-axis [0.00] speed [4.00];
+			move door2 to y-axis [0.00] speed [4.00];
+			move plate to y-axis [0.00] speed [8.00];
+			sleep 471;
+			turn door1 to z-axis <0.00> speed <143.00>;
+			turn door2 to z-axis <0.00> speed <143.00>;
+			sleep 495;
+		}
+		busy_4 = 0;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	turn ground to x-axis anglex speed <50.00>;
+	turn ground to z-axis anglez speed <50.00>;
+	wait-for-turn ground around z-axis;
+	wait-for-turn ground around x-axis;
+	turn ground to z-axis <0.00> speed <20.00>;
+	turn ground to x-axis <0.00> speed <20.00>;
+}
+
+Create()
+{
+	build_2 = 0;
+	request_3 = 0;
+	busy_4 = 0;
+	ready_5 = 0;
+	nano_6 = 0;
+	gun_7 = 0;
+	missile_8 = 0;
+	delay_9 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 250;
+		turn ground to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+	}
+	start-script SmokeUnit();
+}
+
+StartBuilding(Func_Var_1)
+{
+	build_2 = Func_Var_1;
+	request_3 = 1;
+	start-script RequestState();
+	return (0);
+}
+
+StopBuilding()
+{
+	request_3 = 0;
+	sleep 5000;
+	if( !request_3 )
+	{
+		start-script RequestState();
+	}
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( !nano_6 )
+	{
+		piecenum = beam;
+	}
+	if( nano_6 )
+	{
+		piecenum = beam2;
+	}
+	nano_6 = !nano_6;
+}
+
+TargetHeading(Func_Var_1)
+{
+	build_2 = 0 - Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = ground;
+}
+
+Closelids()
+{	
+	if( !missile_8 )
+	{
+		move lids to y-axis [0] speed [1];
+	}
+	sleep 250;
+	if( !missile_8 )
+	{
+		move lids to z-axis [0] speed [3.6];
+	}
+}
+
+RestoreAfterDelay()
+{
+	missile_8 = 0;
+	sleep 5000;
+	if( !missile_8 )
+	{
+		start-script closelids();
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	wait-for-move launchers along y-axis;
+	while( !missile_8 )
+	{
+		move lids to z-axis [3.6] speed [5.4];
+		wait-for-move lids along z-axis;
+		move lids to y-axis [-0.4] speed [1];
+		missile_8 = 1;
+	}
+	start-script restoreafterdelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	++gun_7;
+	if( gun_7 > 7 )
+	{
+		gun_7 = 0;
+	}
+	move launchers to y-axis [-0.2] NOW;
+	move launchers to y-axis [0] speed [0.1];
+	wait-for-move launchers along y-axis;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = launchers;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_7;
+}
+
+Killed(severity, corpsetype)
+{
+	if( fx_1 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode post type BITMAPONLY | BITMAP1;
+		explode post2 type BITMAPONLY | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		explode beam type BITMAPONLY | BITMAP3;
+		explode beam2 type BITMAPONLY | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nanogun type BITMAPONLY | BITMAP1;
+		explode nanogun2 type BITMAPONLY | BITMAP1;
+		explode plate type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode post type FALL | BITMAP1;
+		explode post2 type FALL | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		explode beam type FALL | SMOKE | BITMAP3;
+		explode beam2 type FALL | SMOKE | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nanogun type SHATTER | BITMAP1;
+		explode nanogun2 type FALL | BITMAP1;
+		explode plate type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode post type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode post2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		explode beam type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nanogun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode plate type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode post type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode post2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode ground type BITMAPONLY | BITMAP2;
+	explode beam type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door1 type BITMAPONLY | BITMAP4;
+	explode door2 type BITMAPONLY | BITMAP5;
+	explode nanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nanogun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode plate type BITMAPONLY | BITMAP2;
+}

@@ -1,0 +1,176 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, beam, door1, door2, stand, gun, turret;
+
+static-var  Nano_1, ReqState_2, Busy_3, On_4;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState(sleeptime)
+{
+	while( !Busy_3 AND ( ReqState_2 != On_4 ) )
+	{
+		Busy_3 = 1;
+		if( ReqState_2 )
+		{
+			turn door1 to z-axis <0> now;
+			turn door2 to z-axis <0> now;
+			turn door1 to z-axis <-206.60> speed <308.35>;
+			turn door2 to z-axis <207.50> speed <311.52>;
+			sleep 1019;
+			move stand to y-axis [4.10] speed [12.31];
+			move gun to y-axis [0.70] speed [2.10];
+			turn turret to y-axis Nano_1 speed <160>;
+			sleep 245;
+			wait-for-turn turret around y-axis;
+			sleeptime = Rand(1,500);
+			sleep sleeptime;
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_2 )
+		{
+			set INBUILDSTANCE to 0;
+			On_4 = 0;
+			turn turret to y-axis <0> speed <160>;
+			move stand to y-axis [4.10] now;
+			move stand to y-axis [0] speed [5.71];
+			move gun to y-axis [0.70] now;
+			move gun to y-axis [0] speed [0.97];
+			turn door1 to z-axis <-206.60> now;
+			turn door2 to z-axis <207.50> now;
+			sleep 488;
+			wait-for-turn turret around y-axis;
+			turn door1 to x-axis <0> speed <0>;
+			turn door1 to z-axis <0> speed <212.95>;
+			turn door2 to z-axis <0> speed <212.63>;
+			sleep 800;
+		}
+		Busy_3 = 0;
+	}
+	return (0);
+}
+
+Create()
+{
+	Nano_1 = 0;
+	ReqState_2 = 0;
+	Busy_3 = 0;
+	On_4 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Nano_1 = Func_Var_1;
+	ReqState_2 = 1;
+	start-script RequestState();
+	return (0);
+}
+
+StopBuilding()
+{
+	ReqState_2 = 0;
+	sleep 6000;
+	if( !ReqState_2 )
+	{
+		start-script RequestState();
+	}
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+	return (0);
+}
+
+TargetHeading(Func_Var_1)
+{
+	Nano_1 = ( 0 - Func_Var_1 );
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type BITMAPONLY | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode stand type BITMAPONLY | BITMAP5;
+		explode gun type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type FALL | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode stand type FALL | BITMAP5;
+		explode gun type SHATTER | BITMAP1;
+		explode turret type FALL | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode stand type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode gun type SHATTER | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode door1 type BITMAPONLY | BITMAP3;
+	explode door2 type BITMAPONLY | BITMAP4;
+	explode stand type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode gun type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

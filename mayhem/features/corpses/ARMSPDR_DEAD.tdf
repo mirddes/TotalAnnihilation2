@@ -1,0 +1,35 @@
+[ARMSPDR_dead]
+{
+world=All Worlds;
+description=Netcaster Wreckage;
+category=arm_corpses;
+object=ARMSPDR_dead;
+featuredead=ARMSPDR_heap;
+footprintx=2;
+footprintz=2;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=114;
+damage=480;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMSPDR_heap]
+{
+world=All Worlds;
+description=Netcaster Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=57;
+damage=480;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

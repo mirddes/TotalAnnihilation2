@@ -1,0 +1,294 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, beam, door1, door2, plate, gun, tire1, tire2,
+       tire3, tire4, post, wake1, wake2 ;
+
+static-var  Static_Var_1, Static_Var_2, statechg_DesiredState, statechg_StateChanging, bMoving;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		turn door1 to z-axis <0.000000> now;
+		turn door1 to z-axis <-91.357143> speed <195.208791>;
+		turn door2 to z-axis <0.000000> now;
+		turn door2 to z-axis <90.120879> speed <192.571429>;
+		sleep 468;
+	}
+	if( TRUE )
+	{
+		move door1 to y-axis [-1.850000] speed [3.927814];
+		move door2 to y-axis [-1.950000] speed [4.140125];
+		sleep 471;
+	}
+	if( TRUE )
+	{
+		move plate to y-axis [2.950000] speed [6.263275];
+		sleep 471;
+	}
+	sleep 24;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move plate to y-axis [2.950000] now;
+		move plate to y-axis [0.000000] speed [6.924890];
+		move door1 to y-axis [-1.850000] now;
+		move door2 to y-axis [-1.950000] now;
+		turn door1 to z-axis <-91.357143> now;
+		turn door2 to z-axis <90.120879> now;
+		sleep 426;
+	}
+	if( TRUE )
+	{
+		move door1 to y-axis [0.000000] speed [4.322430];
+		move door2 to y-axis [0.000000] speed [4.556073];
+		sleep 428;
+	}
+	if( TRUE )
+	{
+		turn door1 to z-axis <0.000000> speed <213.456044>;
+		turn door2 to z-axis <0.000000> speed <210.571429>;
+		sleep 428;
+	}
+	sleep 22;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Go()
+{
+	call-script activatescr();
+	turn gun to y-axis Static_Var_1 speed <160.038462>;
+	wait-for-turn gun around y-axis;
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	turn gun to y-axis <0.000000> speed <160.038462>;
+	wait-for-turn gun around y-axis;
+	call-script deactivatescr();
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+EmitSFX()
+{
+	while( TRUE )
+	{
+		if( Static_Var_2 == 3 )
+		{
+			set ARMORED to 1;
+			if( bMoving )
+			{
+				emit-sfx 259 from wake1;
+				emit-sfx 259 from wake2;
+			}
+		}
+		if( Static_Var_2 != 3 )
+		{
+			set ARMORED to 0;
+		}	
+		sleep 250;
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 4;
+	bMoving = FALSE;
+	
+//	set ACTIVATION to 1;
+	
+	call-script InitState();
+//	start-script SmokeUnit();
+	start-script EmitSFX();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	sleep rand(25,250);
+	start-script RequestState(0);
+}
+
+StopBuilding()
+{
+	start-script RequestState(1);
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1;
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+	spin tire1 around x-axis speed <150.032967>;
+	spin tire2 around x-axis speed <150.032967>;
+	spin tire3 around x-axis speed <150.032967>;
+	spin tire4 around x-axis speed <150.032967>;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+	stop-spin tire1 around x-axis;
+	stop-spin tire2 around x-axis;
+	stop-spin tire3 around x-axis;
+	stop-spin tire4 around x-axis;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+}
+
+TargetHeading(Func_Var_1)
+{
+	Static_Var_1 = 0 - Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode gun type BITMAPONLY | BITMAP5;
+		explode plate type BITMAPONLY | BITMAP1;
+		explode post type BITMAPONLY | BITMAP1;
+		explode tire1 type BITMAPONLY | BITMAP1;
+		explode tire2 type BITMAPONLY | BITMAP1;
+		explode tire3 type BITMAPONLY | BITMAP5;
+		explode tire4 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type FALL | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode gun type SHATTER | BITMAP5;
+		explode plate type BITMAPONLY | BITMAP1;
+		explode post type FALL | BITMAP1;
+		explode tire1 type FALL | BITMAP1;
+		explode tire2 type FALL | BITMAP1;
+		explode tire3 type FALL | BITMAP5;
+		explode tire4 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode gun type SHATTER | BITMAP5;
+		explode plate type BITMAPONLY | BITMAP1;
+		explode post type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode tire1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode tire2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode tire3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode tire4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode door1 type BITMAPONLY | BITMAP1;
+	explode door2 type BITMAPONLY | BITMAP1;
+	explode gun type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode plate type BITMAPONLY | BITMAP1;
+	explode post type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode tire1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode tire2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode tire3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode tire4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+}

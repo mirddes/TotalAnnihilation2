@@ -1,0 +1,479 @@
+[Coral01]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=coral01;
+	seqnameshad=coralshad01;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral02]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=coral02;
+	seqnameshad=coralshad02;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral03]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=2;
+	footprintz=4;
+	height=120;
+	filename=Coral;
+	seqname=coral03;
+	seqnameshad=coralshad03;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral04]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=coral04;
+	seqnameshad=coralshad04;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral05]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=120;
+	filename=Coral;
+	seqname=coral05;
+	seqnameshad=coralshad05;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral06]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=coral06;
+	seqnameshad=coralshad06;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral07]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=120;
+	filename=Coral;
+	seqname=Coral07;
+	seqnameshad=coralshad07;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral08]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=120;
+	filename=Coral;
+	seqname=Coral08;
+	seqnameshad=coralshad08;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral09]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=120;
+	filename=Coral;
+	seqname=Coral09;
+	seqnameshad=coralshad09;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral10]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=120;
+	filename=Coral;
+	seqname=Coral10;
+	seqnameshad=coralshad10;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral11]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=120;
+	filename=Coral;
+	seqname=Coral11;
+	seqnameshad=coralshad11;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral12]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=120;
+	filename=Coral;
+	seqname=Coral12;
+	seqnameshad=coralshad12;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral13]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=6;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=Coral13;
+	seqnameshad=coralshad13;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral14]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=120;
+	filename=Coral;
+	seqname=Coral14;
+	seqnameshad=coralshad14;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral15]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=120;
+	filename=Coral;
+	seqname=Coral15;
+	seqnameshad=coralshad15;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral16]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=120;
+	filename=Coral;
+	seqname=Coral16;
+	seqnameshad=coralshad16;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral17]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=5;
+	footprintz=9;
+	height=120;
+	filename=Coral;
+	seqname=Coral17;
+	seqnameshad=coralshad17;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral18]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=4;
+	footprintz=8;
+	height=120;
+	filename=Coral;
+	seqname=Coral18;
+	seqnameshad=coralshad18;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral19]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=6;
+	footprintz=9;
+	height=120;
+	filename=Coral;
+	seqname=Coral19;
+	seqnameshad=coralshad19;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Coral20]
+	{
+	world=water;
+	description=Coral;
+	category=corals;
+	animating=0;
+	footprintx=7;
+	footprintz=10
+	height=120;
+	filename=Coral;
+	seqname=Coral20;
+	seqnameshad=coralshad20;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

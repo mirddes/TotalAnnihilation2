@@ -1,0 +1,76 @@
+// Arm Torpedo Launcher
+
+piece base,flare,gun;
+
+#define SIG_AIM	2
+#define SMOKEPIECE1 base
+
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Create()
+	{
+	dont-cache gun;
+        dont-shade gun;
+	start-script SmokeUnit();
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn gun to y-axis heading speed <80>;
+	wait-for-turn gun around y-axis;
+	return(TRUE);
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=base;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP2;
+		explode gun type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP2;
+		explode gun type	SHATTER | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare type	BITMAPONLY | BITMAP2;
+		explode gun type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode flare type	BITMAPONLY | BITMAP2;
+	explode gun type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}

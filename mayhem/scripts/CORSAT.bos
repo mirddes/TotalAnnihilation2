@@ -1,0 +1,267 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, barrel1, barrel2, gun, turret, tower,
+       footlb, footrb, footlf, footrf, strutsb, strutsf, tracksf,
+       tracksb, body, base;
+
+static-var  gun_1, Ready_2, restore_delay, bMoving, deployed, busy;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	Ready_2 = 1;
+	gun_1 = 0;
+	restore_delay = 3000;
+	bMoving = 0;
+	deployed = 0;
+	busy = 0;
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = 1;
+	while( busy )
+	{
+		sleep 250;
+		if( !bMoving )
+		{
+			return(0);
+		}
+	}
+	busy = 1;
+	if( deployed > 1 )
+	{
+		deployed = 1;
+		turn strutsf to x-axis <65> speed <280>;
+		turn strutsb to x-axis <-65> speed <280>;
+		move footlf to x-axis [0] speed [0.7];
+		move footrf to x-axis [0] speed [0.7];
+		move footlb to x-axis [0] speed [0.7];
+		move footrb to x-axis [0] speed [0.7];
+		turn footlf to x-axis <0> speed <140>;
+		turn footrf to x-axis <0> speed <140>;
+		turn footlb to x-axis <0> speed <140>;
+		turn footrb to x-axis <0> speed <140>;
+		move tower to y-axis [0] speed [4];
+		move body to y-axis [0] speed [2];
+		move gun to y-axis [0] speed [1]; 
+		move tracksf to z-axis [0] speed [1];
+		move tracksb to z-axis [0] speed [1];
+		sleep 500;
+	}
+	if( deployed == 1 )
+	{
+		set ARMORED to 0;
+		move tower to y-axis [0] speed [4];
+		move body to y-axis [0] speed [2];
+		move gun to y-axis [0] speed [1]; 
+		turn strutsf to x-axis <0> speed <130>;
+		turn strutsb to x-axis <0> speed <130>;
+		deployed = 0;
+		sleep 625;
+	}
+	busy = 0;
+	sleep 200;
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	sleep 1000;
+	while( busy )
+	{
+		if( bMoving )
+		{
+			return(0);
+		}
+		sleep 250;
+	}
+	if( !deployed AND !bMoving )
+	{
+		busy = 1;
+		move strutsf to y-axis [1] speed [2];
+		move strutsb to y-axis [1] speed [2];
+		turn strutsf to x-axis <140> speed <280>;
+		turn strutsb to x-axis <-140> speed <280>;
+		move tower to y-axis [4] speed [4];
+		move body to y-axis [2] speed [2];
+		move gun to y-axis [1] speed [1]; 
+		move tracksf to z-axis [-1] speed [1];
+		move tracksb to z-axis [1] speed [1];
+		deployed = 1;
+		sleep 500;
+		if( !bMoving) 
+		{
+			set ARMORED to 1;
+			turn strutsf to x-axis <200> speed <120>;
+			turn strutsb to x-axis <-200> speed <120>;
+			move footlf to x-axis [-0.7] speed [1.4];
+			move footrf to x-axis [0.7] speed [1.4];
+			move footlb to x-axis [-0.7] speed [1.4];
+			move footrb to x-axis [0.7] speed [1.4];
+			turn footlf to x-axis <70> speed <140>;
+			turn footrf to x-axis <70> speed <140>;
+			turn footlb to x-axis <-70> speed <140>;
+			turn footrb to x-axis <-70> speed <140>;
+			deployed = 2;
+			sleep 500;
+		}
+		busy = 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	turn turret to y-axis <0> speed <120>;
+	turn gun to x-axis <0> speed <50>;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare2;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = gun;
+}
+
+AimPrimary(heading,pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <250>;
+	turn gun to x-axis (0 - pitch) speed <80>;
+	while( !Ready_2 )
+	{
+		wait-for-move barrel1 along z-axis;
+		wait-for-move barrel2 along z-axis;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return(1);
+}
+
+FirePrimary()
+{
+	var speed1;
+	speed1 = [1.5];
+	if( deployed > 1 )
+	{
+		speed1 = [2.5];
+	}
+	Ready_2 = 0;
+	if( gun_1 == 0 )
+	{
+		move barrel1 to z-axis [-2.1] speed [500];
+		show flare1;
+		sleep 150;
+		hide flare1;
+		move barrel1 to z-axis [0] speed speed1;
+	}
+	if( gun_1 == 1 )
+	{
+		move barrel2 to z-axis [-2.1] speed [500];
+		show flare2;
+		sleep 150;
+		hide flare2;
+		move barrel2 to z-axis [0] speed speed1;
+	}
+	gun_1 = !gun_1;
+	wait-for-move barrel1 along z-axis;
+	wait-for-move barrel2 along z-axis;
+	Ready_2 = 1;
+}
+
+Killed(severity,corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode gun type BITMAPONLY | BITMAP3;
+		explode barrel1 type BITMAPONLY | BITMAP3;
+		explode barrel2 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode gun type BITMAPONLY | BITMAP3;
+		explode barrel1 type FALL | BITMAP3;
+		explode barrel2 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type FALL | BITMAP2;
+		explode gun type SHATTER | BITMAP3;
+		explode barrel1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2 type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode gun type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

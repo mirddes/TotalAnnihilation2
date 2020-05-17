@@ -1,0 +1,34 @@
+[cordh_DEAD]
+{
+world=All Worlds;
+description=Kendo Wreckage;
+category=core_corpses;
+object=cordh_dead;
+featuredead=cordh_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=496;
+damage=1120;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cordh_HEAP]
+{
+world=All Worlds;
+description=Kendo Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+blocking=0;
+hitdensity=5;
+metal=248;
+damage=1548;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

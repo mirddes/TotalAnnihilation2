@@ -1,0 +1,509 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, body, skirt, hexes, bits, turret, support, dish1, dish2, wake1, wake2, wake3, wake4, wake5, wake6, wake7, wake8,
+	   spin1, tilt1, shieldring1, bits1, spin2, tilt2, shieldring2, bits2, pad, stick;
+
+static-var  statechg_DesiredState, statechg_StateChanging, Static_Var_1, spark;
+static-var  shared, nbr_charge, shgen_count;
+
+// Signal definitions
+#define SIG_ACTIVATE			2
+#define SIG_MOVE				4
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Unit's maxdamage value (not percentage)
+#ifndef HEALTH_VAL
+#define HEALTH_VAL 76
+#endif
+
+// Is unit cloaked
+#ifndef CLOAKED
+#define CLOAKED 77
+#endif
+
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+/*
+Pylons()
+{
+//	dont-cache glow;
+//	dont-cache knob;
+	
+	while(shared)
+	{
+		explode pad type BITMAPONLY | BITMAPNUKE;
+		sleep rand (30000, 60000);
+	}
+}
+*/
+
+sharing()
+{
+	signal 2;
+	set-signal-mask 2;
+	
+	dont-cache dish1;
+	dont-cache dish2;
+	
+//	start-script Pylons();
+//	start-script buzz();
+	
+	spin turret around y-axis speed <60.010989>;
+//	spin lightning2 around y-axis speed rand(<420>, <1337>);
+//	spin lightning3 around y-axis speed rand(<420>, <1337>);
+	
+//	spin f1 around y-axis speed rand(<4200>, <13370>);
+//	spin f2 around y-axis speed rand(<4200>, <13370>);
+//	spin f3 around y-axis speed rand(<4200>, <13370>);
+	if( spark == 1 )
+	{
+		explode pad type BITMAPONLY | BITMAPNUKE;
+	}
+	if ( spark >= 10 )
+	{
+		spark = 0;
+	}
+}
+
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+		
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_charge = 0;
+				
+		shgen_count = 0;
+		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if((get UNIT_HEIGHT(unit_ID) == ARMLLT || get UNIT_HEIGHT(unit_ID) == ARMFLLT || get UNIT_HEIGHT(unit_ID) == ARMHLT || get UNIT_HEIGHT(unit_ID) == ARMFHLT ||
+				get UNIT_HEIGHT(unit_ID) == ARMESTOR || get UNIT_HEIGHT(unit_ID) == ARMUWMFUS || get UNIT_HEIGHT(unit_ID) == ARMUWES || get UNIT_HEIGHT(unit_ID) == ARMORION ||
+				get UNIT_HEIGHT(unit_ID) == CORLLT || get UNIT_HEIGHT(unit_ID) == CORFLLT || get UNIT_HEIGHT(unit_ID) == CORHLT || get UNIT_HEIGHT(unit_ID) == CORFHLT ||
+				get UNIT_HEIGHT(unit_ID) == CORESTOR || get UNIT_HEIGHT(unit_ID) == CORUWMFUS || get UNIT_HEIGHT(unit_ID) == CORUWES || get UNIT_HEIGHT(unit_ID) == CORVIPE ||
+				get UNIT_HEIGHT(unit_ID) == ARMANNI || get UNIT_HEIGHT(unit_ID) == ARMBRTHA || get UNIT_HEIGHT(unit_ID) == ARMFUS || get UNIT_HEIGHT(unit_ID) == ARMSES ||
+				get UNIT_HEIGHT(unit_ID) == ARMUWFUS ||	get UNIT_HEIGHT(unit_ID) == ARMVULC || get UNIT_HEIGHT(unit_ID) == ARMSBERTHA || get UNIT_HEIGHT(unit_ID) == ARMSTUN ||
+				get UNIT_HEIGHT(unit_ID) == CORDOOM || get UNIT_HEIGHT(unit_ID) == CORINT || get UNIT_HEIGHT(unit_ID) == CORFUS || get UNIT_HEIGHT(unit_ID) == CORSES ||
+				get UNIT_HEIGHT(unit_ID) == CORUWFUS || get UNIT_HEIGHT(unit_ID) == CORBUZZ || get UNIT_HEIGHT(unit_ID) == CORNOVA || get UNIT_HEIGHT(unit_ID) == CORBFG ||
+				get UNIT_HEIGHT(unit_ID) == ARMSFUS || get UNIT_HEIGHT(unit_ID) == CORSFUS || get UNIT_HEIGHT(unit_ID) == ARMUWCS || get UNIT_HEIGHT(unit_ID) == CORUWCS ||
+				get UNIT_HEIGHT(unit_ID) == CORSPUN))
+				{		
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						
+						if( distance > MOBILE_RADIUS_5 )
+						{
+							shgen_count = 0;
+						}	
+						if( distance <= MOBILE_RADIUS_5 )
+						{
+							shgen_count = 5;
+						}	
+						if( distance <= MOBILE_RADIUS_4 )
+						{
+							shgen_count = 4;
+						}	
+						if( distance <= MOBILE_RADIUS_3 )
+						{
+							shgen_count = 3;
+						}	
+						if( distance <= MOBILE_RADIUS_2 )
+						{
+							shgen_count = 2;
+						}	
+						if( distance <= MOBILE_RADIUS_1 )
+						{
+							++nbr_charge;
+							++nbr_charge;
+							shgen_count = 1;
+						}
+					}	
+				}
+			}
+		}
+
+		if(nbr_charge >= 2)
+		{
+			++spark;
+			shared = 1;
+			set ACTIVATION to 1;
+			start-script sharing();	
+		}	
+		if(nbr_charge < 2)
+		{
+			shared = 0;
+			spark = 0;
+			set ACTIVATION to 0;
+		
+			cache dish1;
+			cache dish2;
+			
+			stop-spin turret around y-axis;
+		}	
+		
+		if(shgen_count == 0)
+		{
+			sleep rand(45000,58500);
+		}
+		if(shgen_count == 1)
+		{
+//			sleep rand(2000,3000);
+			sleep 4500;
+		}
+		if(shgen_count == 2)
+		{
+			sleep rand(4500,6000);
+		}
+		if(shgen_count == 3)
+		{
+			sleep rand(8500,13500);
+		}
+		if(shgen_count == 4)
+		{
+			sleep rand(22500,28500);
+		}
+		if(shgen_count == 5)
+		{
+			sleep rand(30000,43500);
+		}
+//		sleep rand(2000,2500);
+	}
+}	
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+/*
+Go()
+{
+	spin turret around y-axis speed <60.010989>;
+}
+
+Stop()
+{
+	stop-spin turret around y-axis;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <50.000000>;
+	turn base to z-axis anglez speed <50.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <20.000000>;
+	turn base to x-axis <0.000000> speed <20.000000>;
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+*/
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		if( ( Static_Var_1 == 2 OR Static_Var_1 ) == 1 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	if( Static_Var_1 == 2 || Static_Var_1 == 1 )
+	{
+		dont-cache body;
+		dont-cache turret;
+		dont-cache support;
+		dont-cache dish1;
+		dont-cache dish2;
+		dont-cache skirt;
+		dont-cache hexes;
+		dont-cache bits;
+	}
+	if( Static_Var_1 != 2 && Static_Var_1 != 1 )
+	{
+		cache body;
+		cache turret;
+		cache support;
+		cache dish1;
+		cache dish2;
+		cache skirt;
+		cache hexes;
+		cache bits;
+	}
+}
+
+Create()
+{
+	shared = 0;
+	nbr_charge = 0;
+	shgen_count = 0;
+	spark = 0;
+	
+	move body to y-axis [5.000000] now;
+	move bits1 to z-axis [-151] now;
+	move pad to y-axis [60.000000] now;
+	
+//	call-script InitState();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	spin spin1 around y-axis speed <60.00>;
+//	spin spin2 around y-axis speed <-90.00>;
+	
+	spin shieldring1 around y-axis speed <360.00>;
+//	spin shieldring2 around y-axis speed <-360.00>;
+	
+	turn tilt1 to z-axis <2.00> now;
+//	turn tilt2 to z-axis <-2.00> now;
+
+	show bits1;
+//	show bits2;
+
+	start-script detect();
+	start-script SmokeUnit();
+	
+//	explode pad type BITMAPONLY | BITMAPNUKE;
+//	sleep 1550;
+}
+/*
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+*/
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( Static_Var_1 == 1 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode base type BITMAPONLY | BITMAP1;
+			explode turret type BITMAPONLY | BITMAP1;
+			explode support type BITMAPONLY | BITMAP5;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode support type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode base type BITMAPONLY | BITMAP1;
+			explode turret type BITMAPONLY | BITMAP1;
+			explode support type BITMAPONLY | BITMAP5;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode support type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode support type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode support type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode support type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP1;
+	explode support type BITMAPONLY | BITMAP5;
+}

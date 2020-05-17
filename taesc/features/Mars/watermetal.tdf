@@ -1,0 +1,62 @@
+[marsaquaore1]  // Small
+	{
+	world=mars;
+	description=Metal;
+	category=metal;
+	animating=0;
+   	 footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=marsaquaore;
+	seqname=marsaquaore1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=88;
+	damage=32009;
+	indestructible=1;
+	}
+
+[marsaquaore2]  // Medium
+	{
+	world=mars;
+	description=Metal;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=marsaquaore;
+	seqname=marsaquaore2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=121;
+	damage=32009;
+	indestructible=1;
+	}
+
+[marsaquaore3]  // Huge
+	{
+	world=mars;
+	description=Metal;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=marsaquaore;
+	seqname=marsaquaore3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=244;
+	damage=32009;
+	indestructible=1;
+	}

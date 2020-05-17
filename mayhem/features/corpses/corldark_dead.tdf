@@ -1,0 +1,35 @@
+[corldark_dead]
+{
+world=All Worlds;
+description=Nightmare Wreckage;
+category=core_corpses;
+object=corldark_dead;
+featuredead=corldark_heap;
+footprintx=5;
+footprintz=5;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=7488;
+damage=15400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corldark_heap]
+{
+world=All Worlds;
+description=Nightmare Wreckage;
+category=core_corpses;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=6;
+blocking=0;
+hitdensity=100;
+metal=3744;
+damage=15400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

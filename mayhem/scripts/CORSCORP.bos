@@ -1,0 +1,1193 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  ssbase, sslhatch, sshead, ssverta, sstoparm2, sstoparm5, sstoparm6, ssmidarm6,
+       ssmidarm4, ssbotarm4, ssmidarm3, sstoes3, ssbotarm2, sstoes2, ssmidarm1, ssbotarm1,
+       sstoes1, ssvertb, sslmand, ssrmand, sslowjaw, ssbody, sstoparm1, ssbotarm6,
+       ssmidarm5, ssbotarm5, ssmidarm2, ssvertc, ssbutt, sstoparm4, sstoparm3, ssbotarm3,
+       ssrhatch;
+
+static-var  Static_Var_1, bMoving, bAiming, Static_Var_4;
+
+// Signal definitions
+#define SIG_AIM				2
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from ssbase;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(Func_Var_1)
+{
+	Func_Var_1 = 1;
+	while( TRUE )
+	{
+		if( bAiming OR Static_Var_4 )
+		{
+			if( bMoving )
+			{
+				move sshead to y-axis [-0.950000] now;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				move sshead to z-axis [0.000000] now;
+				move ssverta to x-axis [0.000000] now;
+				move sstoparm2 to y-axis [0.000000] now;
+				move sstoparm2 to z-axis [0.000000] now;
+				move sstoparm5 to y-axis [0.000000] now;
+				move sstoparm6 to z-axis [0.000000] now;
+				move ssmidarm6 to z-axis [0.000000] now;
+				move ssmidarm4 to y-axis [0.000000] now;
+				move ssbotarm4 to x-axis [0.000000] now;
+				move ssmidarm3 to z-axis [0.000000] now;
+				move sstoes3 to x-axis [0.000000] now;
+				move sstoes3 to y-axis [0.000000] now;
+				move ssbotarm2 to z-axis [0.000000] now;
+				move sstoes2 to z-axis [0.000000] now;
+				move ssmidarm1 to y-axis [0.000000] now;
+				move ssbotarm1 to z-axis [0.000000] now;
+				move sstoes1 to y-axis [0.000000] now;
+				move ssvertb to y-axis [0.000000] now;
+				move sslmand to y-axis [0.000000] now;
+				move ssrmand to x-axis [0.000000] now;
+				move ssrmand to y-axis [0.000000] now;
+				move sslowjaw to z-axis [0.000000] now;
+				turn sshead to y-axis <0.000000> now;
+				turn sshead to y-axis <-2.478022> speed <25.587912>;
+				turn sstoparm1 to z-axis <0.000000> now;
+				turn sstoparm1 to z-axis <9.000000> speed <62.417582>;
+				turn sstoparm2 to z-axis <0.000000> now;
+				turn sstoparm2 to z-axis <9.406593> speed <104.000000>;
+				turn sstoparm5 to z-axis <0.000000> now;
+				turn sstoparm5 to z-axis <-2.857143> speed <34.675824>;
+				turn sstoparm6 to z-axis <0.000000> now;
+				turn sstoparm6 to z-axis <-18.406593> speed <104.000000>;
+				turn ssmidarm6 to y-axis <0.000000> now;
+				turn ssmidarm6 to y-axis <-4.087912> speed <249.659341>;
+				turn ssbotarm6 to z-axis <0.000000> now;
+				turn ssbotarm6 to z-axis <-6.538462> speed <159.505495>;
+				turn ssmidarm5 to y-axis <0.000000> now;
+				turn ssmidarm5 to y-axis <-23.725275> speed <124.835165>;
+				turn ssbotarm5 to z-axis <0.000000> now;
+				turn ssbotarm5 to z-axis <-11.038462> speed <194.186813>;
+				turn ssmidarm4 to y-axis <63.005495> now;
+				turn ssmidarm4 to y-axis <60.549451> speed <0.000000>;
+				turn ssmidarm3 to y-axis <0.000000> now;
+				turn ssmidarm3 to y-axis <1.225275> speed <90.159341>;
+				turn ssmidarm2 to y-axis <-54.005495> now;
+				turn ssmidarm2 to y-axis <-33.956044> speed <409.186813>;
+				turn ssbotarm2 to y-axis <0.000000> now;
+				turn ssbotarm2 to y-axis <0.000000> speed <0.000000>;
+				turn ssbotarm2 to z-axis <0.000000> now;
+				turn ssbotarm2 to z-axis <-11.456044> speed <131.769231>;
+				turn sstoes2 to z-axis <0.000000> now;
+				turn sstoes2 to z-axis <-20.456044> speed <6.928571>;
+				turn ssmidarm1 to y-axis <0.000000> now;
+				turn ssmidarm1 to y-axis <38.258242> speed <121.368132>;
+				turn ssbotarm1 to z-axis <0.000000> now;
+				turn ssbotarm1 to z-axis <33.445055> speed <188.989011>;
+				turn sstoes1 to z-axis <0.000000> now;
+				turn sstoes1 to z-axis <-19.637363> speed <180.318681>;
+				turn sslowjaw to x-axis <0.000000> now;
+				turn sslowjaw to x-axis <-27.406593> speed <0.000000>;
+				sleep 59;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-1.318681> speed <18.478022>;
+				turn sstoparm1 to z-axis <5.318681> speed <58.445055>;
+				turn sstoparm2 to z-axis <12.269231> speed <45.456044>;
+				turn sstoparm4 to z-axis <-3.269231> speed <51.956044>;
+				turn sstoparm5 to z-axis <0.000000> speed <45.456044>;
+				turn sstoparm6 to z-axis <-24.549451> speed <97.417582>;
+				turn ssmidarm6 to y-axis <-19.225275> speed <240.307692>;
+				turn ssbotarm6 to z-axis <-31.087912> speed <389.697802>;
+				turn ssmidarm5 to y-axis <-6.538462> speed <272.785714>;
+				turn ssbotarm5 to z-axis <0.000000> speed <175.357143>;
+				turn ssmidarm4 to y-axis <58.505495> speed <32.467033>;
+				turn ssmidarm3 to y-axis <-14.725275> speed <253.307692>;
+				turn ssmidarm2 to y-axis <-10.637363> speed <370.219780>;
+				turn ssbotarm2 to z-axis <-2.857143> speed <136.395604>;
+				turn sstoes2 to z-axis <-40.505495> speed <318.258242>;
+				turn ssmidarm1 to y-axis <31.087912> speed <113.659341>;
+				turn ssbotarm1 to z-axis <22.296703> speed <176.989011>;
+				turn sstoes1 to z-axis <-9.000000> speed <168.868132>;
+				turn sslowjaw to x-axis <-25.516484> speed <30.000000>;
+				sleep 63;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-0.626374> speed <10.478022>;
+				turn sstoparm1 to z-axis <2.659341> speed <40.296703>;
+				turn sstoparm2 to z-axis <18.406593> speed <92.989011>;
+				turn sstoparm4 to z-axis <-9.406593> speed <92.989011>;
+				turn sstoparm6 to z-axis <-18.818681> speed <86.796703>;
+				turn ssmidarm6 to y-axis <-36.000000> speed <254.186813>;
+				turn ssbotarm6 to z-axis <-44.598901> speed <204.587912>;
+				turn ssmidarm5 to y-axis <-1.225275> speed <80.587912>;
+				turn ssmidarm4 to y-axis <33.956044> speed <371.989011>;
+				turn ssbotarm4 to z-axis <3.675824> speed <55.796703>;
+				turn ssmidarm3 to y-axis <-37.236264> speed <340.989011>;
+				turn ssmidarm2 to y-axis <4.087912> speed <223.186813>;
+				turn ssbotarm2 to z-axis <6.538462> speed <142.587912>;
+				turn sstoes2 to z-axis <-40.098901> speed <6.197802>;
+				turn ssmidarm1 to y-axis <23.928571> speed <108.489011>;
+				turn ssbotarm1 to z-axis <11.148352> speed <168.945055>;
+				turn sstoes1 to z-axis <-4.500000> speed <68.197802>;
+				turn sslowjaw to x-axis <-24.565934> speed <14.318681>;
+				sleep 66;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <0.000000> speed <10.126374>;
+				turn sstoparm1 to z-axis <0.000000> speed <42.895604>;
+				turn sstoparm2 to z-axis <24.549451> speed <98.989011>;
+				turn sstoparm4 to z-axis <-12.269231> speed <46.197802>;
+				turn sstoparm6 to z-axis <-12.675824> speed <98.989011>;
+				turn ssmidarm6 to y-axis <-45.000000> speed <145.186813>;
+				turn ssbotarm6 to z-axis <-33.549451> speed <178.186813>;
+				turn ssmidarm5 to y-axis <14.725275> speed <257.379121>;
+				turn ssmidarm4 to y-axis <10.637363> speed <376.186813>;
+				turn ssbotarm4 to z-axis <8.587912> speed <79.197802>;
+				turn ssmidarm3 to y-axis <-60.148352> speed <369.587912>;
+				turn ssmidarm2 to y-axis <19.225275> speed <244.186813>;
+				turn ssbotarm2 to z-axis <31.087912> speed <395.989011>;
+				turn ssmidarm1 to y-axis <6.538462> speed <280.489011>;
+				turn ssbotarm1 to z-axis <0.000000> speed <179.835165>;
+				turn sstoes1 to z-axis <0.000000> speed <72.587912>;
+				turn ssvertb to y-axis <0.000000> speed <0.000000>;
+				turn sslowjaw to x-axis <-21.258242> speed <53.346154>;
+				sleep 62;
+			}
+			if( bMoving )
+			{
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <0.686813> speed <10.978022>;
+				turn sstoparm2 to z-axis <18.818681> speed <90.928571>;
+				turn sstoparm4 to z-axis <-18.406593> speed <97.417582>;
+				turn sstoparm6 to z-axis <-9.000000> speed <58.445055>;
+				turn ssmidarm6 to y-axis <-38.456044> speed <103.917582>;
+				turn ssbotarm6 to z-axis <-22.505495> speed <175.357143>;
+				turn ssmidarm5 to y-axis <37.236264> speed <357.225275>;
+				turn ssmidarm4 to y-axis <-4.087912> speed <233.818681>;
+				turn ssbotarm4 to z-axis <2.038462> speed <103.917582>;
+				turn ssmidarm3 to y-axis <-60.148352> speed <0.000000>;
+				turn ssmidarm2 to y-axis <36.000000> speed <266.296703>;
+				turn ssbotarm2 to z-axis <44.598901> speed <214.335165>;
+				turn sstoes2 to z-axis <-35.186813> speed <77.939560>;
+				turn ssmidarm1 to y-axis <1.000000> speed <87.675824>;
+				turn ssvertb to y-axis <0.000000> speed <0.000000>;
+				turn sslowjaw to x-axis <-25.516484> speed <67.505495>;
+				sleep 63;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <1.379121> speed <10.637363>;
+				turn sstoparm2 to z-axis <12.675824> speed <94.428571>;
+				turn sstoparm3 to z-axis <3.269231> speed <50.357143>;
+				turn sstoparm4 to z-axis <-24.549451> speed <94.428571>;
+				turn sstoparm6 to z-axis <-5.318681> speed <56.648352>;
+				turn ssmidarm6 to y-axis <-31.087912> speed <113.307692>;
+				turn ssbotarm6 to z-axis <-11.456044> speed <169.967033>;
+				turn ssmidarm5 to y-axis <60.148352> speed <352.527473>;
+				turn ssmidarm4 to y-axis <-19.225275> speed <232.917582>;
+				turn ssbotarm4 to z-axis <-6.956044> speed <138.489011>;
+				turn ssmidarm3 to y-axis <-58.505495> speed <25.175824>;
+				turn ssbotarm3 to z-axis <-9.406593> speed <144.785714>;
+				turn ssmidarm2 to y-axis <45.000000> speed <138.489011>;
+				turn ssbotarm2 to z-axis <44.598901> speed <0.000000>;
+				turn sstoes2 to z-axis <-30.269231> speed <75.538462>;
+				turn ssmidarm1 to y-axis <-14.725275> speed <242.357143>;
+				turn sslowjaw to x-axis <-27.406593> speed <29.076923>;
+				sleep 65;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <2.478022> speed <17.467033>;
+				turn sstoparm2 to z-axis <9.000000> speed <58.445055>;
+				turn sstoparm3 to z-axis <9.406593> speed <97.417582>;
+				turn sstoparm4 to z-axis <-13.500000> speed <175.357143>;
+				turn sstoparm6 to z-axis <-2.445055> speed <45.456044>;
+				turn ssmidarm6 to y-axis <-23.725275> speed <116.906593>;
+				turn ssbotarm6 to z-axis <0.000000> speed <181.857143>;
+				turn ssmidarm5 to y-axis <60.148352> speed <0.000000>;
+				turn ssmidarm4 to y-axis <-36.000000> speed <266.296703>;
+				turn ssbotarm4 to z-axis <-31.087912> speed <383.208791>;
+				turn ssmidarm3 to y-axis <-33.956044> speed <389.697802>;
+				turn ssbotarm3 to z-axis <-11.456044> speed <32.467033>;
+				turn ssmidarm2 to y-axis <38.456044> speed <103.917582>;
+				turn ssbotarm2 to z-axis <33.549451> speed <175.357143>;
+				turn sstoes2 to z-axis <-19.637363> speed <168.868132>;
+				turn ssmidarm1 to y-axis <-37.439560> speed <360.467033>;
+				turn sslowjaw to x-axis <-27.406593> speed <0.000000>;
+				sleep 63;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <3.989011> speed <23.967033>;
+				turn sstoparm2 to z-axis <5.318681> speed <58.445055>;
+				turn sstoparm3 to z-axis <12.269231> speed <45.456044>;
+				turn sstoparm4 to z-axis <-12.675824> speed <12.989011>;
+				turn sstoparm5 to z-axis <-3.269231> speed <51.956044>;
+				turn sstoparm6 to z-axis <0.000000> speed <38.967033>;
+				turn ssmidarm6 to y-axis <-6.538462> speed <272.785714>;
+				turn ssmidarm5 to y-axis <58.098901> speed <32.467033>;
+				turn ssbotarm5 to z-axis <3.675824> speed <58.445055>;
+				turn ssmidarm4 to y-axis <-45.417582> speed <149.379121>;
+				turn ssbotarm4 to z-axis <-44.598901> speed <214.335165>;
+				turn ssmidarm3 to y-axis <-10.225275> speed <376.708791>;
+				turn ssbotarm3 to z-axis <-2.857143> speed <136.395604>;
+				turn ssmidarm2 to y-axis <31.087912> speed <116.906593>;
+				turn ssbotarm2 to z-axis <21.686813> speed <188.357143>;
+				turn sstoes2 to z-axis <-9.000000> speed <168.868132>;
+				turn ssmidarm1 to y-axis <-60.148352> speed <360.467033>;
+				turn sslowjaw to x-axis <-27.406593> speed <0.000000>;
+				sleep 63;
+			}
+			if( bMoving )
+			{
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <2.609890> speed <21.269231>;
+				turn sstoparm2 to z-axis <2.445055> speed <44.065934>;
+				turn sstoparm3 to z-axis <18.406593> speed <94.428571>;
+				turn sstoparm4 to z-axis <-9.000000> speed <56.648352>;
+				turn sstoparm5 to z-axis <-9.406593> speed <94.428571>;
+				turn ssmidarm6 to y-axis <-1.225275> speed <81.835165>;
+				turn ssmidarm5 to y-axis <33.956044> speed <371.417582>;
+				turn ssbotarm5 to z-axis <9.406593> speed <88.126374>;
+				turn ssmidarm4 to y-axis <-38.456044> speed <107.000000>;
+				turn ssbotarm4 to z-axis <-33.549451> speed <169.967033>;
+				turn ssmidarm3 to y-axis <4.087912> speed <220.329670>;
+				turn ssbotarm3 to z-axis <6.538462> speed <144.785714>;
+				turn ssmidarm2 to y-axis <23.725275> speed <113.307692>;
+				turn ssbotarm2 to z-axis <11.456044> speed <157.379121>;
+				turn sstoes2 to z-axis <-4.500000> speed <69.247253>;
+				turn sslowjaw to x-axis <-26.456044> speed <14.538462>;
+				sleep 65;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <1.445055> speed <18.478022>;
+				turn sstoparm1 to z-axis <3.269231> speed <51.956044>;
+				turn sstoparm2 to z-axis <0.000000> speed <38.967033>;
+				turn sstoparm3 to z-axis <24.549451> speed <97.417582>;
+				turn sstoparm4 to z-axis <-5.318681> speed <58.445055>;
+				turn sstoparm5 to z-axis <-12.269231> speed <45.456044>;
+				turn ssmidarm6 to y-axis <14.725275> speed <253.307692>;
+				turn ssmidarm5 to y-axis <10.637363> speed <370.219780>;
+				turn ssbotarm5 to z-axis <11.038462> speed <25.978022>;
+				turn ssmidarm4 to y-axis <-31.087912> speed <116.906593>;
+				turn ssbotarm4 to z-axis <-22.505495> speed <175.357143>;
+				turn ssmidarm3 to y-axis <19.225275> speed <240.307692>;
+				turn ssbotarm3 to z-axis <31.087912> speed <389.697802>;
+				turn ssmidarm2 to y-axis <6.538462> speed <272.785714>;
+				turn ssbotarm2 to z-axis <0.000000> speed <181.857143>;
+				turn sstoes2 to z-axis <0.000000> speed <71.445055>;
+				turn ssmidarm1 to y-axis <-58.708791> speed <22.725275>;
+				turn ssbotarm1 to z-axis <-3.675824> speed <58.445055>;
+				turn sslowjaw to x-axis <-24.565934> speed <30.000000>;
+				sleep 63;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <0.686813> speed <11.615385>;
+				turn sstoparm1 to z-axis <9.406593> speed <94.428571>;
+				turn sstoparm3 to z-axis <18.818681> speed <88.126374>;
+				turn sstoparm4 to z-axis <-2.445055> speed <44.065934>;
+				turn sstoparm5 to z-axis <-18.406593> speed <94.428571>;
+				turn ssmidarm6 to y-axis <36.818681> speed <339.939560>;
+				turn ssmidarm5 to y-axis <-4.087912> speed <226.626374>;
+				turn ssbotarm5 to z-axis <2.445055> speed <132.197802>;
+				turn ssmidarm4 to y-axis <-23.725275> speed <113.307692>;
+				turn ssbotarm4 to z-axis <-11.038462> speed <176.258242>;
+				turn ssmidarm3 to y-axis <36.000000> speed <258.098901>;
+				turn ssbotarm3 to z-axis <44.598901> speed <207.736264>;
+				turn ssmidarm2 to y-axis <1.225275> speed <81.835165>;
+				turn ssmidarm1 to y-axis <-33.956044> speed <380.857143>;
+				turn ssbotarm1 to z-axis <-9.307692> speed <86.549451>;
+				turn sstoes1 to z-axis <-20.247253> speed <311.609890>;
+				turn sslowjaw to x-axis <-25.989011> speed <21.807692>;
+				sleep 65;
+				turn sshead to y-axis <0.000000> speed <10.978022>;
+				turn sstoparm1 to z-axis <12.269231> speed <45.456044>;
+				turn sstoparm3 to z-axis <12.675824> speed <97.417582>;
+				turn sstoparm4 to z-axis <0.000000> speed <38.967033>;
+				turn sstoparm5 to z-axis <-24.549451> speed <97.417582>;
+				turn ssmidarm6 to y-axis <60.148352> speed <370.219780>;
+				turn ssmidarm5 to y-axis <-19.225275> speed <240.307692>;
+				turn ssbotarm5 to z-axis <-6.137363> speed <136.395604>;
+				turn ssmidarm4 to y-axis <-6.538462> speed <272.785714>;
+				turn ssbotarm4 to z-axis <0.000000> speed <175.357143>;
+				turn ssmidarm3 to y-axis <45.417582> speed <149.379121>;
+				turn ssbotarm3 to z-axis <44.598901> speed <0.000000>;
+				turn ssmidarm2 to y-axis <-14.725275> speed <253.307692>;
+				turn ssmidarm1 to y-axis <-10.637363> speed <370.219780>;
+				turn ssbotarm1 to z-axis <-11.247253> speed <30.846154>;
+				turn sstoes1 to z-axis <-40.505495> speed <321.505495>;
+				turn ssvertc to y-axis <0.000000> speed <0.000000>;
+				turn sslowjaw to x-axis <-26.456044> speed <7.500000>;
+				sleep 63;
+			}
+			if( bMoving )
+			{
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-0.626374> speed <9.967033>;
+				turn sstoparm1 to z-axis <18.406593> speed <97.417582>;
+				turn sstoparm3 to z-axis <9.000000> speed <58.445055>;
+				turn sstoparm5 to z-axis <-18.818681> speed <90.928571>;
+				turn ssmidarm5 to y-axis <-36.000000> speed <266.296703>;
+				turn ssbotarm5 to z-axis <-31.906593> speed <409.186813>;
+				turn ssmidarm4 to y-axis <-1.225275> speed <84.428571>;
+				turn ssmidarm3 to y-axis <38.456044> speed <110.406593>;
+				turn ssbotarm3 to z-axis <33.549451> speed <175.357143>;
+				turn ssmidarm2 to y-axis <-36.818681> speed <350.725275>;
+				turn ssmidarm1 to y-axis <4.285714> speed <237.065934>;
+				turn ssbotarm1 to z-axis <-2.549451> speed <138.000000>;
+				turn sstoes1 to z-axis <-40.296703> speed <3.247253>;
+				turn ssvertc to y-axis <0.000000> speed <0.000000>;
+				turn sslowjaw to x-axis <-27.406593> speed <15.000000>;
+				sleep 63;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-1.379121> speed <11.615385>;
+				turn sstoparm1 to z-axis <24.549451> speed <94.428571>;
+				turn sstoparm3 to z-axis <5.318681> speed <56.648352>;
+				turn sstoparm5 to z-axis <-12.675824> speed <94.428571>;
+				turn sstoparm6 to z-axis <-3.269231> speed <50.357143>;
+				turn ssmidarm6 to y-axis <58.098901> speed <31.467033>;
+				turn ssbotarm6 to z-axis <3.675824> speed <56.648352>;
+				turn ssmidarm5 to y-axis <-45.417582> speed <144.785714>;
+				turn ssbotarm5 to z-axis <-44.598901> speed <195.148352>;
+				turn ssmidarm4 to y-axis <14.725275> speed <245.505495>;
+				turn ssmidarm3 to y-axis <31.087912> speed <113.307692>;
+				turn ssbotarm3 to z-axis <22.505495> speed <169.967033>;
+				turn ssmidarm2 to y-axis <-60.148352> speed <358.818681>;
+				turn ssmidarm1 to y-axis <19.225275> speed <229.769231>;
+				turn ssbotarm1 to z-axis <6.137363> speed <133.769231>;
+				turn sstoes1 to z-axis <-40.098901> speed <3.137363>;
+				turn sslowjaw to x-axis <-28.346154> speed <14.538462>;
+				sleep 65;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-2.478022> speed <17.197802>;
+				turn sstoparm1 to z-axis <18.615385> speed <92.697802>;
+				turn sstoparm3 to z-axis <2.445055> speed <44.747253>;
+				turn sstoparm5 to z-axis <-9.000000> speed <57.538462>;
+				turn sstoparm6 to z-axis <-9.406593> speed <95.895604>;
+				turn ssmidarm6 to y-axis <33.956044> speed <377.219780>;
+				turn ssbotarm6 to z-axis <11.456044> speed <121.478022>;
+				turn ssmidarm5 to y-axis <-38.456044> speed <108.686813>;
+				turn ssbotarm5 to z-axis <-33.549451> speed <172.626374>;
+				turn ssmidarm4 to y-axis <37.236264> speed <351.648352>;
+				turn ssmidarm3 to y-axis <23.725275> speed <115.076923>;
+				turn ssbotarm3 to z-axis <11.038462> speed <179.000000>;
+				turn ssmidarm2 to y-axis <-60.148352> speed <0.000000>;
+				turn ssmidarm1 to y-axis <36.000000> speed <262.137363>;
+				turn ssbotarm1 to z-axis <31.087912> speed <390.000000>;
+				turn sstoes1 to z-axis <-35.186813> speed <76.719780>;
+				turn sslowjaw to x-axis <-27.879121> speed <7.379121>;
+				sleep 64;
+				move sshead to y-axis [-0.950000] speed [0.000000];
+				turn sshead to y-axis <-3.989011> speed <23.967033>;
+				turn sstoparm1 to z-axis <12.675824> speed <94.175824>;
+				turn sstoparm2 to z-axis <3.269231> speed <51.956044>;
+				turn sstoparm3 to z-axis <0.000000> speed <38.967033>;
+				turn sstoparm5 to z-axis <-4.906593> speed <64.945055>;
+				turn sstoparm6 to z-axis <-12.269231> speed <45.456044>;
+				turn ssmidarm6 to y-axis <10.637363> speed <370.219780>;
+				turn ssbotarm6 to z-axis <2.857143> speed <136.395604>;
+				turn ssmidarm5 to y-axis <-31.087912> speed <116.906593>;
+				turn ssbotarm5 to z-axis <-22.505495> speed <175.357143>;
+				turn ssmidarm4 to y-axis <60.549451> speed <370.219780>;
+				turn ssmidarm3 to y-axis <6.538462> speed <272.785714>;
+				turn ssbotarm3 to z-axis <0.000000> speed <175.357143>;
+				turn ssmidarm2 to y-axis <-58.098901> speed <32.467033>;
+				turn ssbotarm2 to y-axis <0.000000> speed <0.000000>;
+				turn ssbotarm2 to z-axis <-3.675824> speed <58.445055>;
+				turn sstoes2 to z-axis <-20.049451> speed <318.258242>;
+				turn ssmidarm1 to y-axis <45.417582> speed <149.379121>;
+				turn ssbotarm1 to z-axis <44.598901> speed <214.335165>;
+				turn sstoes1 to z-axis <-30.269231> speed <77.939560>;
+				turn sslowjaw to x-axis <-27.406593> speed <7.500000>;
+			}
+			Static_Var_4 = 0;
+			sleep 63;
+			Func_Var_1 = 1;
+		}
+		if( ( !bAiming ) AND bMoving )
+		{
+			Static_Var_4 = 1;
+			if( bMoving )
+			{
+				move sshead to z-axis [0.000000] now;
+				move ssverta to x-axis [0.000000] now;
+				move sstoparm2 to y-axis [0.000000] now;
+				move sstoparm2 to z-axis [0.000000] now;
+				move sstoparm5 to y-axis [0.000000] now;
+				move sstoparm6 to z-axis [0.000000] now;
+				move ssmidarm6 to z-axis [0.000000] now;
+				move ssmidarm4 to y-axis [0.000000] now;
+				move ssbotarm4 to x-axis [0.000000] now;
+				move ssmidarm3 to z-axis [0.000000] now;
+				move sstoes3 to x-axis [0.000000] now;
+				move sstoes3 to y-axis [0.000000] now;
+				move ssbotarm2 to z-axis [0.000000] now;
+				move sstoes2 to z-axis [0.000000] now;
+				move ssmidarm1 to y-axis [0.000000] now;
+				move ssbotarm1 to z-axis [0.000000] now;
+				move sstoes1 to y-axis [0.000000] now;
+				move ssvertb to y-axis [0.000000] now;
+				move sslmand to y-axis [0.000000] now;
+				move ssrmand to x-axis [0.000000] now;
+				move ssrmand to y-axis [0.000000] now;
+				move sslowjaw to z-axis [0.000000] now;
+				turn ssbody to y-axis <0.000000> now;
+				turn ssbody to y-axis <4.500000> speed <58.445055>;
+				turn sshead to y-axis <0.000000> now;
+				turn sshead to y-axis <-5.318681> speed <43.835165>;
+				turn ssverta to y-axis <0.000000> now;
+				turn ssverta to y-axis <-18.000000> speed <117.456044>;
+				turn sstoparm1 to z-axis <0.000000> now;
+				turn sstoparm1 to z-axis <9.000000> speed <65.758242>;
+				turn sstoparm2 to z-axis <0.000000> now;
+				turn sstoparm2 to z-axis <9.406593> speed <109.598901>;
+				turn sstoparm5 to z-axis <0.000000> now;
+				turn sstoparm5 to z-axis <-2.857143> speed <36.527473>;
+				turn sstoparm6 to z-axis <0.000000> now;
+				turn sstoparm6 to z-axis <-18.406593> speed <109.598901>;
+				turn ssmidarm6 to y-axis <0.000000> now;
+				turn ssmidarm6 to y-axis <-4.087912> speed <263.049451>;
+				turn ssbotarm6 to z-axis <0.000000> now;
+				turn ssbotarm6 to z-axis <-6.538462> speed <168.049451>;
+				turn ssmidarm5 to y-axis <0.000000> now;
+				turn ssmidarm5 to y-axis <-23.725275> speed <131.516484>;
+				turn ssbotarm5 to z-axis <0.000000> now;
+				turn ssbotarm5 to z-axis <-11.038462> speed <204.587912>;
+				turn ssmidarm4 to y-axis <63.005495> now;
+				turn ssmidarm4 to y-axis <60.549451> speed <0.000000>;
+				turn ssmidarm3 to y-axis <0.000000> now;
+				turn ssmidarm3 to y-axis <1.225275> speed <94.989011>;
+				turn ssmidarm2 to y-axis <-54.005495> now;
+				turn ssmidarm2 to y-axis <-33.956044> speed <431.109890>;
+				turn ssbotarm2 to y-axis <0.000000> now;
+				turn ssbotarm2 to y-axis <0.000000> speed <0.000000>;
+				turn ssbotarm2 to z-axis <0.000000> now;
+				turn ssbotarm2 to z-axis <-11.456044> speed <138.829670>;
+				turn sstoes2 to z-axis <0.000000> now;
+				turn sstoes2 to z-axis <-20.456044> speed <7.296703>;
+				turn ssmidarm1 to y-axis <0.000000> now;
+				turn ssmidarm1 to y-axis <38.258242> speed <127.868132>;
+				turn ssbotarm1 to z-axis <0.000000> now;
+				turn ssbotarm1 to z-axis <33.445055> speed <199.109890>;
+				turn sstoes1 to z-axis <0.000000> now;
+				turn sstoes1 to z-axis <-19.637363> speed <189.978022>;
+				turn ssvertb to y-axis <0.000000> now;
+				turn ssvertb to y-axis <-9.659341> speed <68.197802>;
+				turn ssvertc to y-axis <36.005495> now;
+				turn ssvertc to y-axis <26.785714> speed <177.615385>;
+				turn ssbutt to y-axis <0.000000> now;
+				turn ssbutt to y-axis <12.285714> speed <45.835165>;
+				sleep 56;
+				turn ssbody to y-axis <3.269231> speed <21.159341>;
+				turn sshead to y-axis <-3.675824> speed <28.219780>;
+				turn ssverta to y-axis <-11.846154> speed <105.989011>;
+				turn sstoparm1 to z-axis <5.318681> speed <63.489011>;
+				turn sstoparm2 to z-axis <12.269231> speed <49.379121>;
+				turn sstoparm4 to z-axis <-3.269231> speed <56.439560>;
+				turn sstoparm5 to z-axis <0.000000> speed <49.379121>;
+				turn sstoparm6 to z-axis <-24.549451> speed <105.818681>;
+				turn ssmidarm6 to y-axis <-19.225275> speed <261.000000>;
+				turn ssbotarm6 to z-axis <-31.087912> speed <423.296703>;
+				turn ssmidarm5 to y-axis <-6.538462> speed <296.307692>;
+				turn ssbotarm5 to z-axis <0.000000> speed <190.478022>;
+				turn ssmidarm4 to y-axis <58.505495> speed <35.269231>;
+				turn ssmidarm3 to y-axis <-14.725275> speed <275.137363>;
+				turn ssmidarm2 to y-axis <-10.637363> speed <402.126374>;
+				turn ssbotarm2 to z-axis <-2.857143> speed <148.148352>;
+				turn sstoes2 to z-axis <-40.505495> speed <345.686813>;
+				turn ssmidarm1 to y-axis <31.087912> speed <123.456044>;
+				turn ssbotarm1 to z-axis <22.296703> speed <192.247253>;
+				turn sstoes1 to z-axis <-9.000000> speed <183.428571>;
+				turn ssvertb to y-axis <-4.829670> speed <83.269231>;
+				turn ssvertc to y-axis <18.000000> speed <151.417582>;
+				turn ssbutt to y-axis <7.456044> speed <83.269231>;
+				sleep 58;
+				turn ssbody to y-axis <2.038462> speed <20.796703>;
+				turn sshead to y-axis <-2.038462> speed <27.736264>;
+				turn ssverta to y-axis <-5.697802> speed <104.197802>;
+				turn sstoparm1 to z-axis <2.659341> speed <45.076923>;
+				turn sstoparm2 to z-axis <18.406593> speed <104.000000>;
+				turn sstoparm4 to z-axis <-9.406593> speed <104.000000>;
+				turn sstoparm6 to z-axis <-18.818681> speed <97.087912>;
+				turn ssmidarm6 to y-axis <-36.000000> speed <284.346154>;
+				turn ssbotarm6 to z-axis <-44.598901> speed <228.868132>;
+				turn ssmidarm5 to y-axis <-1.225275> speed <90.159341>;
+				turn ssmidarm4 to y-axis <33.956044> speed <416.115385>;
+				turn ssbotarm4 to z-axis <3.675824> speed <62.417582>;
+				turn ssmidarm3 to y-axis <-37.236264> speed <381.445055>;
+				turn ssmidarm2 to y-axis <4.087912> speed <249.659341>;
+				turn ssbotarm2 to z-axis <6.538462> speed <159.505495>;
+				turn sstoes2 to z-axis <-40.098901> speed <6.928571>;
+				turn ssmidarm1 to y-axis <23.928571> speed <121.368132>;
+				turn ssbotarm1 to z-axis <11.148352> speed <188.989011>;
+				turn sstoes1 to z-axis <-4.500000> speed <76.285714>;
+				turn ssvertb to y-axis <-1.747253> speed <52.098901>;
+				turn ssvertc to y-axis <8.769231> speed <156.296703>;
+				turn ssbutt to y-axis <2.186813> speed <89.307692>;
+				sleep 59;
+				turn ssbody to y-axis <-0.807692> speed <48.538462>;
+				turn sshead to y-axis <0.000000> speed <34.675824>;
+				turn ssverta to y-axis <0.000000> speed <96.747253>;
+				turn sstoparm1 to z-axis <0.000000> speed <45.076923>;
+				turn sstoparm2 to z-axis <24.549451> speed <104.000000>;
+				turn sstoparm4 to z-axis <-12.269231> speed <48.538462>;
+				turn sstoparm6 to z-axis <-12.675824> speed <104.000000>;
+				turn ssmidarm6 to y-axis <-45.000000> speed <152.576923>;
+				turn ssbotarm6 to z-axis <-33.549451> speed <187.247253>;
+				turn ssmidarm5 to y-axis <14.725275> speed <270.478022>;
+				turn ssmidarm4 to y-axis <10.637363> speed <395.318681>;
+				turn ssbotarm4 to z-axis <8.587912> speed <83.219780>;
+				turn ssmidarm3 to y-axis <-60.148352> speed <388.379121>;
+				turn ssmidarm2 to y-axis <19.225275> speed <256.609890>;
+				turn ssbotarm2 to z-axis <31.087912> speed <416.115385>;
+				turn ssmidarm1 to y-axis <6.538462> speed <294.747253>;
+				turn ssbotarm1 to z-axis <0.000000> speed <188.989011>;
+				turn sstoes1 to z-axis <0.000000> speed <76.285714>;
+				turn ssvertb to y-axis <0.000000> speed <29.769231>;
+				turn ssvertc to y-axis <0.000000> speed <148.857143>;
+				turn ssbutt to y-axis <0.000000> speed <37.208791>;
+				sleep 59;
+			}
+			if( bMoving )
+			{
+				turn ssbody to y-axis <-2.038462> speed <20.796703>;
+				turn sshead to y-axis <1.626374> speed <27.736264>;
+				turn ssverta to y-axis <5.697802> speed <96.747253>;
+				turn sstoparm2 to z-axis <18.818681> speed <97.087912>;
+				turn sstoparm4 to z-axis <-18.406593> speed <104.000000>;
+				turn sstoparm6 to z-axis <-9.000000> speed <62.417582>;
+				turn ssmidarm6 to y-axis <-38.456044> speed <110.956044>;
+				turn ssbotarm6 to z-axis <-22.505495> speed <187.247253>;
+				turn ssmidarm5 to y-axis <37.236264> speed <381.445055>;
+				turn ssmidarm4 to y-axis <-4.087912> speed <249.659341>;
+				turn ssbotarm4 to z-axis <2.038462> speed <110.956044>;
+				turn ssmidarm3 to y-axis <-60.148352> speed <0.000000>;
+				turn ssmidarm2 to y-axis <36.000000> speed <284.346154>;
+				turn ssbotarm2 to z-axis <44.598901> speed <228.868132>;
+				turn sstoes2 to z-axis <-35.186813> speed <83.219780>;
+				turn ssmidarm1 to y-axis <1.000000> speed <93.626374>;
+				turn ssvertb to y-axis <1.747253> speed <29.769231>;
+				turn ssvertc to y-axis <-8.769231> speed <148.857143>;
+				turn ssbutt to y-axis <-2.186813> speed <37.208791>;
+				sleep 59;
+				turn ssbody to y-axis <-3.675824> speed <28.219780>;
+				turn sshead to y-axis <3.269231> speed <28.219780>;
+				turn ssverta to y-axis <11.846154> speed <105.989011>;
+				turn sstoparm2 to z-axis <12.675824> speed <105.818681>;
+				turn sstoparm3 to z-axis <3.269231> speed <56.439560>;
+				turn sstoparm4 to z-axis <-24.549451> speed <105.818681>;
+				turn sstoparm6 to z-axis <-5.318681> speed <63.489011>;
+				turn ssmidarm6 to y-axis <-31.087912> speed <126.989011>;
+				turn ssbotarm6 to z-axis <-11.456044> speed <190.478022>;
+				turn ssmidarm5 to y-axis <60.148352> speed <395.076923>;
+				turn ssmidarm4 to y-axis <-19.225275> speed <261.000000>;
+				turn ssbotarm4 to z-axis <-6.956044> speed <155.208791>;
+				turn ssmidarm3 to y-axis <-58.505495> speed <28.219780>;
+				turn ssbotarm3 to z-axis <-9.406593> speed <162.258242>;
+				turn ssmidarm2 to y-axis <45.000000> speed <155.208791>;
+				turn ssbotarm2 to z-axis <44.598901> speed <0.000000>;
+				turn sstoes2 to z-axis <-30.269231> speed <84.659341>;
+				turn ssmidarm1 to y-axis <-14.725275> speed <271.615385>;
+				turn ssvertb to y-axis <4.829670> speed <52.989011>;
+				turn ssvertc to y-axis <-18.000000> speed <158.989011>;
+				turn ssbutt to y-axis <-4.379121> speed <37.846154>;
+				sleep 58;
+				turn ssbody to y-axis <-5.318681> speed <28.219780>;
+				turn sshead to y-axis <5.318681> speed <35.269231>;
+				turn ssverta to y-axis <18.000000> speed <105.989011>;
+				turn sstoparm2 to z-axis <9.000000> speed <63.489011>;
+				turn sstoparm3 to z-axis <9.406593> speed <105.818681>;
+				turn sstoparm4 to z-axis <-13.500000> speed <190.478022>;
+				turn sstoparm6 to z-axis <-2.445055> speed <49.379121>;
+				turn ssmidarm6 to y-axis <-23.725275> speed <126.989011>;
+				turn ssbotarm6 to z-axis <0.000000> speed <197.538462>;
+				turn ssmidarm5 to y-axis <60.148352> speed <0.000000>;
+				turn ssmidarm4 to y-axis <-36.000000> speed <289.247253>;
+				turn ssbotarm4 to z-axis <-31.087912> speed <416.236264>;
+				turn ssmidarm3 to y-axis <-33.956044> speed <423.296703>;
+				turn ssbotarm3 to z-axis <-11.456044> speed <35.269231>;
+				turn ssmidarm2 to y-axis <38.456044> speed <112.879121>;
+				turn ssbotarm2 to z-axis <33.549451> speed <190.478022>;
+				turn sstoes2 to z-axis <-19.637363> speed <183.428571>;
+				turn ssmidarm1 to y-axis <-37.439560> speed <391.549451>;
+				turn ssvertb to y-axis <9.659341> speed <83.269231>;
+				turn ssvertc to y-axis <-26.785714> speed <151.417582>;
+				turn ssbutt to y-axis <-7.456044> speed <52.989011>;
+				sleep 58;
+				turn ssbody to y-axis <-7.769231> speed <43.065934>;
+				turn sshead to y-axis <7.769231> speed <43.065934>;
+				turn ssverta to y-axis <24.587912> speed <115.549451>;
+				turn sstoparm2 to z-axis <5.318681> speed <64.598901>;
+				turn sstoparm3 to z-axis <12.269231> speed <50.247253>;
+				turn sstoparm4 to z-axis <-12.675824> speed <14.357143>;
+				turn sstoparm5 to z-axis <-3.269231> speed <57.428571>;
+				turn sstoparm6 to z-axis <0.000000> speed <43.065934>;
+				turn ssmidarm6 to y-axis <-6.538462> speed <301.505495>;
+				turn ssmidarm5 to y-axis <58.098901> speed <35.879121>;
+				turn ssbotarm5 to z-axis <3.675824> speed <64.598901>;
+				turn ssmidarm4 to y-axis <-45.417582> speed <165.109890>;
+				turn ssbotarm4 to z-axis <-44.598901> speed <236.895604>;
+				turn ssmidarm3 to y-axis <-10.225275> speed <416.368132>;
+				turn ssbotarm3 to z-axis <-2.857143> speed <150.747253>;
+				turn ssmidarm2 to y-axis <31.087912> speed <129.208791>;
+				turn ssbotarm2 to z-axis <21.686813> speed <208.175824>;
+				turn sstoes2 to z-axis <-9.000000> speed <186.648352>;
+				turn ssmidarm1 to y-axis <-60.148352> speed <398.417582>;
+				turn ssvertb to y-axis <13.159341> speed <61.626374>;
+				turn ssvertc to y-axis <-36.285714> speed <166.785714>;
+				turn ssbutt to y-axis <-9.659341> speed <38.516484>;
+				sleep 57;
+			}
+			if( bMoving )
+			{
+				turn ssbody to y-axis <-5.318681> speed <43.065934>;
+				turn sshead to y-axis <4.500000> speed <57.428571>;
+				turn ssverta to y-axis <18.000000> speed <115.549451>;
+				turn sstoparm2 to z-axis <2.445055> speed <50.247253>;
+				turn sstoparm3 to z-axis <18.406593> speed <107.675824>;
+				turn sstoparm4 to z-axis <-9.000000> speed <64.598901>;
+				turn sstoparm5 to z-axis <-9.406593> speed <107.675824>;
+				turn ssmidarm6 to y-axis <-1.225275> speed <93.318681>;
+				turn ssmidarm5 to y-axis <33.956044> speed <423.538462>;
+				turn ssbotarm5 to z-axis <9.406593> speed <100.500000>;
+				turn ssmidarm4 to y-axis <-38.456044> speed <122.038462>;
+				turn ssbotarm4 to z-axis <-33.549451> speed <193.818681>;
+				turn ssmidarm3 to y-axis <4.087912> speed <251.247253>;
+				turn ssbotarm3 to z-axis <6.538462> speed <165.109890>;
+				turn ssmidarm2 to y-axis <23.725275> speed <129.208791>;
+				turn ssbotarm2 to z-axis <11.456044> speed <179.467033>;
+				turn sstoes2 to z-axis <-4.500000> speed <78.956044>;
+				turn ssvertb to y-axis <9.659341> speed <61.626374>;
+				turn ssvertc to y-axis <-26.785714> speed <166.785714>;
+				turn ssbutt to y-axis <-11.406593> speed <30.807692>;
+				sleep 57;
+				turn ssbody to y-axis <-3.269231> speed <36.527473>;
+				turn sshead to y-axis <2.857143> speed <29.225275>;
+				turn ssverta to y-axis <11.846154> speed <109.769231>;
+				turn sstoparm1 to z-axis <3.269231> speed <58.445055>;
+				turn sstoparm2 to z-axis <0.000000> speed <43.835165>;
+				turn sstoparm3 to z-axis <24.549451> speed <109.598901>;
+				turn sstoparm4 to z-axis <-5.318681> speed <65.758242>;
+				turn sstoparm5 to z-axis <-12.269231> speed <51.148352>;
+				turn ssmidarm6 to y-axis <14.725275> speed <284.967033>;
+				turn ssmidarm5 to y-axis <10.637363> speed <416.489011>;
+				turn ssbotarm5 to z-axis <11.038462> speed <29.225275>;
+				turn ssmidarm4 to y-axis <-31.087912> speed <131.516484>;
+				turn ssbotarm4 to z-axis <-22.505495> speed <197.285714>;
+				turn ssmidarm3 to y-axis <19.225275> speed <270.357143>;
+				turn ssbotarm3 to z-axis <31.087912> speed <438.417582>;
+				turn ssmidarm2 to y-axis <6.538462> speed <306.879121>;
+				turn ssbotarm2 to z-axis <0.000000> speed <204.587912>;
+				turn sstoes2 to z-axis <0.000000> speed <80.368132>;
+				turn ssmidarm1 to y-axis <-58.708791> speed <25.565934>;
+				turn ssbotarm1 to z-axis <-3.675824> speed <65.758242>;
+				turn ssvertb to y-axis <4.829670> speed <86.247253>;
+				turn ssvertc to y-axis <-18.000000> speed <156.829670>;
+				turn ssbutt to y-axis <-7.895604> speed <62.725275>;
+				sleep 56;
+				turn ssbody to y-axis <-2.038462> speed <20.456044>;
+				turn sshead to y-axis <1.626374> speed <20.456044>;
+				turn ssverta to y-axis <5.697802> speed <102.456044>;
+				turn sstoparm1 to z-axis <9.406593> speed <102.296703>;
+				turn sstoparm3 to z-axis <18.818681> speed <95.467033>;
+				turn sstoparm4 to z-axis <-2.445055> speed <47.736264>;
+				turn sstoparm5 to z-axis <-18.406593> speed <102.296703>;
+				turn ssmidarm6 to y-axis <36.818681> speed <368.269231>;
+				turn ssmidarm5 to y-axis <-4.087912> speed <245.505495>;
+				turn ssbotarm5 to z-axis <2.445055> speed <143.208791>;
+				turn ssmidarm4 to y-axis <-23.725275> speed <122.747253>;
+				turn ssbotarm4 to z-axis <-11.038462> speed <190.945055>;
+				turn ssmidarm3 to y-axis <36.000000> speed <279.609890>;
+				turn ssbotarm3 to z-axis <44.598901> speed <225.049451>;
+				turn ssmidarm2 to y-axis <1.225275> speed <88.648352>;
+				turn ssmidarm1 to y-axis <-33.956044> speed <412.598901>;
+				turn ssbotarm1 to z-axis <-9.307692> speed <93.769231>;
+				turn sstoes1 to z-axis <-20.247253> speed <337.576923>;
+				turn ssvertb to y-axis <1.747253> speed <51.225275>;
+				turn ssvertc to y-axis <-8.769231> speed <153.686813>;
+				turn ssbutt to y-axis <-2.186813> speed <95.137363>;
+				sleep 60;
+				turn ssbody to y-axis <-0.807692> speed <21.527473>;
+				turn sshead to y-axis <0.000000> speed <28.708791>;
+				turn ssverta to y-axis <0.000000> speed <100.148352>;
+				turn sstoparm1 to z-axis <12.269231> speed <50.247253>;
+				turn sstoparm3 to z-axis <12.675824> speed <107.675824>;
+				turn sstoparm4 to z-axis <0.000000> speed <43.065934>;
+				turn sstoparm5 to z-axis <-24.549451> speed <107.675824>;
+				turn ssmidarm6 to y-axis <60.148352> speed <409.186813>;
+				turn ssmidarm5 to y-axis <-19.225275> speed <265.609890>;
+				turn ssbotarm5 to z-axis <-6.137363> speed <150.747253>;
+				turn ssmidarm4 to y-axis <-6.538462> speed <301.505495>;
+				turn ssbotarm4 to z-axis <0.000000> speed <193.818681>;
+				turn ssmidarm3 to y-axis <45.417582> speed <165.109890>;
+				turn ssbotarm3 to z-axis <44.598901> speed <0.000000>;
+				turn ssmidarm2 to y-axis <-14.725275> speed <279.967033>;
+				turn ssmidarm1 to y-axis <-10.637363> speed <409.186813>;
+				turn ssbotarm1 to z-axis <-11.247253> speed <34.098901>;
+				turn sstoes1 to z-axis <-40.505495> speed <355.346154>;
+				turn ssvertb to y-axis <0.000000> speed <30.807692>;
+				turn ssvertc to y-axis <0.000000> speed <154.076923>;
+				turn ssbutt to y-axis <0.000000> speed <38.516484>;
+				sleep 57;
+			}
+			if( bMoving )
+			{
+				turn ssbody to y-axis <2.038462> speed <49.379121>;
+				turn sshead to y-axis <-2.038462> speed <35.269231>;
+				turn ssverta to y-axis <-5.697802> speed <98.417582>;
+				turn sstoparm1 to z-axis <18.406593> speed <105.818681>;
+				turn sstoparm3 to z-axis <9.000000> speed <63.489011>;
+				turn sstoparm5 to z-axis <-18.818681> speed <98.769231>;
+				turn ssmidarm5 to y-axis <-36.000000> speed <289.247253>;
+				turn ssbotarm5 to z-axis <-31.906593> speed <444.456044>;
+				turn ssmidarm4 to y-axis <-1.225275> speed <91.708791>;
+				turn ssmidarm3 to y-axis <38.456044> speed <119.928571>;
+				turn ssbotarm3 to z-axis <33.549451> speed <190.478022>;
+				turn ssmidarm2 to y-axis <-36.818681> speed <380.967033>;
+				turn ssmidarm1 to y-axis <4.285714> speed <257.505495>;
+				turn ssbotarm1 to z-axis <-2.549451> speed <149.917582>;
+				turn sstoes1 to z-axis <-40.296703> speed <3.527473>;
+				turn ssvertb to y-axis <-1.747253> speed <30.269231>;
+				turn ssvertc to y-axis <8.769231> speed <151.417582>;
+				turn ssbutt to y-axis <2.186813> speed <37.846154>;
+				sleep 58;
+				turn ssbody to y-axis <3.269231> speed <21.159341>;
+				turn sshead to y-axis <-3.269231> speed <21.159341>;
+				turn ssverta to y-axis <-11.846154> speed <105.989011>;
+				turn sstoparm1 to z-axis <24.549451> speed <105.818681>;
+				turn sstoparm3 to z-axis <5.318681> speed <63.489011>;
+				turn sstoparm5 to z-axis <-12.675824> speed <105.818681>;
+				turn sstoparm6 to z-axis <-3.269231> speed <56.439560>;
+				turn ssmidarm6 to y-axis <58.098901> speed <35.269231>;
+				turn ssbotarm6 to z-axis <3.675824> speed <63.489011>;
+				turn ssmidarm5 to y-axis <-45.417582> speed <162.258242>;
+				turn ssbotarm5 to z-axis <-44.598901> speed <218.697802>;
+				turn ssmidarm4 to y-axis <14.725275> speed <275.137363>;
+				turn ssmidarm3 to y-axis <31.087912> speed <126.989011>;
+				turn ssbotarm3 to z-axis <22.505495> speed <190.478022>;
+				turn ssmidarm2 to y-axis <-60.148352> speed <402.126374>;
+				turn ssmidarm1 to y-axis <19.225275> speed <257.505495>;
+				turn ssbotarm1 to z-axis <6.137363> speed <149.917582>;
+				turn sstoes1 to z-axis <-40.098901> speed <3.527473>;
+				turn ssvertb to y-axis <-4.829670> speed <52.989011>;
+				turn ssvertc to y-axis <18.000000> speed <158.989011>;
+				turn ssbutt to y-axis <4.379121> speed <37.846154>;
+				sleep 58;
+				turn ssbody to y-axis <5.318681> speed <33.538462>;
+				turn sshead to y-axis <-5.318681> speed <33.538462>;
+				turn ssverta to y-axis <-18.000000> speed <100.769231>;
+				turn sstoparm1 to z-axis <18.615385> speed <97.258242>;
+				turn sstoparm3 to z-axis <2.445055> speed <46.956044>;
+				turn sstoparm5 to z-axis <-9.000000> speed <60.368132>;
+				turn sstoparm6 to z-axis <-9.406593> speed <100.615385>;
+				turn ssmidarm6 to y-axis <33.956044> speed <395.769231>;
+				turn ssbotarm6 to z-axis <11.456044> speed <127.445055>;
+				turn ssmidarm5 to y-axis <-38.456044> speed <114.000000>;
+				turn ssbotarm5 to z-axis <-33.549451> speed <181.115385>;
+				turn ssmidarm4 to y-axis <37.236264> speed <368.939560>;
+				turn ssmidarm3 to y-axis <23.725275> speed <120.736264>;
+				turn ssbotarm3 to z-axis <11.038462> speed <187.818681>;
+				turn ssmidarm2 to y-axis <-60.148352> speed <0.000000>;
+				turn ssmidarm1 to y-axis <36.000000> speed <275.000000>;
+				turn ssbotarm1 to z-axis <31.087912> speed <409.186813>;
+				turn sstoes1 to z-axis <-35.186813> speed <80.489011>;
+				turn ssvertb to y-axis <-9.659341> speed <79.186813>;
+				turn ssvertc to y-axis <26.785714> speed <143.967033>;
+				turn ssbutt to y-axis <7.456044> speed <50.379121>;
+				sleep 61;
+				turn ssbody to y-axis <7.769231> speed <40.247253>;
+				turn sshead to y-axis <-7.769231> speed <40.247253>;
+				turn ssverta to y-axis <-24.576923> speed <107.829670>;
+				turn sstoparm1 to z-axis <12.675824> speed <97.258242>;
+				turn sstoparm2 to z-axis <3.269231> speed <53.659341>;
+				turn sstoparm3 to z-axis <0.000000> speed <40.247253>;
+				turn sstoparm5 to z-axis <-4.906593> speed <67.076923>;
+				turn sstoparm6 to z-axis <-12.269231> speed <46.956044>;
+				turn ssmidarm6 to y-axis <10.637363> speed <382.357143>;
+				turn ssbotarm6 to z-axis <2.857143> speed <140.868132>;
+				turn ssmidarm5 to y-axis <-31.087912> speed <120.736264>;
+				turn ssbotarm5 to z-axis <-22.505495> speed <181.115385>;
+				turn ssmidarm4 to y-axis <60.549451> speed <382.357143>;
+				turn ssmidarm3 to y-axis <6.538462> speed <281.736264>;
+				turn ssbotarm3 to z-axis <0.000000> speed <181.115385>;
+				turn ssmidarm2 to y-axis <-58.098901> speed <33.538462>;
+				turn ssbotarm2 to y-axis <0.000000> speed <0.000000>;
+				turn ssbotarm2 to z-axis <-3.675824> speed <60.368132>;
+				turn sstoes2 to z-axis <-20.049451> speed <328.686813>;
+				turn ssmidarm1 to y-axis <45.417582> speed <154.269231>;
+				turn ssbotarm1 to z-axis <44.598901> speed <221.357143>;
+				turn sstoes1 to z-axis <-30.269231> speed <80.489011>;
+				turn ssvertb to y-axis <-13.478022> speed <62.615385>;
+				turn ssvertc to y-axis <36.725275> speed <163.049451>;
+				turn ssbutt to y-axis <9.725275> speed <37.098901>;
+			}
+			Static_Var_4 = 0;
+			sleep 61;
+			Func_Var_1 = 1;
+		}
+		if( !bMoving )
+		{
+			if( Func_Var_1 )
+			{
+				turn ssbody to y-axis <0.000000> speed <200.000000>;
+				turn ssverta to y-axis <0.000000> speed <200.000000>;
+				turn ssvertb to y-axis <0.000000> speed <200.000000>;
+				turn ssvertc to y-axis <0.000000> speed <200.000000>;
+				turn ssbutt to y-axis <0.000000> speed <200.000000>;
+				if( !bAiming )
+				{
+					turn ssverta to y-axis <0.000000> speed <200.000000>;
+					turn ssvertb to y-axis <0.000000> speed <200.000000>;
+					turn ssvertc to y-axis <0.000000> speed <200.000000>;
+					turn ssbutt to y-axis <0.000000> speed <200.000000>;
+				}
+				Func_Var_1 = 0;
+			}
+			sleep 100;
+		}
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	bMoving = FALSE;
+	bAiming = FALSE;
+	Static_Var_4 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	set-signal-mask 0;
+	bAiming = FALSE;
+	Static_Var_4 = 1;
+	turn ssbutt to z-axis <0.000000> speed <150.000000>;
+	Static_Var_1 = 0;
+	move sshead to y-axis [-0.950000] now;
+	move sshead to z-axis [0.000000] now;
+	move ssverta to x-axis [0.000000] now;
+	move sstoparm2 to y-axis [0.000000] now;
+	move sstoparm2 to z-axis [0.000000] now;
+	move sstoparm5 to y-axis [0.000000] now;
+	move sstoparm6 to z-axis [0.000000] now;
+	move ssmidarm6 to z-axis [0.000000] now;
+	move ssmidarm4 to y-axis [0.000000] now;
+	move ssbotarm4 to x-axis [0.000000] now;
+	move ssmidarm3 to z-axis [0.000000] now;
+	move sstoes3 to x-axis [0.000000] now;
+	move sstoes3 to y-axis [0.000000] now;
+	move ssbotarm2 to z-axis [0.000000] now;
+	move sstoes2 to z-axis [0.000000] now;
+	move ssmidarm1 to y-axis [0.000000] now;
+	move ssbotarm1 to z-axis [0.000000] now;
+	move sstoes1 to y-axis [0.000000] now;
+	move ssvertb to y-axis [0.000000] now;
+	move sslmand to y-axis [0.000000] now;
+	move ssrmand to x-axis [0.000000] now;
+	move ssrmand to y-axis [0.000000] now;
+	move sslowjaw to z-axis [0.000000] now;
+	turn ssverta to x-axis <63.005495> now;
+	turn ssverta to x-axis <59.829670> speed <60.516484>;
+	turn sstoparm1 to z-axis <0.000000> now;
+	turn sstoparm4 to z-axis <0.000000> now;
+	turn ssmidarm4 to z-axis <0.000000> now;
+	turn ssbotarm4 to z-axis <0.000000> now;
+	turn ssmidarm1 to z-axis <0.000000> now;
+	turn ssbotarm1 to z-axis <0.000000> now;
+	turn ssvertb to x-axis <36.005495> now;
+	turn ssvertc to x-axis <36.005495> now;
+	turn ssvertc to x-axis <33.076923> speed <136.159341>;
+	turn ssbutt to x-axis <0.000000> now;
+	turn ssbutt to y-axis <0.000000> now;
+	turn ssbutt to y-axis <0.000000> speed <0.000000>;
+	turn sslhatch to y-axis <-63.005495> now;
+	turn sslhatch to y-axis <-35.906593> speed <628.747253>;
+	turn ssrhatch to y-axis <63.005495> now;
+	turn ssrhatch to y-axis <35.906593> speed <629.609890>;
+	turn sslowjaw to x-axis <0.000000> now;
+	sleep 50;
+	turn ssverta to x-axis <48.478022> speed <113.467033>;
+	turn sslhatch to y-axis <0.000000> speed <359.137363>;
+	turn ssrhatch to y-axis <0.000000> speed <359.137363>;
+	sleep 100;
+	turn ssverta to x-axis <43.945055> speed <45.379121>;
+	turn ssbutt to x-axis <0.000000> speed <107.505495>;
+	sleep 200;
+	move sshead to y-axis [-0.979999] speed [0.250000];
+	move ssbotarm4 to y-axis [0.000000] speed [0.250000];
+	move ssbotarm1 to y-axis [0.000000] speed [0.250000];
+	turn ssvertc to x-axis <16.538462> speed <165.379121>;
+	sleep 100;
+	move sshead to y-axis [-1.000000] speed [0.250000];
+	move ssbotarm4 to y-axis [0.000000] speed [0.250000];
+	move ssbotarm1 to y-axis [0.000000] speed [0.250000];
+	turn ssvertc to x-axis <0.000000> speed <165.379121>;
+	sleep 100;
+	move sshead to y-axis [-1.050000] speed [0.500000];
+	move ssbotarm1 to y-axis [0.079999] speed [0.250000];
+	turn sstoparm1 to z-axis <-8.978022> speed <4.725275>;
+	turn sstoparm4 to z-axis <8.978022> speed <4.725275>;
+	turn ssmidarm4 to z-axis <-19.846154> speed <4.725275>;
+	turn ssbotarm4 to z-axis <11.807692> speed <4.725275>;
+	turn ssmidarm1 to z-axis <19.846154> speed <4.725275>;
+	turn ssbotarm1 to z-axis <-12.049451> speed <2.357143>;
+	turn ssvertb to x-axis <16.538462> speed <165.379121>;
+	sleep 100;
+	move sshead to y-axis [-1.100000] speed [0.500000];
+	move ssbotarm1 to y-axis [0.100000] speed [0.250000];
+	turn sstoparm1 to z-axis <-9.445055> speed <4.725275>;
+	turn sstoparm4 to z-axis <9.445055> speed <4.725275>;
+	turn ssmidarm4 to z-axis <-20.318681> speed <4.725275>;
+	turn ssbotarm4 to z-axis <11.335165> speed <4.725275>;
+	turn ssmidarm1 to z-axis <20.318681> speed <4.725275>;
+	turn ssbotarm1 to z-axis <-11.807692> speed <2.357143>;
+	turn ssvertb to x-axis <0.000000> speed <165.379121>;
+	sleep 100;
+	move sshead to y-axis [-0.550000] speed [5.500000];
+	move ssbotarm4 to y-axis [0.000000] speed [0.250000];
+	move ssbotarm1 to y-axis [0.000000] speed [0.500000];
+	turn ssverta to x-axis <21.967033> speed <219.736264>;
+	turn sstoparm1 to z-axis <-4.725275> speed <47.247253>;
+	turn sstoparm4 to z-axis <4.725275> speed <47.247253>;
+	turn ssmidarm4 to z-axis <-10.159341> speed <101.598901>;
+	turn ssbotarm4 to z-axis <5.659341> speed <56.697802>;
+	turn ssmidarm1 to z-axis <10.159341> speed <101.598901>;
+	turn ssbotarm1 to z-axis <-5.906593> speed <59.065934>;
+	turn sslowjaw to x-axis <-13.939560> speed <139.395604>;
+	sleep 100;
+	move sshead to y-axis [-0.279999] speed [3.929999];
+	move ssbotarm4 to y-axis [0.000000] speed [0.179999];
+	move ssbotarm1 to y-axis [0.000000] speed [0.359998];
+	turn ssverta to x-axis <10.978022> speed <156.956044>;
+	turn sstoparm1 to z-axis <-2.357143> speed <33.747253>;
+	turn sstoparm4 to z-axis <2.357143> speed <33.747253>;
+	turn ssmidarm4 to z-axis <-5.076923> speed <72.565934>;
+	turn ssbotarm4 to z-axis <2.835165> speed <40.500000>;
+	turn ssmidarm1 to z-axis <5.076923> speed <72.565934>;
+	turn ssbotarm1 to z-axis <-2.945055> speed <42.186813>;
+	turn sslowjaw to x-axis <-6.967033> speed <99.565934>;
+	sleep 70;
+	move sshead to y-axis [0.000000] speed [6.879999];
+	move ssbotarm4 to y-axis [0.000000] speed [0.309998];
+	move ssbotarm1 to y-axis [0.000000] speed [0.619995];
+	turn ssverta to x-axis <0.000000> speed <274.659341>;
+	turn sstoparm1 to z-axis <0.000000> speed <59.065934>;
+	turn sstoparm4 to z-axis <0.000000> speed <59.065934>;
+	turn ssmidarm4 to z-axis <0.000000> speed <126.989011>;
+	turn ssbotarm4 to z-axis <0.000000> speed <70.879121>;
+	turn ssmidarm1 to z-axis <0.000000> speed <126.989011>;
+	turn ssbotarm1 to z-axis <0.000000> speed <73.835165>;
+	turn sslowjaw to x-axis <0.000000> speed <174.247253>;
+	sleep 80;
+	Static_Var_4 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	bAiming = TRUE;
+	while( Static_Var_4 )
+	{
+		sleep 300;
+	}
+	if( !Static_Var_1 )
+	{
+		Static_Var_4 = 1;
+		move sshead to y-axis [0.000000] now;
+		move sshead to y-axis [-0.469995] speed [6.089996];
+		move sshead to z-axis [0.000000] now;
+		move ssverta to x-axis [0.000000] now;
+		move sstoparm2 to y-axis [0.000000] now;
+		move sstoparm2 to z-axis [0.000000] now;
+		move sstoparm5 to y-axis [0.000000] now;
+		move sstoparm6 to z-axis [0.000000] now;
+		move ssmidarm6 to z-axis [0.000000] now;
+		move ssmidarm4 to y-axis [0.000000] now;
+		move ssbotarm4 to x-axis [0.000000] now;
+		move ssmidarm3 to z-axis [0.000000] now;
+		move sstoes3 to x-axis [0.000000] now;
+		move sstoes3 to y-axis [0.000000] now;
+		move ssbotarm2 to z-axis [0.000000] now;
+		move sstoes2 to z-axis [0.000000] now;
+		move ssmidarm1 to y-axis [0.000000] now;
+		move ssbotarm1 to z-axis [0.000000] now;
+		move sstoes1 to y-axis [0.000000] now;
+		move ssvertb to y-axis [0.000000] now;
+		move sslmand to y-axis [0.000000] now;
+		move ssrmand to x-axis [0.000000] now;
+		move ssrmand to y-axis [0.000000] now;
+		move sslowjaw to z-axis [0.000000] now;
+		turn sstoparm1 to z-axis <0.000000> now;
+		turn sstoparm1 to z-axis <-4.247253> speed <54.516484>;
+		turn sstoparm4 to z-axis <0.000000> now;
+		turn sstoparm4 to z-axis <4.247253> speed <54.516484>;
+		turn ssmidarm4 to z-axis <0.000000> now;
+		turn ssmidarm4 to z-axis <-9.686813> speed <124.186813>;
+		turn ssbotarm4 to z-axis <0.000000> now;
+		turn ssbotarm4 to z-axis <6.137363> speed <78.758242>;
+		turn ssmidarm1 to z-axis <0.000000> now;
+		turn ssmidarm1 to z-axis <9.686813> speed <124.186813>;
+		turn ssbotarm1 to z-axis <0.000000> now;
+		turn ssbotarm1 to z-axis <-6.137363> speed <78.758242>;
+		turn sslowjaw to x-axis <0.000000> now;
+		turn sslowjaw to x-axis <-13.939560> speed <178.719780>;
+		sleep 78;
+		move sshead to y-axis [-0.950000] speed [6.169995];
+		turn sstoparm1 to z-axis <-8.505495> speed <55.225275>;
+		turn sstoparm4 to z-axis <8.505495> speed <55.225275>;
+		turn ssmidarm4 to z-axis <-19.368132> speed <125.807692>;
+		turn ssbotarm4 to z-axis <12.285714> speed <79.769231>;
+		turn ssmidarm1 to z-axis <19.368132> speed <125.807692>;
+		turn ssbotarm1 to z-axis <-12.285714> speed <79.769231>;
+		turn sslowjaw to x-axis <-27.879121> speed <181.038462>;
+		sleep 77;
+		move sshead to y-axis [-1.000000] speed [1.000000];
+		turn ssverta to x-axis <21.967033> speed <439.467033>;
+		sleep 50;
+		move sshead to y-axis [-1.100000] speed [1.429999];
+		move ssbotarm4 to y-axis [0.000000] speed [0.709998];
+		move ssbotarm1 to y-axis [0.100000] speed [1.429999];
+		turn ssverta to x-axis <49.989011> speed <400.357143>;
+		turn sstoparm1 to z-axis <-9.445055> speed <13.500000>;
+		turn sstoparm4 to z-axis <9.445055> speed <13.500000>;
+		turn ssmidarm4 to z-axis <-20.318681> speed <13.500000>;
+		turn ssbotarm4 to z-axis <11.335165> speed <13.500000>;
+		turn ssmidarm1 to z-axis <20.318681> speed <13.500000>;
+		turn ssbotarm1 to z-axis <-11.807692> speed <6.747253>;
+		sleep 70;
+		move sshead to y-axis [-1.000000] speed [1.189996];
+		move ssbotarm4 to y-axis [0.000000] speed [1.189996];
+		move ssbotarm1 to y-axis [0.150000] speed [0.600000];
+		turn ssverta to x-axis <52.637363> speed <31.516484>;
+		turn sstoparm1 to z-axis <-10.395604> speed <11.247253>;
+		turn sstoparm4 to z-axis <10.395604> speed <11.247253>;
+		turn ssmidarm4 to z-axis <-21.258242> speed <11.247253>;
+		turn ssbotarm4 to z-axis <10.868132> speed <5.615385>;
+		turn ssmidarm1 to z-axis <21.258242> speed <11.247253>;
+		turn ssbotarm1 to z-axis <-10.868132> speed <11.247253>;
+		turn ssvertb to x-axis <16.538462> speed <196.895604>;
+		sleep 84;
+		move sshead to y-axis [-0.900000] speed [1.079999];
+		move ssbotarm4 to y-axis [0.000000] speed [1.079999];
+		move ssbotarm1 to y-axis [0.000000] speed [1.079999];
+		turn ssverta to x-axis <55.659341> speed <32.527473>;
+		turn sstoparm1 to z-axis <-8.505495> speed <20.318681>;
+		turn sstoparm4 to z-axis <8.505495> speed <20.318681>;
+		turn ssmidarm4 to z-axis <-19.368132> speed <20.318681>;
+		turn ssbotarm4 to z-axis <12.285714> speed <15.236264>;
+		turn ssmidarm1 to z-axis <19.368132> speed <20.318681>;
+		turn ssbotarm1 to z-axis <-12.285714> speed <15.236264>;
+		turn ssvertb to x-axis <33.076923> speed <177.835165>;
+		sleep 93;
+		move sshead to y-axis [-0.850000] speed [0.600000];
+		move ssbotarm4 to y-axis [0.000000] speed [0.600000];
+		move ssbotarm1 to y-axis [0.000000] speed [0.600000];
+		turn ssverta to x-axis <59.445055> speed <45.565934>;
+		turn ssvertc to x-axis <16.538462> speed <199.269231>;
+		sleep 83;
+		move sshead to y-axis [-0.850000] speed [0.000000];
+		turn ssverta to x-axis <60.967033> speed <18.445055>;
+		turn ssvertc to x-axis <33.076923> speed <201.697802>;
+		sleep 82;
+		turn ssverta to x-axis <62.857143> speed <28.225275>;
+		turn ssvertc to x-axis <36.098901> speed <45.159341>;
+		turn ssbutt to x-axis <21.500000> speed <320.906593>;
+		sleep 67;
+		move sshead to y-axis [-0.950000] speed [1.519995];
+		turn ssverta to x-axis <62.857143> speed <0.000000>;
+		turn ssvertc to x-axis <39.879121> speed <57.307692>;
+		turn ssbutt to x-axis <43.000000> speed <325.769231>;
+		turn ssbutt to y-axis <0.000000> speed <0.000000>;
+		sleep 66;
+		turn ssvertc to x-axis <39.879121> speed <0.000000>;
+		turn ssbutt to y-axis <0.000000> speed <0.000000>;
+		sleep 75;
+		turn ssvertc to x-axis <39.879121> speed <0.000000>;
+		turn ssbutt to y-axis <0.000000> speed <0.000000>;
+		sleep 74;
+		turn ssverta to x-axis <62.857143> speed <0.000000>;
+		turn ssvertc to x-axis <39.879121> speed <0.000000>;
+		turn sslhatch to y-axis <-6.846154> speed <85.648352>;
+		turn ssrhatch to y-axis <15.587912> speed <194.928571>;
+		sleep 80;
+		turn ssverta to x-axis <62.857143> speed <0.000000>;
+		turn ssvertc to x-axis <39.879121> speed <0.000000>;
+		turn sslhatch to y-axis <-13.697802> speed <86.725275>;
+		turn ssrhatch to y-axis <31.186813> speed <197.395604>;
+		sleep 79;
+		turn ssverta to x-axis <62.857143> speed <0.000000>;
+		turn ssvertc to x-axis <39.879121> speed <0.000000>;
+		turn sslhatch to y-axis <-42.758242> speed <276.769231>;
+		turn ssrhatch to y-axis <55.659341> speed <233.148352>;
+		sleep 105;
+		turn ssbutt to y-axis <0.000000> speed <0.000000>;
+		turn sslhatch to y-axis <-67.346154> speed <234.148352>;
+		turn ssrhatch to y-axis <67.379121> speed <111.659341>;
+		sleep 210;
+		Static_Var_1 = 1;
+		Static_Var_4 = 0;
+	}
+	signal SIG_AIM;
+	set-signal-mask 0;
+	set-signal-mask SIG_AIM;
+	turn ssbutt to z-axis heading speed <150.000000>;
+	wait-for-turn ssbutt around z-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = ssbase;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = sslhatch;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = ssbase;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 99 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	corpsetype = 3;
+}

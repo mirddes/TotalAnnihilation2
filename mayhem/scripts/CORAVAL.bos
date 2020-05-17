@@ -1,0 +1,347 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, turret, gun, flare1, flare2, flash1, flash2,
+	   Leg1, Foot1, Leg2, Foot2, Leg3, Foot3, Leg4, Foot4, 
+	   g1, g2, g3, g4, hip1, hip2, hip3, hip4;
+	   
+static-var  bMoving, restore_delay, gun_1, depth_4, speed1, speed2, speed3, speed4, speed5, speed6, x_slope, z_slope;
+
+//Signal definitions
+#define FBIMAXVELOCITY		[0.88] * 12
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_4 == 3 )
+			{
+				smoketype = 259;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_4 != 0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot2)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot2)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot4)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot4)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_4 == 0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+		sleep sleeptime;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	turn body to x-axis anglex speed <50>;
+	turn body to z-axis anglez speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn body to z-axis <0> speed <20>;
+	turn body to x-axis <0> speed <20>;
+}
+
+MotionControl()
+{
+	var JustMoved;
+	JustMoved = 0;
+	while( TRUE )
+	{
+		while (bMoving)
+		{
+			turn hip4 to y-axis <-20> speed speed1;
+			turn leg4 to y-axis <40> speed speed2;
+			turn foot4 to y-axis <-20> speed speed1;
+			turn hip1 to y-axis <20> speed speed1;
+			turn leg1 to y-axis <-40> speed speed2;
+			turn foot1 to y-axis <20> speed speed1;
+			turn leg2 to z-axis <30> speed <300>;
+			turn foot2 to z-axis <-15> speed <167>;
+			turn foot2 to x-axis <0> speed <167>;
+			turn hip2 to y-axis <-20> speed speed3;
+			turn leg2 to y-axis <40> speed speed4;
+			turn foot2 to y-axis <-20> speed speed3;
+			move foot3 to y-axis [3] speed [30];
+			turn hip3 to y-axis <20> speed speed3;
+			turn leg3 to y-axis <-40> speed speed5;
+			turn foot3 to y-axis <20> speed speed4;
+			move body to z-axis [1] speed speed6;
+			wait-for-move body along z-axis;
+			move body to z-axis [0] speed speed6;
+			wait-for-turn leg2 around y-axis;
+			turn leg2 to z-axis <0> speed <400>;
+			turn foot2 to z-axis <0> speed <222>;
+			turn foot2 to x-axis <25> speed <50>;
+			move foot2 to y-axis 0 speed [40];
+			move foot3 to y-axis 0 speed [40];
+			wait-for-move foot2 along y-axis;
+			sleep 100;
+			if (bMoving)
+			{
+				turn hip2 to y-axis <20> speed speed1;
+				turn leg2 to y-axis <-40> speed speed2;
+				turn foot2 to y-axis <20> speed speed1;
+				turn hip3 to y-axis <-20> speed speed1;
+				turn leg3 to y-axis <40> speed speed2;
+				turn foot3 to y-axis <-20> speed speed1;
+				turn leg4 to z-axis <-30> speed <300>;
+				turn foot4 to z-axis <15> speed <167>;
+				turn foot4 to x-axis <0> speed <167>;
+				turn hip4 to y-axis <20> speed speed3;
+				turn leg4 to y-axis <-40> speed speed4;
+				turn foot4 to y-axis <20> speed speed3;
+				move body to z-axis [1] speed speed6;
+				move foot1 to y-axis [3] speed [30];
+				turn hip1 to y-axis <-20> speed speed3;
+				turn leg1 to y-axis <40> speed speed5;
+				turn foot1 to y-axis <-20> speed speed4;
+				wait-for-move body along z-axis;
+				move body to z-axis [0] speed speed6;
+				wait-for-turn leg4 around y-axis;
+				turn leg4 to z-axis <0> speed <400>;
+				turn foot4 to z-axis <0> speed <222>;
+				turn foot4 to x-axis <25> speed <50>;
+				move foot4 to y-axis 0 speed [40];
+				move foot1 to y-axis 0 speed [40];
+				wait-for-move foot4 along y-axis;
+				sleep 100;
+			}
+		}
+		if( JustMoved )
+		{
+			JustMoved = 0;
+			turn hip1 to y-axis <0> speed <60>;
+			turn hip2 to y-axis <0> speed <60>;
+			turn hip3 to y-axis <0> speed <60>;
+			turn hip4 to y-axis <0> speed <60>;
+			turn leg1 to y-axis <0> speed <120>;
+			turn leg2 to y-axis <0> speed <120>;
+			turn leg3 to y-axis <0> speed <120>;
+			turn leg4 to y-axis <0> speed <120>;
+			turn foot1 to x-axis <0> speed <120>;
+			turn foot2 to x-axis <0> speed <120>;
+			turn foot3 to x-axis <0> speed <120>;
+			turn foot4 to x-axis <0> speed <120>;
+			turn foot1 to y-axis <0> speed <120>;
+			turn foot2 to y-axis <0> speed <120>;
+			turn foot3 to y-axis <0> speed <120>;
+			turn foot4 to y-axis <0> speed <120>;
+			turn foot1 to z-axis <0> speed <120>;
+			turn foot2 to z-axis <0> speed <120>;
+			turn foot3 to z-axis <0> speed <120>;
+			turn foot4 to z-axis <0> speed <120>;
+			move foot4 to y-axis 0 speed [40];
+			move foot1 to y-axis 0 speed [40];
+			move foot2 to y-axis 0 speed [40];
+			move foot3 to y-axis 0 speed [40];
+			move body to z-axis [0] now;
+		}
+		sleep 200;
+	}
+}
+
+Create()
+{
+	var fbimv;
+	fbimv=FBIMAXVELOCITY;
+	speed1=fbimv / 22542 * <1>;
+	speed2=speed1 * 2;
+	speed3=fbimv / 19602 * <1>;
+	speed4=speed3 * 2;
+	speed5=speed4 * 2;
+	speed6=fbimv;
+	hide flash1;
+	dont-cache flash1;
+	hide flash2;
+	dont-cache flash2;
+	bMoving = 0;
+	gun_1 = 0;
+	x_slope = 0;
+	z_slope = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	start-script MotionControl();
+	restore_delay = 4000;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_4 = Func_Var_1;
+}
+
+StartMoving()
+{
+	bMoving = 1;
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	set-signal-mask 0;
+	turn turret to y-axis <0> speed <100>;
+	turn gun to x-axis <0> speed <70>;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare2;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <160>;
+	turn gun to x-axis <0> - pitch speed <70>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( gun_1 == 0 )
+	{
+		gun_1 = 1;
+		show flash1;
+		sleep 150;
+		hide flash1;
+		return (0);
+	}
+	if( gun_1 == 1 )
+	{
+		gun_1 = 0;
+		show flash2;
+		sleep 150;
+		hide flash2;
+		return (0);
+	}
+}
+
+Killed(severity, corpsetype)
+{
+	hide flash1;
+	hide flash2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode gun type BITMAPONLY | BITMAP2;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode gun type FALL | BITMAP2;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		explode turret type SHATTER | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type SHATTER | BITMAP1;
+		explode gun type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg1 type BITMAPONLY | BITMAP4;
+		explode leg2 type BITMAPONLY | BITMAP4;
+		explode leg3 type BITMAPONLY | BITMAP4;
+		explode leg4 type BITMAPONLY | BITMAP4;
+		explode foot1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	explode body type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg1 type BITMAPONLY | BITMAP4;		
+	explode leg2 type BITMAPONLY | BITMAP4;
+	explode leg3 type BITMAPONLY | BITMAP4;
+	explode leg4 type BITMAPONLY | BITMAP4;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

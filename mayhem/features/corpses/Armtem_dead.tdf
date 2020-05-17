@@ -1,0 +1,35 @@
+[armtem_dead]
+{
+world=All Worlds;
+description=Tempest Wreckage;
+category=arm_corpses;
+object=armtem_dead;
+featuredead=armtem_heap;
+footprintx=3;
+footprintz=3;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=4040;
+damage=7464;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armtem_heap]
+{
+world=All Worlds;
+description=Tempest Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2020;
+damage=8230;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

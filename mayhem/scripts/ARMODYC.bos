@@ -1,0 +1,204 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, base, gun, sleeve, gun1, gun2, wing1, wing2, thrust, f1, f2, radar, drop;
+
+static-var  gun_1, gun_2;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	gun_2 = 0;
+	gun_1 = 0;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	move wing1 to x-axis [0.00] now;
+	move wing1 to x-axis [-5.6] speed [2.8];
+	move wing2 to x-axis [0.00] now;
+	move wing2 to x-axis [5.6] speed [2.8];
+	spin radar around y-axis speed <50>;
+}
+
+Deactivate()
+{
+	move wing1 to x-axis [-5.6] now;
+	move wing1 to x-axis [0.00] speed [2.8];
+	move wing2 to x-axis [5.6] now;
+	move wing2 to x-axis [0.00] speed [2.8];
+	stop-spin radar around y-axis decelerate <50>;
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	turn gun to y-axis <0.00> speed <120>;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = drop;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = gun_2;
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn gun to y-axis heading speed <400>;
+	wait-for-turn gun around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireSecondary()
+{
+	gun_2 = !gun_2;
+	if( !gun_2 )
+	{
+		move gun1 to z-axis <-2> speed <500>;
+		show flare1;
+		sleep 150;
+		hide flare1;
+		move gun1 to z-axis <0> speed <3>;
+		return (0);
+	}
+	if( gun_2 )
+	{
+		move gun2 to z-axis <-2> speed <500>;
+		show flare2;
+		sleep 150;
+		hide flare2;
+		move gun2 to z-axis <0> speed <3>;
+		return (0);
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = gun;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode radar type BITMAPONLY | BITMAP2;
+		explode gun1 type FALL | BITMAP3;
+		explode gun2 type FALL | BITMAP4;
+		explode gun type BITMAPONLY | BITMAP5;
+		explode thrust type FALL | SMOKE | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP2;
+		explode wing2 type BITMAPONLY | BITMAP3;
+		explode f1 type FALL | BITMAP3;
+		explode f2 type FALL | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode radar type FALL | BITMAP2;
+		explode flare1 type FALL | BITMAP3;
+		explode flare2 type FALL | BITMAP4;
+		explode gun1 type FALL | BITMAP5;
+		explode gun2 type FALL | BITMAP5;
+		explode thrust type FALL | SMOKE | BITMAP1;
+		explode wing1 type SHATTER | BITMAP2;
+		explode wing2 type SHATTER | BITMAP3;
+		explode f1 type FALL | SMOKE | BITMAP3;
+		explode f2 type FALL | SMOKE | BITMAP4;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare1 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flare2 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode gun1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode thrust type FALL | SMOKE | FIRE | BITMAP1;
+		explode wing1 type SHATTER | BITMAP2;
+		explode wing2 type SHATTER | BITMAP3;
+		explode f1 type FALL | SMOKE | BITMAP3;
+		explode f2 type FALL | SMOKE | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode gun1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode thrust type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing1 type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode wing2 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode f1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode f2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

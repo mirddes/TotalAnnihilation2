@@ -1,0 +1,36 @@
+[corJUP_dead]
+{
+World=All Worlds;
+Description=Cougar Wreckage;
+Category=core_corpses;
+Object=corJUP_dead;
+FeatureDead=corJUP_heap;
+FootPrintx=3;
+FootPrintz=3;
+Height=30;
+Blocking=1;
+HitDensity=100;
+Metal=3707;
+Damage=8500;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+
+[corJUP_heap]
+{
+World=All Worlds;
+Description=Cougar Wreckage;
+Category=heaps;
+Object=3x3a;
+FootPrintx=3;
+FootPrintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=1854;
+Damage=8700;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}

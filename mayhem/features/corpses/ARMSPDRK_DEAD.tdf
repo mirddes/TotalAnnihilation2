@@ -1,0 +1,35 @@
+[ARMSPDRK_dead]
+{
+world=All Worlds;
+description=Recluse Wreckage;
+category=arm_corpses;
+object=ARMSPDRK_dead;
+featuredead=ARMSPDRK_heap;
+footprintx=3;
+footprintz=3;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=308;
+damage=900;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMSPDRK_heap]
+{
+world=All Worlds;
+description=Recluse Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=154;
+damage=900;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

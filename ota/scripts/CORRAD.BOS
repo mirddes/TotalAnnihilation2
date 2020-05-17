@@ -1,0 +1,78 @@
+// Core Radar Tower script
+
+piece base;
+
+#define SMOKEPIECE1 base
+
+#include "StateChg.h"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	spin dish around y-axis speed <40>;
+	}
+
+Stop()
+	{
+	stop-spin dish around y-axis;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	dont-shade dish;
+	dont-cache dish;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	SHATTER | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode dish type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

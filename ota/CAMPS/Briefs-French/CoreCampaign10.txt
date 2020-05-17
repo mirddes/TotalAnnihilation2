@@ -1,0 +1,7 @@
+MISSION 10.2CORE
+Etablissez une base. Construisez un chantier naval. Avec le navire de transport que vous aurez produit, emmenez le Commandeur dans l'étroit passage qui porte le nom de Gantelet.
+
+STATISTIQUES DE PROBABILITES:
+Le Gantelet est bien défendu (&R83%, marge d'erreur:3%&). Vous devrez dégager la zone à l'aide de sous-marins et d'autres unités navales pour que le Commandeur rejoigne sa destination sans dommage (&R64%, marge d'erreur:8%&).
+
+Exécution

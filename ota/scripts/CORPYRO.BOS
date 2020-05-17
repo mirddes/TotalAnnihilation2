@@ -1,0 +1,310 @@
+// Core Pyro
+
+piece torso, ruparm, luparm, lloarm, firept;
+
+// State variables
+static-var	bMoving, bAiming, bCanAim;
+static-var	gun;
+static-var	restore_delay;
+
+// define signals
+#define SIG_MOVEMENT	2
+#define SIG_AIM		4
+
+
+#define	ANIM_VARIABLE   bMoving
+#include "..\anim3d\corpyro\walk.bos"
+#include "..\anim3d\corpyro\walklegs.bos"
+#undef	ANIM_VARIABLE
+
+// Smoking damage
+#define SMOKEPIECE1 torso
+#include "smokeunit.h"
+
+MotionControl()
+	{
+	var	moving, aiming, just_moved;
+
+	// So the stand will get reset
+	just_moved = TRUE;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walklegs();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+
+			just_moved = TRUE;
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+
+			if (just_moved)
+				{
+				#define RESTORESPEED <200>
+
+				move pelvis to y-axis 0 speed [1];
+
+				turn rthigh to x-axis 0 speed RESTORESPEED;
+				turn rleg to x-axis 0 speed RESTORESPEED;
+				turn rfoot to x-axis 0 speed RESTORESPEED;
+
+				turn lthigh to x-axis 0 speed RESTORESPEED;
+				turn lleg to x-axis 0 speed RESTORESPEED;
+				turn lfoot to x-axis 0 speed RESTORESPEED;
+
+				if (NOT aiming)
+					{
+					turn torso to y-axis 0 speed <90>;
+
+					turn ruparm to x-axis 0 speed RESTORESPEED;
+
+					turn lloarm to x-axis 0 speed RESTORESPEED;
+					turn luparm to x-axis 0 speed RESTORESPEED;
+					}
+
+				#undef RESTORESPEED
+
+				just_moved = FALSE;
+				}
+
+				sleep 100;
+			}
+		}
+	}
+
+PilotLight()
+	{
+	var	i;
+
+	while (TRUE)
+		{
+		i = rand(1,3);
+
+		if (i == 1)
+			{
+			show flame1;
+			sleep 100;
+			hide flame1;
+			}
+		if (i == 2)
+			{
+			show flame2;
+			sleep 100;
+			hide flame2;
+			}
+		if (i == 3)
+			{
+			show flame3;
+			sleep 100;
+			hide flame3;
+			}
+		}
+	}
+
+Create()
+	{
+	hide flame1;
+	hide flame2;
+	hide flame3;
+
+	// Initial State
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+
+	gun = 0;
+	restore_delay = 2000;
+
+	// Motion control system
+	start-script MotionControl();
+
+	// Pilot light on the flamethrower
+	start-script PilotLight();
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+RestoreAfterDelay()
+	{
+	// Wait for something to happen
+	sleep restore_delay;
+
+	// If we got this far without being killed, then nothing is
+	// happening.  Restore the standard position
+
+	turn torso to y-axis 0 speed <90>;
+	turn ruparm to x-axis 0 speed <45>;
+	turn luparm to x-axis 0 speed <45>;
+
+	wait-for-turn torso around y-axis;
+	wait-for-turn ruparm around x-axis;
+	wait-for-turn luparm around x-axis;
+
+	bAiming = FALSE;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=0;		// Aim from the torso
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=4;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;					// kill off other aim scripts
+	set-signal-mask SIG_AIM;		// so other scripts can kill us
+
+	// Announce that we would like to aim, and wait until we can
+	bAiming = TRUE;
+	while (NOT bCanAim)
+		{
+		sleep 100;
+		}
+
+	// Aim
+	turn torso to y-axis heading speed <90>;
+	turn luparm to x-axis (0 - pitch) speed <45>;
+	turn ruparm to x-axis (0 - pitch) speed <45>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	wait-for-turn ruparm around x-axis;
+
+	// Start a script that will wait, and restore the standard position if
+	// nothing happens after a while.  It inherits the SIG_AIM mask, so
+	// it will be killed if a re-aim occurrs
+	start-script RestoreAfterDelay();
+
+	return( TRUE );
+	}
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	hide flame1;
+	hide flame2;
+	hide flame3;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode firept type	BITMAPONLY | BITMAP1;
+		explode flame1 type	BITMAPONLY | BITMAP2;
+		explode flame2 type	BITMAPONLY | BITMAP3;
+		explode flame3 type	BITMAPONLY | BITMAP4;
+		explode ground type	BITMAPONLY | BITMAP5;
+		explode lfoot type	BITMAPONLY | BITMAP1;
+		explode lleg type	BITMAPONLY | BITMAP2;
+		explode lloarm type	BITMAPONLY | BITMAP3;
+		explode lthigh type	BITMAPONLY | BITMAP4;
+		explode luparm type	BITMAPONLY | BITMAP5;
+		explode pelvis type	BITMAPONLY | BITMAP1;
+		explode rfoot type	BITMAPONLY | BITMAP2;
+		explode rleg type	BITMAPONLY | BITMAP3;
+		explode rthigh type	BITMAPONLY | BITMAP4;
+		explode ruparm type	BITMAPONLY | BITMAP5;
+		explode torso type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode firept type	FALL | BITMAP1;
+		explode flame1 type	FALL | BITMAP2;
+		explode flame2 type	FALL | BITMAP3;
+		explode flame3 type	FALL | BITMAP4;
+		explode ground type	FALL | BITMAP5;
+		explode lfoot type	FALL | BITMAP1;
+		explode lleg type	FALL | BITMAP2;
+		explode lloarm type	FALL | BITMAP3;
+		explode lthigh type	FALL | BITMAP4;
+		explode luparm type	FALL | BITMAP5;
+		explode pelvis type	FALL | BITMAP1;
+		explode rfoot type	FALL | BITMAP2;
+		explode rleg type	FALL | BITMAP3;
+		explode rthigh type	FALL | BITMAP4;
+		explode ruparm type	SHATTER | BITMAP5;
+		explode torso type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode firept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flame1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flame2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flame3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode luparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode ruparm type	SHATTER | BITMAP5;
+		explode torso type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode firept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flame1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flame2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flame3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode luparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ruparm type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode torso type	BITMAPONLY | BITMAP5;
+	return( 0 );
+	}

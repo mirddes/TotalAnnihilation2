@@ -1,0 +1,8 @@
+MISSION 17.1CORE
+
+INTELL-TAP
+The seas of Nigh Pilago are swarming with Arm naval units.  Communication intercepts imply that the Arm has developed a new more powerful Carrier Ship. In addition to serving as a mobile repair base for air units, the Carrier has the capability to generate tremendous energy levels.  Destroy all Carriers that you find. 
+
+&RDestroy the Arm Carriers.&
+
+DO SO NOW.

@@ -1,0 +1,384 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  beam1, beam2, beam3, beam4, beam5, beam6, base, chunk1, 
+       light1a, light1b, nano1, chunk2, light2a, light2b, nano2, tower, 
+       post3, gun3, nano3, post4, gun4, nano4, post5, post6, 
+       gun5, gun6, nano5, nano6, boxes, pad, glow1, glow2, 
+       glow3, glow4, radar, dish;
+
+static-var  Nano_1, ReqState_3, On_4, Busy_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState()
+{
+	while( !Busy_5 AND ( ReqState_3 != On_4 ) )
+	{
+		Busy_5 = 1;
+		if( ReqState_3 )
+		{
+			dont-cache post3;
+			dont-cache post4;
+			dont-cache post5;
+			dont-cache post6;
+			dont-cache chunk1;
+			dont-cache chunk2;
+			dont-cache nano1;
+			dont-cache nano2;
+			dont-cache nano3;
+			dont-cache nano4;
+			dont-cache nano5;
+			dont-cache nano6;
+			dont-cache beam1;
+			dont-cache beam2;
+			dont-cache beam3;
+			dont-cache beam4;
+			dont-cache beam5;
+			dont-cache beam6;
+			dont-cache gun3;
+			dont-cache gun4;
+			dont-cache gun5;
+			dont-cache gun6;
+			turn chunk1 to y-axis <150> speed <150>;
+			turn chunk2 to y-axis <-150> speed <150>;
+			move boxes to y-axis [1] speed [1];
+			sleep 750;
+			turn post3 to z-axis <90> speed <360>;
+			turn post4 to z-axis <90> speed <360>;
+			turn post5 to z-axis <90> speed <360>;
+			turn post6 to z-axis <90> speed <360>;
+			sleep 250;
+			turn gun3 to z-axis <179> speed <537>;
+			turn gun4 to z-axis <179> speed <537>;
+			turn gun5 to z-axis <179> speed <537>;
+			turn gun6 to z-axis <179> speed <537>;
+			sleep 333;
+			turn post3 to z-axis <60> speed <120>;
+			turn post4 to z-axis <60> speed <120>;
+			turn post5 to z-axis <60> speed <120>;
+			turn post6 to z-axis <60> speed <120>;
+			turn gun3 to z-axis <240> speed <240>;
+			turn gun4 to z-axis <240> speed <240>;
+			turn gun5 to z-axis <240> speed <240>;
+			turn gun6 to z-axis <240> speed <240>;
+			turn post5 to y-axis <-45> speed <90>;
+			turn post6 to y-axis <45> speed <90>;
+			sleep 250;
+			move nano1 to x-axis [1.5] speed [6];
+			move nano2 to x-axis [1.5] speed [6];
+			move nano3 to y-axis [-1.5] speed [6];
+			move nano4 to y-axis [-1.5] speed [6];
+			move nano5 to y-axis [-1.5] speed [6];
+			move nano6 to y-axis [-1.5] speed [6];
+			sleep 250;
+			set YARD_OPEN to 1;
+			while( !( get YARD_OPEN ) )
+			{
+				sleep 1500;
+				set YARD_OPEN to 1;
+			}
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_3 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+			set YARD_OPEN to 0;
+			while( get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 0;
+			}
+			spin pad around y-axis speed <0>;
+			move nano1 to x-axis [0] speed [6];
+			move nano2 to x-axis [0] speed [6];
+			move nano3 to y-axis [0] speed [6];
+			move nano4 to y-axis [0] speed [6];
+			move nano5 to y-axis [0] speed [6];
+			move nano6 to y-axis [0] speed [6];
+			turn post5 to y-axis <0> speed <90>;
+			turn post5 to y-axis <0> speed <90>;
+			sleep 250;
+			turn post3 to z-axis <90> speed <240>;
+			turn post4 to z-axis <90> speed <240>;
+			turn post5 to z-axis <90> speed <240>;
+			turn post6 to z-axis <90> speed <240>;
+			turn gun3 to z-axis <179> speed <480>;
+			turn gun4 to z-axis <179> speed <480>;
+			turn gun5 to z-axis <179> speed <480>;
+			turn gun6 to z-axis <179> speed <480>;
+			sleep 125;
+			turn gun3 to z-axis <0> speed <450>;
+			turn gun4 to z-axis <0> speed <450>;
+			turn gun5 to z-axis <0> speed <450>;
+			turn gun6 to z-axis <0> speed <450>;
+			sleep 400;
+			turn post3 to z-axis <0> speed <225>;
+			turn post4 to z-axis <0> speed <225>;
+			turn post5 to z-axis <0> speed <225>;
+			turn post6 to z-axis <0> speed <225>;
+			sleep 250;
+			turn chunk1 to y-axis <0> speed <150>;
+			turn chunk2 to y-axis <0> speed <150>;
+			move boxes to y-axis [0] speed [1];
+			sleep 1000;
+			cache post3;
+			cache post4;
+			cache post5;
+			cache post6;
+			cache chunk1;
+			cache chunk2;
+			cache nano1;
+			cache nano2;
+			cache nano3;
+			cache nano4;
+			cache nano5;
+			cache nano6;
+			cache beam1;
+			cache beam2;
+			cache beam3;
+			cache beam4;
+			cache beam5;
+			cache beam6;
+			cache gun3;
+			cache gun4;
+			cache gun5;
+			cache gun6;
+		}
+		Busy_5 = 0;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade pad;
+	dont-cache pad;
+	Nano_1 = 0;
+	ReqState_3 = 0;
+	On_4 = 0;
+	Busy_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+	dont-cache glow1;
+	dont-cache glow2;
+	dont-cache glow3;
+	dont-cache glow4;
+	dont-cache light1a;
+	dont-cache light1b;
+	dont-cache light2a;
+	dont-cache light2b;
+	dont-cache radar;
+	dont-cache dish;
+	spin radar around y-axis speed <30>;
+	spin dish around x-axis speed <70>;
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( !Nano_1 )
+	{
+		piecenum = beam1;
+	}
+	if( Nano_1 == 1 )
+	{
+		piecenum = beam2;
+	}
+	if( Nano_1 == 2 )
+	{
+		piecenum = beam3;
+	}
+	if( Nano_1 == 3 )
+	{
+		piecenum = beam4;
+	}
+	if( Nano_1 == 4 )
+	{
+		piecenum = beam5;
+	}
+	++Nano_1;
+	if( Nano_1 > 5 )
+	{
+		piecenum = beam6;
+		Nano_1 = 0;
+	}
+	return (0);
+}
+
+Activate()
+{
+	signal 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 1;
+	call-script RequestState();
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 0;
+	sleep 5000;
+	set-signal-mask 0;
+	if( !ReqState_3 )
+	{
+		call-script RequestState();
+	}
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP2;
+		explode beam2 type BITMAPONLY | BITMAP3;
+		explode chunk1 type BITMAPONLY | BITMAP4;
+		explode chunk2 type BITMAPONLY | BITMAP5;
+		explode nano4 type BITMAPONLY | BITMAP1;
+		explode radar type BITMAPONLY | BITMAP2;
+		explode dish type BITMAPONLY | BITMAP3;
+		explode gun3 type BITMAPONLY | BITMAP4;
+		explode gun4 type BITMAPONLY | BITMAP5;
+		explode gun5 type BITMAPONLY | BITMAP1;
+		explode gun6 type BITMAPONLY | BITMAP2;
+		explode pad type BITMAPONLY | BITMAP3;
+		explode post3 type BITMAPONLY | BITMAP4;
+		explode post4 type BITMAPONLY | BITMAP5;
+		explode post5 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | BITMAP2;
+		explode beam2 type FALL | BITMAP3;
+		explode chunk1 type BITMAPONLY | BITMAP4;
+		explode chunk2 type BITMAPONLY | BITMAP5;
+		explode nano1 type FALL | BITMAP1;
+		explode nano2 type FALL | BITMAP2;
+		explode nano3 type FALL | BITMAP3;
+		explode nano4 type FALL | BITMAP4;
+		explode radar type FALL | BITMAP5;
+		explode dish type FALL | BITMAP1;
+		explode gun3 type FALL | BITMAP2;
+		explode gun4 type FALL | BITMAP3;
+		explode gun5 type SHATTER | BITMAP4;
+		explode gun6 type SHATTER | BITMAP5;
+		explode pad type BITMAPONLY | BITMAP1;
+		explode post3 type BITMAPONLY | BITMAP2;
+		explode post4 type FALL | BITMAP3;
+		explode post5 type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode chunk1 type BITMAPONLY | BITMAP4;
+		explode chunk2 type BITMAPONLY | BITMAP5;
+		explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nano2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode nano3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode nano4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode dish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode gun3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode gun4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gun5 type SHATTER | BITMAP4;
+		explode gun6 type SHATTER | BITMAP5;
+		explode pad type BITMAPONLY | BITMAP1;
+		explode post3 type BITMAPONLY | BITMAP2;
+		explode post4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode post5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode chunk1 type BITMAPONLY | BITMAP4;
+	explode chunk2 type BITMAPONLY | BITMAP5;
+	explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nano2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode nano3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode nano4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode dish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gun3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode gun4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gun5 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode gun6 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode pad type BITMAPONLY | BITMAP1;
+	explode post3 type BITMAPONLY | BITMAP2;
+	explode post4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode post5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

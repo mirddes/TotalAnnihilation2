@@ -1,0 +1,207 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flare, turret, sleeve, barrel, pots, door, energy, shell,
+       lb, lf, rb, rf, lbf, lbb, lff, lfb, rbf, rbb, rff, rfb;
+
+static-var  delay_1, bMoving, front, back;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	dont-cache energy;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <50>;
+	turn base to z-axis anglez speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <20>;
+	turn base to x-axis <0> speed <20>;
+}
+
+Create()
+{
+	hide flare;
+	hide shell;
+	delay_1 = 0;
+	bMoving = 0;
+	set ARMORED to 1;
+	front = get XZ_HYPOT(get PIECE_XZ(lff) - get PIECE_XZ(lfb));
+	back = get XZ_HYPOT(get PIECE_XZ(lbf) - get PIECE_XZ(lbb));
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+Moving()
+{
+	bMoving = 1;
+	while ( bMoving )
+	{
+		turn lb to x-axis (get ATAN((get PIECE_Y(lbf) - get GROUND_HEIGHT(get PIECE_XZ(lbf))) - (get PIECE_Y(lbb) - get GROUND_HEIGHT(get PIECE_XZ(lbb))),back)) speed <360>;
+		turn lf to x-axis (get ATAN((get PIECE_Y(lff) - get GROUND_HEIGHT(get PIECE_XZ(lff))) - (get PIECE_Y(lfb) - get GROUND_HEIGHT(get PIECE_XZ(lfb))),front)) speed <360>;
+		turn rb to x-axis (get ATAN((get PIECE_Y(rbf) - get GROUND_HEIGHT(get PIECE_XZ(rbf))) - (get PIECE_Y(rbb) - get GROUND_HEIGHT(get PIECE_XZ(rbb))),back)) speed <360>;
+		turn rf to x-axis (get ATAN((get PIECE_Y(rff) - get GROUND_HEIGHT(get PIECE_XZ(rff))) - (get PIECE_Y(rfb) - get GROUND_HEIGHT(get PIECE_XZ(rfb))),front)) speed <360>;
+		sleep 150;
+	}
+}
+
+StartMoving()
+{
+	if ( !bMoving )
+	{
+		start-script Moving();
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	cache pots;
+	turn turret to y-axis <0> speed <50>;
+	turn sleeve to x-axis <0> speed <30>;
+	move door to x-axis [0] speed [4];
+	turn door to z-axis <0> speed <60>;
+	sleep 5000;
+}
+
+AimPrimary(heading, pitch)
+{
+	dont-cache pots;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn door to z-axis <75> speed <150>;
+	move door to x-axis [2] speed [5];
+	turn turret to y-axis heading speed <80>;
+	turn sleeve to x-axis <0> - pitch speed <40>;
+	while( delay_1 )
+	{
+		wait-for-move sleeve along z-axis;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	delay_1 = 1;
+	show flare;
+	explode shell type FALL | EXPLODE_ON_HIT;
+	move barrel to z-axis [-3.2] speed [500];
+	move sleeve to z-axis [-1] speed [100];
+	sleep 150;
+	hide flare;
+	move sleeve to z-axis [0] speed [0.625];
+	move barrel to z-axis [0] speed [2];
+	wait-for-move sleeve along z-axis;
+	delay_1 = 0;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = barrel;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = turret;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type BITMAPONLY | BITMAP3;
+		explode barrel type BITMAPONLY | BITMAP4;
+		explode energy type SHATTER | BITMAP1;
+		explode door type FALL | BITMAP5;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type FALL | BITMAP2;
+		explode sleeve type BITMAPONLY | BITMAP3;
+		explode barrel type FALL | BITMAP4;
+		explode energy type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode door type FALL | SMOKE | BITMAP5;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode energy type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode door type FALL | SMOKE | FIRE | BITMAP5;
+		explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP2;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode energy type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode shell type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

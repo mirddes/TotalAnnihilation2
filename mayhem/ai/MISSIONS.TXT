@@ -1,0 +1,44 @@
+1//EASY
+
+plan easy
+
+limit ctrl_b 1
+
+weight level2 0.25
+
+limit corint 0
+limit armbrtha 0
+limit armanni 0
+limit cordoom 0
+limit cortron 0
+limit armemp 0
+
+//MEDIUM
+
+plan medium
+
+weight level2 0.5
+
+Limit AIBOOST 1
+limit ctrl_b 2
+
+limit corint 0
+limit armbrtha 0
+limit armanni 0
+limit cordoom 0
+limit cortron 0
+limit armemp 0
+
+//HARD
+
+plan hard
+
+weight level2 2
+weight level3 3
+
+Limit AIBOOST 5
+limit ctrl_b 8
+limit cortron 0
+limit armemp 0
+
+

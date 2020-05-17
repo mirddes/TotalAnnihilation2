@@ -1,0 +1,1432 @@
+[Rock]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=20;
+	filename=rocks;
+	seqname=rock1;
+	seqnameshad=rock1sha;
+	seqnamereclamate=rock01rec;
+	metal=100;
+
+	featurereclamate=rock01recscar;
+	featuredead=rock1a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock1a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=20;
+	filename=rockshurt;
+	seqname=rock1a;
+	seqnameshad=rock1ashad;
+	seqnamereclamate=rock01arec;
+	metal=100;
+
+	featurereclamate=rock01recscar;
+	featuredead=rock1b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock1b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock1b;
+	seqnameshad=rock1bshad;
+	seqnamereclamate=rock01brec;
+	metal=100;
+
+	featurereclamate=rock02recscar;
+	featuredead=rockgone01;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock2]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	filename=rocks;
+	seqname=rock2;
+	seqnameshad=rock2sha;
+	seqnamereclamate=rock02rec;
+	metal=100;
+
+	featurereclamate=rock02xrecscar;
+	featuredead=rock2a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock2a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	filename=rockshurt;
+	seqname=rock2a;
+	seqnameshad=rock2ashad;
+	seqnamereclamate=rock02arec;
+	metal=100;
+
+	featurereclamate=rock02xrecscar;
+	featuredead=rock2b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock2b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock2b;
+	seqnameshad=rock2bshad;
+	seqnamereclamate=rock02brec;
+	metal=100;
+
+	featurereclamate=rock02xrecscar;
+	featuredead=rockgone02;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock3]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=rocks;
+	seqname=rock3;
+	seqnameshad=rock3sha;
+	seqnamereclamate=rock03rec;
+	metal=75;
+
+	featurereclamate=rock03recscar;
+	featuredead=rock3a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock3a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=rockshurt;
+	seqname=rock3a;
+	seqnameshad=rock3ashad;
+	seqnamereclamate=rock03arec;
+	metal=75;
+
+	featurereclamate=rock03recscar;
+	featuredead=rock3b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock3b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock3b;
+	seqnameshad=rock3bshad;
+	seqnamereclamate=rock03brec;
+	metal=75;
+
+	featurereclamate=rock05xrecscar;
+	featuredead=rockgone03;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock4]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rocks;
+	seqname=rock4;
+	seqnameshad=rock4sha;
+	seqnamereclamate=rock04rec;
+	metal=75;
+
+	featurereclamate=rock04recscar;
+	featuredead=rock4a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock4a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt;
+	seqname=rock4a;
+	seqnameshad=rock4ashad;
+	seqnamereclamate=rock04arec;
+	metal=75;
+
+	featurereclamate=rock04recscar;
+	featuredead=rock4b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock4b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock4b;
+	seqnameshad=rock4bshad;
+	seqnamereclamate=rock04brec;
+	metal=75;
+
+	featurereclamate=rock04recscar;
+	featuredead=rockgone04;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock05]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rocks;
+	seqname=greenrock05;
+	seqnameshad=rock05shad;
+	seqnamereclamate=rock05rec;
+	metal=50;
+
+	featurereclamate=rock05recscar;
+	featuredead=rock05a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock05a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt;
+	seqname=rock05a;
+	seqnameshad=rock05ashad;
+	seqnamereclamate=rock05arec;
+	metal=50;
+
+	featurereclamate=rock05recscar;
+	featuredead=rock05b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock05b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock05b;
+	seqnameshad=rock05bshad;
+	seqnamereclamate=rock05brec;
+	metal=50;
+
+	featurereclamate=rock05recscar;
+	featuredead=rockgone03;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock06]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rocks;
+	seqname=greenrock06;
+	seqnameshad=rock06shad;
+	seqnamereclamate=rock06rec;
+	metal=50;
+
+	featurereclamate=rock06recscar;
+	featuredead=rock06a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock06a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt;
+	seqname=rock06a;
+	seqnameshad=rock06ashad;
+	seqnamereclamate=rock06arec;
+	metal=50;
+
+	featurereclamate=rock06recscar;
+	featuredead=rock06b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock06b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock06b;
+	seqnameshad=rock06bshad;
+	seqnamereclamate=rock06brec;
+	metal=50;
+
+	featurereclamate=rock06recscar;
+	featuredead=rockgone06;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock07]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rocks;
+	seqname=greenrock07;
+	seqnameshad=rock07shad;
+	seqnamereclamate=rock07rec;
+	metal=50;
+
+	featurereclamate=rock07recscar;
+	featuredead=rock07a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock07a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt;
+	seqname=rock07a;
+	seqnameshad=rock07ashad;
+	seqnamereclamate=rock07arec;
+	metal=50;
+
+	featurereclamate=rock07recscar;
+	featuredead=rock07b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock07b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt2;
+	seqname=rock07b;
+	seqnameshad=rock07bshad;
+	seqnamereclamate=rock07brec;
+	metal=50;
+
+	featurereclamate=rock07recscar;
+	featuredead=rockgone05;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock08]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rocks;
+	seqname=greenrock08;
+	seqnameshad=rock08shad;
+	seqnamereclamate=rock08rec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock08a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock08a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt;
+	seqname=rock08a;
+	seqnameshad=rock08ashad;
+	seqnamereclamate=rock08arec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock08b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock08b]
+	{
+	world=greenworld;
+	description=rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt2;
+	seqname=rock08b;
+	seqnameshad=rock08bshad;
+	seqnamereclamate=rock08brec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rockgone06;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock09]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rocks;
+	seqname=greenrock09;
+	seqnameshad=rock09shad;
+	seqnamereclamate=rock09rec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock09a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock09a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt;
+	seqname=rock09a;
+	seqnameshad=rock09ashad;
+	seqnamereclamate=rock09arec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock09b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock09b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt2;
+	seqname=rock09b;
+	seqnameshad=rock09bshad;
+	seqnamereclamate=rock09brec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rockgone07;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock10]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rocks;
+	seqname=greenrock10;
+	seqnameshad=rock10shad;
+	seqnamereclamate=rock10rec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock10a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock10a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt;
+	seqname=rock10a;
+	seqnameshad=rock10ashad;
+	seqnamereclamate=rock10arec;
+	metal=25;
+
+	featurereclamate=rock08recscar;
+	featuredead=rock10b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock10b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=rockshurt2;
+	seqname=rock10b;
+	seqnameshad=rock10bshad;
+	seqnamereclamate=rock10brec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rockgone08;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock11]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rocks;
+	seqname=greenrock11;
+	seqnameshad=rock11shad;
+	seqnamereclamate=rock11rec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock11a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock11a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt;
+	seqname=rock11a;
+	seqnameshad=rock11ashad;
+	seqnamereclamate=rock11arec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock11b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock11b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt2;
+	seqname=rock11b;
+	seqnameshad=rock11bshad;
+	seqnamereclamate=rock11brec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rockgone06;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock12]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rocks;
+	seqname=greenrock12;
+	seqnameshad=rock12shad;
+	seqnamereclamate=rock12rec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock12a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock12a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt;
+	seqname=rock12a;
+	seqnameshad=rock12ashad;
+	seqnamereclamate=rock12arec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock12b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock12b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt2;
+	seqname=rock12b;
+	seqnameshad=rock12bshad;
+	seqnamereclamate=rock12brec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rockgone08;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock13]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rocks;
+	seqname=greenrock13;
+	seqnameshad=rock13shad;
+	seqnamereclamate=rock13rec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock13a;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock13a]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt;
+	seqname=rock13a;
+	seqnameshad=rock13ashad;
+	seqnamereclamate=rock13arec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rock13b;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rock13b]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=7;
+	filename=rockshurt2;
+	seqname=rock13b;
+	seqnameshad=rock13bshad;
+	seqnamereclamate=rock13brec;
+	metal=25;
+
+	featurereclamate=rock09recscar;
+	featuredead=rockgone07;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Rockgone01]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone01;
+	seqnameshad=rockgone01shad;
+
+	featuredead=rockgone01;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone02]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone02;
+	seqnameshad=rockgone02shad;
+
+	featuredead=rockgone02;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone03]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone03;
+	seqnameshad=rockgone03shad;
+
+	featuredead=rockgone03;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone04]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone04;
+	seqnameshad=rockgone04shad;
+
+	featuredead=rockgone04;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone05]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone05;
+	seqnameshad=rockgone05shad;
+
+	featuredead=rockgone05;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone06]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone06;
+	seqnameshad=rockgone06shad;
+
+	featuredead=rockgone06;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone07]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone07;
+	seqnameshad=rockgone07shad;
+
+	featuredead=rockgone07;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rockgone08]
+	{
+	world=greenworld;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=rocksdead;
+	seqname=rockgone08;
+	seqnameshad=rockgone08shad;
+
+	featuredead=rockgone08;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock01RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock01recscar;
+	seqnameshad=;
+
+	featuredead=rock01recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock02RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock02recscar;
+	seqnameshad=;
+
+	featuredead=rock02recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock02xRecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock02xrecscar;
+	seqnameshad=;
+
+	featuredead=rock02xrecscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock03RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock03recscar;
+	seqnameshad=;
+
+	featuredead=rock03recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock04RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock04recscar;
+	seqnameshad=;
+
+	featuredead=rock04recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock05RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock05recscar;
+	seqnameshad=;
+
+	featuredead=rock05recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock05xRecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock05recscar;
+	seqnameshad=;
+
+	featuredead=rock05recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock06RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock06recscar;
+	seqnameshad=;
+
+	featuredead=rock06recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock07RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock07recscar;
+	seqnameshad=;
+
+	featuredead=rock07recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock08RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock08recscar;
+	seqnameshad=;
+
+	featuredead=rock08recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Rock09RecScar]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=rockrecscars;
+	seqname=rock09recscar;
+	seqnameshad=;
+
+	featuredead=rock09recscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+

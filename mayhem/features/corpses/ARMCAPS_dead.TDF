@@ -1,0 +1,36 @@
+[armcaps_dead]
+{
+world=All Worlds;
+description=Prophet Wreckage;
+category=arm_corpses;
+object=armcaps_dead;
+featuredead=armcaps_heap;
+footprintx=8;
+footprintz=8;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=36576;
+damage=28000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armcaps_heap]
+{
+world=All Worlds;
+description=Prophet Wreckage;
+category=arm_corpses;
+object=7x7d;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=18288;
+damage=28000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

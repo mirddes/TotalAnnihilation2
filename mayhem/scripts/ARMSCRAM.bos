@@ -1,0 +1,153 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, fork, bubbles;
+
+static-var  On_1, Timer_2, Moving_3, Turnoff_4;
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-cache fork;
+	dont-shade fork;
+	dont-cache base;
+	dont-shade base;
+	On_1 = 1;
+	Timer_2 = 0;
+	Moving_3 = 0;
+	Turnoff_4 = 0;
+	return (0);
+}
+
+
+Activate()
+{
+	On_1 = 1;
+	spin fork around z-axis speed <100>;
+	return (0);
+}
+
+Deactivate()
+{
+	On_1 = 0;
+	spin fork around z-axis speed <0>;
+	return (0);
+}
+
+Turnoff()
+{
+	if( On_1 )
+	{
+		set ACTIVATION to 0;
+		while( Timer_2 > 0 )
+		{
+			sleep 1000;
+			--Timer_2;
+		}
+		set ACTIVATION to 1;
+	}
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	Timer_2 = 10;
+	if( On_1 )
+	{
+		start-script Turnoff();
+	}
+	return (0);
+}
+
+StartMoving()
+{
+	if( !Moving_3 )
+	{
+		Moving_3 = 1;
+		while( Moving_3 )
+		{
+			emit-sfx 259 from bubbles;
+			sleep 150;
+		}
+	}
+	return (0);
+}
+
+StopMoving()
+{
+	Moving_3 = 0;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	Timer_2 = 10;
+	start-script Turnoff();
+	while( TRUE )
+	{
+		signal 2;
+		sleep 500;
+	}
+	return (1);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = fork;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode fork type SHATTER | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode fork type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode fork type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

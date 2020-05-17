@@ -1,0 +1,125 @@
+[DryMetal01]  // Medium
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=112;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DryMetal02]  // Small
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=56;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DryMetal03]  // Huge
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DryMetalB01]  // Medium
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metalb01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=112;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DryMetalB02]  // Small
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metalb02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=56;
+	damage=32009;
+	indestructible=1;
+	}
+
+[DryMetalB03]  // Huge
+	{
+	world=Desert;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drymetal;
+	seqname=metalb03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

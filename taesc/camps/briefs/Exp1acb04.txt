@@ -1,0 +1,14 @@
+MISSION 4.001ARML
+Hydross is under Arm control. Core units search this world for a device - a beacon of alien origin. 
+
+The thick jungles and bogs on this world will make travel difficult. Core has developed hovercraft technology in order to maneuver more efficiently on Lusch. That technology would make our search for the Contingent Commander and the alien beacon much easier. 
+
+&Y*PRIORITY CRITICAL*&
+Find and capture one of the hovercraft manufacturing platforms. Take special care that your units &Gdo not destroy the platform& in their enthusiasm to destroy Core. Once the hovercraft platform is captured use it to build hovercraft units to aid you in clearing the area of all Core mobile units. 
+
+INFO FEED
+You will have the use of the new Maverick kbot as a bodyguard, and an amphibious model kbot, the Pelican, to add increased mobility. Tech has also delivered a new gun, the Flakker, for anti-air defense. &RCore will also have a new anti-air flak gun.&
+
+To complete this mission you must capture the Core hovercraft pad and destroy all Core mobile units.
+
+END

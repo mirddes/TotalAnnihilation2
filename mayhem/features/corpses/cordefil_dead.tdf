@@ -1,0 +1,53 @@
+[cordefil_dead]
+{
+world=All Worlds;
+description=Defiler Wreckage;
+category=core_corpses;
+object=cordefil_dead;
+featuredead=cordefil_heap;
+footprintx=5;
+footprintz=5;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=18320;
+damage=15320;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cordefil_heap]
+{
+world=All Worlds;
+description=Defiler Wreckage;
+category=heaps;
+object=5x5c;
+featuredead=cordefil_heap2;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=9180;
+damage=15320;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cordefil_heap2]
+{
+world=All Worlds;
+description=Defiler Wreckage;
+category=heaps;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=4590;
+damage=14020;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

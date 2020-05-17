@@ -1,0 +1,207 @@
+// Core Air Transport Script
+
+piece base,link;
+
+static-var	moverate, unitview;
+
+#define	SIG_FLAMES	8		// Signal mask for making fire like caveman
+
+#include "StateChg.h"	// First time (of two)
+
+#define ANIM_VARIABLE TRUE
+
+#include "..\anim3d\corvalk\pickupscr.bos"
+#include "..\anim3d\corvalk\dropoffscr.bos"
+
+#include "hitweap.h"
+#include "SFXtype.h"
+#include "EXPtype.h"
+
+#define ACTIVATECMD call-script pickupscr();
+#define DEACTIVATECMD call-script dropoffscr();
+#include "StateChg.h"	// Second time (of two)
+
+// Smoking damage
+#define SMOKEPIECE1 base
+#include "smokeunit.h"
+
+Create()
+	{
+	unitview = FALSE;
+
+	// Initially not moving
+	moverate = 0;
+
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Demo()
+	{
+	unitview = TRUE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+QueryTransport(piecenum,height)
+	{
+	piecenum=1;
+	}
+
+BeginTransport(height)
+	{
+	move link to y-axis (0 - height) now;
+	start-script RequestState( ACTIVE );
+	}
+
+EndTransport()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+Activate()
+	{
+	if (unitview)
+		{
+		start-script RequestState( ACTIVE );
+		}
+	}
+
+Deactivate()
+	{
+	if (unitview)
+		{
+		start-script RequestState( INACTIVE );
+		}
+	}
+
+ProcessFlames()
+	{
+	// Process the flames SFX while moving;
+
+	while (TRUE)
+		{
+		if (moverate == 1 OR moverate == 2)
+			{
+			emit-sfx SFXTYPE_VTOL from thrust1;
+			emit-sfx SFXTYPE_VTOL from thrust2;
+			emit-sfx SFXTYPE_VTOL from thrust3;
+			emit-sfx SFXTYPE_VTOL from thrust4;
+			}
+
+//		if (moverate == 2 OR moverate == 3)
+//			{
+//			emit-sfx SFXTYPE_THRUST from jetb1;
+//			}
+
+		// Do this about 15 times per second
+		sleep 67;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_FLAMES;				// Kill the ProcessFlames script, if running
+	moverate = 0;
+	}
+
+MoveRate1()
+	{
+	signal SIG_FLAMES;				// Kill the ProcessFlames script, if running
+	set-signal-mask SIG_FLAMES;	// Die like a good servant when asked
+
+	// Make sure there is a ProcessFlames script running
+	start-script ProcessFlames();
+
+	// set the new movement type
+	moverate = 1;
+	}
+
+MoveRate2()
+	{
+	signal SIG_FLAMES;				// Kill the ProcessFlames script, if running
+	set-signal-mask SIG_FLAMES;	// Die like a good servant when asked
+
+	// Make sure there is a ProcessFlames script running
+	start-script ProcessFlames();
+
+	// set the new movement type
+	moverate = 2;
+	}
+
+MoveRate3()
+	{
+	signal SIG_FLAMES;				// Kill the ProcessFlames script, if running
+	set-signal-mask SIG_FLAMES;	// Die like a good servant when asked
+
+	// Make sure there is a ProcessFlames script running
+	start-script ProcessFlames();
+
+	// set the new movement type
+	moverate = 3;
+	}
+
+
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode arm1 type	BITMAPONLY | BITMAP1;
+		explode arm2 type	BITMAPONLY | BITMAP2;
+		explode arm3 type	BITMAPONLY | BITMAP3;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode link type	BITMAPONLY | BITMAP5;
+		explode thrust1 type	BITMAPONLY | BITMAP1;
+		explode thrust2 type	BITMAPONLY | BITMAP2;
+		explode thrust3 type	BITMAPONLY | BITMAP3;
+		explode thrust4 type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode arm1 type	SHATTER | BITMAP1;
+		explode arm2 type	BITMAPONLY | BITMAP2;
+		explode arm3 type	BITMAPONLY | BITMAP3;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode link type	FALL | BITMAP5;
+		explode thrust1 type	FALL | BITMAP1;
+		explode thrust2 type	FALL | BITMAP2;
+		explode thrust3 type	FALL | BITMAP3;
+		explode thrust4 type	FALL | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode arm1 type	SHATTER | BITMAP1;
+		explode arm2 type	BITMAPONLY | BITMAP2;
+		explode arm3 type	BITMAPONLY | BITMAP3;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode link type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode thrust1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode thrust2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode thrust3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode thrust4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode arm1 type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arm2 type	BITMAPONLY | BITMAP2;
+	explode arm3 type	BITMAPONLY | BITMAP3;
+	explode base type	BITMAPONLY | BITMAP4;
+	explode link type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode thrust1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode thrust2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode thrust3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode thrust4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return( 0 );
+	}

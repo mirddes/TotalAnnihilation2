@@ -1,0 +1,106 @@
+[GlobalHeader]
+	{
+	missionname=Red Hot Lava;
+	missiondescription=11 X 9  Many hills and lava pools. Plenty of metal;
+	planet=Lava;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=20;
+	lavaworld=1;
+	killmul=50;
+	timemul=0;
+	minwindspeed=100;
+	maxwindspeed=2500;
+	gravity=112;
+	numplayers=2, 4, 8;
+	size=11 x 10;
+	memory=16 mb;
+	useonlyunits=Red Hot Lava.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=20;
+		MohoMetal=20;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=24;
+		MeteorDensity=20;
+		MeteorDuration=25;
+		MeteorInterval=30;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=960;
+				ZPos=2432;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=4688;
+				ZPos=2464;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=2768;
+				ZPos=384;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=2976;
+				ZPos=4448;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=1504;
+				ZPos=912;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=4160;
+				ZPos=3840;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=4400;
+				ZPos=928;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=992;
+				ZPos=3776;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=2400;
+				ZPos=2512;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=2992;
+				ZPos=1840;
+				}
+			}
+		}
+	}

@@ -1,0 +1,35 @@
+[GADGET0]
+	{
+	[COMMON]
+		{
+		id=0;
+		name=HEADER;
+		width=640;
+		height=480;
+		}
+	[VERSION]
+		{
+		major=-51;
+		minor=-51;
+		revision=-51;
+		}
+	defaultfocus=Missions;
+	crtdefault=Start;
+	escdefault=MainMenu;
+	totalgadgets=1;
+	}
+[GADGET1]
+	{
+	[COMMON]
+		{
+		id=5;
+		name=TEXT;
+		ypos=1;
+		width=63;
+		height=13;
+		attribs=2;
+		colorf=15;
+		commonattribs=92;
+		}
+	text=Blank GUI;
+	}

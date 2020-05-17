@@ -1,0 +1,148 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  missilea, missileb, base, winga, wingb, jet, thrusta1, thrusta2,
+       thrustb;
+       
+static-var  gun_1;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	turn winga to z-axis <-111.70> speed <76.82>;
+	turn wingb to z-axis <111.70> speed <76.82>;
+}
+
+Deactivate()
+{
+	turn winga to z-axis <0.00> speed <76.87>;
+	turn wingb to z-axis <0.00> speed <76.87>;
+}
+
+QueryPrimary(piecenum)
+{
+	if( !gun_1 )
+	{
+	piecenum = missilea;
+	}
+	if( gun_1 )
+	{
+	piecenum = missileb;
+	}
+	gun_1 = !gun_1;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = base;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode missilea type BITMAPONLY | BITMAP1;
+		explode missileb type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode winga type BITMAPONLY | BITMAP4;
+		explode wingb type BITMAPONLY | BITMAP5;
+		explode jet type BITMAPONLY | BITMAP1;
+		explode thrusta1 type BITMAPONLY | BITMAP2;
+		explode thrusta2 type BITMAPONLY | BITMAP3;
+		explode thrustb type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode missilea type FALL | BITMAP1;
+		explode missileb type FALL | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode winga type SHATTER | BITMAP4;
+		explode wingb type BITMAPONLY | BITMAP5;
+		explode jet type FALL | BITMAP1;
+		explode thrusta1 type FALL | BITMAP2;
+		explode thrusta2 type FALL | BITMAP3;
+		explode thrustb type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode missilea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode missileb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode winga type SHATTER | BITMAP4;
+		explode wingb type BITMAPONLY | BITMAP5;
+		explode jet type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode thrusta1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode thrusta2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode thrustb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	explode missilea type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode missileb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type BITMAPONLY | BITMAP3;
+	explode winga type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode wingb type BITMAPONLY | BITMAP5;
+	explode jet type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode thrusta1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode thrusta2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode thrustb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

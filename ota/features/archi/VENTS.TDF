@@ -1,0 +1,31 @@
+[ArchiVent01]
+	{
+	world=archipelago;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archivents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[ArchiVent02]
+	{
+	world=archipelago;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archivents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

@@ -1,0 +1,825 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, t1, t2, turret, dish, plate, pad, beam, beam2, door, fixpoint, rotator, circle,  arrows, d1, d2, c1, c2, aimturret, aimsleeve, aimmeasure;
+
+static-var working, myid, gateid, minid, maxid, connected, ring, degree, hold, cur_cycle, unitteam, comcheck ;
+static-var shield_on, nbr_shield, dome_on, nbr_dome;
+//static-var unitteam;
+
+#define SIG_AIM 2
+
+#ifndef MAX_ID
+#define MAX_ID 70
+#define MIN_ID 69
+#define MY_ID 71
+#define UNIT_TEAM 72
+#define UNIT_ALLIED 74
+#define UNIT_BUILD_PERCENT_LEFT 73
+#define radius	[100]
+#define TOLERANCE [15]
+#define MAX_UNITS 10*UNITS_PER_PLAYER
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+#define CHECKSPOT\
+move beam to x-axis [250] now;\
+sleep 1;\
+xz = get PIECE_XZ(beam) - get UNIT_XZ(unit_id);\
+SECURE_XZ;\
+distance=get XZ_HYPOT(xz);\
+if (distance > [25])\
+{\
+	move beam to x-axis [0] now;\
+	sleep 1;\
+	explode beam type BITMAPONLY | BITMAP5;\
+}\
+if (distance <= [25])\
+{\
+	drop-unit unit_id;\
+	attach-unit unit_id to 0 - 1;\
+	sleep 1;\
+	drop-unit unit_id;\
+	sleep 1;\
+	move beam to x-axis [0] now;\
+	if (beamrotator == <360>)\
+	{\
+		rotationdegree = <30>;\
+		move beam to z-axis [25] now;\
+	}\
+	if (beamrotator == <720>)\
+	{\
+		rotationdegree = <15>;\
+		move beam to z-axis [50] now;\
+	}\
+	if (beamrotator == <1080>)\
+	{\
+		rotationdegree = <10>;\
+		move beam to z-axis [75] now;\
+	}\
+	if (beamrotator == <1440>)\
+	{\
+		rotationdegree = <10>;\
+		move beam to z-axis [100] now;\
+	}\
+	if (beamrotator == <1800>)\
+	{\
+		rotationdegree = <10>;\
+		move beam to z-axis [125] now;\
+	}\
+	turn rotator to y-axis beamrotator now;\
+	beamrotator = beamrotator + rotationdegree;\
+	attach-unit unit_id to beam;\
+	sleep 1;\
+	drop-unit unit_id;\
+	sleep 1;\
+
+#define TELEPORTABLE ((h == ARMCOM) || (h == CORCOM) || (h == ARMCK) || (h == ARMPW) || (h == ARMJETH) || (h == ARMHAM) || (h == ARMROCK) || (h == ARMWAR) \
+|| (h == ARMFLEA) || (h == ARMCV) || (h == ARMFAV) || (h == ARMFLASH) || (h == ARMSTUMP) || (h == ARMSAM) || (h == ARMMLV) || (h == ARMCH) || (h == ARMSH) \
+|| (h == ARMANAC) || (h == ARMAH) || (h == ARMMH) || (h == ARMACK) || (h == ARMAMPH) || (h == ARMZEUS) || (h == ARMFAST) || (h == ARMFIDO) || (h == ARMMAV) \
+|| (h == ARMMARK) || (h == ARMASER) || (h == ARMVADER) || (h == ARMSPID) || (h == ARMDECOM) || (h == ARMSNIPE) || (h == ARMFARK) || (h == ARMSPY) \
+|| (h == ARMACV) || (h == ARMCROC) || (h == ARMBULL) || (h == ARMMERL) || (h == ARMMART) || (h == ARMMANNI) || (h == ARMSEER) || (h == ARMJAM) || (h == ARMLATNK) \
+|| (h == ARMYORK) || (h == ARMSCAB) || (h == ARMTHOVR) \
+|| (h == CORCK) || (h ==  CORAK) || (h == CORSTORM) || (h == CORTHUD) || (h == CORCRASH) || (h == CORCV) || (h == CORFAV) || (h == CORGATOR) || (h == CORRAID) \
+|| (h == CORMIST) || (h == CORMLV) || (h == CORLEVLR) || (h == CORCH) || (h == CORSH) || (h == CORSNAP) || (h == CORAH) || (h == CORMH) || (h == CORACK) \
+|| (h == CORAMPH) || (h == CORPYRO) || (h == CORFAST) || (h == CORMORT) || (h == CORCAN) || (h == CORVOYR) || (h == CORSPEC) || (h == CORROACH) || (h == CORHRK) \
+|| (h == CORDECOM) || (h == CORSUMO) || (h == CORNECRO) || (h == CORSPY) || (h == CORACV) || (h == CORSEAL) || (h == CORREAP) || (h == CORVROC) || (h == CORMART) \
+|| (h == CORGOL) || (h == CORVRAD) || (h == CORETER) || (h == CORSENT) || (h == CORMABM) || (h == CORTHOVR) \
+|| (h == ARMLH) || (h == ARMSPOT) || (h == ARMECV) || (h == ARMMBT) || (h == ARMSIEGE) || (h == ARMMECH)  || (h == ARMCRAWL) || (h == ARMNOVA) || (h == ARMVERMIN) \
+|| (h == ARMHCAR)  || (h == ARMACH) || (h == ARMHART) || (h == ARMHFLAK) || (h == ARMHSTUN) || (h == ARMHTANK) \
+|| (h == CORSC) || (h == CORFH)  || (h == CORMANT) || (h == CORECV) || (h == CORBEH) || (h == CORJUGG)  || (h == CORMPAD) || (h == CORPATRON) || (h == CORTAC) \
+|| (h == CORHCAR) || (h == CORACH) || (h == CORHART) || (h == CORHFLAK) || (h == CORHLAS) || (h == CORHTANK) || (h == CORDECI) || (h == ARMGAUSS) || (h == CORSPID) \
+|| (h == CORPOUND) || (h == ARMCOM_SUP) || (h == CORCOM_SUP) || (h == ARMLART) || (h == CORMAK) || (h == ARMJAV) || (h == CORFING) || (h == ARMCERB) \
+|| (h == ARMHJAM) || (h == CORHJAM) || (h ==ARMAABOT) || (h == CORAABOT) || (h == ARMAFAV) || (h == CORAFAV) || (h == ARMASPID) \
+|| (h == ARMASAM) || (h == CORAMIST) || (h ==ARMECK) || (h == CORECK) || (h == ARMLGTNK) || (h == CORLSTNK) || (h == CORTALOS) || (h == ARMMCV) || (h == CORMCV) \
+|| (h == CORKROG) || (h == ARMECH) || (h ==CORECH) || (h == ARMNH) || (h == CORNH) || (h ==ARMHSPID) || (h == CORHSPID) || (h == ARMCLOAK) || (h ==CORCLOAK) \
+|| (h == ARMHARL) || (h == CORHARL) || (h == ARMHROY) || (h == CORHROY) || (h == ARMHCRUS) || (h == CORHCRUS) || (h == ARMHBATS) || (h == CORHBATS) \
+|| (h == ARMST) || (h == CORCT)) \
+
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+explodeOver(id)
+{
+	var xz, z, x, y;
+	y = ((get UNIT_Y(id)) - (get PIECE_Y(base)));
+	xz=get PIECE_XZ(base) - get UNIT_XZ(id);
+	SECURE_XZ
+	turn d1 to y-axis get XZ_ATAN(get PIECE_XZ(base) - get UNIT_XZ(id)) now;
+	move d2 to z-axis get XZ_HYPOT(xz) now;
+	
+	move d2 to y-axis y now;
+	explode d2 type BITMAPONLY | BITMAP5;
+	turn d1 to y-axis 0 now;
+	move d2 to z-axis 0 now;
+	move d2 to y-axis 0 now;
+}
+
+drawline(id)
+{
+	var xz, z, x, y, line, line_end;
+	y = ((get UNIT_Y(id)) - (get PIECE_Y(base)));
+	xz=get PIECE_XZ(base) - get UNIT_XZ(id);
+	SECURE_XZ
+	turn d1 to y-axis get XZ_ATAN(get PIECE_XZ(base) - get UNIT_XZ(id)) now;
+	line_end = get XZ_HYPOT(xz);
+	line = [0];
+	while(line < line_end)
+	{
+		move d2 to z-axis line now;
+		explode d2 type BITMAPONLY | BITMAP5;
+		line = line + [20];
+	}
+	move d2 to y-axis y now;
+	turn d1 to y-axis 0 now;
+	move d2 to z-axis 0 now;
+	move d2 to y-axis 0 now;
+}
+
+OpenYard()
+{
+	set YARD_OPEN to 1;
+	while( !get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 1;
+	}
+	set BUGGER_OFF to 0;
+}
+
+CloseYard()
+{
+	set YARD_OPEN to 0;
+	while( get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 0;
+	}
+	set BUGGER_OFF to 0;
+}
+
+#define LOAD_DISTANCE [60]
+
+Arms()
+{
+	if(ring == 4)
+	{
+		if(degree > 30)
+		{
+			++hold;
+			++ring;
+			degree = 0;
+		}
+		turn t1 to y-axis <12> * degree now;
+		turn t2 to y-axis <12> * degree now;
+	}
+	if(ring == 3)
+	{
+		if(degree > 20)
+		{
+			++ring;
+			degree = 0;
+		}
+		turn t1 to y-axis <18> * degree now;
+		turn t2 to y-axis <18> * degree now;
+	}
+/*	if(ring == 2)
+	{
+		if(degree > 15)
+		{
+			++ring;
+			degree = 0;
+		}
+		turn t1 to y-axis <24> * degree now;
+		turn t2 to y-axis <24> * degree now;
+	}
+	if(ring == 1)
+	{
+		if(degree > 10)
+		{
+			++ring;
+			degree = 0;
+		}
+		turn t1 to y-axis <36> * degree now;
+		turn t2 to y-axis <36> * degree now;
+	}*/
+	if(ring > 4)
+	{
+		ring = 3;
+	}
+	move t2 to z-axis [20] * ring + [15] now;
+	++degree;
+}
+
+Activate()
+{
+//	var unit_ID;
+	if(connected)
+	{
+		if(get UNIT_IS_ON_THIS_COMP(get MY_ID))
+//		if((get UNIT_ALLIED(unit_ID)) == 1) 
+		{
+			show arrows;
+		}	
+	}
+}
+
+Deactivate()
+{
+	hide arrows;
+}
+
+Teleport()
+{
+	set ACTIVATION to 0;
+	sleep 1;
+	while(get YARD_OPEN)
+	{
+		set ACTIVATION to 0;
+		set YARD_OPEN to 0;
+		sleep 1;
+	}
+	set ACTIVATION to 1;
+	var unit_ID, xz, x, z, distance, h, dif;
+	dif = 0;
+	while(1)
+	{
+		if((get ACTIVATION) == 1)
+		{
+			if(connected)
+			{
+				if(get UNIT_HEIGHT(gateid) != 3749405 && get UNIT_HEIGHT(gateid) != 3824766)
+				{
+					connected = 0;
+					hide arrows;
+					set ACTIVATION to 0;
+					turn turret to y-axis <0> speed <60>;
+					wait-for-turn turret around y-axis;
+					turn dish to x-axis <0> speed <50.027473>;
+					wait-for-turn dish around x-axis;
+				}
+				if(get UNIT_HEIGHT(gateid) == 3749405 || get UNIT_HEIGHT(gateid) == 3824766)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(gateid) != 0)
+					{
+						hide arrows;
+						connected = 0;
+						set ACTIVATION to 0;
+						turn turret to y-axis <0> speed <60>;
+						wait-for-turn turret around y-axis;
+						turn dish to x-axis <0> speed <50.027473>;
+						wait-for-turn dish around x-axis;
+					}
+					if(get UNIT_BUILD_PERCENT_LEFT(gateid) == 0)
+					{
+						if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+						{
+							show arrows;
+						}	
+						connected = 1;
+						for (unit_ID = minid; unit_ID <= maxid; ++unit_ID)
+						{
+							if(get UNIT_ALLIED(unit_ID))
+							{
+								xz = get UNIT_XZ(unit_ID) - get UNIT_XZ(gateid);
+								SECURE_XZ;
+								distance=get XZ_HYPOT(xz);
+								if (distance <= LOAD_DISTANCE && distance > [1])
+								{
+									if(get UNIT_IS_ON_THIS_COMP(myid))
+									{
+										h = get UNIT_HEIGHT(unit_ID);
+										if(TELEPORTABLE)
+										{
+											if (get UNIT_TEAM(unit_ID) == unitteam)
+											{
+												call-script explodeOver(unit_ID);
+												attach-unit unit_ID to -1;
+												sleep 1;
+												attach-unit unit_ID to t2;
+												drop-unit unit_ID;
+												sleep 1;
+												while(get UNIT_XZ(unit_ID) == get PIECE_XZ(t2))
+												{
+													drop-unit unit_ID;
+													call-script Arms();
+													if(hold == 2)
+													{
+														dif = 1;
+														set YARD_OPEN to 1;
+														sleep 1;
+														attach-unit unit_ID to -1;
+														sleep 1;
+														attach-unit unit_ID to base;
+														drop-unit unit_ID;
+														start-script explodeOver(unit_ID);
+														set ACTIVATION to 0;
+														sleep 1;
+														while(get YARD_OPEN)
+														{
+															set ACTIVATION to 0;
+															set YARD_OPEN to 0;
+															sleep 1;
+														}
+														set ACTIVATION to 1;
+													}
+													sleep 1;
+												}
+												if(!dif)
+												{
+													start-script explodeOver(unit_ID);
+												}
+												dif = 0;
+												hold = 0;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			sleep rand(500,1500);
+		}
+		sleep 100;
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+//	var unit_ID;
+
+	unitteam = (get UNIT_TEAM(get MY_ID));
+
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+	comcheck = 0;
+	
+	move aimturret to y-axis [32000] now;
+	set YARD_OPEN to 0;
+	hold =0;
+	ring = 3;
+	degree = 0;
+	call-script Arms();
+	connected = 0;
+	dont-shade turret;
+	dont-shade dish;
+	
+	hide arrows;
+
+	hide circle;
+	
+	dont-cache arrows;
+	
+	dont-cache circle;
+	
+	dont-shade arrows;
+	
+	dont-shade circle;
+	
+	dont-shade door;
+	
+	working = 0;
+	myid = (get MY_ID);
+	gateid = minid;
+	minid = (get MIN_ID);
+	maxid = (get MAX_ID);
+    
+//	unitteam = (get UNIT_TEAM(get MY_ID));
+   
+    set ARMORED to 0;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 50;
+	}
+	
+	if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+//	if(((get UNIT_ALLIED(unit_ID)) == 1) || (get UNIT_IS_ON_THIS_COMP(get MY_ID)))
+	{
+		show circle;
+	}	
+	start-script detect();	
+	start-script SmokeUnit();
+	start-script Teleport();
+  	set ACTIVATION to 0;
+  	//start-script poop();
+	sleep 500;
+}
+
+AimFromPrimary(p)
+{
+	p = aimturret;
+}
+
+QueryPrimary(p)
+{
+	p = aimmeasure;
+}
+
+AimPrimary(h, p)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+//	explode base type BITMAPONLY | BITMAP5;
+	var i;
+	i = [32000];
+	
+	turn aimturret to y-axis h now;
+	turn aimsleeve to x-axis <0.000000> - p now;
+	
+	while(get PIECE_Y(aimmeasure) > get GROUND_HEIGHT(get PIECE_XZ(aimmeasure)))
+	{
+		move aimmeasure to z-axis i now;
+		i = i + [50];
+	}
+	
+	while(get PIECE_Y(aimmeasure) < get GROUND_HEIGHT(get PIECE_XZ(aimmeasure)))
+	{
+		move aimmeasure to z-axis i now;
+		i = i - [1];
+	}
+	
+	explode aimmeasure type BITMAPONLY | BITMAP5;
+	
+	#define SEARCH_DISTANCE [40]
+	
+	//connected = 0;
+	hide arrows;
+	
+	var unit_ID, xz, x, z, distance;
+	
+	
+	for (unit_ID = minid; unit_ID <= maxid; ++unit_ID)
+	{
+		if(get UNIT_HEIGHT(unit_ID) == 3749405 || get UNIT_HEIGHT(unit_ID) == 3824766 )
+		{
+			if(get UNIT_ALLIED(unit_ID))
+			{
+				if(unit_ID != myid)
+				{
+					xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(aimmeasure);
+					SECURE_XZ;
+					distance=get XZ_HYPOT(xz);
+					if (distance <= SEARCH_DISTANCE)
+					{
+						if (get UNIT_TEAM(unit_ID) == unitteam)
+						{
+							if(!get UNIT_BUILD_PERCENT_LEFT(unit_ID))
+							{
+								gateid = unit_ID;
+								turn dish to x-axis <-135.109890> speed <50.027473>;
+								wait-for-turn dish around x-axis;
+								turn turret to y-axis get XZ_ATAN(get PIECE_XZ(0) - get UNIT_XZ(gateid)) speed <60>;
+								wait-for-turn turret around y-axis;
+								start-script drawline(gateid);
+								//show arrows;
+								connected = 1;
+								return 0;
+							}
+						}
+					}
+				}
+			}
+		}
+		if( get UNIT_HEIGHT(unit_ID) == 2723664 )	
+		{
+			if(get UNIT_ALLIED(unit_ID))
+			{
+				if(unit_ID != myid)
+				{
+					xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(aimmeasure);
+					SECURE_XZ;
+					distance=get XZ_HYPOT(xz);
+					if (distance <= SEARCH_DISTANCE)
+					{
+						if (get UNIT_TEAM(unit_ID) == unitteam)
+						{
+							comcheck = 1;
+							
+							sleep rand(500,1500);
+							
+							if ( get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								start-script explodeOver();
+							}
+							if ( get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								attach-unit unit_ID to -1;
+							}	
+							sleep 250;
+							explode beam type BITMAPONLY | BITMAP5;
+							call-script OpenYard();
+							if ( get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								drop-unit unit_ID;
+								attach-unit unit_ID to beam;
+							}	
+							call-script CloseYard();
+		
+							sleep 100;
+				
+							call-script OpenYard();
+			
+		
+							if ( get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								drop-unit unit_ID;
+							}
+			
+							sleep 100;
+							call-script CloseYard();
+							
+							sleep 250;
+							explode beam type BITMAPONLY | BITMAP5;
+						}
+					}
+				}		
+			}
+		}
+	}
+	if (!comcheck)
+	{
+		connected = 0;
+		hide arrows;
+		turn turret to y-axis <0> speed <60>;
+		wait-for-turn turret around y-axis;
+		turn dish to x-axis <0> speed <50.027473>;
+		wait-for-turn dish around x-axis;
+		//explode aimmeasure type BITMAPONLY | BITMAPNUKE;
+	}
+	return 0;
+	comcheck = 0;
+}
+
+FirePrimary()
+{
+
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	BITMAPONLY | BITMAP1;
+		explode door type	BITMAPONLY | BITMAP1;
+		explode plate type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	BITMAPONLY | BITMAP1;
+		explode door type	FALL | BITMAP1;
+		explode plate type	FALL | BITMAP1;
+		explode turret type	SHATTER | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dish type	BITMAPONLY | BITMAP1;
+		explode door type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode plate type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type	SHATTER | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode dish type	BITMAPONLY | BITMAP1;
+	explode door type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode plate type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	return( 0 );
+	}
+

@@ -1,0 +1,38 @@
+[CORFHLT_LASER]
+	{
+	ID=49;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=410;
+	reloadtime=1;
+	energypershot=75;
+	weaponvelocity=700;
+	areaofeffect=8;
+	
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=195;
+		}
+	}
+

@@ -1,0 +1,206 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  GP, base, flare, turret, wake01, wake02, wake03, wake04, wake05,
+       wake06, wake07, wake08, gun, counteraim;
+
+static-var  Depth_1, hit_2, bAiming, delay_4;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( !hit_2 )
+	{
+		hit_2 = 1;
+		turn base to z-axis Func_Var_2 speed <105>;
+		turn base to x-axis Func_Var_1 speed <105>;
+		wait-for-turn base around z-axis;
+		wait-for-turn base around x-axis;
+		turn base to z-axis <0> speed <30>;
+		turn base to x-axis <0> speed <30>;
+		sleep 100;
+		hit_2 = 0;
+	}
+}
+
+StartMoving(count)
+{
+	signal 4;
+	set-signal-mask 4;
+	while( TRUE )
+	{
+		count = 0;
+		if( Depth_1 <= 3 )
+		{
+			emit-sfx 5 from wake01;
+			emit-sfx 5 from wake02;
+			emit-sfx 5 from wake03;
+			emit-sfx 5 from wake04;
+			emit-sfx 5 from wake05;
+			emit-sfx 5 from wake06;
+			emit-sfx 3 from wake07;
+			emit-sfx 3 from wake08;
+			emit-sfx 3 from wake01;
+			emit-sfx 3 from wake02;
+			emit-sfx 3 from wake03;
+			emit-sfx 3 from wake04;
+			emit-sfx 3 from wake05;
+			emit-sfx 3 from wake06;
+			emit-sfx 5 from wake07;
+			emit-sfx 5 from wake08;
+		}
+		while (count < 9)
+		{
+			turn gp to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <62>;
+			turn counteraim to y-axis get XZ_ATAN(0) speed <62>;
+			if( !bAiming )
+			{
+				turn turret to y-axis (0 - get XZ_ATAN(0)) speed <62>;
+			}
+			++count;
+			sleep 33;
+		}
+	}
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Depth_1 = Func_Var_1;
+}
+
+Create()
+{
+	dont-cache flare;
+	hide flare;
+	hit_2 = 0;
+	bAiming = 0;
+	delay_4 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+		turn gp to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+		turn counteraim to y-axis get XZ_ATAN(0) NOW;
+		turn turret to y-axis (0 - get XZ_ATAN(0)) NOW;
+	}
+	start-script SmokeUnit();
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	set-signal-mask 0;
+	bAiming = 0;
+	turn gun to x-axis <0> speed <60>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	bAiming = 1;
+	turn turret to y-axis ( heading - get XZ_ATAN(0)) speed <150>;
+	turn gun to x-axis <0> - pitch speed <80>;
+	while( delay_4 )
+	{
+		wait-for-move gun along z-axis;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	delay_4 = 1;
+	show flare;
+	move gun to z-axis [-0.97] speed [500];
+	sleep 30;
+	move gun to z-axis [0] speed [1];
+	sleep 120;
+	hide flare;
+	wait-for-move gun along z-axis;
+	delay_4 = 0;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( Depth_1 >= 4 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode turret type BITMAPONLY | BITMAP2;
+			explode gun type BITMAPONLY | BITMAP3;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode gun type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

@@ -1,0 +1,35 @@
+[armuMOHO_dead]
+{
+world=All Worlds;
+description=Underwater Moho Wreckage;
+category=arm_corpses;
+object=armuMOHO_dead;
+featuredead=armuMOHO_heap;
+footprintx=5;
+footprintz=5;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=1274;
+damage=1642;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armuMOHO_heap]
+{
+world=All Worlds;
+description=Underwater Moho Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=637;
+damage=1642;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

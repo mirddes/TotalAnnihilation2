@@ -1,0 +1,35 @@
+[corhatch_dead]
+{
+World=All Worlds;
+Description=Hatchling Wreckage;
+Category=core_corpses;
+Object=corhatch_dead;
+featuredead=corhatch_heap;
+Footprintx=3;
+Footprintz=3;
+Height=20;
+Blocking=1;
+HitDensity=100;
+Metal=121;
+Damage=640;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}
+[corhatch_heap]
+{
+World=All Worlds;
+Description=Hatchling Wreckage;
+Category=core_heaps;
+Object=3x3a;
+Footprintx=3;
+Footprintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=60;
+Damage=640;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

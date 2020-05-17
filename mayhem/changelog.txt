@@ -1,0 +1,416 @@
+***** Changelog for TOTAL MAYHEM 8.02 *****
+*** totala.exe hacks!
+- the main data file is now mayhem.gp3 instead of rev31.gp3 
+- internal folder renaming means that non Total Mayhem units and weapons will not be ingame at all and there will be no conflicts
+- variable healtime fix - and also units with self-healing start doing so after they are built
+- cloak fix - units that cloak when created now are only cloaked after they are built
+- target lock fix - no more target locking! Weapons on auto-fire will also tend to switch to closer targets, which can be handy
+- high-trajectory ballistic weapons enabled
+*** Hardcoded AI limits increased: 
+- Commander builds 12 buildings before going on patrol - increased from 5
+- ground attack units make groups of 9 to attack - increased from 6
+- aircraft make groups of 8 to attack - increased from 5
+*** New AI profiles and AI-only construction units by SnakeInTheMirror
+- AI has resource help metal extractors built only by the commander, no other cheat resources used
+- duplicates of the Level 1 constructors are used to help the AI expand faster
+- easy/medium/hard make different choices about which combat units to build (hard being much smarter about it)
+*** Hovercraft move like hovercraft now
+- new scripting along with some altered stats gives hovercraft different "movement class" where they can drift sideways and move in directions they are not necessarily facing
+*** Massive balance pass across all units
+- some OP units nerfed a little, many units made more effective. In a few cases the gap between Tier 1, 2 and 3 has widened, but so have costs. 
+- to take advantage of the healtime fix, many T3 units now have some level of self-healing.
+- detailed stats for all units now published in the Unit Guide: 
+	https://www.tauniverse.com/forum/showthread.php?t=38735
+
+
+***** Changelog for TOTAL MAYHEM 8.01 *****
+
+- removal of tech level upgrades (mex to moho, moho to mantle, mini-gens to fusion)
+- removal or change to the armed moho upgrades
+- reverted shields to 7.06 version but with reduced footprint for the central building
+- revert Toaster to cannon weapon
+- change other upgrades to use legacy methods to work
+- mass air transports don't work - need to revert to legacy methods
+- removal of other scripted features that utilised Rime's TADemo cob extensions as they have been found to be unstable
+
+To do:
+- look at unit roles and side diversity
+- some cosmetic changes to some models
+- bug-hunt-and-fix
+- AI bugfix
+
+***** Changelog for TOTAL MAYHEM 7.3 *****
+
+*** Upgrades! 
+- Arm Solar Panels can be upgraded to higher-producing and tougher popup versions
+- Metal extractors (Mexes) can upgrade to armoured/armoured version
+- Metal extractors (armed/armoured or not) can upgrade to Mohos WHEN YOU HAVE BUILT A L2 CONSTRUCTOR (there is a note in the build menu to tell you this). No cheating either - if someone shares a L2 constructor with you it wont work. If an ally gives you a L2 factory with you then the technology will become available once you build a L2 constructor from that factory.
+- Moho extractors can upgrade to armed/armoured version:
+	- Arm's is a "hive" that swarms and coordinates attack drones at targets
+	- Core's is a dual-battleship-class laser that also heals units within close range (indicated by ring)
+- Moho extractors (armed/armoured or not) can upgrade to Mantle version WHEN YOU HAVE BUILT A L3 CONSTRUCTOR - same deal as mex-to-moho above.
+- Same above goes for underwater versions. Note the Mantle extractors can be built underwater.
+- Cloakable Fusions are no longer in the build menu. Instead, you can upgrade regular fusions to them - and they automatically cloak after they are built.
+- uber fusions are now built without their metal making ability - the metal maker part is an upgrade.
+
+** Other units that can be upgraded when you have built a L2 constructor:
+- Geos can upgraded to L2 higher-energy armed and armoured version 
+- Core MGens (these have replaced the Popup solar for Core) can be upgraded to fusions!
+- Missile Towers can be upgraded to advanced pop-up versions - and floating missile towers to advanced submersible towers.
+
+NOTE:
+- a lot of these upgrades are a larger footprint than the building being upgraded. If something is in the way (such as another mobile or building) the upgrade will not start until the obstruction is removed.
+
+*** Defenses
+- Shields are now resizable! Attack button sets size, then turn on. To bring one down you need to attack one area of the shield as each segment has its own health, but killing one disables the whole shield. Building shields overlapping causes them to link, the barrier between them disappears and you get one larger shielded area. You can shield your whole base with them! The disadvantage is if one shield is disabled or turned off, ALL of them are brought down and you have to turn them on individually.
+- All pop-up and submersible defenses now have a properly working open/close AND a 3-mode toggle: stay open, auto, or stay closed. If in stay open mode you CAN close it with open/close button, but they will open again to attack (if in fire-at-will mode of course) and won't close again. Ditto for stay close mode - you can open manually, but they will close again after having no targets to attack for a few seconds, and won't open again on their own.
+- Core Toaster is now a massive long-range pop-up flamethrower.
+
+*** Mobile changes
+
+- New Arm L1 tank: The Colt, mobile scatter-shot artillery.
+- New Arm L2 Kbot: Odin, Heavy Assault Kbot. Rapid-fire close-range gattling weapon, good armour, fast speed, the most expensive Arm L2 kbot aside from the Shooter.
+- New Core Tortoise: THE BOSS. Same high-damage long-reload heavy artillery cannon as the Mammoth, but also has torpedos for underwater. Slow, well armoured.
+- New L3 mass air transports! Arm Hercules (12 small units), Core Raven (15 small units).
+- The Core Caliber flak tortoise also gets an upgrade: 2 barrels, more rapid-fire.
+- Arm Luger and Core Diplomat have been removed for side diversity. The Arm Boa and Shocker still serve as heavy mobile artillery albeit more expensive. The Core Dominator still serves as v-launch rocket unit.
+- The Core Pillager is now high-trajectory, and the Core Nixer rocket hovercraft is now semi-ballistic
+- Torpedos and depth charge weapons all now deal double damage vs amphibious units (the ones that can go underwater). This makes them equivalent armour to subs when underwater.
+- GROUND-ONLY WEAPONS: The following weapon categories no longer bother to shoot at aircraft (most of the time they couldn't hit them anyway and it's a waste of time): ALL BALLISTIC CANNONS. ALL NON-TRACKING ROCKETS. More categories may be added.
+- Rapid-fire long-range cannons now retain their (lack of) accuracy: Buzzsaw, Vulcan, Shiva, Defiler, Prophet, Omen. These weapons are more effective when they scatter their damaging shells at multiple targets.
+
+
+*** AI Changes:
+
+- Level of cheating mexes is reduced.
+- Attack units are scripted now to automatically seek the next target when one is killed, eliminating the "coffee break" bug where units would sit idle for 15 seconds.
+- AI now builds nukes and antinukes. And knows how to use them.
+- A bit of other specialised AI behaviour that should make it act somewhat more like a normal competent player.
+
+
+***** Changelog for TOTAL MAYHEM 7.1 *****
+
+*** Hovercraft changes! Now 3 full tiers.
+- New L1 hovercraft plants built by all L1 constructors AND the Commander.
+- Cavedog hovers shifted to L1 and downgraded: Skimmer/Scrubber (scout), Swatter/Slinger (AA missile), Anaconda/Snapper (now "Medium" hovertanks), Bear/Turtle (Transport)
+- Total Mayhem hovers repurposed: "Recon Builder" hovers are now L1 "Construction Hovercraft"
+
+Existing Cavedog Hovercraft platforms are now "Advanced" L2 platforms
+- Existing Cavedog Constructors are now "Advanced Construction Hovercraft"
+- Existing Cavedog Wombat/Nixer are now L2 (unchanged)
+- Total Mayhem Moose/Viceroy artillery hovercraft are now considered L2 (but otherwise unchanged)
+New advanced hovercraft! 
+- Arm Hippo/Core Crusher heavy hovertanks
+- Arm Grizzly/Core Angler Skirmish Antisub hovers
+- Arm Apollo/Core Slugger L2 AA Flak/Missile hovers
+
+L3 hovercraft are unchanged but now properly considered L3: "Experimental".
+
+*** Other new units:
+- Arm Colt L1 light mobile artillery. New model, new scattershot artillery cannon.
+
+*** Level 2 changes
+- slight nerf to Fido armour (only 5%)
+- About 10% shorter reload time on Archgun/Chainsaw/Millenium/Warlord/Smasher cannons - this is a bigger improvement for Archgun, Chainsaw and Smasher, Millenium and Warlord still have the same delay between salvoes
+- Battleships (Millenium/Warlord) 12% increase in armour
+- about 15% increase in damage per sec for heavy subs (Pike/Leviathan)
+- All Tortoises get a much improved walk script thanks to Sdawkminn
+
+*** Level 3 changes
+Armour increases for some L3 units:
+- Razorback 21k to 24k. Increased energy cost by 20% (to 60k, still not that high).
+- Ketzer 23k to 27k. Also now 8474 metal cost, 9474 was typo! Also increase speed (1.25 to 1.3). Increased energy cost by 20% (to 54k).
+- Drake 45k to 60k. Increased metal cost/buildtime by 5% (to 25k/500k), energy cost by 80% (to 210k).
+- Krogoth 67k to 85k. Increased energy cost by 80% (to 230k).
+The L3 siege tanks are now much slower and tougher than their brethren, the more close-combat based Tiger and Rattlesnake. The Tiger/Rattlesnake still represent better armour for the cost, but the G2/Smasher have massive medium-range bombardment capability as well as reasonable close-combat armament. 
+- G2 25k to 31k. Reduced speed and acceleration by 20% (1.2/0.005)
+- Smasher 26k to 34k. Reduced speed 10%, acceleration 20% (1.05/0.007)
+- Odyssey/Oracle bombs are now a bit more specialist: Odyssey is just anti-radar, Oracle is just anti-jammer.
+- RAAMS/Screamer T3 AA missile launchers now much more powerful, higher velocity, tougher, and a little more expensive.
+- Battlecruisers - slight drop in armour for the Invincible, increase in armour for Excelsior, slight cost adjustment
+- 15% increase in armour for Heavy Battleships
+- overall about 25% increase in damage per sec for Capital subs, increase in torpedo velocity also
+- long-range artillery hovers (Big John/Tormentor) reduced cost by 15%, increased armour by ~15%
+
+*** Other: Ongoing addition of proper translations (German/French/Spanish/Italian) including improvement to some of Cavedog's
+
+***** Changelog for Total Mayhem 7.05 *****
+
+*** MAJOR GUI UPGRADE
+- new button arrangement means that for builder units (mobiles and factories), you no longer need to switch to "orders" menu to click reclaim, repair, capture, or change standing move/fire/cloak orders.
+
+*** Fixes to early-game economy
+- Solars make 25 energy (up from 20)
+- Pop-up solars make 75 energy (up from 60) - also get tougher and less armour increase when closed
+- L1 Metal makers all now make 2 metal per sec for 120 energy - double the OTA 1M for 60E. They cost a bit more energy and take nearly twice as long to build but cost less metal than previous version
+- Most factories slowed build speed to somewhere between OTA speed and original speed.
+	Revised factory build rate table:
+	Factory				Build rate - ie metal drain per second
+	-------				----------
+	L1 Air Plant			4.5 (no change)
+	L1 Ground (kbot/vehicle)	7.5 (down from 9)
+	L2 Air Plant			9 (no change)
+	L1 Shipyard			9 (down from 12)
+	L2 ground and hover		15 (down from 18)
+	L2 Shipyard, L3 Air		18 (no change)
+	L3 ground and hover		30 (down from 36)
+	L3 Shipyard			33 (down from 36)
+
+	Note: Aircraft plants are unchanged. 
+	"L2 ground/hover" includes Spider and Tortoise factories. 
+	For reference, mobile builders:
+
+	Builder				Build rate
+	-------				----------
+	L1 Aircraft			3
+	L1 Kbot				4.5
+	L1 Vehicle, L2 Aircraft		6
+	L1 Ship				7.5
+	L2 Kbot, Hover, C Spider	9
+	L2 Vehicle, Fark, C Tortoise	10.5
+	L2 Sub, Decoy Com, L3 Air	12
+	L3 Hover			13.5
+	L3 Kbot, Vehicle 		15
+	Commander			18
+
+	3 exceptions to mobile builder build rates:
+	- metal drain is doubled when building factories.
+	- build rate and metal consumption is halved when assisting aircraft.
+	- when building metal makers, metal drain is negligible (5% or less).
+
+The result of the above changes should be an easier faster start to the game with less need for running around building resources before commencing combat unit production.
+
+*** Added units 
+- New advanced storages
+- New jammer towers
+- 3 Tortoises added: Core Scanner, Radar/Sonar Tortoise. Core Redfoot, Jammer Tortoise. Core Detonator, Kamikaze Tortoise.
+- Arm Kestrel Rocket Strike Fighter (L1), Bandit Stealth Gunship (L2)
+- Core Mosquito Laser Gunship/Fighter (L1), Cloudburst Stealth Bomber (L2)
+- add back in the Capital Subs with new models
+- Dragon's Eye sight towers (built by Minelayer vehicles)
+- the Centurion and Volcano guided rocket batteries to spice up L1 defense a little
+- Core Behemoth Geothermal Plasma Battery, and Arm Caldera Geothermal Rocket Battery
+- Advanced Tidal generators (armed with lasers).
+- Core Saturn: L2 Heavy Laser tank. The Gargoyle is moved to L3, increased in power, and renamed War Machine (mobile version of Doomsday Machine), with added open/close animation.
+- Arm Impala: L3 Stealth disruptor gauss tank.
+- Shield generator buildings for Arm and Core.
+Total units added: 25
+
+*** Balance 
+- Targeting facilities will move to L3 - but will get cheaper.
+- Capital ships and mobile fortresses will get a big damage boost - and cost/buildtime increase.
+- Height adjustments so that Chainsaw and Archgun can fire over fort walls.
+- Shorten self-destruct countdown on metal extractors - so easier to level up
+- Mobile artillery - slight reduction in range (5%) and damage (5%), small increase in inaccuracy (300 from 250).
+- Mobile heavy artillery (Mammoth, Shocker) - small increase in range (<5%) and damage. Bit more distinction between artillery and heavy artillery. 
+- Height adjustments so that Chainsaw and Archgun can fire over fort walls.
+- Shorten self-destruct countdown on metal extractors - easier to replace with higher tech
+- General (smallish) boost to radar ranges Larger boost to jammer ranges and to sight range of radar/jammer units 
+- Arm Flea turnrate and acceleration increased so that they are significantly more mobile than Peewees and AKs - give some reason to build them.
+- Peewee and AK top speed dropped slightly - they are now merely 10% faster than the Flash and Gator. Increased acceleration so they are more nimble. I just felt their top speed was too close to the Jeffy/Weasel and Flea.
+- Arm Cipher nerf. Current reload is 1.25 seconds and clearly this is far too much firepower. Maverick has same weapon with 0.8 second reload. Compared to the Maverick, Cipher is cheaper, has about the same armour, is faster, and stealth. I've changed the reload to 2.1 seconds, nearly halving the damage output, increased metal cost by 10%, energy cost by 20%, reduced acceleration and turnrate so it's no longer turn-on-a-dime.
+- Arm Zeus. In order to differentiate it from the Maverick somewhat, I've lowered speed a bit, increased armour. Also increased cost slightly.
+- Slight increase to laser accuracy. 
+- BLODs slower velocity and larger area of effect - this is to avoid them firing through fort walls and dragon's teeth.
+- Small boost (5-10%) to Tortoise armour. My impression from recent online games recently is they aren't quite tough enough.
+- Core Gorgon BLOD laser power increased, height increased also so it will fire over some wreckage. Increased cost and armour. Increased footprint to match scale of model
+- Core Rattlesnake reduced body size (but not turret size), smaller footprint so it can get around better
+- Arm Tiger top speed and turn rate reduced slightly
+- Arm Samurai and Core Broadsword dreadnaught hovertanks increased armour and cost
+- Some small tweaks to armour and cost of some other T3 units 
+- Arm Jackhammer and Core Berzerker L3 rocket hovers boosted damage per second.
+- Capital ships increased energy cost by another 20% or so
+- Shorter reload for battleship cannons - this is more of an improvement for the Archgun and Chainsaw (and Core Smasher), the battleships are governed more by the delay between salvoes.
+- Small increase in energy cost per shot for Bertha/Intimidator/Vulcan/Buzzsaw.
+- Shorter reload for the Vulcan and Buzzsaw. They needed more devastating impact :evil:
+- Arm Messenger - Annihilator ship. Overpowered. Shortened range from 1350 to 1200. Increased reload time from 4 to 6 seconds. Increased cost - now pretty close to battleship cost.
+
+
+*** Fixes
+- Updated Help file (F1 when mouse pointer is not over a unit)
+- Fixed Nuke bombers... These are broken in 6.92 - a weapon conflict means they did not nuke. They now fire their missile.
+- After changes to pitch aiming speeds to reduce units' tendency to fire on aircraft, some units (notably Peewees) are very slow to bring up their guns, taking several seconds - fixed
+- Arm Rover walk script was accidentally slowed down in a previous version - fixed
+- Animation bug with Arm Zephyr's flak cannon fixed
+- Reduce or remove rock-when-hit scripts from most if not all units - causing lockups/paralysis when under fire, and removing this disadvantage for tanks, that are supposed to be tougher for the cost than Kbots.
+- aim scripts on Arm Invincible battlecruiser - and Direwolf. Both still seem a little sticky
+- Floating Advanced Hoverplants now buildable.
+- Bug with some units (Nuke Cannons, Capital Ships) firing before aiming for the first time - fixed
+- Allow the Command Cruisers to use their specialist bombs.
+- guidance problems with T4 AA missile towers (Arm RAAMs and Core Screamer) fixed
+- lots of other rockets and missiles fixed. AA missiles are generally very effective now.
+- improved flakkers so they are also more useful
+- All Tortoises now leave non-blocking corpses underwater (like ships, subs and other amphibious units) - also added in bubble effects while moving underwater
+- fixed firing animation on the Core Berserker T3 Rocket hovercraft.
+- updated unit pics for a bunch of units. "flagship" units in L3 factories get quad-sized buildpic.
+- more fixes and adjustments to the AI. I fear it is not as strong as it used to be.
+
+
+**** Changelog for Total Mayhem 6.92 ****
+
+- fixed scripting errors for Core Temman, Core Damascus, Arm Experimental Construction Aircraft and Arm Direwolf
+- fixed and added the Core Viking
+- reduced cost of the Arm Vanguard and Core Viking a little
+- increased Pelican speed by 22%, changed laser weapon to Zipper's EMG (less range, more damage)
+- changed laser weapon on Tarantula to longer-ranged EMG burst weapon
+- increased range of Arm Dora and Core Terminator Nuclear Cannons by 8%, increased damage by 30% (but reduced edge effectiveness by 40% so they do more damage at point of impact, less damage further from the epicentre), increased metal cost and buildtime by 30%.
+
+***** Changelog for Total Mayhem 6.9 *****
+
+Units Added:
+- Extra-long range cloaking radar towers
+- L3 anti-air kbots
+- L3 aircraft: New airplants, updated construction aircraft
+- L3 fighters, gunships, skycruisers, nuclear bombers
+- L3 hovers (largely unchanged since 6.4 apart from some minor tweaks and refinements): L3 hoverplants, L3 floating hoverplants (much improved models), construction, long-range artillery, rocket hovers, battle hovertanks, long-range beam weapon hovertanks, dreadnaught hovertanks
+- the Core Beetle L1 vlaunch kbot
+- the Arm Boa Amphibious mobile artillery
+- the Core Scanner radar/sonar tortoise
+Total units added: 35
+
+Units removed:
+- the Core Jar L1 armoured kbot. Replaced with the Beetle as above
+
+Fixes: 
+- script lockups for various factories fixed (if ordered to build and stopped repeatedly in quick succession)
+- inconsistent workertimes for some factories fixed (especially Core)
+- numerous other script fixes, and other typos in unit data
+- buildpics now updated for the floating hoverplants
+- build menu stuff-up meant the Core popup solar wasn't buildable - fixed
+- general build menu fixes removed extra build pages from advanced units: all get one less page. 
+
+Balance:
+- wind generators get 10% drop in metal/time and energy cost
+- solars get 10% drop in metal/time cost, 25% drop in energy cost
+- all L1 plants get 10% drop in metal cost and buildtime
+- 5% boost in metal extractor production
+The result of the above 4 changes should be much faster start with early economy.
+- metal extractor upgrades are much cheaper
+- Immolators now do the same damage to everything, no more special damages to small/emg units. They are now simply a riot tower
+- Reduced speed of Maverick and increased armour slightly, increased damage of weapon
+- increased accuracy of L3 AA
+- increased accuracy of laser towers
+- increased area of effect for Avalanche rockets, reduced area of effect for L1 rockets
+- Core Shodan now raises turret much higher before it fires
+- Reduced armour and acceleration of Janus slightly, increased max speed
+
+Other changes:
+- Fleas and Jeffies now have non-laser weapon, eliminating laser weapons from all of Arm's L1 mobiles.
+
+***** Changes for 6.8  release *****
+
+- Underwater metal extractors get torpedo upgrades just like the land ones do.
+- New Extra-long range T3 radar towers.
+- The Arm Direwolf giant walking Annihilator fido, and the Moose artillery hovercraft.
+- The Core Mammoth Artillery tank, Viceroy Artillery hovertank and the Core Replenisher, an air repair Tortoise (as a counterpart to the Arm MARS Mobile Air Repair Spider).
+- A few bugs fixed, including a bunch of minor script SNAFUs and the Ambusher super-short buildtime (thanks Psycros for spotting that).
+- Aircraft are now much safer from non-air units - they have been doubled in armour and AA weapons now do double damage vs aircraft - meaning non-AA weapons are halved in effectiveness. 
+- Also all non-air weapon turret aim scripts have had their vertical aiming speed reduced by half or more, meaning responsiveness in aiming up at aircraft is much slower. 
+- On the flip side... Line bombing has been reduced in effectiveness. After their initial payload of 6-10 bombs, bombs will be dropped at increased intervals of up to half a second. That means you can still linebomb, but it wont be the same endless line of destruction.
+- T2 radar and sonar aircraft have had a big upgrade: extra armour, visibility, speed and manueverability. Massive visibility. Still much slower than Peepers and Finks, but they should actually be useful as spy planes now.
+- Rapiers now fire rockets in bursts of 3, with a higher damage output. Better vs larger targets, but tend to miss smaller targets a bit - such as the Commander.
+- The L2 units which have AA missiles as secondary weapon have had their AA weapon nerfed a bit.
+The Capital Ships have been nerfed a bit - 20% less armour and 10% more cost. They are still waaaaay scary, don't you worry. The concern I had was they are more or less vulcan/buzzsaw ships (albeit with a bit over half the range and less than half the damage output) with super-armour and super-close range weapons. This doesn't change that... but they should be a bit easier to kill and take a smidgin longer to build now. Their big vulnerability remains: subs.
+
+**** Total Mayhem V 6.62 **** --bugfix update
+
+1. Fixed crash-when-built Arm Energy Storage
+2. Fix Core Uber Fusion animation
+3. Fix Core Voyeur corrupt leg texture
+
+- 2 added units: 
+1. Arm Moose, rapid-fire artillery hovercraft
+2. Core Viceroy, artillery/laser hovertank
+
+**** Total Mayhem V 6.61 **** --bugfix update
+
+1. Diplomat fixed, doesn't crash the game when built! New custom reload animation is working.
+2. Shellshocker is now buildable (in Spider Lab and Vehicle plant)
+3. Buildpics fixed for: Core Metal Extractor upgrade, Arm Cipher, Core Ketzer
+4. Ketzer main weapon now fires
+5. Annihilator closes up after firing (after about 30 seconds)
+6. Tweaks to several weapons: Warrior, Gorgon, Anniliator, Doomsday Machine, Mofo's rockets and missiles, Krogoth's rockets and blue laser. Gorgon now has a much weaker blue laser weapon but a bit more armour.
+
+**** Total Mayhem V 6.601 ****
+
+Tweaked a lot of costs
+Boosted T2 lab build speed, to exactly twice T1 lab build speed as it should be
+Script and bug fixes
+Added units:
+T1 Land Mobiles: 
+- Arm Terrier fast attack vehicle
+- Core MAK Medium Infantry laser/missile kbot
+- Arm Janus Rocket tank
+- Core Shodan heavy laser tank
+- Arm HellDiver Amphibious infantry
+- Core Garpike Amphibious laser tank
+T1 Structures:
+- Arm Radical and Core Blocker short-range plasma batteries
+- Arm Fury and Core Scythe AA laser towers
+- Arm Sunspot EMG tower (counter of sorts to the Immolator)
+Hovercraft:
+- Oasis and Haven mobile air-repair
+T2 Land Mobiles:
+- Arm Cipher Stealth Striker tank
+- Core Penguin floating amphibious tank
+- Core Cremator heavy flamethrower tank
+T2 Air:
+- Arm Thornado water bomber
+- Core Sontor Torpedo Gunship
+T2 Structures:
+- Arm Archgun and Core Chainsaw Rapid-fire plasma batteries
+- Arm Artic Pop-up Gauss Cannon
+T3 Land Mobiles
+- Heavy Vehicle plants
+- Arm Tiger and Core Rattlesnake heavy assault tanks
+- Arm Orca and Core Proteus Heavy Amphibious tanks
+- Arm G2 and Core Smasher rapid artillery/siege tanks
+- Arm Scudd and Core Precluder mobile nuke launchers
+- Arm Mofo and Core Harbinger mobile fortresses
+- Core Gorgon - heavy armoured kbot
+T3 Ships
+- Capital Shipyards
+- Arm Aeon and Core Retribution Dreadnaughts
+- Arm Longreach and Core Fulcrum heavy antinuke carriers
+- Arm Invincible and Core Excelsior battlecruisers
+- Arm Prophet and Core Omen Capital Ships
+T3 Structures
+- Uber Fusions! I plan a big update for these but for now they are the Total Mayhem "classics". ;)
+- Arm RAAM and Core Screamer uber AA
+- Arm Dora and Core Terminator nuclear cannons
+
+
+***** Total Mayhem V 6.6 aka The Andromeda Project *****
+
+===== Clean slate reboot of Total Mayhem =====
+
+Base TA (OTA - TA + CC + 3.1 + last 6 Cavedog units ) plus 50 units, and rebalance and bugfix from Total Mayhem.
+- All buildtimes, along with a lot of costs, adjusted so that all units have a predicable metal drain rate: build times are always exactly 20 times their metal cost. The exceptions being: factories (10 times, or double the metal drain), aircraft (40 times, or half the metal drain) and metal converter units (200 times, or a tenth of the metal drain).
+- This means that all builders have a predictable metal usage rate (listed in their unit description). It also means you will know how long a unit will take to build: a 90-metal unit built by the Vehicle plant or kbot lab, which drain 9 metal per second, will take 10 seconds to build the unit. The Krogoth is 30k metal, and the Gantry builds at 36 metal per second, so the Krogoth will take 833 seconds to be built, or just under 14 minutes.
+- see the file labelled "Constant Metal TA" for more info.
+
+Units added to OTA:
+
+- Underwater Moho Mines and Moho makers, to make sea battles MUCH more interesting
+ - a T2 ship for each side: the Messenger Annihilator ship and the Core Omni Rocket ship that M1G remodeled 
+ - the bob-up floating plasma cannons Trident and Kraken - again to make sea battles more interesting.
+ - The floating hovercraft plants for the same reason.
+ - the Arm Spider Pack and Core Tortoise Pack!
+ - The Core Jar Armoured L1 Kbot
+ - The Core Gargoyle mobile Doomsday Machine (range of blue laser weapon will be toned down from Total Mayhem version)
+ - The Core Reaver L2 Riot kbot
+ - The Arm Rover L2 Artillery Kbot
+ - The Arm L3 shelter and Drake
+ - Arm Admiral, and Core General L2 Construction Kbots - these will build the Vulcan and Buzzsaw respectively, nothing else
+ - L3 Kbots: Arm Shiva and Razorback, Core Defiler and Ketzer
+ - The Pop-up solar panels (makes 60E, a nice resource unit that fits beween solar/wind/tidal and geos)
+ - The Decoy Fusions (100E generation, another in-beween unit that also serves as a decoy to make your opponent freak and think you're way further on than you are)
+ - The Dragonfly and Falcon L2 heavy lifter air transports
+ - The 4-pad air repair stations at L2 (L1 can build the single-pad versions)
+ - The Recon construction hovers (L1 constructors with radar, to fill the hole left by Cons Hovers and Seaplanes being L2 constructors).
+
+... Previous versions changelog omitted since 6.6 (the Andromeda project) 
+
+http://mayhem.tauniverse.com
+
+-- gamma@mayhem.tauniverse.com

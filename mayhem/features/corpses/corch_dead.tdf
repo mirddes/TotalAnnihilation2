@@ -1,0 +1,35 @@
+[corch_DEAD]
+{
+world=All Worlds;
+description=Cons Hover Wreckage;
+category=core_corpses;
+object=corch_dead;
+featuredead=corch_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=122;
+damage=502;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corch_HEAP]
+{
+world=All Worlds;
+description=Cons Hover Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=5;
+metal=62;
+damage=502;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

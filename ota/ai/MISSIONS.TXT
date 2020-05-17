@@ -1,0 +1,41 @@
+//EASY
+
+plan easy
+
+limit constr 1
+
+weight level2 0.25
+
+limit corint 0
+limit armbrtha 0
+limit armanni 0
+limit cordoom 0
+limit cortron 0
+limit armemp 0
+
+//MEDIUM
+
+plan medium
+
+weight level2 0.5
+
+limit constr 2
+
+limit corint 0
+limit armbrtha 0
+limit armanni 0
+limit cordoom 0
+limit cortron 0
+limit armemp 0
+
+//HARD
+
+plan hard
+
+weight level2 2
+
+limit constr 8
+limit cortron 0
+limit armemp 0
+
+

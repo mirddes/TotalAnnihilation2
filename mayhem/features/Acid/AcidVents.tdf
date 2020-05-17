@@ -1,0 +1,47 @@
+[AcidVent01]
+	{
+	world=acid;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidvents;
+	seqname=acidvent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[AcidVent02]
+	{
+	world=acid;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidvents;
+	seqname=acidvent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[AcidVent03]
+	{
+	world=acid;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidvents;
+	seqname=acidvent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

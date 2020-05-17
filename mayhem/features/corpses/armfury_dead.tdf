@@ -1,0 +1,35 @@
+[armfury_dead]
+{
+world=All Worlds;
+description=Fury Wreckage;
+category=arm_corpses;
+object=armfury_dead;
+featuredead=armfury_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=79;
+damage=919;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armfury_heap]
+{
+world=All Worlds;
+description=Fury Wreckage;
+category=arm_corpses;
+object=1x1E;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=39;
+damage=919;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

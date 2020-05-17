@@ -1,0 +1,97 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, glow, plug;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	dont-shade plug;
+	dont-shade glow;
+	dont-cache glow;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	set ARMORED to 0;
+	dont-cache glow;
+	turn plug to z-axis <0> speed <50>;
+	wait-for-turn plug around z-axis;
+	cache plug;
+}
+
+Deactivate()
+{
+	cache plug;
+	turn plug to z-axis <180> speed <50>;
+	wait-for-turn plug around z-axis;
+	cache plug;
+	cache glow;
+	set ARMORED to 1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode glow type BITMAPONLY | BITMAP2;
+		explode plug type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode glow type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode plug type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode glow type SHATTER | BITMAP2;
+		explode plug type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode glow type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode plug type BITMAPONLY | BITMAP3;
+}

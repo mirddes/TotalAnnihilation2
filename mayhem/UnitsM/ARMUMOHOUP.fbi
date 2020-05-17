@@ -1,0 +1,47 @@
+[UNITINFO]
+{
+Side=ARM;
+UnitName=ARMUMOHOUP;
+Version=2.0;
+Objectname=ARMUMOHOUP;
+Designation=UH-AUMME;
+Name=Underwater Moho Upgrade;
+Description=Adds torpedos and armor;
+FootprintX=1;
+FootprintZ=1;
+BuildCostEnergy=12524;
+BuildCostMetal=1781;
+MaxDamage=4425;
+BuildTime=35620;
+MaxSlope=32;
+MaxWaterDepth=255;
+BMcode=1;
+Builder=0;
+ZBuffer=1;
+ThreeD=1;
+SightDistance=320;
+SoundCategory=ARM_UWMEX;
+Category=ALL ARM LEVEL2 UNDERWATER NOWEAPON NOTAIR;
+TEDClass=SPECIAL;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+UnitNumber=411;
+GermanDescription=Unterwasser-Metallgewinnung;
+GermanName=Moho-Tauchschmelze;
+Corpse=blank1;
+Frenchdescription=Extracteur de métal sous-marin;
+FrenchName=Extracteur sous-marin Moho;
+MobileStandOrders=0;
+MaxVelocity=1;
+BrakeRate=1;
+Acceleration=0.0001;
+TurnRate=1;
+SteeringMode=0;
+Upright=1;
+shootme=0;
+cantbetransported=1;
+ImmuneToParalyzer=1;
+HideDamage=1;
+CloakCost=0;
+Init_cloaked=1;
+Stealth=1;
+}

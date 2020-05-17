@@ -1,0 +1,37 @@
+[ArmaCAR_dead]
+{
+world=All Worlds;
+description=Longreach Wreckage;
+category=arm_corpses;
+object=ArmaCAR_dead;
+featuredead=ARMACAR_heap;
+footprintx=8;
+footprintz=8;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=5616;
+damage=7294;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMACAR_heap]
+{
+world=All Worlds;
+description=Longreach Wreckage;
+category=heaps;
+object=7x7c;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2808;
+damage=11294;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+

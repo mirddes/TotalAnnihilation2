@@ -1,0 +1,206 @@
+// CORCK -- Core Construction KBOT.
+
+piece torso,nanospray2;
+
+static-var	buildheading,bMoving,bAiming,bCanAim;
+
+#define SMOKEPIECE1 torso
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\corck\walk.bos"
+#include "..\anim3d\corck\open.bos"
+#include "..\anim3d\corck\close.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+MotionControl()
+	{
+	var	moving, aiming;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walk();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+			sleep 200;
+			}
+		}
+	}
+
+Go()
+	{
+	bAiming = TRUE;
+	call-script open();
+	turn torso to y-axis buildheading speed <160>;
+	wait-for-turn torso around y-axis;
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	turn torso to y-axis <0> speed <160>;
+	wait-for-turn torso around y-axis;
+	call-script close();
+	bAiming = FALSE;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+	buildheading = <0>;
+	call-script InitState();
+	start-script MotionControl();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding(heading)
+	{
+	buildheading = heading;
+	start-script RequestState( ACTIVE );
+	}
+
+StopBuilding()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	piecenum=nanospray2;
+	}
+
+TargetHeading( heading )
+	{
+	buildheading = 0 - heading;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=torso;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode ground type	BITMAPONLY | BITMAP1;
+		explode gunclamp type	BITMAPONLY | BITMAP2;
+		explode guncover type	BITMAPONLY | BITMAP3;
+		explode lfoot type	BITMAPONLY | BITMAP4;
+		explode lleg type	BITMAPONLY | BITMAP5;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode nanogun type	BITMAPONLY | BITMAP2;
+		explode nanospray2 type	BITMAPONLY | BITMAP3;
+		explode nozzle type	BITMAPONLY | BITMAP4;
+		explode pelvis type	BITMAPONLY | BITMAP5;
+		explode rfoot type	BITMAPONLY | BITMAP1;
+		explode rleg type	BITMAPONLY | BITMAP2;
+		explode rthigh type	BITMAPONLY | BITMAP3;
+		explode torso type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode ground type	FALL | BITMAP1;
+		explode gunclamp type	FALL | BITMAP2;
+		explode guncover type	FALL | BITMAP3;
+		explode lfoot type	FALL | BITMAP4;
+		explode lleg type	FALL | BITMAP5;
+		explode lthigh type	FALL | BITMAP1;
+		explode nanogun type	FALL | BITMAP2;
+		explode nanospray2 type	FALL | BITMAP3;
+		explode nozzle type	FALL | BITMAP4;
+		explode pelvis type	SHATTER | BITMAP5;
+		explode rfoot type	FALL | BITMAP1;
+		explode rleg type	FALL | BITMAP2;
+		explode rthigh type	FALL | BITMAP3;
+		explode torso type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode gunclamp type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode guncover type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nanogun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode nanospray2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode nozzle type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode pelvis type	SHATTER | BITMAP5;
+		explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode torso type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gunclamp type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode guncover type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nanogun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode nanospray2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode nozzle type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode pelvis type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode torso type	BITMAPONLY | BITMAP4;
+	return( 0 );
+	}

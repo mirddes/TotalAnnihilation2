@@ -1,0 +1,7 @@
+MISSION 3.3CORE
+L'invasion Arm est plus importante que prévue. L'ennemi s'est placé en embuscade sur le poste de garde 405 et il détruit tous les cargos qui s'approchent de cette voie de communication. Il faut mettre un terme à ce carnage. Détruisez-les tous.
+
+STATISTIQUES DE PROBABILITES:
+Une base bien équipée est nécessaire à la réussite de cette opération (&R77%, marge d'erreur:3%&). Protégez autant de cargos que possible (&R63%, marge d'erreur:%&).
+
+Exécution

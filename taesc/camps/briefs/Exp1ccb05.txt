@@ -1,0 +1,9 @@
+MISSION 5.2LCORE
+Arm reinforcements have arrived from off planet. Arm bases have been established in the jungles of Lusch. They search for the beacon! We must have that beacon. Without it, the implosion device will be incomplete. We must find the device before Arm. Destroyed arm units can not search. Destroy them all.  
+
+INTELL-TAP:
+Probes have discovered a life form in the jungle that may present a threat to your efforts. Early research indicate that the creature, known as the Scorpion, is not of this system, nor of this galaxy. They may be an indication of the nearness of the beacon for which we search.   
+
+&RDestroy all of the Arm units, and all Scorpions.& Nothing must be allowed to hamper our search for the beacon.
+
+DO SO NOW.

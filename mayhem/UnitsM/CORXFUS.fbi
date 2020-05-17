@@ -1,0 +1,64 @@
+[UNITINFO]
+{
+UnitName=CORXFUS;
+Version=2;
+Side=CORE;
+Objectname=CORXFUS;
+Designation=UBER-FUS;
+Name=Uber Fusion Reactor;
+Description=Produces 12.5k Energy;
+FootprintX=12;
+FootprintZ=12;
+BuildCostEnergy=569800;
+BuildCostMetal=44146;
+MaxDamage=14770;
+//DamageModifier=0.5;
+MaxWaterDepth=255;
+MaxSlope=25;
+EnergyMake=12500;
+EnergyUse=6400;
+Makesmetal=128;
+BuildTime=882920;
+//WorkerTime=481;
+BMcode=0;
+Builder=1;
+ThreeD=1;
+ZBuffer=1;
+NoAutoFire=0;
+SightDistance=440;
+SoundCategory=COR_CKFUS;
+EnergyStorage=9600;  
+MetalStorage=1200;
+ExplodeAs=NUCLEAR_MISSILE;
+SelfDestructAs=COMMANDER_BLAST;
+Category=ALL CORE LEVEL3 CTRL_E E30 NOWEAPON NOTAIR NOTSUB;
+TEDClass=ENERGY;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+YardMap=...yyooyy...
+.oooooooooo.
+oooooooooooo
+yooooooooooy
+yooooooooooy
+oooooccooooo
+oooooccooooo
+yooooooooooy
+yooooooooooy
+.yooooooooy.
+..yooooooy..
+....yooy....;
+GermanName=Verstohlende Atomkraftwerk;
+GermanDescription=Liefert Energie;
+corpse=corXFUS_dead;
+UnitNumber=6233;
+FrenchName=Centrale atomique furtive;
+Frenchdescription=Produit de l'énergie;
+buildangle=2048;
+CloakCost=1250;
+Mincloakdistance=240;
+activatewhenbuilt=0;
+shootme=1;
+Brakerate=1;
+canbuild=1;
+healtime=3;
+onoffable=1;
+}

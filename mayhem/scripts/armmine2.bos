@@ -1,0 +1,163 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  body, head, foot1, foot2, foot3, foot4, f1, f2, 
+       f3, f4, upleg4, upleg3, upleg1, upleg2, s1, s2,
+       s3, s4, base;
+
+static-var  bMoving, walking;
+
+
+MotionControl()
+{
+	if( walking )
+	{
+		return(0);
+	}
+	walking = 1;
+	turn body to y-axis <45> speed <225>;
+	turn s1 to x-axis <0> speed <450>;
+	turn s2 to z-axis <0> speed <450>;
+	turn s3 to z-axis <0> speed <450>;
+	turn s4 to x-axis <0> speed <450>;
+	turn f1 to x-axis <0> speed <50>;
+	turn f2 to z-axis <0> speed <50>;
+	turn f3 to z-axis <0> speed <50>;
+	turn f4 to x-axis <0> speed <50>;
+	turn head to x-axis <0> speed <500>;
+	move body to y-axis [0] speed [2.4];
+	sleep 200;
+	while( bMoving )
+	{
+		move upleg3 to y-axis [0.5] speed [1];
+		move upleg2 to y-axis [0] speed [1];
+		turn body to z-axis <-5> speed <18>;
+		turn upleg4 to y-axis <45> speed <120>;
+		turn upleg3 to y-axis <-30> speed <200>;
+		turn upleg2 to y-axis <0> speed <160>;
+		turn upleg1 to y-axis <0> speed <70>;
+		turn foot1 to x-axis <20> speed <100>;
+		turn foot2 to x-axis <-20> speed <220>;
+		turn foot3 to x-axis <-30> speed <160>;
+		turn foot4 to x-axis <0> speed <120>;
+		sleep 200;
+		if( bMoving )
+		{
+			move upleg4 to y-axis [0.5] speed [1];
+			move upleg3 to y-axis [0] speed [1];
+			turn body to z-axis <0> speed <18>;
+			turn upleg4 to y-axis <15> speed <200>;
+			turn upleg3 to y-axis <-45> speed <160>;
+			turn upleg2 to y-axis <-45> speed <70>;
+			turn upleg1 to y-axis <0> speed <120>;
+			turn foot2 to x-axis <20> speed <100>;
+			turn foot3 to x-axis <-20> speed <220>;
+			turn foot4 to x-axis <-30> speed <160>;
+			turn foot1 to x-axis <0> speed <120>;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			move upleg1 to y-axis [0.5] speed [1];
+			move upleg4 to y-axis [0] speed [1];
+			turn body to z-axis <5> speed <18>;
+			turn upleg4 to y-axis <0> speed <160>;
+			turn upleg3 to y-axis <0> speed <70>;
+			turn upleg2 to y-axis <-45> speed <120>;
+			turn upleg1 to y-axis <30> speed <200>;
+			turn foot3 to x-axis <20> speed <100>;
+			turn foot4 to x-axis <-20> speed <220>;
+			turn foot1 to x-axis <-30> speed <160>;
+			turn foot2 to x-axis <0> speed <120>;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			move upleg2 to y-axis [0.5] speed [1];
+			move upleg1 to y-axis [0] speed [1];
+			turn body to z-axis <0> speed <18>;
+			turn upleg4 to y-axis <45> speed <70>;
+			turn upleg3 to y-axis <0> speed <120>;
+			turn upleg2 to y-axis <-15> speed <200>;
+			turn upleg1 to y-axis <45> speed <160>;
+			turn foot4 to x-axis <20> speed <100>;
+			turn foot1 to x-axis <-20> speed <220>;
+			turn foot2 to x-axis <-30> speed <160>;
+			turn foot3 to x-axis <0> speed <120>;
+			sleep 200;
+		}
+	}
+	walking = 0;
+	move upleg4 to y-axis [0] speed [2.5];
+	move upleg3 to y-axis [0] speed [2.5];
+	move upleg2 to y-axis [0] speed [2.5];
+	move upleg1 to y-axis [0] speed [2.5];
+	turn upleg4 to y-axis <0> speed <100>;
+	turn upleg3 to y-axis <0> speed <100>;
+	turn upleg2 to y-axis <0> speed <100>;
+	turn upleg1 to y-axis <0> speed <100>;
+	turn foot1 to x-axis <0> speed <100>;
+	turn foot2 to x-axis <0> speed <100>;
+	turn foot3 to x-axis <0> speed <100>;
+	turn foot4 to x-axis <0> speed <100>;
+	sleep 300;
+	if( !bMoving )
+	{
+		turn s1 to x-axis <120> speed <360>;
+		turn s2 to z-axis <120> speed <360>;
+		turn s3 to z-axis <-120> speed <360>;
+		turn s4 to x-axis <-120> speed <360>;
+		turn f1 to x-axis <-15> speed <60>;
+		turn f2 to z-axis <-15> speed <60>;
+		turn f3 to z-axis <15> speed <60>;
+		turn f4 to x-axis <15> speed <60>;
+		sleep 300;
+	}
+	if( !bMoving )
+	{
+		turn head to x-axis <180> speed <400>;
+		move body to y-axis [-1.2] speed [6];
+		turn body to y-axis <0> speed <90>;
+	}
+}
+
+Create()
+{
+	turn s1 to x-axis <120> NOW;
+	turn s2 to z-axis <120> NOW;
+	turn s3 to z-axis <-120> NOW;
+	turn s4 to x-axis <-120> NOW;
+	turn f1 to x-axis <-15> NOW;
+	turn f2 to z-axis <-15> NOW;
+	turn f3 to z-axis <15> NOW;
+	turn f4 to x-axis <15> NOW;
+	move body to y-axis [-1.2] NOW;
+	turn head to x-axis <180> NOW;
+	bMoving = 0;
+	walking = 0;
+}
+
+StartMoving()
+{
+	if( !bMoving )
+	{
+		bMoving = 1;
+		start-script MotionControl();
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+}

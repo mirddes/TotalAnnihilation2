@@ -1,0 +1,35 @@
+[ARMVANG_dead]
+{
+world=All Worlds;
+description=Vanguard Wreckage;
+category=arm_corpses;
+object=ARMVANG_dead;
+featuredead=ARMVANG_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=336;
+damage=1500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMVANG_heap]
+{
+world=All Worlds;
+description=Vanguard Wreckage;
+category=arm_corpses;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=168;
+damage=1600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

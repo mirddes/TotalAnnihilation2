@@ -1,0 +1,11 @@
+MISSION 2.2HCORE
+We hold the reef where once Arm had established its base. They are certain to counter-attack. Repel their attack and clear the area of Arm units. 
+
+INTELL-TAP:
+The Typhoon model seaplanes will be especially useful on this mission. Be sure to use them. They are particularly useful in destroying the annoying life form that inhabits the reef.
+
+&RDestroy all of the Arm units.&
+
+To complete this mission you must destroy all Arm units, life forms, and build a Seaplane Platform.
+
+DO SO NOW.

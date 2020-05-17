@@ -1,0 +1,603 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, body, teeth1, teeth2, teeth3, teeth4, top, iris, 
+	   blade1, blade2, blade3, blade4, blade5, blade6, blade7, blade8,
+	   blade9, blade10, blade11, blade12, blade13, blade14, blade15, blade16,
+	   rotary, grinder1, grinder2, cap, arm1, arm2 ;
+
+static-var  Static_Var_1, Static_Var_2, statechg_DesiredState, statechg_StateChanging ;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome, metal_on, nbr_metal ; 
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		nbr_metal = 0;
+		
+		shgen_count = 0;
+/*		
+		for (shgen_id = min; shgen_id < max; ++shgen_id)
+		{
+			if((!get UNIT_ALLIED(shgen_ID)) == 1)
+			{
+				h = get UNIT_HEIGHT(shgen_id);
+				if(h == 13600954 || 11848867 )
+				{
+					shgen_count = 1;
+				}
+				break;
+			}
+		}
+*/		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+/*			
+			if((!get UNIT_ALLIED(unit_ID)) == 1)	
+			{	
+				if(get UNIT_HEIGHT(unit_id)==METAL_UPGRADE_HEIGHT)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==100)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						{
+							++nbr_metal;
+						}
+					}
+				}
+			}
+*/
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+/*
+		if(nbr_metal>=1)
+		{
+			if(!metal_on)
+			{
+				metal_on = 1;
+				set ACTIVATION to 0;
+				sleep 50;
+			}
+		}
+		if(nbr_metal==0)
+		{
+			if(metal_on)
+			{
+				metal_on = 0;
+				set ACTIVATION to 1;
+				sleep 50;
+			}
+		}	
+*/
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Go()
+{
+//	set ARMORED to 0;
+//	if(( shield_on || dome_on))
+//	{
+//		set ARMORED to 1;
+//	}
+//	if(metal_on)
+//	{
+//		set ACTIVATION to 0;
+//	}
+	hide cap;
+	
+	show blade1;
+	show blade2;
+	show blade3;
+	show blade4;
+	show blade5;
+	show blade6;
+	show blade7;
+	show blade8;
+	show blade9;
+	show blade10;
+	show blade11;
+	show blade12;
+	show blade13;
+	show blade14;
+	show blade15;
+	show blade16;
+	
+	dont-cache blade1;
+	dont-cache blade2;
+	dont-cache blade3;
+	dont-cache blade4;
+	dont-cache blade5;
+	dont-cache blade6;
+	dont-cache blade7;
+	dont-cache blade8;
+	dont-cache blade9;
+	dont-cache blade10;
+	dont-cache blade11;
+	dont-cache blade12;
+	dont-cache blade13;
+	dont-cache blade14;
+	dont-cache blade15;
+	dont-cache blade16;
+	
+	dont-cache teeth1;
+	dont-cache teeth2;
+	dont-cache teeth3;
+	dont-cache teeth4;
+	
+	dont-cache grinder1;
+	dont-cache grinder2;
+	
+	move iris to y-axis [-2.200000] speed [10.000000];
+	wait-for-move iris along y-axis;
+	turn blade1 to y-axis <60.000000> speed <20.000000>;
+	turn blade2 to y-axis <60.000000> speed <20.000000>;
+	turn blade3 to y-axis <60.000000> speed <20.000000>;
+	turn blade4 to y-axis <60.000000> speed <20.000000>;
+	turn blade5 to y-axis <60.000000> speed <20.000000>;
+	turn blade6 to y-axis <60.000000> speed <20.000000>;
+	turn blade7 to y-axis <60.000000> speed <20.000000>;
+	turn blade8 to y-axis <60.000000> speed <20.000000>;
+	turn blade9 to y-axis <60.000000> speed <20.000000>;
+	turn blade10 to y-axis <60.000000> speed <20.000000>;
+	turn blade11 to y-axis <60.000000> speed <20.000000>;
+	turn blade12 to y-axis <60.000000> speed <20.000000>;
+	turn blade13 to y-axis <60.000000> speed <20.000000>;
+	turn blade14 to y-axis <60.000000> speed <20.000000>;
+	turn blade15 to y-axis <60.000000> speed <20.000000>;
+	turn blade16 to y-axis <60.000000> speed <20.000000>;
+	
+	spin teeth1 around y-axis speed Static_Var_1 accelerate <4.00000>;
+	spin teeth2 around y-axis speed Static_Var_1 accelerate <2.000000>;
+	spin teeth3 around y-axis speed Static_Var_1 accelerate <1.000000>;
+	spin teeth4 around y-axis speed Static_Var_1 accelerate <0.500000>;	
+
+	spin grinder1 around z-axis speed Static_Var_1 accelerate <0.500000>;
+	spin grinder2 around z-axis speed Static_Var_2 accelerate <0.500000>;
+}
+
+Stop()
+{
+
+	stop-spin teeth1 around y-axis; //decelerate <10.000000>;
+	stop-spin teeth2 around y-axis; //decelerate <15.000000>;
+	stop-spin teeth3 around y-axis; //decelerate <20.000000>;
+	stop-spin teeth4 around y-axis; //decelerate <30.000000>;	
+
+	stop-spin grinder1 around x-axis; //decelerate <12.000000>;
+	stop-spin grinder2 around x-axis; //decelerate <12.000000>;
+	
+	turn blade1 to y-axis <0.000000> speed <20.000000>;
+	turn blade2 to y-axis <0.000000> speed <20.000000>;
+	turn blade3 to y-axis <0.000000> speed <20.000000>;
+	turn blade4 to y-axis <0.000000> speed <20.000000>;
+	turn blade5 to y-axis <0.000000> speed <20.000000>;
+	turn blade6 to y-axis <0.000000> speed <20.000000>;
+	turn blade7 to y-axis <0.000000> speed <20.000000>;
+	turn blade8 to y-axis <0.000000> speed <20.000000>;
+	turn blade9 to y-axis <0.000000> speed <20.000000>;
+	turn blade10 to y-axis <0.000000> speed <20.000000>;
+	turn blade11 to y-axis <0.000000> speed <20.000000>;
+	turn blade12 to y-axis <0.000000> speed <20.000000>;
+	turn blade13 to y-axis <0.000000> speed <20.000000>;
+	turn blade14 to y-axis <0.000000> speed <20.000000>;
+	turn blade15 to y-axis <0.000000> speed <20.000000>;
+	turn blade16 to y-axis <0.000000> speed <20.000000>;
+
+	sleep 2000;
+	
+	move iris to y-axis [0.000000] speed [10.000000];
+	wait-for-move iris along y-axis;
+	
+	cache blade1;
+	cache blade2;
+	cache blade3;
+	cache blade4;
+	cache blade5;
+	cache blade6;
+	cache blade7;
+	cache blade8;
+	cache blade9;
+	cache blade10;
+	cache blade11;
+	cache blade12;
+	cache blade13;
+	cache blade14;
+	cache blade15;
+	cache blade16;
+	
+	cache teeth1;
+	cache teeth2;
+	cache teeth3;
+	cache teeth4;
+	
+	cache grinder1;
+	cache grinder2;
+	
+	hide blade1;
+	hide blade2;
+	hide blade3;
+	hide blade4;
+	hide blade5;
+	hide blade6;
+	hide blade7;
+	hide blade8;
+	hide blade9;
+	hide blade10;
+	hide blade11;
+	hide blade12;
+	hide blade13;
+	hide blade14;
+	hide blade15;
+	hide blade16;
+
+	show cap;
+	
+//	set ARMORED to 1;
+}
+
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	nbr_shield = 0;
+	nbr_dome = 0;
+	nbr_metal = 0;
+	
+	shield_on = 0;
+	dome_on = 0;
+	metal_on = 0;
+	
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	
+	hide blade1;
+	hide blade2;
+	hide blade3;
+	hide blade4;
+	hide blade5;
+	hide blade6;
+	hide blade7;
+	hide blade8;
+	hide blade9;
+	hide blade10;
+	hide blade11;
+	hide blade12;
+	hide blade13;
+	hide blade14;
+	hide blade15;
+	hide blade16;
+	
+	dont-shade cap;
+	
+	dont-shade teeth1;
+	dont-shade teeth2;
+	dont-shade teeth3;
+	dont-shade teeth4;
+	
+	dont-shade grinder1;
+	dont-shade grinder2;
+
+	dont-shade top;
+	
+	dont-shade blade1;
+	dont-shade blade2;
+	dont-shade blade3;
+	dont-shade blade4;
+	dont-shade blade5;
+	dont-shade blade6;
+	dont-shade blade7;
+	dont-shade blade8;
+	dont-shade blade9;
+	dont-shade blade10;
+	dont-shade blade11;
+	dont-shade blade12;
+	dont-shade blade13;
+	dont-shade blade14;
+	dont-shade blade15;
+	dont-shade blade16;
+	
+	set ARMORED to 0;
+	call-script InitState();
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+SetSpeed(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1 * -22.5;
+	Static_Var_2 = Func_Var_1 * 22.5;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode blade1 type BITMAPONLY | BITMAP1;
+		explode blade3 type BITMAPONLY | BITMAP1;
+		explode blade5 type BITMAPONLY | BITMAP1;
+		explode blade7 type BITMAPONLY | BITMAP1;
+		explode grinder1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode teeth4 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode blade1 type BITMAPONLY | BITMAP1;
+		explode blade3 type BITMAPONLY | BITMAP1;
+		explode blade5 type BITMAPONLY | BITMAP1;
+		explode blade7 type BITMAPONLY | BITMAP1;
+		explode grinder1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode teeth4 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode blade1 type BITMAPONLY | BITMAP1;
+		explode blade3 type BITMAPONLY | BITMAP1;
+		explode blade5 type BITMAPONLY | BITMAP1;
+		explode blade7 type BITMAPONLY | BITMAP1;
+		explode grinder1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode teeth4 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	}
+	corpsetype = 3;
+	explode blade1 type BITMAPONLY | BITMAP1;
+	explode blade3 type BITMAPONLY | BITMAP1;
+	explode blade5 type BITMAPONLY | BITMAP1;
+	explode blade7 type BITMAPONLY | BITMAP1;
+	explode grinder1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode teeth4 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+}

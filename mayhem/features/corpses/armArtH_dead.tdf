@@ -1,0 +1,37 @@
+[armArtH_DEAD]
+{
+World=All Worlds;
+Description=Big John Wreckage;
+Category=arm_corpses;
+Object=armArtH_DEAD;
+featuredead=ARMArtH_HEAP;
+Footprintx=4;
+Footprintz=4;
+Height=30;
+Blocking=1;
+HitDensity=100;
+Metal=4819;
+Damage=4000;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+
+[ARMArtH_HEAP]
+{
+world=All Worlds;
+description=Big John Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=3;
+footprintz=3;
+height=6;
+blocking=0;
+hitdensity=100;
+metal=4819;
+damage=4000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

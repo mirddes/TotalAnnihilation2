@@ -1,0 +1,642 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece	flare1a, flare1b, flare1c, 
+		flare2a, flare2b, flare2c, 
+		blodflare1, blodflare2, blodflare3, blodflare4, blodflare5, blodflare6, blodflare7, blodflare8, blodflare9, blodflare10,
+		base, body, stand1, stand2, turret1, turret2, sleeves1, sleeves2, sleeve1, sleeve2, 
+		barrel1a, barrel1b, barrel1c, barrel2a, barrel2b, barrel2c, 
+		platform1, platform2, platform3, platform4, platform5,
+		blodturret1, blodturret2, blodturret3, blodturret4, blodturret5, blodturret6, blodturret7, blodturret8, blodturret9, blodturret10, 
+		blodsleeve1, blodsleeve2, blodsleeve3, blodsleeve4, blodsleeve5, blodsleeve6, blodsleeve7, blodsleeve8, blodsleeve9, blodsleeve10,
+		blodbarrel1, blodbarrel2, blodbarrel3, blodbarrel4, blodbarrel5, blodbarrel6, blodbarrel7, blodbarrel8, blodbarrel9, blodbarrel10,
+		aimfrom, naughty; 
+
+static-var  statechg_DesiredState, statechg_StateChanging, gun_1, gun_2, gun_3, aimback, wait, brb, wait2, landed, flying, dontfire;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_AIM_3			8
+
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 44 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 44 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 44 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+			}
+		}
+		sleep 1000;
+	}
+}
+
+Activatescr()
+{
+	if( TRUE )
+	{
+		flying=1;
+		start-script OffScreenCheck();
+	}
+	sleep 20;
+}
+
+Deactivatescr()
+{
+	if( TRUE )
+	{
+		flying=0;
+	}
+	sleep 12;
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+
+Create()
+{
+//	move body to y-axis [45] now;
+//	turn body to y-axis <270> now;
+	
+	dontfire=0;
+	dont-cache naughty;
+	move naughty to y-axis  [22.5] now;
+	hide naughty;	
+	
+	
+	hide flare1a;
+	hide flare1b;
+	hide flare1c;
+	hide flare2a;
+	hide flare2b;
+	hide flare2c;
+	dont-cache flare1a;
+	dont-cache flare1b;
+	dont-cache flare1c;
+	dont-cache flare2a;
+	dont-cache flare2b;
+	dont-cache flare2c;
+	hide blodflare1;
+	hide blodflare2;
+	hide blodflare3;
+	hide blodflare4;
+	hide blodflare5;
+	hide blodflare6;
+	hide blodflare7;
+	hide blodflare8;
+	hide blodflare9;
+	hide blodflare10;
+	dont-cache blodflare1;
+	dont-cache blodflare2;
+	dont-cache blodflare3;
+	dont-cache blodflare4;
+	dont-cache blodflare5;
+	dont-cache blodflare6;
+	dont-cache blodflare7;
+	dont-cache blodflare8;
+	dont-cache blodflare9;
+	dont-cache blodflare10;
+	
+	landed = 0;
+	brb = 0;
+	aimback = 0;
+	wait=0;
+	wait2=0;
+	gun_1 = 0;
+	gun_2 = 6;
+	gun_3 = 11;
+	
+	call-script InitState();
+	
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+//	move body to y-axis [0] speed [10];
+//	turn body to y-axis <0> speed <10>;
+}
+
+Activate()
+{
+	set ARMORED to 1;
+	landed = 0;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	landed = 1;
+	set ARMORED to 0;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	turn blodturret1 to y-axis <0> speed <450>;
+	turn blodsleeve1 to x-axis <0> speed <450>;
+	turn blodturret2 to y-axis <0> speed <450>;
+	turn blodsleeve2 to x-axis <0> speed <450>;
+	turn blodturret3 to y-axis <0> speed <450>;
+	turn blodsleeve3 to x-axis <0> speed <450>;
+	turn blodturret4 to y-axis <0> speed <450>;
+	turn blodsleeve4 to x-axis <0> speed <450>;
+	turn blodturret5 to y-axis <0> speed <450>;
+	turn blodsleeve5 to x-axis <0> speed <450>;
+	turn blodturret6 to y-axis <0> speed <450>;
+	turn blodsleeve6 to x-axis <0> speed <450>;
+	turn blodturret7 to y-axis <0> speed <450>;
+	turn blodsleeve7 to x-axis <0> speed <450>;
+	turn blodturret8 to y-axis <0> speed <450>;
+	turn blodsleeve8 to x-axis <0> speed <450>;
+	turn blodturret9 to y-axis <0> speed <450>;
+	turn blodsleeve9 to x-axis <0> speed <450>;
+	turn blodturret10 to y-axis <0> speed <450>;
+	turn blodsleeve10 to x-axis <0> speed <450>;
+}
+
+//===================================1st==================================================================================================
+
+Restore()
+{
+	sleep 10000;
+	turn turret1 to y-axis <0> speed <36>;
+	turn sleeves1 to x-axis <0> speed <18>;
+	turn turret2 to y-axis <0> speed <36>;
+	turn sleeves2 to x-axis <0> speed <18>;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM_3;
+	set-signal-mask SIG_AIM_3;
+	while ( dontfire OR landed )
+	{
+		sleep 250;
+	}
+	if ( heading >= <110> AND heading <= <250> )
+	{
+		aimback=1;
+		if (gun_1 <= 3)
+		{
+			gun_1 = 4;
+		}
+		if ( gun_1 > 2 && gun_1 != 7 )
+		{
+			turn turret2 to y-axis heading speed <72>;
+			turn sleeves2 to x-axis <0.000000> - pitch speed <36>;
+			wait-for-turn turret2 around y-axis;
+			wait-for-turn sleeves2 around x-axis;
+		}
+	}
+	if (!( heading >= <110> AND heading <= <250> ))
+	{
+		if ( gun_1 <= 2 || gun_1 == 7 )
+		{
+			turn turret1 to y-axis heading speed <72>;
+			turn sleeves1 to x-axis <0.000000> - pitch speed <36>;
+			wait-for-turn turret1 around y-axis;
+			wait-for-turn sleeves1 around x-axis;
+	
+		}
+		if ( gun_1 > 2 && gun_1 != 7 )
+		{
+			turn turret2 to y-axis heading speed <72>;
+			turn sleeves2 to x-axis <0.000000> - pitch speed <36>;
+			wait-for-turn turret2 around y-axis;
+			wait-for-turn sleeves2 around x-axis;
+		}
+		aimback=0;
+	}
+	while(wait)
+	{
+		sleep 1;
+	}
+	Start-script Restore();
+	return (1);
+}
+
+FireTertiary()
+{
+	wait=1;
+	if( gun_1 == 0 )
+	{
+		move barrel1a to z-axis [-4] now;
+		move barrel1a to z-axis [0.000000] speed [3.000000];
+		show flare1a;
+		sleep 300;
+		hide flare1a;
+	}
+	if( gun_1 == 1 )
+	{
+		move barrel1b to z-axis [-4] now;
+		move barrel1b to z-axis [0.000000] speed [3.000000];
+		show flare1b;
+		sleep 300;
+		hide flare1b;
+	}
+	if( gun_1 == 2 )
+	{
+		move barrel1c to z-axis [-4] now;
+		move barrel1c to z-axis [0.000000] speed [3.000000];
+		show flare1c;
+		sleep 300;
+		hide flare1c;
+	}
+	//=========================back turret============================================================================================================
+	if( gun_1 == 3 )
+	{
+		move barrel2a to z-axis [-4] now;
+		move barrel2a to z-axis [0.000000] speed [3.000000];
+		show flare2a;
+		sleep 300;
+		hide flare2a;
+	}
+	if( gun_1 == 4 )
+	{
+		move barrel2b to z-axis [-4] now;
+		move barrel2b to z-axis [0.000000] speed [3.000000];
+		show flare2b;
+		sleep 300;
+		hide flare2b;
+	}
+	if( gun_1 == 5 )
+	{
+		move barrel2c to z-axis [-4] now;
+		move barrel2c to z-axis [0.000000] speed [3.000000];
+		show flare2c;
+		sleep 300;
+		hide flare2c;
+	}
+	++gun_1;
+	if( gun_1 == 6 )
+	{
+		if(aimback == 1)
+		{
+			gun_1 = 3;
+			sleep 1200;
+		}
+		if(aimback == 0)
+		{
+			gun_1 = 0;
+		}
+	}
+	wait=0;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = aimfrom;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+//=======================================================2rd========================================================================================================================
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	while ( dontfire OR landed )
+	{
+		sleep 250;
+	}
+	turn blodturret5 to y-axis heading speed <900.000000>;
+	turn blodsleeve5 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret7 to y-axis heading speed <900.000000>;
+	turn blodsleeve7 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret1 to y-axis heading speed <900.000000>;
+	turn blodsleeve1 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret9 to y-axis heading speed <900.000000>;
+	turn blodsleeve9 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret3 to y-axis heading speed <900.000000>;
+	turn blodsleeve3 to x-axis <0.000000> - pitch speed <900.000000>;
+	
+	wait-for-turn blodturret5 around y-axis;
+	wait-for-turn blodsleeve5 around x-axis;
+	wait-for-turn blodturret7 around y-axis;
+	wait-for-turn blodsleeve7 around x-axis;
+	wait-for-turn blodturret1 around y-axis;
+	wait-for-turn blodsleeve1 around x-axis;
+	wait-for-turn blodturret9 around y-axis;
+	wait-for-turn blodsleeve9 around x-axis;
+	wait-for-turn blodturret3 around y-axis;
+	wait-for-turn blodsleeve3 around x-axis;
+	
+	start-script RestoreAfterDelay();
+	return(1);
+}
+
+
+
+FirePrimary()
+{
+	if( gun_2 == 6 )
+	{
+		show blodflare5;
+		sleep 150;
+		hide blodflare5;
+	}
+	if( gun_2 == 7 )
+	{
+		show blodflare7;
+		sleep 150;
+		hide blodflare7;
+	}
+	if( gun_2 == 8 )
+	{
+		show blodflare1;
+		sleep 150;
+		hide blodflare1;
+	}
+	if( gun_2 == 9 )
+	{
+		show blodflare9;
+		sleep 150;
+		hide blodflare9;
+	}
+	if( gun_2 == 10 )
+	{
+		show blodflare3;
+		sleep 150;
+		hide blodflare3;
+	}
+	++gun_2;
+	if (gun_2 == 11)
+	{
+		gun_2 = 6;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_2 == 6 )
+	{
+		piecenum = blodflare5;
+	}
+	if( gun_2 == 7 )
+	{
+		piecenum = blodflare7;
+	}
+	if( gun_2 == 8 )
+	{
+		piecenum = blodflare1;
+	}
+	if( gun_2 == 9 )
+	{
+		piecenum = blodflare9;
+	}
+	if( gun_2 == 10 )
+	{
+		piecenum = blodflare3;
+	}
+}
+
+//=========3rd
+
+AimSecondary(heading, pitch)
+{
+	signal SIG_AIM_2;
+	set-signal-mask SIG_AIM_2;
+	while ( dontfire OR landed )
+	{
+		sleep 250;
+	}
+	turn blodturret4 to y-axis heading speed <900.000000>;
+	turn blodsleeve4 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret10 to y-axis heading speed <900.000000>;
+	turn blodsleeve10 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret2 to y-axis heading speed <900.000000>;
+	turn blodsleeve2 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret8 to y-axis heading speed <900.000000>;
+	turn blodsleeve8 to x-axis <0.000000> - pitch speed <900.000000>;
+	turn blodturret6 to y-axis heading speed <900.000000>;
+	turn blodsleeve6 to x-axis <0.000000> - pitch speed <900.000000>;
+	
+	wait-for-turn blodturret4 around y-axis;
+	wait-for-turn blodsleeve4 around x-axis;
+	wait-for-turn blodturret10 around y-axis;
+	wait-for-turn blodsleeve10 around x-axis;
+	wait-for-turn blodturret2 around y-axis;
+	wait-for-turn blodsleeve2 around x-axis;
+	wait-for-turn blodturret8 around y-axis;
+	wait-for-turn blodsleeve8 around x-axis;
+	wait-for-turn blodturret6 around y-axis;
+	wait-for-turn blodsleeve6 around x-axis;
+	
+	start-script RestoreAfterDelay();
+	return(1);
+}
+
+FireSecondary()
+{
+	if( gun_3 == 11 )
+	{
+		show blodflare4;
+		sleep 150;
+		hide blodflare4;
+	}
+	if( gun_3 == 12 )
+	{
+		show blodflare10;
+		sleep 150;
+		hide blodflare10;
+	}
+	if( gun_3 == 13 )
+	{
+		show blodflare2;
+		sleep 150;
+		hide blodflare2;
+	}
+	if( gun_3 == 14 )
+	{
+		show blodflare8;
+		sleep 150;
+		hide blodflare8;
+	}
+	if( gun_3 == 15 )
+	{
+		show blodflare6;
+		sleep 150;
+		hide blodflare6;
+	}
+	++gun_3;
+	if (gun_3 == 16)
+	{
+		gun_3 = 11;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = base;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_3 == 11 )
+	{
+		piecenum = blodflare4;
+	}
+	if( gun_3 == 12 )
+	{
+		piecenum = blodflare10;
+	}
+	if( gun_3 == 13 )
+	{
+		piecenum = blodflare2;
+	}
+	if( gun_3 == 14 )
+	{
+		piecenum = blodflare8;
+	}
+	if( gun_3 == 15 )
+	{
+		piecenum = blodflare6;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+	explode barrel1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel1c type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2a type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2b type FALL | EXPLODE_ON_HIT | BITMAP5;
+	explode barrel2c type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode blodbarrel3 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode blodbarrel4 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode blodbarrel5 type FALL | EXPLODE_ON_HIT | BITMAP5;
+	explode blodbarrel6 type FALL | EXPLODE_ON_HIT | BITMAP1;
+//	explode base type BITMAPONLY | BITMAP1;
+	explode sleeves1 type BITMAPONLY | BITMAP1;
+	explode sleeves2 type BITMAPONLY | BITMAP5;
+	explode blodsleeve1 type BITMAPONLY | BITMAP1;
+	explode blodsleeve2 type BITMAPONLY | BITMAP5;
+	explode platform1 type BITMAPONLY | BITMAP5;
+	explode platform2 type BITMAPONLY | BITMAP1;
+	explode platform3 type BITMAPONLY | BITMAP5;
+	
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		return (0);
+	}
+	corpsetype = 3;
+}

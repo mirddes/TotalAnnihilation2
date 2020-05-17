@@ -1,0 +1,35 @@
+[corbc_dead]
+{
+world=All Worlds;
+description=Excelsior Wreckage;
+category=core_corpses;
+object=corbc_dead;
+featuredead=corbc_heap;
+footprintx=8;
+footprintz=8;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=7156;
+damage=13823;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corbc_heap]
+{
+world=All Worlds;
+description=Excelsior Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3578;
+damage=15323;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

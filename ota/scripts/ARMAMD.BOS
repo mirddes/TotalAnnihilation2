@@ -1,0 +1,219 @@
+// Armamd script
+
+piece base,rocket1,rocket2,rocket3,turret;
+
+static-var	active, restore_delay,next_barrel;
+
+#define SIG_AIM	2
+#define SMOKEPIECE1 door1
+#define SMOKEPIECE2 door2
+#define SMOKEPIECE3 door3
+#define SMOKEPIECE4 door4
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"	// First time (of two)
+#include "..\anim3d\armamd\activatescr.bos"
+#include "..\anim3d\armamd\deactivatescr.bos"
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Go()
+	{
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache door3;
+	dont-cache door4;
+	dont-cache rocket1;
+	dont-cache rocket2;
+	dont-cache rocket3;
+	dont-cache turret;
+	call-script activatescr();
+	active = TRUE;
+	}
+
+Stop()
+	{
+	active = FALSE;
+	call-script deactivatescr();
+	cache door1;
+	cache door2;
+	cache door3;
+	cache door4;
+	cache rocket1;
+	cache rocket2;
+	cache rocket3;
+	cache turret;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade rocket1;
+	dont-shade rocket2;
+	dont-shade rocket3;
+	dont-shade turret;
+	active = FALSE;
+	next_barrel = 1;
+	restore_delay = 3000;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+AimPrimary(heading,pitch)
+	{
+	start-script RequestState( ACTIVE );
+	sleep 1500;
+	signal SIG_AIM;				// kill off other aim scripts
+	set-signal-mask SIG_AIM;	// so other scripts can kill us
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	if (next_barrel==1)
+		{
+		hide rocket1;
+		show rocket2;
+		turn turret to y-axis <120> speed <30>;
+		wait-for-turn turret around y-axis;
+		show rocket3;
+		}
+	if (next_barrel==2)
+		{
+		hide rocket2;
+		show rocket3;
+		turn turret to y-axis <240> speed <30>;
+		wait-for-turn turret around y-axis;
+		}
+	if (next_barrel==3)
+		{
+		hide rocket3;
+		show rocket1;
+		turn turret to y-axis <360> speed <30>;
+		wait-for-turn turret around y-axis;
+		}
+	next_barrel=next_barrel+1;
+	if (next_barrel==4) {
+		next_barrel=1; }
+	}
+
+QueryPrimary(piecenum)
+	{
+	if (next_barrel==1) {
+		piecenum=1; }
+	if (next_barrel==2) {
+		piecenum=2; }
+	if (next_barrel==3) {
+		piecenum=3; }
+	}
+
+AimFromPrimary(piecenum)
+	{
+	if (next_barrel==1) {
+		piecenum=1; }
+	if (next_barrel==2) {
+		piecenum=2; }
+	if (next_barrel==3) {
+		piecenum=3; }
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode door3 type	BITMAPONLY | BITMAP4;
+		explode door4 type	BITMAPONLY | BITMAP5;
+		explode rocket1 type	BITMAPONLY | BITMAP1;
+		explode rocket2 type	BITMAPONLY | BITMAP2;
+		explode rocket3 type	BITMAPONLY | BITMAP3;
+		explode turret type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode door3 type	BITMAPONLY | BITMAP4;
+		explode door4 type	BITMAPONLY | BITMAP5;
+		explode rocket1 type	FALL | BITMAP1;
+		explode rocket2 type	FALL | BITMAP2;
+		explode rocket3 type	FALL | BITMAP3;
+		explode turret type	SHATTER | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode door3 type	BITMAPONLY | BITMAP4;
+		explode door4 type	BITMAPONLY | BITMAP5;
+		explode rocket1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rocket2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rocket3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type	SHATTER | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode door1 type	BITMAPONLY | BITMAP2;
+	explode door2 type	BITMAPONLY | BITMAP3;
+	explode door3 type	BITMAPONLY | BITMAP4;
+	explode door4 type	BITMAPONLY | BITMAP5;
+	explode rocket1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rocket2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rocket3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	return( 0 );
+	}

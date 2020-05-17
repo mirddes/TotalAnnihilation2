@@ -1,0 +1,37 @@
+[Corckfus_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=Corckfus_dead;
+	featuredead=Corckfus_heap;
+	footprintx=5;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=4257;
+	damage=1960;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[Corckfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4a;
+	footprintx=5;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2129;
+	damage=980;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

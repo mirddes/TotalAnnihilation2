@@ -1,0 +1,35 @@
+[ARMXSY_dead]
+{
+world=All Worlds;
+description=Capital Shipyard Wreckage;
+category=arm_corpses;
+object=ARMXSY_dead;
+featuredead=ARMXSY_heap;
+footprintx=10;
+footprintz=9;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=7703;
+damage=7000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMXSY_heap]
+{
+world=All Worlds;
+description=Capital Shipyard Wreckage;
+category=arm_corpses;
+object=7x7b;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3852;
+damage=7800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

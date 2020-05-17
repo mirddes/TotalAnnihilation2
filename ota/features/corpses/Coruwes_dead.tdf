@@ -1,0 +1,37 @@
+[Coruwes_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=Coruwes_dead;
+	featuredead=Coruwes_heap;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=224;
+	damage=1217;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[Coruwes_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=4;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=112;
+	damage=609;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

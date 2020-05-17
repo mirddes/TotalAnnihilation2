@@ -1,0 +1,379 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, flare3, flare4, land1, land2, land3,   
+	   land_rotate1, land_rotate2, land_rotate3,
+	   base, body, wings, inside, door1, door2, dish, beam, 
+	   turret, sleeves, barrel1, barrel2, barrel3, barrel4, 
+	   wake01a, wake02a, wake03a, wake04a, wake05a, wake06a, wake07a, wake08a, 
+	   wake01b, wake02b, wake03b, wake04b, wake05b, wake06b, wake07b, wake08b,
+	   wakes_fore, wakes_aft;
+
+static-var  Static_Var_1, restore_delay, spray;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_AIM_3			8
+#define SIG_R				16
+#define SIG_MOVE			32
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 8;
+	set-signal-mask 8;
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+*/
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 1 )
+		{
+			emit-sfx 5 from wake01a;
+			emit-sfx 5 from wake02a;
+			emit-sfx 5 from wake03a;
+			emit-sfx 5 from wake04a;
+			emit-sfx 5 from wake05a;
+			emit-sfx 5 from wake06a;
+			emit-sfx 5 from wake07a;
+			emit-sfx 5 from wake08a;
+			emit-sfx 3 from wake01a;
+			emit-sfx 3 from wake02a;
+			emit-sfx 3 from wake03a;
+			emit-sfx 3 from wake04a;
+			emit-sfx 3 from wake05a;
+			emit-sfx 3 from wake06a;
+			emit-sfx 3 from wake07a;
+			emit-sfx 3 from wake08a;
+			
+			emit-sfx 5 from wake01b;
+			emit-sfx 5 from wake02b;
+			emit-sfx 5 from wake03b;
+			emit-sfx 5 from wake04b;
+			emit-sfx 5 from wake05b;
+			emit-sfx 5 from wake06b;
+			emit-sfx 5 from wake07b;
+			emit-sfx 5 from wake08b;
+			emit-sfx 3 from wake01b;
+			emit-sfx 3 from wake02b;
+			emit-sfx 3 from wake03b;
+			emit-sfx 3 from wake04b;
+			emit-sfx 3 from wake05b;
+			emit-sfx 3 from wake06b;
+			emit-sfx 3 from wake07b;
+			emit-sfx 3 from wake08b;
+		}
+		if( Static_Var_1 == 2 )
+		{
+			emit-sfx 5 from wake01a;
+			emit-sfx 5 from wake02a;
+			emit-sfx 5 from wake03a;
+			emit-sfx 5 from wake04a;
+			emit-sfx 5 from wake05a;
+			emit-sfx 5 from wake06a;
+			emit-sfx 5 from wake07a;
+			emit-sfx 5 from wake08a;
+			emit-sfx 3 from wake01a;
+			emit-sfx 3 from wake02a;
+			emit-sfx 3 from wake03a;
+			emit-sfx 3 from wake04a;
+			emit-sfx 3 from wake05a;
+			emit-sfx 3 from wake06a;
+			emit-sfx 3 from wake07a;
+			emit-sfx 3 from wake08a;
+			
+			emit-sfx 5 from wake01b;
+			emit-sfx 5 from wake02b;
+			emit-sfx 5 from wake03b;
+			emit-sfx 5 from wake04b;
+			emit-sfx 5 from wake05b;
+			emit-sfx 5 from wake06b;
+			emit-sfx 5 from wake07b;
+			emit-sfx 5 from wake08b;
+			emit-sfx 3 from wake01b;
+			emit-sfx 3 from wake02b;
+			emit-sfx 3 from wake03b;
+			emit-sfx 3 from wake04b;
+			emit-sfx 3 from wake05b;
+			emit-sfx 3 from wake06b;
+			emit-sfx 3 from wake07b;
+			emit-sfx 3 from wake08b;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	sleep 150;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	if( Static_Var_1 == 2 || Static_Var_1 == 1 )
+	{
+		dont-cache body;
+		dont-cache wings;
+		
+		dont-cache door1;
+		dont-cache door2;
+		
+		dont-cache dish;
+		dont-cache inside;
+		
+		dont-cache turret;
+		dont-cache sleeves;
+		dont-cache barrel1;
+		dont-cache barrel2;
+		dont-cache barrel3;
+		dont-cache barrel4;
+	}
+	if( Static_Var_1 != 2 && Static_Var_1 != 1 )
+	{
+		cache body;
+		cache wings;
+		
+		cache door1;
+		cache door2;
+		
+		cache dish;
+		cache inside;
+		
+		cache turret;
+		cache sleeves;
+		cache barrel1;
+		cache barrel2;
+		cache barrel3;
+		cache barrel4;
+	}
+}
+
+Create()
+{
+	var angle;
+	set ARMORED to 1;
+	
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+		
+	dont-cache flare1;
+	dont-cache flare2;
+	dont-cache flare3;
+	dont-cache flare4;
+	
+	move land1 to y-axis [46.8] now;
+	move land2 to y-axis [46.8] now;
+	move land3 to y-axis [46.8] now;
+	
+	move land1 to z-axis [18] now;
+	move land2 to z-axis [18] now;
+	move land3 to z-axis [18] now;
+	
+	spray = 0;	
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	while(1)
+	{
+		angle = get XZ_ATAN(-419) - <0>;
+		turn land_rotate1 to y-axis angle now;
+		turn land_rotate2 to y-axis angle now;
+		turn land_rotate3 to y-axis angle now;
+		
+		turn land_rotate1 to x-axis 0 now;
+		turn land_rotate2 to x-axis 0 now;
+		turn land_rotate3 to x-axis 0 now;
+				
+		turn land_rotate1 to z-axis 0 now;
+		turn land_rotate2 to z-axis 0 now;
+		turn land_rotate3 to z-axis 0 now;
+			
+		sleep 1;
+	}
+	
+	spin dish around y-axis speed <60.005495>;
+}
+
+Activate()
+{
+	spin dish around y-axis speed <60.005495>;
+}
+
+Deactivate()
+{
+	stop-spin dish around y-axis;
+}
+
+
+QueryLandingPad(Func_Var_1, Func_Var_2, Func_Var_3)
+{
+	Func_Var_1 = 4;
+	Func_Var_2 = 5;
+	Func_Var_3 = 6;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+		
+	if( Static_Var_1 == 1 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode turret type FALL | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode flare1 type FALL | BITMAP1;
+			explode flare2 type FALL | BITMAP5;
+			explode sleeves type SHATTER | BITMAP1;
+			explode barrel1 type FALL | BITMAP1;
+			explode barrel2 type FALL | BITMAP1;
+			explode barrel3 type FALL | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode sleeves type SHATTER | BITMAP1;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode turret type FALL | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode flare1 type FALL | BITMAP1;
+			explode flare2 type FALL | BITMAP5;
+			explode sleeves type SHATTER | BITMAP1;
+			explode barrel1 type FALL | BITMAP1;
+			explode barrel2 type FALL | BITMAP1;
+			explode barrel3 type FALL | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode sleeves type SHATTER | BITMAP1;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode turret type FALL | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode flare1 type FALL | BITMAP1;
+			explode flare2 type FALL | BITMAP5;
+			explode sleeves type SHATTER | BITMAP1;
+			explode barrel1 type FALL | BITMAP1;
+			explode barrel2 type FALL | BITMAP1;
+			explode barrel3 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode turret type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | BITMAP1;
+		explode flare2 type FALL | BITMAP5;
+		explode sleeves type SHATTER | BITMAP1;
+		explode barrel1 type FALL | BITMAP1;
+		explode barrel2 type FALL | BITMAP1;
+		explode barrel3 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode sleeves type SHATTER | BITMAP1;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode sleeves type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

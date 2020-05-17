@@ -1,0 +1,89 @@
+// Arm Metal Extractor Script
+
+piece base;
+
+static-var	spinspeed,spinacc,spindec;
+
+#define SMOKEPIECE1 base
+
+#include "StateChg.h"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	spin arms around y-axis speed spinspeed accelerate spinacc;
+	}
+
+Stop()
+	{
+	stop-spin arms around y-axis decelerate spindec;
+	wait-for-turn arms around y-axis;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	spinspeed = 0;
+	spinacc = <0.5>;
+	spindec = <1.0>;
+	dont-shade arms;
+	dont-cache arms;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+SetSpeed(the_speed)
+	{
+	spinspeed = the_speed * <0.25>;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode arms type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode arms type	SHATTER | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode arms type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode arms type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

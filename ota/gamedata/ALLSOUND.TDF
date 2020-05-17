@@ -1,0 +1,203 @@
+[ActivateAllStatBars]
+	{
+	sound=explode.wav;
+	}
+
+[ENDGAMESTATBAR]
+	{
+	sound=beep6;
+	}
+
+[ENDGAMESCORE]
+	{
+	sound=beep6;
+	}
+
+[BGM]
+	{
+	sound=drone2;
+	}
+
+[BIGBUTTON]
+	{
+	sound=butmain1;
+	}
+
+[SKIRMISH]
+	{
+	sound=butnskir;
+	}
+
+[MULTI]
+	{
+	sound=butnagr1;
+	}
+
+[SKIRMISHCHEAT]
+	{
+	sound=cantdo;
+	}
+
+[OPTIONS]
+	{
+	sound=butoptn;
+	}
+[EXIT]
+	{
+	sound=button2;
+	}
+
+[SMLBUTTON]
+	{
+	sound=butmain4;
+	}
+
+[SLIDER]
+	{
+	sound=butscro2;
+	}
+
+[SMALLBUTTON]
+	{
+	sound=butscro2;
+	}
+
+[SIDESELECT]
+	{
+	sound=butnsid1;
+	}
+
+[SIDESELECT2]
+	{
+	sound=butnsid3;
+	}
+
+[MORE]
+	{
+	sound=button12;
+	}
+
+
+[JOINGAME]
+	{
+	sound=butmain2;
+	}
+
+[MAINMENU]
+	{
+	sound=explode.wav;
+	}
+
+[TREEBURN]
+	{
+	sound=burn02;
+	}
+
+[SelectMultipleUnits]
+	{
+	sound=Button3;
+	}
+
+[MessageArrived]
+	{
+	sound=beep1;
+	}
+
+[CREATESQUAD]
+	{
+	sound=beep4;
+	}
+
+[SELECTSQUAD]
+	{
+	sound=beep4;
+	}
+
+[OUTOFRANGE]
+	{
+	sound=range1;
+	}
+
+[NOMETAL]
+	{
+	sound=metalno1;
+	}
+
+[NOENERGY]
+	{
+	sound=energyn2;
+	}
+
+[ADDBUILD]
+	{
+	sound=button9;
+	}
+
+[NOTOKTOBUILD]
+	{
+	sound=button13;
+	}
+
+[OKTOBUILD]
+	{
+	sound=button10;
+	}
+
+[ORDERSBUTTON]
+	{
+	sound=butnmbl1;
+	}
+[BUILDBUTTON]
+	{
+	sound=butnmbl1;
+	}
+
+[SUBBUILD]
+	{
+	sound=button7;
+	}
+
+[NEXTBUILDMENU]
+	{
+	sound=butscro1;
+	}
+
+[SETFIREORDERS]
+	{
+	sound=butnagr2;
+	}
+
+[SETMOVEORDERS]
+	{
+	sound=butnmbl2;
+	}
+
+[SPECIALORDERS]
+	{
+	sound=button5;
+	}
+
+[IMMEDIATEORDERS]
+	{
+	sound=button5;
+	}
+
+[ALLY]
+	{
+	sound=butscro1;
+	}
+
+[PREVIOUS]
+	{
+	sound=button1;
+	}
+
+[PANEL]
+	{
+	sound=servsml6;
+	}
+
+[Victory Condition]
+	{
+	sound=victory2;
+	}

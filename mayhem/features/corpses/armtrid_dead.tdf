@@ -1,0 +1,35 @@
+[armtrid_dead]
+{
+world=All Worlds;
+description=Trident Wreckage;
+category=arm_corpses;
+object=armtrid_dead;
+featuredead=armtrid_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=1495;
+damage=3720;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armtrid_heap]
+{
+world=All Worlds;
+description=Trident Wreckage;
+category=arm_corpses;
+object=3x3d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=748;
+damage=3780;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

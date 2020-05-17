@@ -1,0 +1,35 @@
+[corkrak_dead]
+{
+world=All Worlds;
+description=Kraken Wreckage;
+category=core_corpses;
+object=corkrak_dead;
+featuredead=corkrak_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=1380;
+damage=3800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corkrak_heap]
+{
+world=All Worlds;
+description=Kraken Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=690;
+damage=3800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

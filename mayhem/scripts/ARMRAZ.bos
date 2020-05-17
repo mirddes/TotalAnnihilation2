@@ -1,0 +1,636 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  ground, hips, luparm, lloarm, lhand, fingerla, fingerlb, thumbl,
+       ruparm, rloarm, rhand, fingerra, fingerrb, thumbr, body, arml,
+       cannonl, flareb, canonbarrel1, armr, cannonr, flarea, canonbarrel2, EnrgyCell1,
+       Enrgycell2, b1, b2, ar, al, calcarm, calcflare, calcpoint, 
+       turret, barrel, axis, flare, hpoint, smokepoint, smokeemit;
+
+static-var  Restore_Delay, gun_1, bMoving, bAiming, unitviewer, bHeading, AimTer, walking, reload; //bHealing,
+
+walk()
+{
+	//start walk section
+	walking = 1;
+	if( bMoving )
+	{
+		if( !bAiming )
+		{
+			bHeading = 0;
+			turn arml to x-axis <18> speed <9>;
+			turn armr to x-axis <-18> speed <18>;
+		}
+		turn luparm to x-axis <38.005495> speed <50>;
+		turn ruparm to x-axis <-38.005495> speed <50>;
+		turn lhand to x-axis <-28.005495> speed <70>;
+		turn rhand to x-axis <8> speed <50>;
+		turn rloarm to x-axis <-30> speed <80>;
+		turn body to x-axis <4> speed <5>;
+		move body to y-axis [0] speed [5];
+		sleep 404;
+	}
+	if( bMoving )
+	{
+		turn lhand to x-axis <38.005495> speed <100>;
+		turn rhand to x-axis <18> speed <50>;
+		turn rloarm to x-axis <38.005495> speed <100>;
+		turn fingerla to x-axis <45.005495> speed <100>;
+		turn fingerlb to x-axis <45.005495> speed <100>;
+		turn thumbl to x-axis <-45.005495> speed <100>;
+		turn fingerra to x-axis <0> speed <100>;
+		turn fingerrb to x-axis <0> speed <100>;
+		sleep 360;
+	}
+	if( bMoving )
+	{
+		turn thumbr to x-axis <0> speed <100>;
+		move hips to y-axis [1] speed [1];
+		turn hips to z-axis <3> speed <3>;
+		if( !bAiming )
+		{
+			turn arml to x-axis <-18> speed <20>;
+			turn armr to x-axis <18> speed <20>;
+		}
+		turn luparm to x-axis <-38.005495> speed <50>;
+		turn ruparm to x-axis <38.005495> speed <50>;
+		turn rhand to x-axis <-38.005495> speed <130>;
+		turn lloarm to x-axis <-30> speed <80>;
+		sleep 840;
+	}
+	if( bMoving )
+	{
+		turn rhand to x-axis <38.005495> speed <100>;
+		turn lloarm to x-axis <30.005495> speed <80>;
+		move hips to y-axis [0] speed [2];
+		turn fingerla to x-axis <0> speed <100>;
+		turn fingerlb to x-axis <0> speed <100>;
+		turn fingerra to x-axis <45.005495> speed <100>;
+		turn fingerrb to x-axis <45.005495> speed <100>;
+		turn thumbr to x-axis <-45.005495> speed <100>;
+		sleep 360;
+	}
+	if( bMoving )
+	{
+		turn thumbl to x-axis <0> speed <100>;
+		move hips to y-axis [2] speed [2];
+		turn hips to z-axis <-5> speed <8>;
+		turn arml to x-axis <0> speed <14>;
+		turn armr to x-axis <0> speed <14>;
+	}
+	//walking animation loop
+	while( bMoving )
+	{
+		if( !bAiming )
+		{
+			turn arml to x-axis <18> speed <20>;
+			turn armr to x-axis <-18> speed <20>;
+			turn body to y-axis <-8> speed <12>;
+			turn axis to y-axis <8> speed <12>;
+			if( !AimTer )
+			{
+				turn hpoint to y-axis <-8> speed <12>;
+			}
+		}
+		turn body to x-axis <-3> speed <6>;
+		turn luparm to x-axis <38.005495> speed <50>;
+		turn ruparm to x-axis <-30> speed <50>;
+		turn lhand to x-axis <-38.005495> speed <130>;
+		turn rloarm to x-axis <-30> speed <80>;
+		sleep 840;
+		if( bMoving )
+		{
+			turn lhand to x-axis <38.005495> speed <100>;
+			//turn rhand to x-axis <38.005495> speed <70>;
+			turn rloarm to x-axis <30.005495> speed <80>;
+			move hips to y-axis [0] speed [2];
+			turn fingerla to x-axis <45.005495> speed <100>;
+			turn fingerlb to x-axis <45.005495> speed <100>;
+			turn thumbl to x-axis <-45.005495> speed <100>;
+			turn fingerra to x-axis <0> speed <100>;
+			turn fingerrb to x-axis <0> speed <100>;
+			sleep 360;
+		}
+		if( bMoving )
+		{
+			turn thumbr to x-axis <0> speed <100>;
+			move hips to y-axis [1] speed [1];
+			turn hips to z-axis <3> speed <7>;
+			if( !bAiming )
+			{
+				turn arml to x-axis <-18> speed <20>;
+				turn armr to x-axis <18> speed <20>;
+				turn body to y-axis <8> speed <12>;
+				turn axis to y-axis <-8> speed <12>;
+				if( !AimTer )
+				{
+					turn hpoint to y-axis <8> speed <12>;
+				}
+			}
+			turn body to x-axis <-3> speed <6>;
+			turn luparm to x-axis <-30> speed <50>;
+			turn ruparm to x-axis <38.005495> speed <50>;
+			turn rhand to x-axis <-38.005495> speed <130>;
+			turn lloarm to x-axis <-30> speed <80>;
+			sleep 840;
+		}
+		if( bMoving )
+		{
+			turn rhand to x-axis <38.005495> speed <100>;
+			turn lloarm to x-axis <30.005495> speed <80>;
+			move hips to y-axis [0] speed [2];
+			turn fingerla to x-axis <0> speed <100>;
+			turn fingerlb to x-axis <0> speed <100>;
+			turn fingerra to x-axis <45.005495> speed <100>;
+			turn fingerrb to x-axis <45.005495> speed <100>;
+			turn thumbr to x-axis <-45.005495> speed <100>;
+			sleep 360;
+		}
+		if( bMoving )
+		{
+			turn thumbl to x-axis <0> speed <100>;
+			move hips to y-axis [1] speed [1];
+			turn hips to z-axis <-3> speed <7>;
+		}
+	}
+	walking = 0;
+	//stopwalking
+	if( !bMoving )
+	{
+		turn luparm to x-axis <0> speed <50>;
+		turn ruparm to x-axis <0> speed <50>;
+		turn lloarm to x-axis <0> speed <100>;
+		turn rloarm to x-axis <0> speed <100>;
+		turn body to x-axis <0> speed <20>;
+		move hips to y-axis [0] speed [20];
+		turn hips to z-axis <0> speed <20>;
+		turn fingerra to x-axis <0> speed <100>;
+		turn fingerrb to x-axis <0> speed <100>;
+		turn thumbr to x-axis <0> speed <100>;
+		turn fingerla to x-axis <0> speed <100>;
+		turn fingerlb to x-axis <0> speed <100>;
+		turn thumbl to x-axis <0> speed <100>;
+		turn rhand to x-axis <0> speed <100>;
+		turn lhand to x-axis <0> speed <100>;
+		turn body to x-axis <8> speed <48>;
+		if( !bAiming )
+		{
+			turn arml to x-axis <-8> speed <48>;
+			turn armr to x-axis <-8> speed <48>;
+		}
+		wait-for-turn body around x-axis;
+	}
+	if( !bMoving )
+	{
+		turn body to x-axis <-1> speed <48>;
+		wait-for-turn body around x-axis;
+	}
+	if( !bMoving )
+	{
+		turn body to x-axis <0> speed <48>;
+		if( !bAiming )
+		{
+			turn arml to x-axis <0> speed <48>;
+			turn armr to x-axis <0> speed <48>;
+		}
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from smokeemit;
+		}
+		sleeptime = healthpercent * 30;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( !bMoving AND !bAiming AND !AimTer  )
+		{	
+			if( healthpercent < 100 )
+			{
+				Move barrel to y-axis [-0.2] speed [2];
+				Move barrel to z-axis [-1] speed [2];
+				Move body to y-axis [-2] speed [0.5];
+				turn canonbarrel1 to z-axis <0> speed <30>;
+				turn canonbarrel2 to z-axis <0> speed <30>;
+			}
+		}
+		sleep sleeptime;
+		/*if( bHealing AND ( bMoving OR bAiming OR AimTer ) )
+		{
+			bHealing = 0;
+			get SET_UNITINFO(uiHealTime,0);
+		}*/
+		
+	}
+}
+
+SmokeGun(Func_Var_1)
+{
+	signal 16;
+	set-signal-mask 16;
+	Func_Var_1 = 150;
+	emit-sfx 256 | 1 from flare;
+	sleep 67;
+	emit-sfx 256 | 1 from flare;
+	sleep 100;
+	emit-sfx 256 | 1 from flare;
+	sleep 167;
+	emit-sfx 256 | 1 from flare;
+	sleep 233;
+	emit-sfx 256 | 1 from flare;
+	sleep 300;
+	emit-sfx 256 | 1 from flare;
+}
+
+Demo()
+{
+	unitviewer = TRUE;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-cache flare;
+	dont-cache flarea;
+	dont-cache flareb;
+	hide flare;
+	hide flarea;
+	hide flareb;
+	turn calcarm to x-axis <0> now;
+	gun_1 = ground;
+	unitviewer = FALSE;
+	bMoving = FALSE;
+	bAiming = FALSE;
+	//bHealing = 0;
+	AimTer = 0;
+	Restore_Delay = 3500;
+	bHeading = 0;
+	walking = 0;
+	reload = 0;
+	set ARMORED to 1;
+	/*set GRANT_UNITINFO to 1;
+	get SET_UNITINFO(uiHealTime,0);*/
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	dont-cache EnrgyCell1;
+	dont-shade EnrgyCell1;
+	dont-cache Enrgycell2;
+	dont-shade Enrgycell2;
+	spin flarea around z-axis speed <700>;
+	spin flareb around z-axis speed <700>;
+	spin smokepoint around y-axis speed <300>;
+	start-script SmokeUnit();
+	/*get SET_UNITINFO(uiHealTime,20);
+	set GRANT_UNITINFO to 0;
+	if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+	if( !walking )
+	{
+		start-script walk();
+	}
+	if( !bAiming )
+	{
+		bHeading = 0;
+		turn body to y-axis <0> speed <60>;
+		turn axis to y-axis <0> speed <60>;
+		if( Rand( 1, 7 ) == 1 )
+		{
+			spin canonbarrel1 around z-axis speed <100> accelerate <10>;
+			spin canonbarrel2 around z-axis speed <100> accelerate <10>;
+		}
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+RestoreTertiary()
+{
+	sleep 6000;
+	turn hpoint to y-axis bHeading speed <70>;
+	AimTer = 0;
+}
+
+RestoreAfterDelay(Func_Var_1)
+{
+	sleep Restore_Delay;
+	stop-spin canonbarrel1 around z-axis decelerate <25>;
+	stop-spin canonbarrel2 around z-axis decelerate <25>;
+	turn cannonr to y-axis <0> speed <15>;
+	turn cannonl to y-axis <0> speed <15>;
+	if( bMoving )
+	{
+		bHeading = 0;
+		turn body to y-axis <0> speed <60>;
+		turn axis to y-axis <0> speed <60>;
+		wait-for-turn body around y-axis;
+	}
+	if( !bMoving )
+	{
+		turn arml to x-axis <0> speed <20>;
+		turn armr to x-axis <0> speed <20>;
+		wait-for-turn arml around x-axis;
+	}
+	wait-for-turn cannonr around y-axis;
+	bAiming = FALSE;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = body;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flareb;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flarea;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	var Func_Var_3, Func_Var_4, Func_Var_5;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	bAiming = TRUE;
+	spin canonbarrel1 around z-axis speed <1500> accelerate <25>;
+	spin canonbarrel2 around z-axis speed <1500> accelerate <25>;
+	if( !unitviewer )
+	{
+		turn calcarm to x-axis <0> - pitch now;
+		Func_Var_4 = get PIECE_Y(calcpoint);
+		Func_Var_3 = get PIECE_Y(calcflare);
+		if( Func_Var_4 >= Func_Var_3 )
+		{
+			Func_Var_5 = ( Func_Var_4 - Func_Var_3 ) / 300 + 360;
+			turn cannonr to y-axis Func_Var_5 speed <60>;
+			turn cannonl to y-axis <0> - Func_Var_5 speed <60>;
+		}
+		if( Func_Var_4 < Func_Var_3 )
+		{
+			turn cannonr to y-axis <0> speed <60>;
+			turn cannonl to y-axis <0> speed <60>;
+		}
+		turn body to y-axis heading speed <120>;
+		turn axis to y-axis <0.005495> - heading speed <120>;
+		if( !AimTer )
+		{
+			turn hpoint to y-axis heading speed <120>;
+		}
+		turn arml to x-axis <0> - pitch speed <60>;
+		turn armr to x-axis <0> - pitch speed <60>;
+	}
+	if( unitviewer )
+	{
+		turn body to y-axis heading speed <120>;
+		turn axis to y-axis <0.005495> - heading speed <120>;
+	}
+	wait-for-turn body around y-axis;
+	bHeading = heading;
+	wait-for-turn arml around x-axis;
+	wait-for-turn armr around x-axis;
+	wait-for-turn cannonr around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( gun_1 == 0 )
+	{
+		move b2 to z-axis [-2] speed [400];
+		turn al to x-axis <20> speed <400>;
+		turn cannonl to x-axis <-20> speed <400>;
+		show flareb;
+		sleep 100;
+		hide flareb;
+		move b2 to z-axis [0] speed [2];
+		turn al to x-axis <0> speed <35>;
+		turn cannonl to x-axis <0> speed <35>;
+		gun_1 = hips;
+		return (0);
+	}
+	if( gun_1 == 1 )
+	{
+		move b1 to z-axis [-2] speed [400];
+		turn ar to x-axis <20> speed <400>;
+		turn cannonr to x-axis <-20> speed <400>;
+		show flarea;
+		sleep 100;
+		hide flarea;
+		move b1 to z-axis [0] speed [2];
+		turn ar to x-axis <0> speed <35>;
+		turn cannonr to x-axis <0> speed <35>;
+		gun_1 = ground;
+		return (0);
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = hpoint;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimTertiary(heading, pitch)
+{
+	AimTer = 1;
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	turn hpoint to y-axis heading speed <200>;
+	while( reload )
+	{
+		wait-for-move barrel along z-axis;
+		turn hpoint to y-axis heading speed <200>;
+	}
+	wait-for-turn hpoint around y-axis;
+	start-script RestoreTertiary();
+	return (1);
+}
+
+FireTertiary()
+{
+	reload = 1;
+	start-script SmokeGun();
+	show flare;
+	move turret to z-axis [-0.5] speed [200];
+	move barrel to z-axis [-1] speed [400];
+	sleep 200;
+	move barrel to z-axis [0] speed [1];
+	move turret to z-axis [0] speed [1];
+	hide flare;
+	wait-for-move barrel along z-axis;
+	reload = 0;
+}
+
+Killed(severity, corpsetype)
+{
+	explode EnrgyCell1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Enrgycell2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode barrel type BITMAPONLY | BITMAP1;
+		explode turret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode hips type BITMAPONLY | BITMAP1;
+		explode luparm type BITMAPONLY | BITMAP3;
+		explode lloarm type BITMAPONLY | BITMAP1;
+		explode lhand type BITMAPONLY | BITMAP3;
+		explode fingerla type BITMAPONLY | BITMAP5;
+		explode fingerlb type BITMAPONLY | BITMAP5;
+		explode thumbl type BITMAPONLY | BITMAP1;
+		explode ruparm type BITMAPONLY | BITMAP3;
+		explode rloarm type BITMAPONLY | BITMAP4;
+		explode rhand type BITMAPONLY | BITMAP1;
+		explode fingerra type BITMAPONLY | BITMAP1;
+		explode fingerrb type BITMAPONLY | BITMAP1;
+		explode thumbr type BITMAPONLY | BITMAP5;
+		explode body type BITMAPONLY | BITMAP1;
+		explode arml type BITMAPONLY | BITMAP3;
+		explode cannonl type BITMAPONLY | BITMAP1;
+		explode flareb type BITMAPONLY | BITMAP4;
+		explode canonbarrel1 type BITMAPONLY | BITMAP1;
+		explode armr type BITMAPONLY | BITMAP5;
+		explode cannonr type BITMAPONLY | BITMAP3;
+		explode flarea type BITMAPONLY | BITMAP1;
+		explode canonbarrel2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode hips type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode luparm type BITMAPONLY | BITMAP2;
+		explode lloarm type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode lhand type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode fingerla type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode fingerlb type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode thumbl type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode ruparm type BITMAPONLY | BITMAP4;
+		explode rloarm type FALL | SMOKE | BITMAP3;
+		explode rhand type FALL | SMOKE | BITMAP2;
+		explode fingerra type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode fingerrb type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode thumbr type FALL | BITMAP5;
+		explode body type BITMAPONLY | BITMAP2;
+		explode arml type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode cannonl type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode flareb type FALL | SMOKE | BITMAP2;
+		explode canonbarrel1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode armr type FALL | SMOKE | BITMAP2;
+		explode cannonr type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode canonbarrel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode hips type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode luparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lhand type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode fingerla type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode fingerlb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode thumbl type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ruparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rhand type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode fingerra type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode fingerrb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode thumbr type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode body type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode arml type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode cannonl type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode canonbarrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode armr type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode cannonr type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode canonbarrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

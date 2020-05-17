@@ -1,0 +1,7 @@
+MISSION 14.2CORE
+Wir konnten eine kleine Garnison der ARM isolieren. Zerstören Sie die feindlichen Einheiten und erobern Sie so viele Gebäude wie möglich.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Nichts weiter als ein kleiner Reinigungsauftrag (&r37%,Irrtum:8%&). Die Garnison ist nur klein und schlecht befestigt (&R29%,Irrtum:6%&). 
+
+WALTEN SIE IHRES AMTES.

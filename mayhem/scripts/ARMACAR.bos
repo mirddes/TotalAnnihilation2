@@ -1,0 +1,296 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  r1, r2, r3, r4, pad1, pad2, pad3, pad4,
+       base, anti, door1, door2, door3, door4, radar, turret,
+       arm1, arm2, dish1, dish2, wake2, wake1, wake3, wake4, box;
+
+static-var  pad_1, gun_2, busy_3, request_4, busy_5, state_6;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_3 )
+	{
+		return (0);
+	}
+	busy_3 = 1;
+	while( request_4 != state_6 )
+	{
+		if( request_4 )
+		{
+			turn dish1 to z-axis <84.00> speed <147.00>;
+			turn dish2 to z-axis <-84.00> speed <147.00>;
+			wait-for-turn dish1 around z-axis;
+			wait-for-turn dish2 around z-axis;
+			spin turret around y-axis speed <-40.00>;
+			spin arm1 around x-axis speed <125.00>;
+			spin arm2 around x-axis speed <-125.00>;
+			state_6 = 1;
+		}
+		if( !request_4 )
+		{
+			turn turret to y-axis <0.00> speed <75.00>;
+			turn arm1 to x-axis <0.00> speed <125.00>;
+			turn arm2 to x-axis <0.00> speed <125.00>;
+			wait-for-turn turret around y-axis;
+			wait-for-turn arm1 around x-axis;
+			wait-for-turn arm2 around x-axis;
+			turn dish1 to z-axis <0.00> speed <178.00>;
+			turn dish2 to z-axis <0.00> speed <178.00>;
+			wait-for-turn dish1 around z-axis;
+			wait-for-turn dish2 around z-axis;
+			state_6 = 0;
+		}
+	}
+	busy_3 = 0;
+}
+
+Create()
+{
+	pad_1 = 0;
+	gun_2 = 0;
+	busy_3 = 0;
+	request_4 = 0;
+	busy_5 = 0;
+	state_6 = 0;
+	start-script SmokeUnit();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+}
+
+Activate()
+{
+	request_4 = 1;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	request_4 = 0;
+	start-script RequestState();
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	while( TRUE )
+	{
+		emit-sfx 4 from wake1;
+		emit-sfx 2 from wake2;
+		emit-sfx 4 from wake3;
+		emit-sfx 2 from wake4;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal 8;
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	return (1);
+}
+
+FireSecondary()
+{
+	++gun_2;
+	if( gun_2 > 3 )
+	{
+		gun_2 = 0;
+	}
+}
+
+AimTertiary(heading, pitch)
+{
+	return (1);
+}
+
+FireTertiary()
+{
+	sleep 200;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = box;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = gun_2;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+RestorePrimary()
+{
+	sleep 5000;
+	if( !busy_5 )
+	{
+	turn door1 to z-axis <0> speed <75>;
+	turn door2 to z-axis <0> speed <75>;
+	turn door3 to x-axis <0> speed <75>;
+	turn door4 to x-axis <0> speed <75>;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	busy_5 = 1;
+	turn door1 to z-axis <-75> speed <150>;
+	turn door2 to z-axis <75> speed <150>;
+	turn door3 to x-axis <-75> speed <150>;
+	turn door4 to x-axis <75> speed <150>;
+	sleep 600;
+	busy_5 = 0;
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	Start-script RestorePrimary();
+	return (1);
+}
+
+FirePrimary()
+{
+	sleep 500;	
+	turn door1 to z-axis <0> speed <75>;
+	turn door2 to z-axis <0> speed <75>;
+	turn door3 to x-axis <0> speed <75>;
+	turn door4 to x-axis <0> speed <75>;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = anti;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+QueryLandingPad(Func_Var_1, Func_Var_2, Func_Var_3, Func_Var_4)
+{
+	Func_Var_1 = 4;
+	Func_Var_2 = 5;
+	Func_Var_3 = 6;
+	Func_Var_4 = 7;
+	++pad_1;
+	if( pad_1 == 1 )
+	{
+		Func_Var_1 = 5;
+		Func_Var_2 = 6;
+		Func_Var_3 = 7;
+		Func_Var_4 = 4;
+	}
+	if( pad_1 == 2 )
+	{
+		Func_Var_1 = 6;
+		Func_Var_2 = 7;
+		Func_Var_3 = 4;
+		Func_Var_4 = 5;
+	}
+	if( pad_1 == 3 )
+	{
+		Func_Var_1 = 7;
+		Func_Var_2 = 4;
+		Func_Var_3 = 5;
+		Func_Var_4 = 6;
+		pad_1 = 0;
+	}
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAPNUKE;
+		explode pad1 type BITMAPONLY | BITMAP2;
+		explode pad2 type BITMAPONLY | BITMAP3;
+		explode pad3 type BITMAPONLY | BITMAP4;
+		explode radar type SHATTER | FIRE | BITMAP4;
+		explode pad4 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAPNUKE;
+		explode pad1 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode pad2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode pad3 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode radar type SHATTER | FIRE | BITMAP4;
+		explode pad4 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAPNUKE;
+		explode pad1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode pad2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode pad3 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode radar type SHATTER | SMOKE | BITMAP4;
+		explode pad4 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAPNUKE;
+	explode pad1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAPNUKE;
+	explode pad2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAPNUKE;
+	explode pad3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAPNUKE;
+	explode radar type SHATTER | FIRE | BITMAPNUKE;
+	explode pad4 type FALL | SMOKE | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+}

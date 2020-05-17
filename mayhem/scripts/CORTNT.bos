@@ -1,0 +1,216 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+#define FBIMAXVELOCITY		[0.75] * 12
+
+piece  leg1, foot1, leg2, foot2, leg3, foot3, leg4, foot4, 
+       g1, g2, g3, g4, hip1, hip2, hip3, hip4,
+       base, body;
+
+static-var  bMoving, depth_2, speed1, speed2, speed3, speed4, speed5, speed6, x_slope, z_slope;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_2 != 0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot2)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot2)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot4)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot4)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_2 == 0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+	}
+}
+
+Create()
+{
+	var fbimv;
+	fbimv=FBIMAXVELOCITY;
+	speed1=fbimv / 22542 * <1>;
+	speed2=speed1 * 2;
+	speed3=fbimv / 19602 * <1>;
+	speed4=speed3 * 2;
+	speed5=speed4 * 2;
+	speed6=fbimv;
+	bMoving = FALSE;
+	x_slope = 0;
+	z_slope = 0;
+	start-script SmokeUnit();
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_2 = Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+MotionControl()
+	{
+	var f1limit, f2limit, f3limit, f4limit;
+	f1limit = 0;
+	f2limit = 0;
+	f3limit = 0;
+	f4limit = 0;
+	bMoving=1;
+	while (bMoving)
+		{
+		turn hip4 to y-axis <-20> speed speed1;
+		turn leg4 to y-axis <40> speed speed2;
+		turn foot4 to y-axis <-20> speed speed1;
+		turn hip1 to y-axis <20> speed speed1;
+		turn leg1 to y-axis <-40> speed speed2;
+		turn foot1 to y-axis <20> speed speed1;
+		turn leg2 to z-axis <50> speed <500>;
+		turn foot2 to z-axis <-50> speed <500>;
+		turn hip2 to y-axis <-20> speed speed3;
+		turn leg2 to y-axis <40> speed speed4;
+		turn foot2 to y-axis <-20> speed speed3;
+		move foot3 to y-axis [3] speed [30];
+		turn hip3 to y-axis <20> speed speed3;
+		turn leg3 to y-axis <-40> speed speed5;
+		turn foot3 to y-axis <20> speed speed4;
+		move body to z-axis [1] speed speed6;
+		wait-for-move body along z-axis;
+		move body to z-axis [0] speed speed6;
+		wait-for-turn leg2 around y-axis;
+		turn leg2 to z-axis <0> speed <400>;
+		turn foot2 to z-axis <0> speed <222>;
+		move foot2 to y-axis f2limit speed [40];
+		move foot3 to y-axis f3limit speed [40];
+		wait-for-move foot2 along y-axis;
+		sleep 100;
+		if (bMoving)
+			{
+			turn hip2 to y-axis <20> speed speed1;
+			turn leg2 to y-axis <-40> speed speed2;
+			turn foot2 to y-axis <20> speed speed1;
+			turn hip3 to y-axis <-20> speed speed1;
+			turn leg3 to y-axis <40> speed speed2;
+			turn foot3 to y-axis <-20> speed speed1;
+			turn leg4 to z-axis <-50> speed <500>;
+			turn foot4 to z-axis <50> speed <500>;
+			turn foot4 to x-axis <0> speed <167>;
+			turn hip4 to y-axis <20> speed speed3;
+			turn leg4 to y-axis <-40> speed speed4;
+			turn foot4 to y-axis <20> speed speed3;
+			move body to z-axis [1] speed speed6;
+			move foot1 to y-axis [3] speed [30];
+			turn hip1 to y-axis <-20> speed speed3;
+			turn leg1 to y-axis <40> speed speed5;
+			turn foot1 to y-axis <-20> speed speed4;
+			wait-for-move body along z-axis;
+			move body to z-axis [0] speed speed6;
+			wait-for-turn leg4 around y-axis;
+			turn leg4 to z-axis <0> speed <400>;
+			turn foot4 to z-axis <0> speed <222>;
+			move foot4 to y-axis f4limit speed [40];
+			move foot1 to y-axis f1limit speed [40];
+			wait-for-move foot4 along y-axis;
+			sleep 100;
+			}
+		}
+	turn hip1 to y-axis <0> speed <60>;
+	turn hip2 to y-axis <0> speed <60>;
+	turn hip3 to y-axis <0> speed <60>;
+	turn hip4 to y-axis <0> speed <60>;
+	turn leg1 to y-axis <0> speed <120>;
+	turn leg2 to y-axis <0> speed <120>;
+	turn leg3 to y-axis <0> speed <120>;
+	turn leg4 to y-axis <0> speed <120>;
+	turn foot1 to x-axis <0> speed <120>;
+	turn foot2 to x-axis <0> speed <120>;
+	turn foot3 to x-axis <0> speed <120>;
+	turn foot4 to x-axis <0> speed <120>;
+	turn foot1 to y-axis <0> speed <120>;
+	turn foot2 to y-axis <0> speed <120>;
+	turn foot3 to y-axis <0> speed <120>;
+	turn foot4 to y-axis <0> speed <120>;
+	turn foot1 to z-axis <0> speed <120>;
+	turn foot2 to z-axis <0> speed <120>;
+	turn foot3 to z-axis <0> speed <120>;
+	turn foot4 to z-axis <0> speed <120>;
+	move body to z-axis [0] now;
+	}
+
+StartMoving()
+{
+	if (!bMoving)
+		{
+		bMoving=1;
+		start-script MotionControl();
+		}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 50 )
+	{
+		explode body type BITMAPONLY | BITMAP2;
+		explode leg1 type BITMAPONLY | BITMAP2;
+		explode leg2 type BITMAPONLY | BITMAP2;
+		explode leg3 type BITMAPONLY | BITMAP2;
+		explode leg4 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode body type BITMAPONLY | BITMAP2;
+	explode leg1 type FALL | EXPLODE_ON_HIT | SMOKE | FIRE | BITMAP2;
+	explode leg2 type FALL | EXPLODE_ON_HIT | SMOKE | FIRE | BITMAP2;
+	explode leg3 type FALL | EXPLODE_ON_HIT | SMOKE | FIRE | BITMAP2;
+	explode leg4 type FALL | EXPLODE_ON_HIT | SMOKE | FIRE | BITMAP2;
+}

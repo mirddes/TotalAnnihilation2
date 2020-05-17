@@ -1,0 +1,159 @@
+[MarsVent01]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent02]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent03]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=MarsVents;
+	seqname=vent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent04]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent05]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent05;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent06]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent06;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent07]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent07;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent08]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent08;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent09]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent09;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MarsVent10]
+	{
+	world=mars;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsvents;
+	seqname=vent10;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

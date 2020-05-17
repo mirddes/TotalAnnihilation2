@@ -1,0 +1,8 @@
+MISSION 24.3CORE
+
+INTELL-TAP:
+Arm has delivered us a minor setback. There is a high probability that they have expended more resources than was rational. Survive the coming onslaught and Arm will be nearly finished. 
+
+&RSurvive.&
+
+DO SO NOW.

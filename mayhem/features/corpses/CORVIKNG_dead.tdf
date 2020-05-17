@@ -1,0 +1,33 @@
+[CORVIKNG_dead]
+{
+world=All Worlds;
+description=Viking Wreckage;
+category=core_corpses;
+object=CORVIKNG_dead;
+featuredead=CORVIKNG_heap;
+footprintx=3;
+footprintz=3;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=303;
+damage=1600;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[CORVIKNG_heap]
+{
+world=All Worlds;
+description=Viking Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=152;
+damage=1600;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}

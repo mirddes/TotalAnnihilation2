@@ -1,0 +1,35 @@
+[armfh_dead]
+{
+world=All Worlds;
+description=Apollo Wreckage;
+category=arm_corpses;
+object=armfh_dead;
+featuredead=armfh_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=4;
+metal=827;
+damage=1645;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armfh_heap]
+{
+world=All Worlds;
+description=Apollo Wreckage;
+category=arm_corpses;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=414;
+damage=1685;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

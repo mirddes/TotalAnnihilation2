@@ -1,0 +1,35 @@
+[corphovr_dead]
+{
+world=All Worlds;
+description=Haven Wreckage;
+category=core_corpses;
+object=4x4e;
+featuredead=corphovr_heap;
+footprintx=4;
+footprintz=4;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=431;
+damage=1500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corphovr_heap]
+{
+world=All Worlds;
+description=Haven Wreckage;
+category=core_corpses;
+object=3x3e;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=216;
+damage=1500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

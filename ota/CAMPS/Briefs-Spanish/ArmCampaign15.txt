@@ -1,0 +1,11 @@
+MISIÓN 15.001CLANR
+Capturar la torre avanzada de radar del Núcleo.
+
+&YPRIORIDAD CRÍTICA&
+Esta vez estás solo, Comandante. Hay que dar por perdido al equipo de reconocimiento enviado como avanzadilla. Ábrete camino hacia las torres de comunicaciones. Si puedes capturar una torre avanzada de radar CORARAD habremos conseguido información muy valiosa relativa a los efectivos del Núcleo en este nuevo planeta.
+
+INFORMACIÓN
+El nuevo planeta se llama Rougpelt. Quedas advertido, En Rougpelt abundan las lluvias de meteoritos. ¡Ten cuidado! Tu habilidad al apresar puede hacer que consigas algunos aliados mientras buscas la torre avanzada de radar. Más aún, la alienígena vida vegetal del planeta puede ser una fuente de energía útil.
+
+FIN
+

@@ -1,0 +1,10 @@
+MISSION 14.003ARMB
+Capture the Gate on Crustal 19. Either recapture the rogue Zeus, or destroy it 
+
+&YPRIORITY CRITICAL&
+Core refuses to abandon the rich metal cauldron of Barathrum. They can be depended upon to fight hereafter with renewed determination. Sad news! Core has captured one of our Zeus units and have turned it to their uses. The Zeus contains critical information. Every moment that Core controls it bodes ill for Arm. Recapture the Zeus if you can. If not, destroy it. Push through their defenses.. Push on... to another world.
+
+INFO FEED
+Core can be depended upon to throw everything they've got at you in an effort to deny you the Gate located among the giant lava globules to the east. &RBe ready for the Core walking bombs known as Roaches.& They are relentless, and incredibly destructive. 
+
+END

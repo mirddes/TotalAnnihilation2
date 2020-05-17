@@ -1,0 +1,36 @@
+[corpen_dead]
+{
+world=All Worlds;
+description=Penguin Wreckage;
+category=core_corpses;
+object=corpen_dead;
+featuredead=corpen_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=364;
+damage=1240;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corpen_heap]
+{
+world=All Worlds;
+description=Penguin Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=182;
+damage=1420;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

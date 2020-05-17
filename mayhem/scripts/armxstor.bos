@@ -1,0 +1,106 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, dome1, dome2, dome3, dome4, pipes, energy;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Static-var shieldcloaked, cloakcost, cloakcostm;
+
+Cloak(cloakdist, shieldID)
+{
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			shieldcloaked = 1;
+			get SET_CLOAKED(1);
+		}
+		//if the shield is now cloakdist the unit, the unit uses no energy to cloak
+		get SET_UNITINFO(uiCloakCost, 0);
+		get SET_UNITINFO(uiCloakCostMoving, 0);
+		//if unit somehow moves away from the shield (eg got transported) then reset cloak costs
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_UNITINFO(uiCloakCost, cloakcost);
+		get SET_UNITINFO(uiCloakCostMoving, cloakcostm);
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*shieldcloaked=0;
+	cloakcost = get GET_UNITINFO(uiCloakCost);
+	cloakcostm = get GET_UNITINFO(uiCloakCostMoving);*/
+	dont-cache energy;
+	start-script SmokeUnit();
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dome1 type BITMAPONLY | BITMAP3;
+		explode dome2 type BITMAPONLY | BITMAP3;
+		explode dome3 type BITMAPONLY | BITMAP2;
+		explode dome4 type BITMAPONLY | BITMAP3;
+		explode energy type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dome1 type BITMAPONLY | BITMAP3;
+		explode dome2 type BITMAPONLY | BITMAP2;
+		explode dome3 type BITMAPONLY | BITMAP2;
+		explode dome4 type SHATTER | BITMAP3;
+		explode energy type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode dome1 type FALL | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode dome2 type BITMAPONLY | BITMAP3;
+	explode dome3 type BITMAPONLY | BITMAP2;
+	explode dome4 type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode energy type BITMAPONLY | BITMAP2;
+}

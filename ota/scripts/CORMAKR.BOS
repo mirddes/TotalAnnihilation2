@@ -1,0 +1,91 @@
+// Core Metal Maker
+
+piece base;
+
+#define SIG_MOVEMENT	2
+#define SMOKEPIECE1 base
+
+#include "StateChg.h"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	dont-cache glow;
+	turn plug to z-axis <0> speed <50>;
+	wait-for-turn plug around z-axis;
+	cache plug;
+	}
+
+Stop()
+	{
+	cache plug;
+	turn plug to z-axis <180> speed <50>;
+	wait-for-turn plug around z-axis;
+	cache plug;
+	cache glow;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	dont-shade plug;
+	dont-shade glow;
+	dont-cache glow;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode glow type	BITMAPONLY | BITMAP2;
+		explode plug type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode glow type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode plug type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode glow type	SHATTER | BITMAP2;
+		explode plug type	BITMAPONLY | BITMAP3;	
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode glow type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode plug type	BITMAPONLY | BITMAP3;
+	return( 0 );
+	}

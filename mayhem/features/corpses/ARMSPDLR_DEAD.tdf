@@ -1,0 +1,35 @@
+[armspdlr_dead]
+{
+world=All Worlds;
+description=Widow Wreckage;
+category=arm_corpses;
+object=armspdlr_dead;
+featuredead=armspdlr_heap;
+footprintx=3;
+footprintz=3;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=637;
+damage=1273;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armspdlr_heap]
+{
+world=All Worlds;
+description=Widow Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=318;
+damage=1273;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,552 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, body, r1, r2, r3, pad, spray, this, plug, wtf,
+	   spin1, tilt1, shieldring1, bits1, spin2, tilt2, shieldring2, bits2 ;
+
+//static-var  Static_Var_1;
+
+static-var building, upgraded, hiding, shielding, hit;
+static-var shield_on, nbr_shield, dome_on, nbr_dome ; 
+
+// Signal definitions
+#define SIG_ACTIVATE			2
+#define SIG_HIT 				4
+#define SIG_BUILD 				8
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Unit's maxdamage value (not percentage)
+#ifndef HEALTH_VAL
+#define HEALTH_VAL 76
+#endif
+
+// Is unit cloaked
+#ifndef CLOAKED
+#define CLOAKED 77
+#endif
+
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+
+Detect()
+{
+	sleep rand(500,5000);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+
+	var h;
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							++nbr_dome;
+						}
+					}
+				}			
+			}
+		}
+	
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+	}
+}	
+
+
+Blink()
+{
+	while(1)
+	{
+//		if (!building && !hiding && !upgraded) 
+//		{
+//			hide bits1;
+//			hide bits2;
+//			explode pad type BITMAPONLY | BITMAPNUKE;
+//			sleep 1550;
+//		}
+		if (hit && !upgraded && !building)
+		{
+//			hide bits1;
+//			hide bits2;
+			explode pad type BITMAPONLY | BITMAP4;
+			sleep 1550;
+		}
+		if (!hiding && upgraded OR hit && upgraded)
+		{
+//			hide bits1;
+//			hide bits2;
+			explode pad type BITMAPONLY | BITMAP2;
+			sleep 1550;
+		}
+		if (upgraded && building)
+		{
+			set ACTIVATION to 0;
+			hiding = 1;
+		}	
+		sleep 50;
+	}
+}
+
+HitByWeapon()
+{
+	signal SIG_HIT;
+	set-signal-mask SIG_HIT;
+	if (!building) 
+	{
+		hit = 1;
+		explode pad type BITMAPONLY | BITMAP5;
+		set ACTIVATION to 1;
+		sleep 1000;
+		hit = 0;
+		set ACTIVATION to 0;
+		if (!upgraded )
+		{ 
+			if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+			{
+//				show bits1;
+//				hide bits2;
+			}
+		}	
+		if (upgraded)
+		{ 
+			if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+			{
+//				show bits2;
+//				hide bits1;
+			}
+		}	
+	}
+}
+
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Upgrade()
+{
+	var xz, x, z, unit_ID, distance;
+	var max, min;
+	max = get MAX_ID;
+	min = get MIN_ID;
+	var myid;
+	myid= get MY_ID;
+
+	for (unit_ID = min; unit_ID <= max; ++unit_ID)
+	{
+		if(unit_ID != myid)
+		{
+			if(get UNIT_HEIGHT(unit_ID) == SHIELD_UPGRADE_HEIGHT)
+			{
+				if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+				{
+					xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+					SECURE_XZ;
+					distance=get XZ_HYPOT(xz);
+					if (distance <= [2])
+					{
+						if (get UNIT_IS_ON_THIS_COMP(get(MY_ID)))
+						{
+							if (get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								drop-unit unit_ID;
+								attach-unit unit_ID to this;
+							}
+						}
+						
+						show r1;
+						
+						show wtf;
+						
+						hide plug;
+																		
+						sleep 50;
+						
+						set INBUILDSTANCE to 0;
+						upgraded = 1;
+						
+						set ARMORED to 1;
+												
+						sleep 1;
+						building = 0;
+						
+						spin r1 around y-axis speed <70.00> accelerate <3.500000>;
+						spin r2 around y-axis speed <310.00> accelerate <15.500000>;
+						spin r3 around y-axis speed <150.00> accelerate <7.500000>;
+						
+						set YARD_OPEN to 0;
+						
+						explode pad type BITMAPONLY | BITMAP2;
+						sleep 1550;
+						if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+						{
+							hide bits1;
+							show bits2;
+						}
+						return;
+					}
+				}
+			}
+		}
+	}
+}
+
+Create()
+{
+
+	set ARMORED to 1;
+	
+	hit = 0;
+	hiding = 1;
+	
+	building = 0;
+	upgraded = 0;
+		
+	nbr_shield = 1;
+	nbr_dome = 0;
+
+	shield_on = 1;
+	dome_on =0;
+
+	hide r1;
+	hide wtf;
+
+	dont-shade r1;
+	dont-shade r2;
+	dont-shade r3;
+	
+	dont-shade plug;
+	
+	hide bits1;
+	hide bits2;
+	
+	move bits1 to z-axis [-151] now;
+	move bits2 to z-axis [228] now;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+
+	start-script detect();
+	start-script SmokeUnit();
+	set INBUILDSTANCE to 1;
+	
+	spin spin1 around y-axis speed <60.00>;
+	spin spin2 around y-axis speed <60.00>;
+	
+	spin shieldring1 around y-axis speed <360.00>;
+	spin shieldring2 around y-axis speed <360.00>;
+	
+	turn tilt1 to z-axis <2.00> now;
+	turn tilt2 to z-axis <2.00> now;
+	if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+	{
+		show bits1;
+//		show bits2;	
+	}
+	spin r2 around y-axis speed <310.00> accelerate <15.500000>;
+	spin r3 around y-axis speed <150.00> accelerate <7.500000>;
+	
+	explode pad type BITMAPONLY | BITMAP4;
+	sleep 1550;
+
+	start-script Blink();
+}
+
+Activate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	
+	if (!building)
+	{
+		hiding = 0;
+	}
+}
+
+Deactivate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	
+	hiding = 1;
+}	
+	
+QueryBuildInfo(piecenum)
+{
+	piecenum = this;
+}
+
+StartBuilding()
+{
+//	building = 1;
+	
+	signal SIG_BUILD;
+	set-signal-mask SIG_BUILD;
+	
+	building = 1;
+	hiding = 1;
+	hit = 0;
+	
+	set ACTIVATION to 0;
+	
+	hide bits1;
+		
+	spin r2 around y-axis speed <0.000000> accelerate <-15.500000>;
+	spin r3 around y-axis speed <0.000000> accelerate <-7.500000>;	
+	
+	turn r2 to y-axis <0.00> speed <20.00>;
+	turn r3 to y-axis <0.00> speed <20.00>;
+	
+	wait-for-turn r2 around y-axis;
+	wait-for-turn r3 around y-axis;
+	
+	sleep 50;
+	
+//	set YARD_OPEN to 1;
+//	set INBUILDSTANCE to 0;
+	
+	
+//	if (!upgraded)
+//	{
+//		set ARMORED to 0;
+//	}
+}
+
+StopBuilding()
+{
+	signal SIG_BUILD;
+	set-signal-mask SIG_BUILD;
+	
+	building = 0;
+	
+	set INBUILDSTANCE to 1;
+	
+	set ARMORED to 1;
+	
+	if (!upgraded)
+	{
+		spin r2 around y-axis speed <310.00> accelerate <15.500000>;
+		spin r3 around y-axis speed <150.00> accelerate <7.500000>;	
+	}
+	show bits1;
+	
+	call-script upgrade();
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( upgraded == 1 )
+	{
+		if( severity <= 80 )
+		{
+			corpsetype = 1;
+			explode r3 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+			explode r2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+			explode r1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+			return (0);
+		}
+		
+		corpsetype = 3;
+		explode r3 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode r2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode r1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode r2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode r1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode r2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode r1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 4;
+	explode r2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode r1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

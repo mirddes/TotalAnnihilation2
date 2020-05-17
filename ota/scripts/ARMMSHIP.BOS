@@ -1,0 +1,242 @@
+// Arm Missile Ship
+
+piece rocket1,rocket2,flare1,flare2,base,launcher1,launcher2;
+
+static-var ready,fire1,fire2,restore_delay;
+
+#define SIG_AIM1	2
+#define SIG_AIM2	4
+#define	SIG_WAKE	8
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armmship\activatescr.bos"
+#include "..\anim3d\armmship\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "SFXtype.h"
+
+Go()
+	{
+	show rocket1;
+	show rocket2;
+	call-script activatescr();
+	sleep 1500;
+	ready = TRUE;
+	}
+
+Stop()
+	{
+	ready = FALSE;
+	sleep 1500;
+	call-script deactivatescr();
+	sleep 1500;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	fire1=1;
+	fire2=1;
+	ready = FALSE;
+	restore_delay=3000;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	turn launcher2 to y-axis (0) speed <70>;
+	turn launcher2 to x-axis (0) speed <30>;
+	}
+
+StartMoving()
+	{
+	signal SIG_WAKE;
+	set-signal-mask SIG_WAKE;
+	while (TRUE)
+		{
+		emit-sfx SFXTYPE_WAKE1 from wake1;
+		emit-sfx SFXTYPE_WAKE1 from wake2;
+		sleep 300;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_WAKE;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	start-script RequestState( ACTIVE );
+	signal SIG_AIM1;
+	set-signal-mask SIG_AIM1;
+	while (!ready)
+		{
+		sleep( 250 );
+		}
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+AimSecondary(heading,pitch)
+	{
+	signal SIG_AIM2;
+	set-signal-mask SIG_AIM2;
+	turn launcher2 to y-axis heading speed <70>;
+	turn launcher2 to x-axis (0-pitch) speed <30>;
+	wait-for-turn launcher2 around y-axis;
+	wait-for-turn launcher2 around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	if (fire1==1) {
+		hide rocket1;
+		fire1 = 2;
+		return(0); }
+	if (fire1==2) {
+		hide rocket2;
+		ready = FALSE;
+		call-script RequestState( INACTIVE );
+		fire1 = 1;
+		return(0); }
+	}
+
+FireSecondary()
+	{
+	if (fire2==1) {
+		fire2 = 2;
+		return(0); }
+	if (fire2==2) {
+		fire2 = 1;
+		return(0); }
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum = launcher1;
+	}
+
+AimFromSecondary(piecenum)
+	{
+	piecenum = launcher2;
+	}
+
+QueryPrimary(piecenum)
+	{
+	if (fire1==1) {
+		piecenum=rocket1; }
+	if (fire1==2) {
+		piecenum=rocket2; }
+	}
+
+QuerySecondary(piecenum)
+	{
+	if (fire2==1) {
+		piecenum=flare1; }
+	if (fire2==2) {
+		piecenum=flare2; }
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode flare1 type	BITMAPONLY | BITMAP4;
+		explode flare2 type	BITMAPONLY | BITMAP5;
+		explode launcher1 type	BITMAPONLY | BITMAP1;
+		explode launcher2 type	BITMAPONLY | BITMAP2;
+		explode plate type	BITMAPONLY | BITMAP3;
+		explode rocket1 type	BITMAPONLY | BITMAP4;
+		explode rocket2 type	BITMAPONLY | BITMAP5;
+		explode turret1 type	BITMAPONLY | BITMAP1;
+		explode turret2 type	BITMAPONLY | BITMAP2;
+		explode wake1 type	BITMAPONLY | BITMAP3;
+		explode wake2 type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode launcher1 type	BITMAPONLY | BITMAP1;
+		explode launcher2 type	SHATTER | BITMAP2;
+		explode plate type	BITMAPONLY | BITMAP3;
+		explode rocket1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rocket2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode turret1 type	FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode turret2 type	FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode wake1 type	FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode wake2 type	FALL | EXPLODE_ON_HIT | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode launcher1 type	BITMAPONLY | BITMAP1;
+		explode launcher2 type	SHATTER | BITMAP2;
+		explode plate type	BITMAPONLY | BITMAP3;
+		explode rocket1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rocket2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode turret1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode door1 type	BITMAPONLY | BITMAP2;
+	explode door2 type	BITMAPONLY | BITMAP3;
+	explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode flare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode launcher1 type	BITMAPONLY | BITMAP1;
+	explode launcher2 type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode plate type	BITMAPONLY | BITMAP3;
+	explode rocket1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rocket2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode turret1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return( 0 );
+	}

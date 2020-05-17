@@ -1,0 +1,10 @@
+MISSION 13.002ARMB
+Destroy the Core base located above Landown's Interface.
+
+&YPRIORITY&
+Core has established an immense stockpile of war supplies, and is attempting to build a major fire base on the other side of the barrier known as "Landown's Interface". The Interface's sheer wall runs for many klicks where Crustal 8 has pushed atop Crustal 7.
+
+INFO FEED
+You will have to find a way over Landown's Interface in order to stop Core. &GTake to the air Commander.&
+
+END

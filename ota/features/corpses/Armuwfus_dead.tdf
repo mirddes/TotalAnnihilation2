@@ -1,0 +1,39 @@
+[Armuwfus_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armuwfus_dead;
+	featuredead=Armuwfus_heap;
+	footprintx=5;
+	footprintz=5;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=5668;
+	damage=985;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[Armuwfus_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=5x5c;
+	footprintx=5;
+	footprintz=5;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2834;
+	damage=492;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+

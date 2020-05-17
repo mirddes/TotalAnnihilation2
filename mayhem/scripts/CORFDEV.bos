@@ -1,0 +1,231 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare, gun, base, hull, turret, counteraim, wake1, wake2,
+       wake3, wake4, wake5, wake6, wake7, wake8;
+
+static-var  gun_1, fx_2, bMoving, bAiming;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 20;
+		if( sleeptime < 50 )
+		{
+			sleeptime = 50;
+		}
+		sleep sleeptime;
+	}
+}
+
+StartMoving(count)
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = TRUE;
+	while( TRUE )
+	{
+		count = 0;
+		if( fx_2 <= 3 )
+		{
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		while( count < 9 )
+		{
+			turn base to y-axis get XZ_ATAN(0) now;
+			turn hull to y-axis (0 - get XZ_ATAN(0)) speed <25>;
+			turn counteraim to y-axis get XZ_ATAN(0) speed <25>;
+			if( !bAiming )
+			{
+				turn turret to y-axis (0 - get XZ_ATAN(0)) speed <25>;
+			}
+			++count;
+			sleep 33;
+		}
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+setsfxoccupy(Func_Var_1)
+{
+	fx_2 = Func_Var_1;
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	dont-shade flare;
+	gun_1 = 0;
+	bMoving = 0;
+	bAiming = 0;
+	set ARMORED to 1;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 250;
+		turn base to y-axis get XZ_ATAN(0) now;
+		turn hull to y-axis (0 - get XZ_ATAN(0)) now;
+		turn counteraim to y-axis get XZ_ATAN(0) NOW;
+		turn turret to y-axis (0 - get XZ_ATAN(0)) NOW;
+	}
+	start-script SmokeUnit();
+}
+
+RestoreAfterDelay()
+{
+	sleep 4000;
+	set-signal-mask 0;
+	bAiming = 0;
+	turn gun to x-axis <0> speed <70>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	bAiming = 1;
+	turn turret to y-axis ( heading - get XZ_ATAN(0)) speed <240>;
+	turn gun to x-axis <0> - pitch speed <100>;
+	wait-for-move turret along y-axis;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	move turret to y-axis [0.1] NOW;
+	move turret to y-axis [0] speed [0.05];
+	show flare;
+	sleep 150;
+	hide flare;
+	sleep 150;
+	if( !gun_1 )
+	{
+		turn gun to z-axis <120> speed <400>;
+	}
+	if( gun_1 )
+	{
+		turn gun to z-axis <240> speed <400>;
+	}
+	++gun_1;
+	if( gun_1 > 2 )
+	{	
+		turn gun to z-axis <0> speed <400>;
+		gun_1 = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = gun;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = hull;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( fx_2 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode gun type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP4;
+		explode wake1 type BITMAPONLY | BITMAP1;
+		explode wake2 type BITMAPONLY | BITMAP1;
+		explode wake3 type BITMAPONLY | BITMAP1;
+		explode wake4 type BITMAPONLY | BITMAP1;
+		explode wake5 type BITMAPONLY | BITMAP1;
+		explode wake6 type BITMAPONLY | BITMAP1;
+		explode wake7 type BITMAPONLY | BITMAP1;
+		explode wake8 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode gun type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | BITMAP4;
+		explode wake1 type FALL | BITMAP1;
+		explode wake2 type FALL | BITMAP1;
+		explode wake3 type FALL | BITMAP1;
+		explode wake4 type FALL | BITMAP1;
+		explode wake5 type FALL | BITMAP1;
+		explode wake6 type FALL | BITMAP1;
+		explode wake7 type FALL | BITMAP1;
+		explode wake8 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | BITMAP4;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

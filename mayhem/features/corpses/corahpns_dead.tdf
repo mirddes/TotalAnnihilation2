@@ -1,0 +1,35 @@
+[corahpns_dead]
+{
+world=All Worlds;
+description=Adv Hover Plant NS Wreckage;
+category=core_corpses;
+object=corahpns_dead;
+featuredead=corahpns_heap;
+footprintx=8;
+footprintz=7;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=1363;
+damage=2605;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corahpns_heap]
+{
+world=All Worlds;
+description=Adv Hover Plant NS Wreckage;
+category=heaps;
+object=7x7d;
+footprintx=8;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=681;
+damage=2605;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,86 @@
+[GlobalHeader]
+	{
+	missionname=Long Lakes;
+	missiondescription=9 x 13  Two long lakes separate three islands. OK Team play.;
+	planet=Archipelago;
+	tidalstrength=25;
+	killmul=50;
+	minwindspeed=1200;
+	maxwindspeed=6500;
+	gravity=125;
+	numplayers=2, 4, 6, 8, 10;
+	size=10 x 14;
+	memory=16 mb;
+	useonlyunits=Long Lakes.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=7;
+		MohoMetal=50;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos2;
+				XPos=4128;
+				ZPos=5856;
+				}
+			[special1]
+				{
+				specialwhat=StartPos1;
+				XPos=800;
+				ZPos=816;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=608;
+				ZPos=3792;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=4224;
+				ZPos=1952;
+				}
+			[special4]
+				{
+				specialwhat=StartPos6;
+				XPos=2272;
+				ZPos=4464;
+				}
+			[special5]
+				{
+				specialwhat=StartPos5;
+				XPos=2560;
+				ZPos=2160;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=240;
+				ZPos=1280;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=2928;
+				ZPos=6208;
+				}
+			[special8]
+				{
+				specialwhat=StartPos10;
+				XPos=1584;
+				ZPos=5952;
+				}
+			[special9]
+				{
+				specialwhat=StartPos9;
+				XPos=3200;
+				ZPos=496;
+				}
+			}
+		}
+	}

@@ -1,0 +1,35 @@
+[corXFUS_dead]
+{
+world=All Worlds;
+description=Uber Fusion Wreckage;
+category=heaps;
+object=corXFUS_dead;
+featuredead=corXFUS_heap;
+footprintx=9;
+footprintz=9;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=38517;
+damage=27680;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corXFUS_heap]
+{
+world=All Worlds;
+description=Uber Fusion Rubble;
+category=heaps;
+object=7x7a;
+footprintx=7;
+footprintz=7;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=19258;
+damage=25380;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

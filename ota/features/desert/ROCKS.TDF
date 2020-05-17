@@ -1,0 +1,930 @@
+[DryRock01]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock01;
+	seqnameshad=rock01shad;
+	seqnamereclamate=rock01rec;
+	metal=50;    
+
+	seqnamedie=rock01boom;
+	featurereclamate=dryrock01scar;
+	featuredead=drycrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock01Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock01scar;
+	seqnameshad=;
+
+	featuredead=dryrock01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock02]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock02;
+	seqnameshad=rock02shad;
+	seqnamereclamate=rock02rec;
+	metal=50;    
+
+	seqnamedie=rock02boom;
+	featurereclamate=dryrock02scar;
+	featuredead=drycrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock02Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock02scar;
+	seqnameshad=;
+
+	featuredead=dryrock02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock03]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=5;
+	filename=dryrocks;
+	seqname=rock03;
+	seqnameshad=rock03shad;
+	seqnamereclamate=rock03rec;
+	metal=25;    
+
+	seqnamedie=rock03boom;
+	featurereclamate=dryrock03scar;
+	featuredead=dryrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock03Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=dryscars;
+	seqname=rock03scar;
+	seqnameshad=;
+
+	featuredead=dryrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock04]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=5;
+	filename=dryrocks;
+	seqname=rock04;
+	seqnameshad=rock04shad;
+	seqnamereclamate=rock04rec;
+	metal=75;    
+
+	seqnamedie=rock04boom;
+	featurereclamate=dryrock04scar;
+	featuredead=drycrush34;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock04Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rock04scar;
+	seqnameshad=;
+
+	featuredead=dryrock04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock05]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=5;
+	filename=dryrocks;
+	seqname=rock05;
+	seqnameshad=rock05shad;
+	seqnamereclamate=rock05rec;
+	metal=25;    
+
+	seqnamedie=rock05boom;
+	featurereclamate=dryrock05scar;
+	featuredead=dryrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock05Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryscars;
+	seqname=rock05scar;
+	seqnameshad=;
+
+	featuredead=dryrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock06]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=5;
+	filename=dryrocks;
+	seqname=rock06;
+	seqnameshad=rock06shad;
+	seqnamereclamate=rock06rec;
+	metal=50;    
+
+	seqnamedie=rock06boom;
+	featurereclamate=dryrock06scar;
+	featuredead=drycrush34;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock06Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rock06scar;
+	seqnameshad=;
+
+	featuredead=dryrock06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock07]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock07;
+	seqnameshad=rock07shad;
+	seqnamereclamate=rock07rec;
+	metal=75;    
+
+	seqnamedie=rock07boom;
+	featurereclamate=dryrock07scar;
+	featuredead=drycrush33;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock07Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock07scar;
+	seqnameshad=;
+
+	featuredead=dryrock07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock08]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=5;
+	filename=dryrocks;
+	seqname=rock08;
+	seqnameshad=rock08shad;
+	seqnamereclamate=rock08rec;
+	metal=25;    
+
+	seqnamedie=rock08boom;
+	featurereclamate=dryrock08scar;
+	featuredead=dryrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock08Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=dryscars;
+	seqname=rock08scar;
+	seqnameshad=;
+
+	featuredead=dryrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock09]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=5;
+	filename=dryrocks;
+	seqname=rock09;
+	seqnameshad=rock09shad;
+	seqnamereclamate=rock09rec;
+	metal=25;    
+
+	seqnamedie=rock09boom;
+	featurereclamate=dryrock09scar;
+	featuredead=dryrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock09Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=dryscars;
+	seqname=rock09scar;
+	seqnameshad=;
+
+	featuredead=dryrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock10]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=5;
+	filename=dryrocks;
+	seqname=rock10;
+	seqnameshad=rock10shad;
+	seqnamereclamate=rock10rec;
+	metal=100;    
+
+	seqnamedie=rock10boom;
+	featurereclamate=dryrock10scar;
+	featuredead=drycrush44;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock10Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rock10scar;
+	seqnameshad=;
+
+	featuredead=dryrock10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock11]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock11;
+	seqnameshad=rock11shad;
+	seqnamereclamate=rock11rec;
+	metal=75;    
+
+	seqnamedie=rock11boom;
+	featurereclamate=dryrock11scar;
+	featuredead=drycrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock11Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock11scar;
+	seqnameshad=;
+
+	featuredead=dryrock11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock12]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock12;
+	seqnameshad=rock12shad;
+	seqnamereclamate=rock12rec;
+	metal=25;    
+
+	seqnamedie=rock12boom;
+	featurereclamate=dryrock12scar;
+	featuredead=drycrush33;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock12Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock12scar;
+	seqnameshad=;
+
+	featuredead=dryrock12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock13]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock13;
+	seqnameshad=rock13shad;
+	seqnamereclamate=rock13rec;
+	metal=50;    
+
+	seqnamedie=rock13boom;
+	featurereclamate=dryrock13scar;
+	featuredead=drycrush43;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock13Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock13scar;
+	seqnameshad=;
+
+	featuredead=dryrock13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock14]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=5;
+	filename=dryrocks;
+	seqname=rock14;
+	seqnameshad=rock14shad;
+	seqnamereclamate=rock14rec;
+	metal=75;    
+
+	seqnamedie=rock14boom;
+	featurereclamate=dryrock14scar;
+	featuredead=drycrush44;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock14Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rock14scar;
+	seqnameshad=;
+
+	featuredead=dryrock14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryRock15]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=dryrocks;
+	seqname=rock15;
+	seqnameshad=rock15shad;
+	seqnamereclamate=rock15rec;
+	metal=50;    
+
+	seqnamedie=rock15boom;
+	featurereclamate=dryrock15scar;
+	featuredead=drycrush33;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRock15Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rock15scar;
+	seqnameshad=;
+
+	featuredead=dryrock15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryCrush44]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=drycrush;
+	seqname=rockcrush44;
+	seqnameshad=rockcrush44shad;
+	seqnamereclamate=rockcrush44rec;
+	metal=50;    
+
+	seqnamedie=rockcrush44boom;
+	featurereclamate=drycrush44scar;
+	featuredead=drycrush44scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryCrush44Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rockcrush44scar;
+	seqnameshad=;
+
+	featuredead=drycrush44scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryCrush43]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=drycrush;
+	seqname=rockcrush43;
+	seqnameshad=rockcrush43shad;
+	seqnamereclamate=rockcrush43rec;
+	metal=50;    
+
+	seqnamedie=rockcrush43boom;
+	featurereclamate=drycrush43scar;
+	featuredead=drycrush43scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryCrush43Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rockcrush43scar;
+	seqnameshad=;
+
+	featuredead=drycrush43scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryCrush34]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=drycrush;
+	seqname=rockcrush34;
+	seqnameshad=rockcrush34shad;
+	seqnamereclamate=rockcrush34rec;
+	metal=25;    
+
+	seqnamedie=rockcrush34boom;
+	featurereclamate=drycrush34scar;
+	featuredead=drycrush34scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryCrush34Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=dryscars;
+	seqname=rockcrush34scar;
+	seqnameshad=;
+
+	featuredead=drycrush34scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[DryCrush33]
+	{
+	world=Desert;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=drycrush;
+	seqname=rockcrush33;
+	seqnameshad=rockcrush33shad;
+	seqnamereclamate=rockcrush33rec;
+	metal=25;    
+
+	seqnamedie=rockcrush33boom;
+	featurereclamate=drycrush33scar;
+	featuredead=drycrush33scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryCrush33Scar]
+	{
+	world=Desert;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=dryscars;
+	seqname=rockcrush33scar;
+	seqnameshad=;
+
+	featuredead=drycrush33scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

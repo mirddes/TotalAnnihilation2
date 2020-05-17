@@ -1,0 +1,8 @@
+MISSION 11.3CORE
+
+INTELL-TAP:
+There is a Zeus Bot on the island to the south.  Be careful that over-zealous Core units do not destroy the Zeus before you can capture it.
+
+&RCapture a Zeus Bot.&
+
+DO SO NOW.

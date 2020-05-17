@@ -1,0 +1,36 @@
+[armch_DEAD]
+{
+world=All Worlds;
+description=Cons Hover Wreckage;
+category=arm_corpses;
+object=armch_dead;
+featuredead=armch_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=127;
+damage=518;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[armch_HEAP]
+{
+world=All Worlds;
+description=Cons Hover Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=5;
+metal=67;
+damage=518;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

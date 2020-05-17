@@ -1,0 +1,27 @@
+piece emp1, glow1, base, upgrade, tubing, tube1, tube2, doodads;
+
+#include "sfxtype.h"
+#include "exptype.h"
+Create()
+	{
+		set ARMORED to 1;
+		turn doodads to y-axis <-45.00> now;
+		move doodads to y-axis [10] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1800;
+		}
+		hide emp1;
+		hide glow1;
+		hide tubing;
+		hide tube1;
+		hide tube2;
+	
+		set ACTIVATION to 1;
+	
+	}
+
+SweetSpot(piecenum)
+{
+	piecenum = doodads;
+}	

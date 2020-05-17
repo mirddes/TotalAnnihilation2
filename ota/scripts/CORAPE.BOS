@@ -1,0 +1,193 @@
+// Core Attack Gunship script
+
+piece flare1,flare2,base;
+
+static-var next_barrela,next_barrelb;
+
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	turn winga to z-axis <-90> speed <120>;
+	turn wingb to z-axis <90> speed <120>;
+	}
+
+Stop()
+	{
+	turn winga to z-axis <0> speed <120>;
+	turn wingb to z-axis <0> speed <120>;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	hide flare1;
+	hide flare2;
+	next_barrela=1;
+	next_barrelb=1;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+Positionguna()
+	{
+	if (next_barrela==1) {
+		turn gun1 to z-axis <0> speed <400>; }
+	if (next_barrela==2) {
+		turn gun1 to z-axis <120> speed <400>; }
+	if (next_barrela==3) {
+		turn gun1 to z-axis 0 - <120> speed <400>; }
+
+	wait-for-turn gun1 around z-axis;
+	}
+
+Positiongunb()
+	{
+	if (next_barrelb==1) {
+		turn gun2 to z-axis <0> speed <400>; }
+	if (next_barrelb==2) {
+		turn gun2 to z-axis <120> speed <400>; }
+	if (next_barrelb==3) {
+		turn gun2 to z-axis 0 - <120> speed <400>; }
+
+	wait-for-turn gun2 around z-axis;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum = flare1;
+	}
+
+QuerySecondary(piecenum)
+	{
+	piecenum = flare2;
+	}
+
+AimPrimary()
+	{
+	return( TRUE );		// Always ready to fire
+	}
+
+AimSecondary()
+	{
+	return( TRUE );		// Always ready to fire
+	}
+
+
+FirePrimary()
+	{
+	next_barrela=next_barrela+1;
+	if (next_barrela==4) {
+		next_barrela=1; }
+
+	show flare1;
+	sleep 150;
+	hide flare1;
+
+	start-script Positionguna();
+	}
+
+FireSecondary()
+	{
+	next_barrelb=next_barrelb+1;
+	if (next_barrelb==4) {
+		next_barrelb=1; }
+
+	show flare2;
+	sleep 150;
+	hide flare2;
+
+	start-script Positiongunb();
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	hide flare1;
+	hide flare2;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare1 type	BITMAPONLY | BITMAP2;
+		explode flare2 type	BITMAPONLY | BITMAP3;
+		explode gun1 type	BITMAPONLY | BITMAP4;
+		explode gun2 type	BITMAPONLY | BITMAP5;
+		explode thrusta type	BITMAPONLY | BITMAP1;
+		explode thrustb1 type	BITMAPONLY | BITMAP2;
+		explode thrustb2 type	BITMAPONLY | BITMAP3;
+		explode winga type	BITMAPONLY | BITMAP4;
+		explode wingb type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare1 type	FALL | BITMAP2;
+		explode flare2 type	FALL | BITMAP3;
+		explode gun1 type	FALL | BITMAP4;
+		explode gun2 type	FALL | BITMAP5;
+		explode thrusta type	FALL | BITMAP1;
+		explode thrustb1 type	FALL | BITMAP2;
+		explode thrustb2 type	FALL | BITMAP3;
+		explode winga type	SHATTER | BITMAP4;
+		explode wingb type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gun1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode gun2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode thrusta type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode thrustb1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode thrustb2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode winga type	SHATTER | BITMAP4;
+		explode wingb type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gun1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode gun2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode thrusta type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode thrustb1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode thrustb2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode winga type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode wingb type	BITMAPONLY | BITMAP5;
+	return( 0 );
+	}

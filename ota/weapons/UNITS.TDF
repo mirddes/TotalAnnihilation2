@@ -1,0 +1,533 @@
+/* Units.tdf -- Units exploding as weapons */
+
+/* Allowed IDs = 200-224 */
+
+[SMALL_BUILDING]
+	{
+	ID=200;
+	name=Small building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=205;
+	soundstart=largegun;
+	soundhit=xplosml3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=900;
+		}
+	}
+
+[MEDIUM_BUILDING]
+	{
+	ID=201;
+	name=Medium building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=325;
+	soundstart=largegun;
+	soundhit=xplomed1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=1400;
+		}
+	}
+
+[LARGE_BUILDING]
+	{
+	ID=202;
+	name=Large building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=400;
+	soundstart=largegun;
+	soundhit=xplolrg4;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.3;
+
+	[DAMAGE]
+		{
+		default=1800;
+		}
+	}
+
+[ESTOR_BUILDING]
+	{
+	ID=203;
+	name=Small building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=420;
+	soundstart=largegun;
+	soundhit=xplonuk1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.5;
+
+	[DAMAGE]
+		{
+		default=1900;
+		}
+	}
+
+
+
+[SMALL_UNIT]
+	{
+	ID=204;
+	name=Small tank;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=75;
+	soundstart=largegun;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=200;
+		}
+	}
+
+
+[MEDIUM_UNIT]
+	{
+	ID=110;
+	name=Medium Unit;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=95;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=250;
+		}
+	}
+
+
+
+[BIG_UNIT]
+	{
+	ID=205;
+	name=Big Kbot;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=110;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.3;
+
+	[DAMAGE]
+		{
+		default=350;
+		}
+	}
+
+
+
+
+[SMALL_BUILDINGEX]
+	{
+	ID=206;
+	name=Small building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=70;
+	areaofeffect=205;
+	soundstart=largegun;
+	soundhit=xplosml3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=40;
+		}
+	}
+
+[MEDIUM_BUILDINGEX]
+	{
+	ID=207;
+	name=Medium building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=105;
+	soundstart=largegun;
+	soundhit=xplomed1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+
+[LARGE_BUILDINGEX]
+	{
+	ID=208;
+	name=Large building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=120;
+	soundstart=largegun;
+	soundhit=xplolrg4;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.3;
+
+	[DAMAGE]
+		{
+		default=300;
+		}
+	}
+
+[ESTOR_BUILDINGEX]
+	{
+	ID=209;
+	name=Small building;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=150;
+	soundstart=largegun;
+	soundhit=xplonuk1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.5;
+
+	[DAMAGE]
+		{
+		default=900;
+		}
+	}
+
+
+
+[SMALL_UNITEX]
+	{
+	ID=210;
+	name=Small tank;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=30;
+	soundstart=largegun;
+	soundhit=xplomed2;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=30;
+		}
+	}
+
+[BIG_UNITEX]
+	{
+	ID=211;
+	name=Big Kbot;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=110;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=8;
+	shakeduration=.3;
+
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}
+
+
+[CORPYRO_BLAST]
+	{
+	ID=212;
+	name=Pyro Blast;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=128;
+	soundstart=largegun;
+	soundhit=xplolrg3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=60;
+		corpyro=15;
+		}
+	}
+
+[COMMANDER_BLAST]
+	{
+	ID=213;
+	name=Atomic Blast Weapon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=380;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	soundstart=largegun;
+	soundhit=xplonuk4;
+
+	explosiongaf=commboom;
+	explosionart=commboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	shakemagnitude=32;
+	shakeduration=2;
+
+	areaofeffect=950;
+	edgeeffectiveness=0.75;
+
+	[DAMAGE]
+		{
+		default=9999;
+		}
+	}
+
+
+[CRAWL_BLAST]
+	{
+	ID=214;
+	name=Crawling Bomb;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=556;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	[DAMAGE]
+		{
+		default=2500;
+		}
+	}
+
+[CRAWL_BLASTSML]
+	{
+	ID=215;
+	name=Wimpy Crawling Bomb;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=275;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	[DAMAGE]
+		{
+		default=1200;
+		}
+	}
+
+

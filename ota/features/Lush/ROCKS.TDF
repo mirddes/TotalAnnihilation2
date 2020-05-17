@@ -1,0 +1,741 @@
+[LushRock01]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=12;
+	filename=lushrocks;
+	seqname=lushrock01;
+	seqnameshad=rock01shadow;
+	seqnamereclamate=lushrock01rec;
+	metal=50;    
+
+	
+	featurereclamate=lushrocksmudge3;
+	featuredead=lushrockscar3;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock02]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=15;
+	filename=lushrocks;
+	seqname=lushrock02;
+	seqnameshad=rock02shadow;
+	seqnamereclamate=lushrock02rec;
+	metal=50;    
+
+	
+	featurereclamate=lushrocksmudge3;
+	featuredead=lushrockscar3;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock03]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=26;
+	filename=lushrocks;
+	seqname=lushrock03;
+	seqnameshad=rock03shadow;
+	seqnamereclamate=lushrock03rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge2;
+	featuredead=Lushcrushed03;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock04]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=34;
+	filename=lushrocks;
+	seqname=lushrock04;
+	seqnameshad=rock04shadow;
+	seqnamereclamate=lushrock04rec;
+	metal=75;    
+
+	
+	featurereclamate=lushrocksmudge2;
+	featuredead=Lushcrushed04;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock05]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=40;
+	filename=lushrocks;
+	seqname=lushrock05;
+	seqnameshad=rock05shadow;
+	seqnamereclamate=lushrock05rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge5;
+	featuredead=Lushcrushed05;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock06]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=66;
+	filename=lushrocks;
+	seqname=lushrock06;
+	seqnameshad=rock06shadow;
+	seqnamereclamate=lushrock06rec;
+	metal=50;    
+
+	
+	featurereclamate=lushrocksmudge;
+	featuredead=Lushcrushed06;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock07]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=74;
+	filename=lushrocks;
+	seqname=lushrock07;
+	seqnameshad=rock07shadow;
+	seqnamereclamate=lushrock07rec;
+	metal=75;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=lushcrushed07;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRock08]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=68;
+	filename=lushrocks;
+	seqname=lushrock08;
+	seqnameshad=rock08shadow;
+	seqnamereclamate=lushrock08rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=Lushcrushed08;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed03]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=8;
+	filename=lushrocks;
+	seqname=crushed03;
+	seqnameshad=crushshad03;
+	seqnamereclamate=crushed03rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge2;
+	featuredead=lushrockscar2;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed04]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=9;
+	filename=lushrocks;
+	seqname=crushed04;
+	seqnameshad=crushshad04;
+	seqnamereclamate=crushed04rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge2;
+	featuredead=lushrockscar2;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed05]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=25;
+	filename=lushrocks;
+	seqname=crushed05;
+	seqnameshad=crushshad05;
+	seqnamereclamate=crushed05rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge5;
+	featuredead=Lushcrushed205;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed06]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=35;
+	filename=lushrocks;
+	seqname=crushed06;
+	seqnameshad=crushshad06;
+	seqnamereclamate=crushed06rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge;
+	featuredead=lushcrushed206;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed07]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=38;
+	filename=lushrocks;
+	seqname=crushed07;
+	seqnameshad=crushshad07;
+	seqnamereclamate=crushed07rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=lushcrushed207;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed08]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=31;
+	filename=lushrocks;
+	seqname=crushed08;
+	seqnameshad=crushshad08;
+	seqnamereclamate=crushed08rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=lushcrushed208;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed205]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=8;
+	filename=lushrocks;
+	seqname=crushed205;
+	seqnameshad=crushshad205;
+	seqnamereclamate=crushed205rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge5;
+	featuredead=lushrockscar5;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed206]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=14;
+	filename=lushrocks;
+	seqname=crushed206;
+	seqnameshad=crushshad206;
+	seqnamereclamate=crushed206rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge;
+	featuredead=lushrockscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed207]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=16;
+	filename=lushrocks;
+	seqname=crushed207;
+	seqnameshad=crushshad207;
+	seqnamereclamate=crushed207rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=lushrockscar4;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushCrushed208]
+	{
+	world=Lush;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=14;
+	filename=lushrocks;
+	seqname=crushed208;
+	seqnameshad=crushshad208;
+	seqnamereclamate=crushed208rec;
+	metal=25;    
+
+	
+	featurereclamate=lushrocksmudge4;
+	featuredead=lushrockscar4;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LushRockScar]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar;
+	
+	featuredead=lushrockscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockScar2]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar2;
+	
+	featuredead=lushrockscar2;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockScar3]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar3;
+	
+	featuredead=lushrockscar3;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockScar4]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar4;
+	
+	featuredead=lushrockscar4;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockScar5]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar5;
+	
+	featuredead=lushrockscar5;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockScar6]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar6;
+	
+	featuredead=lushrockscar6;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar;
+	
+	featuredead=lushrocksmudge;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge2]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar2;
+	
+	featuredead=lushrocksmudge2;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge3]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar3;
+	
+	featuredead=lushrocksmudge3;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge4]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar4;
+	
+	featuredead=lushrocksmudge4;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge5]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar5;
+	
+	featuredead=lushrocksmudge5;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LushRockSmudge6]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lushrocks;
+	seqname=lushrockscar6;
+	
+	featuredead=lushrocksmudge6;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+
+
+

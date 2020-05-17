@@ -1,0 +1,376 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, disk, exhaust, 
+	   leg1a, leg1b, leg1c, nano1,
+       leg2a, leg2b, leg2c, nano2,
+       leg3a, leg3b, leg3c, nano3,
+       leg4a, leg4b, leg4c, nano4,
+       beam1, beam2, beam3, beam4;
+       
+       
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, statechg_DesiredState, statechg_StateChanging, building;
+
+// Signal definitions
+#define SIG_MOVE			2
+
+#define BANK_MORE 80
+#define BANK_LESS 40
+#define BANK_DAMP_SPEED <30>
+#define BANK_REFRESH 300// Put some time long enough for the unit to have travelled a while, but short enough so the script doesn't have a too long reaction time
+#define BANK_SIGNIFICATIVE_SPEED [2]// Actually, it's not a speed, but a distance, the distance covered during BANK_REFRESH. If that distance is too low, the difference between the two xz is deemed too low to get a significative angle out of it. Since half of digit are lost when x and z get packed into xz, any distance under 65536=[0.4] will lose all its significative digits and so will be unuseable.
+
+
+
+WaveSmall()
+{
+	while( TRUE )
+	{
+		turn leg3a to x-axis <-45.000000> speed <30.000000>;
+		turn leg3b to x-axis <45.000000> speed <30.000000>;
+		turn leg3c to x-axis <15.000000> speed <30.000000>;
+		turn nano3 to x-axis <-15.000000> speed <30.000000>;
+		
+		turn leg4a to x-axis <45.000000> speed <30.000000>;
+		turn leg4b to x-axis <-45.000000> speed <30.000000>;
+		turn leg4c to x-axis <-15.000000> speed <30.000000>;
+		turn nano4 to x-axis <15.000000> speed <30.000000>;
+	
+		wait-for-turn leg3a around x-axis;
+		wait-for-turn leg4a around y-axis;
+		
+	
+		turn leg3a to x-axis <0.000000> speed <30.000000>;
+		turn leg3b to x-axis <0.000000> speed <30.000000>;
+		turn leg3c to x-axis <0.000000> speed <30.000000>;
+		turn nano3 to x-axis <0.000000> speed <30.000000>;
+		
+		turn leg4a to x-axis <0.000000> speed <30.000000>;
+		turn leg4b to x-axis <0.000000> speed <30.000000>;
+		turn leg4c to x-axis <0.000000> speed <30.000000>;
+		turn nano4 to x-axis <0.000000> speed <30.000000>;
+	
+		wait-for-turn leg3a around x-axis;
+		wait-for-turn leg4a around x-axis;
+		
+		
+		sleep 75;
+	}
+}
+
+
+
+WaveLarge()
+{
+	signal 4;
+	set-signal-mask 4;
+	while( TRUE )
+	{
+		turn leg1a to y-axis <45.000000> speed <30.000000>;
+		turn leg1b to y-axis <-45.000000> speed <30.000000>;
+		turn leg1c to y-axis <-15.000000> speed <30.000000>;
+		turn nano1 to y-axis <15.000000> speed <30.000000>;
+				
+		turn leg2a to y-axis <-45.000000> speed <30.000000>;
+		turn leg2b to y-axis <45.000000> speed <30.000000>;
+		turn leg2c to y-axis <15.000000> speed <30.000000>;
+		turn nano2 to y-axis <-15.000000> speed <30.000000>;
+		
+		wait-for-turn leg1a around y-axis;
+		wait-for-turn leg2a around y-axis;
+		
+		turn leg1a to y-axis <0.000000> speed <30.000000>;
+		turn leg1b to y-axis <0.000000> speed <30.000000>;
+		turn leg1c to y-axis <0.000000> speed <30.000000>;
+		turn nano1 to y-axis <0.000000> speed <30.000000>;
+		
+		turn leg2a to y-axis <0.000000> speed <30.000000>;
+		turn leg2b to y-axis <0.000000> speed <30.000000>;
+		turn leg2c to y-axis <0.000000> speed <30.000000>;
+		turn nano2 to y-axis <0.000000> speed <30.000000>;
+		
+		wait-for-turn leg1a around y-axis;
+		wait-for-turn leg2a around y-axis;
+	
+		sleep 75;
+	}
+}
+
+Reach()
+{
+	signal 4;
+	
+//	turn leg3b to x-axis <-90.000000> speed <120.000000>;
+//	turn leg3c to x-axis <-45.000000> speed <120.000000>;
+//	turn nano3 to x-axis <-45.000000> speed <120.000000>;
+	
+	turn leg1b to y-axis <90.000000> speed <120.000000>;
+	turn leg1c to y-axis <45.000000> speed <120.000000>;
+	turn nano1 to y-axis <45.000000> speed <120.000000>;
+	
+	turn leg2b to y-axis <-90.000000> speed <120.000000>;
+	turn leg2c to y-axis <-45.000000> speed <120.000000>;
+	turn nano2 to y-axis <-45.000000> speed <120.000000>;
+	
+//	wait-for-turn leg3b around x-axis;
+//	wait-for-turn leg3c around x-axis;
+//	wait-for-turn nano3 around x-axis;
+	
+	wait-for-turn leg1b around y-axis;
+	wait-for-turn leg1c around y-axis;
+	wait-for-turn nano1 around y-axis;
+
+	wait-for-turn leg2b around y-axis;
+	wait-for-turn leg2c around y-axis;
+	wait-for-turn nano2 around y-axis;
+}
+
+Unreach()
+{
+//	turn leg3b to x-axis <0.000000> speed <120.000000>;
+//	turn leg3c to x-axis <0.000000> speed <120.000000>;
+//	turn nano3 to x-axis <0.000000> speed <120.000000>;
+	
+	turn leg1b to y-axis <0.000000> speed <120.000000>;
+	turn leg1c to y-axis <0.000000> speed <120.000000>;
+	turn nano1 to y-axis <0.000000> speed <120.000000>;
+	
+	turn leg2b to y-axis <0.000000> speed <120.000000>;
+	turn leg2c to y-axis <0.000000> speed <120.000000>;
+	turn nano2 to y-axis <0.000000> speed <120.000000>;
+	
+//	wait-for-turn leg3b around x-axis;
+//	wait-for-turn leg3c around x-axis;
+//	wait-for-turn nano3 around x-axis;
+	
+	wait-for-turn leg1b around y-axis;
+	wait-for-turn leg1c around y-axis;
+	wait-for-turn nano1 around y-axis;
+
+	wait-for-turn leg2b around y-axis;
+	wait-for-turn leg2c around y-axis;
+	wait-for-turn nano2 around y-axis;
+}
+
+Go()
+{
+	turn base to y-axis Static_Var_1  speed <120.000000>;
+	stop-spin disk around z-axis;
+	turn disk to z-axis <0.000000> speed <120.000000>;
+	wait-for-turn disk around z-axis;
+	wait-for-turn base around y-axis;
+
+	call-script Reach();
+	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	turn base to y-axis <0.000000> speed <120.000000>;
+	wait-for-turn base around y-axis;
+	call-script Unreach();
+	set INBUILDSTANCE to 0;
+	start-script WaveLarge();
+}
+
+
+
+
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+BankClerck()
+{
+	var present_xz, past_xz, banking_angle;
+	while(1)
+	{
+		present_xz=get PIECE_XZ(base);
+		banking_angle=0;
+		if (get XZ_HYPOT(present_xz - past_xz)>=BANK_SIGNIFICATIVE_SPEED)
+			{
+			banking_angle=(0 - (((get XZ_ATAN(past_xz - present_xz))*BANK_MORE)/BANK_LESS));
+			}
+		turn base to z-axis banking_angle speed BANK_DAMP_SPEED;
+		past_xz=present_xz;
+		sleep BANK_REFRESH;
+	}
+}
+
+Create()
+{
+	set ARMORED to 1;
+	building=0;
+	Static_Var_3 = 0;
+	Static_Var_1 = 0;
+	Static_Var_2 = 1;
+	
+//	turn leg1a to z-axis <30.000000> now;
+//	turn leg2a to z-axis <-30.000000> now;
+	
+	call-script InitState();
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 150;
+	}
+	spin disk around z-axis speed <90.021978>;
+	start-script WaveSmall();
+	start-script WaveLarge();
+	start-script BankClerck();
+}
+
+Activate()
+{
+	if( !Static_Var_2 )
+	{
+		start-script RequestState(0);
+	}
+	if( Static_Var_2 )
+	{
+		Static_Var_2 = 0;
+	}
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	building=1;
+	start-script RequestState(0);
+}
+
+StopBuilding()
+{
+	building=0;
+	start-script RequestState(1);
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	if (!building)
+	{
+		spin disk around z-axis speed <90.021978>;
+	}	
+	while( TRUE )
+	{
+		emit-sfx 259 from exhaust;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+	if (!building)
+	{
+		spin disk around z-axis speed <30.005495>;
+	}
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( Static_Var_3 == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( Static_Var_3 == 1 )
+	{
+		piecenum = beam2;
+	}
+//	if( Static_Var_3 == 2 )
+//	{
+//		piecenum = beam3;
+//	}
+	
+	++Static_Var_3;
+	if( Static_Var_3 == 2 )
+	{
+		Static_Var_3 = 0;
+	}
+}
+
+TargetHeading(Func_Var_1)
+{
+	Static_Var_1 = 0 - Func_Var_1;
+}
+
+TargetCleared(Func_Var_1)
+{
+	stop-spin base around y-axis;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode disk type BITMAPONLY | BITMAP1;
+	
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP5;
+		explode disk type BITMAPONLY | BITMAP5;
+		
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type SHATTER | BITMAP1;
+		explode disk type FALL | BITMAP1;
+		
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | BITMAP5;
+	explode disk type FALL | BITMAP5;
+	
+}

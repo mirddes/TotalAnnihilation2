@@ -1,0 +1,35 @@
+[CORXVP_dead]
+{
+world=All Worlds;
+description=Heavy Vehicle Plant Wreckage;
+category=arm_corpses;
+object=CORXVP_dead;
+featuredead=CORXVP_heap;
+footprintx=10;
+footprintz=8;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=6288;
+damage=5440;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORXVP_heap]
+{
+world=All Worlds;
+description=Heavy Vehicle Plant Wreckage;
+category=heaps;
+object=7x7a;
+footprintx=10;
+footprintz=8;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3144;
+damage=5940;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,537 @@
+#define TA
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+
+piece base, body, housing1, housing2, turret, arms, sleeve, barrel, flare,
+	  feetparent, flfoot, frfoot, rlfoot, rrfoot,
+	  turret2, arms2, sleeve2, barrel2, flare2,
+	  side1, side2, holder, optics ;
+
+static-var bMoving, bAiming, previoushealth, upgrade, firedelay, firing, firedelay_2, firing_2 ;
+static-var myteam, my_id;
+
+#define SIG_AIM 		2
+#define SIG_AIM_2 		4
+#define SIG_AIM_3 		8
+#define SIG_ACTIVATE 	16
+
+#define SIG_MOVE 		32
+
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+SmokeUnit()
+{
+	var Var0;
+	var Var1;
+	var Var2;
+	while (get 17)
+	{
+	  sleep 400;
+	}
+	while (TRUE)
+	{
+	  Var0 = get 4;
+	  if ((Var0 < 66))
+	  {
+		Var2 = (256 | 2);
+		if ((rand (1, 66) < Var0))
+		{
+		  Var2 = (256 | 1);
+		}
+		emit-sfx Var2 from base;
+	  }
+	  Var1 = (Var0 * 50);
+	  if ((Var1 < 200))
+	  {
+		Var1 = 200;
+	  }
+	  sleep Var1;
+	}
+}
+
+Create()
+{
+	set ARMORED to 1;
+//	set ACTIVATION to 100;
+	upgrade = 1;
+	bMoving = 0;
+	bAiming = 0;
+		
+//	firing = 0;
+//	firedelay = 0;
+	
+//	firing_2 = 0;
+//	firedelay_2 = 5000;
+	
+	hide flare;
+	dont-cache flare;
+	
+	hide flare2;
+	dont-cache flare2;
+	
+	
+		
+//	hide turret2;
+//	hide arms2;
+//	hide sleeve2;
+//	hide barrel2;
+
+//	move turret3 to y-axis [3.045] now;
+
+/*
+	var unit_ID, max, min, minid, maxid;
+	min = get MIN_ID;
+	max = get MAX_ID;
+	
+	my_id=get MY_ID;
+	myteam=get UNIT_TEAM(get MY_ID);
+	
+	for (unit_ID = min; unit_ID <= max; ++unit_ID)
+	{
+		if((get UNIT_TEAM(unit_id))==myteam)
+		{
+			if (get UNIT_HEIGHT(unit_ID) == 1732896)
+			{
+				if(get UNIT_BUILD_PERCENT_LEFT(unit_ID)==0)
+				{
+					upgrade = 1;
+										
+//					firedelay = 5000;
+					
+					move turret3 to y-axis [2.90] now;
+					
+					show turret2;
+					show arms2;
+					show sleeve2;
+					show barrel2;
+					
+					hide barrel3;
+				}	
+			}
+		}
+	}
+*/
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+//	spin prong around z-axis speed <60.021978>;
+}
+
+Deactivate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+//	turn prong to z-axis <0.000000> speed <100.000000>;
+//	wait-for-turn prong around y-axis;
+}
+
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	bMoving = TRUE;
+	while(bmoving)
+	{
+		if( 1 )
+		{
+			move feetparent to z-axis [-0.900000] now;
+			move flfoot to x-axis [-0.900000] now;
+			move flfoot to y-axis [0.359998] now;
+			move flfoot to z-axis [0.300000] now;
+			move flfoot to z-axis [-0.359998] speed [3.000000];
+			move frfoot to x-axis [0.900000] now;
+			move frfoot to y-axis [0.359998] now;
+			move frfoot to z-axis [2.269995] now;
+			move frfoot to z-axis [3.529999] speed [10.000000];
+			move rlfoot to x-axis [-0.900000] now;
+			move rlfoot to y-axis [0.359998] now;
+			move rlfoot to z-axis [-0.679999] now;
+			move rlfoot to z-axis [-1.319995] speed [4.000000];
+			move rrfoot to x-axis [0.900000] now;
+			move rrfoot to y-axis [0.359998] now;
+			move rrfoot to z-axis [-1.379999] now;
+			move rrfoot to z-axis [-1.729999] speed [3.000000];
+			move body to y-axis [1.289996] now;
+			move body to z-axis [-0.259998] now;
+			move housing1 to x-axis [0.559998] now;
+			move housing1 to y-axis [1.289996] now;
+			move housing1 to z-axis [-0.300000] now;
+			move housing2 to x-axis [-0.559998] now;
+			move housing2 to y-axis [1.289996] now;
+			move housing2 to z-axis [-0.300000] now;
+		/*	move turret to x-axis [-0.100000] now;
+			move turret to y-axis [0.379999] now;
+			move turret to z-axis [-0.600000] now;
+			move faceguard to x-axis [0.100000] now;
+			move faceguard to y-axis [0.109998] now;
+			move faceguard to z-axis [-0.300000] now;
+			move lgun to x-axis [-0.700000] now;
+			move lgun to y-axis [0.109998] now;
+			move lgun to z-axis [0.509998] now;
+			move rgun to x-axis [0.100000] now;
+			move rgun to y-axis [0.109998] now;
+			move rgun to z-axis [0.509998] now;
+			move rbarrel to z-axis [0.300000] now;
+			move lbarrel to z-axis [0.300000] now;*/
+			turn frfoot to x-axis <-17.840659> now;
+			turn frfoot to x-axis <-14.000000> speed <27.005495>;
+			turn housing1 to x-axis <-4> now;
+			turn housing1 to x-axis <-5.5> speed <15.5>;
+			sleep 109;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [1.479999] speed [16.000000];
+			move frfoot to z-axis [3.479999] speed [0.000000];
+			move rlfoot to z-axis [-1.629999] speed [1.000000];
+			move rrfoot to z-axis [-1.629999] speed [0.000000];
+			turn flfoot to x-axis <-12.000000> speed <117.027473>;
+			turn frfoot to x-axis <0.000000> speed <141.032967>;
+			turn rrfoot to x-axis <9.000000> speed <89.016484>;
+			turn housing1 to x-axis <0.000000> speed <50>;
+			turn housing2 to x-axis <-2.5> speed <25.5>;
+			sleep 110;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [2.829999] speed [12.000000];
+			move frfoot to z-axis [2.519995] speed [7.000000];
+			move rlfoot to z-axis [-2.059998] speed [3.000000];
+			move rrfoot to z-axis [-1.579999] speed [0.000000];
+			turn flfoot to x-axis <-30.016484> speed <157.032967>;
+			turn rrfoot to x-axis <15.000000> speed <51.010989>;
+			turn housing1 to x-axis <3.5> speed <37.5>;
+			turn housing2 to x-axis <-5.5> speed <25.5>;
+			sleep 111;
+		}
+		if( 1 )
+		{
+			move frfoot to z-axis [2.329999] speed [1.000000];
+			move rlfoot to z-axis [-2.469995] speed [3.000000];
+			move rrfoot to z-axis [-0.569995] speed [9.000000];
+			turn flfoot to x-axis <-18.000000> speed <103.021978>;
+			turn rrfoot to x-axis <19.000000> speed <37.005495>;
+			turn housing1 to x-axis <0.5> speed <27.5>;
+			turn housing2 to x-axis <-3> speed <20.5>;
+			sleep 110;
+		}
+		if( 1 )
+		{
+			move frfoot to z-axis [1.719995] speed [4.000000];
+			move rlfoot to z-axis [-3.229999] speed [6.000000];
+			move rrfoot to z-axis [0.609998] speed [10.000000];
+			turn flfoot to x-axis <0.000000> speed <164.038462>;
+			turn rrfoot to x-axis <3.5> speed <109.021978>;
+			turn housing2 to x-axis <0.000000> speed <30.5>;
+			sleep 111;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [1.969995] speed [7.000000];
+			move frfoot to z-axis [0.679999] speed [9.000000];
+			move rrfoot to z-axis [0.259998] speed [3.000000];
+			turn flfoot to x-axis <0.000000> speed <6.000000>;
+			turn rlfoot to x-axis <22.000000> speed <204.049451>;
+			turn rrfoot to x-axis <0.000000> speed <62.010989>;
+			turn housing2 to x-axis <4.5> speed <41.5>;
+			sleep 109;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [1.519995] speed [3.000000];
+			move frfoot to z-axis [0.700000] speed [4.000000];
+			move rlfoot to z-axis [-1.779999] speed [12.000000];
+			move rrfoot to z-axis [-0.179999] speed [3.000000];
+			turn rlfoot to x-axis <28.016484> speed <58.010989>;
+			turn housing2 to x-axis <5> speed <5>;
+			sleep 111;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [0.969995] speed [4.000000];
+			move frfoot to z-axis [-0.259998] speed [3.000000];
+			move rlfoot to z-axis [-0.529999] speed [10.000000];
+			move rrfoot to z-axis [-0.729999] speed [4.000000];
+			turn rlfoot to x-axis <10.000000> speed <169.038462>;
+			turn housing2 to x-axis <1> speed <34.5>;
+			sleep 110;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [0.819995] speed [0.000000];
+			move frfoot to z-axis [0.300000] speed [1.000000];
+			move rlfoot to z-axis [0.359998] speed [7.000000];
+			move rrfoot to z-axis [-0.919995] speed [1.000000];
+			turn frfoot to x-axis <-10.000000> speed <99.021978>;
+			turn rlfoot to x-axis <0.000000> speed <96.021978>;
+			turn housing1 to x-axis <-0.5> speed <13.5>;
+			turn housing2 to x-axis <-1> speed <24>;
+			sleep 111;
+		}
+		if( 1 )
+		{
+			move flfoot to z-axis [0.369995] speed [3.000000];
+			move frfoot to z-axis [1.219995] speed [10.000000];
+			move rlfoot to z-axis [-0.429999] speed [6.000000];
+			move rrfoot to z-axis [-1.369995] speed [3.000000];
+			turn frfoot to x-axis <-12.000000> speed <20>;
+			turn housing1 to x-axis <-2> speed <13.5>;
+			sleep 110;
+		}
+	}
+	turn housing1 to x-axis <0.000000> speed <150.032967>;
+	turn RRFoot to x-axis <0.000000> speed <150.032967>;
+	turn FRFoot to x-axis <0.000000> speed <150.032967>;
+	turn housing2 to x-axis <0.000000> speed <150.032967>;
+	turn RLFoot to x-axis <0.000000> speed <150.032967>;
+	turn FLFoot to x-axis <0.000000> speed <150.032967>;
+}
+
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep 36000;
+	set-signal-mask 0;
+	turn turret to y-axis <0.00> speed <25.02>;
+	turn sleeve to x-axis <0.00> speed <25.01>;
+	turn turret2 to y-axis <0.00> speed <25.02>;
+	turn sleeve2 to x-axis <0.00> speed <25.01>;
+}
+
+AimPrimary(heading,pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	bAiming = TRUE;
+
+	turn turret to y-axis heading speed <50.02>;
+	turn sleeve to x-axis 0 - pitch speed <50.01>;
+		
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+//	while( firing )
+//	{
+//		sleep 100;
+//	}
+	start-script RestoreAfterDelay();
+	return 1;
+}	
+
+FirePrimary()
+{
+//	firing = 1;
+	explode flare type BITMAPONLY | BITMAP5;
+	move barrel to z-axis [-4.00] speed [500.00];
+	turn arms to y-axis <-50.02> speed <500.12>;
+	turn sleeve to y-axis <50.02> speed <500.12>;
+	sleep 150;
+	move barrel to z-axis [0.00] speed [2.00];
+	turn arms to y-axis <0.00> speed <23.01>;
+	turn sleeve to y-axis <0.00> speed <23.01>;
+//	sleep firedelay;
+//	firing = 0;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = sleeve;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+
+AimSecondary(heading,pitch)
+{
+	signal SIG_AIM_2;
+	set-signal-mask SIG_AIM_2;
+	bAiming = TRUE;
+
+	while(upgrade == 0)
+	{
+		sleep 888;
+	}
+	turn turret2 to y-axis heading speed <50.02>;
+	turn sleeve2 to x-axis 0 - pitch speed <50.01>;
+		
+	wait-for-turn turret2 around y-axis;
+	wait-for-turn sleeve2 around x-axis;
+//	while( firing_2 )
+//	{
+//		sleep 100;
+//	}
+	start-script RestoreAfterDelay();
+	return 1;
+}	
+
+FireSecondary()
+{
+//	firing_2 = 1;
+	explode flare2 type BITMAPONLY | BITMAP5;
+	move barrel2 to z-axis [-4.00] speed [500.00];
+	turn arms2 to y-axis <50.02> speed <500.12>;
+	turn sleeve2 to y-axis <-50.02> speed <500.12>;
+	sleep 150;
+	move barrel2 to z-axis [0.00] speed [2.00];
+	turn arms2 to y-axis <0.00> speed <23.01>;
+	turn sleeve2 to y-axis <0.00> speed <23.01>;
+//	sleep firedelay_2;
+//	firing = 0;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = sleeve2;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = flare2;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode body type BITMAPONLY | BITMAP1;
+		explode FLFoot type BITMAPONLY | BITMAP1;
+		explode FRFoot type BITMAPONLY | BITMAP5;
+		explode arms type BITMAPONLY | BITMAP1;
+		explode barrel type BITMAPONLY | BITMAP5;
+		explode housing1 type BITMAPONLY | BITMAP5;
+		explode side1 type BITMAPONLY | BITMAP1;
+		explode holder type BITMAPONLY | BITMAP5;
+		explode optics type BITMAPONLY | BITMAP1;
+		explode sleeve type BITMAPONLY | BITMAP5;
+		explode barrel2 type BITMAPONLY | BITMAP5;
+		explode housing2 type BITMAPONLY | BITMAP1;
+		explode RLFoot type BITMAPONLY | BITMAP5;
+		explode RRFoot type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode FLFoot type BITMAPONLY | BITMAP1;
+		explode FRFoot type BITMAPONLY | BITMAP5;
+		explode arms type FALL | BITMAP1;
+		explode barrel type FALL | BITMAP5;
+		explode housing1 type BITMAPONLY | BITMAP5;
+		explode side1 type FALL | BITMAP1;
+		explode holder type FALL | BITMAP5;
+		explode optics type FALL | BITMAP1;
+		explode sleeve type FALL | BITMAP5;
+		explode barrel2 type FALL | BITMAP5;
+		explode housing2 type BITMAPONLY | BITMAP1;
+		explode RLFoot type BITMAPONLY | BITMAP5;
+		explode RRFoot type BITMAPONLY | BITMAP1;
+		explode turret type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type SHATTER | BITMAP1;
+		explode FLFoot type BITMAPONLY | BITMAP1;
+		explode FRFoot type BITMAPONLY | BITMAP5;
+		explode arms type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode housing1 type BITMAPONLY | BITMAP5;
+		explode side1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode holder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode optics type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode housing2 type BITMAPONLY | BITMAP1;
+		explode RLFoot type BITMAPONLY | BITMAP5;
+		explode RRFoot type BITMAPONLY | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode body type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode FLFoot type BITMAPONLY | BITMAP1;
+	explode FRFoot type BITMAPONLY | BITMAP5;
+	explode arms type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode housing1 type BITMAPONLY | BITMAP5;
+	explode side1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode holder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode optics type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode housing2 type BITMAPONLY | BITMAP1;
+	explode RLFoot type BITMAPONLY | BITMAP5;
+	explode RRFoot type BITMAPONLY | BITMAP1;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}
+
+

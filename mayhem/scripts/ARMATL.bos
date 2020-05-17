@@ -1,0 +1,130 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flare, launcher, turret;
+
+static-var reload_1;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( ( get BUILD_PERCENT_LEFT ) )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}
+*/	
+
+Create()
+{
+	dont-shade turret;
+	dont-shade launcher;
+	reload_1 = 0;
+	start-script SmokeUnit();
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( reload_1 )
+	{
+		wait-for-move launcher along z-axis;
+	}
+	turn turret to y-axis heading speed <80>;
+	wait-for-turn turret around y-axis;
+	return (1);
+}
+
+FirePrimary()
+{
+	reload_1 = 1;
+	move launcher to z-axis [-5] speed [200];
+	emit-sfx 256 | 3 from flare;
+	sleep 250;
+	move launcher to z-axis [-0.5] speed [2.5];
+	sleep 2000;
+	move launcher to z-axis [0] speed [0.25];
+	wait-for-move launcher along z-axis;
+	reload_1 = 0;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = launcher;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	explode base type BITMAPONLY | BITMAP1;
+	explode launcher type BITMAPONLY | BITMAP2;
+	explode turret type BITMAPONLY | BITMAP3;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		return (0);
+	}
+	corpsetype = 3;
+	return (0);
+}

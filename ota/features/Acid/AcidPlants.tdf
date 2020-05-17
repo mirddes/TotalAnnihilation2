@@ -1,0 +1,509 @@
+[AcidPlant01]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=180;
+	filename=acidplant;
+	seqname=acidplant01;
+	seqnameshad=acidplantshad01;
+	seqnamereclamate=acidplantrec01;
+	energy=525;
+
+	seqnameburn=acidplantburn01;
+	seqnameburnshad=;
+	featureburnt=acidscar1;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom01;
+	featuredead=acidscar1;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant01b]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=180;
+	filename=acidplant;
+	seqname=acidplant01b;
+	seqnameshad=acidplantshad01b;
+	seqnamereclamate=acidplantrec01;
+	energy=530;
+
+	seqnameburn=acidplantburn01;
+	seqnameburnshad=;
+	featureburnt=acidscar1;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom01;
+	featuredead=acidscar1;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant02]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=220;
+	filename=acidplant;
+	seqname=acidplant02;
+	seqnameshad=acidplantshad02;
+	seqnamereclamate=acidplantrec02;
+	energy=590;
+
+	seqnameburn=acidplantburn02;
+	seqnameburnshad=;
+	featureburnt=acidscar2;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom02;
+	featuredead=acidscar2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant02b]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=220;
+	filename=acidplant;
+	seqname=acidplant02b;
+	seqnameshad=acidplantshad02b;
+	seqnamereclamate=acidplantrec02;
+	energy=580;
+
+	seqnameburn=acidplantburn02;
+	seqnameburnshad=;
+	featureburnt=acidscar2;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom02;
+	featuredead=acidscar2;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar2;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant03]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant03;
+	seqnameshad=acidplantshad03;
+	seqnamereclamate=acidplantrec03;
+	energy=550;
+
+	seqnameburn=acidplantburn03;
+	seqnameburnshad=;
+	featureburnt=acidscar3;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom03;
+	featuredead=acidscar3;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar3;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant03b]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant03b;
+	seqnameshad=acidplantshad03b;
+	seqnamereclamate=acidplantrec03;
+	energy=555;
+
+	seqnameburn=acidplantburn03;
+	seqnameburnshad=;
+	featureburnt=acidscar3;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom03;
+	featuredead=acidscar3;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar3;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant04]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant04;
+	seqnameshad=acidplantshad04;
+	seqnamereclamate=acidplantrec04;
+	energy=620;
+
+	seqnameburn=acidplantburn04;
+	seqnameburnshad=;
+	featureburnt=acidscar4;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom04;
+	featuredead=acidscar4;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar4;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant04b]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant04b;
+	seqnameshad=acidplantshad04b;
+	seqnamereclamate=acidplantrec04;
+	energy=625;
+
+	seqnameburn=acidplantburn04;
+	seqnameburnshad=;
+	featureburnt=acidscar4;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom04;
+	featuredead=acidscar4;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar4;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant05]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant05;
+	seqnameshad=acidplantshad05;
+	seqnamereclamate=acidplantrec05;
+	energy=650;
+
+	seqnameburn=acidplantburn05;
+	seqnameburnshad=;
+	featureburnt=acidscar5;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom05;
+	featuredead=acidscar5;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar5;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+[AcidPlant05b]
+	{
+	world=acid;
+	description=Gasbag;
+	category=Gasplants;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=160;
+	filename=acidplant;
+	seqname=acidplant05b;
+	seqnameshad=acidplantshad05b;
+	seqnamereclamate=acidplantrec05;
+	energy=645;
+
+	seqnameburn=acidplantburn05;
+	seqnameburnshad=;
+	featureburnt=acidscar5;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=75;
+	burnweapon=Gasbag;
+
+	seqnamedie=acidp-boom05;
+	featuredead=acidscar5;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamamate=acidscar5;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=20;
+	}
+
+
+
+
+[acidscar1]
+	{
+	world=acid;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidplant;
+	seqname=acidp-smudge01;
+
+	featuredead=acidscar1;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[acidscar2]
+	{
+	world=acid;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidplant;
+	seqname=acidp-smudge02;
+
+	featuredead=acidscar2;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[acidscar3]
+	{
+	world=acid;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidplant;
+	seqname=acidp-smudge03;
+
+	featuredead=acidscar3;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+
+[acidscar4]
+	{
+	world=acid;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidplant;
+	seqname=acidp-smudge04;
+
+	featuredead=acidscar4;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[acidscar5]
+	{
+	world=acid;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=acidplant;
+	seqname=acidp-smudge05;
+
+	featuredead=acidscar5;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+

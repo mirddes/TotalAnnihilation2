@@ -1,0 +1,441 @@
+[LavaNode013]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=55;
+	filename=lavastuff;
+	seqname=node013;
+	seqnameshad=;
+	seqnamereclamate=node013rec;
+	energy=500;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node013scar;
+	featuredead=node013scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node013Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=node013scar;
+	seqnameshad=;
+
+	featuredead=node013scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode015]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=55;
+	filename=lavastuff;
+	seqname=node015;
+	seqnameshad=node015shad;
+	seqnamereclamate=node015rec;
+	energy=500;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node015scar;
+	featuredead=node015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node015Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=node015scar;
+	seqnameshad=;
+
+	featuredead=node015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode010]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=37;
+	filename=lavastuff;
+	seqname=node010;
+	seqnameshad=;
+	seqnamereclamate=node010rec;
+	energy=250;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node010scar;
+	featuredead=node010scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node010Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=node010scar;
+	seqnameshad=;
+
+	featuredead=node010scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode003D]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=31;
+	filename=lavastuff;
+	seqname=node003d;
+	seqnameshad=;
+	seqnamereclamate=node003Drec;
+	energy=250;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node003Dscar;
+	featuredead=node003Dscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node003DScar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=node003Dscar;
+	seqnameshad=;
+
+	featuredead=node003Dscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode005]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=46;
+	filename=lavastuff;
+	seqname=node005;
+	seqnameshad=;
+	seqnamereclamate=node005rec;
+	energy=750;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node005scar;
+	featuredead=node005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node005Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=node005scar;
+	seqnameshad=;
+
+	featuredead=node005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode006]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=46;
+	filename=lavastuff;
+	seqname=node006;
+	seqnameshad=;
+	seqnamereclamate=node006rec;
+	energy=750;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node006scar;
+	featuredead=node006scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node006Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=node006scar;
+	seqnameshad=;
+
+	featuredead=node006scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode003B]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=30;
+	filename=lavastuff;
+	seqname=node003B;
+	seqnameshad=;
+	seqnamereclamate=node003Brec;
+	energy=250;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node003Bscar;
+	featuredead=node003Bscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node003BScar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=node003Bscar;
+	seqnameshad=;
+
+	featuredead=node003Bscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode001]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=58;
+	filename=lavastuff;
+	seqname=Node001;
+	seqnameshad=node001shad;
+	seqnamereclamate=node001rec;
+	energy=1000;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node001scar;
+	featuredead=node001scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node001Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=node001scar;
+	seqnameshad=;
+
+	featuredead=node001scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaNode012]
+	{
+	world=lava;
+	description=Node;
+	category=nodes;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=30;
+	filename=lavastuff;
+	seqname=Node012;
+	seqnameshad=node012shad;
+	seqnamereclamate=node012rec;
+	energy=250;
+
+	seqnamedie=rockboom02;
+	featurereclamate=node012scar;
+	featuredead=node012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Node012Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=node012scar;
+	seqnameshad=;
+
+	featuredead=node012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+

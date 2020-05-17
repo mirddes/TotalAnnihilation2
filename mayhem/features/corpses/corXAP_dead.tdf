@@ -1,0 +1,35 @@
+[corXAP_dead]
+{
+world=All Worlds;
+description=Heavy Air Plant Wreckage;
+category=core_corpses;
+object=corXAP_dead;
+featuredead=corXAP_heap;
+footprintx=8;
+footprintz=11;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=7420;
+damage=5404;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corXAP_heap]
+{
+world=All Worlds;
+description=Heavy Air Plant Wreckage;
+category=heaps;
+object=7x7c;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3710;
+damage=6204;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

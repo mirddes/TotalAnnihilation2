@@ -1,0 +1,34 @@
+[corarl_DEAD]
+{
+world=All Worlds;
+description=Smiter Wreckage;
+category=core_corpses;
+object=corarl_dead;
+featuredead=corarl_heap;
+footprintx=3;
+footprintz=3;
+height=40;
+blocking=1;
+hitdensity=60;
+metal=408;
+damage=940;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corarl_HEAP]
+{
+world=All Worlds;
+description=Smiter Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+blocking=0;
+hitdensity=5;
+metal=204;
+damage=948;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

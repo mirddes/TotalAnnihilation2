@@ -1,0 +1,157 @@
+// Core Bombardier Script par Sephitoh de TAAN
+
+piece mis1, mis2, base, body, wing1, wing2, bombs;
+
+static-var mis_1, bomb_2, busy_3, dontfire, offscreen;
+
+#DEFINE SMOKEPIECE1	base
+#INCLUDE "smokeunit.h"
+#INCLUDE "exptype.h"
+
+Create()
+{
+	mis_1 = 0;
+	bomb_2 = 4;
+	busy_3 = 0;
+	dontfire = 0;
+	offscreen = 0;
+}
+
+Offscreencheck()
+{
+	var groundheight;
+	signal 8;
+	set-signal-mask 8;
+	while(TRUE)
+	{
+		groundheight = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if( groundheight < 0 )
+		{
+			offscreen = 6;
+			dontfire = 1;
+		}
+		if(( groundheight >= 0 ) AND offscreen > 0 )
+		{
+			--offscreen;
+			if( offscreen <= 0 )
+			{
+				dontfire = 0;
+			}
+		}
+		sleep 1000;
+	}
+}
+		
+
+Activate()
+{
+	turn wing1 to z-axis <-90> speed <15>;
+	turn wing2 to z-axis <90> speed <15>;
+	Start-script Offscreencheck();
+}
+
+Deactivate()
+{
+	signal 8;
+	turn wing1 to z-axis <0> speed <15>;
+	turn wing2 to z-axis <0> speed <15>;
+}
+
+Reload()
+{
+	if( !busy_3 )
+	{
+		busy_3 = 1;
+		while( bomb_2 < 4 )
+		{
+			sleep 450;
+			if( bomb_2 > 0 )
+			{
+				move bombs to z-axis [0] now;
+				move bombs to x-axis [0] now;
+			}
+			if(( bomb_2 <= 0 ) OR dontfire )
+			{
+				move bombs to x-axis [32000] now;
+				move bombs to z-axis [-32000] now;
+				bomb_2 = 0;
+			}
+			++bomb_2;
+		}
+		busy_3 = 0;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	--bomb_2;
+	if( !busy_3 )
+	{
+		start-script Reload();
+	}
+	piecenum = bombs;
+	return (0);
+}
+
+FireTertiary()
+{
+	mis_1 = !mis_1;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = mis_1; 
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity,corpsetype)
+{
+	IF (severity <= 25 )
+		{
+		corpsetype = 1 ;
+		EXPLODE  base type  	BITMAPONLY | BITMAP1;
+		EXPLODE  body type  	BITMAPONLY | BITMAP2;
+		EXPLODE  mis1 type  	BITMAPONLY | BITMAP3;
+		EXPLODE  mis2 type  	BITMAPONLY | BITMAP3;
+		EXPLODE  wing1 type  	BITMAPONLY | BITMAP4;
+		EXPLODE  wing2 type  	BITMAPONLY | BITMAP4;
+		EXPLODE  bombs type 	FALL | SMOKE | FIRE | BITMAP5;
+		RETURN ( 0 );
+		}
+	IF (severity <= 50 )
+		{
+		corpsetype = 2 ;
+		EXPLODE  base type  	BITMAPONLY | BITMAP1;
+		EXPLODE  body type  	BITMAPONLY | BITMAP2;
+		EXPLODE  mis1 type  	FALL | SMOKE | BITMAP3;
+		EXPLODE  mis2 type  	FALL | SMOKE | BITMAP3;
+		EXPLODE  wing1 type  	BITMAPONLY | BITMAP4;
+		EXPLODE  wing2 type  	BITMAPONLY | BITMAP4;
+		EXPLODE  bombs type 	FALL | SMOKE | FIRE | BITMAP5;
+		RETURN ( 0 );
+		}
+	IF (severity <= 99 )
+		{
+		corpsetype = 3 ;
+		EXPLODE  base type  	BITMAPONLY | BITMAP1;
+		EXPLODE  body type  	BITMAPONLY | BITMAP2;
+		EXPLODE  mis1 type  	FALL | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		EXPLODE  mis2 type  	FALL | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		EXPLODE  wing1 type  	FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		EXPLODE  wing2 type  	FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		EXPLODE  bombs type 	FALL | SMOKE | FIRE | BITMAP5;
+		RETURN ( 0 );
+		}
+	corpsetype = 3 ;
+	EXPLODE  base type  	BITMAPONLY | BITMAP1;
+	EXPLODE  body type  	BITMAPONLY | BITMAP2;
+	EXPLODE  mis1 type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	EXPLODE  mis2 type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	EXPLODE  wing1 type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	EXPLODE  wing2 type  	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	EXPLODE  bombs type 	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

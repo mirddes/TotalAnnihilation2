@@ -1,0 +1,1087 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, torso, hips, rlegmain, llegmain, rfoot, head,
+       luparm, lgunbase, lgunshaft, ruparm, rgunbase, rgunshaft, rshoulder, lshoulder,
+       larm, rarm, lfoot, lgunhide, rgunhide, lgunbarrel, rgunbarrel, llegdoor,
+       rlegdoor;
+
+static-var  gun_1, canaim_2, moving_3, aiming_4, busy_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+MotionControl(Justmoved)
+{
+	Justmoved = 1;
+	while( TRUE )
+	{
+		if( ( aiming_4 OR busy_5 ) AND moving_3 )
+		{
+			Justmoved = 1;
+			move hips to y-axis [0.8000] speed [100];
+			move hips to z-axis [0] speed [100];
+			move rlegmain to y-axis [1.1000] speed [100];
+			move llegmain to y-axis [-0.9500] speed [100];
+			move rfoot to y-axis [1.2000] speed [100];
+			move lgunbase to y-axis [0] speed [100];
+			move lgunshaft to x-axis [0] speed [100];
+			move rgunbase to y-axis [0] speed [100];
+			move rgunshaft to x-axis [0] speed [100];
+			turn rlegmain to x-axis <-19.3297> speed <420>;
+			turn rfoot to x-axis <26.7088> speed <420>;
+			sleep 95;
+			move hips to y-axis [0.6000] speed [100];
+			move rlegmain to y-axis [0.5700] speed [100];
+			move llegmain to y-axis [-0.9800] speed [100];
+			move rfoot to y-axis [0.9500] speed [100];
+			turn hips to x-axis <3.1593> speed <420>;
+			turn rlegmain to x-axis <-34.9780> speed <420>;
+			turn llegmain to x-axis <6.1484> speed <420>;
+			turn lfoot to x-axis <-9.1374> speed <420>;
+			turn rfoot to x-axis <20.0275> speed <420>;
+			sleep 87;
+			if( moving_3 )
+			{
+				move hips to y-axis [0.4000] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [-1] speed [100];
+				move rfoot to y-axis [0.7000] speed [100];
+				turn hips to x-axis <6.3187> speed <420>;
+				turn rlegmain to x-axis <-50.6154> speed <420>;
+				turn llegmain to x-axis <12.2967> speed <420>;
+				turn lfoot to x-axis <-18.2692> speed <420>;
+				turn rfoot to x-axis <13.3462> speed <420>;
+				sleep 71;
+				move rlegmain to y-axis [-0.2800] speed [100];
+				move llegmain to y-axis [-0.8000] speed [100];
+				move rfoot to y-axis [0.3500] speed [100];
+				turn hips to x-axis <8.7692> speed <420>;
+				turn rlegmain to x-axis <-52.0275> speed <420>;
+				turn llegmain to x-axis <17.3956> speed <420>;
+				turn lfoot to x-axis <-13> speed <420>;
+				turn rfoot to x-axis <6.6593> speed <420>;
+				sleep 68;
+				move rlegmain to y-axis [-0.6000] speed [100];
+				move llegmain to y-axis [-0.6000] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <11.2473> speed <420>;
+				turn rlegmain to x-axis <-53.4286> speed <420>;
+				turn llegmain to x-axis <22.5000> speed <420>;
+				turn lfoot to x-axis <-7.7253> speed <420>;
+				turn rfoot to x-axis <0> speed <420>;
+				sleep 68;
+			}
+			if( moving_3 )
+			{
+				move rlegmain to y-axis [-0.4000] speed [100];
+				move llegmain to y-axis [-0.3000] speed [100];
+				turn hips to x-axis <14.9286> speed <420>;
+				turn rlegmain to x-axis <-53.2582> speed <420>;
+				turn lfoot to x-axis <10.7088> speed <420>;
+				turn rfoot to x-axis <17.7363> speed <420>;
+				sleep 68;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <18.6264> speed <420>;
+				turn rlegmain to x-axis <-53.0769> speed <420>;
+				turn lfoot to x-axis <29.1593> speed <420>;
+				turn rfoot to x-axis <35.5000> speed <420>;
+				sleep 60;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <13.9560> speed <420>;
+				turn rlegmain to x-axis <-39.7967> speed <420>;
+				turn llegmain to x-axis <12.0385> speed <420>;
+				turn lfoot to x-axis <28.4670> speed <420>;
+				turn rfoot to x-axis <26.6154> speed <420>;
+				sleep 58;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <9.3077> speed <420>;
+				turn rlegmain to x-axis <-26.5385> speed <420>;
+				turn llegmain to x-axis <1.5659> speed <420>;
+				turn lfoot to x-axis <27.7582> speed <420>;
+				turn rfoot to x-axis <17.7363> speed <420>;
+				sleep 90;
+				move hips to y-axis [0.7000] speed [100];
+				move rlegmain to y-axis [-0.7600] speed [100];
+				move llegmain to y-axis [0.8200] speed [100];
+				move lfoot to y-axis [0.9000] speed [100];
+				turn hips to x-axis <4.6484> speed <420>;
+				turn rlegmain to x-axis <-13.2582> speed <420>;
+				turn llegmain to x-axis <-8.8681> speed <420>;
+				turn lfoot to x-axis <27.0495> speed <420>;
+				turn rfoot to x-axis <8.8681> speed <420>;
+				sleep 90;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <0> speed <420>;
+				turn rlegmain to x-axis <0> speed <420>;
+				turn llegmain to x-axis <-19.3297> speed <420>;
+				turn lfoot to x-axis <26.3571> speed <420>;
+				turn rfoot to x-axis <0> speed <420>;
+				sleep 98;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <3.1593> speed <420>;
+				turn rlegmain to x-axis <6.3187> speed <420>;
+				turn llegmain to x-axis <-34.7967> speed <420>;
+				turn lfoot to x-axis <19.8462> speed <420>;
+				turn rfoot to x-axis <-9.1374> speed <420>;
+				sleep 86;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <6.3187> speed <420>;
+				turn rlegmain to x-axis <12.6484> speed <420>;
+				turn llegmain to x-axis <-50.2582> speed <420>;
+				turn lfoot to x-axis <13.3462> speed <420>;
+				turn rfoot to x-axis <-18.2692> speed <420>;
+				sleep 80;
+				move rlegmain to y-axis [-0.8000] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <8.7692> speed <420>;
+				turn rlegmain to x-axis <17.3956> speed <420>;
+				turn llegmain to x-axis <-51.6593> speed <420>;
+				turn lfoot to x-axis <6.6593> speed <420>;
+				turn rfoot to x-axis <-12.8187> speed <420>;
+				sleep 81;
+			}
+			if( moving_3 )
+			{
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <11.2473> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.0769> speed <420>;
+				turn lfoot to x-axis <0> speed <420>;
+				turn rfoot to x-axis <-7.3791> speed <420>;
+				sleep 79;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <14.9286> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.2582> speed <420>;
+				turn lfoot to x-axis <17.7363> speed <420>;
+				turn rfoot to x-axis <10.8791> speed <420>;
+				sleep 80;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <18.6264> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.4286> speed <420>;
+				turn lfoot to x-axis <35.5000> speed <420>;
+				turn rfoot to x-axis <29.1593> speed <420>;
+				sleep 48;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <13.9560> speed <420>;
+				turn rlegmain to x-axis <11.7692> speed <420>;
+				turn llegmain to x-axis <-40.0659> speed <420>;
+				turn lfoot to x-axis <26.6154> speed <420>;
+				turn rfoot to x-axis <28.5495> speed <420>;
+				sleep 49;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <9.3077> speed <420>;
+				turn rlegmain to x-axis <1.3956> speed <420>;
+				turn llegmain to x-axis <-26.7088> speed <420>;
+				turn lfoot to x-axis <17.7363> speed <420>;
+				turn rfoot to x-axis <27.9396> speed <420>;
+				sleep 65;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <4.6484> speed <420>;
+				turn rlegmain to x-axis <-8.9560> speed <420>;
+				turn llegmain to x-axis <-13.3462> speed <420>;
+				turn lfoot to x-axis <8.8681> speed <420>;
+				turn rfoot to x-axis <27.3187> speed <420>;
+				sleep 64;
+			}
+		}
+		if( !aiming_4 AND moving_3 )
+		{
+			busy_5 = 1;
+			Justmoved = 1;
+			move hips to y-axis [0.8000] speed [100];
+			move hips to z-axis [0] speed [100];
+			move torso to y-axis [0] speed [100];
+			move rlegmain to y-axis [1.1000] speed [100];
+			move llegmain to y-axis [-0.9500] speed [100];
+			move rfoot to y-axis [1.2000] speed [100];
+			move head to z-axis [0] speed [100];
+			move luparm to x-axis [0] speed [100];
+			move lgunbase to y-axis [0] speed [100];
+			move lgunshaft to x-axis [0] speed [100];
+			move ruparm to x-axis [0] speed [100];
+			move rgunbase to y-axis [0] speed [100];
+			move rgunshaft to x-axis [0] speed [100];
+			turn rlegmain to x-axis <-19.3297> speed <420>;
+			turn rfoot to x-axis <26.7088> speed <420>;
+			turn rshoulder to x-axis <16.5165> speed <420>;
+			turn lshoulder to x-axis <-17.5659> speed <420>;
+			turn luparm to z-axis <-15.1099> speed <420>;
+			turn larm to x-axis <-14.0495> speed <420>;
+			turn ruparm to z-axis <15.1099> speed <420>;
+			turn rarm to x-axis <-26.0055> speed <420>;
+			sleep 95;
+			move hips to y-axis [0.6000] speed [100];
+			move rlegmain to y-axis [0.5700] speed [100];
+			move llegmain to y-axis [-0.9800] speed [100];
+			move rfoot to y-axis [0.9500] speed [100];
+			turn hips to x-axis <3.1593> speed <420>;
+			turn torso to y-axis <-1.9286> speed <420>;
+			turn rlegmain to x-axis <-34.9780> speed <420>;
+			turn llegmain to x-axis <6.1484> speed <420>;
+			turn lfoot to x-axis <-9.1374> speed <420>;
+			turn rfoot to x-axis <20.0275> speed <420>;
+			turn head to y-axis <2.4560> speed <420>;
+			turn rshoulder to x-axis <25.6484> speed <420>;
+			turn lshoulder to x-axis <-24.2473> speed <420>;
+			turn luparm to z-axis <-11.2473> speed <420>;
+			turn larm to x-axis <-20.5495> speed <420>;
+			turn ruparm to z-axis <13.5165> speed <420>;
+			turn rarm to x-axis <-38.6593> speed <420>;
+			sleep 87;
+			if( moving_3 )
+			{
+				move hips to y-axis [0.4000] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [-1] speed [100];
+				move rfoot to y-axis [0.7000] speed [100];
+				turn hips to x-axis <6.3187> speed <420>;
+				turn torso to y-axis <-3.8571> speed <420>;
+				turn rlegmain to x-axis <-50.6154> speed <420>;
+				turn llegmain to x-axis <12.2967> speed <420>;
+				turn lfoot to x-axis <-18.2692> speed <420>;
+				turn rfoot to x-axis <13.3462> speed <420>;
+				turn head to y-axis <4.9176> speed <420>;
+				turn rshoulder to x-axis <34.7857> speed <420>;
+				turn lshoulder to x-axis <-30.9286> speed <420>;
+				turn luparm to z-axis <-7.3681> speed <420>;
+				turn larm to x-axis <-27.0659> speed <420>;
+				turn ruparm to z-axis <11.9451> speed <420>;
+				turn rarm to x-axis <-51.3187> speed <420>;
+				sleep 71;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <8.7692> speed <420>;
+				turn torso to y-axis <-5.7857> speed <420>;
+				turn rlegmain to x-axis <-52.0275> speed <420>;
+				turn llegmain to x-axis <17.3956> speed <420>;
+				turn lfoot to x-axis <-13> speed <420>;
+				turn rfoot to x-axis <6.6593> speed <420>;
+				turn head to y-axis <6.4890> speed <420>;
+				turn rshoulder to x-axis <44.8187> speed <420>;
+				turn lshoulder to x-axis <-38.3187> speed <420>;
+				turn luparm to z-axis <-3.6758> speed <420>;
+				turn larm to x-axis <-16.8681> speed <420>;
+				turn ruparm to z-axis <10.5385> speed <420>;
+				turn rarm to x-axis <-60.2857> speed <420>;
+				sleep 68;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <11.2473> speed <420>;
+				turn torso to y-axis <-7.7253> speed <420>;
+				turn rlegmain to x-axis <-53.4286> speed <420>;
+				turn llegmain to x-axis <22.5000> speed <420>;
+				turn lfoot to x-axis <-7.7253> speed <420>;
+				turn rfoot to x-axis <0> speed <420>;
+				turn head to y-axis <8.0769> speed <420>;
+				turn rshoulder to x-axis <54.8352> speed <420>;
+				turn lshoulder to x-axis <-45.6978> speed <420>;
+				turn luparm to z-axis <0> speed <420>;
+				turn larm to x-axis <-6.6593> speed <420>;
+				turn ruparm to z-axis <9.1374> speed <420>;
+				turn rarm to x-axis <-69.2473> speed <420>;
+				sleep 68;
+			}
+			if( moving_3 )
+			{
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <14.9286> speed <420>;
+				turn torso to y-axis <-5.6154> speed <420>;
+				turn rlegmain to x-axis <-53.2582> speed <420>;
+				turn lfoot to x-axis <10.7088> speed <420>;
+				turn rfoot to x-axis <17.7363> speed <420>;
+				turn head to y-axis <6.1484> speed <420>;
+				turn rshoulder to x-axis <45.3352> speed <420>;
+				turn lshoulder to x-axis <-40.5989> speed <420>;
+				turn luparm to z-axis <-4.9176> speed <420>;
+				turn larm to x-axis <-14.7582> speed <420>;
+				turn ruparm to z-axis <12.4780> speed <420>;
+				sleep 68;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <18.6264> speed <420>;
+				turn torso to y-axis <-3.5055> speed <420>;
+				turn rlegmain to x-axis <-53.0769> speed <420>;
+				turn lfoot to x-axis <29.1593> speed <420>;
+				turn rfoot to x-axis <35.5000> speed <420>;
+				turn head to y-axis <4.2088> speed <420>;
+				turn rshoulder to x-axis <35.8462> speed <420>;
+				turn lshoulder to x-axis <-35.5000> speed <420>;
+				turn luparm to z-axis <-9.8352> speed <420>;
+				turn larm to x-axis <-22.8352> speed <420>;
+				turn ruparm to z-axis <15.8187> speed <420>;
+				sleep 60;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <13.9560> speed <420>;
+				turn torso to y-axis <-2.6264> speed <420>;
+				turn rlegmain to x-axis <-39.7967> speed <420>;
+				turn llegmain to x-axis <12.0385> speed <420>;
+				turn lfoot to x-axis <28.4670> speed <420>;
+				turn rfoot to x-axis <26.6154> speed <420>;
+				turn head to y-axis <3.1593> speed <420>;
+				turn rshoulder to x-axis <22.5000> speed <420>;
+				turn lshoulder to x-axis <-22.5769> speed <420>;
+				turn luparm to z-axis <-11.1484> speed <420>;
+				turn larm to x-axis <-23.7253> speed <420>;
+				turn ruparm to z-axis <15.6264> speed <420>;
+				turn rarm to x-axis <-55.5385> speed <420>;
+				sleep 58;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <9.3077> speed <420>;
+				turn torso to y-axis <-1.7473> speed <420>;
+				turn rlegmain to x-axis <-26.5385> speed <420>;
+				turn llegmain to x-axis <1.5659> speed <420>;
+				turn lfoot to x-axis <27.7582> speed <420>;
+				turn rfoot to x-axis <17.7363> speed <420>;
+				turn head to y-axis <2.0989> speed <420>;
+				turn rshoulder to x-axis <9.1374> speed <420>;
+				turn lshoulder to x-axis <-9.6593> speed <420>;
+				turn luparm to z-axis <-12.4780> speed <420>;
+				turn larm to x-axis <-24.5989> speed <420>;
+				turn ruparm to z-axis <15.4560> speed <420>;
+				turn rarm to x-axis <-41.8297> speed <420>;
+				sleep 90;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <4.6484> speed <420>;
+				turn torso to y-axis <-0.8681> speed <420>;
+				turn rlegmain to x-axis <-13.2582> speed <420>;
+				turn llegmain to x-axis <-8.8681> speed <420>;
+				turn lfoot to x-axis <27.0495> speed <420>;
+				turn rfoot to x-axis <8.8681> speed <420>;
+				turn head to y-axis <1.0495> speed <420>;
+				turn rshoulder to x-axis <-4.2088> speed <420>;
+				turn lshoulder to x-axis <3.2363> speed <420>;
+				turn luparm to z-axis <-13.7857> speed <420>;
+				turn larm to x-axis <-25.4780> speed <420>;
+				turn ruparm to z-axis <15.2857> speed <420>;
+				turn rarm to x-axis <-28.1154> speed <420>;
+				sleep 90;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <0> speed <420>;
+				turn torso to y-axis <0> speed <420>;
+				turn rlegmain to x-axis <0> speed <420>;
+				turn llegmain to x-axis <-19.3297> speed <420>;
+				turn lfoot to x-axis <26.3571> speed <420>;
+				turn rfoot to x-axis <0> speed <420>;
+				turn head to y-axis <0> speed <420>;
+				turn rshoulder to x-axis <-17.5659> speed <420>;
+				turn lshoulder to x-axis <16.1593> speed <420>;
+				turn luparm to z-axis <-15.1099> speed <420>;
+				turn larm to x-axis <-26.3571> speed <420>;
+				turn ruparm to z-axis <15.1099> speed <420>;
+				turn rarm to x-axis <-14.4066> speed <420>;
+				sleep 98;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <3.1593> speed <420>;
+				turn torso to y-axis <2.4560> speed <420>;
+				turn rlegmain to x-axis <6.3187> speed <420>;
+				turn llegmain to x-axis <-34.7967> speed <420>;
+				turn lfoot to x-axis <19.8462> speed <420>;
+				turn rfoot to x-axis <-9.1374> speed <420>;
+				turn head to y-axis <-1.9286> speed <420>;
+				turn rshoulder to x-axis <-24.0659> speed <420>;
+				turn lshoulder to x-axis <25.1264> speed <420>;
+				turn luparm to z-axis <-13.5165> speed <420>;
+				turn larm to x-axis <-38.8352> speed <420>;
+				turn ruparm to z-axis <11.2473> speed <420>;
+				turn rarm to x-axis <-20.7253> speed <420>;
+				sleep 86;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <6.3187> speed <420>;
+				turn torso to y-axis <4.9176> speed <420>;
+				turn rlegmain to x-axis <12.6484> speed <420>;
+				turn llegmain to x-axis <-50.2582> speed <420>;
+				turn lfoot to x-axis <13.3462> speed <420>;
+				turn rfoot to x-axis <-18.2692> speed <420>;
+				turn head to y-axis <-3.8571> speed <420>;
+				turn rshoulder to x-axis <-30.5769> speed <420>;
+				turn lshoulder to x-axis <34.0989> speed <420>;
+				turn luparm to z-axis <-11.9451> speed <420>;
+				turn larm to x-axis <-51.3187> speed <420>;
+				turn ruparm to z-axis <7.3681> speed <420>;
+				turn rarm to x-axis <-27.0495> speed <420>;
+				sleep 80;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <8.7692> speed <420>;
+				turn torso to y-axis <6.4890> speed <420>;
+				turn rlegmain to x-axis <17.3956> speed <420>;
+				turn llegmain to x-axis <-51.6593> speed <420>;
+				turn lfoot to x-axis <6.6593> speed <420>;
+				turn rfoot to x-axis <-12.8187> speed <420>;
+				turn head to y-axis <-5.7857> speed <420>;
+				turn rshoulder to x-axis <-37.9560> speed <420>;
+				turn lshoulder to x-axis <44.1154> speed <420>;
+				turn luparm to z-axis <-10.5385> speed <420>;
+				turn larm to x-axis <-60.2857> speed <420>;
+				turn ruparm to z-axis <3.6758> speed <420>;
+				turn rarm to x-axis <-16.8681> speed <420>;
+				sleep 81;
+			}
+			if( moving_3 )
+			{
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move lfoot to y-axis [0] speed [100];
+				turn hips to x-axis <11.2473> speed <420>;
+				turn torso to y-axis <8.0769> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.0769> speed <420>;
+				turn lfoot to x-axis <0> speed <420>;
+				turn rfoot to x-axis <-7.3791> speed <420>;
+				turn head to y-axis <-7.7253> speed <420>;
+				turn rshoulder to x-axis <-45.3462> speed <420>;
+				turn lshoulder to x-axis <54.1374> speed <420>;
+				turn luparm to z-axis <-9.1374> speed <420>;
+				turn larm to x-axis <-69.2473> speed <420>;
+				turn ruparm to z-axis <0> speed <420>;
+				turn rarm to x-axis <-6.6593> speed <420>;
+				sleep 79;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <14.9286> speed <420>;
+				turn torso to y-axis <6.4890> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.2582> speed <420>;
+				turn lfoot to x-axis <17.7363> speed <420>;
+				turn rfoot to x-axis <10.8791> speed <420>;
+				turn head to y-axis <-6.1484> speed <420>;
+				turn rshoulder to x-axis <-40.2363> speed <420>;
+				turn lshoulder to x-axis <44.6374> speed <420>;
+				turn luparm to z-axis <-12.1154> speed <420>;
+				turn larm to x-axis <-69.4286> speed <420>;
+				turn ruparm to z-axis <4.9176> speed <420>;
+				turn rarm to x-axis <-19.6758> speed <420>;
+				sleep 80;
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				turn hips to x-axis <18.6264> speed <420>;
+				turn torso to y-axis <4.9176> speed <420>;
+				turn rlegmain to x-axis <22.1374> speed <420>;
+				turn llegmain to x-axis <-53.4286> speed <420>;
+				turn lfoot to x-axis <35.5000> speed <420>;
+				turn rfoot to x-axis <29.1593> speed <420>;
+				turn head to y-axis <-4.5659> speed <420>;
+				turn rshoulder to x-axis <-35.1484> speed <420>;
+				turn lshoulder to x-axis <35.1484> speed <420>;
+				turn luparm to z-axis <-15.1099> speed <420>;
+				turn larm to x-axis <-69.5989> speed <420>;
+				turn ruparm to z-axis <9.8352> speed <420>;
+				turn rarm to x-axis <-32.6758> speed <420>;
+				sleep 48;
+			}
+			if( moving_3 )
+			{
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <13.9560> speed <420>;
+				turn torso to y-axis <3.6758> speed <420>;
+				turn rlegmain to x-axis <11.7692> speed <420>;
+				turn llegmain to x-axis <-40.0659> speed <420>;
+				turn lfoot to x-axis <26.6154> speed <420>;
+				turn rfoot to x-axis <28.5495> speed <420>;
+				turn head to y-axis <-3.4176> speed <420>;
+				turn rshoulder to x-axis <-22.2253> speed <420>;
+				turn lshoulder to x-axis <21.9560> speed <420>;
+				turn larm to x-axis <-55.7088> speed <420>;
+				turn ruparm to z-axis <11.1484> speed <420>;
+				turn rarm to x-axis <-31.0165> speed <420>;
+				sleep 49;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <9.3077> speed <420>;
+				turn torso to y-axis <2.4560> speed <420>;
+				turn rlegmain to x-axis <1.3956> speed <420>;
+				turn llegmain to x-axis <-26.7088> speed <420>;
+				turn lfoot to x-axis <17.7363> speed <420>;
+				turn rfoot to x-axis <27.9396> speed <420>;
+				turn head to y-axis <-2.2692> speed <420>;
+				turn rshoulder to x-axis <-9.3077> speed <420>;
+				turn lshoulder to x-axis <8.7692> speed <420>;
+				turn larm to x-axis <-41.8297> speed <420>;
+				turn ruparm to z-axis <12.4780> speed <420>;
+				turn rarm to x-axis <-29.3462> speed <420>;
+				sleep 65;
+				move hips to y-axis [0] speed [100];
+				move rlegmain to y-axis [0] speed [100];
+				move llegmain to y-axis [0] speed [100];
+				move rfoot to y-axis [0] speed [100];
+				turn hips to x-axis <4.6484> speed <420>;
+				turn torso to y-axis <1.2253> speed <420>;
+				turn rlegmain to x-axis <-8.9560> speed <420>;
+				turn llegmain to x-axis <-13.3462> speed <420>;
+				turn lfoot to x-axis <8.8681> speed <420>;
+				turn rfoot to x-axis <27.3187> speed <420>;
+				turn head to y-axis <-1.1264> speed <420>;
+				turn rshoulder to x-axis <3.5989> speed <420>;
+				turn lshoulder to x-axis <-4.3791> speed <420>;
+				turn larm to x-axis <-27.9396> speed <420>;
+				turn ruparm to z-axis <13.7857> speed <420>;
+				turn rarm to x-axis <-27.6758> speed <420>;
+				sleep 64;
+			}
+			busy_5 = 0;
+		}
+		if( !moving_3 )
+		{
+			if( Justmoved )
+			{
+				move hips to y-axis [0] speed [6];
+				move rlegmain to y-axis [0] speed [6];
+				move llegmain to y-axis [0] speed [6];
+				move lfoot to y-axis [0] speed [6];
+				move rfoot to y-axis [0] speed [6];
+				turn hips to x-axis <0> speed <200>;
+				turn llegmain to x-axis <0> speed <200>;
+				turn rlegmain to x-axis <0> speed <200>;
+				turn rfoot to x-axis <0> speed <200>;
+				turn lfoot to x-axis <0> speed <200>;
+				if( !aiming_4 )
+				{
+					turn torso to y-axis <0> speed <200>;
+					turn rshoulder to x-axis <0> speed <200>;
+					turn lshoulder to x-axis <0> speed <200>;
+					turn luparm to z-axis <0> speed <200>;
+					turn larm to x-axis <0> speed <200>;
+					turn ruparm to z-axis <0> speed <200>;
+					turn rarm to x-axis <0> speed <200>;
+				}
+				Justmoved = 0;
+			}
+			sleep 200;
+		}
+	}
+	return (0);
+}
+
+Create()
+{
+	canaim_2 = 0;
+	gun_1 = 0;
+	moving_3 = 0;
+	aiming_4 = 0;
+	busy_5 = 0;
+	hide lgunbarrel;
+	hide lgunshaft;
+	hide lgunbase;
+	hide rgunbarrel;
+	hide rgunshaft;
+	hide rgunbase;
+	hide flare1;
+	hide flare2;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	spin flare1 around y-axis speed <100>;
+	spin flare2 around y-axis speed <100>;
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	moving_3 = 1;
+	return (0);
+}
+
+StopMoving()
+{
+	moving_3 = 0;
+	return (0);
+}
+
+GunControl()
+{
+	if( busy_5 )
+	{
+		return(0);
+	}
+	busy_5 = 1;
+	while( aiming_4 != canaim_2 )
+	{
+		if( aiming_4 )
+		{
+			move hips to z-axis [0] now;
+			move torso to y-axis [0] now;
+			move head to z-axis [0] now;
+			move luparm to x-axis [0] now;
+			move lgunbase to y-axis [0] now;
+			move lgunshaft to x-axis [0] now;
+			move ruparm to x-axis [0] now;
+			move rgunbase to y-axis [0] now;
+			move rgunshaft to x-axis [0] now;
+			turn luparm to z-axis <0> speed <420>;
+			turn larm to x-axis <0> speed <420>;
+			turn ruparm to z-axis <0> speed <420>;
+			turn rarm to x-axis <0> speed <420>;
+			turn llegdoor to y-axis <90> speed <517.3571>;
+			turn rlegdoor to y-axis <-90> speed <517.3571>;
+			turn rshoulder to x-axis <19.3352> speed <111.1484>;
+			turn lshoulder to x-axis <19.3352> speed <111.1484>;
+			turn luparm to z-axis <-28.1264> speed <170>;
+			turn larm to x-axis <-40.4396> speed <210>;
+			turn ruparm to z-axis <28.1264> speed <170>;
+			turn rarm to x-axis <-41.1374> speed <210>;
+			sleep 174;
+			move lgunhide to y-axis [0.5000] speed [2.7200];
+			move rgunhide to y-axis [0.5000] speed [2.7200];
+			turn llegdoor to y-axis <144.1758> speed <294.3077>;
+			turn rlegdoor to y-axis <-144.8791> speed <298.1264>;
+			turn rshoulder to x-axis <54.8571> speed <193>;
+			turn lshoulder to x-axis <54.1484> speed <189.1978>;
+			turn luparm to z-axis <-34.8077> speed <36.3077>;
+			turn larm to x-axis <-64.6978> speed <131.8681>;
+			turn ruparm to z-axis <34.8077> speed <36.3077>;
+			turn rarm to x-axis <-64.3462> speed <126.1264>;
+			move lgunhide to y-axis [1] speed [3];
+			move rgunhide to y-axis [1] speed [3];
+			turn lgunhide to z-axis <-90> speed <360>;
+			turn rgunhide to z-axis <90> speed <360>;
+			sleep 238;
+			turn rshoulder to x-axis <66.1099> speed <98.6978>;
+			turn lshoulder to x-axis <66.8077> speed <111>;
+			turn luparm to z-axis <-15.1154> speed <172.7363>;
+			turn larm to x-axis <-90> speed <222.0879>;
+			turn ruparm to z-axis <15.1154> speed <172.7363>;
+			turn rarm to x-axis <-90> speed <225.1758>;
+			sleep 184;
+			hide rgunhide;
+			hide lgunhide;
+			show lgunbarrel;
+			show lgunshaft;
+			show lgunbase;
+			show rgunbarrel;
+			show rgunshaft;
+			show rgunbase;
+			move hips to z-axis [0] now;
+			move torso to y-axis [0] now;
+			move lgunhide to y-axis [1] now;
+			move lgunhide to y-axis [0] speed [14.2900];
+			move rgunhide to y-axis [1] now;
+			move rgunhide to y-axis [0] speed [14.2900];
+			move head to z-axis [0] now;
+			move luparm to x-axis [0] now;
+			move lgunbase to y-axis [0] now;
+			move lgunshaft to x-axis [0] now;
+			move lgunshaft to y-axis [0] now;
+			move lgunshaft to y-axis [2] speed [29.2900];
+			move lgunbarrel to y-axis [0] now;
+			move lgunbarrel to y-axis [1.1000] speed [15.7100];
+			move ruparm to x-axis [0] now;
+			move rgunbase to y-axis [0] now;
+			move rgunshaft to x-axis [0] now;
+			move rgunshaft to y-axis [0] now;
+			move rgunshaft to y-axis [2.1000] speed [30];
+			move rgunbarrel to y-axis [0] now;
+			move rgunbarrel to y-axis [1] speed [15];
+			turn llegdoor to y-axis <144.1374> speed <420>;
+			turn lgunhide to z-axis <-90> speed <420>;
+			turn lgunhide to z-axis <0> speed <1287.3132>;
+			turn rlegdoor to y-axis <-144.8352> speed <420>;
+			turn rgunhide to z-axis <90> speed <420>;
+			turn rgunhide to z-axis <0> speed <1287.3132>;
+			turn rshoulder to x-axis <35.1484> speed <420>;
+			turn rshoulder to x-axis <13.7088> speed <306.4286>;
+			turn lshoulder to x-axis <35.1484> speed <420>;
+			turn lshoulder to x-axis <13.3571> speed <311.4560>;
+			turn luparm to z-axis <0> speed <420>;
+			turn luparm to z-axis <-24.6154> speed <351.6484>;
+			turn larm to x-axis <-52.3791> speed <420>;
+			turn larm to x-axis <-32.3462> speed <286.3352>;
+			turn ruparm to z-axis <0> speed <420>;
+			turn ruparm to z-axis <24.6154> speed <351.6484>;
+			turn rarm to x-axis <-52.0275> speed <420>;
+			turn rarm to x-axis <-32.3462> speed <281.3187>;
+			sleep 70;
+			move lgunshaft to y-axis [1.8500] speed [2.5000];
+			move lgunbarrel to y-axis [1.1000] speed [0];
+			move rgunshaft to y-axis [1.7500] speed [4.3800];
+			move rgunbarrel to y-axis [1] speed [0];
+			turn llegdoor to y-axis <120.9670> speed <290.1099>;
+			turn rlegdoor to y-axis <-120.2582> speed <307.6868>;
+			turn rshoulder to x-axis <0> speed <171.4286>;
+			turn lshoulder to x-axis <0> speed <167>;
+			turn luparm to z-axis <-20> speed <57.1374>;
+			turn larm to x-axis <-30.9451> speed <17.5769>;
+			turn ruparm to z-axis <20> speed <57.1374>;
+			turn rarm to x-axis <-30.9451> speed <17.5769>;
+			sleep 80;
+			move lgunshaft to y-axis [1.1000] speed [12.5000];
+			move lgunbarrel to y-axis [1.5500] speed [7.5000];
+			move rgunshaft to y-axis [1] speed [12.5000];
+			move rgunbarrel to y-axis [1.8000] speed [12.5000];
+			turn llegdoor to y-axis <100.5659> speed <339.9176>;
+			turn rlegdoor to y-axis <-100.2198> speed <334.0659>;
+			turn rshoulder to x-axis <-41.4890> speed <691.5659>;
+			turn lshoulder to x-axis <-41.1374> speed <685.7088>;
+			turn luparm to z-axis <-11.2473> speed <146.5165>;
+			turn larm to x-axis <-17.2253> speed <228.5659>;
+			turn ruparm to z-axis <11.2473> speed <146.5165>;
+			turn rarm to x-axis <-16.5275> speed <240.2857>;
+			sleep 60;
+			move lgunshaft to y-axis [1.7000] speed [12];
+			move lgunbarrel to y-axis [1] speed [11];
+			move rgunshaft to y-axis [1.6500] speed [13];
+			move rgunbarrel to y-axis [1] speed [15];
+			turn llegdoor to y-axis <80.8791> speed <393.8462>;
+			turn rlegdoor to y-axis <-80.1758> speed <400.8791>;
+			turn rshoulder to x-axis <-68.2198> speed <534.5055>;
+			turn lshoulder to x-axis <-68.2198> speed <541.5385>;
+			turn luparm to z-axis <0> speed <225>;
+			turn larm to x-axis <0> speed <344.6154>;
+			turn ruparm to z-axis <0> speed <225>;
+			turn rarm to x-axis <0> speed <330.5495>;
+			sleep 50;
+			move lgunshaft to y-axis [1.3000] speed [8];
+			move lgunbarrel to y-axis [1.1500] speed [3];
+			move rgunshaft to y-axis [1.5000] speed [3];
+			move rgunbarrel to y-axis [1] speed [0];
+			turn llegdoor to y-axis <60.8352> speed <400.8791>;
+			turn rlegdoor to y-axis <-60.1264> speed <400.8791>;
+			turn rshoulder to x-axis <-90> speed <436>;
+			turn lshoulder to x-axis <-90> speed <436>;
+			sleep 50;
+			move lgunshaft to y-axis [0] speed [10];
+			move lgunbarrel to y-axis [1.1000] speed [3];
+			move rgunshaft to y-axis [0] speed [12.8];
+			move rgunbarrel to y-axis [1.1500] speed [1];
+			turn llegdoor to y-axis <0> speed <442.0659>;
+			turn rlegdoor to y-axis <0> speed <437>;
+			sleep 70;
+			move lgunbarrel to y-axis [0] speed [22];
+			move rgunbarrel to y-axis [0] speed [23];
+			sleep 60;
+			canaim_2 = 1;
+		}
+		if( !aiming_4 )
+		{
+			canaim_2 = 0;
+			move torso to y-axis [0] now;
+			turn torso to y-axis <0> speed <200>;
+			move hips to z-axis [0] now;
+			move head to z-axis [0] now;
+			move luparm to x-axis [0] now;
+			move lgunshaft to x-axis [0] now;
+			move lgunshaft to y-axis [0] now;
+			move lgunshaft to y-axis [1] speed [7.1400];
+			move ruparm to x-axis [0] now;
+			move rgunshaft to x-axis [0] now;
+			move rgunshaft to y-axis [0] now;
+			move rgunshaft to y-axis [1] speed [6.8000];
+			turn rshoulder to x-axis <-90> speed <420>;
+			turn lshoulder to x-axis <-90> speed <420>;
+			turn lgunbase to y-axis <0> speed <420>;
+			turn lgunbase to y-axis <45> speed <306.1868>;
+			turn rgunbase to y-axis <0> speed <420>;
+			turn rgunbase to y-axis <-45> speed <306.1868>;
+			move lgunbarrel to y-axis [2.2500] speed [15];
+			move rgunbarrel to y-axis [2.2000] speed [14.6700];
+			turn llegdoor to y-axis <90> speed <600.1374>;
+			turn rlegdoor to y-axis <-90> speed <600.1374>;
+			turn lgunbase to y-axis <90> speed <300.0659>;
+			turn rgunbase to y-axis <-90> speed <300.0659>;
+			sleep 150;
+			turn llegdoor to y-axis <144.8791> speed <287.2088>;
+			turn rlegdoor to y-axis <-144.5275> speed <285.3681>;
+			turn rshoulder to x-axis <-39.3791> speed <265.1154>;
+			turn lshoulder to x-axis <-36.2198> speed <281.6868>;
+			turn luparm to z-axis <-35.5055> speed <185.9451>;
+			turn lgunbase to y-axis <-90> speed <945.2308>;
+			turn ruparm to z-axis <35.1593> speed <184.0989>;
+			turn rgunbase to y-axis <-90> speed <0>;
+			sleep 191;
+			turn rshoulder to x-axis <0> speed <281.3187>;
+			turn lshoulder to x-axis <0> speed <258.7088>;
+			turn luparm to z-axis <-40.0879> speed <32.6484>;
+			turn lgunbase to y-axis <45> speed <963.2308>;
+			turn ruparm to z-axis <38.3187> speed <22.5989>;
+			turn rgunbase to y-axis <-45> speed <321.5055>;
+			sleep 140;
+			turn lgunbase to y-axis <0> speed <409.1868>;
+			turn rgunbase to y-axis <0> speed <409.1868>;
+			sleep 110;
+			turn luparm to z-axis <-26.7253> speed <139.1868>;
+			turn ruparm to z-axis <28.1264> speed <106.2253>;
+			sleep 96;
+			move rshoulder to y-axis [1] speed [4.5300];
+			move lshoulder to y-axis [1.1500] speed [4.9600];
+			turn luparm to z-axis <-38.6758> speed <51.5275>;
+			turn larm to z-axis <43.9451> speed <189.4560>;
+			turn ruparm to z-axis <37.2692> speed <39.4066>;
+			turn rarm to z-axis <-43.2473> speed <186.4286>;
+			sleep 232;
+			move rshoulder to y-axis [0] speed [7.8400];
+			move lshoulder to y-axis [0] speed [8.5800];
+			turn rshoulder to x-axis <0> speed <0>;
+			turn luparm to z-axis <-14.7692> speed <178.4451>;
+			turn larm to z-axis <33.7582> speed <76.0989>;
+			turn ruparm to z-axis <17.9286> speed <144.3297>;
+			turn rarm to z-axis <-36.5659> speed <49.8571>;
+			sleep 134;
+			move luparm to x-axis [0] speed [0];
+			move ruparm to x-axis [0] speed [0];
+			turn luparm to z-axis <0> speed <175.8187>;
+			turn larm to z-axis <0> speed <401.8791>;
+			turn ruparm to z-axis <0> speed <213.5000>;
+			turn rarm to z-axis <0> speed <435.3681>;
+			sleep 168;
+			show rgunhide;
+			show lgunhide;
+			hide lgunbarrel;
+			hide lgunshaft;
+			hide lgunbase;
+			hide rgunbarrel;
+			hide rgunshaft;
+			hide rgunbase;
+			move hips to z-axis [0] now;
+			move torso to y-axis [0] now;
+			move head to z-axis [0] now;
+			move rshoulder to y-axis [-0.7000] now;
+			move rshoulder to y-axis [-0.5000] speed [1.1800];
+			move lshoulder to y-axis [-0.7000] now;
+			move lshoulder to y-axis [-0.5000] speed [1.1800];
+			move luparm to x-axis [0] now;
+			move lgunbase to y-axis [0] now;
+			move lgunshaft to x-axis [0] now;
+			move lgunshaft to y-axis [1] now;
+			move lgunbarrel to y-axis [2.2500] now;
+			move ruparm to x-axis [0] now;
+			move rgunbase to y-axis [0] now;
+			move rgunshaft to x-axis [0] now;
+			move rgunshaft to y-axis [1] now;
+			move rgunbarrel to y-axis [2.2000] now;
+			turn llegdoor to y-axis <144.8352> speed <420>;
+			turn lgunhide to z-axis <-90> speed <420>;
+			turn rlegdoor to y-axis <-144.4890> speed <420>;
+			turn rgunhide to z-axis <90> speed <420>;
+			turn luparm to z-axis <4.5659> speed <420>;
+			turn luparm to z-axis <2.8077> speed <10.3352>;
+			turn ruparm to z-axis <-3.8571> speed <420>;
+			turn ruparm to z-axis <-2.8077> speed <6.1978>;
+			sleep 170;
+			turn lgunhide to z-axis <-45> speed <375.0879>;
+			turn rgunhide to z-axis <45> speed <375.0879>;
+			turn rshoulder to x-axis <-36.9176> speed <307.6868>;
+			turn lshoulder to x-axis <-35.1593> speed <293>;
+			turn luparm to z-axis <-22.5055> speed <210.9890>;
+			turn ruparm to z-axis <22.1484> speed <208>;
+			sleep 120;
+			turn llegdoor to y-axis <90> speed <365.7088>;
+			turn lgunhide to z-axis <0> speed <300.0659>;
+			turn rlegdoor to y-axis <-90> speed <363.3681>;
+			turn rgunhide to z-axis <0> speed <300.0659>;
+			turn rshoulder to x-axis <-39.3791> speed <16.4066>;
+			turn lshoulder to x-axis <-39.3791> speed <28.1264>;
+			turn luparm to z-axis <-29.1868> speed <44.5385>;
+			turn ruparm to z-axis <32> speed <65.6374>;
+			sleep 150;
+			turn llegdoor to y-axis <0> speed <600.1374>;
+			turn rlegdoor to y-axis <0> speed <600.1374>;
+			turn rshoulder to x-axis <-43.5989> speed <28.1264>;
+			turn lshoulder to x-axis <-45.7088> speed <42.1978>;
+			turn luparm to z-axis <-38.6758> speed <63.2967>;
+			turn ruparm to z-axis <44.6593> speed <84.3956>;
+			sleep 150;
+			turn rshoulder to x-axis <-28.1264> speed <103.1484>;
+			turn lshoulder to x-axis <-30.9451> speed <98.4560>;
+			turn luparm to z-axis <-17.5769> speed <140.6593>;
+			turn ruparm to z-axis <14.0659> speed <203.9560>;
+			sleep 150;
+			turn rshoulder to x-axis <0> speed <187.5385>;
+			turn lshoulder to x-axis <0> speed <206.2967>;
+			turn luparm to z-axis <0> speed <117.2088>;
+			turn ruparm to z-axis <0> speed <93.7692>;
+			sleep 160;
+		}
+	}
+	busy_5 = 0;
+}
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	set-signal-mask 0;
+	aiming_4 = 0;
+	start-script GunControl();
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	aiming_4 = 1;
+	while( !canaim_2 )
+	{
+		start-script GunControl();
+		sleep 250;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn torso to y-axis heading speed <210>;
+	wait-for-turn torso around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		move rgunbarrel to y-axis [1] speed [500];
+		show flare1;
+		sleep 150;
+		hide flare1;
+		move rgunbarrel to y-axis [0] speed [15];
+	}
+	if( gun_1 )
+	{
+		move lgunbarrel to y-axis [1] speed [500];
+		show flare2;
+		sleep 150;
+		hide flare2;
+		move lgunbarrel to y-axis [0] speed [15];
+	}
+	gun_1 = !gun_1;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		return (0);
+	}
+	corpsetype = 3;
+	return (0);
+}

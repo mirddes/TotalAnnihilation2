@@ -1,0 +1,36 @@
+[armcent_dead]
+{
+world=All Worlds;
+description=Centurion Wreckage;
+category=arm_corpses;
+object=armcent_dead;
+featuredead=armcent_heap;
+footprintx=3;
+footprintz=3;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=616;
+damage=2526;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[armcent_heap]
+{
+world=All Worlds;
+description=Centurion Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=308;
+damage=2526;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

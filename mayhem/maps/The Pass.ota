@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=The Pass;
+	missiondescription=7 X 4  Fight to control a winding mountian pass.;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=100;
+	maxwindspeed=3000;
+	gravity=112;
+	numplayers=2;
+	size=7 x 4;
+	memory=16 mb;
+	useonlyunits=The Pass.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=AirBattle;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=560;
+				ZPos=240;
+				}
+			[special1]
+				{
+				specialwhat=StartPos3;
+				XPos=80;
+				ZPos=1248;
+				}
+			[special2]
+				{
+				specialwhat=StartPos5;
+				XPos=224;
+				ZPos=1232;
+				}
+			[special3]
+				{
+				specialwhat=StartPos7;
+				XPos=368;
+				ZPos=1248;
+				}
+			[special4]
+				{
+				specialwhat=StartPos9;
+				XPos=528;
+				ZPos=1264;
+				}
+			[special5]
+				{
+				specialwhat=StartPos2;
+				XPos=3376;
+				ZPos=1408;
+				}
+			[special6]
+				{
+				specialwhat=StartPos4;
+				XPos=2944;
+				ZPos=64;
+				}
+			[special7]
+				{
+				specialwhat=StartPos6;
+				XPos=3120;
+				ZPos=48;
+				}
+			[special8]
+				{
+				specialwhat=StartPos8;
+				XPos=3280;
+				ZPos=96;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=3472;
+				ZPos=208;
+				}
+			}
+		}
+	}

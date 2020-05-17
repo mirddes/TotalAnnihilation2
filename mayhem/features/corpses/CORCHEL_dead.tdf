@@ -1,0 +1,35 @@
+[corchel_dead]
+{
+world=All Worlds;
+description=Chelonian Wreckage;
+category=core_corpses;
+object=corchel_dead;
+featuredead=corchel_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=373;
+damage=1700;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corchel_heap]
+{
+World=All Worlds;
+Description=Chelonian Wreckage;
+Category=core_heaps;
+Object=4x4a;
+Footprintx=4;
+Footprintz=4;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=188;
+Damage=1700;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

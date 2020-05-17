@@ -1,0 +1,473 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  rnanospray, lnanospray, torso, lforeleg, rforeleg, rcasedoor, lcasedoor, rhindleg,
+       lhindleg, lnanocase, rnanocase, rgunjoint, lgunjoint, ground, lnanogun, pelvis,
+       rnanogun;
+
+static-var  Static_Var_1, bMoving, Static_Var_3, Static_Var_4, spray,
+            statechg_DesiredState, statechg_StateChanging;
+
+
+walk()
+{
+	if( TRUE )
+	{
+		move lforeleg to z-axis [1.750000] now;
+		move rforeleg to z-axis [-1.700000] now;
+		move torso to y-axis [0.000000] now;
+		move rcasedoor to x-axis [0.000000] now;
+		move lcasedoor to x-axis [0.000000] now;
+		sleep 150;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [0.850000] now;
+		move rforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [-1.700000] now;
+		move torso to y-axis [0.000000] now;
+		move rhindleg to z-axis [1.500000] now;
+		turn torso to x-axis <-8.087912> now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [0.000000] now;
+		move rforeleg to y-axis [0.950000] now;
+		move rforeleg to z-axis [-1.650000] now;
+		move torso to y-axis [0.000000] now;
+		move rhindleg to z-axis [3.150000] now;
+		turn torso to x-axis <-11.956044> now;
+		sleep 110;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [-0.799994] now;
+		move rforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [0.000000] now;
+		move torso to y-axis [0.000000] now;
+		move rhindleg to z-axis [1.500000] now;
+		turn torso to x-axis <-8.082418> now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [-1.700000] now;
+		move rforeleg to y-axis [0.000000] now;
+		move rforeleg to z-axis [1.600000] now;
+		move torso to y-axis [0.000000] now;
+		move rhindleg to z-axis [0.000000] now;
+		turn torso to x-axis <0.000000> now;
+		sleep 150;
+	}
+	if( TRUE )
+	{
+		move lforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [0.800000] now;
+		move torso to y-axis [0.000000] now;
+		move lhindleg to z-axis [1.500000] now;
+		turn torso to x-axis <-8.087912> now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to y-axis [0.950000] now;
+		move rforeleg to z-axis [0.000000] now;
+		move torso to y-axis [0.000000] now;
+		move lhindleg to z-axis [3.100000] now;
+		turn torso to x-axis <-11.956044> now;
+		sleep 110;
+	}
+	move lforeleg to y-axis [0.450000] now;
+	move lforeleg to z-axis [0.000000] now;
+	move rforeleg to z-axis [-0.849994] now;
+	move torso to y-axis [0.000000] now;
+	move lhindleg to z-axis [1.500000] now;
+	turn torso to x-axis <-8.087912> now;
+	sleep 130;
+}
+
+walklegs()
+{
+	if( TRUE )
+	{
+		move lforeleg to z-axis [1.750000] now;
+		move rforeleg to z-axis [-1.700000] now;
+		move rcasedoor to x-axis [0.000000] now;
+		move lcasedoor to x-axis [0.000000] now;
+		sleep 150;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [0.850000] now;
+		move rforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [-1.700000] now;
+		move rhindleg to z-axis [1.500000] now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [0.000000] now;
+		move rforeleg to y-axis [0.950000] now;
+		move rforeleg to z-axis [-1.650000] now;
+		move rhindleg to z-axis [3.150000] now;
+		sleep 110;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [-0.799994] now;
+		move rforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [0.000000] now;
+		move rhindleg to z-axis [1.500000] now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to z-axis [-1.700000] now;
+		move rforeleg to y-axis [0.000000] now;
+		move rforeleg to z-axis [1.600000] now;
+		move rhindleg to z-axis [0.000000] now;
+		sleep 150;
+	}
+	if( TRUE )
+	{
+		move lforeleg to y-axis [0.450000] now;
+		move rforeleg to z-axis [0.800000] now;
+		move lhindleg to z-axis [1.500000] now;
+		sleep 130;
+	}
+	if( TRUE )
+	{
+		move lforeleg to y-axis [0.950000] now;
+		move rforeleg to z-axis [0.000000] now;
+		move lhindleg to z-axis [3.100000] now;
+		sleep 110;
+	}
+	move lforeleg to y-axis [0.450000] now;
+	move lforeleg to z-axis [0.000000] now;
+	move rforeleg to z-axis [-0.849994] now;
+	move lhindleg to z-axis [1.500000] now;
+	sleep 130;
+}
+
+stand()
+{
+	move rcasedoor to x-axis [0.000000] now;
+	move lcasedoor to x-axis [0.000000] now;
+	move lnanospray to x-axis [0.000000] now;
+	sleep 200;
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(Func_Var_1, Func_Var_2)
+{
+	while( TRUE )
+	{
+		Func_Var_1 = bMoving;
+		Func_Var_2 = Static_Var_3;
+		if( Func_Var_1 )
+		{
+			if( Func_Var_2 )
+			{
+				Static_Var_4 = 1;
+				call-script walklegs();
+			}
+			if( !Func_Var_2 )
+			{
+				Static_Var_4 = 0;
+				call-script walk();
+			}
+		}
+		if( !Func_Var_1 )
+		{
+			Static_Var_4 = 1;
+			call-script stand();
+		}
+	}
+}
+
+Go()
+{
+	
+	Static_Var_3 = 1;
+	set INBUILDSTANCE to 1;
+	
+	if( TRUE )
+	{
+		move lnanocase to x-axis [0.000000] now;
+		move lnanocase to x-axis [-2.899994] speed [5.653015];
+		move rnanocase to x-axis [0.000000] now;
+		move rnanocase to x-axis [2.800000] speed [5.458087];
+		move rcasedoor to x-axis [0.000000] now;
+		move lcasedoor to x-axis [0.000000] now;
+		sleep 513;
+	}
+	if( TRUE )
+	{
+		turn lnanocase to y-axis <-90.021978> speed <173.785714>;
+		turn rnanocase to y-axis <90.021978> speed <173.785714>;
+		turn rcasedoor to z-axis <-90.021978> speed <173.785714>;
+		turn lcasedoor to z-axis <90.021978> speed <173.785714>;
+		sleep 518;
+	}
+	if( TRUE )
+	{
+		move rgunjoint to x-axis [4.750000] speed [9.134613];
+		move lgunjoint to x-axis [-4.749994] speed [9.134607];
+		sleep 520;
+	}
+	sleep 521;
+	
+	turn torso to y-axis Static_Var_1 speed <160.038462>;
+	wait-for-turn torso around y-axis;
+//	set INBUILDSTANCE to 1;
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	turn torso to y-axis <0.000000> speed <160.038462>;
+	wait-for-turn torso around y-axis;
+	
+	if( TRUE )
+	{
+		move lnanocase to x-axis [-2.899994] now;
+		move rnanocase to x-axis [2.800000] now;
+		move rgunjoint to x-axis [4.750000] now;
+		move rgunjoint to x-axis [0.000000] speed [6.954608];
+		move rcasedoor to x-axis [0.000000] now;
+		move lgunjoint to x-axis [-4.749994] now;
+		move lgunjoint to x-axis [0.000000] speed [6.954608];
+		move lcasedoor to x-axis [0.000000] now;
+		turn lnanocase to y-axis <-90.021978> now;
+		turn rnanocase to y-axis <90.021978> now;
+		turn rcasedoor to z-axis <-90.021978> now;
+		turn lcasedoor to z-axis <90.021978> now;
+		sleep 683;
+	}
+	if( TRUE )
+	{
+		turn lnanocase to y-axis <0.000000> speed <130.653846>;
+		turn rnanocase to y-axis <0.000000> speed <130.653846>;
+		turn rcasedoor to z-axis <0.351648> speed <131.164835>;
+		turn lcasedoor to z-axis <0.000000> speed <130.653846>;
+		sleep 689;
+	}
+	if( TRUE )
+	{
+		move lnanocase to x-axis [0.000000] speed [4.196814];
+		move rnanocase to x-axis [0.000000] speed [4.052094];
+		sleep 691;
+	}
+	sleep 1008;
+	Static_Var_3 = 0;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	bMoving = FALSE;
+	Static_Var_3 = 0;
+	Static_Var_4 = 1;
+	spray = rnanospray;
+	Static_Var_1 = 0;
+	call-script InitState();
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	sleep rand(25,250);
+	start-script RequestState(0);
+}
+
+StopBuilding()
+{
+	start-script RequestState(1);
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = spray;
+	spray = !spray;
+}
+
+TargetHeading(Func_Var_1)
+{
+	Static_Var_1 = 0 - Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode ground type BITMAPONLY | BITMAP1;
+		explode lcasedoor type BITMAPONLY | BITMAP1;
+		explode lforeleg type BITMAPONLY | BITMAP1;
+		explode lgunjoint type BITMAPONLY | BITMAP1;
+		explode lhindleg type BITMAPONLY | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type BITMAPONLY | BITMAP1;
+		explode lnanospray type BITMAPONLY | BITMAP1;
+		explode pelvis type BITMAPONLY | BITMAP1;
+		explode rcasedoor type BITMAPONLY | BITMAP5;
+		explode rforeleg type BITMAPONLY | BITMAP1;
+		explode rgunjoint type BITMAPONLY | BITMAP1;
+		explode rhindleg type BITMAPONLY | BITMAP1;
+		explode rnanocase type BITMAPONLY | BITMAP1;
+		explode rnanogun type BITMAPONLY | BITMAP5;
+		explode rnanospray type BITMAPONLY | BITMAP1;
+		explode torso type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode ground type FALL | BITMAP1;
+		explode lcasedoor type FALL | BITMAP1;
+		explode lforeleg type FALL | BITMAP1;
+		explode lgunjoint type FALL | BITMAP1;
+		explode lhindleg type FALL | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type FALL | BITMAP1;
+		explode lnanospray type FALL | BITMAP1;
+		explode pelvis type FALL | BITMAP1;
+		explode rcasedoor type FALL | BITMAP5;
+		explode rforeleg type FALL | BITMAP1;
+		explode rgunjoint type FALL | BITMAP1;
+		explode rhindleg type FALL | BITMAP1;
+		explode rnanocase type BITMAPONLY | BITMAP1;
+		explode rnanogun type FALL | BITMAP5;
+		explode rnanospray type FALL | BITMAP1;
+		explode torso type SHATTER | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rnanocase type BITMAPONLY | BITMAP1;
+		explode rnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torso type SHATTER | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lnanocase type BITMAPONLY | BITMAP1;
+	explode lnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rnanocase type BITMAPONLY | BITMAP1;
+	explode rnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+}

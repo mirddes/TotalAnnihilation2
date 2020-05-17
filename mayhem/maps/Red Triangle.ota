@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=Red Triangle;
+	missiondescription=16 X 16  Powerful tides and strong winds.;
+	planet=Red Planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=25;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=1000;
+	maxwindspeed=5500;
+	gravity=112;
+	numplayers=2, 3, 6, 9;
+	size=18 x 18;
+	memory=24 mb;
+	useonlyunits=Red Triangle.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=10;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos2;
+				XPos=4384;
+				ZPos=5712;
+				}
+			[special1]
+				{
+				specialwhat=StartPos4;
+				XPos=4384;
+				ZPos=1648;
+				}
+			[special2]
+				{
+				specialwhat=StartPos5;
+				XPos=6544;
+				ZPos=5712;
+				}
+			[special3]
+				{
+				specialwhat=StartPos6;
+				XPos=2160;
+				ZPos=5616;
+				}
+			[special4]
+				{
+				specialwhat=StartPos7;
+				XPos=4016;
+				ZPos=7648;
+				}
+			[special5]
+				{
+				specialwhat=StartPos8;
+				XPos=7936;
+				ZPos=2832;
+				}
+			[special6]
+				{
+				specialwhat=StartPos9;
+				XPos=640;
+				ZPos=2160;
+				}
+			[special7]
+				{
+				specialwhat=StartPos3;
+				XPos=3104;
+				ZPos=3872;
+				}
+			[special8]
+				{
+				specialwhat=StartPos1;
+				XPos=5328;
+				ZPos=3552;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=4160;
+				ZPos=4304;
+				}
+			}
+		}
+	}

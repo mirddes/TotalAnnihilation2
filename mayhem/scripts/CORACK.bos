@@ -1,0 +1,453 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  rnanospray, lnanospray, torso, lforeleg, rforeleg, rcasedoor, lcasedoor, rhindleg,
+       lhindleg, lnanocase, rnanocase, rgunjoint, lgunjoint, ground, lnanogun, pelvis,
+       rnanogun;
+
+static-var  Nano_1, Moving_2, ReqState_3, On_4, Nanopiece_5, Busy_6; //buildingid, buildingpos, buildingtype, buildingcrc;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+//			if( Aiming_3 and Moving_2 )
+		if( Moving_2 )
+		{
+//				Can_Aim_4 = 1;
+			move lforeleg to z-axis [1.75] speed [100];
+			move rforeleg to z-axis [-1.70] speed [100];
+			move rcasedoor to x-axis [0] speed [100];
+			move lcasedoor to x-axis [0] speed [100];
+			sleep 150;
+			move lforeleg to z-axis [0.85] speed [100];
+			move rforeleg to y-axis [0.45] speed [100];
+			move rforeleg to z-axis [-1.70] speed [100];
+			move rhindleg to z-axis [1.50] speed [100];
+			sleep 130;
+		}
+		if( Moving_2 )
+		{
+			move lforeleg to z-axis [0] speed [100];
+			move rforeleg to y-axis [0.95] speed [100];
+			move rforeleg to z-axis [-1.65] speed [100];
+			move rhindleg to z-axis [3.15] speed [100];
+			sleep 110;
+			move lforeleg to z-axis [-0.79] speed [100];
+			move rforeleg to y-axis [0.45] speed [100];
+			move rforeleg to z-axis [0] speed [100];
+			move rhindleg to z-axis [1.50] speed [100];
+			sleep 130;
+		}
+		if( Moving_2 )
+		{
+			move lforeleg to z-axis [-1.70] speed [100];
+			move rforeleg to y-axis [0] speed [100];
+			move rforeleg to z-axis [1.60] speed [100];
+			move rhindleg to z-axis [0] speed [100];
+			sleep 150;
+			move lforeleg to y-axis [0.45] speed [100];
+			move rforeleg to z-axis [0.80] speed [100];
+			move lhindleg to z-axis [1.50] speed [100];
+			sleep 130;
+		}
+		if( Moving_2 )
+		{
+			move lforeleg to y-axis [0.95] speed [100];
+			move rforeleg to z-axis [0] speed [100];
+			move lhindleg to z-axis [3.10] speed [100];
+			sleep 110;
+			move lforeleg to y-axis [0.45] speed [100];
+			move lforeleg to z-axis [0] speed [100];
+			move rforeleg to z-axis [-0.84] speed [100];
+			move lhindleg to z-axis [1.50] speed [100];
+			sleep 130;
+		}
+//			if( !Aiming_3 and Moving_2 )
+//			{
+//				Busy_6 = 1;
+//				Can_Aim_4 = 0;
+//		move lforeleg to z-axis [1.75] speed [100];
+//		move rforeleg to z-axis [-1.70] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move rcasedoor to x-axis [0] speed [100];
+//		move lcasedoor to x-axis [0] speed [100];
+//		sleep 150;
+//		move lforeleg to z-axis [0.85] speed [100];
+//		move rforeleg to y-axis [0.45] speed [100];
+//		move rforeleg to z-axis [-1.70] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move rhindleg to z-axis [1.50] speed [100];
+//		turn torso to x-axis <-8.08> now;
+//		sleep 130;
+//		move lforeleg to z-axis [0] speed [100];
+//		move rforeleg to y-axis [0.95] speed [100];
+//		move rforeleg to z-axis [-1.65] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move rhindleg to z-axis [3.15] speed [100];
+//		turn torso to x-axis <-11.95> now;
+//		sleep 110;
+//		move lforeleg to z-axis [-0.79] speed [100];
+//		move rforeleg to y-axis [0.45] speed [100];
+//		move rforeleg to z-axis [0] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move rhindleg to z-axis [1.50] speed [100];
+//		turn torso to x-axis <-8.08> now;
+//		sleep 130;
+//		move lforeleg to z-axis [-1.70] speed [100];
+//		move rforeleg to y-axis [0] speed [100];
+//		move rforeleg to z-axis [1.60] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move rhindleg to z-axis [0] speed [100];
+//		turn torso to x-axis <0> now;
+//		sleep 150;
+//		move lforeleg to y-axis [0.45] speed [100];
+//		move rforeleg to z-axis [0.80] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move lhindleg to z-axis [1.50] speed [100];
+//		turn torso to x-axis <-8.08> now;
+//		sleep 130;
+//		move lforeleg to y-axis [0.95] speed [100];
+//		move rforeleg to z-axis [0] speed [100];
+//		move torso to y-axis [0] speed [100];
+//		move lhindleg to z-axis [3.10] speed [100];
+//		turn torso to x-axis <-11.95> now;
+//		sleep 110;
+//	move lforeleg to y-axis [0.45] speed [100];
+//	move lforeleg to z-axis [0] speed [100];
+//	move rforeleg to z-axis [-0.84] speed [100];
+//	move torso to y-axis [0] speed [100];
+//	move lhindleg to z-axis [1.50] speed [100];
+//	turn torso to x-axis <-8.08> now;
+//	Busy_6 = 0;
+//	sleep 130;
+//			}
+		if( !Moving_2 )
+		{
+//			Can_Aim_4 = 1;
+			move rcasedoor to x-axis [0] speed [100];
+			move lcasedoor to x-axis [0] speed [100];
+			move lnanospray to x-axis [0] speed [100];
+			sleep 200;
+		}
+	}
+	return (0);
+}
+
+RequestState(sleeptime)
+{
+	while( !Busy_6 AND ( ReqState_3 != On_4 ) )
+	{
+		Busy_6 = 1;
+		if( ReqState_3 )
+		{
+//			Aiming_3 = 1;
+//			turn torso to y-axis Nano_1 speed <160>;
+			move lnanocase to x-axis [0] now;
+			move lnanocase to x-axis [-2.89] speed [5];
+			move rnanocase to x-axis [0] now;
+			move rnanocase to x-axis [2.80] speed [5];
+			move rcasedoor to x-axis [0] now;
+			move lcasedoor to x-axis [0] now;
+			sleep 513;
+			turn lnanocase to y-axis <-90> speed <173>;
+			turn rnanocase to y-axis <90> speed <173>;
+			turn rcasedoor to z-axis <-90> speed <173>;
+			turn lcasedoor to z-axis <90> speed <173>;
+//			sleep 518;
+			move rgunjoint to x-axis [4.75] speed [9];
+			move lgunjoint to x-axis [-4.74] speed [9];
+			sleep 400;
+			sleeptime = Rand(1,500);
+			sleep sleeptime;
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_3 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+			turn torso to y-axis <0> speed <160>;
+			move lnanocase to x-axis [-2.89] now;
+			move rnanocase to x-axis [2.80] now;
+			move rgunjoint to x-axis [4.75] now;
+			move rgunjoint to x-axis [0] speed [6];
+			move rcasedoor to x-axis [0] now;
+			move lgunjoint to x-axis [-4.74] now;
+			move lgunjoint to x-axis [0] speed [6];
+			move lcasedoor to x-axis [0] now;
+			turn lnanocase to y-axis <-90> now;
+			turn rnanocase to y-axis <90> now;
+			turn rcasedoor to z-axis <-90> now;
+			turn lcasedoor to z-axis <90> now;
+			sleep 683;
+			turn lnanocase to y-axis <0> speed <130>;
+			turn rnanocase to y-axis <0> speed <130>;
+			turn rcasedoor to z-axis <0> speed <131>;
+			turn lcasedoor to z-axis <0> speed <130>;
+			sleep 689;
+			move lnanocase to x-axis [0] speed [4];
+			move rnanocase to x-axis [0] speed [4];
+			sleep 725;
+//			Aiming_3 = 0;
+		}
+		Busy_6 = 0;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	var bcheck;
+	bcheck = get BUILD_PERCENT_LEFT;*/
+	Nano_1 = 0;
+	Moving_2 = 0;
+//	Aiming_3 = 0;
+//	Can_Aim_4 = 1;
+	ReqState_3 = 0;
+	On_4 = 0;
+	Nanopiece_5 = 0;
+	Busy_6 = 0;
+//	Waiting_7 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+	/*if( bcheck != 0 )
+	{
+		{
+			if (get LOCAL_SHARED_DATA(0,get UNIT_TEAM(get MY_ID)) < 2)
+			{
+		    	get LOCAL_SHARED_DATA(1,get UNIT_TEAM(get MY_ID),2);
+		    }
+		}
+	}*/
+	return (0);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Nano_1 = Func_Var_1;
+//	Aiming_3 = 1;
+	ReqState_3 = 1;
+	turn torso to y-axis Nano_1 speed <160>;
+	start-script RequestState();
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	if ((get CURRENT_ORDER_TYPE) == 25)
+	{
+		buildingid=get CURRENT_ORDER_TARGET_ID;
+		if (buildingid)
+		{
+			buildingpos=get UNIT_XZ(buildingid);
+			buildingcrc=get UNIT_TYPE_CRC(buildingid);
+			buildingtype=get CURRENT_ORDER_PAR(1);
+		}
+	}*/
+	return (0);
+}
+
+StopBuilding()
+{
+	/*if ((get UNIT_XZ(buildingid)) == 0)
+	{
+		if (get TEST_BUILD_SPOT(buildingcrc,buildingpos))
+		{
+			var unitz,unitx;
+			unitz=get UNITZ(buildingid) - (get GROUND_HEIGHT(get UNIT_XZ(buildingid)) / 131072);
+			unitx=get UNITX(buildingid);
+			buildingpos=get MAKEDWORD(unitz,unitx);
+			get ORDER_SELF_POS(25,1,buildingpos,buildingtype);
+			buildingid=0;
+			buildingpos=0;
+			buildingtype=0;
+			buildingcrc=0;
+			return (0);
+		}
+	}*/
+	ReqState_3 = 0;
+	sleep 6000;
+	if( !ReqState_3 )
+	{
+		start-script RequestState();
+	}
+	return (0);
+}
+
+StartMoving()
+{
+	Moving_2 = 1;
+	return (0);
+}
+
+StopMoving()
+{
+	Moving_2 = 0;
+	/*if ((get CURRENT_ORDER_TYPE) == 25 AND (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2))
+	{
+		sleep 1000;
+		if (!Moving_2 AND !ReqState_3)
+		{
+			get ORDER_SELF(45,0);
+		}
+	}*/
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = Nanopiece_5;
+	Nanopiece_5 = ( !Nanopiece_5 );
+	return (0);
+}
+
+TargetHeading(Func_Var_1)
+{
+	Nano_1 = ( 0 - Func_Var_1 );
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode ground type BITMAPONLY | BITMAP1;
+		explode lcasedoor type BITMAPONLY | BITMAP2;
+		explode lforeleg type BITMAPONLY | BITMAP3;
+		explode lgunjoint type BITMAPONLY | BITMAP4;
+		explode lhindleg type BITMAPONLY | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type BITMAPONLY | BITMAP2;
+		explode lnanospray type BITMAPONLY | BITMAP3;
+		explode pelvis type BITMAPONLY | BITMAP4;
+		explode rcasedoor type BITMAPONLY | BITMAP5;
+		explode rforeleg type BITMAPONLY | BITMAP1;
+		explode rgunjoint type BITMAPONLY | BITMAP2;
+		explode rhindleg type BITMAPONLY | BITMAP3;
+		explode rnanocase type BITMAPONLY | BITMAP4;
+		explode rnanogun type BITMAPONLY | BITMAP5;
+		explode rnanospray type BITMAPONLY | BITMAP1;
+		explode torso type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode ground type FALL | BITMAP1;
+		explode lcasedoor type FALL | BITMAP2;
+		explode lforeleg type FALL | BITMAP3;
+		explode lgunjoint type FALL | BITMAP4;
+		explode lhindleg type FALL | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type FALL | BITMAP2;
+		explode lnanospray type FALL | BITMAP3;
+		explode pelvis type FALL | BITMAP4;
+		explode rcasedoor type FALL | BITMAP5;
+		explode rforeleg type FALL | BITMAP1;
+		explode rgunjoint type FALL | BITMAP2;
+		explode rhindleg type FALL | BITMAP3;
+		explode rnanocase type BITMAPONLY | BITMAP4;
+		explode rnanogun type FALL | BITMAP5;
+		explode rnanospray type FALL | BITMAP1;
+		explode torso type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lnanocase type BITMAPONLY | BITMAP1;
+		explode lnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rnanocase type BITMAPONLY | BITMAP4;
+		explode rnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torso type SHATTER | BITMAP2;
+		return (0);
+	}
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lnanocase type BITMAPONLY | BITMAP1;
+	explode lnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rcasedoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rforeleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rgunjoint type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rhindleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rnanocase type BITMAPONLY | BITMAP4;
+	explode rnanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rnanospray type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

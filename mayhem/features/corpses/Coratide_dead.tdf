@@ -1,0 +1,35 @@
+[CorATIDE_dead]
+{
+world=All Worlds;
+description=Adv Tidal Wreckage;
+category=core_corpses;
+object=CorATIDE_dead;
+featuredead=CorATIDE_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=246;
+damage=740;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CorATIDE_heap]
+{
+world=All Worlds;
+description=Adv Tidal Wreckage;
+category=heaps;
+object=5x5b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=123;
+damage=840;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

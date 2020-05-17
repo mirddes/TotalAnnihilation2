@@ -1,0 +1,18 @@
+MISSION 5.002ARML
+The Core hovercraft technology is ours! The hovercraft construction pad has been converted to our specifications. Use the new hovercraft units to assault the Core base to the north.
+
+&Y*PRIORITY CRITICAL*&
+We now know that Core seeks the alien beacon here on Lusch. Though we are uncertain of its importance to Core, the fact that they want it is reason enough to deny them the beacon. We must find it first.
+
+INFO FEED
+Hovercrafts are uniquely designed for this world. Use the rivers and swamps for your assault route. 
+
+&RScouts have encountered a dangerous insectoid life-form& Because of its shape and behavior it has been dubbed the Scorpion. 
+
+The species seems to be of alien origin and may indicate that we near the alien beacon. Be on the lookout for the Scorpions... and the beacon.
+
+All Core units must be destroyed to ensure that they not remain to contribute to Core's search. Destroy any Scorpions as well... they are not of this galaxy... who knows what contaminants they bring with them.
+
+To complete this mission destroy all Core units and Scorpions.
+
+END

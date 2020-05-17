@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Shew Drop;
+	missiondescription=12 X 15  Low gravity livens up this desolate landscape.;
+	planet=Lunar;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=10;
+	maxwindspeed=15;
+	gravity=60;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 4;
+	size=12 x 15;
+	memory=16 mb;
+	useonlyunits=Comet Catcher.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos4;
+				XPos=576;
+				ZPos=720;
+				}
+			[special1]
+				{
+				specialwhat=StartPos3;
+				XPos=5712;
+				ZPos=7216;
+				}
+			[special2]
+				{
+				specialwhat=StartPos1;
+				XPos=512;
+				ZPos=6864;
+				}
+			[special3]
+				{
+				specialwhat=StartPos2;
+				XPos=5184;
+				ZPos=560;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=1504;
+				ZPos=2080;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=4624;
+				ZPos=6688;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=1024;
+				ZPos=5136;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=4640;
+				ZPos=2592;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=2736;
+				ZPos=912;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=3024;
+				ZPos=6672;
+				}
+			}
+		}
+	}

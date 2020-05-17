@@ -1,0 +1,38 @@
+[cortarg_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=cortarg_dead;
+	featuredead=cortarg_heap;
+	footprintx=5;
+	footprintz=4;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=11986;
+	damage=2240;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[cortarg_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=4x4d;
+	footprintx=5;
+	footprintz=4;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=5993;
+	damage=1120;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+

@@ -1,0 +1,188 @@
+[ArchMetal1]  // Medium
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=187;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetal2]  // Small
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=116;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetal3]  // Huge
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetal3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalB1]  // Medium
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalb01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalB2]  // Small
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalb02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalB3]  // Huge
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalb03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalC1]  // Medium
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalc01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalC2]  // Small
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalc02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[ArchMetalC3]  // Huge
+	{
+	world=archipelago;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ArchiMetal;
+	seqname=archmetalc03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

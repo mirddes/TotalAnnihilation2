@@ -1,0 +1,268 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  r1, r2, r3, r4, r5, r6, mover, dp,
+       door1, hinge1, door2, hinge2, engine1, engine2, engine3, wake1,
+       wake2, wake3, wake4, wake5, wake6, wake7, wake8, body,
+       base;
+
+static-var  gun_1, terrain_2, busy_3, ready_4;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon(AngleX, AngleZ)
+{
+	if( busy_3 )
+	{
+		return(0);
+	}
+	busy_3 = 1;
+	turn base to z-axis ( AngleZ / 2 ) speed <50.00>;
+	turn base to x-axis ( AngleX / 2 ) speed <50.00>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.00> speed <30.00>;
+	turn base to x-axis <0.00> speed <30.00>;
+	sleep 200;
+	busy_3 = 0;
+}
+
+StartMoving(count)
+{
+	signal 8;
+	set-signal-mask 8;
+	while( TRUE )
+	{
+		count = 0;
+		if( terrain_2 <= 3 )
+		{
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		while( count < 9 )
+		{
+			turn base to y-axis get XZ_ATAN(0) now;
+			turn body to y-axis (0 - get XZ_ATAN(0)) speed <30>;
+			++count;
+			sleep 33;
+		}
+	}
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	terrain_2 = Func_Var_1;
+}
+
+Create()
+{
+	gun_1 = 0;
+	busy_3 = 0;
+	ready_4 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+		turn base to y-axis get XZ_ATAN(0) now;
+		turn body to y-axis (0 - get XZ_ATAN(0)) now;
+	}
+	start-script SmokeUnit();
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	ready_4 = 0;
+	move door1 to x-axis [0] speed [4];
+	move door2 to x-axis [0] speed [4];
+	turn hinge1 to z-axis <0> speed <75>;
+	turn hinge2 to z-axis <0> speed <75>;
+	return(0);
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !ready_4 )
+	{
+		move door1 to x-axis [-3] speed [3];
+		move door2 to x-axis [3] speed [3];
+		turn hinge1 to z-axis <60> speed <90>;
+		turn hinge2 to z-axis <-60> speed <90>;
+		wait-for-move door1 along x-axis;
+		wait-for-move door2 along x-axis;
+		ready_4 = 1;
+	}
+	signal 2;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	++gun_1;
+	if( gun_1 > 5 )
+	{
+		gun_1 = 0;
+	}
+	move body to y-axis [-1] speed [10];
+	sleep 100;
+	move body to y-axis [0] speed [2];
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = body;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+AimTertiary(heading, pitch)
+{
+	while( terrain_2 >= 4 )
+	{
+		sleep 250;
+	}
+	signal 4;
+	set-signal-mask 4;
+	turn mover to y-axis heading speed <200>;
+	turn mover to x-axis 0 - pitch speed <100>;
+	wait-for-turn mover around y-axis;
+	wait-for-turn mover around x-axis;
+	Return (1);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = mover;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = dp;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( terrain_2 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP3;
+		explode engine1 type BITMAPONLY | BITMAP4;
+		explode engine2 type BITMAPONLY | BITMAP4;
+		explode engine3 type BITMAPONLY | BITMAP4;
+		explode wake1 type BITMAPONLY | BITMAP1;
+		explode wake2 type BITMAPONLY | BITMAP1;
+		explode wake3 type BITMAPONLY | BITMAP1;
+		explode wake4 type BITMAPONLY | BITMAP1;
+		explode wake5 type BITMAPONLY | BITMAP1;
+		explode wake6 type BITMAPONLY | BITMAP1;
+		explode wake7 type BITMAPONLY | BITMAP1;
+		explode wake8 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | BITMAP3;
+		explode door2 type FALL | BITMAP3;
+		explode engine1 type BITMAPONLY | BITMAP4;
+		explode engine2 type BITMAPONLY | BITMAP4;
+		explode engine3 type BITMAPONLY | BITMAP4;
+		explode wake1 type FALL | SMOKE | BITMAP1;
+		explode wake2 type FALL | SMOKE | BITMAP1;
+		explode wake3 type FALL | BITMAP1;
+		explode wake4 type FALL | BITMAP1;
+		explode wake5 type FALL | SMOKE | BITMAP1;
+		explode wake6 type FALL | BITMAP1;
+		explode wake7 type FALL | BITMAP1;
+		explode wake8 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode door2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode engine1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode engine2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode engine3 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP2;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode engine1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode engine2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode engine3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

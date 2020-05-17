@@ -1,0 +1,418 @@
+[GADGET0]
+{
+	[COMMON]
+	{
+		id=0;
+		assoc=0;
+		name=HEADER;
+		xpos=0;
+		ypos=128;
+		width=128;
+		height=640;
+		attribs=0;
+		colorf=0;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	totalgadgets=17;
+	[VERSION]
+	{
+		major=1;
+		minor=0;
+		revision=0;
+	}
+	panel=ARMPAN2;
+}
+[GADGET1]
+{
+	[COMMON]
+	{
+		id=7;
+		assoc=0;
+		name=ARMFONT;
+		xpos=0;
+		ypos=0;
+		width=0;
+		height=0;
+		attribs=0;
+		colorf=0;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	filename=armbutt;
+}
+/*
+[GADGET2]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=8;
+		name=ARMORDERS;
+		xpos=3;
+		ypos=4;
+		width=59;
+		height=19;
+		attribs=16;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=111;
+}
+[GADGET3]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=8;
+		name=ARMBUILD;
+		xpos=65;
+		ypos=4;
+		width=59;
+		height=19;
+		attribs=16;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=98;
+}
+*/
+[GADGET11]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMMOVE;
+		xpos=7;
+		ypos=543;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=109;
+}
+[GADGET4]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=0;
+		name=ARMONOFF;
+		xpos=7;
+		ypos=386;
+		width=113;
+		height=20;
+		attribs=256;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=120;
+}
+[GADGET5]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=0;
+		name=ARMCLOAK;
+		xpos=7;
+		ypos=409;
+		width=113;
+		height=20;
+		attribs=256;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=107;
+}
+[GADGET6]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=0;
+		name=ARMFIREORD;
+		xpos=7;
+		ypos=432;
+		width=113;
+		height=20;
+		attribs=256;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=102;
+}
+[GADGET7]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=0;
+		name=ARMMOVEORD;
+		xpos=7;
+		ypos=455;
+		width=113;
+		height=20;
+		attribs=256;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=118;
+}
+[GADGET8]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMRECLAIM;
+		xpos=7;
+		ypos=479;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=101;
+}
+[GADGET9]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMREPAIR;
+		xpos=7;
+		ypos=511;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=114;
+}
+[GADGET10]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMCAPTURE;
+		xpos=66;
+		ypos=511;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=99;
+}
+[GADGET12]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMSTOP;
+		xpos=66;
+		ypos=543;
+		width=55;
+		height=31;
+		attribs=0;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	status=0;
+	text=;
+	quickkey=83;
+	grayedout=0;
+}
+[GADGET13]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMPATROL;
+		xpos=66;
+		ypos=575;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	status=0;
+	text=;
+	quickkey=80;
+	grayedout=0;
+}
+[GADGET14]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMDEFEND;
+		xpos=7;
+		ypos=575;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	status=0;
+	text=;
+	quickkey=103;
+}
+[GADGET15]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMATTACK;
+		xpos=7;
+		ypos=607;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	status=0;
+	text=;
+	quickkey=65;
+}
+[GADGET16]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMLOAD;
+		xpos=66;
+		ypos=607;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=108;
+}
+[GADGET17]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMBLAST;
+		xpos=66;
+		ypos=607;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=100;
+}
+[GADGET18]
+{
+	[COMMON]
+	{
+		id=1;
+		assoc=1;
+		name=ARMUNLOAD;
+		xpos=66;
+		ypos=479;
+		width=55;
+		height=31;
+		attribs=64;
+		colorf=15;
+		colorb=0;
+		texturenumber=0;
+		fontnumber=0;
+		active=1;
+		commonattribs=0;
+	}
+	quickkey=117;
+}

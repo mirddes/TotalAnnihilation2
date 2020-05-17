@@ -1,0 +1,13 @@
+MISSION 4.1LCORE
+Arm holds Hydross, but no matter. The beacon was not on Hydross anyway. Sensors indicate that it may be on Lusch. We must search the planet while holding Arm at bay.  
+
+INTELL-TAP:
+Arm searches for the Commander and the beacon. They must be stopped before they establish a foothold on this world.
+
+Arm has adapted units for this world. Expect resistance by Arm hovercraft units and amphib kbots.
+
+Core has developed hovercraft technology as well. &RUse that technology to destroy Arm.&
+
+To complete this mission you must &Rbuild a hovercraft pad and destroy all Arm units.&
+
+DO SO NOW.

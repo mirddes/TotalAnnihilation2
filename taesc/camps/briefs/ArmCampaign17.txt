@@ -1,0 +1,12 @@
+MISSION 17.003ARMR
+Core has built a nuclear missile silo! Locate the silo and capture it. 
+
+&YPRIORITY&
+Once again Core has raised the ante.  Energy emissions indicate that they have completed construction of a large missile silo in this area. The silo is thought to contain missiles with nuclear warheads. We must capture the silo, not only to remove the threat but also to gain the technology that it represents.
+
+INFO FEED
+The silo is sure to be well protected, and may be found on what is known as Brooban's Isle. A combination air/sea force will be most effective.
+
+&RBe prepared for meteor showers.& 
+
+END

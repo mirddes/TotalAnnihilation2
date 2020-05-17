@@ -1,0 +1,10 @@
+MISSION 22.002ARMCP
+Destroy the energy storage depot.
+
+&YPRIORITY&
+Core has a huge energy complex located at Coordinates 6551:447. Much of the power that Core depends upon to defend its homeworld can be found there. We must &Rdestroy that energy depot&. It is hoped that the destruction of this complex will sufficiently weaken Core's Central Consciousness that Arm shall prevail.
+
+INFO FEED
+The energy depot consists of numerous energy gathering and storage structures across the sewage canals to the north. Cross over the canals and destroy them all. 
+ 
+END

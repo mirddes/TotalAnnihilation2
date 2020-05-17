@@ -1,0 +1,383 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flare, case5, case6, case1, case2, case4, case3,
+       plate1, arm, container1, container2, door1, barrel, energy, door2,
+       plate2, radar, gun, turret;
+
+static-var  open_1, request_2, busy_3, restore_4, reset_5, direction_6;
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	if( !restore_4 )
+	{
+		if( request_2 )
+		{
+			set ACTIVATION to 0;
+		}
+		signal 2;
+	}
+	reset_5 = 0;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Restore_4 AND ( !Reset_5 ) )
+		{
+			Restore_4 = FALSE;
+			Reset_5 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+RequestState()
+{
+	if( busy_3 )
+	{
+		return (0);
+	}
+	busy_3 = 1;
+	while( request_2 != open_1 )
+	{
+		if( !request_2 )
+		{
+			open_1 = 0;
+			spin radar around x-axis speed <0>;
+			turn radar to x-axis <0> speed <182>;
+			turn turret to y-axis <180> speed <60>;
+			if( direction_6 <= <90> OR direction_6 > <270> )
+			{
+				turn turret to y-axis <0> speed <60>; 
+			}
+			turn gun to x-axis <0> speed <50>;
+			sleep 511;
+			wait-for-turn turret around y-axis;
+			wait-for-turn gun around x-axis;
+			move plate2 to x-axis [0] speed [4];
+			move door2 to x-axis [0] speed [3];
+			sleep 519;
+			turn door2 to z-axis <0> speed <177>;
+			move barrel to z-axis [0] speed [18];
+			move energy to z-axis [0] speed [6];
+			move door1 to z-axis [0] speed [3];
+			sleep 514;
+			turn door1 to x-axis <0> speed <169>;
+			move container1 to x-axis [0] speed [3];
+			move container2 to x-axis [0] speed [3];
+			sleep 519;
+			turn container2 to z-axis <0> speed <173>;
+			turn container1 to z-axis <0> speed <173>;
+			move arm to y-axis [0] speed [10];
+			move plate1 to y-axis [0] speed [12];
+			move turret to y-axis [0] speed [4];
+			sleep 519;
+			turn case3 to z-axis <0> speed <174>;
+			turn case1 to z-axis <0> speed <173>;
+			sleep 516;
+			turn case4 to z-axis <0> speed <172>;
+			turn case2 to z-axis <0> speed <172>;
+			move case5 to y-axis [0] speed [14];
+			move case6 to y-axis [0] speed [14];
+			set ARMORED to 1;
+			sleep 679;
+			cache arm;
+			cache barrel;
+			cache case1;
+			cache case2;
+			cache case3;
+			cache case4;
+			cache case5;
+			cache case6;
+			cache container1;
+			cache container2;
+			cache door1;
+			cache door2;
+			cache energy;
+			cache flare;
+			cache gun;
+			cache plate1;
+			cache plate2;
+			cache radar;
+			cache turret;
+		}
+		if( request_2 )
+		{
+			dont-cache arm;
+			dont-cache barrel;
+			dont-cache case1;
+			dont-cache case2;
+			dont-cache case3;
+			dont-cache case4;
+			dont-cache case5;
+			dont-cache case6;
+			dont-cache container1;
+			dont-cache container2;
+			dont-cache door1;
+			dont-cache door2;
+			dont-cache energy;
+			dont-cache flare;
+			dont-cache gun;
+			dont-cache plate1;
+			dont-cache plate2;
+			dont-cache radar;
+			dont-cache turret;
+			move case5 to y-axis [-7.30] speed [14];
+			move case6 to y-axis [-7.35] speed [14];
+			turn case1 to z-axis <90> speed <172>;
+			turn case3 to z-axis <-90> speed <172>;
+			sleep 518;
+			set ARMORED to 0;
+			turn case2 to z-axis <-90> speed <173>;
+			turn case4 to z-axis <90> speed <172>;
+			sleep 521;
+			move plate1 to y-axis [6.30] speed [12.6];
+			move turret to y-axis [2] speed [4];
+			move arm to y-axis [7.5] speed [15];
+			turn container1 to z-axis <90> speed <174>;
+			turn container2 to z-axis <-90> speed <173>;
+			sleep 518;
+			move container1 to x-axis [2] speed [3];
+			move container2 to x-axis [-1.90] speed [3];
+			turn door1 to x-axis <86> speed <169>;
+			sleep 518;
+			move door1 to z-axis [-1.62] speed [3];
+			move barrel to z-axis [9.67] speed [18];
+			move energy to z-axis [3.22] speed [6];
+			turn door2 to z-axis <90> speed <178>;
+			sleep 516;
+			move door2 to x-axis [1.60] speed [3];
+			move plate2 to x-axis [-2.35] speed [4];
+			turn radar to x-axis <92> speed <179>;
+			sleep 688;
+			spin radar around x-axis speed <100>;
+			open_1 = 1;
+		}
+		sleep 200;
+	}
+	busy_3 = 0;
+}
+
+Create()
+{
+	dont-shade arm;
+	dont-shade barrel;
+	dont-shade case1;
+	dont-shade case2;
+	dont-shade case3;
+	dont-shade case4;
+	dont-shade case5;
+	dont-shade case6;
+	dont-shade container1;
+	dont-shade container2;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade energy;
+	dont-shade flare;
+	dont-shade gun;
+	dont-shade plate1;
+	dont-shade plate2;
+	dont-shade radar;
+	dont-shade turret;
+	dont-cache flare;
+	hide flare;
+	open_1 = 0;
+	request_2 = 1;
+	busy_3 = 0;
+	restore_4 = 0;
+	reset_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	if( Rand( 1, 2 ) == 2 )
+	{
+		turn turret to y-axis <180> NOW;
+	}
+	start-script SmokeUnit();
+	set ARMORED to 1;
+	start-script RequestState();	
+	restore_4 = 1;
+}
+
+Activate()
+{
+	restore_4 = 0;
+	reset_5 = 0;
+	request_2 = 1;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	restore_4 = 0;
+	reset_5 = 0;
+	request_2 = 0;
+	start-script RequestState();
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !open_1 )
+	{
+		set ACTIVATION to 1;
+	}
+	while( !open_1 )
+	{
+		sleep 250;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <80>;
+	turn gun to x-axis <0> - pitch speed <32>;
+	wait-for-move gun along z-axis;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	direction_6 = heading;
+	restore_4 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	move gun to z-axis [-1] speed [500];
+	show flare;
+	sleep 150;
+	hide flare;
+	move gun to z-axis [0] speed [0.25];
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = barrel;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode case1 type BITMAPONLY | BITMAP4;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP2;
+		explode case5 type BITMAPONLY | BITMAP3;
+		explode case6 type BITMAPONLY | BITMAP4;
+		explode container1 type BITMAPONLY | BITMAP5;
+		explode container2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP3;
+		explode energy type BITMAPONLY | BITMAP4;
+		explode gun type BITMAPONLY | BITMAP5;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP2;
+		explode radar type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type FALL | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode case1 type BITMAPONLY | BITMAP4;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP2;
+		explode case5 type BITMAPONLY | BITMAP3;
+		explode case6 type BITMAPONLY | BITMAP4;
+		explode container1 type BITMAPONLY | BITMAP5;
+		explode container2 type BITMAPONLY | BITMAP1;
+		explode door1 type FALL | BITMAP2;
+		explode door2 type FALL | BITMAP3;
+		explode energy type FALL | BITMAP4;
+		explode gun type SHATTER | BITMAP5;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP2;
+		explode radar type FALL | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode arm type BITMAPONLY | BITMAP1;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode case1 type BITMAPONLY | BITMAP4;
+		explode case2 type BITMAPONLY | BITMAP5;
+		explode case3 type BITMAPONLY | BITMAP1;
+		explode case4 type BITMAPONLY | BITMAP2;
+		explode case5 type BITMAPONLY | BITMAP3;
+		explode case6 type BITMAPONLY | BITMAP4;
+		explode container1 type BITMAPONLY | BITMAP5;
+		explode container2 type BITMAPONLY | BITMAP1;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode energy type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode gun type SHATTER | BITMAP5;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP2;
+		explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	explode arm type BITMAPONLY | BITMAP1;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type BITMAPONLY | BITMAP3;
+	explode case1 type BITMAPONLY | BITMAP4;
+	explode case2 type BITMAPONLY | BITMAP5;
+	explode case3 type BITMAPONLY | BITMAP1;
+	explode case4 type BITMAPONLY | BITMAP2;
+	explode case5 type BITMAPONLY | BITMAP3;
+	explode case6 type BITMAPONLY | BITMAP4;
+	explode container1 type BITMAPONLY | BITMAP5;
+	explode container2 type BITMAPONLY | BITMAP1;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode energy type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode gun type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode plate1 type BITMAPONLY | BITMAP1;
+	explode plate2 type BITMAPONLY | BITMAP2;
+	explode radar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type BITMAPONLY | BITMAP4;
+}

@@ -1,0 +1,76 @@
+[UNITINFO]
+{
+	UnitName=ARMFEHP;
+	Version=1.2;
+	SIDE=ARM;
+	Objectname=ARMFEHP;
+	Designation=ARM-FAH;
+	Name=Exp. Floating Hover Platform;
+	Description=Builds Hovercraft;
+	FootprintX=18;
+	FootprintZ=18;
+	BuildCostEnergy=265728;		//332160		
+	BuildCostMetal=8800;		//11000	
+	MaxDamage=9016;				//11270
+	MaxWaterDepth=0;
+	MaxSlope=10;
+	EnergyUse=0;
+	BuildTime=84680;			//105852
+	WorkerTime=360;
+	BMcode=0;
+	Builder=1;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=0;
+	SightDistance=224;
+	RadarDistance=0;
+	SoundCategory=ARM_HOVER_PLANT;
+	EnergyStorage=400;
+	MetalStorage=400;
+	ExplodeAs=ATOMIC_BLAST;
+	SelfDestructAs=ATOMIC_BLAST;
+	Category=ARM LAB NAIR NSUB NSHP NLND ALL LEV3 CTRL_F;
+	TEDClass=PLANT;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww
+		wwCCCCCCCCCCCCCCww;
+	Corpse=armfehp_dead;
+	UnitNumber=17927;
+	firestandorders=1;
+	StandingFireOrder=2;
+	mobilestandorders=1;
+	StandingMoveOrder=1;
+	canmove=1;
+	canpatrol=1;
+	canstop=1;
+	canattack=1;
+	downloadable=1;
+	MinWaterDepth=30;
+	WaterLine=1;
+	NoShadow=1;
+	Ovradjust=1;
+	Weapon3=LAB_DIR;
+	wspe_BadTargetCategory=ALL;
+	BadTargetCategory=ALL;
+	NoChaseCategory=ALL;
+	candgun=1;
+	damagemodifier=0.25;
+	EnergyMake=80;
+	MetalMake=4;
+}

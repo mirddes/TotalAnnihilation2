@@ -1,0 +1,272 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flare, turret1, stand, door1, door2, door3, door4,
+       turret2, barrel;
+
+static-var  Busy_1, State_2, Request_3, restore_4, Delay_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState(timer)
+{
+	timer = 0;
+	while( TRUE )
+	{
+		if( Request_3 != State_2 )
+		{
+			Busy_1 = 1;
+			if( !Request_3 AND State_2 )
+			{
+				State_2 = 0;
+				timer = 0;
+				restore_4 = 0;
+				turn turret1 to y-axis <0> speed <200>;
+				turn turret2 to x-axis <90> speed <200>;
+				wait-for-turn turret1 around y-axis;
+				wait-for-turn turret2 around x-axis;
+				move stand to y-axis [-23.400000] speed [41.56];
+				sleep 563;
+				//get SET_CLOAKED (1);
+				set ARMORED to 1;
+				turn door1 to z-axis <-3> speed <309>;
+				turn door2 to z-axis <3> speed <309>;
+				turn door3 to x-axis <-3> speed <309>;
+				turn door4 to x-axis <3> speed <309>;
+				sleep 593;
+				cache barrel;
+				cache stand;
+				cache turret1;
+				cache turret2;
+			}
+			if( Request_3 AND !State_2 )
+			{
+				State_2 = 1;
+				timer = 0;
+				dont-cache barrel;
+				dont-cache stand;
+				dont-cache turret1;
+				dont-cache turret2;
+				turn door1 to z-axis <-179.335165> speed <827.681319>;
+				turn door2 to z-axis <178.989011> speed <826>;
+				turn door3 to x-axis <-179.335165> speed <827.681319>;
+				turn door4 to x-axis <179.681319> speed <829.346154>;
+				//get SET_CLOAKED (0);
+				sleep 213;
+				set ARMORED to 0;
+				move stand to y-axis [0] speed [76.219983];
+				sleep 312;
+				turn turret2 to x-axis <0> speed <200>;
+				Restore_4 = 1;
+			}
+			Busy_1 = 0;
+		}
+		if( !restore_4 AND timer )
+		{
+			--timer;
+			if( !timer AND request_3 )
+			{
+				set ACTIVATION to 0;
+			}
+		}
+		if( restore_4 )
+		{
+			restore_4 = 0;
+			timer = 20;
+		}
+		sleep 250;
+	}
+}
+
+Create()
+{
+	dont-shade barrel;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade stand;
+	dont-shade turret1;
+	dont-shade turret2;
+	dont-cache barrel;
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache door3;
+	dont-cache door4;
+	dont-cache stand;
+	dont-cache turret1;
+	dont-cache turret2;
+	hide flare;
+	Busy_1 = 0;
+	State_2 = 1;
+	Request_3 = 1;
+	restore_4 = 0;
+	Delay_5 = 0;
+	turn door1 to z-axis <-179.335165> now;
+	turn door2 to z-axis <179> now;
+	turn door3 to x-axis <-179.335165> now;
+	turn door4 to x-axis <179.681319> now;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	restore_4 = 1;
+	start-script SmokeUnit();
+	start-script RequestState();
+	return (0);
+}
+
+Deactivate()
+{
+	Request_3 = 0;
+}
+
+Activate()
+{
+	Request_3 = 1;
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !Request_3 )
+	{
+		set ACTIVATION to 1;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( !State_2 OR Busy_1 )
+	{
+		sleep 250;
+	}
+	turn turret1 to y-axis heading speed <250>;
+	turn turret2 to x-axis <0> - pitch speed <200>;
+	while( Delay_5 )
+	{
+		wait-for-move barrel along z-axis;
+		turn turret1 to y-axis heading speed <250>;
+		turn turret2 to x-axis <0> - pitch speed <200>;
+	}
+	wait-for-turn turret1 around y-axis;
+	wait-for-turn turret2 around x-axis;
+	restore_4 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	delay_5 = 1;
+	show flare;
+	move barrel to z-axis [-0.5] speed [500];
+	sleep 100;
+	hide flare;
+	move barrel to z-axis [0] speed [0.357];
+	wait-for-move barrel along z-axis;
+	delay_5 = 0;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret1;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		if( State_2 )
+		{
+			corpsetype = 1;
+		}
+		if( !State_2 )
+		{
+			corpsetype = 2;
+		}
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP2;
+		explode stand type BITMAPONLY | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode door3 type BITMAPONLY | BITMAP1;
+		explode door4 type BITMAPONLY | BITMAP2;
+		explode turret2 type BITMAPONLY | BITMAP3;
+		explode barrel type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP2;
+		explode stand type BITMAPONLY | BITMAP3;
+		explode door1 type FALL | BITMAP4;
+		explode door2 type FALL | BITMAP5;
+		explode door3 type FALL | BITMAP1;
+		explode door4 type FALL | BITMAP2;
+		explode turret2 type BITMAPONLY | BITMAP3;
+		explode barrel type SHATTER | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP2;
+		explode stand type BITMAPONLY | BITMAP3;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret2 type BITMAPONLY | BITMAP3;
+		explode barrel type SHATTER | BITMAP4;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret1 type BITMAPONLY | BITMAP2;
+	explode stand type BITMAPONLY | BITMAP3;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode turret2 type BITMAPONLY | BITMAP3;
+	explode barrel type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

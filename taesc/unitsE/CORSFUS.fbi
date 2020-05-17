@@ -1,0 +1,56 @@
+[UNITINFO]
+{
+	UnitName=CORSFUS;
+	Version=1.2;
+	SIDE=CORE;
+	Objectname=CORSFUS;
+	Designation=EF-CK2;
+	Name=Experimental Fusion Reactor;
+	Description=Produces Energy (5K, Cloakable, Adjacency Bonus, Upgradable);
+	FootprintX=10;
+	FootprintZ=10;
+	BuildCostEnergy=603400;		//502832
+	BuildCostMetal=18768;		//15640
+	MaxDamage=12000;
+	MaxWaterDepth=0;
+	MaxSlope=10;
+	EnergyUse=-1250;
+	BuildTime=377124;			//314270
+	WorkerTime=120;
+	BMcode=0;
+//	Builder=1;
+	Builder=0;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=0;
+	SightDistance=192;
+	RadarDistance=0;
+	SoundCategory=CORE_CKFUS;
+	EnergyStorage=25000;
+	MetalStorage=5000;
+	ExplodeAs=NUCLEAR_BLAST;
+	SelfDestructAs=NUCLEAR_BLASTSML;
+	Category=CORE BLDG NAIR NSUB NSHP NLND NEXP ALL LEV3;
+	TEDClass=ENERGY;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=oooooooooo
+		  oooooooooo 
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo
+		  oooooooooo ;
+	Corpse=corsfus_dead;
+	UnitNumber=233;
+	EnergyMake=5000;
+//	buildangle=4096;
+	downloadable=1;
+	CloakCost=1250;
+	mincloakdistance=160;
+	ActivateWhenBuilt=0;
+	canbuild=1;
+	damagemodifier=0.25;
+}

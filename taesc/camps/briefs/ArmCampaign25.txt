@@ -1,0 +1,12 @@
+MISSION 25.004ARMCP
+Finish Core once and for all! March your Commander to the top of the Core Command Dome.
+
+&YPRIORITY CRITICAL&
+Central Consciousness is ours! The Core brain is ours. There is one final blow to strike. We have Core's brain, now we must destroy its heart. We must control Core's Command Dome in order to finish this forever. 
+
+INFO FEED
+All that is left of the Core Empire has assembled in defense of the Command Dome. Core's Commander is certain to be there. Destroy their Commander. Destroy every last Core unit. Remember, even one Core mind left sentient may be enough to begin Core anew. Scour thoroughly Commander! 
+
+Stand at the top of the Command Dome Commander. &RFinish it&.
+ 
+END

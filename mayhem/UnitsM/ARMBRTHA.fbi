@@ -1,0 +1,57 @@
+[UNITINFO]
+{
+UnitName=ARMBRTHA;
+Version=1;
+Side=ARM;
+Objectname=ARMBRTHA;
+Designation=ARM-LRC;
+Name=Big Bertha;
+Description=Long Range Plasma Cannon (4k E per shot);
+FootprintX=4;
+FootprintZ=4;
+BuildCostEnergy=85680;
+BuildCostMetal=5620;
+MaxDamage=3600;
+MaxWaterDepth=0;
+MaxSlope=10;
+EnergyUse=0;
+BuildTime=112400;
+BMcode=0;
+Builder=0;
+ThreeD=1;
+ZBuffer=1;
+NoAutoFire=1;
+SightDistance=240;
+SoundCategory=ARM_BRTHA;
+ExplodeAs=ATOMIC_BLAST;
+SelfDestructAs=ATOMIC_BLAST;
+Category=ALL ARM LEVEL2 NOTAIR NOTSUB CTRL_X;
+TEDClass=FORT;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+YardMap=
+.oo.
+oooo
+oooo
+.oo.;
+Corpse=armbrtha_dead;
+GermanName=Big Bertha;
+GermanDescription=Langstrecken-Plasmakanone;
+UnitNumber=16;
+FrenchName=Grosse Bertha;
+Frenchdescription=Canon à plasma de longue portée;
+firestandorders=1;
+StandingFireOrder=0;
+canstop=1;
+SpanishName=Big Bertha;
+SpanishDescription=Cañón de plasma de largo alcance;
+ItalianName=Bertha;
+ItalianDescription=Cannone al plasma a lunga gittata;
+ShootMe=1;
+DefaultMissionType=GUARD_NOMOVE;
+buildangle=32000;
+canattack=1;
+Weapon1=ARM_BERTHACANNON;
+wpri_BadTargetCategory=MOBILE;
+BadTargetCategory=CTRL_V;
+NoChaseCategory=ALL;
+}

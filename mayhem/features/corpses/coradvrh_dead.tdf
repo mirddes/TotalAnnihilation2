@@ -1,0 +1,35 @@
+[CORADVRH_DEAD]
+{
+world=All Worlds;
+description=Berserker Wreckage;
+category=core_corpses;
+object=coradvrh_dead;
+featuredead=coradvrh_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=4;
+metal=3308;
+damage=7514;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORADVRH_HEAP]
+{
+world=All Worlds;
+description=Berserker Wreckage;
+category=heaps;
+object=4x4e;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3308;
+damage=8200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

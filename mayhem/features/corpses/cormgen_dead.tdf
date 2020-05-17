@@ -1,0 +1,17 @@
+[Cormgen_dead]
+{
+world=All Worlds;
+description=Microgenerator Wreckage;
+category=Cor_corpses;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=6;
+blocking=0;
+hitdensity=50;
+metal=342;
+damage=1000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

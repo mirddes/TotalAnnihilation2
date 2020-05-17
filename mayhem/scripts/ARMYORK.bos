@@ -1,0 +1,208 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, flare3, flare4, turret, base, wheel1, wheel2,
+       wheel3, wheel4, wheel5, wheel6, gun1, gun4, gun2, gun3;
+
+static-var  gun_3, Restore_2, Reset_3;
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	if( !Restore_2 )
+	{
+		turn turret to y-axis <0> speed <400>;
+		turn turret to x-axis <0> speed <300>;
+		signal 2;
+	}
+	Reset_3 = 0;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Restore_2 AND ( !Reset_3 ) )
+		{
+			Restore_2 = 0;
+			Reset_3 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+StartMoving()
+{
+	spin wheel1 around x-axis speed <150>;
+	spin wheel2 around x-axis speed <150>;
+	spin wheel3 around x-axis speed <150>;
+	spin wheel4 around x-axis speed <150>;
+	spin wheel5 around x-axis speed <150>;
+	spin wheel6 around x-axis speed <150>;
+}
+
+StopMoving()
+{
+	spin wheel1 around x-axis speed <0>;
+	spin wheel2 around x-axis speed <0>;
+	spin wheel3 around x-axis speed <0>;
+	spin wheel4 around x-axis speed <0>;
+	spin wheel5 around x-axis speed <0>;
+	spin wheel6 around x-axis speed <0>;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	gun_3 = flare1;
+	Restore_2 = 0;
+	Reset_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+FirePrimary()
+{
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <640>;
+	turn turret to x-axis <0> - pitch speed <500>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn turret around x-axis;
+	Restore_2 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	if( !gun_3 )
+	{
+		move gun1 to z-axis [-4] now;
+		show flare1;
+		sleep 150;
+		hide flare1;
+		move gun1 to z-axis [0] speed [15];
+	}
+	if( gun_3 == 1 )
+	{
+		move gun4 to z-axis [-4] now;
+		show flare4;
+		sleep 150;
+		hide flare4;
+		move gun4 to z-axis [0] speed [15];
+	}
+	if( gun_3 == 2 )
+	{
+		move gun2 to z-axis [-4] now;
+		show flare2;
+		sleep 150;
+		hide flare2;
+		move gun2 to z-axis [0] speed [15];
+	}
+	if( gun_3 > 2 )
+	{
+		move gun3 to z-axis [-4] now;
+		show flare3;
+		sleep 150;
+		hide flare3;
+		move gun3 to z-axis [0] speed [15];
+		gun_3 = -1;
+	}
+	++gun_3;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_3;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode turret type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode turret type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+}

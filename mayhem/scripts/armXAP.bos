@@ -1,0 +1,341 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  beam1, beam2, beam3, beam4, beam5, nano1, nano2, nano3,
+       nano4, nano5, door3, door4, door5, box1, box2, box5, 
+       pad, light1, light2, light3, light4, ldish, rdish, larm,
+       rarm, rotate, radar, base;
+       
+static-var  nano_1, request_3, busy_4, state_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_4 )
+	{
+		return (0);
+	}
+	busy_4 = 1;
+	while( request_3 != state_5 )
+	{
+		if( request_3 AND !state_5 )
+		{
+			dont-cache beam1;
+			dont-cache beam2;
+			dont-cache beam3;
+			dont-cache beam4;
+			dont-cache door5;
+			dont-cache door3;
+			dont-cache door4;
+			dont-cache box1;
+			dont-cache box2;
+			dont-cache nano1;
+			dont-cache nano3;
+			dont-cache nano2;
+			dont-cache nano4;
+			dont-cache nano5;
+			turn door3 to z-axis <0> now;
+			turn door3 to z-axis <-90> speed <175.14>;
+			turn door4 to z-axis <0> now;
+			turn door4 to z-axis <-90> speed <175.14>;
+			turn door5 to z-axis <0> now;
+			turn door5 to z-axis <-90> speed <175.14>;
+			sleep 300;
+			move box1 to z-axis [9] speed [9];
+			move box2 to z-axis [-9] speed [9];
+			move nano3 to x-axis [3.5] speed [10.5];
+			move nano4 to x-axis [3.5] speed [10.5];
+			move nano5 to x-axis [3.5] speed [10.5];
+			sleep 333;
+			turn door3 to z-axis <-120> speed <175.14>;
+			turn door4 to z-axis <-120> speed <175.14>;
+			turn door5 to z-axis <-120> speed <175.14>;
+			turn nano3 to z-axis <-30> speed <175.14>;
+			turn nano4 to z-axis <-30> speed <175.14>;
+			turn nano5 to z-axis <-30> speed <175.14>;
+			sleep 167;
+			turn nano3 to y-axis <-45> speed <90>;
+			turn nano4 to y-axis <45> speed <90>;
+			turn nano1 to z-axis <-15> speed <30>;
+			turn nano2 to z-axis <-15> speed <30>;
+			sleep 500;
+			set YARD_OPEN to 1;
+			while( !( get YARD_OPEN ) )
+			{
+				sleep 1500;
+				set YARD_OPEN to 1;
+			}
+			set INBUILDSTANCE to 1;
+			state_5 = 1;
+		}
+		if( !request_3 AND state_5 )
+		{
+			set INBUILDSTANCE to 0;
+			set YARD_OPEN to 0;
+			while( get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 0;
+			}
+			spin pad around y-axis speed <0>;
+			turn nano1 to z-axis <0> speed <45>;
+			turn nano2 to z-axis <0> speed <45>;
+			turn nano3 to y-axis <0> speed <135>;
+			turn nano4 to y-axis <0> speed <135>;
+			sleep 333;
+			turn nano3 to z-axis <0> speed <90>;
+			turn nano4 to z-axis <0> speed <90>;
+			turn nano5 to z-axis <0> speed <90>;
+			turn door3 to z-axis <0> speed <90>;
+			turn door4 to z-axis <0> speed <90>;
+			turn door5 to z-axis <0> speed <90>;
+			sleep 333;
+			move box1 to z-axis [0] speed [9];
+			move box2 to z-axis [0] speed [9];
+			move nano3 to x-axis [0] speed [10.5];
+			move nano4 to x-axis [0] speed [10.5];
+			move nano5 to x-axis [0] speed [10.5];
+			sleep 250;
+			turn door3 to z-axis <0> speed <180>;
+			turn door4 to z-axis <0> speed <180>;
+			turn door5 to z-axis <0> speed <180>;
+			sleep 500;
+			cache beam1;
+			cache beam2;
+			cache beam3;
+			cache beam4;
+			cache beam5;
+			cache door3;
+			cache door4;
+			cache door5;
+			cache box1;
+			cache box2;
+			cache nano1;
+			cache nano2;
+			cache nano3;
+			cache nano4;
+			cache nano5;
+			state_5 = 0;
+		}
+	}
+	busy_4 = 0;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade door5;
+	dont-shade box1;
+	dont-shade box2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade nano3;
+	dont-shade nano4;
+	dont-shade nano5;
+	dont-shade pad;
+	dont-shade LDish;
+	dont-shade RDish;
+	dont-shade LArm;
+	dont-shade RArm;
+	nano_1 = 0;
+	request_3 = 0;
+	busy_4 = 0;
+	state_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+	dont-cache light1;
+	dont-cache light2;
+	dont-cache light3;
+	dont-cache light4;	
+	move radar to y-axis [5] speed [12.5];
+	sleep 400;
+	turn LDish to z-axis <-84> speed <168>;
+	turn RDish to z-axis <84> speed <168>;
+	sleep 500;
+	spin rotate around y-axis speed <-30>;
+	spin Larm around x-axis speed <100>;
+	spin Rarm around x-axis speed <-100>;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( nano_1 == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( nano_1 == 1 )
+	{
+		piecenum = beam2;
+	}
+	if( nano_1 == 2 )
+	{
+		piecenum = beam3;
+	}
+	if( nano_1 == 3 )
+	{
+		piecenum = beam4;
+	}
+	++nano_1;
+	if( nano_1 > 4 )
+	{
+		piecenum = beam5;
+		nano_1 = 0;
+	}
+}
+
+Activate()
+{
+	signal 2;
+	set BUGGER_OFF to 1;
+	Request_3 = 1;
+	call-script RequestState();
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	set BUGGER_OFF to 1;
+	Request_3 = 0;
+	sleep 8000;
+	set-signal-mask 0;
+	if( !Request_3 )
+	{
+		call-script RequestState();
+	}
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP2;
+		explode beam2 type BITMAPONLY | BITMAP3;
+		explode door3 type BITMAPONLY | BITMAP1;
+		explode door4 type BITMAPONLY | BITMAP2;
+		explode box1 type BITMAPONLY | BITMAP3;
+		explode box2 type BITMAPONLY | BITMAP4;
+		explode nano1 type BITMAPONLY | BITMAP5;
+		explode nano2 type BITMAPONLY | BITMAP1;
+		explode box5 type BITMAPONLY | BITMAP4;
+		explode door5 type BITMAPONLY | BITMAP3;
+		explode nano3 type BITMAPONLY | BITMAP1;
+		explode nano4 type BITMAPONLY | BITMAP5;
+		explode pad type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | BITMAP2;
+		explode beam2 type FALL | BITMAP3;
+		explode door3 type BITMAPONLY | BITMAP1;
+		explode door4 type BITMAPONLY | BITMAP2;
+		explode box1 type FALL | BITMAP3;
+		explode box2 type FALL | BITMAP4;
+		explode nano1 type FALL | BITMAP5;
+		explode nano2 type SHATTER | BITMAP1;
+		explode box5 type FALL | BITMAP4;
+		explode door5 type FALL | BITMAP3;
+		explode nano3 type FALL | BITMAP1;
+		explode nano4 type FALL | BITMAP5;
+		explode pad type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door3 type BITMAPONLY | BITMAP1;
+		explode door4 type BITMAPONLY | BITMAP2;
+		explode box1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode box2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode nano2 type SHATTER | BITMAP1;
+		explode box5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode door5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode nano3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nano4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode pad type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door3 type BITMAPONLY | BITMAP1;
+	explode door4 type BITMAPONLY | BITMAP2;
+	explode box1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode box2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode nano2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode box5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode door5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode nano3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nano4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode pad type BITMAPONLY | BITMAP2;
+}

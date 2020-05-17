@@ -1,0 +1,357 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, launch, Door1, Door2, Frame1, Frame2, Frame3, Frame4,
+       Cover2, Cover1, dummy;
+
+static-var  Open_1, Busy_2, Open_3, Reload_4;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade base;
+	dont-shade Door1;
+	dont-shade Door2;
+	dont-shade dummy;
+	dont-shade Frame1;
+	dont-shade Frame2;
+	dont-shade Frame3;
+	dont-shade Frame4;
+	dont-shade Cover1;
+	dont-shade Cover2;
+	dont-cache Door1;
+	dont-cache Door2;
+	dont-cache dummy;
+	dont-cache Frame1;
+	dont-cache Frame2;
+	dont-cache Frame3;
+	dont-cache Frame4;
+	dont-cache Cover1;
+	dont-cache Cover2;
+	Open_1 = 0;
+	Busy_2 = 0;
+	Open_3 = 0;
+	Reload_4 = 1;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	sleep 125000;
+	Reload_4 = 0;
+//	start-script RequestState();
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	while( Busy_2 )
+	{
+		sleep 250;
+	}
+	if( !Open_1 )
+	{
+		Busy_2 = 1;
+		move Door1 to x-axis [0] now;
+		move Door1 to x-axis [2.90] speed [2];
+		move Door2 to x-axis [0] now;
+		move Door2 to x-axis [-2.90] speed [2];
+		sleep 1033;
+		move Frame1 to x-axis [1.40] speed [1];
+		move Frame2 to x-axis [1.40] speed [1];
+		move Frame3 to x-axis [-1.40] speed [1];
+		move Frame4 to x-axis [-1.40] speed [1];
+		sleep 1036;
+		move Frame1 to x-axis [4.50] speed [2];
+		move Frame2 to x-axis [4.50] speed [2];
+		move Frame3 to x-axis [-4.50] speed [2];
+		move Frame4 to x-axis [-4.50] speed [2];
+		move Cover2 to x-axis [-1.50] speed [1];
+		move Cover1 to x-axis [1.50] speed [1];
+		turn Cover2 to z-axis <-75> speed <72>;
+		turn Cover1 to z-axis <75> speed <72>;
+		sleep 1034;
+		move Frame1 to x-axis [5.80] speed [1];
+		move Frame2 to x-axis [5.80] speed [1];
+		move Frame3 to x-axis [-5.80] speed [1];
+		move Frame4 to x-axis [-5.80] speed [1];
+		move Cover2 to x-axis [-3] speed [1];
+		move Cover1 to x-axis [3] speed [1];
+		turn Cover2 to z-axis <-90> speed <14>;
+		turn Cover1 to z-axis <90> speed <14>;
+		sleep 1000;
+		Open_1 = 1;
+		Busy_2 = 0;
+	}
+//	signal 2;
+//	set-signal-mask 0;
+//	set-signal-mask 2;
+	return (1);
+}
+
+FirePrimary()
+{
+	hide dummy;
+	Busy_2 = 1;
+	Open_1 = 0;
+	sleep 500;
+	move Door1 to x-axis [2.90] now;
+	move Door2 to x-axis [-2.90] now;
+	move Frame1 to x-axis [5.80] now;
+	move Frame1 to x-axis [4.50] speed [2];
+	move Frame2 to x-axis [5.80] now;
+	move Frame2 to x-axis [4.50] speed [2];
+	move Frame3 to x-axis [-5.80] now;
+	move Frame3 to x-axis [-4.50] speed [2];
+	move Frame4 to x-axis [-5.80] now;
+	move Frame4 to x-axis [-4.50] speed [2];
+	move Cover2 to x-axis [-3] now;
+	move Cover2 to x-axis [-1.50] speed [2];
+	move Cover1 to x-axis [3] now;
+	move Cover1 to x-axis [1.50] speed [2];
+	turn Cover2 to z-axis <-90> now;
+	turn Cover2 to z-axis <-75> speed <24>;
+	turn Cover1 to z-axis <90> now;
+	turn Cover1 to z-axis <75> speed <24>;
+	sleep 607;
+	move Frame1 to x-axis [1.40] speed [5];
+	move Frame2 to x-axis [1.40] speed [5];
+	move Frame3 to x-axis [-1.40] speed [5];
+	move Frame4 to x-axis [-1.40] speed [5];
+	move Cover2 to x-axis [0] speed [2];
+	move Cover1 to x-axis [0] speed [2];
+	turn Cover2 to z-axis <0> speed <122>;
+	turn Cover1 to z-axis <0> speed <122>;
+	sleep 614;
+	move Frame1 to x-axis [0] speed [2];
+	move Frame2 to x-axis [0] speed [2];
+	move Frame3 to x-axis [0] speed [2];
+	move Frame4 to x-axis [0] speed [2];
+	sleep 610;
+	move Door1 to x-axis [0] speed [4];
+	move Door2 to x-axis [0] speed [4];
+	sleep 600;
+	show dummy;
+	Busy_2 = 0;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = launch;
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	while( Busy_2 or Reload_4 )
+	{
+		sleep 500;
+	}
+	if( !Open_3 )
+	{
+		Busy_2 = 1;
+		move Door1 to x-axis [0] now;
+		move Door1 to x-axis [2.90] speed [2];
+		move Door2 to x-axis [0] now;
+		move Door2 to x-axis [-2.90] speed [2];
+		sleep 1033;
+		move Frame1 to x-axis [1.40] speed [1];
+		move Frame2 to x-axis [1.40] speed [1];
+		move Frame3 to x-axis [-1.40] speed [1];
+		move Frame4 to x-axis [-1.40] speed [1];
+		sleep 1036;
+		move Frame1 to x-axis [4.50] speed [2];
+		move Frame2 to x-axis [4.50] speed [2];
+		move Frame3 to x-axis [-4.50] speed [2];
+		move Frame4 to x-axis [-4.50] speed [2];
+		move Cover2 to x-axis [-1.50] speed [1];
+		move Cover1 to x-axis [1.50] speed [1];
+		turn Cover2 to z-axis <-75> speed <72>;
+		turn Cover1 to z-axis <75> speed <72>;
+		sleep 1034;
+		move Frame1 to x-axis [5.80] speed [1];
+		move Frame2 to x-axis [5.80] speed [1];
+		move Frame3 to x-axis [-5.80] speed [1];
+		move Frame4 to x-axis [-5.80] speed [1];
+		move Cover2 to x-axis [-3] speed [1];
+		move Cover1 to x-axis [3] speed [1];
+		turn Cover2 to z-axis <-90> speed <14>;
+		turn Cover1 to z-axis <90> speed <14>;
+		sleep 1000;
+		Open_3 = 1;
+		Busy_2 = 0;
+	}
+//	signal 2;
+//	set-signal-mask 0;
+//	set-signal-mask 2;
+	return (1);
+}
+
+FireTertiary()
+{
+	hide dummy;
+	Reload_4 = 1;
+	Busy_2 = 1;
+	Open_3 = 0;
+	sleep 500;
+	move Door1 to x-axis [2.90] now;
+	move Door2 to x-axis [-2.90] now;
+	move Frame1 to x-axis [5.80] now;
+	move Frame1 to x-axis [4.50] speed [2];
+	move Frame2 to x-axis [5.80] now;
+	move Frame2 to x-axis [4.50] speed [2];
+	move Frame3 to x-axis [-5.80] now;
+	move Frame3 to x-axis [-4.50] speed [2];
+	move Frame4 to x-axis [-5.80] now;
+	move Frame4 to x-axis [-4.50] speed [2];
+	move Cover2 to x-axis [-3] now;
+	move Cover2 to x-axis [-1.50] speed [2];
+	move Cover1 to x-axis [3] now;
+	move Cover1 to x-axis [1.50] speed [2];
+	turn Cover2 to z-axis <-90> now;
+	turn Cover2 to z-axis <-75> speed <24>;
+	turn Cover1 to z-axis <90> now;
+	turn Cover1 to z-axis <75> speed <24>;
+	sleep 607;
+	move Frame1 to x-axis [1.40] speed [5];
+	move Frame2 to x-axis [1.40] speed [5];
+	move Frame3 to x-axis [-1.40] speed [5];
+	move Frame4 to x-axis [-1.40] speed [5];
+	move Cover2 to x-axis [0] speed [2];
+	move Cover1 to x-axis [0] speed [2];
+	turn Cover2 to z-axis <0> speed <122>;
+	turn Cover1 to z-axis <0> speed <122>;
+	sleep 614;
+	move Frame1 to x-axis [0] speed [2];
+	move Frame2 to x-axis [0] speed [2];
+	move Frame3 to x-axis [0] speed [2];
+	move Frame4 to x-axis [0] speed [2];
+	sleep 610;
+	move Door1 to x-axis [0] speed [4];
+	move Door2 to x-axis [0] speed [4];
+	sleep 600;
+	show dummy;
+	Busy_2 = 0;
+	Sleep 130000;
+	Reload_4 = 0;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = launch;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = launch;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode launch type BITMAPONLY | BITMAP2;
+		explode Door1 type BITMAPONLY | BITMAP3;
+		explode Door2 type BITMAPONLY | BITMAP4;
+		explode Frame1 type BITMAPONLY | BITMAP5;
+		explode Frame2 type BITMAPONLY | BITMAP1;
+		explode Frame3 type BITMAPONLY | BITMAP2;
+		explode Frame4 type BITMAPONLY | BITMAP3;
+		explode Cover1 type BITMAPONLY | BITMAP4;
+		explode Cover2 type BITMAPONLY | BITMAP5;
+		explode dummy type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode launch type FALL | BITMAP2;
+		explode Door1 type BITMAPONLY | BITMAP3;
+		explode Door2 type BITMAPONLY | BITMAP4;
+		explode Frame1 type BITMAPONLY | BITMAP5;
+		explode Frame2 type BITMAPONLY | BITMAP1;
+		explode Frame3 type BITMAPONLY | BITMAP2;
+		explode Frame4 type SHATTER | BITMAP3;
+		explode Cover1 type FALL | BITMAP4;
+		explode Cover2 type FALL | BITMAP5;
+		explode dummy type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode launch type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Door1 type BITMAPONLY | BITMAP3;
+		explode Door2 type BITMAPONLY | BITMAP4;
+		explode Frame1 type BITMAPONLY | BITMAP5;
+		explode Frame2 type BITMAPONLY | BITMAP1;
+		explode Frame3 type BITMAPONLY | BITMAP2;
+		explode Frame4 type SHATTER | BITMAP3;
+		explode Cover1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Cover2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode dummy type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode launch type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Door1 type BITMAPONLY | BITMAP3;
+	explode Door2 type BITMAPONLY | BITMAP4;
+	explode Frame1 type BITMAPONLY | BITMAP5;
+	explode Frame2 type BITMAPONLY | BITMAP1;
+	explode Frame3 type BITMAPONLY | BITMAP2;
+	explode Frame4 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode Cover1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Cover2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode dummy type BITMAPONLY | BITMAP1;
+	return (0);
+}

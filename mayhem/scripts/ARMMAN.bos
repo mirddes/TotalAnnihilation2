@@ -1,0 +1,143 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, hub, arm1, arm2, arm3, wheel1, wheel2, wheel3;
+
+static-var  Speed_1, Speed_2, on_3; 
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+/*	constructor_id=0;
+	dead=0;
+	dont-shade hub;
+	dont-shade arm1;
+	dont-shade arm2;
+	dont-shade arm3;*/
+	dont-shade wheel1;
+	dont-shade wheel2;
+	dont-shade wheel3;
+	turn arm2 to y-axis <120> NOW;
+	turn arm3 to y-axis <240> NOW;
+	Speed_1 = 0;
+	Speed_2 = 0;
+	on_3 = 0;
+	sleep 33;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	sleep 100;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	spin hub around y-axis speed Speed_1 accelerate <0.5>;
+	spin wheel1 around z-axis speed ( Speed_2 ) accelerate <1.5>;
+	spin wheel2 around z-axis speed ( Speed_2 ) accelerate <1.5>;
+	spin wheel3 around z-axis speed ( Speed_2 ) accelerate <1.5>;
+	while( on_3 )
+	{
+		emit-sfx 256 | 1 from wheel1;
+		sleep 67;
+		emit-sfx 256 | 1 from wheel2;
+		sleep 67;
+		emit-sfx 256 | 1 from wheel3;
+		sleep 2000;
+	}
+}
+
+Deactivate()
+{
+	spin hub around y-axis speed <0> accelerate <-2>;
+	spin hub around z-axis speed <0> accelerate <-6>;
+	spin hub around z-axis speed <0> accelerate <-6>;
+	spin hub around z-axis speed <0> accelerate <-6>;
+}
+
+SetSpeed(Func_Var_1)
+{
+	Speed_1 = Func_Var_1 * 25;
+	Speed_2 = Func_Var_1 * 75;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = hub;
+}
+
+Killed(severity, corpsetype)
+{
+	//dead=1;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode hub type BITMAPONLY | BITMAP4;
+		explode arm1 type BITMAPONLY | BITMAP3;
+		explode arm2 type BITMAPONLY | BITMAP3;
+		explode arm3 type BITMAPONLY | BITMAP3;
+		explode wheel1 type BITMAPONLY | BITMAP2;
+		explode wheel2 type BITMAPONLY | BITMAP2;
+		explode wheel3 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode hub type BITMAPONLY | BITMAP2;
+		explode arm1 type BITMAPONLY | BITMAP3;
+		explode arm2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode arm3 type BITMAPONLY | BITMAP3;
+		explode wheel1 type FALL | SMOKE | BITMAP2;
+		explode wheel2 type FALL | SMOKE | BITMAP2;
+		explode wheel3 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode arm2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode arm3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode wheel1 type FALL | SMOKE | BITMAP2;
+		explode wheel2 type FALL | SMOKE | BITMAP2;
+		explode wheel3 type FALL | SMOKE | BITMAP2;
+		return (0);
+	}
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode hub type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode arm1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode arm2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode arm3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode wheel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wheel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode wheel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

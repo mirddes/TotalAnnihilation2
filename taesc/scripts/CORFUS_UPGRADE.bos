@@ -1,0 +1,145 @@
+piece base, upgrade, wtf, wtf2, pop, shield,
+s01, s02, s03, s04, s05, s06, s07, s08, s09, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24;
+
+#include "sfxtype.h"
+#include "exptype.h"
+Create()
+	{
+		set ARMORED to 1;
+		move shield to y-axis [44.723340] now;
+//		move shield to z-axis [22.356740] now;
+		move shield to z-axis [13.375000] now;
+		hide shield;
+		move wtf to y-axis [10] now;
+		hide s01;
+		hide s02;
+		hide s03;
+		hide s04;
+		hide s05;
+		hide s06;
+		hide s07;
+		hide s08;
+		hide s09;
+		hide s10;
+		hide s11;
+		hide s12;
+		hide s13;
+		hide s14;
+		hide s15;
+		hide s16;
+		hide s17;
+		hide s18;
+		hide s19;
+		hide s20;
+		hide s21;
+		hide s22;
+		hide s23;
+		hide s24;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1000;
+		}
+		hide wtf;
+		while(1) {
+			show s01;
+			sleep 33;
+			hide s01;
+			
+			show s02;
+			sleep 33;
+			hide s02;
+			
+			show s03;
+			sleep 33;
+			hide s03;
+			
+			show s04;
+			sleep 33;
+			hide s04;
+			
+			show s05;
+			sleep 33;
+			hide s05;
+			
+			show s06;
+			sleep 33;
+			hide s06;
+			
+			show s07;
+			sleep 33;
+			hide s07;
+			
+			show s08;
+			sleep 33;
+			hide s08;
+			
+			show s09;
+			sleep 33;
+			hide s09;
+			
+			show s10;
+			sleep 33;
+			hide s10;
+			
+			show s11;
+			sleep 33;
+			hide s11;
+			
+			show s12;
+			sleep 33;
+			hide s12;
+			
+			show s13;
+			sleep 33;
+			hide s13;
+			
+			show s14;
+			sleep 33;
+			hide s14;
+			
+			show s15;
+			sleep 33;
+			hide s15;
+			
+			show s16;
+			sleep 33;
+			hide s16;
+			
+			show s17;
+			sleep 33;
+			hide s17;
+			
+			show s18;
+			sleep 33;
+			hide s18;
+			
+			show s19;
+			sleep 33;
+			hide s19;
+			
+			show s20;
+			sleep 33;
+			hide s20;
+			
+			show s21;
+			sleep 33;
+			hide s21;
+			
+			show s22;
+			sleep 33;
+			hide s22;
+			
+			show s23;
+			sleep 33;
+			hide s23;
+
+			show s24;
+			sleep 33;
+			hide s24;
+		}
+	}
+
+SweetSpot(piecenum)
+{
+	piecenum = wtf;
+}	

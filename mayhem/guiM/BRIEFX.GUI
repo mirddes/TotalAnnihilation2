@@ -1,0 +1,70 @@
+[GADGET0]
+	{
+	[COMMON]
+		{
+		id=0;
+		name=HEADER;
+		width=640;
+		height=480;
+		}
+	totalgadgets=3;
+	[VERSION]
+		{
+		major=1;
+		minor=0;
+		revision=0;
+		}
+	panel=PANEL;
+	}
+[GADGET1]
+	{
+	[COMMON]
+		{
+		id=1;
+		name=BEGIN;
+		xpos=487;
+		ypos=386;
+		width=130;
+		height=32;
+		attribs=2;
+		colorf=15;
+		active=1;
+		}
+	text=Begin Mission;
+	quickkey=66;
+	}
+[GADGET2]
+	{
+	[COMMON]
+		{
+		id=1;
+		name=PREVMENU;
+		xpos=487;
+		ypos=431;
+		width=130;
+		height=32;
+		attribs=2;
+		colorf=15;
+		active=1;
+		}
+	text=Previous Menu;
+	quickkey=80;
+	}
+[GADGET3]
+	{
+	[COMMON]
+		{
+		id=1;
+		assoc=243;
+		name=MoreInfo;
+		xpos=485;
+		ypos=342;
+		width=133;
+		height=34;
+		attribs=2;
+		colorf=15;
+		active=1;
+		}
+	text=More Info;
+	quickkey=77;
+	}

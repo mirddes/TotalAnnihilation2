@@ -1,0 +1,215 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, rocket, door1, door2, plate, arm, gine1, gine2,
+       vent1, vent1b, vent2, vent2b;
+
+static-var  open_1, busy_2, firing_3, health_4, hit_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2, Func_Var_3)
+{
+	if( Hit_5 )
+	{
+		return (0);
+	}
+	Hit_5 = 1;
+	Func_Var_3 = health_4;
+	health_4 = get HEALTH;
+	if( Func_Var_3 <= health_4 - 2 )
+	{
+		turn base to z-axis Func_Var_2 speed <105>;
+		turn base to x-axis Func_Var_1 speed <105>;
+		wait-for-turn base around z-axis;
+		wait-for-turn base around x-axis;
+		turn base to z-axis <0> speed <30>;
+		turn base to x-axis <0> speed <30>;
+	}
+	sleep 100;
+	hit_5 = 0;
+}
+
+Create()
+{
+	open_1 = 0;
+	busy_2 = 0;
+	firing_3 = 0;
+	health_4 = 100;
+	hit_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	health_4 = get HEALTH;
+	start-script SmokeUnit();
+}
+
+Closeup()
+{
+	busy_2 = 1;
+	open_1 = 0;
+	turn arm to x-axis <0> speed <90>;
+	sleep 500;
+	move plate to y-axis [0] speed [3.10];
+	sleep 1000;
+	move door1 to y-axis [0] speed [2.17];
+	move door2 to y-axis [0] speed [2.17];
+	sleep 250;
+	turn door1 to z-axis <0> speed <90>;
+	turn door2 to z-axis <0> speed <90>;
+	set ARMORED to 1;
+	sleep 1000;
+	busy_2 = 0;
+}
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	if( open_1 )
+	{
+		start-script Closeup();
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	while( busy_2 OR firing_3 )
+	{
+		sleep 500;
+	}
+	while( !open_1 )
+	{
+		busy_2 = 1;
+		show rocket;
+		move door1 to z-axis [0] now;
+		move door2 to z-axis [0] now;
+		turn door1 to z-axis <0> now;
+		turn door1 to z-axis <-90> speed <90>;
+		turn door2 to z-axis <0> now;
+		turn door2 to z-axis <90> speed <90>;
+		sleep 250;
+		set ARMORED to 0;
+		move door1 to y-axis [-2.17] speed [2.17];
+		move door2 to y-axis [-2.17] speed [2.17];
+		sleep 1000;
+		move plate to y-axis [3.10] speed [3.10];
+		sleep 750;
+		turn arm to x-axis <-90> speed <90>;
+		sleep 1000;
+		open_1 = 1;
+		busy_2 = 0;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	firing_3 = 1;
+	hide rocket;
+	sleep 400;
+	start-script Closeup();
+	sleep 12000;
+	firing_3 = 0;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = rocket;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 AND ( !open_1 ) )
+	{
+		corpsetype = 1;
+		explode arm type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode plate type BITMAPONLY | BITMAP5;
+		explode rocket type BITMAPONLY | BITMAP1;
+		explode gine2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode vent1b type BITMAPONLY | BITMAP3;
+		explode vent2b type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | BITMAP3;
+		explode door2 type FALL | BITMAP4;
+		explode plate type BITMAPONLY | BITMAP5;
+		explode rocket type SHATTER | BITMAP1;
+		explode gine1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode gine2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode vent1b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode vent2b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode plate type BITMAPONLY | BITMAP5;
+		explode rocket type SHATTER | BITMAP1;
+		explode gine1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode gine2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode vent1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode vent2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode vent1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode vent2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode plate type BITMAPONLY | BITMAP5;
+	explode rocket type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode gine1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode gine2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode vent1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode vent2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode vent1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode vent2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

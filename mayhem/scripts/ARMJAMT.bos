@@ -1,0 +1,235 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, tower, top, turn1, turn2, llfork, rlfork, lufork,
+       rufork;
+
+static-var  Request_1, Busy_2, Rest_3, Hit_4, State_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( Busy_2 )
+	{
+		return (0);
+	}
+	Busy_2 = 1;
+	while( Request_1 != state_5 )
+	{
+		if( Request_1 )
+		{
+			move tower to y-axis [0] speed [23.875];
+			wait-for-move tower along y-axis;
+			turn lufork to z-axis <0> speed <125>;
+			turn rufork to z-axis <0> speed <125>;
+			turn llfork to z-axis <0> speed <120>;
+			turn rlfork to z-axis <0> speed <120>;
+			wait-for-turn lufork around z-axis;
+			wait-for-turn rufork around z-axis;
+			wait-for-turn llfork around z-axis;
+			wait-for-turn rlfork around z-axis;
+			spin turn1 around y-axis speed <-40>;
+			spin turn2 around y-axis speed <40>;
+			spin lufork around x-axis speed <160>;
+			spin rufork around x-axis speed <-160>;
+			spin llfork around x-axis speed <160>;
+			spin rlfork around x-axis speed <-160>;
+			set ARMORED to 0;
+			state_5 = 1;
+		}
+		if( !Request_1 )
+		{
+			spin turn1 around y-axis speed <0>;
+			spin turn2 around y-axis speed <0>;
+			spin lufork around x-axis speed <0>;
+			spin rufork around x-axis speed <0>;
+			spin llfork around x-axis speed <0>;
+			spin rlfork around x-axis speed <0>;
+			turn turn1 to y-axis <0> speed <80>;
+			turn turn2 to y-axis <0> speed <80>;
+			turn lufork to x-axis <0> speed <160>;
+			turn rufork to x-axis <0> speed <160>;
+			turn llfork to x-axis <0> speed <160>;
+			turn rlfork to x-axis <0> speed <160>;
+			wait-for-turn turn1 around y-axis;
+			wait-for-turn turn2 around y-axis;
+			wait-for-turn lufork around x-axis;
+			wait-for-turn rufork around x-axis;
+			wait-for-turn llfork around x-axis;
+			wait-for-turn rlfork around x-axis;
+			turn lufork to z-axis <-90> speed <170>;
+			turn rufork to z-axis <90> speed <170>;
+			turn llfork to z-axis <-90> speed <180>;
+			turn rlfork to z-axis <90> speed <180>;
+			wait-for-turn lufork around z-axis;
+			wait-for-turn rufork around z-axis;
+			set ARMORED to 1;
+			move tower to y-axis [-23.875] speed [39.8];
+			wait-for-move tower along y-axis;
+			state_5 = 0;
+		}
+	}
+	Busy_2 = 0;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade turn1;
+	dont-shade turn2;
+	dont-shade rlfork;
+	dont-shade llfork;
+	dont-shade rufork;
+	dont-shade lufork;
+/*	turn lufork to z-axis <-90> NOW;
+	turn rufork to z-axis <90> NOW;
+	turn llfork to z-axis <-90> NOW;
+	turn rlfork to z-axis <90> NOW;
+	move tower to y-axis [-23.875] NOW;*/
+	Request_1 = 0;
+	Busy_2 = 0;
+	Rest_3 = 0;
+	Hit_4 = 0;
+	State_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	Request_1 = 1;
+	Rest_3 = 0;
+	Hit_4 = 0;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	Request_1 = 0;
+	start-script RequestState();
+	if( hit_4 )
+	{
+		while( rest_3 and !Request_1 )
+		{
+			--rest_3;
+			sleep 1000;
+		}
+		if( !Request_1 and Hit_4 )
+		{
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get BUILD_PERCENT_LEFT )
+	{
+		return (0);
+	}
+	rest_3 = 8;
+	hit_4 = 1;
+	if( Request_1 )
+	{
+		set ACTIVATION to 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turn1 type BITMAPONLY | BITMAP2;
+		explode turn2 type BITMAPONLY | BITMAP5;
+		explode lufork type BITMAPONLY | BITMAP3;
+		explode rufork type BITMAPONLY | BITMAP4;
+		explode llfork type BITMAPONLY | BITMAP5;
+		explode rlfork type BITMAPONLY | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turn1 type SHATTER | BITMAP2;
+		explode turn2 type SHATTER | BITMAP5;
+		explode lufork type BITMAPONLY | BITMAP3;
+		explode rufork type BITMAPONLY | BITMAP4;
+		explode llfork type FALL | BITMAP5;
+		explode rlfork type FALL | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turn1 type SHATTER | BITMAP2;
+		explode turn2 type SHATTER | BITMAP5;
+		explode lufork type BITMAPONLY | BITMAP3;
+		explode rufork type BITMAPONLY | BITMAP4;
+		explode llfork type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rlfork type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turn1 type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode turn2 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode lufork type BITMAPONLY | BITMAP3;
+	explode rufork type BITMAPONLY | BITMAP4;
+	explode llfork type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rlfork type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tower type BITMAPONLY | BITMAP2;
+}

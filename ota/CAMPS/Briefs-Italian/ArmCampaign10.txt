@@ -1,0 +1,10 @@
+MISSIONE 10.0002ARMT
+Distruggere tutte le unità e le strutture Core. 
+
+&YPRIORITÀ &
+Per ottenere il controllo di Tergiverse IV devono essere distrutte le fortezze Core poste all’interno della formazione naturale conosciuta come Bromid Maze.
+
+INFORMAZIONI UTILI
+Una squadra di ricognizione Zipper è stata isolata a Ovest: se possibile recuperate tali unità per ottenere una maggiore potenza di fuoco. Se sarete in grado di catturare e interrogare un’unità Core, le sue conoscenze diventeranno le nostre... Ciò potrebbe rivelarsi utile, in particolare in questa missione.
+
+FINE

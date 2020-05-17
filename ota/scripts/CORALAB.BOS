@@ -1,0 +1,244 @@
+// Arm Advanced Mech Lab Script
+
+piece base,pad,beama,beamb;
+
+static-var spray,unitviewer;
+
+#define	SIG_ACTIVATE	2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\coralab\activatescr.bos"
+#include "..\anim3d\coralab\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "yard.h"
+
+Go()
+	{
+	dont-cache beama;
+	dont-cache beamb;
+	dont-cache glow;
+	dont-cache guna;
+	dont-cache gunb;
+	dont-cache maina;
+	dont-cache mainb;
+	dont-cache stepa1;
+	dont-cache stepa2;
+	dont-cache stepa3;
+	dont-cache stepb1;
+	dont-cache stepb2;
+	dont-cache stepb3;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache beama;
+	cache beamb;
+	cache glow;
+	cache guna;
+	cache gunb;
+	cache maina;
+	cache mainb;
+	cache stepa1;
+	cache stepa2;
+	cache stepa3;
+	cache stepb1;
+	cache stepb2;
+	cache stepb3;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	dont-shade blinka;
+	dont-shade blinkb;
+	dont-cache blinka;
+	dont-cache blinkb;
+	dont-cache fork;
+	dont-cache pad;
+
+	dont-shade beama;
+	dont-shade beamb;
+	dont-shade fork;
+	dont-shade glow;
+	dont-shade guna;
+	dont-shade gunb;
+	dont-shade maina;
+	dont-shade mainb;
+	dont-shade pad;
+	dont-shade stepa1;
+	dont-shade stepa2;
+	dont-shade stepa3;
+	dont-shade stepb1;
+	dont-shade stepb2;
+	dont-shade stepb3;
+	unitviewer = FALSE;
+	spray=0;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	if( spray == 0 )
+		{
+		piecenum=beama;
+		}
+	if( spray != 0 )
+		{
+		piecenum=beamb;
+		}
+	spray = !spray;
+	}
+
+Demo()
+	{
+	unitviewer = TRUE;
+	}
+
+Activate()
+	{
+	signal SIG_ACTIVATE;
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	if (!unitviewer)
+		{
+		sleep 5000;
+		}
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding()
+	{
+	spin pad around y-axis speed <30>;
+	}
+
+
+StopBuilding()
+	{
+	stop-spin pad around y-axis;
+	}
+
+QueryBuildInfo(piecenum)
+	{
+	piecenum=pad;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beama type	BITMAPONLY | BITMAP2;
+		explode beamb type	BITMAPONLY | BITMAP3;
+		explode blinka type	BITMAPONLY | BITMAP4;
+		explode blinkb type	BITMAPONLY | BITMAP5;
+		explode fork type	BITMAPONLY | BITMAP1;
+		explode glow type	BITMAPONLY | BITMAP2;
+		explode guna type	BITMAPONLY | BITMAP3;
+		explode gunb type	BITMAPONLY | BITMAP4;
+		explode maina type	BITMAPONLY | BITMAP5;
+		explode mainb type	BITMAPONLY | BITMAP1;
+		explode pad type	BITMAPONLY | BITMAP2;
+		explode stepa1 type	BITMAPONLY | BITMAP3;
+		explode stepa2 type	BITMAPONLY | BITMAP4;
+		explode stepa3 type	BITMAPONLY | BITMAP5;
+		explode stepb1 type	BITMAPONLY | BITMAP1;
+		explode stepb2 type	BITMAPONLY | BITMAP2;
+		explode stepb3 type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beama type	FALL | BITMAP2;
+		explode beamb type	FALL | BITMAP3;
+		explode blinka type	FALL | BITMAP4;
+		explode blinkb type	FALL | BITMAP5;
+		explode fork type	BITMAPONLY | BITMAP1;
+		explode glow type	BITMAPONLY | BITMAP2;
+		explode guna type	FALL | BITMAP3;
+		explode gunb type	FALL | BITMAP4;
+		explode maina type	BITMAPONLY | BITMAP5;
+		explode mainb type	BITMAPONLY | BITMAP1;
+		explode pad type	BITMAPONLY | BITMAP2;
+		explode stepa1 type	SHATTER | BITMAP3;
+		explode stepa2 type	BITMAPONLY | BITMAP4;
+		explode stepa3 type	FALL | BITMAP5;
+		explode stepb1 type	SHATTER | BITMAP1;
+		explode stepb2 type	BITMAPONLY | BITMAP2;
+		explode stepb3 type	FALL | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beama type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beamb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode blinka type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode blinkb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode fork type	BITMAPONLY | BITMAP1;
+		explode glow type	BITMAPONLY | BITMAP2;
+		explode guna type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gunb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode maina type	BITMAPONLY | BITMAP5;
+		explode mainb type	BITMAPONLY | BITMAP1;
+		explode pad type	BITMAPONLY | BITMAP2;
+		explode stepa1 type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode stepa2 type	BITMAPONLY | BITMAP4;
+		explode stepa3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode stepb1 type	SHATTER | BITMAP1;
+		explode stepb2 type	BITMAPONLY | BITMAP2;
+		explode stepb3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode beama type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beamb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode blinka type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode blinkb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode fork type	BITMAPONLY | BITMAP1;
+	explode glow type	BITMAPONLY | BITMAP2;
+	explode guna type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gunb type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode maina type	BITMAPONLY | BITMAP5;
+	explode mainb type	BITMAPONLY | BITMAP1;
+	explode pad type	BITMAPONLY | BITMAP2;
+	explode stepa1 type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode stepa2 type	BITMAPONLY | BITMAP4;
+	explode stepa3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode stepb1 type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode stepb2 type	BITMAPONLY | BITMAP2;
+	explode stepb3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}
+

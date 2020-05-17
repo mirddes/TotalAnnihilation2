@@ -1,0 +1,12 @@
+MISSION 3.0003ARMH
+Core has been forced to pull back to their primary base. That base contains the last of Core on Hydross.
+
+&Y*PRIORITY CRITICAL*&
+The Core base to the north is all that stands between Arm and secure Hydross... a world from which to stage our forces for the search of the remaining worlds in this system. 
+
+INFO FEED
+The Core base is located in a protected lagoon. The entry will be and well defended. &RExpect stubborn Core resistance.&
+
+To complete this mission you must destroy all Core units and Serpents on the map. 
+
+END

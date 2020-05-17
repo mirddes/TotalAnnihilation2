@@ -1,0 +1,10 @@
+MISSIONE 19.005ARMR
+Distruggere tutte le unità mobili e prendere il Cancello Galattico intatto.
+
+&YPRIORITÀ&
+Le forze Core sono state spinte fino agli antichi scavi noti con il nome di Motien Ramp, dove custodiscono un Cancello Galattico... Forse l’ultimo prima di Core Prime, il pianeta che ospita il loro quartier generale. Distruggete tutte le unità mobili, e prendete possesso del Cancello.
+
+INFORMAZIONI UTILI
+Motien Ramp sarà ben difeso; fate attenzione anche alle piogge di meteore.
+
+FINE

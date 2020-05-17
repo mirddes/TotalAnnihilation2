@@ -1,0 +1,12 @@
+MISSION 25.004ARMCP
+Setzen Sie den Core ein Ende! Ein für allemal! Lassen Sie Ihren Commander auf die Spitze der Kontrollkuppel marschieren.
+
+&YOBERSTE PRIORITÄT&
+Das Zentralgewissen gehört uns! Das Gehirn gehört uns! Es gibt nur noch einen letzten Schlag. Wir haben schon ihr Hirn, jetzt brauchen wir nur noch ihr Herz! Wir müssen auch die Kommandokuppel der CORE übernehmen, um den ganzen Spuk für immer zu beenden.
+
+NACHRICHTENDIENSTLICHE MITTEILUNG
+Alles, was vom Imperium der CORE noch übrig geblieben ist, hat sich zur Verteidigung in der Kommandokuppel versammelt. Der CORE-Commander ist mit Sicherheit dort. Zerstören Sie ihn und auch jede andere Einheit der CORE. Denken Sie daran: Selbst ein einzelnes überlebendes Bewußtsein, kann unter Umständen ausreichen, um die CORE erneut auferstehen zu lassen. Misten Sie gründlich aus, Commander!
+
+Stellen Sie sich auf die Spitze der Kommandokuppel. &RMachen Sie ein Ende&.
+ 
+ENDE

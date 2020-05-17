@@ -1,0 +1,48 @@
+[Kelp-WithShadow]
+	{
+	world=water;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=250;
+	filename=kelp;
+	seqname=kelp01;
+	seqnameshad=kelp01shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Kelp-NoShadow]
+	{
+	world=water;
+	description=seaweed;
+	category=kelp;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=250;
+	filename=kelp;
+	seqname=kelp01;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+

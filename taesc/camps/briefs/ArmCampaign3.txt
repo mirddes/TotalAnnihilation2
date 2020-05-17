@@ -1,0 +1,13 @@
+MISSION 3.0003ARME
+Secure the Spider ATK Units. &YOne Spider must survive.& Bring one of the Spider Tanks back to your base.
+
+PRIORITY 1
+A group of the experimental Spider ATKs have been isolated behind enemy lines. The Spiders are armed with an effective paralyzer weapon, but will depend on your units to clear a path through for them. The Spider's paralyzer weapon and superior Spider technology must not fall into Core hands. 
+
+INFO FEED
+Core has numerous patrols searching for the Spiders. Build your base quickly, and secure a Spider Kbot. 
+
+&G Reclamation technology accelerates energy and metal acquisition.&
+
+
+END

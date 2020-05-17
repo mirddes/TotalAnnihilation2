@@ -1,0 +1,33 @@
+[ARMSPDAM_dead]
+{
+world=All Worlds;
+description=Funnelweb Wreckage;
+category=heaps;
+object=armspdam_dead;
+featuredead=ARMSPDAM_heap;
+footprintx=3;
+footprintz=3;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=269;
+damage=793;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[ARMSPDAM_heap]
+{
+world=All Worlds;
+description=Funnelweb Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=135;
+damage=803;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}

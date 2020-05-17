@@ -1,0 +1,35 @@
+[corscythe_dead]
+{
+world=All Worlds;
+description=Scythe Wreckage;
+category=core_corpses;
+object=corscythe_dead;
+featuredead=corscythe_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=81;
+damage=719;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corscythe_heap]
+{
+world=All Worlds;
+description=Scythe Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=40;
+damage=819;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

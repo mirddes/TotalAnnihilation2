@@ -1,0 +1,386 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  flare1, flare2, tower1, tower2, turret1, turret2, guns1, guns2,
+       stands, shell, rotary, dingle1, dingle2, upgrade, hidden, base;
+
+static-var  Speed_1, Speed_2, Speed_3, on_4, busy_5, upgraded; 
+
+static-var  gun_1, delay_2, head_3; 
+
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	Speed_1 = 0;
+	Speed_2 = 182;
+	Speed_3 = -546;
+	on_4 = 0;
+	Busy_5 = 0;
+	upgraded = 0;
+	gun_1 = 0;
+	delay_2 = 0;
+	head_3 = 0;
+	dont-shade turret1;
+	dont-shade turret2;
+	dont-shade guns1;
+	dont-shade guns2;
+	dont-shade shell;
+	dont-shade rotary;
+	dont-shade dingle1;
+	dont-shade dingle2;
+	dont-cache flare1;
+	dont-cache flare2;
+	hide flare1;
+	hide flare2;
+	hide upgrade;
+	hide tower1;
+	hide tower2;
+	hide turret1;
+	hide turret2;
+	hide guns1;
+	hide guns2;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if( !upgraded )
+	{
+		set INBUILDSTANCE to 1;
+	}
+	on_4 = 1;
+	while( busy_5 )
+	{
+		sleep 250;
+		if( !on_4 )
+		{
+			return(0);
+		}
+	}
+	busy_5 = 1;
+	if( on_4 )
+	{
+		show dingle1;
+		show dingle2;
+		show rotary;
+		move stands to y-axis [0] now;
+		move stands to y-axis [10.350] speed [13.410];
+		sleep 970;
+//		set ARMORED to 0;
+		turn shell to x-axis <-180.038> speed <261.687>;
+		move stands to y-axis [0] speed [11.360];
+		sleep 945;
+		spin rotary around y-axis speed Speed_1 accelerate Speed_2;
+		spin dingle1 around y-axis speed Speed_1;
+		spin dingle2 around y-axis speed Speed_1;
+	}
+	busy_5 = 0;
+}
+
+Deactivate()
+{
+	on_4 = 0;
+	while( busy_5 )
+	{
+		sleep 250;
+		if( on_4 )
+		{
+			return(0);
+		}
+	}
+	busy_5 = 1;
+	if( !on_4 )
+	{
+		spin rotary around y-axis speed <0> accelerate Speed_3;
+		spin dingle1 around y-axis speed <0> accelerate Speed_3;
+		spin dingle2 around y-axis speed <0> accelerate Speed_3;
+		wait-for-turn rotary around y-axis;
+		wait-for-turn dingle1 around y-axis;
+		wait-for-turn dingle2 around y-axis;
+		turn dingle1 to y-axis <0> speed <120.027>;
+		turn dingle2 to y-axis <0> speed <120.027>;
+		move stands to y-axis [0] now;
+		move stands to y-axis [10.350] speed [13.480];
+		turn shell to x-axis <0> speed <261.308>;
+		sleep 890;
+		move stands to y-axis [0] speed [11.360];
+//		set ARMORED to 1;
+		sleep 944;
+/*		cache dingle1;
+		cache dingle2;
+		cache rotary;
+		cache shell;
+		cache stands;*/
+		hide dingle1;
+		hide dingle2;
+		hide rotary;
+	}
+	busy_5 = 0;
+}
+
+QueryBuildInfo(piecenum)
+{
+	if( !upgraded )
+	{
+		set YARD_OPEN to 1;
+	}
+	piecenum = hidden;
+}
+
+StartBuilding()
+{
+	if( !on_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	if( upgraded )
+	{
+		set INBUILDSTANCE to 0;
+		set YARD_OPEN to 0;
+		return(0);
+	}
+	set YARD_OPEN to 1;
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+	sleep 400;
+	set YARD_OPEN to 0;
+	sleep 1000;
+	if( !on_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	if( get YARD_OPEN )
+	{
+		if( !upgraded )
+		{
+			upgraded = 1;
+			hide base;
+			show upgrade;
+			show tower1;
+			show tower2;
+			show turret1;
+			show turret2;
+			show guns1;
+			show guns2;
+			set ARMORED to 1;
+		}
+		return(0);
+	}
+	upgraded = 0;
+	show base;
+	hide upgrade;
+	hide tower1;
+	hide tower2;
+	hide turret1;
+	hide turret2;
+	hide guns1;
+	hide guns2;
+	set ARMORED to 0;
+}
+
+SetSpeed(Func_Var_1)
+{
+	Speed_1 = Func_Var_1 * 15;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( !upgraded )
+	{
+		sleep 500;
+	}
+	var oldhead, dif;
+	oldhead = head_3;
+	head_3 = heading;
+	dif = oldhead - heading;	
+	if( dif < 0 ) //absolute
+	{
+		dif = 0 - dif;
+	}
+	if( dif > <60>)
+	{
+		turn turret1 to y-axis heading speed <270>;
+		turn turret2 to y-axis heading speed <270>;
+	}
+	while( delay_2 )
+	{
+		wait-for-turn guns1 around z-axis;
+		wait-for-turn guns2 around z-axis;
+	}
+	if( !gun_1 )
+	{
+		turn turret1 to y-axis heading speed <270>;
+		wait-for-turn turret1 around y-axis;
+	}
+	if( gun_1 )
+	{
+		turn turret2 to y-axis heading speed <270>;
+		wait-for-turn turret2 around y-axis;
+	}
+	return (1);
+}
+
+FirePrimary()
+{
+	delay_2 = 1;
+	if( !gun_1 )
+	{
+		gun_1 = 1;
+		turn guns1 to z-axis <0> now;
+		show flare1;
+		sleep 150;
+		hide flare1;
+		sleep 200;
+		turn guns1 to z-axis <120> speed <480>;
+		wait-for-turn guns1 around z-axis;
+		delay_2 = 0;
+		return (0);
+	}
+	gun_1 = 0;
+	turn guns2 to z-axis <0> now;
+	show flare2;
+	sleep 150;
+	hide flare2;
+	sleep 200;
+	turn guns2 to z-axis <120> speed <480>;
+	wait-for-turn guns2 around z-axis;
+	delay_2 = 0;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = turret1;
+	}
+	if( gun_1 )
+	{
+		piecenum = turret2;
+	}
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode shell type BITMAPONLY | BITMAP2;
+		explode stands type BITMAPONLY | BITMAP3;
+		explode dingle1 type BITMAPONLY | BITMAP4;
+		explode dingle2 type BITMAPONLY | BITMAP5;
+		explode rotary type BITMAPONLY | BITMAP1;
+		if( upgraded )
+		{
+			explode tower1 type BITMAPONLY | BITMAP4;
+			explode tower2 type BITMAPONLY | BITMAP4;
+			explode guns1 type BITMAPONLY | BITMAP5;
+			explode guns2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode shell type BITMAPONLY | BITMAP2;
+		explode stands type SHATTER | BITMAP3;
+		explode dingle1 type FALL | BITMAP4;
+		explode dingle2 type FALL | BITMAP5;
+		explode rotary type FALL | BITMAP1;
+		if( upgraded )
+		{
+			explode tower1 type FALL | BITMAP4;
+			explode tower2 type FALL | BITMAP5;
+			explode guns1 type FALL | BITMAP5;
+			explode guns2 type FALL | BITMAP5;
+		}
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode shell type BITMAPONLY | BITMAP2;
+		explode stands type SHATTER | BITMAP3;
+		explode dingle1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode dingle2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rotary type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		if( upgraded )
+		{
+			explode tower1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+			explode tower2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+			explode guns1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+			explode guns2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		}
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode shell type BITMAPONLY | BITMAP2;
+	explode stands type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode dingle1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode dingle2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rotary type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	if( upgraded )
+	{
+		explode tower1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode tower2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode guns1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode guns2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	}
+}

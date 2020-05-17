@@ -1,0 +1,452 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  torso, ruparm, luparm, rbigflash, nanospray, pelvis, lfirept, head,
+       lthigh, rthigh, nanolath, biggun, rleg, lleg, ring, ring2;
+
+static-var  Moving_1, Aiming_2, pitch_3;
+
+MotionControl(justmoved)
+{
+	justmoved = TRUE;
+	while( TRUE )
+	{
+		if( Moving_1 )
+		{
+			justmoved = TRUE;
+			move pelvis to y-axis [-0.70] now;
+			turn pelvis to x-axis <6.68> speed <360>;
+			turn lthigh to x-axis <-41.85> speed <360>;
+			turn rthigh to x-axis <17.58> speed <360>;
+			turn rleg to x-axis <39.38> speed <360>;
+			turn lleg to x-axis <41.85> speed <360>;
+			turn head to y-axis <2.11> speed <120>;
+			if( !Aiming_2 )
+			{
+				turn torso to y-axis <4.22> speed <300>;
+				turn ruparm to x-axis <-11.25> speed <360>;
+				turn luparm to x-axis <11.25> speed <360>;
+				turn nanolath to x-axis <-41.85> speed <360>;
+				turn biggun to x-axis <-62.59> speed <360>;
+			}
+			sleep 40;
+			turn head to y-axis <1.94> speed <120>;
+			if( !Aiming_2 )
+			{
+				turn torso to y-axis <3.87> speed <300>;
+				turn ruparm to x-axis <-13.36> speed <360>;
+				turn luparm to x-axis <12.31> speed <360>;
+				turn nanolath to x-axis <-41.84> speed <360>;
+			}
+			sleep 40;
+			move pelvis to y-axis [-0.55] now;
+			turn pelvis to x-axis <5.27> speed <360>;
+			turn lthigh to x-axis <-29.54> speed <360>;
+			turn rthigh to x-axis <8.79> speed <360>;
+			turn head to y-axis <1.58> speed <120>;
+			if( !Aiming_2 )
+			{
+				turn torso to y-axis <3.16> speed <300>;
+				turn ruparm to x-axis <-8.09> speed <360>;
+				turn luparm to x-axis <6.33> speed <360>;
+				turn nanolath to x-axis <-41.84> speed <360>;
+				turn biggun to x-axis <-62.59> speed <360>;
+			}
+			turn rleg to x-axis <51.69> speed <360>;
+			turn lleg to x-axis <28.48> speed <360>;
+			sleep 100;
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.30] now;
+				turn pelvis to x-axis <4.57> speed <360>;
+				turn lthigh to x-axis <-16.18> speed <360>;
+				turn rthigh to x-axis <0> speed <360>;
+				turn head to y-axis <0.71> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <1.41> speed <300>;
+					turn ruparm to x-axis <-3.16> speed <360>;
+					turn luparm to x-axis <0> speed <360>;
+					turn nanolath to x-axis <-41.84> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <58> speed <360>;
+				turn lleg to x-axis <16.18> speed <360>;
+				sleep 90;
+				move pelvis to y-axis [0] now;
+				turn lthigh to x-axis <7> speed <360>;
+				turn rthigh to x-axis <-6.33> speed <360>;
+				turn head to y-axis <0> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn pelvis to x-axis <3.52> speed <360>;
+					turn torso to y-axis <0> speed <300>;
+					turn ruparm to x-axis <3.16> speed <360>;
+					turn luparm to x-axis <-6.33> speed <360>;
+					turn nanolath to x-axis <-41.85> speed <360>;
+				}
+				turn rleg to x-axis <44.31> speed <360>;
+				turn lleg to x-axis <5.63> speed <360>;
+				sleep 90;
+				move pelvis to y-axis [-0.20] now;
+				turn pelvis to x-axis <4.57> speed <360>;
+				turn lthigh to x-axis <10.90> speed <360>;
+				turn rthigh to x-axis <-34.46> speed <360>;
+				turn head to y-axis <-0.71> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <-1.41> speed <300>;
+					turn ruparm to x-axis <6.68> speed <360>;
+					turn luparm to x-axis <-8.09> speed <360>;
+					turn nanolath to x-axis <-41.84> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <71.38> speed <360>;
+				turn lleg to x-axis <20> speed <360>;
+				sleep 80;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.30] now;
+				turn lthigh to x-axis <13> speed <360>;
+				turn rthigh to x-axis <-42.90> speed <360>;
+				turn head to y-axis <-1.23> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <-2.46> speed <300>;
+					turn ruparm to x-axis <8.44> speed <360>;
+					turn luparm to x-axis <-9.14> speed <360>;
+				}
+				turn rleg to x-axis <54.51> speed <360>;
+				sleep 70;
+				move pelvis to y-axis [-0.40] now;
+				turn pelvis to x-axis <5.27> speed <360>;
+				turn lthigh to x-axis <16.88> speed <360>;
+				turn rthigh to x-axis <-48.18> speed <360>;
+				turn head to y-axis <-1.58> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <-3.16> speed <300>;
+					turn ruparm to x-axis <10.20> speed <360>;
+					turn luparm to x-axis <-10.20> speed <360>;
+					turn nanolath to x-axis <-41.84> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <34.46> speed <360>;
+				turn lleg to x-axis <20> speed <360>;
+				sleep 80;
+				move pelvis to y-axis [-0.70] now;
+				turn pelvis to x-axis <6.68> speed <360>;
+				turn lthigh to x-axis <15.47> speed <360>;
+				turn rthigh to x-axis <-40.44> speed <360>;
+				turn head to y-axis <-2.11> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <-4.22> speed <300>;
+					turn ruparm to x-axis <11.25> speed <360>;
+					turn luparm to x-axis <-11.25> speed <360>;
+					turn nanolath to x-axis <-41.84> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <40.44> speed <360>;
+				turn lleg to x-axis <30.59> speed <360>;
+				sleep 40;
+				if( !Aiming_2 )
+				{
+					turn ruparm to x-axis <13.36> speed <360>;
+					turn luparm to x-axis <-12.31> speed <360>;
+					turn nanolath to x-axis <-41.84> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				sleep 40;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.55] now;
+				turn pelvis to x-axis <5.27> speed <360>;
+				turn lthigh to x-axis <9.49> speed <360>;
+				turn rthigh to x-axis <-34.46> speed <360>;
+				turn head to y-axis <-1.58> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <-3.16> speed <300>;
+					turn ruparm to x-axis <8.44> speed <360>;
+					turn luparm to x-axis <-8.44> speed <360>;
+					turn nanolath to x-axis <-41.85> speed <360>;
+					turn biggun to x-axis <-62.24> speed <360>;
+				}
+				turn lleg to x-axis <43.95> speed <360>;
+				sleep 100;
+				move pelvis to y-axis [-0.30] now;
+				turn pelvis to x-axis <4.57> speed <360>;
+				turn lthigh to x-axis <0.70> speed <360>;
+				turn rthigh to x-axis <-26.37> speed <360>;
+				if( !Aiming_2 )
+				{
+					turn head to y-axis <-0.88> speed <120>;
+					turn torso to y-axis <-1.76> speed <300>;
+					turn ruparm to x-axis <3.16> speed <360>;
+					turn luparm to x-axis <-3.16> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn lleg to x-axis <54.50> speed <360>;
+				sleep 90;
+				move pelvis to y-axis [0] now;
+				turn pelvis to x-axis <3.52> speed <360>;
+				turn lthigh to x-axis <-16.88> speed <360>;
+				turn rthigh to x-axis <3.86> speed <360>;
+				turn head to y-axis <0> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <0> speed <300>;
+					turn ruparm to x-axis <-3.16> speed <360>;
+					turn luparm to x-axis <3.87> speed <360>;
+					turn nanolath to x-axis <-41.85> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <8.08> speed <360>;
+				turn lleg to x-axis <60.48> speed <360>;
+				sleep 80;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.20] now;
+				turn pelvis to x-axis <4.57> speed <360>;
+				turn lthigh to x-axis <-29.54> speed <360>;
+				turn rthigh to x-axis <10.19> speed <360>;
+				turn head to y-axis <0.88> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <1.76> speed <300>;
+					turn ruparm to x-axis <-6.68> speed <360>;
+					turn luparm to x-axis <8.79> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn rleg to x-axis <26> speed <360>;
+				turn lleg to x-axis <56.26> speed <360>;
+				sleep 80;
+				move pelvis to y-axis [-0.30] now;
+				turn lthigh to x-axis <-43.95> speed <360>;
+				turn rthigh to x-axis <12.30> speed <360>;
+				turn head to y-axis <1.23> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <2.46> speed <300>;
+					turn ruparm to x-axis <-7> speed <360>;
+					turn luparm to x-axis <9.85> speed <360>;
+				}
+				turn lleg to x-axis <55.91> speed <360>;
+				sleep 70;
+				move pelvis to y-axis [-0.40] now;
+				turn pelvis to x-axis <5.27> speed <360>;
+				turn lthigh to x-axis <-43.95> speed <360>;
+				turn rthigh to x-axis <14.41> speed <360>;
+				turn head to y-axis <1.58> speed <120>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <3.16> speed <300>;
+					turn ruparm to x-axis <-8.79> speed <360>;
+					turn luparm to x-axis <10.20> speed <360>;
+					turn biggun to x-axis <-62.59> speed <360>;
+				}
+				turn lleg to x-axis <25.67> speed <360>;
+				sleep 80;
+			}
+		}
+		if( !Moving_1 )
+		{
+			if( justmoved )
+			{
+				move pelvis to y-axis [0] speed [1];
+				turn rthigh to x-axis <0> speed <200>;
+				turn rleg to x-axis <0> speed <200>;
+				turn lthigh to x-axis <0> speed <200>;
+				turn lleg to x-axis <0> speed <200>;
+				if( !Aiming_2 )
+				{
+					turn nanolath to x-axis <0> speed <360>;
+					turn biggun to x-axis <0> speed <360>;
+					turn ruparm to x-axis <0> speed <360>;
+					turn luparm to x-axis <0> speed <360>;
+					turn torso to x-axis <0> speed <90>;
+				}
+				justmoved = FALSE;
+			}
+			sleep 100;
+		}
+	}
+	return (0);
+}
+
+Create()
+{
+	var start_timer;
+	hide rbigflash;
+	hide lfirept;
+	hide nanospray;
+	Moving_1 = 0;
+	Aiming_2 = 0;
+	set ARMORED to 1;
+	start-script MotionControl();
+	dont-cache torso;
+	dont-cache ruparm;
+	dont-cache luparm;
+	dont-cache biggun;
+	dont-cache nanolath;
+	hide ring;
+	hide ring2;
+	set ARMORED to 0;
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = nanospray;
+	return (0);
+}
+
+RestorePosition()
+{
+	set-signal-mask 0;
+	turn head to y-axis <0> speed <120>;
+	turn torso to y-axis <0> speed <300>;
+	turn ruparm to x-axis <0> speed <45>;
+	turn luparm to x-axis <0> speed <45>;
+	Aiming_2 = 0;
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	start-script RestorePosition();
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = lfirept;
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	Aiming_2 = 2;
+	turn nanolath to x-axis <0> speed <360>;
+	turn biggun to x-axis <0> speed <360>;
+	turn head to y-axis heading speed <600>;
+	turn torso to y-axis heading speed <300>;
+	turn ruparm to x-axis ( <-24> - pitch ) speed <120>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn ruparm around x-axis;
+	pitch_3 = pitch;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( Aiming_2 > 1 )
+	{
+		sleep 100;
+	}
+	Aiming_2 = 1;
+	turn nanolath to x-axis <0> speed <360>;
+	turn biggun to x-axis <0> speed <360>;
+	turn head to y-axis heading speed <600>;
+	turn torso to y-axis heading speed <300>;
+	turn luparm to x-axis ( <-30> - pitch ) speed <120>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show lfirept;
+	sleep 100;
+	hide lfirept;
+	return (0);
+}
+
+AimFromTertiary(Func_Var_1)
+{
+	Func_Var_1 = 0;
+	return (0);
+}
+
+QueryTertiary(Func_Var_1)
+{
+	Func_Var_1 = 3;
+	return (0);
+}
+
+FireTertiary()
+{
+	Aiming_2 = 3;
+	turn ruparm to x-axis ( <-12> - pitch_3 ) speed <240>;
+	turn biggun to x-axis <-12> speed <240>;
+	show rbigflash;
+	sleep 100;
+	hide rbigflash;
+	sleep 2000;
+	if( Aiming_2 == 3 )
+	{
+		Aiming_2 = 1;
+	}
+	return (0);
+}
+
+StartBuilding(Func_Var_1, Func_Var_2)
+{
+	Aiming_2 = 1;
+	turn torso to y-axis Func_Var_1 speed <300>;
+	turn luparm to x-axis ( ( <0> - Func_Var_2 ) - <30> ) speed <120>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	set INBUILDSTANCE to 1;
+	return (0);
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	call-script RestorePosition();
+	return (0);
+}

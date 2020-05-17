@@ -1,0 +1,373 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#define LEAN_ON_SLOPE TRUE
+
+piece  flare1, flare2, turret, base, sleeve1, sleeve2, barrel1, barrel2,
+       wake1, wake2, body, front, rear, left, right;
+
+static-var  restore_delay, gun_1, bMoving, terrain_code, x_slope, z_slope;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_MOVE			32
+
+#define BANK_MORE 80
+#define BANK_LESS 40
+#define BANK_DAMP_SPEED <30>
+#define BANK_REFRESH 300// Put some time long enough for the unit to have travelled a while, but short enough so the script doesn't have a too long reaction time
+#define BANK_SIGNIFICATIVE_SPEED [1]// Actually, it's not a speed, but a distance, the distance covered during BANK_REFRESH. If that distance is too low, the difference between the two xz is deemed too low to get a significative angle out of it. Since half of digit are lost when x and z get packed into xz, any distance under 65536=[0.4] will lose all its significative digits and so will be unuseable.
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent * healthpercent;
+	
+	if( terrain_code == 3 )
+	{
+		if( healthpercent < 66 )
+		{
+		
+			emit-sfx 256 | 3 from base;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from barrel1;
+			if( Rand( 1, 66 ) > healthpercent )
+			{
+				emit-sfx 256 | 3 from turret;
+				sleep sleeptime;
+				emit-sfx 256 | 3 from front;
+				sleep sleeptime;
+			}
+		}
+	}
+	if( terrain_code != 3 )
+	{
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	start-script smokeunit();
+}	
+
+
+
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+*/
+
+RockUnit(anglex, anglez)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to x-axis anglex speed <50.000000>;
+	turn base to z-axis anglez speed <50.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <20.000000>;
+	turn base to x-axis <0.000000> speed <20.000000>;
+}
+
+EmitSFX()
+{
+	while( TRUE )
+	{
+		if( terrain_code == 3 )
+		{
+			dont-cache body;
+			dont-cache turret;
+			dont-cache sleeve1;
+			dont-cache sleeve2;
+			dont-cache barrel1;
+			dont-cache barrel2;
+			set ARMORED to 1;
+			if( bMoving )
+			{
+				emit-sfx 259 from wake1;
+				emit-sfx 259 from wake2;
+			}
+		}
+		if( terrain_code != 3 )
+		{
+			cache body;
+			cache turret;
+			cache sleeve1;
+			cache sleeve2;
+			cache barrel1;
+			cache barrel2;
+			set ARMORED to 0;
+		}	
+		sleep 250;
+	}
+}
+
+#define REFRESH_WAKE 300
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	bMoving = TRUE;
+	
+	#if LEAN_ON_SLOPE
+	var lxsnxs, lzsnzs;
+	#endif
+	
+	while (TRUE)
+	{
+		
+//		if (terrain_code != 0)
+//		{
+//			emit-sfx 259 from wake1;
+//			emit-sfx 259 from wake2;
+//		}
+
+		sleep REFRESH_WAKE;
+
+		#if LEAN_ON_SLOPE
+		// x_slope== slope of rotation around x == slope along axis z == "pitch"
+		// z_slope== slope of rotation around z == slope along axis x == "bank"
+		lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		if(terrain_code!=0)// Not transported: read the ground slope
+			{
+			x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(rear)) - get GROUND_HEIGHT(get PIECE_XZ(front)), get XZ_HYPOT(get PIECE_XZ(rear) - get PIECE_XZ(front)));
+			while(x_slope>32768)
+				{x_slope=x_slope - 65536;}
+			z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(left)) - get GROUND_HEIGHT(get PIECE_XZ(right)), get XZ_HYPOT(get PIECE_XZ(left) - get PIECE_XZ(right)));
+			while(z_slope>32768)
+				{z_slope=z_slope - 65536;}
+			}
+		if(terrain_code==0 || terrain_code==2)// Transported or over water: inhibit slope leaning
+			{
+			x_slope=0;
+			z_slope=0;
+			}
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+			{lxsnxs=0 - lxsnxs;}// absoluted
+		if(lzsnzs<0)
+			{lzsnzs=0 - lzsnzs;}// absoluted
+		turn body to x-axis x_slope speed lxsnxs*500/REFRESH_WAKE;
+		turn body to z-axis z_slope speed lzsnzs*500/REFRESH_WAKE;
+		#endif
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+setSFXoccupy(setSFXoccupy_argument)
+{
+	terrain_code = setSFXoccupy_argument;
+}
+
+
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	
+	hide front;
+	hide rear;
+	hide left;
+	hide right;
+	
+	dont-cache flare1;
+	dont-cache flare2;
+	
+	bMoving = FALSE;
+	gun_1 = flare1;
+	
+	terrain_code=0;
+	#if LEAN_ON_SLOPE
+	x_slope=0;
+	z_slope=0;
+	#endif
+	
+	restore_delay = 3000;
+		
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script EmitSFX();
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	turn turret to y-axis <0.000000> speed <120.000000>;
+	turn sleeve1 to x-axis <0.000000> speed <90.000000>;
+	turn sleeve2 to x-axis <0.000000> speed <90.000000>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <120.000000>;
+	turn sleeve1 to x-axis <0.000000> - pitch speed <90.000000>;
+	turn sleeve2 to x-axis <0.000000> - pitch speed <90.000000>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve1 around x-axis;
+	wait-for-turn sleeve2 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( gun_1 == 0 )
+	{
+		show flare1;
+		move barrel1 to z-axis [-2.400000] speed [500.000000];
+		sleep 150;
+		hide flare1;
+		wait-for-move barrel1 along z-axis;
+		move barrel1 to z-axis [0.000000] speed [3.000000];
+	}
+	if( gun_1 == 1 )
+	{
+		show flare2;
+		move barrel2 to z-axis [-2.400000] speed [500.000000];
+		sleep 150;
+		hide flare2;
+		wait-for-move barrel2 along z-axis;
+		move barrel2 to z-axis [0.000000] speed [3.000000];
+	}
+	gun_1 = !gun_1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide flare1;
+	hide flare2;
+	if( terrain_code == 3 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode base type BITMAPONLY | BITMAP1;
+			explode flare1 type FALL | BITMAP1;
+			explode flare2 type FALL | BITMAP5;
+			explode barrel1 type FALL | BITMAP1;
+			explode barrel2 type FALL | BITMAP5;
+			explode sleeve1 type SHATTER | BITMAP1;
+			explode sleeve2 type BITMAPONLY | BITMAP1;
+			explode turret type FALL | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode sleeve1 type SHATTER | BITMAP1;
+		explode sleeve2 type BITMAPONLY | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type BITMAPONLY | BITMAP1;
+		explode flare2 type BITMAPONLY | BITMAP5;
+		explode barrel1 type BITMAPONLY | BITMAP1;
+		explode barrel2 type BITMAPONLY | BITMAP5;
+		explode sleeve1 type BITMAPONLY | BITMAP1;
+		explode sleeve2 type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | BITMAP1;
+		explode flare2 type FALL | BITMAP5;
+		explode barrel1 type FALL | BITMAP1;
+		explode barrel2 type FALL | BITMAP5;
+		explode sleeve1 type SHATTER | BITMAP1;
+		explode sleeve2 type BITMAPONLY | BITMAP1;
+		explode turret type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode sleeve1 type SHATTER | BITMAP1;
+		explode sleeve2 type BITMAPONLY | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode sleeve1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve2 type BITMAPONLY | BITMAP1;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

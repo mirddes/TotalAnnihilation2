@@ -1,0 +1,681 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, aa_tur1, aa_slv1, aa_flare1, aa_tur2, aa_slv2, aa_flare2, aa_tur3, aa_slv3, aa_flare3a, aa_flare3b, 
+	   rk_tur1, rk_slv1, rk_flare1a, rk_flare1b, rk_flare1c, rk_tur2, rk_slv2, rk_flare2a, rk_flare2b, rk_flare2c, 
+	   rk_tur3, rk_slv3, rk_flare3a, rk_flare3b, rk_flare3c, rk_tur4, rk_slv4, rk_flare4a, rk_flare4b, rk_flare4c, 
+	   dome1, dome2, sides, torp1, torp2, torp3, torp4,
+	   wake1, wake2, wake3, wake4, wake5, wake6, wake7, wake8;
+
+static-var  Static_Var_1, restore_delay, gun_1, gun_2, gun_3, salvo_1, salvo_2, salvo_3, firedelay_3, firing_3;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_AIM_3			8
+#define SIG_R				16
+#define SIG_MOVE			32
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 8;
+	set-signal-mask 8;
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+*/
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 1 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+		}
+		if( Static_Var_1 == 2 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	sleep 150;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	if( Static_Var_1 == 2 || Static_Var_1 == 1 )
+	{
+		move torp1 to z-axis [0.00] now;
+		move torp1 to x-axis [0.00] now;
+		move torp2 to z-axis [0.00] now;
+		move torp2 to x-axis [0.00] now;
+		move torp3 to z-axis [0.00] now;
+		move torp3 to x-axis [0.00] now;
+		move torp4 to z-axis [0.00] now;
+		move torp4 to x-axis [0.00] now;
+		
+		dont-cache body;
+		dont-cache sides;
+		dont-cache dome1;
+		dont-cache dome2;
+		dont-cache aa_tur1;
+		dont-cache aa_slv1;
+		dont-cache aa_tur2;
+		dont-cache aa_slv2;
+		dont-cache aa_tur3;
+		dont-cache aa_slv3;
+		dont-cache rk_tur1;
+		dont-cache rk_slv1;
+		dont-cache rk_tur2;
+		dont-cache rk_slv2;
+		dont-cache rk_tur3;
+		dont-cache rk_slv3;
+		dont-cache rk_tur4;
+		dont-cache rk_slv4;
+	}
+	if( Static_Var_1 != 2 && Static_Var_1 != 1 )
+	{
+		move torp1 to z-axis [-32000.00] now;
+		move torp1 to x-axis [32000.00] now;
+		move torp2 to z-axis [-32000.00] now;
+		move torp2 to x-axis [32000.00] now;
+		move torp3 to z-axis [-32000.00] now;
+		move torp3 to x-axis [32000.00] now;
+		move torp4 to z-axis [-32000.00] now;
+		move torp4 to x-axis [32000.00] now;
+		
+		cache body;
+		cache sides;
+		cache dome1;
+		cache dome2;
+		cache aa_tur1;
+		cache aa_slv1;
+		cache aa_tur2;
+		cache aa_slv2;
+		cache aa_tur3;
+		cache aa_slv3;
+		cache rk_tur1;
+		cache rk_slv1;
+		cache rk_tur2;
+		cache rk_slv2;
+		cache rk_tur3;
+		cache rk_slv3;
+		cache rk_tur4;
+		cache rk_slv4;
+	}
+}
+
+Create()
+{
+	set ARMORED to 1;
+	
+	hide aa_flare1;
+	hide aa_flare2;
+	hide aa_flare3a;
+	hide aa_flare3b;
+	hide rk_flare1a;
+	hide rk_flare1b;
+	hide rk_flare2a;
+	hide rk_flare2b;
+	hide rk_flare3a;
+	hide rk_flare3b;
+	hide rk_flare4a;
+	hide rk_flare4b;
+	
+	dont-cache aa_flare1;
+	dont-cache aa_flare2;
+	dont-cache aa_flare3a;
+	dont-cache aa_flare3b;
+	dont-cache rk_flare1a;
+	dont-cache rk_flare1b;
+	dont-cache rk_flare2a;
+	dont-cache rk_flare2b;
+	dont-cache rk_flare3a;
+	dont-cache rk_flare3b;
+	dont-cache rk_flare4a;
+	dont-cache rk_flare4b;
+	
+	gun_1 = 0;
+	gun_2 = 6;
+	gun_3 = 12;
+	salvo_1 = 0;
+	salvo_2 = 2;
+	salvo_3 = 4;
+	
+	firedelay_3 = 850;
+	firing_3 = 0;
+	
+	restore_delay = 3000;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+Restore()
+{
+	signal SIG_R;
+	set-signal-mask SIG_R;
+	sleep 25000;
+	turn aa_tur1 to y-axis <0> speed <180.000000>;
+	turn aa_slv1 to x-axis <0> speed <180.000000>;
+	turn aa_tur2 to y-axis <0> speed <180.000000>;
+	turn aa_slv2 to x-axis <0> speed <180.000000>;
+	turn aa_tur3 to y-axis <0> speed <180.000000>;
+	turn aa_slv3 to x-axis <0> speed <180.000000>;
+
+}
+
+
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	
+	if( salvo_1 == 0 )
+	{
+		turn rk_tur1 to y-axis heading speed <120>;
+		turn rk_slv1 to x-axis <0.000000> - pitch speed <120.000000>;
+	}
+	if( salvo_1 == 1 )
+	{
+		turn rk_tur2 to y-axis heading speed <120>;
+		turn rk_slv2 to x-axis <0.000000> - pitch speed <120.000000>;
+	}
+	wait-for-turn rk_tur1 around y-axis;
+	wait-for-turn rk_slv1 around x-axis;
+	wait-for-turn rk_tur2 around y-axis;
+	wait-for-turn rk_slv2 around x-axis;
+	Start-script Restore();
+	return (1);
+}
+
+FirePrimary()
+{
+	var gun_1_tmp;
+	gun_1_tmp = gun_1;
+	++gun_1;
+	if( gun_1 == 6 )
+	{
+		gun_1 = 0;
+	}
+	//=========================turret 1============================================================================================================
+	if( gun_1_tmp == 0 )
+	{
+		salvo_1 = 0; 
+		sleep 150;
+	}
+	if( gun_1_tmp == 1 )
+	{
+		salvo_1 = 0; 
+		sleep 150;
+	}
+	if( gun_1_tmp == 2 )
+	{
+		salvo_1 = 1; 
+		sleep 150;
+	}
+	//=========================turret 2============================================================================================================
+	if( gun_1_tmp == 3 )
+	{
+		salvo_1 = 1; 
+		sleep 150;
+	}
+	if( gun_1_tmp == 4 )
+	{
+		salvo_1 = 1; 
+		sleep 150;
+	}
+	if( gun_1_tmp == 5 )
+	{
+		salvo_1 = 0; 
+		sleep 150;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	if( salvo_1 == 0 )
+		piecenum = rk_tur1;
+	if( salvo_1 == 1 )
+		piecenum = rk_tur2;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+		piecenum = rk_flare1a;
+	if( gun_1 == 1 )
+		piecenum = rk_flare1b;
+	if( gun_1 == 2 )
+		piecenum = rk_flare1c;
+	if( gun_1 == 3 )
+		piecenum = rk_flare2a;
+	if( gun_1 == 4 )
+		piecenum = rk_flare2b;
+	if( gun_1 == 5 )
+		piecenum = rk_flare2c;
+}
+
+
+//*************************************************Secondary******************************************************
+
+
+AimSecondary(heading, pitch)
+{
+	signal SIG_AIM_2;
+	set-signal-mask SIG_AIM_2;
+	
+	if( salvo_2 == 2 )
+	{
+		turn rk_tur3 to y-axis heading speed <120>;
+		turn rk_slv3 to x-axis <0.000000> - pitch speed <120.000000>;
+	}
+	if( salvo_2 == 3 )
+	{		
+		turn rk_tur4 to y-axis heading speed <120>;
+		turn rk_slv4 to x-axis <0.000000> - pitch speed <120.000000>;
+	}
+	wait-for-turn rk_tur3 around y-axis;
+	wait-for-turn rk_slv3 around x-axis;
+	wait-for-turn rk_tur4 around y-axis;
+	wait-for-turn rk_slv4 around x-axis;
+	Start-script Restore();
+	return (1);
+}
+
+FireSecondary()
+{
+	var gun_2_tmp;
+	gun_2_tmp = gun_2;
+	++gun_2;
+	if( gun_2 == 12 )
+	{
+		gun_2 = 6;
+	}
+	//=========================turret 3============================================================================================================
+	if( gun_2_tmp == 6 )
+	{
+		salvo_2 = 2; 
+		sleep 150;
+	}
+	if( gun_2_tmp == 7)
+	{
+		salvo_2 = 2; 
+		sleep 150;
+	}
+	if( gun_2_tmp == 8)
+	{
+		salvo_2 = 3;
+		sleep 150;
+	}
+	//=========================turret 4============================================================================================================
+	if( gun_2_tmp == 9)
+	{
+		salvo_2 = 3; 
+		sleep 150;
+	}
+	if( gun_2_tmp == 10)
+	{
+		salvo_2 = 3; 
+		sleep 150;
+	}
+	if( gun_2_tmp == 11)
+	{
+		salvo_2 = 2;
+		sleep 150;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	if( salvo_2 == 2 )
+		piecenum = rk_tur3;
+	if( salvo_2 == 3 )
+		piecenum = rk_tur4;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_2 == 6 )
+		piecenum = rk_flare3a;
+	if( gun_2 == 7 )
+		piecenum = rk_flare3b;
+	if( gun_2 == 8 )
+		piecenum = rk_flare3c;
+	if( gun_2 == 9 )
+		piecenum = rk_flare4a;
+	if( gun_2 == 10 )
+		piecenum = rk_flare4b;
+	if( gun_2 == 11 )
+		piecenum = rk_flare4c;
+}
+
+
+//*************************************************Tertiary******************************************************
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM_3;
+	set-signal-mask SIG_AIM_3;
+	
+	if( salvo_3 == 4 )
+	{
+		turn aa_tur1 to y-axis heading speed <360>;
+		turn aa_slv1 to x-axis <0.000000> - pitch speed <360.000000>;
+	}
+	if( salvo_3 == 5 )
+	{
+		turn aa_tur2 to y-axis heading speed <360>;
+		turn aa_slv2 to x-axis <0.000000> - pitch speed <360.000000>;
+	}
+	if( salvo_3 == 6 )
+	{
+		turn aa_tur3 to y-axis heading speed <360>;
+		turn aa_slv3 to x-axis <0.000000> - pitch speed <360.000000>;
+	}
+	wait-for-turn aa_tur1 around y-axis;
+	wait-for-turn aa_slv1 around x-axis;
+	wait-for-turn aa_tur2 around y-axis;
+	wait-for-turn aa_slv2 around x-axis;
+	wait-for-turn aa_tur3 around y-axis;
+	wait-for-turn aa_slv3 around x-axis;
+	while( firing_3 )
+	{
+		sleep 100;
+	}
+	Start-script Restore();
+	return (1);
+}
+
+FireTertiary()
+{
+	var gun_3_tmp;
+	gun_3_tmp = gun_3;
+	++gun_3;
+	if( gun_3 == 16 )
+	{
+		gun_3 = 12;
+	}
+	if( gun_3_tmp == 12 )
+	{
+		firing_3 = 1;
+		salvo_3 = 4; 
+		sleep 150;
+		sleep firedelay_3;
+		firing_3 = 0;
+	}
+	if( gun_3_tmp == 13 )
+	{
+		firing_3 = 1;
+		salvo_3 = 5; 
+		sleep 150;
+		sleep firedelay_3;
+		firing_3 = 0;
+	}
+	if( gun_3_tmp == 14 )
+	{
+		firing_3 = 1;
+		salvo_3 = 6; 
+		sleep 150;
+		sleep firedelay_3;
+		firing_3 = 0;		
+	}
+	if( gun_3_tmp == 15 )
+	{
+		firing_3 = 1;
+		salvo_3 = 4; 
+		sleep 150;
+		sleep firedelay_3;
+		firing_3 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	if( salvo_3 == 4 )
+		piecenum = aa_tur1;
+	if( salvo_3 == 5 )
+		piecenum = aa_tur2;
+	if( salvo_3 == 6 )
+		piecenum = aa_tur3;
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_3 == 12 )
+		piecenum = aa_flare1;
+	if( gun_3 == 13 )
+		piecenum = aa_flare2;
+	if( gun_3 == 14 )
+		piecenum = aa_flare3a;
+	if( gun_3 == 15 )
+		piecenum = aa_flare3b;
+}
+
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide aa_flare1;
+	hide aa_flare2;
+	hide aa_flare3a;
+	hide aa_flare3b;
+	hide rk_flare1a;
+	hide rk_flare1b;
+	hide rk_flare2a;
+	hide rk_flare2b;
+	hide rk_flare3a;
+	hide rk_flare3b;
+	hide rk_flare4a;
+	hide rk_flare4b;
+	
+	if( Static_Var_1 == 1 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode base type BITMAPONLY | BITMAP1;
+			explode aa_slv1 type BITMAPONLY | BITMAP1;
+			explode aa_tur1 type BITMAPONLY | BITMAP5;
+			explode aa_slv2 type BITMAPONLY | BITMAP5;
+			explode aa_tur2 type BITMAPONLY | BITMAP1;
+			explode aa_slv3 type BITMAPONLY | BITMAP5;
+			explode aa_tur3 type BITMAPONLY | BITMAP1;
+			explode rk_slv1 type BITMAPONLY | BITMAP1;
+			explode rk_slv2 type BITMAPONLY | BITMAP5;
+			explode rk_slv3 type BITMAPONLY | BITMAP1;
+			explode rk_slv4 type BITMAPONLY | BITMAP5;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode aa_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur1 type SHATTER | BITMAP1;
+		explode aa_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur2 type SHATTER | BITMAP1;
+		explode aa_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur3 type SHATTER | BITMAP1;
+		explode rk_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rk_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode base type BITMAPONLY | BITMAP1;
+			explode aa_slv1 type BITMAPONLY | BITMAP1;
+			explode aa_tur1 type BITMAPONLY | BITMAP5;
+			explode aa_slv2 type BITMAPONLY | BITMAP5;
+			explode aa_tur2 type BITMAPONLY | BITMAP1;
+			explode aa_slv3 type BITMAPONLY | BITMAP5;
+			explode aa_tur3 type BITMAPONLY | BITMAP1;
+			explode rk_slv1 type BITMAPONLY | BITMAP1;
+			explode rk_slv2 type BITMAPONLY | BITMAP5;
+			explode rk_slv3 type BITMAPONLY | BITMAP1;
+			explode rk_slv4 type BITMAPONLY | BITMAP5;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode aa_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur1 type SHATTER | BITMAP1;
+		explode aa_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur2 type SHATTER | BITMAP1;
+		explode aa_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur3 type SHATTER | BITMAP1;
+		explode rk_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rk_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode base type BITMAPONLY | BITMAP1;
+		explode aa_slv1 type BITMAPONLY | BITMAP1;
+		explode aa_tur1 type BITMAPONLY | BITMAP5;
+		explode aa_slv2 type BITMAPONLY | BITMAP5;
+		explode aa_tur2 type BITMAPONLY | BITMAP1;
+		explode aa_slv3 type BITMAPONLY | BITMAP5;
+		explode aa_tur3 type BITMAPONLY | BITMAP1;
+		explode rk_slv1 type BITMAPONLY | BITMAP1;
+		explode rk_slv2 type BITMAPONLY | BITMAP5;
+		explode rk_slv3 type BITMAPONLY | BITMAP1;
+		explode rk_slv4 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode aa_slv1 type FALL | BITMAP1;
+		explode aa_tur1 type SHATTER | BITMAP5;
+		explode aa_slv2 type FALL | BITMAP5;
+		explode aa_tur2 type SHATTER | BITMAP1;
+		explode aa_slv3 type FALL | BITMAP5;
+		explode aa_tur3 type SHATTER | BITMAP1;
+		explode rk_slv1 type FALL | BITMAP1;
+		explode rk_slv2 type FALL | BITMAP5;
+		explode rk_slv3 type FALL | BITMAP1;
+		explode rk_slv4 type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode aa_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur1 type SHATTER | BITMAP1;
+		explode aa_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur2 type SHATTER | BITMAP1;
+		explode aa_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode aa_tur3 type SHATTER | BITMAP1;
+		explode rk_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rk_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rk_slv4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode aa_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode aa_tur1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode aa_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode aa_tur2 type SHATTER | BITMAP1;
+	explode aa_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode aa_tur3 type SHATTER | BITMAP1;
+	explode rk_slv1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rk_slv2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rk_slv3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rk_slv4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

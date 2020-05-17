@@ -1,0 +1,862 @@
+
+New Folders
+-----------
+
+downloadsE - downloads
+gamedatE - gamedata
+guiE - guis
+unitpicE - unitpics
+unitE - units
+weaponE	- weapons
+
+
+
+Damage Modifier Values - ARM
+----------------------------
+.9		- 26250
+
+.875	- 27000
+.84375	- 28000
+
+.78125	- 30240
+.75		- 31500
+.7		- 33750
+
+.675	- 35000
+.65625	- 36000
+.625	- 37800
+.6		- 39375
+
+.5625	- 42000
+.5		- 47250
+
+.46875	- 50400
+.45		- 52500
+.4375	- 54000
+.421875	- 56000
+
+.390625 - 60480
+.375	- 63000	
+.35		- 67500
+.3375	- 70000
+.328125	- 72000
+.3125	- 75600
+.3		- 78750
+
+.28125	- 84000
+.25		- 94500
+.234375	- 100800
+.225	- 105000
+.21875	- 108000
+.2		- 118125	
+
+.1875	- 126000	- MECH
+.175	- 135000	
+.16875	- 140000
+.15625	- 151200
+.15		- 157500
+.140625 - 168000	- MCV
+ 
+.125	- 189000
+.1171875- 201600
+.1125	- 210000
+.109375 - 216000
+.1		- 236250
+
+.09		- 262500
+
+.0875	- 270000
+.084375	- 280000
+
+.078125	- 302400
+.075	- 315000
+.07		- 337500
+.0675	- 360000
+.0625	- 378000
+
+.05625	- 420000
+.05		- 472500
+
+
+Damage Modifier Values - CORE 
+-----------------------------
+.9		- 27200
+
+.85		- 28800	
+.8 		- 30600
+
+.765	- 32000
+.75		- 32640
+.72		- 34000
+
+.68		- 36000
+.64		- 38250
+.625	- 39168
+.6		- 40800
+
+.5625	- 43520
+.53125	- 46080
+.5		- 48960
+
+.48		- 51000
+.46875	- 52224
+.45		- 54400
+.425	- 57600
+.4		- 61200
+
+.3825	- 64000
+.375	- 65280
+.36		- 68000
+.34		- 72000
+.32		- 76500
+.3125	- 78336
+.3		- 81600
+
+.28125	- 87040
+.265625 - 92160
+.25		- 97120
+.24		- 102000
+.225	- 108800
+.2125	- 115200
+.2		- 122400
+
+.1875	- 130560
+.18		- 136000
+.17		- 144000
+.16		- 153000
+.15625	- 156672
+.15		- 163200
+.144	- 170000
+.136	- 180000
+.128	- 191250
+.125	- 195840
+.12		- 204000
+.1125	- 217600
+.10625	- 230400
+.1		- 244800
+
+.09		- 272000
+
+.085	- 288000	
+.08 	- 306000
+
+.0765	- 320000
+.075	- 326400
+.072	- 340000
+
+.068	- 360000
+.06		- 408000
+
+.05625	- 435200
+.05		- 489600
+
+
+
+
+Shielding
+---------
+Shields absorb 75% of all incoming fire for any given building – mobile units of any kind are not protected. Shield coverage areas are now clearly marked when a shield generator building is built - but coverage is only seen by the owner and any allies when outside of LOS. Shields are always on but do not cost Energy to operate and only drain Energy when hit. When a shield generator is hit (note: not the shield coverage area, but the unit itself), a shield dome effect will emit which can be seen inside or outside of LOS by all players. A hit to a shield Generator results in 1 second of significant Energy drain. Shots hit within the same 1 second period are not accumulated, but crafty enemy players can provide constant to fire to a given shield generator to ensure constant Energy drain each second.
+
+
+Charging
+--------
+Likewise, charging coverage areas are also now clearly marked when the charging generator is built (and again only seen by the owner and any allies when outside of LOS). In addition, charging effects are no longer shown at all to enemies outside of LOS and are only indicated to owner and allies by a subtle glow/animation effect. Other charging changes include:
+
+
+Charging coverage area is now 50% reduced from previous versions    
+
+Weapon charging efficiencies drop with the number of chargers required for a given unit:
+
+1 Charger - 200% ROF / 0.5 reload time (LLT, HLT)
+2 Chargers - 150% ROF / 0.66 reload time (Anni, DDM, LRPC, Warden)
+3 Chargers - 125% ROF / 0.8 reload time (XRPCs)
+
+All resources, however, regardless of the designated number of charging units required, are now boosted by 150% (but retain diminishing returns in the form of more chargers needed):
+
+T1 UW Fusions +25E (+50%) / 1 Charger (1.6K Metal)
+T2 All Fusions +250E (+25%) / 2 Chargers (3.2K Metal)
+T3 Fusions +1250E (+12.5%) / 3 Chargers (4.8K Metal) 
+
+
+
+Adjacency
+---------
+
+T1 UW Fusions +50E (+100%)
+T2 All Fusions +250E (+50%)
+T3 Fusions +1250E (+25%) 
+
+
+
+
+Note: Resource Generators do not receive adjacency bonuses and cannot be charged
+
+
+Building Upgrades - Costs/Effects
+---------------------------------
+
+T1 Weapon Upgrade - 1X Cost / 200% ROF (HLT, MRPC, Geo)
+T2 Weapon Upgrade - 1.5X Cost / 200% ROF (Note: XLRPC is 3.X cost for 400% ROF )   
+T3 Weapon Upgrade - 2X Cost /  200% ROF (Note: currently there are no T3 weapon upgrades)
+ 
+T1 Resource Upgrade - 1X Cost / 4x Armor or Weapon add-on + 2.5x armor, +125% added cost (Geothermal, Repair Arm?)
+T2 Resource Upgrade - 0.5X Cost / 4x Armor/Shielding
+T3 Resource Upgrade - 0.25X Cost / 4x Armor/Shielding and 125% Energy bonus
+
+T1 Assist Upgrade - 1x Cost / Added Nanolathe
+
+
+
+Metal Making to Energy Ratios
+
+T1 Metal Maker - 125:1		125E->1M		Quick Build
+T2 Metal Maker - 100:1		1000E->10M		Armored when hit
+T3 Metal Maker - 80:1 		10000E->125M	Cloaking, most efficiency
+
+T3 Vault
+
+
+*************************************************************************************************************
+
+Construction / Nano Ratios by Class
+-----------------------------------
+
+UNIT	METAL	WT	RATIO(M/WT)		
+------------------------------
+
+T1
+
+AIR		240		60	(4)		
+KBOT	180		90	(2)		
+VEH		216		120	(1.8)	
+HOV		315		90	(3.5)	
+SHP		288		120	(2.4)
+CSA		270		60	(4.5)	
+
+ASP		405		270	(1.5)		- 810 (3.0) with upgrade / 1 pad / 3 = 270
+------------------------------
+
+T2 (+33%)
+
+AIR		540		180	(3)			- 
+KBOT	445		270	(1.65)	
+VEH		486		360	(1.35)	
+HOV		729		270	(2.7)	
+ACSA	575		180	(3.2)		-		
+NEC/	504		210	(2.4)		- 
+FART	504		210	(2.4)		
+MECH	810		450	(1.8)		
+SHP		648		360	(1.8)		- 
+
+CAR		4320	720 (3.0)		- 4320 / 2 pad / 3 = 720
+HCAR	1620	540 (3.0)		- 1620 / 1 pad / 3 = 540
+FCAR	1080	270 (4)			- 1080 / 1 pad / 4 = 270
+
+------------------------------
+
+T3 (+10%)
+
+AIR		972		360	(2.7)		- 
+KBOT	810		540	(1.5)		- 710 now change to 810
+VEH		864		720	(1.2)		- 770 now change to 864	
+SHP		1188	720	(1.65)		- 1050 now change to 864
+HOV		1296	540 (2.4)		- why build? No sea units... should be fast!
+ECSA	1036	360	(2.88)
+
+SCAR	17280	1440 (3.0)		- 17280 /4 pads / 3 
+HSCAR	12960	1080 (3.0)		- 12960 / 4	pads / 3
+
+FSCAR	11520	720	 (4.0)		- 11520 / 4 pads / 4
+FSCAR	14400	720  (4.0)		- 14400 / 5 pads / 4
+
+-------------------------------
+
+FSCAR 	23040	1440 (4)		- 23040 / 4 pads / 4
+FSCAR 	28800	1440 (4)		- 28800 / 5 pads / 4
+
+				
+-----------------------------------------------------------------------------------
+
+T4 (+0%) 
+
+CON		1440	1440(1)			
+
+------------------------------
+
+Note: 	It is necessary for cons to scale up more efficiently than labs (see below) as tech levels progress in order to minimize over use of lower tier cons in assisting roles and preserve value of higher tier cons beyond building select units. 
+
+Note2:	Aircon is 'fast', unlimited in assist potential, but is also weak with a low WT and a larger death explosion which could kill nearby/stacked aircons     
+
+1080/1080 would match progression from T3, but overall value would be diminished. We
+
+
+************************************************************************************************************
+
+Factory(Lab) / Nano Ratios by Class
+-----------------------------------
+
+UNIT	WT(T1)	WT(T2) 	WT(T3)	Notes			
+--------------------------------------
+AIR		120		240		360		Trend is 2x, 1.5x 
+KBOT	120		240		360
+VEH		120		240		360
+SHP		120		240		360
+CSA		120		240		360
+
+HOV2	180		270*	360*	Trend is +1.5x, 1.33x	
+(ratio)	1.5		1.125	1.0
+		
+------------------------------
+
+Note: 	Cons scale up much better than labs necessitating using cons as nano-assisting options. However, con efficiency in this regard is offset by enormous Energy drain if too many are used at once. 
+
+
+*************************************************************************************************************
+
+Unit target preference categories (still pending)
+-------------------------------------------------
+
+Existing Categories
+
+NV - not a (v)tol unit
+NS - not a (s)hip unit
+NU - not an (u)nderwater unit
+NL - not a (l)and unit
+NX - not an e(x)perimental unit
+NN - not a suitable (n)uke target
+NP - not a (p)aralyzing unit
+
+ALL - do not prioritize any units (used for no-chase)
+AIR - do not prioritize any air units
+MOB - do not prioritize any mobile units
+
+
+New Categories
+
+NB - not a (b)omber (ie. so MTs can prioritize bombers)
+NG - not a (g)unship (ie. so flakkers can prioritize gunships)
+NF - not a (f)ighter (ie. so fighters can prioritize other fighters)
+
+NH - not a (h)ardened unit (ie. so artillery can target mrpcs)
+NR - not a (r)anged unit (ie. so defenses or mobiles can target artillery)
+NA - not a (a)nti-air unit (ie. so gunships can target AA units) - not sure we want gunships auto-targeting MTs over Fusions though... 
+
+
+Not sure we need these...
+
+NI - not an (i)ntel unit (or jammers or upgrade center)
+ND - not a (d)efense unit (specifically anti-nuke - might be useful for bombers) 
+NE - not an (e)nergy unit (when you want a certain unit type always going after units)
+NM - not a (m)etal unit (perhaps Zippers can prioritize mexes over solars?)
+NC - not a (c)onstruction unit (might be useful for killing air con spam, but not likely useful at all
+
+
+*************************************************************************************************************
+
+Approximate Weapon Energy to Damage ratios
+------------------------------------------
+
+
+LLT		- 1:8		9 Energy / 72 Damage	/ 90 DPS
+
+FLLT	- 1:6		12 Energy / 72 Damage	/ 90 DPS note: more range
+
+HLT		- 1:3		100 Energy / 300 Damage	/ 200 DPS
+
+DREAD	- 1:2		90 Energy / 180 Damage	
+
+FHLT	- 1:2		180 Energy / 360 Damage	/ 240 DPS note: more range
+
+SLT		- 1:1.5		400 Energy / 600 Damage (i.e. Sumo)
+
+SNIPE	- 1:1.5		320 Energy / 480 Damage	 (i.e. Shooter)	
+
+BLOD	- 1:1		2,400 Energy / 2,400 Damage (i.e. Penetrator)
+
+WARDEN	- X:1		960 Energy
+
+CERB	- 2:1		3,600 Energy / 1,800 Damage
+
+JUGG	- 2:1		4,800 Energy / 2,400 Damage (note more like 1.5:1 due to 2nd weapon delay)
+
+SIEGE	- 1.5:1		8,100 Energy / 5,400 Damage (note: bursted fire)
+
+GORGON	- 2:1		4,000 Energy / 1 second stun time AND 1,000 damage   
+
+NOVA	- 2.5:1		2,500 Energy / 1,000 Damage
+
+MCV		- 2.5:1		1,280 Energy / 512 Damage (i.e. Empyreaan / Victory)
+
+OVR		- 2.5:1		2,400 Energy / 960 Damage (i.e. Overlord / Tyrant / Rancor)
+
+POUND	- 3:1		5,400 Energy / 1,000 Damage 
+
+BB		- 2.5:1		5,000 Energy / 2,000 Damage (note: 7 sec reload)
+
+INT		- 2.5:1		6,000 Energy / 2,400 Damage (note: 8 sec reload)
+
+ARMA	- 12.5:1	125,000 Energy / 10,000 Damage (note: longer reload time)
+
+DICT	- 12.5:1	120,000 Energy / 9,600 Damage (note: bursted fire sequence)
+
+BFG		- 50:1		960,000 Energy / 19,200 Damage (note: unlimited range and no interception)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+SHOCK	- 1:1.25	480 Energy / 600 Damage (per shot every .1 seconds)
+
+AURORA	- 4:1		50,000 Energy / 12,800 Damage
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+TAC 	- 18.75:1	90,000 Energy / 4,800 Damage (note range and AOE)
+
+Nuke	- 25:1		480,000 Energy / 19,200 Damage	
+
+
+Add a Range offset?
+Add a AOE offset?
+
+Overall current ratios are pretty close to the above.
+
+
+
+*************************************************************************************************************
+
+Radar/Jamming/LOS Energy cost Ratios
+------------------------------------
+------------
+Static Radar
+------------
+
+T1 = 10 (1792)
+T2 = 50 (3584) 5x /2x
+T3 = 200 (7168) 4x /2x
+T4 = 500 (10752) 2.5x /1.5x
+
+Unit			Coverage				LOS						Energy
+----			--------				---						------
+T1				1792					448	(1/4)				10
+T2(2x)			3584					896	(1/4)				50
+T3(2x)			7168/3584/1792			1792 (1/4)				1000 (200r, 300s, 500j)
+T4(1.5x)		10752/5376/2688			2688 (1/4)				2500 (500r, 750s, 1250j) 
+
+
+
+Static Jammer
+-------------
+T1 = 25 (448)
+T2 = 125 (896)
+T3 = 500 (1792)
+T4 = 1250 (2688)
+
+Unit			Coverage				LOS						Energy
+----			--------				---						------
+T2				896						896						125
+T3				1792					1792					500
+T4				2688					2688					1250
+
+
+
+Static Sonar
+------------
+T1 = 15 		896						448 (1/2)				15
+T2 = 75 		1792					896 (1/2)				75
+T3 = 300 		3584					1792 (1/2)				300
+T4 = 750 		5376					2688 (1/2)				750
+T4 = 1250 		7168					3584 (1/2)				1250
+
+Unit			Radar					LOS						Energy
+----			-----					---						------
+
+T1				1792/896				448						25 (10r,15s)		sonar is 1/2 radar		
+T2				3584/1792				896						125 (50r,75s)		sonar is 1/2 radar			
+
+Note: LOS is always 1/4 radar coverage
+
+
+
+----------------------------------------------------------------------
+Mobile Radar to LOS Ratios
+----------------------------------------------------------------------
+Mobile radar is expensive to operate and generally 1 tier higher in cost for less coverage than their static counterparts
+
+T1 = 5 (672)
+T2 = 20 (1344)
+T2 = 25 (1792)  // 10
+T2 = 50 (2016)
+T2 = 75 (2688)
+T3 = 125 (3584) // 50
+T3 = 250 (5376)
+T4 = 500 (7168) // 200
+
+
+Unit			Radar					LOS						Energy
+----			-----					---						------
+T1(Peep)		672						448 (2/3)				5
+
+T2(mRad)		1344					448 (1/3)				25
+
+*T2(AWAC)		(2016)/1344				672 (1/3)(2/3)			125	(50r, 75s)  
+
+
+
+T3 AA (sams)	2688					672						75					
+
+T3(Sky)			3584/1792				896 (1/4)(1/2)			300 (125r 175s)
+
+
+
+T4(Gargant)		7168/3584/1792			1792 (1/4)(1/2)			2250 (500r, 750s, 1000j) 	
+
+
+
+Carrier Radar to LOS Ratios
+--------------------------------------------------------------------
+
+Unit			Radar					LOS						Energy
+----			-----					---						------
+T2(FCAR)		1344					448	(1/3)				25
+T2(Hover)		2016					672 (1/3)				50
+T2(Ship)		2688					896 (1/3)				125
+T3(VCAR)(HSCAR)	3584					896	(1/4)				250
+T3(SCAR)		5376					1344 (1/4)				500
+T4(FSCAR)		10752					1792 (1/6)				1000			
+
+
+
+Mobile Jammer to LOS Ratios
+------------------------------------------------------------------------
+Mobile radar jamming is expensive to operate and generally 1 tier higher in cost for less coverage than their static counterparts
+
+T1 = 50 (448)	 //25
+T2 = 100 (672)
+T2 = 200 (896)	 //125
+T3 = 500 (1344) 
+T4 = 1000 (1792) //500
+T4 = 2000 (2688) //1250
+
+Unit			Radar					LOS						Energy
+----			-----					---						------
+T2(mJam)		672						672						125	
+T3(Eclipse)		1344					1344					500
+T4				1792					1792					1000
+T4X				2688					2688					2000
+
+Jamming coverage always matches LOS
+
+
+
+Mobile Sonar to LOS Ratios
+----------------------------------------------------------------------
+Mobile sonar is expensive to operate and generally 1 tier higher in cost for less coverage than their static counterparts
+T1 = 5 	(448)
+T1 = 10 (672)
+T2 = 35 (896)    // 15
+T2 = 75 (1344)
+T2 = 175 (1792)  // 75
+T2 = 300 (2688)
+T3 = 750 (3584)  // 300
+T3 = 1500 (5376)
+T4 = 3000 (7168)// 1200	
+
+
+
+
+
+
+
+
+
+
+Walking Ships
+------------- 
+
+Use MinWaterDepth tag in Moveinfo - add modest negative value and ensure uw slope climb ability is high (255)
+
+
+
+Fast Amphibious
+---------------
+
+Use the following FBI tags together:
+
+
+Floater=1;	allows for fast movement under water
+
+
+digger=1;	activates shadow, if removed (=0), and upright=0, shadow will not be shown and unit will not fire properly on elevated terrain
+
+
+Upright=1;	forces units to follow terrain in water, if removed (=0), and digger=1, shadow will stay flat to base height and not follow terrain
+
+
+Big Explosion Tables
+--------------------
+
+(Mine)		AOE		Dam		Met		BT		Eng		EE		Notes
+--------------------------------------------------------------------------------------
+Light		224		600		16		150		512		0.5*	204 e/s
+Heavy		448		2400	128		300		4096	0.4*	8x cost / 4x damage / 4x Area = 12/8 ratio / 25% less EE / 820 e/s
+Nuke		810		9600	1024	1200	32768	0.2*	8x cost / 4x damage / 3.25 Area = 13/8 ratio / 50% less EE / 1640 e/s
+
+Stun		672		????	512		600		16384	0.3		4x cost / No damage / 2.25x Area / 33% less EE	/ 1640 e/s
+
+Shock		336?	????	64		450		8192	0.35	same stun level as arm if used
+Shock 2		270?			32		225		2048	0.45	
+
+TAC			672		4800	512		600		16384	0.3*	4x cost / 3x damage / 2.25x Area / 33% less EE	/ 1640 e/s
+
+
+Note: Mine weapons, being very concentrated (small, cloaked and hard to spot) diminish in explosive EE potential as they scale up similar to buildings and mobile units. 
+
+
+
+
+
+(Cannon)	AOE		Dam		Rel		DPS		E/F		EE		ACC		Range		Notes
+--------------------------------------------------------------------------------------
+BB			160		2700	15		180		5000	0.1		375		5376		Energy to Shot
+INT			160		2880	16		180		6000	0.1		375		5376		Energy to Shot
+VULC		160		3000	3		1000	5000	0.1		375		5376		5x boost over BB	
+BUZZ		160		3200	3.2		1000	6000	0.1		375		5376		5x boost over INT
+
+ARMA		400*	18000*	30*		600		120000*	0.25	750		8064		4x Damage, 2x DPS, 2.5x AOE, 24x more Energy than BB
+DICT		384		19200*	32*		600		120000	0.25	750		8064		4x Damage, 2x DPS, 2.4x AOE, 20x more Energy than INT 
+
+
+OLY			1200*	13500*	60*		360		480000*	0.375	???		5376?		1.5x Damage, 3x AOE, 1.5x EE	***10752 Range?***				
+BFG			2304*	28800*	60*		450		960000*	0.75	???		All Map		3x Damage, 6x AOE, 3x EE
+
+
+
+(CHARGED)	AOE		Dam		Rel		DPS		E/F		EE		ACC		Range		Notes
+--------------------------------------------------------------------------------------
+BB			160		3000	10*		300		5000	0.1		375		5376		+50% ROF
+INT			160		3200	10*		320		6000	0.1		375		5376		+50% ROF
+VULC		160		3000	2*		1500	5000	0.1		375		5376		+50% ROF
+BUZZ		160		3200	2*		1600	6000	0.1		375		5376		+60% ROF
+
+ARMA		400*	18000*	22.5*	800		120000	0.25	750		8064		+33% ROF		
+DICT		384		19200*	24*		800		120000	0.25	750		8064		+33% ROF	
+
+
+(Mobiles)	AOE		Dam		Rel		DPS		E/F		EE		ACC		Range		Notes
+--------------------------------------------------------------------------------------
+
+ARB*		224		3000	20		150		3000	0.2		0		2688		*vlaunch missile, but in same class
+
+NOVA-LT		224		1125x2	11.25	200		1350	0.2		500		3072		2x weapon salvo per round
+NOVA-HT		224		1125x2	11.25	200		1350	0.2		250		3072		2x weapon salvo per round, 2x accuracy offset
+
+OVR-LT		192		1200	1		1200	1500	0.2		500		1536		256 more range than Empy, but slower		
+OVR-HT		192		1200	1		1200	1500	0.2		250		1536		
+
+
+(HT)		AOE		Dam		Rel		DPS		E/F		EE		ACC		Range		Notes
+--------------------------------------------------------------------------------------
+BB			160		2250	7.5		300		5400	0.1		750		5376		+50% fire rate, 2x less accuracy
+INT			160		2400	8		300		6000	0.1		750		5376		+50% fire rate, 2x less accuracy
+VULC		160		2250*	2		1125	5000	0.1		750		5376		+50% fire rate, 2x less accuracy	
+BUZZ		160		2400*	2		1200	6000	0.1		750		5376		+50% fire rate, 2x less accuracy
+
+BB			160		2250	5		450		5400	0.1		750		5376		
+INT			160		2400	5		480		6000	0.1		750		5376		
+VULC		160		2250*	2		750		5000	0.1		750		5376			
+BUZZ		160		2400*	2		800		6000	0.1		750		5376		
+
+
+
+Note: Offensive weapons increase in explosive EE potential as weapon class scales. Cannon plamsa 'shells' generally have less AOE and explosive EE potential vs larger missiles weapons 
+
+
+
+
+(Missile)	AOE		Dam		GAF		Rel		DPS		E/F		EE		Notes
+--------------------------------------------------------------------------------------
+ARB*		224		3200			24		133		2500	0.2		*vlaunch missile, but not stockpiled 
+
+TAC			640		4800	nuk_c	--		--		--		0.3*	
+OPS			960*	9600	nuk_b	--		--		--		0.4*	1.5x AOE / 2x Damage
+NUKE		1440*	19200	nuk_a	--		--		--		0.5*	1.5x AOE / 2x Damage, Lowered AOE from 1536, EE from 8.8
+
+BFG			2304	27000	--		60		--		--		0.75*	1.6x AOE / 1.4x Damage / +50% EE
+															
+Note: Offensive weapons increase in explosive EE potential as weapon class scales 
+															
+															
+
+Bld. Kill 	AOE		Dam		GAF		DPS		E/F		EE		Notes
+--------------------------------------------------------------------------------------
+Estor(s)	240*	900*	bld_d	--		--		.5*		From 192, 800, EE was .25 
+Estor		320*	1800*	bld_c	--		--		.4*		From 384, 1600, EE was .5
+
+Atomic(s)	270*	1200	bld_d	--		--		.5*		was 256
+Atomic		360*	2400	bld_c	--		--		.4*		1.33x AOE / 2x Damage, was 384
+Nuclear(s)	540*	4800	bld_b	--		--		.3*		1.5x AOE / 2x Damage, was 480, T2 Fus death
+Nuclear		1080*	9600	bld_a	--		--		.2*		2x AOE / 2x Damage, was 960, T3 Fus, Forge/Vault death
+
+
+// Will this will makes estors to dangerous?  
+
+Note: AOE scales UP as buildings concentrate Energy. Added risk via AOE is incurred to defender for making rewarding asset. Like mines and mobiles units, explosive EE potential diminishes and building power scales up    
+
+
+
+
+Unit Kill	AOE		Dam		Rel		DPS		E/F		EE		Notes
+--------------------------------------------------------------------------------------
+
+Unit(s)		128*	600*	--		--		--		.6*		Lowered damage from 1200 and AOE from 192 in 8.8
+Unit		256		1200	--		--		--		.5*		2x AOE / 
+Unitbig(s)	384		2400	--		--		--		.4*		1.5x AOE /
+Unitbig		512		4800	--		--		--		.3*		1.33x AOE /
+Unitnuke	640*	9600	--		--		--		.2*		1.25x AOE /
+
+Note: Contrary to building, unit AOE scales DOWN as units concentrate Metal and leave corpses. Added risk is incurred to ATTACKER (in this T3 Level units leaving corpses) for potential reward of winning battle/game.  
+
+
+
+Radar mini-mapping
+------------------
+
+2x2 = 24
+3x3 = 32
+4x4 = 48
+5x5 = 64
+6x6 = 80
+8x8 = 96
+
+
+T1 variable weapon reload times (scripted)
+------------------------------------------
+
+Commander
+Commander
+
+
+L.L.T
+Light Laser Tower
+
+F.L.L.T
+Floating Light Laser Tower
+
+Sentinel
+Gatt
+
+
+Stingray
+Thunderbolt
+
+Guardian
+Punisher
+
+Trident
+Lotus
+
+
+Harpoon
+Urchin
+
+Trident
+Lotus
+
+
+
+
+T2 variable weapon reload times (scripted)
+------------------------------------------
+
+Decoy Commander
+Decoy Commander
+
+Orion
+Viper
+
+Ambusher
+Toaster
+
+Annihilator
+Doomsday Machine
+
+Big Bertha
+Intimidator
+
+Bulwark 
+ 
+Warden
+Bastion (need to confirm as weapon is changing)
+
+
+
+Mechanic
+
+Pelican (torp)
+
+Dominator
+
+
+Cavalier
+
+Hailstorm
+Ambassador
+
+
+
+T3 variable weapon reload times (scripted)
+------------------------------------------
+
+Vulcan
+Buzzsaw
+
+Armageddon
+Dictator
+
+
+
+Scorpion
+Thasher
+
+
+Centurion
+Behemoth
+
+Mammoth (lasers)
+
+
+Demolisher
+
+Gorgon
+Pounder
+
+Renegade
+
+Berserker (all weapons)
+Paladin (AA weapon)
+
+Hegamon (defensive lasers)
+Aeon (defensive guns)
+
+Empyreaan (defensive guns)
+Overlord
+ 
+
+Skynet (missiles)
+
+Atlantis (main) 
+
+
+Rancor (not used in 9.0)
+
+
+
+
+
+
+
+
+
+
+

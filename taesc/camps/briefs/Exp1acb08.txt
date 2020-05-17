@@ -1,0 +1,13 @@
+MISSION 8.002ARMT
+Zipper scouts report that the Core has hastily fortified above the ridge to the north. Though the earthquakes continue to hamper our advancing units, remember that Core is damaged by the tremors as well. If only we could time a strike to coincide with such a tremor...
+
+&Y*PRIORITY CRITICAL*&
+Core is playing a stalling game. We must destroy the units to the north, and be absolutely certain that the Core Commander is not on Temblor. Core is certain to salt the area with its mines. Clean up the minefields as you progress. 
+
+INFO FEED
+
+The use of land mines can work as well for us as it does for Core. &RA mine-layer vehicle has been provided to help establish your perimeter defense.&
+
+To complete this mission you must destroy all Core units.
+
+END

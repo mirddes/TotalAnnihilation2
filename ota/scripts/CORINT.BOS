@@ -1,0 +1,112 @@
+// Core Big Bertha Cannon
+
+piece base,flare,turret;
+
+#define SIG_AIM 2
+#define SMOKEPIECE1 base
+
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Create()
+	{
+	hide flare;
+	dont-cache flare;
+	dont-cache turret;
+	dont-cache gun;
+	dont-cache barrel;
+	dont-shade flare;
+	dont-shade turret;
+	dont-shade gun;
+	dont-shade barrel;
+	start-script SmokeUnit();
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <5>;
+	turn gun to x-axis (0-pitch) speed <2>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	move barrel to z-axis [-5] speed [500];
+	move gun to z-axis [-3] speed [500];
+	wait-for-move barrel along z-axis;
+	show flare;
+	sleep 250;
+	hide flare;
+	move barrel to z-axis [0] speed [3.0];
+	move gun to z-axis [0] speed [3.0];
+	}
+
+TargetCleared(which)
+	{
+	stop-spin turret around y-axis;
+	stop-spin gun around x-axis;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=turret;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	BITMAPONLY | BITMAP3;
+		explode gun type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode barrel type	FALL | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | BITMAP3;
+		explode gun type	SHATTER | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gun type	SHATTER | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gun type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type	BITMAPONLY | BITMAP5;
+	return( 0 );
+	}

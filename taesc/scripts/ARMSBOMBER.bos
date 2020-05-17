@@ -1,0 +1,329 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  missile, base, body, main1, wing1, turret1, main2, wing2, turret2, light, naughty;
+
+static-var  gun_1, statechg_DesiredState, statechg_StateChanging, turning, flying, dontfire, dontcount;
+
+/*
+cantdance()
+{
+	var pre;
+	var now;
+	pre = get XZ_ATAN(-419);
+	var dif;
+	
+	var preang;
+	var prepos;
+	var ang;
+	var pos;
+	
+	preang = get XZ_ATAN(-419);
+	prepos = get PIECE_XZ(base);
+	
+	
+	while(flying)
+	{
+		now = get XZ_ATAN(-419);
+		dif = pre - now;
+		if(dif > <3>)
+		{
+//			turning = 1;
+			move missile to z-axis [-32000.00] now;
+			move missile to x-axis [32000.00] now;
+//			sleep 8000;
+//			move missile to z-axis [0.00] now;
+//			move missile to x-axis [0.00] now;
+//			turning = 0;
+		}
+		if(dif < <-3>)
+		{
+//			turning = 1;
+			move missile to z-axis [-32000.00] now;
+			move missile to x-axis [32000.00] now;
+//			sleep 8000;
+//			move missile to z-axis [0.00] now;
+//			move missile to x-axis [0.00] now;
+//			turning = 0;
+		}
+		if(dif <= <3> && dif >= <-3>)
+		{
+//			turning = 0;
+			sleep 1500;
+			move missile to z-axis [0.00] now;
+			move missile to x-axis [0.00] now;
+		}
+		sleep 200;
+		prepos = pos;
+		preang = ang;
+		pre = now;
+	}
+}
+*/
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 44 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 44 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 44 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+			}
+		}
+		sleep 1000;
+	}
+}
+
+activatescr()
+{
+	if( TRUE )
+	{
+		move wing1 to x-axis [7.000000] speed [20.000000];
+		move wing2 to x-axis [-7.000000] speed [20.000000];
+		flying=1;
+		start-script OffScreenCheck();
+	}
+	sleep 20;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move wing1 to x-axis [0.000000] speed [20.000000];
+		move wing2 to x-axis [0.000000] speed [20.000000];
+		flying=0;
+	}
+	sleep 12;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+/*
+go()
+{
+	call-script activatescr();
+	if (!firing)
+	{
+		gun_1 = 1;
+	}
+}
+
+stop()
+{
+	gun_1 = 0;
+	sleep 4000;
+	call-script deactivatescr();
+}
+*/
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+MoveQueuePiece()	
+{
+	dontcount = 1;
+	sleep 1500;
+	move missile to z-axis [-32000.00] now;
+	move missile to x-axis [32000.00] now;
+	sleep 500;
+	move missile to z-axis [0.00] now;
+	move missile to x-axis [0.00] now;
+	dontcount = 0;
+}
+
+Create()
+{
+	gun_1 = 0;
+	dontcount = 0;
+	dontfire=0;
+	dont-cache naughty;
+	move naughty to y-axis  [6] now;
+	hide naughty;
+	
+	call-script InitState();
+	
+	dont-cache light;
+//	hide light;
+	turning=0;
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 100;
+	}
+//	start-script cantdance();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+//	if (!dontfire)
+//	{
+		set ARMORED to 1;
+//	}
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	set ARMORED to 0;
+}
+
+FirePrimary()
+{
+	
+	explode missile type BITMAPONLY | BITMAP5;
+	cache light;
+	sleep 2000;
+	dont-cache light;
+}
+
+QueryPrimary(piecenum)
+{
+	if(!dontcount && !dontfire)
+	{
+		move missile to x-axis [32000.00] now;
+		move missile to z-axis [-32000.00] now;
+	}
+	if (dontfire)
+	{
+		move missile to x-axis [32000.00] now;
+		move missile to z-axis [-32000.00] now;
+	}
+	if (!dontfire)
+	{
+		move missile to x-axis [0.00] now;
+		move missile to z-axis [0.00] now;
+	}
+	piecenum = missile;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP1;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode wing1 type FALL | BITMAP1;
+		explode wing2 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode body type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode body type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

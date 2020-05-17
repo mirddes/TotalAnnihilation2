@@ -1,0 +1,10 @@
+MISSION 15.001ARMR
+Capture the Core advanced radar tower.
+
+&YPRIORITY CRITICAL&
+You are alone on this one Commander. The scouting team sent ahead must be considered lost. Work your way to any communications towers. If you can capture a CORARAD advanced radar tower, we will have gained valuable information concerning Core strength on this new planet.
+
+INFO FEED
+The new planet is known as Rougpelt. Be aware that &RRougpelt is prone to meteor showers&. Stay alert! Your ability to capture may gain you some allies as you search for the advanced radar tower. Furthermore, the alien plant life may prove a useful energy source.
+
+END

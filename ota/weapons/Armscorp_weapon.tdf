@@ -1,0 +1,34 @@
+[ARMSCORP_WEAPON]
+	{
+	ID=145;
+	name=Paralyzer;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+	minbarrelangle=0;
+
+	range=320;
+	reloadtime=1.2;
+	weaponvelocity=600;
+	areaofeffect=8;
+	duration=.04;
+	soundtrigger=1;
+
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	beamweapon=1;
+	color=209;	/* Redish */
+	color2=211;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	[DAMAGE]
+		{
+		default=400;		/* 15 seconds of paralysis */
+		}
+	}

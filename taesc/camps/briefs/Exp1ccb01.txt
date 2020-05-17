@@ -1,0 +1,13 @@
+MISSION 1.1HCORE
+We have been discovered! Arm vermin have made planetfall on Hydross. 
+
+INTELL-TAP:
+Arm searches for the Commander and the beacon. They must be stopped before they establish a foothold in this system. We must have a chance to find the beacon and assemble the implosion device. Stop them here.  
+
+There is a life form on Hydross that will be a nuisance to our efforts. Destroy them.
+
+&RDestroy all of the Arm units.&
+
+To complete this mission you must destroy all Arm units and all life forms.
+
+DO SO NOW.

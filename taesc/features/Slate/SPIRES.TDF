@@ -1,0 +1,432 @@
+[SlateStrata01]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=3;
+	height=94;
+	filename=slatestrata;
+	seqname=sl-strata01;
+	seqnameshad=sl-strata01shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata02]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=9;
+	footprintz=7;
+	height=220;
+	filename=slatestrata;
+	seqname=sl-strata02;
+	seqnameshad=sl-strata02shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata03]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=11;
+	footprintz=7;
+	height=350;
+	filename=slatestrata;
+	seqname=sl-strata03;
+	seqnameshad=sl-strata03shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata04]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=9;
+	footprintz=5;
+	height=300;
+	filename=slatestrata;
+	seqname=sl-strata04;
+	seqnameshad=sl-strata04shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata05]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=7;
+	height=200;
+	filename=slatestrata;
+	seqname=sl-strata05;
+	seqnameshad=sl-strata05shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata06]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=160;
+	filename=slatestrata;
+	seqname=sl-strata06;
+	seqnameshad=sl-strata06shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[SlateStrata07]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=80;
+	filename=slatestrata;
+	seqname=sl-strata07;
+	seqnameshad=sl-strata07shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata01]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=7;
+	footprintz=5;
+	height=360;
+	filename=slatestrata;
+	seqname=sl-fogstrata01;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata02]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=310;
+	filename=slatestrata;
+	seqname=sl-fogstrata02;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata03]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=7;
+	footprintz=14;
+	height=460;
+	filename=slatestrata;
+	seqname=sl-fogstrata03;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata04]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=5;
+	footprintz=13;
+	height=440;
+	filename=slatestrata;
+	seqname=sl-fogstrata04;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata05]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=260;
+	filename=slatestrata;
+	seqname=sl-fogstrata05;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata06]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=10;
+	footprintz=8;
+	height=110;
+	filename=slatestrata;
+	seqname=sl-fogstrata06;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata07]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=8;
+	footprintz=3;
+	height=140;
+	filename=slatestrata;
+	seqname=sl-fogstrata07;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata08]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=12;
+	footprintz=11;
+	height=160;
+	filename=slatestrata;
+	seqname=sl-fogstrata08;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata09]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=7;
+	footprintz=9;
+	height=160;
+	filename=slatestrata;
+	seqname=sl-fogstrata09;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata10]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=11;
+	footprintz=8;
+	height=400;
+	filename=slatestrata;
+	seqname=sl-fogstrata10;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[FogStrata11]
+	{
+	world=slate;
+	description=Spire;
+	category=spires;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=160;
+	filename=slatestrata;
+	seqname=sl-fogstrata11;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+

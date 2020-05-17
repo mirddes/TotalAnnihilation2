@@ -1,0 +1,293 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, dish, landingpad, turret, barrel, flare, terminal, wake1, 
+       wake2, wake3, wake4, wake5, wake6, wake7, wake8, GP;
+
+static-var  AA_1, delay_2, reset_3, restore_4, terrain_5;
+
+
+RestoreAfterDelay()
+{
+	AA_1 = 0;
+	sleep 4000;
+	if( !reset_3 )
+	{
+		turn turret to y-axis <0> speed <90>;
+		turn barrel to x-axis <0> speed <50>;
+		delay_2 = 0;
+		signal 2;
+		signal 4;
+	}
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( reset_3 )
+		{
+			restore_4 = 1;
+			reset_3 = 0;
+		}
+		sleep sleeptime;
+		if( !reset_3 AND restore_4 )
+		{
+			restore_4 = 0;
+			start-script RestoreAfterDelay();
+		}
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-cache flare;
+	hide flare;
+	AA_1 = 0;
+	delay_2 = 0;
+	reset_3 = 0;
+	restore_4 = 0;
+	terrain_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+		turn gp to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+	}
+	dont-cache base;
+	start-script SmokeUnit();
+	return (0);
+}
+
+Activate()
+{
+	spin dish around y-axis speed <45>;
+}
+
+Deactivate()
+{
+	stop-spin dish around y-axis;
+}
+
+setSFXoccupy(setSFXoccupy_argument)
+{
+	terrain_5 = setSFXoccupy_argument;
+	// 0 -> Transported: Unit is being loaded
+    // 1 -> Sea: Unit does not have upright=1 and is going into sea. Or unit has upright=1 and is going into shore. (From unloading, or ground, or deep sea for upright unit)
+    // 2 -> Sea: Unit has upright=1 and goes into deep sea. (From shore, or unloading)
+    // 3 -> ????
+    // 4 -> Land: Unit is being created, goes from sea (or shore if upright=1) to dry ground, or is unloaded
+	
+	// I dunno if shore stand for shallow water or low level ground.
+}
+
+StartMoving(count)
+{
+	signal 8;
+	set-signal-mask 8;
+	while (TRUE)
+	{
+		count = 0;
+		if ( terrain_5 <= 3 )
+		{
+		emit-sfx 5 from wake1;
+		emit-sfx 3 from wake2;
+		emit-sfx 5 from wake3;
+		emit-sfx 3 from wake4;
+		emit-sfx 5 from wake5;
+		emit-sfx 3 from wake6;
+		emit-sfx 3 from wake7;
+		emit-sfx 5 from wake8;
+		emit-sfx 3 from wake1;
+		emit-sfx 5 from wake2;
+		emit-sfx 3 from wake3;
+		emit-sfx 5 from wake4;
+		emit-sfx 3 from wake5;
+		emit-sfx 5 from wake6;
+		emit-sfx 5 from wake7;
+		emit-sfx 3 from wake8;
+		}
+		while (count < 9)
+		{
+			turn gp to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <25>;
+			++count;
+			sleep 33;
+		}
+	}
+}
+
+StopMoving()
+{
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+QueryLandingPad(Func_Var_1, Func_Var_2)
+{
+	Func_Var_1 = 2;
+	Func_Var_2 = 2;
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	AA_1 = 1;
+	signal 2;
+	set-signal-mask 2;
+	while( delay_2 )
+	{
+		sleep 250;
+	}
+	turn turret to y-axis heading speed <200>;
+	turn barrel to x-axis <0> - pitch speed <95>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrel around x-axis;
+	reset_3 = 1;
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	while( AA_1 OR delay_2 )
+	{
+		sleep 250;
+	}
+	turn turret to y-axis heading speed <200>;
+	turn barrel to x-axis <0> - pitch speed <95>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrel around x-axis;
+	reset_3 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	delay_2 = 1;
+	AA_1 = 0;
+	show flare;
+	sleep 200;
+	hide flare;
+	move flare to z-axis [-1] NOW;
+	move flare to z-axis 0 speed [0.66];
+	wait-for-move flare along z-axis;
+	delay_2 = 0;
+	return (0);
+}
+
+FirePrimary()
+{
+	delay_2 = 1;
+	show flare;
+	sleep 200;
+	hide flare;
+	move flare to z-axis [-1] NOW;
+	move flare to z-axis 0 speed [0.66];
+	wait-for-move flare along z-axis;
+	delay_2 = 0;
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dish type BITMAPONLY | BITMAP2;
+		explode terminal type BITMAPONLY | BITMAP3;
+		explode landingpad type BITMAPONLY | BITMAP5;
+		explode turret type BITMAPONLY | BITMAP4;
+		explode barrel type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dish type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode landingpad type BITMAPONLY | BITMAP3;
+		explode terminal type BITMAPONLY | BITMAP3;
+		explode turret type FALL | SMOKE | BITMAP4;
+		explode barrel type FALL | SMOKE | BITMAP4;\
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode dish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode landingpad type FIRE | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode terminal type BITMAPONLY | BITMAP3;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

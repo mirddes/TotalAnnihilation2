@@ -1,0 +1,17 @@
+[CORBCRAT_dead]
+{
+world=All Worlds;
+description=Volcano Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=631;
+damage=2609;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

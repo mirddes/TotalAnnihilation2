@@ -1,0 +1,35 @@
+[cormmth_dead]
+{
+world=All Worlds;
+description=Mammoth Wreckage;
+category=core_corpses;
+object=cormmth_dead;
+featuredead=cormmth_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=920;
+damage=2320;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormmth_heap]
+{
+world=All Worlds;
+description=Mammoth Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=460;
+damage=2520;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

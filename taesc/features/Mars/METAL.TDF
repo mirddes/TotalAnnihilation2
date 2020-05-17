@@ -1,0 +1,62 @@
+[MarsMetal01]  // Medium
+	{
+	world=mars;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsglyphs;
+	seqname=metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=122;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsMetal02]  // Small
+	{
+	world=mars;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsglyphs;
+	seqname=metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MarsMetal03]  // Huge
+	{
+	world=mars;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsglyphs;
+	seqname=metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

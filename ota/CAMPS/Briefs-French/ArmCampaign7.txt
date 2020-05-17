@@ -1,0 +1,10 @@
+MISSION 7.0002ARMTH
+Protéger le port de Larab. Défendre la mine Moho qui s'y trouve. Détruire toutes les unités Core.
+
+&Y*PRIORITE TOTALE*&
+La forteresse Arm et l'entrepôt du port de Larab doivent être protégés des attaques Core. La mine Moho de Larab doit être préservée à n'importe quel prix car le métal est extrêmement rare sur Thalassean. Si l'extracteur de métal est détruit, cette mission sera un échec complet.
+
+INFOS STRATEGIQUES
+Il semble qu'une flotte Core se soit dissimulée au coeur d'un violent ouragan qui se dirige sur Larab. Attention: la principale cible de l'ennemi sera l'extracteur Moho.
+
+FIN

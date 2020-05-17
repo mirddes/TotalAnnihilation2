@@ -1,0 +1,255 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  body, thigh1, thigh2, leg2, foot2, leg1, foot1, dish1,
+       arm1, arm2;
+
+static-var  bMoving;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( bMoving )
+		{
+			move body to y-axis [-0.45] now;
+			move body to y-axis [-0.35] speed [1.219995];
+			move thigh1 to x-axis [0] now;
+			move thigh2 to x-axis [0] now;
+			move leg2 to y-axis [0] now;
+			move leg2 to z-axis [0] now;
+			move foot2 to z-axis [0] now;
+			move leg1 to y-axis [0] now;
+			move leg1 to z-axis [0] now;
+			move foot1 to z-axis [0] now;
+			turn body to z-axis <-8.697802> now;
+			turn body to z-axis <-5.538462> speed <38.598901>;
+			turn thigh1 to x-axis <-27.697802> now;
+			turn thigh1 to x-axis <-11.076923> speed <202.675824>;
+			turn thigh2 to x-axis <20.296703> now;
+			turn thigh2 to x-axis <14.587912> speed <69.554945>;
+			turn leg2 to x-axis <0.538462> now;
+			turn leg2 to x-axis <-13.989011> speed <177.225275>;
+			turn foot2 to x-axis <-2.879121> now;
+			turn foot2 to x-axis <12.159341> speed <183.527473>;
+			turn leg1 to x-axis <3.956044> now;
+			turn leg1 to x-axis <2.368132> speed <19.296703>;
+			turn foot1 to x-axis <22.945055> now;
+			turn foot1 to x-axis <7.115385> speed <193>;
+			sleep 82;
+			move body to y-axis [-0.3] speed [0.539996];
+			turn body to z-axis <-3.956044> speed <17.197802>;
+			turn thigh1 to x-axis <2.368132> speed <146.236264>;
+			turn thigh2 to x-axis <1.208791> speed <145.445055>;
+			turn foot2 to x-axis <19.697802> speed <81.884615>;
+			turn leg1 to x-axis <4.747253> speed <25.796703>;
+			turn foot1 to x-axis <-6.329670> speed <146.236264>;
+			sleep 92;
+		}
+		if( bMoving )
+		{
+			move body to y-axis [0] speed [3.129999];
+			turn body to z-axis <-0.785714> speed <32.967033>;
+			turn thigh1 to x-axis <10.285714> speed <82.428571>;
+			turn thigh2 to x-axis <-26.527473> speed <289.065934>;
+			turn leg2 to x-axis <-10.335165> speed <38>;
+			turn foot2 to x-axis <31> speed <117.928571>;
+			turn leg1 to x-axis <15> speed <107.159341>;
+			turn foot1 to x-axis <-25.318681> speed <197.846154>;
+			sleep 96;
+			move body to y-axis [-0.85] speed [9.139996];
+			turn body to z-axis <12.659341> speed <144.659341>;
+			turn thigh1 to x-axis <21.357143> speed <119.126374>;
+			turn thigh2 to x-axis <-58> speed <338.835165>;
+			turn leg2 to x-axis <21.115385> speed <338.269231>;
+			turn foot2 to x-axis <36.675824> speed <60.895604>;
+			turn leg1 to x-axis <16.615385> speed <17>;
+			turn foot1 to x-axis <-5.538462> speed <212.736264>;
+			sleep 93;
+		}
+		if( bMoving )
+		{
+			move body to y-axis [-0.55] speed [3.329999];
+			turn body to z-axis <9.489011> speed <35.164835>;
+			turn thigh1 to x-axis <18.197802> speed <35.164835>;
+			turn thigh2 to x-axis <-40.626374> speed <193.445055>;
+			turn leg2 to x-axis <12.406593> speed <96.725275>;
+			turn foot2 to x-axis <27.978022> speed <96.725275>;
+			turn leg1 to x-axis <7.115385> speed <105.516484>;
+			turn foot1 to x-axis <-11.076923> speed <61.549451>;
+			sleep 90;
+			move body to y-axis [-0.35] speed [2.129999];
+			turn body to z-axis <5.538462> speed <42.087912>;
+			turn thigh1 to x-axis <9.489011> speed <92.609890>;
+			turn thigh2 to x-axis <-17.675824> speed <244.148352>;
+			turn leg2 to x-axis <3.697802> speed <92.609890>;
+			turn foot2 to x-axis <13.725275> speed <151.538462>;
+			turn leg1 to x-axis <-4.747253> speed <126.285714>;
+			turn foot1 to x-axis <10.285714> speed <227.307692>;
+			sleep 94;
+		}
+		if( bMoving )
+		{
+			move body to y-axis [-0.15] speed [2.129999];
+			turn thigh1 to x-axis <-11.868132> speed <227.307692>;
+			turn thigh2 to x-axis <3.675824> speed <227.307692>;
+			turn leg2 to x-axis <2.906593> speed <8.417582>;
+			turn foot2 to x-axis <-7.626374> speed <227.307692>;
+			turn leg1 to x-axis <-4.747253> speed <0>;
+			turn foot1 to x-axis <17.406593> speed <75.769231>;
+			sleep 94;
+			move body to y-axis [0] speed [1.609998];
+			turn body to z-axis <0> speed <59.565934>;
+			turn thigh1 to x-axis <-27.697802> speed <170.186813>;
+			turn thigh2 to x-axis <17.126374> speed <144.659341>;
+			turn leg2 to x-axis <13.197802> speed <110.615385>;
+			turn foot2 to x-axis <-14.747253> speed <76.576923>;
+			turn foot1 to x-axis <23.736264> speed <68.076923>;
+			sleep 93;
+		}
+		if( bMoving )
+		{
+			move body to y-axis [-0.85] speed [9];
+			turn body to z-axis <-8.697802> speed <92.609890>;
+			turn thigh1 to x-axis <-53> speed <269.406593>;
+			turn thigh2 to x-axis <22.675824> speed <58.928571>;
+			turn foot2 to x-axis <-11.587912> speed <33.675824>;
+			turn leg1 to x-axis <17.406593> speed <235.736264>;
+			turn foot1 to x-axis <35.609890> speed <126.285714>;
+			sleep 188;
+		}
+		if( !bMoving )
+		{
+			turn body to z-axis <0> speed <200>;
+			move body to y-axis [0] speed [1];
+			turn leg1 to x-axis <0> speed <200>;
+			turn foot1 to x-axis <0> speed <200>;
+			turn thigh2 to x-axis <0> speed <200>;
+			turn leg2 to x-axis <0> speed <200>;
+			turn foot2 to x-axis <0> speed <200>;
+		}
+		sleep 100;
+	}
+}
+
+Create()
+{
+	bMoving = FALSE;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	spin dish1 around y-axis speed <100>;
+}
+
+Deactivate()
+{
+	turn dish1 to y-axis <0> speed <100>;
+	//wait-for-turn dish1 around y-axis;
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type BITMAPONLY | BITMAP4;
+		explode foot1 type BITMAPONLY | BITMAP5;
+		explode foot2 type BITMAPONLY | BITMAP1;
+		explode leg1 type BITMAPONLY | BITMAP2;
+		explode leg2 type BITMAPONLY | BITMAP3;
+		explode thigh1 type BITMAPONLY | BITMAP4;
+		explode thigh2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type FALL | BITMAP1;
+		explode arm2 type FALL | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type SHATTER | BITMAP4;
+		explode foot1 type FALL | BITMAP5;
+		explode foot2 type FALL | BITMAP1;
+		explode leg1 type FALL | BITMAP2;
+		explode leg2 type FALL | BITMAP3;
+		explode thigh1 type FALL | BITMAP4;
+		explode thigh2 type FALL | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode body type BITMAPONLY | BITMAP3;
+		explode dish1 type SHATTER | BITMAP4;
+		explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode body type BITMAPONLY | BITMAP3;
+	explode dish1 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

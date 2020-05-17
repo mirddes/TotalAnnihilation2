@@ -1,0 +1,35 @@
+[armsplab_DEAD]
+{
+world=All Worlds;
+description=Spider Lab Wreckage;
+category=arm_corpses;
+object=armsplab_dead;
+featuredead=armsplab_heap;
+footprintx=6;
+footprintz=5;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=1019;
+damage=2656;
+reclaimable=1;
+featurereclaimate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armsplab_HEAP]
+{
+world=All Worlds;
+description=Spider Lab Rubble;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=510;
+damage=2656;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

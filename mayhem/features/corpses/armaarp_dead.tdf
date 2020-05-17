@@ -1,0 +1,36 @@
+[ARMAARP_dead]
+{
+world=All Worlds;
+description=Repair Center Wreckage;
+category=arm_corpses;
+object=ARMAARP_dead;
+featuredead=ARMAARP_heap;
+footprintx=8;
+footprintz=8;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=960;
+damage=2450;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMAARP_heap]
+{
+world=All Worlds;
+description=Repair Center Wreckage;
+category=heaps;
+object=7x7a;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=480;
+damage=2750;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

@@ -1,0 +1,29 @@
+piece base, upgrade, emp, glow, emp2, glow2, pods, rocket1, rocket2, rocket3 ;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+Create()
+	{
+		set ARMORED to 1;
+		move emp to y-axis [10] now;
+		move emp2 to y-axis [10] now;
+		move pods to y-axis [10] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1000;
+		}
+		hide emp;
+		hide emp2;
+		hide glow;
+		hide glow2;
+		hide pods;
+		hide rocket1;
+		hide rocket2;
+		hide rocket3;
+	}
+
+SweetSpot(piecenum)
+{
+	piecenum = emp;
+}	

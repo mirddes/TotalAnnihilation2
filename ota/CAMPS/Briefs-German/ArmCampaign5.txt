@@ -1,0 +1,10 @@
+MISSION 5.0005ARME
+Die CORE-Basis eliminieren. Alle Einheiten der CORE zerstören. Das Galaxistor erobern.
+
+&Y*SONDERFALL, OBERSTE PRIORITÄT*&
+Die Zerstörung der CORE-Basis wird ihrer Übelkeit erregenden Anwesenheit auf Empyrrean ein für allemal ein Ende setzen.  Das Galaxistor, durch das die CORE in unsere Heimatwelt eingedrungen sind, liegt ganz in der Nähe. &G Finden Sie dieses Tor und erobern Sie es. &. Mit diesem Tor können wir den Kampf endlich nach außen verlagern!
+
+NACHRICHTENDIENSTLICHE MITTEILUNG
+Oberste Priorität hat die Errichtung einer sicheren Basis. Das Aufgebot der CORE ist massiv, mit ständigen Patrouillen ist zu rechnen. Die CORE haben ihre Waffentechnik verbessert. &G Sie sind angewiesen, ebenfalls verbesserte Einheiten zu produzieren. & Leihweise steht Ihnen eine limitierte Zahl von Einheiten der empyrreanischen Marine zur Verfügung.  Sie werden den neuen Amphibienpanzer der Triton-Klasse u.U. gut gebrauchen können.
+
+ENDE

@@ -1,0 +1,190 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, turret, barrel, flare1, wake1, wake2, spot;
+
+static-var  depth_2, bMoving, x_slope, z_slope;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 AND (depth_2 != 3 ))
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_2 == 4 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 60;
+		if( sleeptime < 240 )
+		{
+			sleeptime = 240;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <50>;
+	turn base to z-axis anglez speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <20>;
+	turn base to x-axis <0> speed <20>;
+	return (0);
+}
+
+Create()
+{
+	hide flare1;
+	depth_2 = 4;
+	bMoving = FALSE;
+	x_slope = 0;
+	z_slope = 0;
+	start-script Smokeunit();
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_2 = Func_Var_1;
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = TRUE;	
+	var lxsnxs, lzsnzs;	
+	while( bMoving )
+	{
+		if( depth_2 == 3 )
+		{
+			emit-sfx 259 from wake1;
+			emit-sfx 259 from wake2;
+		}
+		sleep 300;
+		lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		if( depth_2!=0 )// Not transported: read the ground slope
+		{
+			x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(base)) - get GROUND_HEIGHT(get PIECE_XZ(flare1)), get XZ_HYPOT(get PIECE_XZ(base) - get PIECE_XZ(flare1)));
+			while(x_slope>32768)
+			{	x_slope=x_slope - 65536;	}
+			z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(wake1)) - get GROUND_HEIGHT(get PIECE_XZ(wake2)), get XZ_HYPOT(get PIECE_XZ(wake1) - get PIECE_XZ(wake2)));
+			while(z_slope>32768)
+			{	z_slope=z_slope - 65536;	}
+		}
+		if( depth_2==0 )// Transported: turn unit back to upright
+		{
+			x_slope=0;
+			z_slope=0;
+		}
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+		{	lxsnxs=0 - lxsnxs;	}// absoluted
+		if(lzsnzs<0)
+		{	lzsnzs=0 - lzsnzs;	}// absoluted
+		turn base to x-axis x_slope speed lxsnxs*3;
+		turn base to z-axis z_slope speed lzsnzs*3;
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	set-signal-mask 0;
+	turn turret to y-axis <0> speed <60>;
+	turn barrel to x-axis <0> speed <30>;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <100>;
+	turn barrel to x-axis <0> - pitch speed <40>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrel around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare1;
+	move barrel to z-axis [-2.4] speed [500];
+	sleep 150;
+	hide flare1;
+	move barrel to z-axis [0] speed [3];
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = spot;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode barrel type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP4;
+		explode flare1 type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP4;
+		explode flare1 type FALL | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP4;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP4;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+}

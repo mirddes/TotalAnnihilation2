@@ -1,0 +1,91 @@
+[Smudge01]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=trees;
+	seqname=smudge01;
+
+	featuredead=Smudge01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Smudge02]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=trees;
+	seqname=smudge02;
+
+	featuredead=Smudge02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Smudge03]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=trees;
+	seqname=smudge03;
+
+	featuredead=Smudge03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Smudge04]
+	{
+	world=greenworld;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=trees;
+	seqname=smudge04;
+
+	featuredead=Smudge04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=;
+	blocking=0;
+	hitdensity=0;
+	}

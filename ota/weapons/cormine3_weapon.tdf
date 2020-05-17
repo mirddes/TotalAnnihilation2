@@ -1,0 +1,32 @@
+[cormine3]
+	{
+	ID=37;
+	name=Focal Mine;
+	rendertype=4;
+	ballistic=1;
+	
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=160;
+	soundstart=largegun;
+	soundhit=exmine3;
+
+	edgeeffectiveness=0.1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=700;
+		cormine3=45;
+		}
+	}

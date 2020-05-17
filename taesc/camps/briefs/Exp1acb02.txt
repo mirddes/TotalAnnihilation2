@@ -1,0 +1,14 @@
+MISSION 1.0002ARMH
+We have succeeded in establishing a base on Hydross. It is important to continue to push Core away from our staging area. Core has an outpost to the north that must be captured for this area to be secure. 
+
+&Y*PRIORITY CRITICAL*&
+Arm reinforcements continue to flow into the star system to aid in our search for the contingent Core Commander. The outpost to the north will be a threat to our staging area here on Hydross so long as Core holds it. Take that outpost. 
+
+INFO FEED
+&RThe Colossus carrier generates surplus energy, increases your radar coverage, and will repair damaged seaplanes.& You will find them important to the successful completion of this mission.
+
+Unfortunately Serpents are common in this area. Regrettably they must be destroyed in order to ensure the security of the staging area.
+
+To complete this mission you must destroy all mobile Core units and Serpents. 
+
+END

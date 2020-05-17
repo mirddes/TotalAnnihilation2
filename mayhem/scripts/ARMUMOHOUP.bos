@@ -1,0 +1,33 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  base, torp1, turret1, torp2, turret2, GP;
+
+Create()
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+	}
+	sleep 600;
+	hide base;
+	hide torp1;
+	hide torp2;
+	hide turret1;
+	hide turret2;
+	sleep 400;
+	set ARMORED to 1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+}

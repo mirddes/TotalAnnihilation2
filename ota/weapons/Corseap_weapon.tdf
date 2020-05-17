@@ -1,0 +1,156 @@
+[CORSEAP_WEAPON1]
+	{
+	ID=152;
+	name=Torpedo Launcher;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=300;
+	reloadtime=6;
+	weapontimer=5;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=15000;
+	areaofeffect=16;
+	soundstart=bombrel;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=12000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=400;
+		}
+	}
+
+[CORSEAP_WEAPON2]
+	{
+	ID=194;
+	name=Torpedo Launcher;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=300;
+	reloadtime=6;
+	weapontimer=5;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=15000;
+	areaofeffect=16;
+	soundstart=bombrel;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=12000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=400;
+		}
+	}
+
+[CORSEAP_WEAPON3]
+	{
+	ID=98;
+	name=Guided Missiles;
+	rendertype=1;
+	lineofsight=1;
+
+	model=missile;
+
+	range=510;
+	reloadtime=3;
+	weapontimer=5;
+	weaponvelocity=480;
+	startvelocity=420;
+	weaponacceleration=146;
+	turnrate=16384;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=Rocklit3;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=44;
+		ARMTHUND=130;
+		ARMBRAWL=130;
+		ARMPEEP=130;
+		ARMFIG=130;
+		ARMCA=130;
+		ARMACA=130;
+		ARMATLAS=130;
+		ARMPNIX=130;
+		ARMHAWK=130;
+		ARMLANCE=130;
+		CORFINK=130;
+		CORVENG=130;
+		CORVAMP=130;
+		CORHURC=130;
+		CORTITAN=130;
+		CORACA=130;
+		CORSHAD=130;
+		CORAPE=130;
+		CORCA=130;
+		CORVALK=130;
+		}
+	}

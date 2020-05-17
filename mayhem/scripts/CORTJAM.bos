@@ -1,0 +1,394 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+#define FBIMAXVELOCITY		[0.9] * 12
+
+piece  lid, forkbase, fork1, fork2, Leg1, Foot1, Leg2, Foot2, 
+	   Leg3, Foot3, Leg4, Foot4, base, body, g1, g2, g3, g4, hip1, hip2, hip3, hip4;
+
+static-var  State_1, bMoving, Request_3, Busy_4, Timer_5, depth_6, x_slope, z_slope,
+            speed1, speed2, speed3, speed4, speed5, speed6;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_6 == 3 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_6 != 0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot2)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot2)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot4)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot4)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_6 == 0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+	}
+}
+
+HitByWeapon()
+{
+	Timer_5 = 10;
+	if( Request_3 )
+	{
+		Set ACTIVATION to 0;
+	}
+}
+
+RequestState()
+{
+	if( Busy_4 )
+	{
+		return (0);
+	}
+	Busy_4 = TRUE;
+	while( Request_3 != State_1 )
+	{
+		if( Request_3 AND !State_1 )
+		{
+			move lid to y-axis [1] speed [4];
+			sleep 250;
+			turn lid to z-axis 0 speed <400>;
+			sleep 500;
+			set ARMORED to 0;
+			move lid to y-axis [0] speed [2.5];
+			move fork1 to z-axis [0] speed [6.2];
+			sleep 500;
+			move fork1 to y-axis [0] speed [5.75];
+			sleep 400;
+			move forkbase to z-axis [0] speed [2.5];
+			spin fork1 around z-axis speed <80>;
+			spin fork2 around z-axis speed <-200>;
+			State_1 = 1;
+		}
+		if( !Request_3 AND State_1 )
+		{
+			turn fork1 to z-axis 0 speed <120>;
+			turn fork2 to z-axis 0 speed <150>;
+			move forkbase to z-axis [-0.5] speed [2];
+			wait-for-turn fork1 around z-axis;
+			move fork1 to y-axis [-2.3] speed [7.5];
+			sleep 320;
+			move fork1 to z-axis [-3.1] speed [6.2];
+			sleep 250;
+			move lid to y-axis [1] speed [4];
+			sleep 250;
+			turn lid to z-axis <180> speed <400>;
+			set ARMORED to 1;
+			sleep 500;
+			move lid to y-axis [0] speed [2.5];
+			State_1 = 0;
+		}
+	}
+	Busy_4 = FALSE;
+}
+
+Create()
+{
+	var fbimv;
+	fbimv=FBIMAXVELOCITY;
+	speed1=fbimv / 22542 * <1>;
+	speed2=speed1 * 2;
+	speed3=fbimv / 19602 * <1>;
+	speed4=speed3 * 2;
+	speed5=speed4 * 2;
+	speed6=fbimv;
+	state_1 = 1;
+	bMoving = FALSE;
+	Request_3 = TRUE;
+	Busy_4 = FALSE;
+	Timer_5 = 0;
+	set ARMORED to 1;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	spin fork1 around z-axis speed <80>;
+	spin fork2 around z-axis speed <-180>;
+	start-script SmokeUnit();
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_6 = Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Activate()
+{
+	Request_3 = 1;
+	Timer_5 = 0;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	Request_3 = 0;
+	start-script RequestState();
+	if( Timer_5 )
+	{
+		while( Timer_5 )
+		{
+			--Timer_5;
+			sleep 1000;
+		}
+		if( !Timer_5 AND !Request_3 )
+		{
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+MotionControl()
+{
+	var f1limit, f2limit, f3limit, f4limit;
+	f1limit = 0;
+	f2limit = 0;
+	f3limit = 0;
+	f4limit = 0;
+	while (bMoving)
+	{
+		turn hip4 to y-axis <-20> speed speed1;
+		turn leg4 to y-axis <40> speed speed2;
+		turn foot4 to y-axis <-20> speed speed1;
+		turn hip1 to y-axis <20> speed speed1;
+		turn leg1 to y-axis <-40> speed speed2;
+		turn foot1 to y-axis <20> speed speed1;
+		turn leg2 to z-axis <30> speed <300>;
+		turn foot2 to z-axis <-15> speed <167>;
+		turn foot2 to x-axis <0> speed <167>;
+		turn hip2 to y-axis <-20> speed speed3;
+		turn leg2 to y-axis <40> speed speed4;
+		turn foot2 to y-axis <-20> speed speed3;
+		move foot3 to y-axis [3] speed [30];
+		turn hip3 to y-axis <20> speed speed3;
+		turn leg3 to y-axis <-40> speed speed5;
+		turn foot3 to y-axis <20> speed speed4;
+		move body to z-axis [1] speed speed6;
+		wait-for-move body along z-axis;
+		move body to z-axis [0] speed speed6;
+		wait-for-turn leg2 around y-axis;
+		turn leg2 to z-axis <0> speed <400>;
+		turn foot2 to z-axis <0> speed <222>;
+		turn foot2 to x-axis <25> speed <50>;
+		/*f2limit = get GROUND_HEIGHT(get PIECE_XZ(foot2)) - get PIECE_Y(g2);
+		f3limit = get GROUND_HEIGHT(get PIECE_XZ(foot3)) - get PIECE_Y(g3);
+		if (f2limit < [-1])
+		{
+			f2limit = [-1];
+		}
+		if (f3limit < [-1])
+		{
+			f3limit = [-1];
+		}*/
+		move foot2 to y-axis f2limit speed [40];
+		move foot3 to y-axis f3limit speed [40];
+		wait-for-move foot2 along y-axis;
+		sleep 100;
+		if (bMoving)
+		{
+			turn hip2 to y-axis <20> speed speed1;
+			turn leg2 to y-axis <-40> speed speed2;
+			turn foot2 to y-axis <20> speed speed1;
+			turn hip3 to y-axis <-20> speed speed1;
+			turn leg3 to y-axis <40> speed speed2;
+			turn foot3 to y-axis <-20> speed speed1;
+			turn leg4 to z-axis <-30> speed <300>;
+			turn foot4 to z-axis <15> speed <167>;
+			turn foot4 to x-axis <0> speed <167>;
+			turn hip4 to y-axis <20> speed speed3;
+			turn leg4 to y-axis <-40> speed speed4;
+			turn foot4 to y-axis <20> speed speed3;
+			move body to z-axis [1] speed speed6;
+			move foot1 to y-axis [3] speed [30];
+			turn hip1 to y-axis <-20> speed speed3;
+			turn leg1 to y-axis <40> speed speed5;
+			turn foot1 to y-axis <-20> speed speed4;
+			wait-for-move body along z-axis;
+			move body to z-axis [0] speed speed6;
+			wait-for-turn leg4 around y-axis;
+			turn leg4 to z-axis <0> speed <400>;
+			turn foot4 to z-axis <0> speed <222>;
+			turn foot4 to x-axis <25> speed <50>;
+			/*f4limit = get GROUND_HEIGHT(get PIECE_XZ(foot4)) - get PIECE_Y(g4);
+			f1limit = get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get PIECE_Y(g1);
+			if (f4limit < [-1])
+			{
+				f4limit = [-1];
+			}
+			if (f1limit < [-1])
+			{
+				f1limit = [-1];
+			}*/
+			move foot4 to y-axis f4limit speed [40];
+			move foot1 to y-axis f1limit speed [40];
+			wait-for-move foot4 along y-axis;
+			sleep 100;
+		}
+	}
+	turn hip1 to y-axis <0> speed <60>;
+	turn hip2 to y-axis <0> speed <60>;
+	turn hip3 to y-axis <0> speed <60>;
+	turn hip4 to y-axis <0> speed <60>;
+	turn leg1 to y-axis <0> speed <120>;
+	turn leg2 to y-axis <0> speed <120>;
+	turn leg3 to y-axis <0> speed <120>;
+	turn leg4 to y-axis <0> speed <120>;
+	turn foot1 to x-axis <0> speed <120>;
+	turn foot2 to x-axis <0> speed <120>;
+	turn foot3 to x-axis <0> speed <120>;
+	turn foot4 to x-axis <0> speed <120>;
+	turn foot1 to y-axis <0> speed <120>;
+	turn foot2 to y-axis <0> speed <120>;
+	turn foot3 to y-axis <0> speed <120>;
+	turn foot4 to y-axis <0> speed <120>;
+	turn foot1 to z-axis <0> speed <120>;
+	turn foot2 to z-axis <0> speed <120>;
+	turn foot3 to z-axis <0> speed <120>;
+	turn foot4 to z-axis <0> speed <120>;
+	/*move foot1 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get PIECE_Y(g1)) speed [40];
+	move foot2 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(foot2)) - get PIECE_Y(g2)) speed [40];
+	move foot3 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(foot3)) - get PIECE_Y(g3)) speed [40];
+	move foot4 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(foot4)) - get PIECE_Y(g4)) speed [40];*/
+	move body to z-axis [0] now;
+}
+
+StartMoving()
+{
+	if (!bMoving)
+	{
+		bMoving=1;
+		start-script MotionControl();
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	Timer_5 = 10;
+	while( depth_6 == 4 )
+	{
+		signal 2;
+		sleep 500;
+	}
+	if( request_3 )
+	{
+		set ACTIVATION to 0;
+	}
+	while( TRUE )
+	{
+		signal 2;
+		sleep 500;
+	}
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	if( depth_6 == 3 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode foot1 type BITMAPONLY | BITMAP3;
+			explode foot2 type BITMAPONLY | BITMAP3;
+			explode foot3 type BITMAPONLY | BITMAP3;
+			explode foot4 type BITMAPONLY | BITMAP3;
+			explode forkbase type BITMAPONLY | BITMAP2;
+			explode lid type BITMAPONLY | BITMAP2;
+			explode fork1 type BITMAPONLY | BITMAP1;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type FALL | BITMAP3;
+		explode foot3 type FALL | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		explode forkbase type BITMAPONLY | BITMAP2;
+		explode lid type BITMAPONLY | BITMAP2;
+		explode fork1 type FALL | BITMAP1;
+		explode fork2 type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode foot1 type FALL | BITMAP3;
+		explode foot2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot4 type FALL | BITMAP3;
+		explode forkbase type SHATTER | BITMAP2;
+		explode lid type FALL | BITMAP2;
+		explode fork1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode fork2 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode forkbase type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lid type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode fork1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode fork2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

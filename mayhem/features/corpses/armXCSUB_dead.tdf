@@ -1,0 +1,38 @@
+[armXCSUB_dead]
+{
+world=All Worlds;
+description=Amphbious Cons Sub Wreckage;
+category=arm_corpses;
+object=armXCSUB_dead;
+featuredead=armXCSUB_heap;
+footprintx=3;
+footprintz=3;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=2716;
+damage=3980;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armXCSUB_heap]
+{
+world=All Worlds;
+description=Amphbious Cons Sub Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1358;
+damage=3840;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+
+

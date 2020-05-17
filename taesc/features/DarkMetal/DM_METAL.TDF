@@ -1,0 +1,88 @@
+[Dark Metal Deposit 1]  // Small
+	{
+	world=Darkmetal;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=DM_METAL;
+	seqname=dm-metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=55;
+	damage=32009;
+	indestructible=1;
+	}
+
+
+[Dark Metal Deposit 2]  // Medium
+	{
+	world=Darkmetal;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=DM_METAL;
+	seqname=dm-metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=111;
+	damage=32009;
+	indestructible=1;
+	}
+
+
+[Dark Metal Deposit 3]  // Large
+	{
+	world=Darkmetal;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=DM_METAL;
+	seqname=dm-metal03;
+
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=166;
+	damage=32009;
+	indestructible=1;
+	}
+
+[Dark Metal Deposit 4]  // Huge
+	{
+	world=Darkmetal;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=DM_METAL;
+	seqname=dm-metal04;
+
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=222;
+	damage=32009;
+	indestructible=1;
+	}
+

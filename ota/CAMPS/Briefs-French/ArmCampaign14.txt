@@ -1,0 +1,10 @@
+MISSION 14.003ARMB
+Capturer le Passage de Crustal 19. S'emparer du Kbot d'assaut Zeus ou le détruire.
+
+&YPRIORITE ABSOLUE&
+Les forces Core refusent d'abandonner Barathrum. L'importance vitale de cette planète (en matière de métal) laisse présager qu'une contre-attaque est imminente. Par ailleurs, l'ennemi a capturé une unité d'assaut Zeus et l'utilise à plein rendement. Ce Zeus contient des informations de la plus haute importance. Il est essentiel que ces renseignements ne tombent pas aux mains de nos adversaires. Récupérez le Zeus ou détruisez-le. En écrasant les défenses ennemies vous rejoindrez un autre monde.
+
+INFOS STRATEGIQUES 
+La ligue Core ne reculera devant aucune mesure pour vous empêcher de prendre le contrôle de ce Passage situé à l'est, au milieu des gigantesques gouttes de lave. &RL'ennemi utilisera certainement des bombes rampantes appelées Blattes.& C'est une arme tenace et terriblement destructrice.
+
+FIN

@@ -1,0 +1,1926 @@
+Weight ARM 0.2
+Weight CORE 0.2
+
+plan easy
+
+//arm
+
+//aircraft tech 1 	
+Weight ARMFIG 3	 		 	
+Weight ARMTHUND 1 
+
+//aircraft tech 2	 	
+Weight ARMBRAWL 6 	
+Weight ARMHAWK 2	
+Weight ARMPNIX 1	 	
+
+//hovercraft
+Weight ARMAH 0.5	 	
+Weight ARMANAC 4	 		
+Weight ARMMH 3	 					
+Weight ARMLH 4
+Weight ARMHCAR 0.05					
+
+//kbot tech 1	 	
+Weight ARMHAM 1	 	
+Weight ARMJETH 0.5	
+Weight ARMPW 1	 	
+Weight ARMROCK 3		
+Weight ARMWAR 0.5	 	
+
+//kbot tech 2
+Weight ARMAMPH 1	 				
+Weight ARMDECOM 1				 	
+Weight ARMFAST 1	 				
+Weight ARMFIDO 4	 				
+Weight ARMMAV 4	 		
+Weight ARMSNIPE 1 	 				
+Weight ARMZEUS 3	 					
+//buildings tech 1		 	 	
+Weight ARMGEO 2	 			
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 3			
+Weight ARMHLT 3	 			
+Weight ARMLLT 0.05	 		 		
+Weight ARMMEX 5	 				
+Weight ARMRL 4	 			
+Weight ARMSOLAR 5			
+Weight ARMASP 0.05
+Weight ARMGEN 2	 		 
+ 
+//buildings tech 2
+Weight ARMAMB 2	 			
+Weight ARMANNI 2	 			 	
+Weight ARMBRTHA 3 			
+Weight ARMFLAK 3	 		
+Weight ARMFUS 5
+Weight ARMFUS_UPGRADE 10		
+Weight ARMMMKR 0.5	 	
+Weight ARMMOHO 5
+Weight ARMORION 2					
+Weight ARMSTUN 0.5					
+Weight ARMSMS 0.05			
+Weight ARMSES 0.05
+
+//factories tech 1 	
+Weight ARMAP 0.05				
+Weight ARMLAB 3
+Weight ARMFHP 6
+Weight ARMHP 8				
+
+//factories tech 2
+Weight ARMAAP 5				
+Weight ARMALAB 5			
+
+//tech 3 buildings and misc	
+Weight ARMGANT 3				
+Weight ARMSBERTHA 2
+Weight ARMFORGE 0.05					
+Weight ARMSFUS 5			
+Weight ARMSFUS_UPGRADE 10
+Weight ARMMAS 5			
+Weight ARMTECH 0.05
+Weight ARMVULC 2	
+
+//tech 3 and 4 units 
+Weight ARMMECH 5					
+Weight ARMMCV 0.05		
+Weight ARMSEIGE 0.05			
+Weight ARMMBT 6				
+Weight ARMSBOMBER 0.5			
+				
+//construction units		
+Weight ARMACA 5		
+Weight ARMACK 5		
+Weight ARMCH 5			
+Weight ARMCA 5				
+Weight ARMCK 5					
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 0
+Limit ARMUWCHEAT 0	
+
+//aircraft tech 1
+Limit ARMATLAS 0	
+Limit ARMFIG 15	 	
+Limit ARMPEEP 0
+Limit ARMTHUND 5	 	
+Limit ARMLANCE 0
+
+//aircraft tech 2
+Limit ARMAWAC 0	 	
+Limit ARMBRAWL 15 	
+Limit ARMHAWK 20	
+Limit ARMPNIX 5	 	
+
+//seaplanes
+Limit ARMSEAP 0	 	
+Limit ARMSEHAK 0 	
+Limit ARMSFIG 0	 	
+
+//hovercraft
+Limit ARMAH 10	 	
+Limit ARMANAC 15	 		
+Limit ARMMH 20	 				
+Limit ARMSH 0	 			
+Limit ARMTHOVR 0 				
+Limit ARMLH 15	
+Limit ARMHCAR 2				
+
+//kbot tech 1
+Limit ARMFLEA 0	 	
+Limit ARMHAM 10	 	
+Limit ARMJETH 5	
+Limit ARMPW 10	 	
+Limit ARMROCK 15		
+Limit ARMWAR 10	 	
+
+//kbot tech 2
+Limit ARMAMPH 20	 				
+Limit ARMASER 0	 			
+Limit ARMDECOM 2 			
+Limit ARMFARK 0	 			
+Limit ARMFAST 10	 				
+Limit ARMFIDO 10	 				
+Limit ARMMARK 0	 				
+Limit ARMMAV 5	 		
+Limit ARMSNIPE 5 				
+Limit ARMSPY 0	 			
+Limit ARMVADER 0 				
+Limit ARMZEUS 10	 			
+Limit ARMSPID 0	 				
+
+//vehicles tech 1
+Limit ARMFAV 0	 				
+Limit ARMFLASH 0 				
+Limit ARMMLV 0	 				
+Limit ARMSAM 0	 		
+Limit ARMSTUMP 0 				
+
+//vehicles tech 2	
+Limit ARMBULL 0	 	
+Limit ARMCROC 0	 		
+Limit ARMJAM 0	 	
+Limit ARMLATNK 0 	
+Limit ARMMANNI 0 	
+Limit ARMMART 0	 	
+Limit ARMMERL 0	 	
+Limit ARMSCAB 0	 	
+Limit ARMSEER 0	 	
+Limit ARMYORK 0	 	
+
+//ships tech 1
+Limit ARMPT 0	 	
+Limit ARMROY 0	 	
+Limit ARMSUB 0	 	
+Limit ARMTSHIP 0 	
+Limit ARMFRIG 0			
+
+//ships tech 2
+Limit ARMAAS 0	 	
+Limit ARMBATS 0	 	
+Limit ARMCARRY 0 	
+Limit ARMCRUS 0	 	
+Limit ARMMSHIP 0 	
+Limit ARMSCRAM 0 	
+Limit ARMSJAM 0	 	
+Limit ARMSUBK 0	 			
+Limit ARMTSUB 0		
+
+//buildings tech 1	
+Limit ARMDRAG 0	 	
+Limit ARMESTOR 0 	
+Limit ARMGEO 2	 			
+Limit ARMGEO_UPGRADE 2
+Limit ARMGUARD 3 			
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 7	 			
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 5	 	
+Limit ARMMAKR 0	 		
+Limit ARMMEX 20	 			
+Limit ARMMSTOR 0 			
+Limit ARMRAD 0	 				
+Limit ARMRL 15	 			
+Limit ARMSOLAR 20 		
+Limit ARMWIN 0 	 		
+Limit ARMGEN 10			
+Limit ARMASP 2	 		
+Limit ARMASP_UPGRADE 0
+ 
+//buildings tech 2
+Limit ARMAMB 3
+Limit ARMAMD 0	 			
+Limit ARMANNI 2	 		
+Limit ARMARAD 0	 			
+Limit ARMBRTHA 2 			
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMFLAK 4	 		
+Limit ARMFORT 0	
+Limit ARMFUS 5 		
+Limit ARMFUS_UPGRADE 5
+Limit ARMMMKR 5	 	
+Limit ARMMOHO 10	 			
+Limit ARMTARG 0	 		
+Limit ARMORION 5					
+Limit ARMSTUN 2					
+Limit ARMSMS 1			
+Limit ARMSES 1			
+Limit ARMJAMMER 0			
+Limit ARMEMP 0					
+
+//landmines	
+Limit ARMMINE1 0 	
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0 		
+Limit ARMMINE5 0 	
+Limit ARMMINE6 0 	
+
+//uw buildings tech 1
+Limit ARMFDRAG 0 	
+Limit ARMFHLT 0	 	
+Limit ARMFMKR 0	 		
+Limit ARMFRT 0	 			
+Limit ARMSONAR 0 			
+Limit ARMTIDE 0  		
+Limit ARMTL 0	 			
+Limit ARMUWES 0	 		
+Limit ARMUWMEX 0	
+Limit ARMUWMS 0	 		
+Limit ARMUWMFUS 0	
+Limit ARMFGUARD 0	
+		
+//uw buildings tech 2
+Limit ARMASON 0	 			
+Limit ARMATL 0	 			
+Limit ARMUWFUS 0 		
+Limit ARMUWMOHO 0	
+Limit ARMUWMMM 0	
+
+//factories tech 1 	
+Limit ARMAP 2				
+Limit ARMLAB 2				
+Limit ARMSY 0				
+Limit ARMVP 0					
+Limit ARMHP 3				
+Limit ARMPLAT 0
+Limit ARMFHP 3				
+
+//factories tech 2
+Limit ARMAAP 3				
+Limit ARMALAB 2			
+Limit ARMASY 0				
+Limit ARMAVP 0		
+
+//tech 3 buildings and misc	
+Limit ARMGANT 1			
+Limit ARMOMNI 0						
+Limit ARMSHGEN 0				
+Limit ARMSBERTHA 1
+Limit ARMSBERTHA_UPG 0
+Limit ARMFORGE 1
+Limit ARMSFUS 2			
+Limit ARMSFUS_UPGRADE 2
+Limit ARMMAS 5				
+Limit ARMTECH 1	
+Limit ARMULAB 0						
+Limit ARMVULC 1
+Limit ARMSILO 0 				   
+Limit ARMESY 0				
+Limit ARMGATE 0	 			
+
+//tech 3 and 4 units 
+Limit ARMMECH 3					
+Limit ARMLIFT 0					
+Limit ARMMCV 1		
+Limit ARMSEIGE 1			
+Limit ARMMBT 5				
+Limit ARMSBOMBER 5		
+Limit ARMNOMAD 0				
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMOLYMPUS 0				
+Limit ARMDREAD 0				
+Limit ARMBSUB 0					
+Limit ARMSCAR 0			
+Limit ARMNSUB 0				
+Limit ARMNSUB_SURFACE 0
+Limit ARMFLAG 0
+Limit ARMCRAWL 0
+ 	
+//construction units		
+Limit ARMACA 3		
+Limit ARMACK 2		
+Limit ARMACS 0		
+Limit ARMACV 0	
+Limit ARMCA 5		
+Limit ARMCH 5		
+Limit ARMCK 5		
+Limit ARMCS 0		
+Limit ARMCSA 0		
+Limit ARMCV 0		
+Limit ARMECV 1
+
+//core
+//aircraft tech 1	
+Weight CORSHAD 1					
+Weight CORVENG 3		
+	
+//aircraft tech 2
+Weight CORAPE 6				
+Weight CORHURC 1			
+Weight CORVAMP 2					
+
+//hovercraft
+Weight CORAH 0.5					
+Weight CORFH 4				
+Weight CORMH 3						
+Weight CORSNAP 4
+Weight CORHCAR 0.05				
+	
+//kbot tech 1
+Weight CORAK 1		
+Weight CORCRASH 0.5			
+Weight CORSTORM 3	
+Weight CORTHUD 1		
+
+//kbot tech 2
+Weight CORAMPH 1				
+Weight CORCAN 0.05				
+Weight CORDECOM 1	
+Weight CORFAST 1		
+Weight CORHRK 0.5		
+Weight CORMORT 1			
+Weight CORPYRO 4				
+Weight CORSUMO 0.05				
+		
+// buildings tech 1		
+Weight CORASP 0.05	
+Weight CORGEO 2		
+Weight CORHLT 3		
+Weight CORLLT 0.05				
+Weight CORMEX 5		
+Weight CORPUN 3				
+Weight CORRL 4		
+Weight CORSOLAR 5
+Weight CORGEN 2			
+
+//buildings tech 2		
+Weight CORDOOM 2		
+Weight CORFLAK 3
+Weight CORFUS 5	
+Weight CORFUS_UPGRADE 10
+Weight CORINT 3			
+Weight CORMMKR 0.5		
+Weight CORMOHO 5		
+Weight CORPLAS 1		
+Weight CORSES 0.05		
+Weight CORSMS 0.05		
+Weight CORTOAST 2				
+Weight CORVIPE 2			
+
+//factories tech 1
+Weight CORAP 0.05					
+Weight CORLAB 3		
+Weight CORHP 8
+Weight CORFHP 6						
+
+//factories tech 2
+Weight CORAAP 5		
+Weight CORALAB 5						
+//buildings tech 3 and misc
+Weight CORBUZZ 2					
+Weight CORFORGE 0.05				
+Weight CORGANT 3					
+Weight CORMAS 5				
+Weight CORNOVA 2					
+Weight CORSFUS 5		
+Weight CORSFUS_UPGRADE 10				
+Weight CORTECH 0.05				
+
+//tech 3 and 4 units
+Weight CORBEH 6						
+Weight CORJUGG 2		
+Weight CORKROG 5		
+Weight CORMCV 0.05				
+Weight CORVIND 0.5				
+		
+//construction units
+Weight CORACA 5		
+Weight CORACK 5						
+Weight CORCA 5		
+Weight CORCH 5	
+Weight CORCK 5			
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 0
+Limit CORUWCHEAT 0		
+
+//aircraft tech 1
+Limit CORFINK 0	
+Limit CORSHAD 5		
+Limit CORTITAN 0	
+Limit CORVALK 0		
+Limit CORVENG 15		
+	
+//aircraft tech 2
+Limit CORAPE 15	
+Limit CORAWAC 0			
+Limit CORHURC 5			
+Limit CORVAMP 20				
+
+//seaplanes
+Limit CORHUNT 0					
+Limit CORSEAP 0					
+Limit CORSFIG 0					
+
+//hovercraft
+Limit CORAH 10					
+Limit CORFH 15				
+Limit CORMH 20					
+Limit CORSH 0			
+Limit CORSNAP 15				
+Limit CORTHOVR 0
+Limit CORHCAR 2	
+
+//kbot tech 1
+Limit CORAK 10		
+Limit CORCRASH 5	
+Limit CORSC 0		
+Limit CORSTORM 15	
+Limit CORTHUD 10		
+
+//kbot tech 2
+Limit CORAMPH 20				
+Limit CORCAN 5 				
+Limit CORDECOM 2	
+Limit CORFAST 5		
+Limit CORHRK 10		
+Limit CORMORT 10		
+Limit CORNECRO 0	
+Limit CORPYRO 20		
+Limit CORROACH 0	
+Limit CORSPEC 0		
+Limit CORSPY 0		
+Limit CORSUMO 3		
+Limit CORVOYR 0 	
+
+//vehicles tech 1
+Limit CORFAV 0		
+Limit CORGATOR 0	
+Limit CORLEVLR 0	
+Limit CORMIST 0		
+Limit CORMLV 0					
+Limit CORRAID 0					
+
+//vehicles tech 2
+Limit CORETER 0				
+Limit CORGOL 0		
+Limit CORMABM 0	
+Limit CORMANT 0		
+Limit CORMART 0		
+Limit CORREAP 0		
+Limit CORSEAL 0		
+Limit CORSENT 0		
+Limit CORVRAD 0		
+Limit CORVROC 0		
+
+//ships tech 1
+Limit CORFRIG 0		
+Limit CORPT 0		
+Limit CORROY 0		
+Limit CORSUB 0		
+Limit CORTSHIP 0	
+
+//ships tech 2
+Limit CORARCH 0				
+Limit CORBATS 0					
+Limit CORCARRY 0				
+Limit CORCRUS 0			
+Limit CORMSHIP 0			
+Limit CORSHARK 0				
+Limit CORSJAM 0		
+Limit CORSSUB 0		
+Limit CORSSUB_SURFACE 0
+
+// buildings tech 1
+Limit CORDRAG 0		
+Limit CORASP 2	
+Limit CORASP_UPGRADE 2
+Limit CORESTOR 0	
+Limit CORGEN 10		
+Limit CORGEO 2		
+Limit CORGEO_UPGRADE 2
+Limit CORHLT 7		
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 5		
+Limit CORMAKR 0		
+Limit CORMEX 20		
+Limit CORMSTOR 0	
+Limit CORPUN 3		
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 0		
+Limit CORRL 15		
+Limit CORSOLAR 20	
+Limit CORWIN 0		
+
+//buildings tech 2
+Limit CORARAD 0		
+Limit CORDOOM 2		
+Limit CORFLAK 4		
+Limit CORFMD 0		
+Limit CORFORT 0		
+Limit CORFUS 5		
+Limit CORFUS_UPGRADE 5
+Limit CORINT 2		
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER	0
+Limit CORMMKR 5		
+Limit CORMOHO 10		
+Limit CORPLAS 3		
+Limit CORSES 1		
+Limit CORSMS 1		
+Limit CORTOAST 3	
+Limit CORTRON 0			
+Limit CORVIPE 5		
+
+//landmines		
+Limit CORMINE1 0	
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0	
+Limit CORMINE6 0	
+
+//uw buildings tech 1
+Limit CORFDRAG 0			
+Limit CORFHLT 0			
+Limit CORFMKR 0		
+Limit CORFPUN 0			
+Limit CORFRT 0			
+Limit CORSONAR 0	
+Limit CORTIDE 0			
+Limit CORTL 0				
+Limit CORUWMEX 0	
+Limit CORUWMFUS 0	
+Limit CORUWMS 0	
+Limit CORUWES 0		
+
+//uw buildings tech 2
+Limit CORASON 0		
+Limit CORATL 0		
+Limit CORUWFUS 0	
+Limit CORUWMMM 0	
+Limit CORUWMOHO 0	
+
+//factories tech 1
+Limit CORAP 2					
+Limit CORFHP 3		
+Limit CORHP 3		
+Limit CORLAB 2		
+Limit CORPLAT 0		
+Limit CORSY 0		
+Limit CORVP 0		
+
+//factories tech 2
+Limit CORAAP 3		
+Limit CORALAB 2		
+Limit CORASY 0		
+Limit CORAVP 0		
+
+//buildings tech 3 and misc
+Limit CORBUZZ 1					
+Limit CORESY 0			
+Limit CORFORGE 1				
+Limit CORGANT 1			
+Limit CORGATE 0		
+Limit CORMAS 5				
+Limit CORNOVA 1						
+Limit CORNOVA_UPGRADE 0
+Limit COROMNI 0
+Limit CORSFUS 2		
+Limit CORSFUS_UPGRADE 2
+Limit CORSHGEN 0
+Limit CORSILO 0				
+Limit CORTARG 0				
+Limit CORTECH 1		
+Limit CORULAB 0		
+
+//tech 3 and 4 units
+Limit CORBEH 5				
+Limit CORBSUB 0				
+Limit CORDREAD 0	
+Limit CORJUGG 2		
+Limit CORKROG 2		
+Limit CORMCV 1		
+Limit CORMKL 0		
+Limit CORMUAT 0		
+Limit CORRANCOR 0
+Limit CORVIND 5		
+Limit CORSCAR 0		
+Limit CORSKYNET 0
+Limit CORFLAG 0
+Limit CORDECI 0	
+		
+//construction units
+Limit CORACA 3		
+Limit CORACK 2		
+Limit CORACS 0		
+Limit CORACV 0		
+Limit CORCA 5		
+Limit CORCH 5	
+Limit CORCK 5		
+Limit CORCS 0		
+Limit CORCSA 0		
+Limit CORCV 0		
+Limit CORECV 1
+
+Plan medium
+					
+//arm
+//cheating ai units
+Weight ARMCHEAT 9
+		
+//aircraft tech 1 	
+Weight ARMFIG 3	 		 	
+Weight ARMTHUND 1  
+
+//aircraft tech 2	 	
+Weight ARMBRAWL 6 	
+Weight ARMHAWK 2	
+Weight ARMPNIX 1	 		 	
+
+//hovercraft
+Weight ARMAH 0.5	 	
+Weight ARMANAC 4	 		
+Weight ARMMH 3	 				 	
+Weight ARMLH 4	
+Weight ARMHCAR 0.05				
+
+//kbot tech 1	 	
+Weight ARMHAM 1	 	
+Weight ARMJETH 0.5	
+Weight ARMPW 1	 	
+Weight ARMROCK 3		
+Weight ARMWAR 0.5	 	
+
+//kbot tech 2
+Weight ARMAMPH 1	 			
+Weight ARMDECOM 1 
+Weight ARMFAST 1	 				
+Weight ARMFIDO 4	 				
+Weight ARMMAV 4	 		
+Weight ARMSNIPE 1  				
+Weight ARMZEUS 3	 					
+//buildings tech 1	 	
+Weight ARMGEO 2 			
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 3 			
+Weight ARMHLT 3	 			
+Weight ARMLLT 0.05	 		 		
+Weight ARMMEX 5	 	 				
+Weight ARMRL 4	 			
+Weight ARMSOLAR 5 					
+Weight ARMASP 0.05
+Weight ARMGEN 2	 		 
+ 
+//buildings tech 2
+Weight ARMAMB 2	 			
+Weight ARMANNI 2	 			 	
+Weight ARMBRTHA 3 			
+Weight ARMFLAK 3	 			
+Weight ARMFUS 5 		
+Weight ARMFUS_UPGRADE 10
+Weight ARMMMKR 0.5	 	
+Weight ARMMOHO 5
+Weight ARMORION 2					
+Weight ARMSTUN 0.5					
+Weight ARMSMS 0.05			
+Weight ARMSES 0.05
+Weight ARMEMP 3
+						
+//factories tech 1 	
+Weight ARMAP 0.05				
+Weight ARMLAB 0.05
+Weight ARMHP 8				
+Weight ARMFHP 7				
+
+//factories tech 2
+Weight ARMAAP 5				
+Weight ARMALAB 5						
+//tech 3 buildings and misc	
+Weight ARMGANT 3					
+Weight ARMSBERTHA 2
+Weight ARMFORGE 0.05
+Weight ARMSFUS 5			
+Weight ARMSFUS_UPGRADE 10
+Weight ARMMAS 5				
+Weight ARMTECH 0.05					
+Weight ARMVULC 2					 		
+//tech 3 and 4 units 
+Weight ARMMECH 5					
+Weight ARMMCV 0.05		
+Weight ARMSEIGE 0.05			
+Weight ARMMBT 6				
+Weight ARMSBOMBER 0.5
+
+//construction units		
+Weight ARMACA 5		
+Weight ARMACK 5				
+Weight ARMCA 5		
+Weight ARMCH 5		
+Weight ARMCK 5						
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 2
+Limit ARMUWCHEAT 0	
+
+//aircraft tech 1
+Limit ARMATLAS 0 	
+Limit ARMFIG 25	 	
+Limit ARMPEEP 0
+Limit ARMTHUND 5 	 	
+Limit ARMLANCE 0 
+
+//aircraft tech 2
+Limit ARMAWAC 0	 	
+Limit ARMBRAWL 30 	
+Limit ARMHAWK 30	
+Limit ARMPNIX 5	 	
+
+//seaplanes
+Limit ARMSEAP 0	 	
+Limit ARMSEHAK 0 	
+Limit ARMSFIG 0	 	
+
+//hovercraft
+Limit ARMAH 15	 	
+Limit ARMANAC 25	 		
+Limit ARMMH 30	 				
+Limit ARMSH 0	 			
+Limit ARMTHOVR 0 				
+Limit ARMLH 35
+Limit ARMHCAR 3					
+
+//kbot tech 1
+Limit ARMFLEA 0	 	
+Limit ARMHAM 15	 	
+Limit ARMJETH 10	
+Limit ARMPW 10	 	
+Limit ARMROCK 25		
+Limit ARMWAR 15	 	
+
+//kbot tech 2
+Limit ARMAMPH 30	 				
+Limit ARMASER 0	 			
+Limit ARMDECOM 5 			
+Limit ARMFARK 0	 			
+Limit ARMFAST 10	 				
+Limit ARMFIDO 20	 				
+Limit ARMMARK 0	 				
+Limit ARMMAV 15	 		
+Limit ARMSNIPE 10 				
+Limit ARMSPY 0	 			
+Limit ARMVADER 0 				
+Limit ARMZEUS 25	 			
+Limit ARMSPID 0	 				
+
+//vehicles tech 1
+Limit ARMFAV 0	 				
+Limit ARMFLASH 0 				
+Limit ARMMLV 0	 				
+Limit ARMSAM 0	 		
+Limit ARMSTUMP 0 				
+
+//vehicles tech 2	
+Limit ARMBULL 0	 	
+Limit ARMCROC 0	 		
+Limit ARMJAM 0	 	
+Limit ARMLATNK 0 	
+Limit ARMMANNI 0 	
+Limit ARMMART 0	 	
+Limit ARMMERL 0	 	
+Limit ARMSCAB 0	 	
+Limit ARMSEER 0	 	
+Limit ARMYORK 0	 	
+
+//ships tech 1
+Limit ARMPT 0	 	
+Limit ARMROY 0	 	
+Limit ARMSUB 0	 	
+Limit ARMTSHIP 0 	
+Limit ARMFRIG 0			
+
+//ships tech 2
+Limit ARMAAS 0	 	
+Limit ARMBATS 0	 	
+Limit ARMCARRY 0 	
+Limit ARMCRUS 0	 	
+Limit ARMMSHIP 0 	
+Limit ARMSCRAM 0 	
+Limit ARMSJAM 0	 	
+Limit ARMSUBK 0	 			
+Limit ARMTSUB 0		
+
+//buildings tech 1	
+Limit ARMDRAG 0	 	
+Limit ARMESTOR 0 	
+Limit ARMGEO 4	 			
+Limit ARMGEO_UPGRADE 4
+Limit ARMGUARD 10			
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 10	 			
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 3	 	
+Limit ARMMAKR 0	 		
+Limit ARMMEX 15	 			
+Limit ARMMSTOR 0 			
+Limit ARMRAD 0	 				
+Limit ARMRL 20	 			
+Limit ARMSOLAR 15 		
+Limit ARMWIN 0 	 		
+Limit ARMGEN 10			
+Limit ARMASP 3	 		
+Limit ARMASP_UPGRADE 0 
+ 
+//buildings tech 2
+Limit ARMAMB 10
+Limit ARMAMD 0	 			
+Limit ARMANNI 10	 		
+Limit ARMARAD 0	 			
+Limit ARMBRTHA 5 			
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMFLAK 15	 		
+Limit ARMFORT 0	
+Limit ARMFUS 5		
+Limit ARMFUS_UPGRADE 5
+Limit ARMMMKR 5	 	
+Limit ARMMOHO 10	 			
+Limit ARMTARG 0	 		
+Limit ARMORION 15					
+Limit ARMSTUN 5					
+Limit ARMSMS 2			
+Limit ARMSES 2			
+Limit ARMJAMMER 0			
+Limit ARMEMP 3					
+
+//landmines	
+Limit ARMMINE1 0 	
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0 		
+Limit ARMMINE5 0 	
+Limit ARMMINE6 0 	
+
+//uw buildings tech 1
+Limit ARMFDRAG 0	
+Limit ARMFHLT 0	 	
+Limit ARMFMKR 0	 		
+Limit ARMFRT 0	 			
+Limit ARMSONAR 0 			
+Limit ARMTIDE 0  		
+Limit ARMTL 0	 			
+Limit ARMUWES 0	 		
+Limit ARMUWMEX 0 	
+Limit ARMUWMS 0	 		
+Limit ARMUWMFUS 0	
+Limit ARMFGUARD 0	 		
+
+//uw buildings tech 2
+Limit ARMASON 0	 			
+Limit ARMATL 0	 			
+Limit ARMUWFUS 0 		
+Limit ARMUWMOHO 0	
+Limit ARMUWMMM 0	
+
+//factories tech 1 	
+Limit ARMAP 2				
+Limit ARMLAB 3				
+Limit ARMSY 0				
+Limit ARMVP 0					
+Limit ARMHP 6				
+Limit ARMPLAT 0
+Limit ARMFHP 4				
+
+//factories tech 2
+Limit ARMAAP 5				
+Limit ARMALAB 3			
+Limit ARMASY 0				
+Limit ARMAVP 0		
+
+//tech 3 buildings and misc	
+Limit ARMGANT 3			
+Limit ARMOMNI 0						
+Limit ARMSHGEN 0				
+Limit ARMSBERTHA 2
+Limit ARMSBERTHA_UPG 0
+Limit ARMFORGE 1
+Limit ARMSFUS 3			
+Limit ARMSFUS_UPGRADE 3
+Limit ARMMAS 10				
+Limit ARMTECH 1	
+Limit ARMULAB 0						
+Limit ARMVULC 2
+Limit ARMSILO 0	 				   
+Limit ARMESY 0				
+Limit ARMGATE 0	 			
+
+//tech 3 and 4 units 
+Limit ARMMECH 10					
+Limit ARMLIFT 0					
+Limit ARMMCV 3		
+Limit ARMSEIGE 3			
+Limit ARMMBT 20				
+Limit ARMSBOMBER 10		
+Limit ARMNOMAD 0				
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMOLYMPUS 0				
+Limit ARMDREAD 0				
+Limit ARMBSUB 0					
+Limit ARMSCAR 0			
+Limit ARMNSUB 0				
+Limit ARMNSUB_SURFACE 0
+ 	
+//construction units		
+Limit ARMACA 10		
+Limit ARMACK 5		
+Limit ARMACS 0		
+Limit ARMACV 0	
+Limit ARMCA 10		
+Limit ARMCH 10		
+Limit ARMCK 5		
+Limit ARMCS 0		
+Limit ARMCSA 0		
+Limit ARMCV 0		
+Limit ARMECV 2
+
+//core
+//cheating ai units
+Weight CORCHEAT 9
+
+//aircraft tech 1	
+Weight CORSHAD 1		 			
+Weight CORVENG 3		
+	
+//aircraft tech 2
+Weight CORAPE 6				
+Weight CORHURC 1			
+Weight CORVAMP 2 					
+
+//hovercraft
+Weight CORAH 0.5					
+Weight CORFH 4				
+Weight CORMH 3						
+Weight CORSNAP 4
+Weight CORHCAR 0.05					
+
+//kbot tech 1
+Weight CORAK 1		
+Weight CORCRASH 0.5			
+Weight CORSTORM 3	
+Weight CORTHUD 1		
+
+//kbot tech 2
+Weight CORAMPH 1				
+Weight CORCAN 1				
+Weight CORDECOM 1	
+Weight CORFAST 1		
+Weight CORHRK 2 		
+Weight CORMORT 4			
+Weight CORPYRO 6
+Weight CORSUMO 1				
+		
+// buildings tech 1		
+Weight CORASP 0.05				
+Weight CORGEO 2		
+Weight CORHLT 3		
+Weight CORLLT 0.05				
+Weight CORMEX 5			
+Weight CORPUN 3				
+Weight CORRL 4		
+Weight CORSOLAR	5
+Weight CORGEN 2		
+
+//buildings tech 2		
+Weight CORDOOM 2 		
+Weight CORFLAK 3
+Weight CORFUS 1
+Weight CORFUS_UPGRADE 10		
+Weight CORINT 3			
+Weight CORMMKR 0.5		
+Weight CORMOHO 1		
+Weight CORPLAS 1		
+Weight CORSES 0.05		
+Weight CORSMS 0.05
+Weight CORTRON 3		
+Weight CORTOAST 2			
+Weight CORVIPE 2			
+
+//factories tech 1
+Weight CORAP 0.05					
+Weight CORFHP 7		
+Weight CORHP 8		
+Weight CORLAB 0.05						
+//factories tech 2
+Weight CORAAP 5		
+Weight CORALAB 5						
+//buildings tech 3 and misc
+Weight CORBUZZ 2					
+Weight CORFORGE 0.05				
+Weight CORGANT 3					
+Weight CORMAS 5				
+Weight CORNOVA 2
+Weight CORSFUS 5		
+Weight CORSFUS_UPGRADE 10
+Weight CORTECH 0.05				
+
+//tech 3 and 4 units
+Weight CORBEH 6					
+Weight CORJUGG 2		
+Weight CORKROG 5		
+Weight CORMCV 0.05	
+Weight CORVIND 0.5					
+		
+//construction units
+Weight CORACA 5		
+Weight CORACK 5						
+Weight CORCA 5		
+Weight CORCH 5	
+Weight CORCK 5						
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 2
+Limit CORUWCHEAT 0		
+
+//aircraft tech 1
+Limit CORFINK 0	
+Limit CORSHAD 5		
+Limit CORTITAN 0	
+Limit CORVALK 0		
+Limit CORVENG 25		
+	
+//aircraft tech 2
+Limit CORAPE 30	
+Limit CORAWAC 0			
+Limit CORHURC 5			
+Limit CORVAMP 30		
+
+//seaplanes
+Limit CORHUNT 0					
+Limit CORSEAP 0					
+Limit CORSFIG 0					
+
+//hovercraft
+Limit CORAH 15					
+Limit CORFH 35				
+Limit CORMH 30					
+Limit CORSH 0			
+Limit CORSNAP 25				
+Limit CORTHOVR 0
+Limit CORHCAR 3	
+
+//kbot tech 1
+Limit CORAK 10		
+Limit CORCRASH 10	
+Limit CORSC 0		
+Limit CORSTORM 25	
+Limit CORTHUD 15		
+
+//kbot tech 2
+Limit CORAMPH 30				
+Limit CORCAN 5				
+Limit CORDECOM 10	
+Limit CORFAST 10		
+Limit CORHRK 10		
+Limit CORMORT 25		
+Limit CORNECRO 0	
+Limit CORPYRO 35		
+Limit CORROACH 0	
+Limit CORSPEC 0		
+Limit CORSPY 0		
+Limit CORSUMO 5		
+Limit CORVOYR 0 	
+
+//vehicles tech 1
+Limit CORFAV 0		
+Limit CORGATOR 0	
+Limit CORLEVLR 0	
+Limit CORMIST 0		
+Limit CORMLV 0					
+Limit CORRAID 0					
+
+//vehicles tech 2
+Limit CORETER 0				
+Limit CORGOL 0		
+Limit CORMABM 0	
+Limit CORMANT 0		
+Limit CORMART 0 		
+Limit CORREAP 0 		
+Limit CORSEAL 0		
+Limit CORSENT 0		
+Limit CORVRAD 0		
+Limit CORVROC 0		
+
+//ships tech 1
+Limit CORFRIG 0		
+Limit CORPT 0		
+Limit CORROY 0		
+Limit CORSUB 0		
+Limit CORTSHIP 0	
+
+//ships tech 2
+Limit CORARCH 0				
+Limit CORBATS 0					
+Limit CORCARRY 0				
+Limit CORCRUS 0			
+Limit CORMSHIP 0			
+Limit CORSHARK 0				
+Limit CORSJAM 0		
+Limit CORSSUB 0		
+Limit CORSSUB_SURFACE 0
+
+// buildings tech 1
+Limit CORDRAG 0		
+Limit CORASP 3	
+Limit CORASP_UPGRADE 0
+Limit CORESTOR 0	
+Limit CORGEN 10		
+Limit CORGEO 4		
+Limit CORGEO_UPGRADE 0
+Limit CORHLT 10		
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 3		
+Limit CORMAKR 0		
+Limit CORMEX 15		
+Limit CORMSTOR 0	
+Limit CORPUN 10		
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 0		
+Limit CORRL 20		
+Limit CORSOLAR 15	
+Limit CORWIN 0		
+
+//buildings tech 2
+Limit CORARAD 0		
+Limit CORDOOM 10		
+Limit CORFLAK 15		
+Limit CORFMD 0		
+Limit CORFORT 0		
+Limit CORFUS 5		
+Limit CORFUS_UPGRADE 5
+Limit CORINT 5		
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER 0	 
+Limit CORMMKR 5 		
+Limit CORMOHO 10		
+Limit CORPLAS 5		
+Limit CORSES 2		
+Limit CORSMS 2		
+Limit CORTOAST 10	
+Limit CORTRON 3			
+Limit CORVIPE 15		
+
+//landmines		
+Limit CORMINE1 0	
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0	
+Limit CORMINE6 0	
+
+//uw buildings tech 1
+Limit CORFDRAG 0			
+Limit CORFHLT 0			
+Limit CORFMKR 0		
+Limit CORFPUN 0			
+Limit CORFRT 0			
+Limit CORSONAR 0	
+Limit CORTIDE 0			
+Limit CORTL 0				
+Limit CORUWMEX 0	
+Limit CORUWMFUS 0	
+Limit CORUWMS 0	
+Limit CORUWES 0		
+
+//uw buildings tech 2
+Limit CORASON 0		
+Limit CORATL 0		
+Limit CORUWFUS 0	
+Limit CORUWMMM 0	
+Limit CORUWMOHO 0	
+
+//factories tech 1
+Limit CORAP 2					
+Limit CORFHP 4		
+Limit CORHP 6		
+Limit CORLAB 3		
+Limit CORPLAT 0		
+Limit CORSY 0		
+Limit CORVP 0		
+
+//factories tech 2
+Limit CORAAP 5		
+Limit CORALAB 3		
+Limit CORASY 0		
+Limit CORAVP 0		
+
+//buildings tech 3 and misc
+Limit CORBUZZ 2					
+Limit CORESY 0			
+Limit CORFORGE 1				
+Limit CORGANT 3			
+Limit CORGATE 0		
+Limit CORMAS 10				
+Limit CORNOVA 2						
+Limit CORNOVA_UPGRADE 0
+Limit COROMNI 0						
+Limit CORSFUS 3		
+Limit CORSFUS_UPGRADE 3
+Limit CORSHGEN 0
+Limit CORSILO 0					
+Limit CORTARG 0				
+Limit CORTECH 1		
+Limit CORULAB 0		
+
+//tech 3 and 4 units
+Limit CORBEH 20				
+Limit CORBSUB 0				
+Limit CORDREAD 0	
+Limit CORJUGG 3		
+Limit CORKROG 10		
+Limit CORMCV 3		
+Limit CORMKL 0		
+Limit CORMUAT 0		
+Limit CORRANCOR 0	
+Limit CORVIND 10		
+Limit CORSCAR 0		
+Limit CORSKYNET 0
+Limit CORFLAG 0
+Limit CORDECI 0	
+		
+//construction units
+Limit CORACA 10		
+Limit CORACK 5		
+Limit CORACS 0		
+Limit CORACV 0		
+Limit CORCA 10		
+Limit CORCH 10	
+Limit CORCK 5		
+Limit CORCS 0		
+Limit CORCSA 0		
+Limit CORCV 0		
+Limit CORECV 2
+
+Plan Hard
+	
+//arm
+
+//cheating ai units
+Weight ARMCHEAT 9
+
+//aircraft tech 1 	
+Weight ARMFIG 3	 		 	
+Weight ARMTHUND 1
+
+//aircraft tech 2	 	
+Weight ARMBRAWL 6 	
+Weight ARMHAWK 2	
+Weight ARMPNIX 1	 	
+
+//hovercraft
+Weight ARMAH 0.5	 	
+Weight ARMANAC 4	 		
+Weight ARMMH 3
+Weight ARMLH 4
+Weight ARMHCAR 0.05					
+
+//kbot tech 1	 	
+Weight ARMHAM 1	 	
+Weight ARMJETH 0.5	
+Weight ARMPW 1 	 	
+Weight ARMROCK 3		
+Weight ARMWAR 0.5	 	
+
+//kbot tech 2
+Weight ARMAMPH 1
+Weight ARMDECOM 1
+Weight ARMFAST 1	 				
+Weight ARMFIDO 4
+Weight ARMMAV 4	 		
+Weight ARMSNIPE 1 	 				
+Weight ARMZEUS 3
+
+//buildings tech 1	 	
+Weight ARMGEO 2	 			
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 3			
+Weight ARMHLT 3	 			
+Weight ARMLLT 0.05	 		 		
+Weight ARMMEX 1
+Weight ARMRL 4	 			
+Weight ARMSOLAR 1
+Weight ARMASP 0.05
+Weight ARMGEN 2	 		 
+ 
+//buildings tech 2
+Weight ARMAMB 2	 			
+Weight ARMANNI 2
+Weight ARMBRTHA 3			
+Weight ARMFLAK 3	 			
+Weight ARMFUS 3		
+Weight ARMFUS_UPGRADE 10
+Weight ARMMMKR 0.5	 	
+Weight ARMMOHO 1
+Weight ARMORION 2					
+Weight ARMSTUN 0.5					
+Weight ARMSMS 0.05			
+Weight ARMSES 0.05
+Weight ARMEMP 3						
+
+//factories tech 1 	
+Weight ARMAP 0.05					
+Weight ARMLAB 3						
+Weight ARMHP 8				
+Weight ARMFHP 7				
+
+//factories tech 2
+Weight ARMAAP 9				
+Weight ARMALAB 9
+
+//tech 3 buildings and misc	
+Weight ARMGANT 3				
+Weight ARMSBERTHA 2
+Weight ARMFORGE 0.05
+Weight ARMSFUS 1			
+Weight ARMSFUS_UPGRADE 10
+Weight ARMMAS 1				
+Weight ARMTECH 0.05
+Weight ARMVULC 2
+Weight ARMSILO 2				 			
+//tech 3 and 4 units 
+Weight ARMMECH 5
+Weight ARMMCV 0.05		
+Weight ARMSEIGE 0.05			
+Weight ARMMBT 6				
+Weight ARMSBOMBER 0.5			
+ 	
+//construction units		
+Weight ARMACA 5		
+Weight ARMACK 5					
+Weight ARMCA 5		
+Weight ARMCH 5		
+Weight ARMCK 5
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 5
+Limit ARMUWCHEAT 0	
+
+//aircraft tech 1
+Limit ARMATLAS 0 	
+Limit ARMFIG 15	 	
+Limit ARMPEEP 0
+Limit ARMTHUND 5	 	
+Limit ARMLANCE 0 
+
+//aircraft tech 2
+Limit ARMAWAC 0	 	
+Limit ARMBRAWL 40 	
+Limit ARMHAWK 25	
+Limit ARMPNIX 5	 	
+
+//seaplanes
+Limit ARMSEAP 0	 	
+Limit ARMSEHAK 0 	
+Limit ARMSFIG 0	 	
+
+//hovercraft
+Limit ARMAH 20	 	
+Limit ARMANAC 50	 		
+Limit ARMMH 40	 				
+Limit ARMSH 0	 			
+Limit ARMTHOVR 0 				
+Limit ARMLH 50
+Limit ARMHCAR 5					
+
+//kbot tech 1
+Limit ARMFLEA 0	 	
+Limit ARMHAM 30	 	
+Limit ARMJETH 15	
+Limit ARMPW 5	 	
+Limit ARMROCK 40		
+Limit ARMWAR 10	 	
+
+//kbot tech 2
+Limit ARMAMPH 40	 				
+Limit ARMASER 0	 			
+Limit ARMDECOM 10 			
+Limit ARMFARK 0	 			
+Limit ARMFAST 20	 				
+Limit ARMFIDO 40	 				
+Limit ARMMARK 0	 				
+Limit ARMMAV 10	 		
+Limit ARMSNIPE 20				
+Limit ARMSPY 0	 			
+Limit ARMVADER 0  				
+Limit ARMZEUS 30	 			
+Limit ARMSPID 0	 				
+
+//vehicles tech 1
+Limit ARMFAV 0	 				
+Limit ARMFLASH 0 				
+Limit ARMMLV 0	 				
+Limit ARMSAM 0	 		
+Limit ARMSTUMP 0  				
+
+//vehicles tech 2	
+Limit ARMBULL 0	 	
+Limit ARMCROC 0	 		
+Limit ARMJAM 0	 	
+Limit ARMLATNK 0 	
+Limit ARMMANNI 0 	
+Limit ARMMART 0	 	
+Limit ARMMERL 0	 	
+Limit ARMSCAB 0	 	
+Limit ARMSEER 0	 	
+Limit ARMYORK 0	 	
+
+//ships tech 1
+Limit ARMPT 0	 	
+Limit ARMROY 0	 	
+Limit ARMSUB 0	 	
+Limit ARMTSHIP 0 	
+Limit ARMFRIG 0			
+
+//ships tech 2
+Limit ARMAAS 0	 	
+Limit ARMBATS 0	 	
+Limit ARMCARRY 0 	
+Limit ARMCRUS 0	 	
+Limit ARMMSHIP 0 	
+Limit ARMSCRAM 0 	
+Limit ARMSJAM 0	 	
+Limit ARMSUBK 0	 			
+Limit ARMTSUB 0		
+
+//buildings tech 1	
+Limit ARMDRAG 0	 	
+Limit ARMESTOR 0	
+Limit ARMGEO 3	 			
+Limit ARMGEO_UPGRADE 3
+Limit ARMGUARD  15			
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 5	 			
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 3	 	
+Limit ARMMAKR 0	 		
+Limit ARMMEX 10	 			
+Limit ARMMSTOR 0 			
+Limit ARMRAD 0	 				
+Limit ARMRL 20	 			
+Limit ARMSOLAR 10 		
+Limit ARMWIN 0 	 		
+Limit ARMGEN 5			
+Limit ARMASP 3	 		
+Limit ARMASP_UPGRADE 0 
+ 
+//buildings tech 2
+Limit ARMAMB 20
+Limit ARMAMD 0	 			
+Limit ARMANNI 25	 		
+Limit ARMARAD 0	 			
+Limit ARMBRTHA 10 			
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMFLAK 25	 		
+Limit ARMFORT 0	
+Limit ARMFUS 10		
+Limit ARMFUS_UPGRADE 10
+Limit ARMMMKR 5 	
+Limit ARMMOHO 15	 			
+Limit ARMTARG 0	 		
+Limit ARMORION 20					
+Limit ARMSTUN 15					
+Limit ARMSMS 3			
+Limit ARMSES 3			
+Limit ARMJAMMER 0			
+Limit ARMEMP 10					
+
+//landmines	
+Limit ARMMINE1 0 	
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0 		
+Limit ARMMINE5 0 	
+Limit ARMMINE6 0 	
+
+//uw buildings tech 1
+Limit ARMFDRAG 0 	
+Limit ARMFHLT 0	 	
+Limit ARMFMKR 0	 		
+Limit ARMFRT 0	 			
+Limit ARMSONAR 0 			
+Limit ARMTIDE 0   		
+Limit ARMTL 0	 			
+Limit ARMUWES 0	 		
+Limit ARMUWMEX 0 	
+Limit ARMUWMS 0	 		
+Limit ARMUWMFUS	0
+Limit ARMFGUARD	0		
+
+//uw buildings tech 2
+Limit ARMASON 0	 			
+Limit ARMATL 0	 			
+Limit ARMUWFUS 0 		
+Limit ARMUWMOHO 0	
+Limit ARMUWMMM 0	
+
+//factories tech 1 	
+Limit ARMAP 2				
+Limit ARMLAB 3				
+Limit ARMSY 0				
+Limit ARMVP 0					
+Limit ARMHP 10				
+Limit ARMPLAT 0
+Limit ARMFHP 6				
+
+//factories tech 2
+Limit ARMAAP 8				
+Limit ARMALAB 4			
+Limit ARMASY 0				
+Limit ARMAVP 0		
+
+//tech 3 buildings and misc	
+Limit ARMGANT 5			
+Limit ARMOMNI 0						
+Limit ARMSHGEN 0				
+Limit ARMSBERTHA 5
+Limit ARMSBERTHA_UPG 0
+Limit ARMFORGE 1
+Limit ARMSFUS 5			
+Limit ARMSFUS_UPGRADE 5
+Limit ARMMAS 10				
+Limit ARMTECH 1	
+Limit ARMULAB 0						
+Limit ARMVULC 5
+Limit ARMSILO 3	 				   
+Limit ARMESY 0				
+Limit ARMGATE 0	 			
+
+//tech 3 and 4 units 
+Limit ARMMECH 30					
+Limit ARMLIFT 0					
+Limit ARMMCV 3		
+Limit ARMSEIGE 5			
+Limit ARMMBT 40				
+Limit ARMSBOMBER 30		
+Limit ARMNOMAD 0				
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMOLYMPUS 0				
+Limit ARMDREAD 0				
+Limit ARMBSUB 0					
+Limit ARMSCAR 0			
+Limit ARMNSUB 0				
+Limit ARMNSUB_SURFACE 0
+Limit ARMFLAG 0
+Limit ARMCRAWL 0
+ 	
+//construction units		
+Limit ARMACA 15		
+Limit ARMACK 10		
+Limit ARMACS 0		
+Limit ARMACV 0	
+Limit ARMCA 15		
+Limit ARMCH 15		
+Limit ARMCK 10		
+Limit ARMCS 0		
+Limit ARMCSA 0		
+Limit ARMCV 0		
+Limit ARMECV 3
+
+//core
+//cheating ai units
+Weight CORCHEAT 9
+
+//aircraft tech 1	
+Weight CORSHAD 1				
+Weight CORVENG 3		
+	
+//aircraft tech 2
+Weight CORAPE 6				
+Weight CORHURC 1			
+Weight CORVAMP 2
+
+//hovercraft
+Weight CORAH 0.5					
+Weight CORFH 4				
+Weight CORMH 3
+Weight CORSNAP 4
+Weight CORHCAR 0.05					
+
+//kbot tech 1
+Weight CORAK 1		
+Weight CORCRASH 0.5			
+Weight CORSTORM 3	
+Weight CORTHUD 1		
+
+//kbot tech 2
+Weight CORAMPH 1				
+Weight CORCAN 0.05				
+Weight CORDECOM 1	
+Weight CORFAST 1		
+Weight CORHRK 0.5		
+Weight CORMORT 1			
+Weight CORPYRO 4
+Weight CORSUMO 0.05				
+
+// buildings tech 1		
+Weight CORASP 0.05				
+Weight CORGEO 2		
+Weight CORHLT 3		
+Weight CORLLT 0.05				
+Weight CORMEX 1			
+Weight CORPUN 3				
+Weight CORRL 4		
+Weight CORSOLAR	1
+Weight CORGEN 2		
+
+//buildings tech 2		
+Weight CORDOOM 2		
+Weight CORFLAK 3
+Weight CORFUS 3		
+Weight CORFUS_UPGRADE 10
+Weight CORINT 3			
+Weight CORMMKR 0.5		
+Weight CORMOHO 1		
+Weight CORPLAS 1		
+Weight CORSES 0.05		
+Weight CORSMS 0.05		
+Weight CORTOAST 2	
+Weight CORTRON 3			
+Weight CORVIPE 2			
+
+//factories tech 1
+Weight CORAP 0.05					
+Weight CORFHP 7		
+Weight CORHP 8		
+Weight CORLAB 3				
+
+//factories tech 2
+Weight CORAAP 9		
+Weight CORALAB 9
+
+//buildings tech 3 and misc
+Weight CORBUZZ 2
+Weight CORFORGE 0.05				
+Weight CORGANT 3					
+Weight CORMAS 1				
+Weight CORNOVA 2
+Weight CORSFUS 1		
+Weight CORSFUS_UPGRADE 10
+Weight CORSILO 2
+Weight CORTECH 0.05				
+
+//tech 3 and 4 units
+Weight CORBEH 6					
+Weight CORJUGG 2		
+Weight CORKROG 5		
+Weight CORMCV 0.05
+Weight CORVIND 0.5					
+		
+//construction units
+Weight CORACA 5		
+Weight CORACK 5						
+Weight CORCA 5		
+Weight CORCH 5	
+Weight CORCK 5						
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 5
+Limit CORUWCHEAT 0		
+
+//aircraft tech 1
+Limit CORFINK 0	
+Limit CORSHAD 5		
+Limit CORTITAN 0	
+Limit CORVALK 0		
+Limit CORVENG 15		
+	
+//aircraft tech 2
+Limit CORAPE 40	
+Limit CORAWAC 0			
+Limit CORHURC 5			
+Limit CORVAMP 25				
+
+//seaplanes
+Limit CORHUNT 0					
+Limit CORSEAP 0					
+Limit CORSFIG 0					
+
+//hovercraft
+Limit CORAH 20					
+Limit CORFH 50				
+Limit CORMH 40					
+Limit CORSH 0			
+Limit CORSNAP 50				
+Limit CORTHOVR 0
+Limit CORHCAR 5	
+
+//kbot tech 1
+Limit CORAK 5		
+Limit CORCRASH 15	
+Limit CORSC 0		
+Limit CORSTORM 40	
+Limit CORTHUD 30		
+
+//kbot tech 2
+Limit CORAMPH 40				
+Limit CORCAN 5 				
+Limit CORDECOM 10	
+Limit CORFAST 10		
+Limit CORHRK 5 		
+Limit CORMORT 30		
+Limit CORNECRO 0	
+Limit CORPYRO 50		
+Limit CORROACH 0	
+Limit CORSPEC 0		
+Limit CORSPY 0		
+Limit CORSUMO 5		
+Limit CORVOYR 0 	
+
+//vehicles tech 1
+Limit CORFAV 0		
+Limit CORGATOR 0	
+Limit CORLEVLR 0	
+Limit CORMIST 0		
+Limit CORMLV 0					
+Limit CORRAID 0					
+
+//vehicles tech 2
+Limit CORETER 0				
+Limit CORGOL 0		
+Limit CORMABM 0	
+Limit CORMANT 0		
+Limit CORMART 0		
+Limit CORREAP 0		
+Limit CORSEAL 0		
+Limit CORSENT 0		
+Limit CORVRAD 0		
+Limit CORVROC 0		
+
+//ships tech 1
+Limit CORFRIG 0		
+Limit CORPT 0		
+Limit CORROY 0		
+Limit CORSUB 0		
+Limit CORTSHIP 0	
+
+//ships tech 2
+Limit CORARCH 0				
+Limit CORBATS 0					
+Limit CORCARRY 0				
+Limit CORCRUS 0			
+Limit CORMSHIP 0			
+Limit CORSHARK 0				
+Limit CORSJAM 0		
+Limit CORSSUB 0		
+Limit CORSSUB_SURFACE 0
+
+// buildings tech 1
+Limit CORDRAG 0		
+Limit CORASP 3	
+Limit CORASP_UPGRADE 0
+Limit CORESTOR 0	
+Limit CORGEN 5		
+Limit CORGEO 3		
+Limit CORGEO_UPGRADE 0
+Limit CORHLT 5		
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 3		
+Limit CORMAKR 0		
+Limit CORMEX 10		
+Limit CORMSTOR 0	
+Limit CORPUN 15		
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 0		
+Limit CORRL 20		
+Limit CORSOLAR 10	
+Limit CORWIN 0		
+
+//buildings tech 2
+Limit CORARAD 0		
+Limit CORDOOM 30		
+Limit CORFLAK 25		
+Limit CORFMD 0		
+Limit CORFORT 0		
+Limit CORFUS 10		
+Limit CORFUS_UPGRADE 10
+Limit CORINT 10		
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER 0	
+Limit CORMMKR 5	
+Limit CORMOHO 15		
+Limit CORPLAS 5		
+Limit CORSES 3		
+Limit CORSMS 3		
+Limit CORTOAST 20	
+Limit CORTRON 10		
+Limit CORVIPE 20		
+
+//landmines		
+Limit CORMINE1 0	
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0	
+Limit CORMINE6 0	
+
+//uw buildings tech 1
+Limit CORFDRAG 0			
+Limit CORFHLT 0			
+Limit CORFMKR 0		
+Limit CORFPUN 0			
+Limit CORFRT 0			
+Limit CORSONAR 0	
+Limit CORTIDE 0			
+Limit CORTL 0				
+Limit CORUWMEX 0	
+Limit CORUWMFUS 0	
+Limit CORUWMS 0	
+Limit CORUWES 0		
+
+//uw buildings tech 2
+Limit CORASON 0		
+Limit CORATL 0		
+Limit CORUWFUS 0	
+Limit CORUWMMM 0	
+Limit CORUWMOHO 0	
+
+//factories tech 1
+Limit CORAP 2					
+Limit CORFHP 6		
+Limit CORHP 10		
+Limit CORLAB 3		
+Limit CORPLAT 0		
+Limit CORSY 0		
+Limit CORVP 0		
+
+//factories tech 2
+Limit CORAAP 8 		
+Limit CORALAB 4		
+Limit CORASY 0		
+Limit CORAVP 0		
+
+//buildings tech 3 and misc
+Limit CORBUZZ 5					
+Limit CORESY 0			
+Limit CORFORGE 1				
+Limit CORGANT 5			
+Limit CORGATE 0		
+Limit CORMAS 10				
+Limit CORNOVA 5						
+Limit CORNOVA_UPGRADE 0
+Limit COROMNI 0
+Limit CORSFUS 5		
+Limit CORSFUS_UPGRADE 5
+Limit CORSHGEN 0
+Limit CORSILO 3					
+Limit CORTARG 0				
+Limit CORTECH 1		
+Limit CORULAB 0		
+
+//tech 3 and 4 units
+Limit CORBEH 40
+Limit CORBSUB 0				
+Limit CORDREAD 0	
+Limit CORJUGG 5		
+Limit CORKROG 20		
+Limit CORMCV 3		
+Limit CORMKL 0		
+Limit CORMUAT 0		
+Limit CORRANCOR	0
+Limit CORVIND 20		
+Limit CORSCAR 0		
+Limit CORSKYNET 0
+Limit CORFLAG 0
+Limit CORDECI 0	
+		
+//construction units
+Limit CORACA 15		
+Limit CORACK 10
+Limit CORACS 0		
+Limit CORACV 0
+Limit CORCA 15
+Limit CORCH 15	
+Limit CORCK 10
+Limit CORCS 0
+Limit CORCSA 0		
+Limit CORCV 0
+Limit CORECV 3                                    

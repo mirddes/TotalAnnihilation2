@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Flooded Glaciers;
+	missiondescription=12 X 10 Icy ocean battle.;
+	planet=Ice;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2200;
+	maxwindspeed=4000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 3;
+	size=12 x 10;
+	memory=16 mb;
+	useonlyunits=Flooded Glaciers.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaBattle;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=hailstorm;
+		MeteorRadius=2800;
+		MeteorDensity=400;
+		MeteorDuration=35;
+		MeteorInterval=52;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=5040;
+				ZPos=2144;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=960;
+				ZPos=768;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=2480;
+				ZPos=3744;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=4160;
+				ZPos=464;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=416;
+				ZPos=2480;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=3248;
+				ZPos=4304;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=1920;
+				ZPos=2048;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=3456;
+				ZPos=2096;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=3104;
+				ZPos=560;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=3568;
+				ZPos=4720;
+				}
+			}
+		}
+	}

@@ -1,0 +1,439 @@
+[ArchiTree01]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=46;
+	filename=architrees;
+	seqname=palm01;
+	seqnameshad=palm01shad;
+	seqnamereclamate=palm01rec;
+    	energy=250;
+
+	seqnameburn=palm01flame;
+	seqnameburnshad=;
+	featureburnt=architree01crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree01crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=46;
+	filename=architrees;
+
+	seqname=palm01crisp;
+	seqnameshad=palm01crispshad;
+	seqnamereclamate=palm01crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree02]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=architrees;
+	seqname=palm02;
+	seqnameshad=palm02shad;
+	seqnamereclamate=palm02rec;
+    	energy=250;
+
+	seqnameburn=palm02flames;
+	seqnameburnshad=;
+	featureburnt=architree02crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree02crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=architrees;
+
+	seqname=palm02crisp;
+	seqnameshad=palm02crispshad;
+	seqnamereclamate=palm02crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree03]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=55;
+	filename=architrees;
+	seqname=palm03;
+	seqnameshad=palm03shad;
+	seqnamereclamate=palm03rec;
+    	energy=250;
+
+	seqnameburn=palm03flame;
+	seqnameburnshad=;
+	featureburnt=architree03crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ArchiTree03crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=55;
+	filename=architrees;
+
+	seqname=palm03crisp;
+	seqnameshad=palm03crispshad;
+	seqnamereclamate=palm03crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree04]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=architrees;
+	seqname=palm04;
+	seqnameshad=palm04shad;
+	seqnamereclamate=palm04rec;
+    	energy=250;
+
+	seqnameburn=palm04flame;
+	seqnameburnshad=;
+	featureburnt=architree04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ArchiTree04crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=architrees;
+
+	seqname=palm04crisp;
+	seqnameshad=palm04crispshad;
+	seqnamereclamate=palm04crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree05]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=56;
+	filename=architrees;
+	seqname=palm05;
+	seqnameshad=palm05shad;
+	seqnamereclamate=palm05rec;
+  	energy=250;
+
+	seqnameburn=palm05flame;
+	seqnameburnshad=;
+	featureburnt=architree05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ArchiTree05crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=56;
+	filename=architrees;
+
+	seqname=palm05crisp;
+	seqnameshad=palm05crispshad;
+	seqnamereclamate=palm05crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[ArchiTree06]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=architrees;
+	seqname=palm06;
+	seqnameshad=palm06shad;
+	seqnamereclamate=palm06rec;
+    	energy=250;
+
+	seqnameburn=palm06flame;
+	seqnameburnshad=;
+	featureburnt=architree06crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+[ArchiTree06crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=architrees;
+
+	seqname=palm06crisp;
+	seqnameshad=palm06crispshad;
+	seqnamereclamate=palm06crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}

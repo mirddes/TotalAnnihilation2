@@ -1,0 +1,7 @@
+MISSION 9.1CORE
+Errichten Sie eine Basis. Bauen Sie eine Schiffswert. Verteidigen Sie gegen alle Versuche der ARM, sie von Ihrem Brückenkopf auf Aqueous Minor zu vertreiben.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Der Einsatz von Marineeinheiten ist auf Aqueous Minor der effektivste Weg (&R89%,Irrtum:3%&). Der Bau von schweren Gefechtsstellungen im Bereich der Küste hilft Ihnen bei der Verteidigung Ihrer dortigen Basis (&R73%,Irrtum:7%&).
+
+WALTEN SIE IHRES AMTES.

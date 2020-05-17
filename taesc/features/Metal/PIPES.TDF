@@ -1,0 +1,832 @@
+[Pipe01]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=5;
+	filename=pipes;
+	seqname=pipe01;
+	seqnameshad=pipe01shad;
+	seqnamereclamate=pipe01rec;
+	metal=75;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe01hole;
+	featuredead=pipe01hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe01Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=0;
+	filename=holes;
+	seqname=pipe01scar;
+	seqnameshad=;
+
+	featuredead=pipe01hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe02]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=5;
+	filename=pipes;
+	seqname=pipe02;
+	seqnameshad=pipe02shad;
+	seqnamereclamate=pipe02rec;
+	metal=50;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe02hole;
+	featuredead=pipe02hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe02Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=0;
+	filename=holes;
+	seqname=pipe02scar;
+	seqnameshad=;
+
+	featuredead=pipe02hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe03]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=8;
+	footprintz=5;
+	height=5;
+	filename=pipes;
+	seqname=pipe03;
+	seqnameshad=pipe03shad;
+	seqnamereclamate=pipe03rec;
+	metal=50;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe03hole;
+	featuredead=pipe03hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe03Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=8;
+	footprintz=5;
+	height=0;
+	filename=holes;
+	seqname=pipe03scar;
+	seqnameshad=;
+
+	featuredead=pipe03hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe04]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=1;
+	footprintz=9;
+	height=5;
+	filename=pipes;
+	seqname=pipe04;
+	seqnameshad=pipe04shad;
+	seqnamereclamate=pipe04rec;
+	metal=50;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe04hole;
+	featuredead=pipe04hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe04Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=1;
+	footprintz=9;
+	height=0;
+	filename=holes;
+	seqname=pipe04scar;
+	seqnameshad=;
+
+	featuredead=pipe04hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe05]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=pipes;
+	seqname=pipe05;
+	seqnameshad=pipe05shad;
+	seqnamereclamate=pipe05rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe05hole;
+	featuredead=pipe05hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe05Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=holes;
+	seqname=pipe05scar;
+	seqnameshad=;
+
+	featuredead=pipe05hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe06]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=5;
+	filename=pipes;
+	seqname=pipe06;
+	seqnameshad=pipe06shad;
+	seqnamereclamate=pipe06rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe06hole;
+	featuredead=pipe06hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe06Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=holes;
+	seqname=pipe06scar;
+	seqnameshad=;
+
+	featuredead=pipe06hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe07]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=5;
+	filename=pipes;
+	seqname=pipe07;
+	seqnameshad=pipe07shad;
+	seqnamereclamate=pipe07rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe07hole;
+	featuredead=pipe07hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe07Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=holes;
+	seqname=pipe07scar;
+	seqnameshad=;
+
+	featuredead=pipe07hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe08]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=3;
+	footprintz=7;
+	height=5;
+	filename=pipes;
+	seqname=pipe08;
+	seqnameshad=pipe08shad;
+	seqnamereclamate=pipe08rec;
+	metal=25;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe08hole;
+	featuredead=pipe08hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe08Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=3;
+	footprintz=7;
+	height=0;
+	filename=holes;
+	seqname=pipe08scar;
+	seqnameshad=;
+
+	featuredead=pipe08hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe09]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=7;
+	footprintz=2;
+	height=5;
+	filename=pipes;
+	seqname=pipe09;
+	seqnameshad=pipe09shad;
+	seqnamereclamate=pipe09rec;
+	metal=25;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe09hole;
+	featuredead=pipe09hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe09Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=7;
+	footprintz=2;
+	height=0;
+	filename=holes;
+	seqname=pipe09scar;
+	seqnameshad=;
+
+	featuredead=pipe09hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe10]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=7;
+	footprintz=2;
+	height=5;
+	filename=pipes;
+	seqname=pipe10;
+	seqnameshad=pipe10shad;
+	seqnamereclamate=pipe10rec;
+	metal=25;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe10hole;
+	featuredead=pipe10hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe10Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=7;
+	footprintz=2;
+	height=0;
+	filename=holes;
+	seqname=pipe10scar;
+	seqnameshad=;
+
+	featuredead=pipe10hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe11]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=pipes;
+	seqname=pipe11;
+	seqnameshad=pipe11shad;
+	seqnamereclamate=pipe11rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe11hole;
+	featuredead=pipe11hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe11Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=holes;
+	seqname=pipe11scar;
+	seqnameshad=;
+
+	featuredead=pipe11hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe12]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=5;
+	filename=pipes;
+	seqname=pipe12;
+	seqnameshad=pipe12shad;
+	seqnamereclamate=pipe12rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe12hole;
+	featuredead=pipe12hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe12Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=holes;
+	seqname=pipe12scar;
+	seqnameshad=;
+
+	featuredead=pipe12hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe13]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=7;
+	footprintz=5;
+	height=5;
+	filename=pipes;
+	seqname=pipe13;
+	seqnameshad=pipe13shad;
+	seqnamereclamate=pipe13rec;
+	metal=50;
+
+	seqnamedie=bigboom;
+	featurereclamate=pipe13hole;
+	featuredead=pipe13hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe13Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=7;
+	footprintz=5;
+	height=0;
+	filename=holes;
+	seqname=pipe13scar;
+	seqnameshad=;
+
+	featuredead=pipe13hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe14]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=5;
+	filename=pipes;
+	seqname=pipe14;
+	seqnameshad=pipe14shad;
+	seqnamereclamate=pipe14rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe14hole;
+	featuredead=pipe14hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe14Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=0;
+	filename=holes;
+	seqname=pipe14scar;
+	seqnameshad=;
+
+	featuredead=pipe14hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe15]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=5;
+	filename=pipes;
+	seqname=pipe15;
+	seqnameshad=pipe15shad;
+	seqnamereclamate=pipe15rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe15hole;
+	featuredead=pipe15hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe15Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=holes;
+	seqname=pipe15scar;
+	seqnameshad=;
+
+	featuredead=pipe15hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe16]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=2;
+	footprintz=4;
+	height=5;
+	filename=pipes;
+	seqname=pipe16;
+	seqnameshad=pipe16shad;
+	seqnamereclamate=pipe16rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe16hole;
+	featuredead=pipe16hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe16Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=2;
+	footprintz=4;
+	height=0;
+	filename=holes;
+	seqname=pipe16scar;
+	seqnameshad=;
+
+	featuredead=pipe16hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Pipe17]
+	{
+	world=Metal;
+	description=Pipe;
+	category=pipes;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=5;
+	filename=pipes;
+	seqname=pipe17;
+	seqnameshad=pipe17shad;
+	seqnamereclamate=pipe17rec;
+	metal=25;
+
+	seqnamedie=smallboom;
+	featurereclamate=pipe17hole;
+	featuredead=pipe17hole;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Pipe17Hole]
+	{
+	world=Metal;
+	description=Hole;
+	category=holes;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=0;
+	filename=holes;
+	seqname=pipe17scar;
+	seqnameshad=;
+
+	featuredead=pipe17hole;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

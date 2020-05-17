@@ -1,0 +1,35 @@
+[CORXSY_dead]
+{
+world=All Worlds;
+description=Capital Shipyard Wreckage;
+category=core_corpses;
+object=CORXSY_dead;
+featuredead=CORXSY_heap;
+footprintx=9;
+footprintz=11;
+height=6;
+blocking=0;
+hitdensity=100;
+metal=7562;
+damage=7030;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORXSY_heap]
+{
+world=All Worlds;
+description=Capital Shipyard Wreckage;
+category=heaps;
+object=7x7c;
+footprintx=7;
+footprintz=7;
+height=6;
+blocking=0;
+hitdensity=100;
+metal=3781;
+damage=7600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

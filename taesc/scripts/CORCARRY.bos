@@ -1,0 +1,194 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, pad1, pad2, dish, wake1, wake2, silo, collar,
+       wedge, anti, beam;
+
+static-var  Static_Var_1, Static_Var_2;
+
+// Signal definitions
+#define SIG_MOVE			2
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	Static_Var_2 = 0;
+	start-script SmokeUnit();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+}
+
+Activate()
+{
+	set INBUILDSTANCE to 1;
+	spin dish around y-axis speed <60.010989>;
+}
+
+Deactivate()
+{
+	set INBUILDSTANCE to 0;
+	stop-spin dish around y-axis;
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		emit-sfx 2 from wake1;
+		emit-sfx 2 from wake2;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+StartBuilding(Func_Var_1)
+{
+	Static_Var_2 = Func_Var_1;
+//	start-script RequestState(0);
+}
+
+StopBuilding()
+{
+//	start-script RequestState(1);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+}
+
+TargetHeading(Func_Var_1)
+{
+	Static_Var_2 = 0 - Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+QueryLandingPad(Func_Var_1, Func_Var_2)
+{
+	Func_Var_1 = 1;
+	Func_Var_2 = 2;
+	Static_Var_1 = !Static_Var_1;
+	if( Static_Var_1 )
+	{
+		Func_Var_1 = 2;
+		Func_Var_2 = 1;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	return (1);
+}
+
+FirePrimary()
+{
+	sleep 150;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = anti;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = anti;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dish type BITMAPONLY | BITMAP1;
+		explode pad1 type BITMAPONLY | BITMAP1;
+		explode pad2 type BITMAPONLY | BITMAP1;
+		explode wake1 type BITMAPONLY | BITMAP5;
+		explode wake2 type BITMAPONLY | BITMAP1;
+		explode silo type BITMAPONLY | BITMAP1;
+		explode collar type BITMAPONLY | BITMAP1;
+		explode wedge type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dish type SHATTER | BITMAP1;
+		explode pad1 type FALL | BITMAP1;
+		explode pad2 type FALL | BITMAP1;
+		explode wake1 type FALL | BITMAP5;
+		explode wake2 type FALL | BITMAP1;
+		explode silo type SHATTER | BITMAP1;
+		explode collar type FALL | BITMAP1;
+		explode wedge type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dish type SHATTER | BITMAP1;
+		explode pad1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pad2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode silo type SHATTER | BITMAP1;
+		explode collar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wedge type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode dish type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode pad1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pad2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode silo type SHATTER | BITMAP1;
+	explode collar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wedge type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

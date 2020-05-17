@@ -1,0 +1,310 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  Flare1, Flare2, Flare3, Box, counteraim, base, wake1, wake2, 
+       wake3, wake4, wake5, wake6, wake7, wake8, GP;
+
+static-var On_1, Launcher_2, Depth_3, ReqState_4, Busy_5, AA_6, delay_7;
+
+RequestState()
+{
+	while( !Busy_5 and ReqState_4 != On_1 )
+	{
+		Busy_5 = 1;
+		if( ReqState_4 )
+		{
+			move Box to y-axis [0] now;
+			move Box to y-axis [1.95] speed [14];
+			move counteraim to z-axis [0] now;
+			move counteraim to z-axis [-0.60] speed [4];
+			turn base to x-axis <0> now;
+			turn base to x-axis <-2> speed <15>;
+			turn Box to x-axis <0> now;
+			turn Box to x-axis <23.01> speed <174>;
+			sleep 135;
+			move Box to y-axis [2.90] speed [6];
+			turn base to x-axis <0> speed <15>;
+			turn Box to x-axis <0> speed <172>;
+			sleep 137;
+			move Box to y-axis [3.35] speed [3];
+			move counteraim to z-axis [2.23] speed [20];
+			sleep 144;
+			On_1 = 1;
+		}
+		if( !ReqState_4  )
+		{
+			On_1 = 0;
+		move Box to y-axis [3.35] now;
+		move Box to y-axis [2.90] speed [3];
+		move counteraim to z-axis [2.23] now;
+		move counteraim to z-axis [-0.60] speed [18];
+		turn Box to x-axis <0> now;
+		sleep 150;
+		move Box to y-axis [1.95] speed [6];
+		turn base to x-axis <-2> speed <13>;
+		turn Box to x-axis <23.01> speed <157>;
+		sleep 150;
+		move Box to y-axis [0] speed [12];
+		move counteraim to z-axis [0] speed [3];
+		turn base to x-axis <0> speed <13>;
+		turn Box to x-axis <0> speed <156>;
+		sleep 160;
+		}
+		Busy_5 = 0;
+	}
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 4000;
+	AA_6 = 0;
+	set-signal-mask 0;
+	turn Box to y-axis (0 - get XZ_ATAN(0)) speed <250>;
+	ReqState_4 = 0;
+	start-script RequestState();
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	turn base to z-axis Func_Var_2 speed <105>;
+	turn base to x-axis Func_Var_1 speed <105>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <30>;
+	turn base to x-axis <0> speed <30>;
+	return (0);
+}
+
+StartMoving(count)
+{
+	signal 8;
+	set-signal-mask 8;
+	count = 0;
+	while( TRUE )
+	{
+		if( depth_3 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+		}
+		while( count < 9 )
+		{
+			turn gp to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <48>;
+			turn counteraim to y-axis get XZ_ATAN(0) speed <48>;
+			if( !On_1 )
+			{
+				turn box to y-axis (0 - get XZ_ATAN(0)) speed <48>;
+			}
+			++count;
+			sleep 33;
+		}
+		count = 0;
+	}
+	return (0);
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Depth_3 = Func_Var_1;
+	return (0);
+}
+
+Create()
+{
+	On_1 = 0;
+	Launcher_2 = 0;
+	ReqState_4 = 0;
+	Busy_5 = 0;
+	AA_6 = 0;
+	Delay_7 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+		turn gp to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+		turn counteraim to y-axis get XZ_ATAN(0) NOW;
+		turn box to y-axis (0 - get XZ_ATAN(0)) NOW;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	AA_6 = 1;
+	while( !On_1 )
+	{
+		ReqState_4 = 1;
+		start-script RequestState();
+		sleep 300;
+	}
+	signal 2;
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( delay_7 )
+	{
+		sleep 200;
+	}
+	turn Box to y-axis ( heading - get XZ_ATAN(0)) speed <270>;
+	wait-for-turn Box around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	while( !On_1 )
+	{
+		ReqState_4 = 1;
+		start-script RequestState();
+		sleep 300;
+	}
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	while( AA_6 or Delay_7 )
+	{
+		sleep 200;
+	}
+	turn Box to y-axis ( heading - get XZ_ATAN(0)) speed <270>;
+	wait-for-turn Box around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	delay_7 = 1;	
+	++Launcher_2;
+	if( Launcher_2 > 2 )
+	{
+		Launcher_2 = 0;
+		sleep 1500;
+	}
+	sleep 1800;
+	delay_7 = 0;
+	return (0);
+}
+
+FirePrimary()
+{	
+	delay_7 = 1;
+	++Launcher_2;
+	if( Launcher_2 > 2 )
+	{
+		Launcher_2 = 0;
+		sleep 1500;
+	}
+	sleep 1800;
+	delay_7 = 0;
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = Box;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = Box;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = Launcher_2;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Launcher_2;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( Depth_3 >= 4 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode Box type SHATTER | BITMAP2;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Box type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode Box type SHATTER | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode Box type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return (0);
+}

@@ -1,0 +1,47 @@
+[SlateVent01]
+	{
+	world=slate;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=slatevents;
+	seqname=slatevent1;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[SlateVent02]
+	{
+	world=slate;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=slatevents;
+	seqname=slatevent2;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[SlateVent03]
+	{
+	world=slate;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=slatevents;
+	seqname=slatevent3;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

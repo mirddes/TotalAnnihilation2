@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Crystal Isles;
+	missiondescription=20 X 20 Crystal World ocean, dotted with reefs and islands.;
+	planet=Crystal;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=30;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=500;
+	maxwindspeed=5000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 3, 4, 5, 6;
+	size=20 x 20;
+	memory=32 mb;
+	useonlyunits=Crystal Isles.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaBattle;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=2032;
+				ZPos=2032;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=6144;
+				ZPos=8224;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=8192;
+				ZPos=1536;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=1520;
+				ZPos=6320;
+				}
+			[special4]
+				{
+				specialwhat=StartPos8;
+				XPos=9280;
+				ZPos=8896;
+				}
+			[special5]
+				{
+				specialwhat=StartPos9;
+				XPos=4624;
+				ZPos=480;
+				}
+			[special6]
+				{
+				specialwhat=StartPos5;
+				XPos=9232;
+				ZPos=5264;
+				}
+			[special7]
+				{
+				specialwhat=StartPos6;
+				XPos=4992;
+				ZPos=3520;
+				}
+			[special8]
+				{
+				specialwhat=StartPos7;
+				XPos=2384;
+				ZPos=8624;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=4944;
+				ZPos=5520;
+				}
+			}
+		}
+	}

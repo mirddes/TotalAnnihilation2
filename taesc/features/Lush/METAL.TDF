@@ -1,0 +1,125 @@
+[LushMetal1]  // Small
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=lushmetal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[LushMetal2]  // Medium
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=lushmetal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[LushMetal3]  // Huge
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=lushmetal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[AquaOre1]  // Small
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=aquaore03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[AquaOre2]  // Medium
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=aquaore02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[AquaOre3]  // Huge
+	{
+	world=lush;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=metals;
+	seqname=aquaore01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

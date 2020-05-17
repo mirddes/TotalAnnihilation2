@@ -1,0 +1,66 @@
+[UNITINFO]
+	{
+	UnitName=CORNOVA;
+	Version=1;
+	SIDE=CORE;
+	Objectname=CORNOVA;
+	Designation=F-PS3;
+	Name=Dictator;
+	Description=Very Long Range Plasma Cannon (120K Energy/Shot, Self-Heal);
+	FootprintX=12;
+	FootprintZ=12;
+	BuildCostEnergy=4402840;
+	BuildCostMetal=55290;		//60880		//44080		
+	MaxDamage=13680;			//17100
+	MaxWaterDepth=0;
+	MaxSlope=10;
+	EnergyUse=0;
+	BuildTime=845345;		
+	WorkerTime=120;
+	BMcode=0;
+//	Builder=1;
+	Builder=0;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=1;
+	SightDistance=1024;
+	RadarDistance=64;
+	SoundCategory=COR_INT;
+	EnergyStorage=25000;
+	MetalStorage=0;
+	ExplodeAs=CANNON_XRPC_CORE;
+	SelfDestructAs=MKL_LASER;
+	Category=CORE BLDG NAIR NSUB NSHP NLND NEXP ALL LEV3 CTRL_L;
+	TEDClass=FORT;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo
+		oooooooooooo ;
+	Corpse=cornova_dead;
+	UnitNumber=113;
+	firestandorders=1;
+	StandingFireOrder=0;
+	canstop=1;
+	ShootMe=1;
+	DefaultMissionType=GUARD_NOMOVE;
+	canattack=1;
+	Weapon1=CANNON_XRPC_CORE;
+	wpri_badTargetCategory=MOB;
+	BadTargetCategory=MOB;
+	Ovradjust=1;
+//	canbuild=1;
+	Weapon3=RANGE_10752;
+	antiweapons=1;
+	ActivateWhenBuilt=1;
+	damagemodifier=0.25;
+	HealTime=3;
+	}

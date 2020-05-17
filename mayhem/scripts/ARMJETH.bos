@@ -1,0 +1,442 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  torso, rfirept, lfirept, pelvis, lleg, rleg, rthigh, lthigh,
+       luparm, lloarm, rloarm, ruparm, rgun, lgun, head, ground;
+
+static-var  gun_1, bMoving, bAiming, aa_4, delay_5, restore_6, busy_7;
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	aa_4 = 0;
+	sleep 2000;
+	if( !restore_6 )
+	{
+		turn torso to y-axis <0> speed <120>;
+		bAiming = FALSE;
+		turn luparm to z-axis <0> speed <144>;
+		turn lloarm to z-axis <0> speed <50>;
+		turn rloarm to z-axis <0> speed <50>;
+		turn ruparm to z-axis <0> speed <144>;
+	}
+	Busy_7 = 0;
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( restore_6 and !busy_7 )
+		{
+			restore_6 = 0;
+			busy_7 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+	return (0);
+}
+
+MotionControl(Justmoved)
+{
+	Justmoved = 1;
+	while( TRUE )
+	{
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.4] now;
+			move rfirept to z-axis [0] now;
+			move lfirept to z-axis [0] now;
+			move lleg to y-axis [0] now;
+			move rleg to y-axis [0] now;
+			turn rthigh to x-axis <35.857143> speed <420>;
+			turn lthigh to x-axis <-35.148352> speed <420>;
+			turn lleg to x-axis <34.796703> speed <420>;
+			turn rleg to x-axis <26.357143> speed <420>;
+			sleep 110;
+			move pelvis to y-axis [-0.3] now;
+			move rleg to y-axis [0.4] now;
+			turn rthigh to x-axis <20> speed <420>;
+			turn lthigh to x-axis <-30.576923> speed <420>;
+			turn lleg to x-axis <29.868132> speed <420>;
+			turn rleg to x-axis <26.708791> speed <420>;
+			sleep 70;
+			Justmoved = 1;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.2] now;
+			move rleg to y-axis [0.7] now;
+			turn rthigh to x-axis <9.489011> speed <420>;
+			turn lthigh to x-axis <-23.895604> speed <420>;
+			turn lleg to x-axis <24.598901> speed <420>;
+			turn rleg to x-axis <26.708791> speed <420>;
+			sleep 60;
+			move pelvis to y-axis [-0.9] now;
+			turn rthigh to x-axis <-12.285714> speed <420>;
+			turn lthigh to x-axis <-7.368132> speed <420>;
+			turn lleg to x-axis <7.379121> speed <420>;
+			turn rleg to x-axis <26.357143> speed <420>;
+			sleep 50;
+			move pelvis to y-axis [0] now;
+			move rleg to y-axis [0.550000] now;
+			turn rthigh to x-axis <-21.087912> speed <420>;
+			turn lthigh to x-axis <4.565934> speed <420>;
+			turn lleg to x-axis <16.868132> speed <420>;
+			turn rleg to x-axis <26.357143> speed <420>;
+			sleep 40;
+			Justmoved = 1;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.1] now;
+			turn rthigh to x-axis <-28.818681> speed <420>;
+			turn lthigh to x-axis <15.818681> speed <420>;
+			sleep 50;
+			move pelvis to y-axis [-0.2] now;
+			turn rthigh to x-axis <-43.598901> speed <420>;
+			turn lthigh to x-axis <18.626374> speed <420>;
+			sleep 60;
+			move pelvis to y-axis [-0.3] now;
+			turn rthigh to x-axis <-54.148352> speed <420>;
+			turn lthigh to x-axis <25.659341> speed <420>;
+			sleep 70;
+			Justmoved = 1;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.4] now;
+			move rleg to y-axis [0] now;
+			turn rthigh to x-axis <-35.857143> speed <420>;
+			turn lthigh to x-axis <28.126374> speed <420>;
+			turn lleg to x-axis <16> speed <420>;
+			turn rleg to x-axis <35.857143> speed <420>;
+			sleep 110;
+			move pelvis to y-axis [-0.3] now;
+			move lleg to y-axis [0.7] now;
+			turn rthigh to x-axis <-27.758242> speed <420>;
+			turn lthigh to x-axis <21.445055> speed <420>;
+			turn lleg to x-axis <21.785714> speed <420>;
+			turn rleg to x-axis <28.126374> speed <420>;
+			sleep 70;
+			Justmoved = 1;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.2] now;
+			turn rthigh to x-axis <-21.785714> speed <420>;
+			turn lthigh to x-axis <8.428571> speed <420>;
+			turn lleg to x-axis <24.247253> speed <420>;
+			turn rleg to x-axis <22.137363> speed <420>;
+			sleep 60;
+			move pelvis to y-axis [-0.1] now;
+			turn rthigh to x-axis <-16> speed <420>;
+			turn lthigh to x-axis <-6.664835> speed <420>;
+			turn rleg to x-axis <16.868132> speed <420>;
+			sleep 50;
+			move pelvis to y-axis [0] now;
+			move lleg to y-axis [0.8] now;
+			turn rthigh to x-axis <-6.664835> speed <420>;
+			turn lthigh to x-axis <-15.456044> speed <420>;
+			turn lleg to x-axis <20.384615> speed <420>;
+			turn rleg to x-axis <25.307692> speed <420>;
+			sleep 40;
+			Justmoved = 1;
+		}
+		if( bMoving )
+		{
+			move pelvis to y-axis [-0.1] now;
+			turn rthigh to x-axis <2.807692> speed <420>;
+			turn lthigh to x-axis <-26> speed <420>;
+			sleep 50;
+			move pelvis to y-axis [-0.2] now;
+			turn rthigh to x-axis <10.186813> speed <420>;
+			turn lthigh to x-axis <-35.148352> speed <420>;
+			sleep 60;
+			move pelvis to y-axis [-0.3] now;
+			turn rthigh to x-axis <21.445055> speed <420>;
+			turn lthigh to x-axis <-55.549451> speed <420>;
+			sleep 70;
+			Justmoved = 1;
+		}
+		if( !bMoving )
+		{
+			if( Justmoved )
+			{
+				move pelvis to y-axis [0] speed [5];
+				turn rthigh to x-axis <0> speed <200>;
+				turn rleg to x-axis <0> speed <200>;
+				turn lthigh to x-axis <0> speed <200>;
+				turn lleg to x-axis <0> speed <200>;
+				Justmoved = 0;
+			}
+			sleep 150;
+		}
+	}
+	return (0);
+}
+
+Create()
+{
+	hide rfirept;
+	hide lfirept;
+	bMoving = FALSE;
+	bAiming = FALSE;
+	gun_1 = torso;
+	aa_4 = 0;
+	delay_5 = 0;
+	restore_6 = 0;
+	busy_7 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+	return (0);
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !bAiming )
+	{
+		turn luparm to z-axis <-72> speed <288>;
+		turn lloarm to z-axis <15> speed <60>;
+		turn rloarm to z-axis <-15> speed <60>;
+		turn ruparm to z-axis <72> speed <288>;
+		sleep 250;
+		bAiming = TRUE;
+	}
+	signal 4;
+	set-signal-mask 4;
+	while( aa_4 OR delay_5 )
+	{
+		sleep 200;
+	}
+	turn torso to y-axis heading speed <360>;
+	turn torso to x-axis 0 - pitch speed <240>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn torso around x-axis;
+	restore_6 = 1;
+	return (1);
+}
+
+AimTertiary(heading, pitch)
+{
+	aa_4 = 1;
+	signal 4;
+	if( !bAiming )
+	{
+		turn luparm to z-axis <-72> speed <288>;
+		turn lloarm to z-axis <15> speed <60>;
+		turn rloarm to z-axis <-15> speed <60>;
+		turn ruparm to z-axis <72> speed <288>;
+		sleep 250;
+		bAiming = TRUE;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( delay_5 )
+	{
+		sleep 200;
+	}
+	turn torso to y-axis heading speed <360>;
+	turn torso to x-axis 0 - pitch speed <240>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn torso around x-axis;
+	restore_6 = 1;
+	return (1);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = head;
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = head;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = rfirept;
+	}
+	if( gun_1 )
+	{
+		piecenum = lfirept;
+	}
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = rfirept;
+	}
+	if( gun_1 )
+	{
+		piecenum = lfirept;
+	}
+	return (0);
+}
+
+FirePrimary()
+{
+	delay_5 = 1;
+	if( !gun_1 )
+	{
+		move rgun to z-axis [-1.5] speed [25];
+		wait-for-move rgun along z-axis;
+		move rgun to z-axis [0] speed [3];
+	}
+	if( gun_1 )
+	{
+		move lgun to z-axis [-1.5] speed [25];
+		wait-for-move lgun along z-axis;
+		move lgun to z-axis [0] speed [3];
+	}
+	gun_1 = !gun_1;
+	sleep 1100;
+	delay_5 = 0;
+	return(0);
+}
+
+FireTertiary()
+{
+	delay_5 = 1;
+	aa_4 = 0;
+	if( !gun_1 )
+	{
+		move rgun to z-axis [-1.5] speed [25];
+		wait-for-move rgun along z-axis;
+		move rgun to z-axis [0] speed [3];
+	}
+	if( gun_1 )
+	{
+		move lgun to z-axis [-1.5] speed [25];
+		wait-for-move lgun along z-axis;
+		move lgun to z-axis [0] speed [3];
+	}
+	gun_1 = !gun_1;
+	sleep 1100;
+	delay_5 = 0;
+	return(0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide rfirept;
+	hide lfirept;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode pelvis type BITMAPONLY | BITMAP2;
+		explode lleg type BITMAPONLY | BITMAP3;
+		explode rleg type BITMAPONLY | BITMAP4;
+		explode rthigh type BITMAPONLY | BITMAP5;
+		explode lthigh type BITMAPONLY | BITMAP1;
+		explode luparm type BITMAPONLY | BITMAP2;
+		explode lloarm type BITMAPONLY | BITMAP3;
+		explode rloarm type BITMAPONLY | BITMAP4;
+		explode ruparm type BITMAPONLY | BITMAP5;
+		explode rgun type BITMAPONLY | BITMAP1;
+		explode lgun type BITMAPONLY | BITMAP2;
+		explode ground type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode torso type SHATTER | BITMAP1;
+		explode pelvis type FALL | BITMAP2;
+		explode lleg type FALL | BITMAP3;
+		explode rleg type FALL | BITMAP4;
+		explode rthigh type FALL | BITMAP5;
+		explode lthigh type FALL | BITMAP1;
+		explode luparm type FALL | BITMAP2;
+		explode lloarm type FALL | BITMAP3;
+		explode rloarm type FALL | BITMAP4;
+		explode ruparm type FALL | BITMAP5;
+		explode rgun type FALL | BITMAP1;
+		explode lgun type FALL | BITMAP2;
+		explode ground type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode torso type SHATTER | BITMAP1;
+		explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode luparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode ruparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode luparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rloarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ruparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return (0);
+}

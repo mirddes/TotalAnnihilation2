@@ -1,0 +1,36 @@
+[CORXCV_dead]
+{
+World=all;
+Description=Custodian Wreckage;
+Category=corcorpses;
+Object=CORXCV_dead;
+Featuredead=CORXCV_heap;
+Footprintx=3;
+Footprintz=3;
+Height=25;
+Blocking=1;
+HitDensity=23;
+Metal=2085;
+Damage=3034;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}
+
+[CORXCV_heap]
+{
+World=all;
+Description=Custodian Wreckage;
+Category=heaps;
+Object=3x3b;
+Footprintx=3;
+Footprintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=1043;
+Damage=3898;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

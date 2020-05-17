@@ -1,0 +1,36 @@
+[armdh_DEAD]
+{
+world=All Worlds;
+description=Grizzly Wreckage;
+category=arm_corpses;
+object=armdh_dead;
+featuredead=armdh_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=472;
+damage=1518;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[armdh_HEAP]
+{
+world=All Worlds;
+description=Grizzly Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=5;
+metal=236;
+damage=1518;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

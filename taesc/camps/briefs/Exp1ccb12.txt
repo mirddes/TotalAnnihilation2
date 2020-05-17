@@ -1,0 +1,15 @@
+MISSION 12.3LCORE
+Arm has become desperate. Their last assault on our fortress left us badly damaged. But that matters little - the implosion device is still intact. 
+
+Repair the base and prepare for the Arm assault that is sure to come.
+
+INTELL-TAP:
+&RThe implosion device is activated.& Use every available unit in its defense. We have the advantage. We hold the fortress and the device. Time is running out for Arm.
+
+Soon the galaxy will belong to Core... and Arm will be no more.
+
+To complete this mission you must keep the implosion device from being destroyed - 60 minutes. 
+
+A small matter.
+
+DO SO NOW.

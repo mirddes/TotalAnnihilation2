@@ -1,0 +1,39 @@
+[CORBUZZ_WEAPON]
+	{
+	ID=84;
+	name=Bertha Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=3800;
+	reloadtime=0.5;
+	weaponvelocity=900;
+	energypershot=2000;
+	areaofeffect=120;
+
+	soundstart=xplonuk4;
+	soundhit=xplonuk1;
+
+	firestarter=50;
+	accuracy=800;
+	aimrate=2500;
+	tolerance=300;
+//	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1800;
+		}
+	}

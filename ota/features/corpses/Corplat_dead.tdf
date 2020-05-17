@@ -1,0 +1,17 @@
+[corplat_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=core_corpses;
+	object=corplat_dead;
+	footprintx=7;
+	footprintz=7;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=1844;
+	damage=1600;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

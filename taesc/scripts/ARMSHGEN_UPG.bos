@@ -1,0 +1,26 @@
+piece  base, r1, r3, height, wtf;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+
+Create()
+	{
+		hide r3;
+		move r1 to y-axis [52.05457] now;
+		move wtf to y-axis [10.000000] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1;
+		}
+		hide r1;
+//		hide r3;
+		hide height;
+		hide wtf;
+	}
+	
+SweetSpot(piecenum)
+{
+	piecenum = r1;
+}	
+

@@ -1,0 +1,354 @@
+[Truck01]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=42;
+	filename=trucks;
+	seqname=truck01;
+	seqnameshad=truckshad01;
+	seqnamereclamate=truckrec01;
+	metal=55;
+
+	seqnamedie=truckboom01;
+	featuredead=truckscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck02]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=42;
+	filename=trucks;
+	seqname=truck02;
+	seqnameshad=truckshad02;
+	seqnamereclamate=truckrec02;
+	metal=60;
+
+	seqnamedie=truckboom01;
+	featuredead=truckscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck03]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=2;
+	footprintz=5;
+	height=42;
+	filename=trucks;
+	seqname=truck03;
+	seqnameshad=truckshad03;
+	seqnamereclamate=truckrec03;
+	metal=55;
+
+	seqnamedie=truckboom02;
+	featuredead=truckscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Truck04]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=3;
+	footprintz=5;
+	height=42;
+	filename=trucks;
+	seqname=truck04;
+	seqnameshad=truckshad04;
+	seqnamereclamate=truckrec04;
+	metal=60;
+
+	seqnamedie=truckboom02;
+	featuredead=truckscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck05]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=2;
+	footprintz=5;
+	height=42;
+	filename=trucks;
+	seqname=truck05;
+	seqnameshad=truckshad05;
+	seqnamereclamate=truckrec05;
+	metal=50;
+
+	seqnamedie=truckboom02;
+	featuredead=truckscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck06]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=2;
+	footprintz=5;
+	height=55;
+	filename=trucks;
+	seqname=truck06;
+	seqnameshad=truckshad06;
+	seqnamereclamate=truckrec06;
+	metal=65;
+
+	seqnamedie=truckboom02;
+	featuredead=truckscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck07]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=5;
+	footprintz=2;
+	height=42;
+	filename=trucks;
+	seqname=truck07;
+	seqnameshad=truckshad07;
+	seqnamereclamate=truckrec07;
+	metal=60;
+
+	seqnamedie=truckboom01;
+	featuredead=truckscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[Truck08]
+	{
+	world=urban;
+	description=Truck;
+	category=trucks;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=42;
+	filename=trucks;
+	seqname=truck08;
+	seqnameshad=truckshad08;
+	seqnamereclamate=truckrec08;
+	metal=55;
+
+	seqnamedie=truckboom01;
+	featuredead=truckscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=truckscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=350;
+	}
+
+[truckscar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=0;
+	filename=trucks;
+	seqname=truckscar01;
+
+	featuredead=truckscar01;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[truckscar02]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=5;
+	height=0;
+	filename=trucks;
+	seqname=truckscar02;
+
+	featuredead=truckscar02;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[truckscar03]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=2;
+	height=0;
+	filename=trucks;
+	seqname=truckscar03;
+
+	featuredead=truckscar03;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[truckscar04]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=3;
+	height=0;
+	filename=trucks;
+	seqname=truckscar04;
+
+	featuredead=truckscar04;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[truckscar05]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=5;
+	height=0;
+	filename=trucks;
+	seqname=truckscar05;
+
+	featuredead=truckscar05;
+
+	animtrans=0;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+

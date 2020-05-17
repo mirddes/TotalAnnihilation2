@@ -1,0 +1,1368 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+//#define UNIT_UPGRADE_HEIGHT 2919331
+//#define ARMCOM 3125336
+//#define CORCOM 2837917
+
+
+piece  torso, ruparm, luparm, rbigflash, nanospray, pelvis, lfirept, head,
+       lthigh, rthigh, nanolath, biggun, rleg, lleg, ground, cover, 
+       pelvis2, lthigh2, lleg2, rthigh2, rleg2, torso2, ruparm2,
+       rlasgun, rbarrels, rflare, luparm2, llasgun, lbarrels, nano1, nano2, nano3,
+       nanospray1, nanospray2, nanospray3, lflare, head2, dgun, dbarrel, dflash,
+       r1, r2, pack, glow, shad, height ;
+
+static-var  Moving_1, Aiming_2, Can_Aim_3, Building_4;
+static-var	upgrade_on, firedelay, firing, firing_3, gun_1, gun_2, pimped;
+static-var	xz, x, z, myteam, my_id, self_h, kills;
+static-var	dgunning, lasering, swimming, shielding;
+
+// Signal definitions
+//#define SIG_AIM			2
+//#define SIG_AIM_2			4
+
+
+#define EPIC_SAFE_XZ\
+if(xz<0)\
+	{\
+	xz=0 - xz;\
+	}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+	{\
+	z=65536 - z;\
+	/*x=x+(1-2*(xz<0));*/\
+	x=x+(xz>0);\
+	}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+	{\
+	xz=500333222;\
+	}
+
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+RestorePosition()
+{
+
+	if( !Building_4 && !dgunning && !lasering)
+	{
+		stop-spin lbarrels around y-axis decelerate <2.000000>;
+		stop-spin rbarrels around y-axis decelerate <2.000000>;
+		
+		turn torso to y-axis <0.000000> speed <90.021978>;
+		turn ruparm to x-axis <0.000000> speed <45.010989>;
+		turn luparm to x-axis <0.000000> speed <45.010989>;
+		
+		turn torso2 to y-axis <0.000000> speed <90.021978>;
+		turn ruparm2 to x-axis <0.000000> speed <45.010989>;
+		turn luparm2 to x-axis <0.000000> speed <45.010989>;
+		
+		wait-for-turn torso around y-axis;
+		wait-for-turn ruparm around x-axis;
+		wait-for-turn luparm around x-axis;
+		
+		wait-for-turn torso2 around y-axis;
+		wait-for-turn ruparm2 around x-axis;
+		wait-for-turn luparm2 around x-axis;
+		Aiming_2 = 0;
+	}
+}
+
+RestoreDgun()
+{
+	sleep 9000;
+	dgunning = 0;
+	start-script RestorePosition();
+}
+
+RestoreLaser()
+{
+	sleep 9000;
+	lasering = 0;
+	start-script RestorePosition();
+}
+
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	lasering = 1;
+	if ( upgrade_on )
+	{
+		Aiming_2 = 1;
+		while( !Can_Aim_3 )
+		{
+			sleep 100;
+		}
+		spin lbarrels around y-axis speed <-60.010989> accelerate <1.000000>;
+		spin rbarrels around y-axis speed <60.010989> accelerate <1.000000>;
+		
+		turn torso2 to y-axis heading speed <300.071429>;
+		turn luparm2 to x-axis <0.000000> - pitch - <30.005495> speed <45.010989>;
+		turn ruparm2 to x-axis <0.000000> - pitch - <30.005495> speed <45.010989>;
+		wait-for-turn torso2 around y-axis;
+		wait-for-turn luparm2 around x-axis;
+		wait-for-turn ruparm2 around x-axis;
+		start-script RestoreLaser();
+		return (1);
+	}
+	if ( !upgrade_on )
+	{
+		Aiming_2 = 1;
+		while( !Can_Aim_3 )
+		{
+			sleep 100;
+		}
+		turn torso to y-axis heading speed <300.071429>;
+		turn luparm to x-axis <0.000000> - pitch - <30.005495> speed <45.010989>;
+		wait-for-turn torso around y-axis;
+		wait-for-turn luparm around x-axis;
+		while( firing )
+		{
+			set-signal-mask 8;
+			sleep firedelay;
+			wait-for-turn torso around y-axis;
+			wait-for-turn luparm around x-axis;
+			firing = 0;
+		}
+		start-script RestoreLaser();
+		return (1);
+	}
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 16;
+	set-signal-mask 16;
+
+	while( !Can_Aim_3 )
+	{
+		sleep 100;
+	}
+	while( !upgrade_on )
+	{
+		sleep 250;
+	}
+	return (1);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	dgunning = 1;
+	if ( upgrade_on )
+	{
+		Aiming_2 = 1;
+		while( !Can_Aim_3 )
+		{
+			sleep 100;
+		}
+		turn torso2 to y-axis heading speed <300.071429>;
+		turn ruparm2 to x-axis <0.000000> - pitch - <24.005495> speed <180.010989>;
+		wait-for-turn torso2 around y-axis;
+		wait-for-turn ruparm2 around x-axis;
+		start-script restoredgun();
+		return (1);
+	}
+	if ( !upgrade_on )
+	{
+		Aiming_2 = 1;
+		while( !Can_Aim_3 )
+		{
+			sleep 100;
+		}
+		turn torso to y-axis heading speed <300.071429>;
+		turn ruparm to x-axis <0.000000> - pitch - <24.005495> speed <180.010989>;
+		wait-for-turn torso around y-axis;
+		wait-for-turn ruparm around x-axis;
+		while( firing_3 )
+		{
+			sleep 100;
+		}
+		start-script restoredgun();
+		return (1);
+	}
+}
+
+
+Detect()
+{
+	var unit_id, nbr_upgrade, minid, maxid, vetlevel, hacked_id, hacked, unhacked;
+	sleep rand(500,2500);
+	vetlevel=0;
+	minid = get MIN_ID;
+	maxid = get MAX_ID;
+	my_id=get MY_ID;
+	myteam=get UNIT_TEAM(get MY_ID);
+	self_h=get UNIT_HEIGHT(get MY_ID);
+
+	var h;
+	var omni_count;
+//	var numbcared;
+
+	while(TRUE)
+	{
+		hacked = 0;
+		unhacked = 0;
+		nbr_upgrade = 0;
+		omni_count = 0;
+
+		for (unit_id=minid;unit_id<=maxid;++unit_id)
+		{
+			h = get UNIT_HEIGHT(unit_id);
+			if(h == 10005957 || 13754459 )
+//			if(h == 10005957)
+//			if(h == 13600954)
+			{
+				omni_count = 1;
+			}
+			if (get UNIT_BUILD_PERCENT_LEFT(unit_ID))
+			{
+				if (get UNIT_HEIGHT(unit_ID) == [4.2])
+				{
+					if(!get UNIT_ALLIED(unit_id))
+					{
+						if (get UNIT_XZ(unit_ID) != get PIECE_XZ(ground))
+						{
+							hacked = 1;
+							hacked_id = unit_ID;
+						}	
+					}
+				}
+			}
+			if((get UNIT_TEAM(unit_id))==myteam)
+			{
+//				if(get UNIT_HEIGHT(unit_id)==ARM_UPGRADE_HEIGHT)
+				if(get UNIT_HEIGHT(unit_id)==ARM_UPGRADE_HEIGHT || get UNIT_HEIGHT(unit_id)==WALK_UPGRADE_HEIGHT)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						++nbr_upgrade;
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==self_h)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0 && unit_id > my_id)
+					{
+						unhacked = 1;
+					}
+				}
+			}
+		}
+		if(nbr_upgrade>=1)
+		{
+			upgrade_on = 1;
+			gun_1 = 1;
+			firedelay = 0;
+//			set ARMORED to TRUE;
+			if(pimped == 0)
+			{
+				explode torso type BITMAPONLY | BITMAP5;
+//				explode pelvis type SHATTER | BITMAP5;
+//				explode lthigh type SHATTER | BITMAP5;
+//				explode lleg type SHATTER | BITMAP5;
+//				explode rthigh type SHATTER | BITMAP5;
+//				explode rleg type SHATTER | BITMAP5;
+//				explode torso type SHATTER | BITMAP5;
+//				explode ruparm type SHATTER | BITMAP5;
+//				explode biggun type SHATTER | BITMAP5;
+//				explode luparm type SHATTER | BITMAP5;
+//				explode nanolath type SHATTER | BITMAP5;
+//				explode cover type SHATTER | BITMAP5;
+//				explode head type SHATTER | BITMAP5;
+				pimped = 1;
+			}	
+			hide pelvis;
+			hide lthigh;
+			hide lleg;
+			hide rthigh;
+			hide rleg;
+			hide torso;
+			hide ruparm;
+			hide biggun;
+			hide luparm;
+			hide nanolath;
+			hide cover;
+			hide head;
+			
+			show pelvis2;
+			show lthigh2;
+			show lleg2;
+			show rthigh2;
+			show rleg2;
+			show torso2;
+			show ruparm2;
+			show rlasgun;
+			show rbarrels;
+			show luparm2;
+			show llasgun;
+			show lbarrels;
+			show nano1;
+			show nano2;
+			show nano3;
+			show head2;
+			show dgun;
+			show dbarrel;
+			
+		}
+		if(nbr_upgrade==0)
+		{
+			if(upgrade_on)
+			{
+				upgrade_on = 0;
+				pimped = 0;
+				firedelay = 800;
+				gun_1 = 0;
+//				set ARMORED to FALSE;
+				
+				explode pelvis2 type SHATTER | BITMAP5;
+				explode lthigh2 type SHATTER | BITMAP5;
+				explode lleg2 type SHATTER | BITMAP5;
+				explode rthigh2 type SHATTER | BITMAP5;
+				explode rleg2 type SHATTER | BITMAP5;
+				explode torso2 type SHATTER | BITMAP5;
+				explode ruparm2 type SHATTER | BITMAP5;
+				explode rlasgun type SHATTER | BITMAP5;
+				explode rbarrels type SHATTER | BITMAP5;
+				explode luparm2 type SHATTER | BITMAP5;
+				explode llasgun type SHATTER | BITMAP5;
+				explode lbarrels type SHATTER | BITMAP5;
+				explode nano1 type SHATTER | BITMAP5;
+				explode nano2 type SHATTER | BITMAP5;
+				explode nano3 type SHATTER | BITMAP5;
+				explode head2 type SHATTER | BITMAP5;
+				explode dgun type SHATTER | BITMAP5;
+				explode dbarrel type SHATTER | BITMAP5;
+				
+				hide pelvis2;
+				hide lthigh2;
+				hide lleg2;
+				hide rthigh2;
+				hide rleg2;
+				hide torso2;
+				hide ruparm2;
+				hide rlasgun;
+				hide rbarrels;
+				hide luparm2;
+				hide llasgun;
+				hide lbarrels;
+				hide nano1;
+				hide nano2;
+				hide nano3;
+				hide head2;
+				hide dgun;
+				hide dbarrel;
+				
+				show pelvis;
+				show lthigh;
+				show lleg;
+				show rthigh;
+				show rleg;
+				show torso;
+				show ruparm;
+				show biggun;
+				show luparm;
+				show nanolath;
+				show cover;
+				show head;
+			}
+		}
+		if(hacked && !unhacked)
+		{
+			attach-unit hacked_id to -1;
+			sleep 1;
+			drop-unit hacked_id;
+		}
+		sleep rand(500,2500);
+		if(!omni_count && !upgrade_on)
+		{
+			sleep rand(30000,60000);
+		}
+	
+	
+	}
+}
+
+MotionControl(justmoved)
+{
+	justmoved = TRUE;
+	while( TRUE )
+	{
+		if( swimming == 3 )
+		{
+			set ARMORED to 1;
+		}
+//		if( swimming != 3 )
+//		{
+//			set ARMORED to 0;				//stays armored to allow 'shielding' function when first hit
+//		}	
+		if( Aiming_2 and Moving_1 )
+		{
+			Can_Aim_3 = 1;
+			move pelvis to y-axis [-0.70] now;
+			move head to y-axis [-0] now;
+			turn pelvis to x-axis <6.68> now;
+			turn lthigh to x-axis <-41.85> now;
+			turn rthigh to x-axis <17.58> now;
+			turn rleg to x-axis <39.38> now;
+			turn lleg to x-axis <41.85> now;
+		
+//			move pelvis2 to y-axis [-0.70] now;
+//			move head2 to y-axis [-0] now;
+			turn pelvis2 to x-axis <6.68> now;
+			turn lthigh2 to x-axis <-41.85> now;
+			turn rthigh2 to x-axis <17.58> now;
+			turn rleg2 to x-axis <39.38> now;
+			turn lleg2 to x-axis <41.85> now;
+			
+			sleep 80;
+			
+			move pelvis to y-axis [-0.55] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <-29.54> now;
+			turn rthigh to x-axis <8.79> now;
+			turn rleg to x-axis <51.69> now;
+			turn lleg to x-axis <28.48> now;
+	
+//			move pelvis2 to y-axis [-0.55] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <-29.54> now;
+			turn rthigh2 to x-axis <8.79> now;
+			turn rleg2 to x-axis <51.69> now;
+			turn lleg2 to x-axis <28.48> now;
+			
+			sleep 100;
+	
+			move pelvis to y-axis [-0.30] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <-16.18> now;
+			turn rthigh to x-axis <0> now;
+			turn rleg to x-axis <58> now;
+			turn lleg to x-axis <16.18> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <-16.18> now;
+			turn rthigh2 to x-axis <0> now;
+			turn rleg2 to x-axis <58> now;
+			turn lleg2 to x-axis <16.18> now;
+		
+			sleep 90;
+		
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.52> now;
+			turn lthigh to x-axis <7> now;
+			turn rthigh to x-axis <-6.33> now;
+			turn rleg to x-axis <44.31> now;
+			turn lleg to x-axis <5.63> now;
+		
+//			move pelvis2 to y-axis [0] now;
+			turn pelvis2 to x-axis <3.52> now;
+			turn lthigh2 to x-axis <7> now;
+			turn rthigh2 to x-axis <-6.33> now;
+			turn rleg2 to x-axis <44.31> now;
+			turn lleg2 to x-axis <5.63> now;
+		
+			sleep 90;
+		
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <10.90> now;
+			turn rthigh to x-axis <-34.46> now;
+			turn rleg to x-axis <71.38> now;
+			turn lleg to x-axis <20> now;
+		
+//			move pelvis2 to y-axis [-0.20] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <10.90> now;
+			turn rthigh2 to x-axis <-34.46> now;
+			turn rleg2 to x-axis <71.38> now;
+			turn lleg2 to x-axis <20> now;
+		
+			sleep 80;
+		
+			move pelvis to y-axis [-0.30] now;
+			turn lthigh to x-axis <13> now;
+			turn rthigh to x-axis <-42.90> now;
+			turn rleg to x-axis <54.51> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn lthigh2 to x-axis <13> now;
+			turn rthigh2 to x-axis <-42.90> now;
+			turn rleg2 to x-axis <54.51> now;
+
+			sleep 70;
+		
+			move pelvis to y-axis [-0.40] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <16.88> now;
+			turn rthigh to x-axis <-48.18> now;
+			turn rleg to x-axis <34.46> now;
+			turn lleg to x-axis <20> now;
+			
+//			move pelvis2 to y-axis [-0.40] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <16.88> now;
+			turn rthigh2 to x-axis <-48.18> now;
+			turn rleg2 to x-axis <34.46> now;
+			turn lleg2 to x-axis <20> now;
+		
+			sleep 80;
+		
+			move pelvis to y-axis [-0.70] now;
+			turn pelvis to x-axis <6.68> now;
+			turn lthigh to x-axis <15.47> now;
+			turn rthigh to x-axis <-40.44> now;
+			turn rleg to x-axis <40.44> now;
+			turn lleg to x-axis <30.59> now;
+	
+//			move pelvis2 to y-axis [-0.70] now;
+			turn pelvis2 to x-axis <6.68> now;
+			turn lthigh2 to x-axis <15.47> now;
+			turn rthigh2 to x-axis <-40.44> now;
+			turn rleg2 to x-axis <40.44> now;
+			turn lleg2 to x-axis <30.59> now;
+	
+			sleep 80;
+		
+			move pelvis to y-axis [-0.55] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <9.49> now;
+			turn rthigh to x-axis <-34.46> now;
+			turn lleg to x-axis <43.95> now;
+		
+//			move pelvis2 to y-axis [-0.55] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <9.49> now;
+			turn rthigh2 to x-axis <-34.46> now;
+			turn lleg2 to x-axis <43.95> now;
+		
+			sleep 100;
+			
+			move pelvis to y-axis [-0.30] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <0.70> now;
+			turn rthigh to x-axis <-26.37> now;
+			turn lleg to x-axis <54.50> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <0.70> now;
+			turn rthigh2 to x-axis <-26.37> now;
+			turn lleg2 to x-axis <54.50> now;
+		
+			sleep 90;
+		
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.52> now;
+			turn lthigh to x-axis <-16.88> now;
+			turn rthigh to x-axis <3.86> now;
+			turn rleg to x-axis <8.08> now;
+			turn lleg to x-axis <60.48> now;
+		
+//			move pelvis2 to y-axis [0] now;
+			turn pelvis2 to x-axis <3.52> now;
+			turn lthigh2 to x-axis <-16.88> now;
+			turn rthigh2 to x-axis <3.86> now;
+			turn rleg2 to x-axis <8.08> now;
+			turn lleg2 to x-axis <60.48> now;
+		
+			sleep 80;
+			
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <-29.54> now;
+			turn rthigh to x-axis <10.19> now;
+			turn rleg to x-axis <26> now;
+			turn lleg to x-axis <56.26> now;
+	
+//			move pelvis2 to y-axis [-0.20] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <-29.54> now;
+			turn rthigh2 to x-axis <10.19> now;
+			turn rleg2 to x-axis <26> now;
+			turn lleg2 to x-axis <56.26> now;
+	
+			sleep 80;
+		
+			move pelvis to y-axis [-0.30] now;
+			turn lthigh to x-axis <-43.95> now;
+			turn rthigh to x-axis <12.30> now;
+			turn lleg to x-axis <55.91> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn lthigh2 to x-axis <-43.95> now;
+			turn rthigh2 to x-axis <12.30> now;
+			turn lleg2 to x-axis <55.91> now;
+		
+			sleep 70;
+		
+			move pelvis to y-axis [-0.40] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <-43.95> now;
+			turn rthigh to x-axis <14.41> now;
+			turn lleg to x-axis <25.67> now;
+		
+			move pelvis2 to y-axis [-0.40] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <-43.95> now;
+			turn rthigh2 to x-axis <14.41> now;
+			turn lleg2 to x-axis <25.67> now;
+		
+			sleep 80;
+			
+			justmoved = TRUE;
+		}
+		if( !Aiming_2 and Moving_1 )
+		{
+			Can_Aim_3 = 0;
+				
+			move pelvis to y-axis [-0.70] now;
+			move head to y-axis [-0] now;
+			turn pelvis to x-axis <6.68> now;
+			turn lthigh to x-axis <-41.85> now;
+			turn rthigh to x-axis <17.58> now;
+			turn torso to y-axis <4.22> now;
+			turn ruparm to x-axis <-11.25> now;
+			turn luparm to x-axis <11.25> now;
+			turn nanolath to x-axis <-41.85> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <39.38> now;
+			turn lleg to x-axis <41.85> now;
+	
+//			move pelvis2 to y-axis [-0.70] now;
+//			move head2 to y-axis [-0] now;
+			turn pelvis2 to x-axis <6.68> now;
+			turn lthigh2 to x-axis <-41.85> now;
+			turn rthigh2 to x-axis <17.58> now;
+			turn torso2 to y-axis <4.22> now;
+			turn ruparm2 to x-axis <-11.25> now;
+			turn luparm2 to x-axis <11.25> now;
+			turn llasgun to x-axis <-41.85> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <39.38> now;
+			turn lleg2 to x-axis <41.85> now;
+	
+			sleep 40;
+				
+			turn torso to y-axis <3.87> now;
+			turn ruparm to x-axis <-13.36> now;
+			turn luparm to x-axis <12.31> now;
+			turn nanolath to x-axis <-41.84> now;
+		
+			turn torso2 to y-axis <3.87> now;
+			turn ruparm2 to x-axis <-13.36> now;
+			turn luparm2 to x-axis <12.31> now;
+			turn llasgun to x-axis <-41.84> now;
+		
+			sleep 40;
+			
+			move pelvis to y-axis [-0.55] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <-29.54> now;
+			turn rthigh to x-axis <8.79> now;
+			turn torso to y-axis <3.16> now;
+			turn ruparm to x-axis <-8.09> now;
+			turn luparm to x-axis <6.33> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <51.69> now;
+			turn lleg to x-axis <28.48> now;
+			
+//			move pelvis2 to y-axis [-0.55] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <-29.54> now;
+			turn rthigh2 to x-axis <8.79> now;
+			turn torso2 to y-axis <3.16> now;
+			turn ruparm2 to x-axis <-8.09> now;
+			turn luparm2 to x-axis <6.33> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <51.69> now;
+			turn lleg2 to x-axis <28.48> now;
+			
+			sleep 100;
+				
+			move pelvis to y-axis [-0.30] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <-16.18> now;
+			turn rthigh to x-axis <0> now;
+			turn torso to y-axis <1.41> now;
+			turn ruparm to x-axis <-3.16> now;
+			turn luparm to x-axis <0> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <58> now;
+			turn lleg to x-axis <16.18> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <-16.18> now;
+			turn rthigh2 to x-axis <0> now;
+			turn torso2 to y-axis <1.41> now;
+			turn ruparm2 to x-axis <-3.16> now;
+			turn luparm2 to x-axis <0> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <58> now;
+			turn lleg2 to x-axis <16.18> now;
+		
+			sleep 90;
+			
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.52> now;
+			turn lthigh to x-axis <7> now;
+			turn rthigh to x-axis <-6.33> now;
+			turn torso to y-axis <0> now;
+			turn ruparm to x-axis <3.16> now;
+			turn luparm to x-axis <-6.33> now;
+			turn nanolath to x-axis <-41.85> now;
+			turn rleg to x-axis <44.31> now;
+			turn lleg to x-axis <5.63> now;
+		
+//			move pelvis2 to y-axis [0] now;
+			turn pelvis2 to x-axis <3.52> now;
+			turn lthigh2 to x-axis <7> now;
+			turn rthigh2 to x-axis <-6.33> now;
+			turn torso2 to y-axis <0> now;
+			turn ruparm2 to x-axis <3.16> now;
+			turn luparm2 to x-axis <-6.33> now;
+			turn llasgun to x-axis <-41.85> now;
+			turn rleg2 to x-axis <44.31> now;
+			turn lleg2 to x-axis <5.63> now;
+			
+			sleep 90;
+		
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <10.90> now;
+			turn rthigh to x-axis <-34.46> now;
+			turn torso to y-axis <-1.41> now;
+			turn ruparm to x-axis <6.68> now;
+			turn luparm to x-axis <-8.09> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <71.38> now;
+			turn lleg to x-axis <20> now;
+		
+//			move pelvis2 to y-axis [-0.20] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <10.90> now;
+			turn rthigh2 to x-axis <-34.46> now;
+			turn torso2 to y-axis <-1.41> now;
+			turn ruparm2 to x-axis <6.68> now;
+			turn luparm2 to x-axis <-8.09> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <71.38> now;
+			turn lleg2 to x-axis <20> now;
+		
+			sleep 80;
+		
+			move pelvis to y-axis [-0.30] now;
+			turn lthigh to x-axis <13> now;
+			turn rthigh to x-axis <-42.90> now;
+			turn torso to y-axis <-2.46> now;
+			turn ruparm to x-axis <8.44> now;
+			turn luparm to x-axis <-9.14> now;
+			turn rleg to x-axis <54.51> now;
+		
+			move pelvis2 to y-axis [-0.30] now;
+			turn lthigh2 to x-axis <13> now;
+			turn rthigh2 to x-axis <-42.90> now;
+			turn torso2 to y-axis <-2.46> now;
+			turn ruparm2 to x-axis <8.44> now;
+			turn luparm2 to x-axis <-9.14> now;
+			turn rleg2 to x-axis <54.51> now;
+			
+			sleep 70;
+		
+			move pelvis to y-axis [-0.40] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <16.88> now;
+			turn rthigh to x-axis <-48.18> now;
+			turn torso to y-axis <-3.16> now;
+			turn ruparm to x-axis <10.20> now;
+			turn luparm to x-axis <-10.20> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <34.46> now;
+			turn lleg to x-axis <20> now;
+		
+//			move pelvis2 to y-axis [-0.40] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <16.88> now;
+			turn rthigh2 to x-axis <-48.18> now;
+			turn torso2 to y-axis <-3.16> now;
+			turn ruparm2 to x-axis <10.20> now;
+			turn luparm2 to x-axis <-10.20> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <34.46> now;
+			turn lleg2 to x-axis <20> now;
+
+			sleep 80;
+		
+			move pelvis to y-axis [-0.70] now;
+			turn pelvis to x-axis <6.68> now;
+			turn lthigh to x-axis <15.47> now;
+			turn rthigh to x-axis <-40.44> now;
+			turn torso to y-axis <-4.22> now;
+			turn ruparm to x-axis <11.25> now;
+			turn luparm to x-axis <-11.25> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <40.44> now;
+			turn lleg to x-axis <30.59> now;
+	
+//			move pelvis2 to y-axis [-0.70] now;
+			turn pelvis2 to x-axis <6.68> now;
+			turn lthigh2 to x-axis <15.47> now;
+			turn rthigh2 to x-axis <-40.44> now;
+			turn torso2 to y-axis <-4.22> now;
+			turn ruparm2 to x-axis <11.25> now;
+			turn luparm2 to x-axis <-11.25> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <40.44> now;
+			turn lleg2 to x-axis <30.59> now;
+	
+			sleep 40;
+		
+			turn ruparm to x-axis <13.36> now;
+			turn luparm to x-axis <-12.31> now;
+			turn nanolath to x-axis <-41.84> now;
+			turn biggun to x-axis <-62.59> now;
+		
+			turn ruparm2 to x-axis <13.36> now;
+			turn luparm2 to x-axis <-12.31> now;
+			turn llasgun to x-axis <-41.84> now;
+			turn rlasgun to x-axis <-62.59> now;
+		
+			sleep 40;
+		
+			move pelvis to y-axis [-0.55] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <9.49> now;
+			turn rthigh to x-axis <-34.46> now;
+			turn torso to y-axis <-3.16> now;
+			turn ruparm to x-axis <8.44> now;
+			turn luparm to x-axis <-8.44> now;
+			turn nanolath to x-axis <-41.85> now;
+			turn biggun to x-axis <-62.24> now;
+			turn lleg to x-axis <43.95> now;
+		
+//			move pelvis2 to y-axis [-0.55] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <9.49> now;
+			turn rthigh2 to x-axis <-34.46> now;
+			turn torso2 to y-axis <-3.16> now;
+			turn ruparm2 to x-axis <8.44> now;
+			turn luparm2 to x-axis <-8.44> now;
+			turn llasgun to x-axis <-41.85> now;
+			turn rlasgun to x-axis <-62.24> now;
+			turn lleg2 to x-axis <43.95> now;
+			
+			sleep 100;
+			
+			move pelvis to y-axis [-0.30] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <0.70> now;
+			turn rthigh to x-axis <-26.37> now;
+			turn torso to y-axis <-1.76> now;
+			turn ruparm to x-axis <3.16> now;
+			turn luparm to x-axis <-3.16> now;
+			turn biggun to x-axis <-62.59> now;
+			turn lleg to x-axis <54.50> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <0.70> now;
+			turn rthigh2 to x-axis <-26.37> now;
+			turn torso2 to y-axis <-1.76> now;
+			turn ruparm2 to x-axis <3.16> now;
+			turn luparm2 to x-axis <-3.16> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn lleg2 to x-axis <54.50> now;
+		
+			sleep 90;
+		
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.52> now;
+			turn lthigh to x-axis <-16.88> now;
+			turn rthigh to x-axis <3.86> now;
+			turn torso to y-axis <0> now;
+			turn ruparm to x-axis <-3.16> now;
+			turn luparm to x-axis <3.87> now;
+			turn nanolath to x-axis <-41.85> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <8.08> now;
+			turn lleg to x-axis <60.48> now;
+			
+//			move pelvis2 to y-axis [0] now;
+			turn pelvis2 to x-axis <3.52> now;
+			turn lthigh2 to x-axis <-16.88> now;
+			turn rthigh2 to x-axis <3.86> now;
+			turn torso2 to y-axis <0> now;
+			turn ruparm2 to x-axis <-3.16> now;
+			turn luparm2 to x-axis <3.87> now;
+			turn llasgun to x-axis <-41.85> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <8.08> now;
+			turn lleg2 to x-axis <60.48> now;	
+			
+			sleep 80;
+		
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.57> now;
+			turn lthigh to x-axis <-29.54> now;
+			turn rthigh to x-axis <10.19> now;
+			turn torso to y-axis <1.76> now;
+			turn ruparm to x-axis <-6.68> now;
+			turn luparm to x-axis <8.79> now;
+			turn biggun to x-axis <-62.59> now;
+			turn rleg to x-axis <26> now;
+			turn lleg to x-axis <56.26> now;
+		
+//			move pelvis2 to y-axis [-0.20] now;
+			turn pelvis2 to x-axis <4.57> now;
+			turn lthigh2 to x-axis <-29.54> now;
+			turn rthigh2 to x-axis <10.19> now;
+			turn torso2 to y-axis <1.76> now;
+			turn ruparm2 to x-axis <-6.68> now;
+			turn luparm2 to x-axis <8.79> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn rleg2 to x-axis <26> now;
+			turn lleg2 to x-axis <56.26> now;
+				
+			sleep 80;
+		
+			move pelvis to y-axis [-0.30] now;
+			turn lthigh to x-axis <-43.95> now;
+			turn rthigh to x-axis <12.30> now;
+			turn torso to y-axis <2.46> now;
+			turn ruparm to x-axis <-7> now;
+			turn luparm to x-axis <9.85> now;
+			turn lleg to x-axis <55.91> now;
+		
+//			move pelvis2 to y-axis [-0.30] now;
+			turn lthigh2 to x-axis <-43.95> now;
+			turn rthigh2 to x-axis <12.30> now;
+			turn torso2 to y-axis <2.46> now;
+			turn ruparm2 to x-axis <-7> now;
+			turn luparm2 to x-axis <9.85> now;
+			turn lleg2 to x-axis <55.91> now;
+		
+			sleep 70;
+		
+			move pelvis to y-axis [-0.40] now;
+			turn pelvis to x-axis <5.27> now;
+			turn lthigh to x-axis <-43.95> now;
+			turn rthigh to x-axis <14.41> now;
+			turn torso to y-axis <3.16> now;
+			turn ruparm to x-axis <-8.79> now;
+			turn luparm to x-axis <10.20> now;
+			turn biggun to x-axis <-62.59> now;
+			turn lleg to x-axis <25.67> now;
+		
+//			move pelvis2 to y-axis [-0.40] now;
+			turn pelvis2 to x-axis <5.27> now;
+			turn lthigh2 to x-axis <-43.95> now;
+			turn rthigh2 to x-axis <14.41> now;
+			turn torso2 to y-axis <3.16> now;
+			turn ruparm2 to x-axis <-8.79> now;
+			turn luparm2 to x-axis <10.20> now;
+			turn rlasgun to x-axis <-62.59> now;
+			turn lleg2 to x-axis <25.67> now;
+		
+			sleep 80;
+			
+			justmoved = TRUE;
+		}
+		if( !Moving_1 )
+		{
+			Can_Aim_3 = 1;
+			if( justmoved )
+			{
+				move pelvis to y-axis [0] speed [1];
+				turn rthigh to x-axis <0> speed <200>;
+				turn rleg to x-axis <0> speed <200>;
+				turn lthigh to x-axis <0> speed <200>;
+				turn lleg to x-axis <0> speed <200>;
+				
+//				move pelvis2 to y-axis [0] speed [1];
+				turn rthigh2 to x-axis <0> speed <200>;
+				turn rleg2 to x-axis <0> speed <200>;
+				turn lthigh2 to x-axis <0> speed <200>;
+				turn lleg2 to x-axis <0> speed <200>;
+				
+				if( !Aiming_2 )
+				{
+					turn torso to x-axis <0> speed <90>;
+					
+					turn torso2 to x-axis <0> speed <90>;
+				}
+				justmoved = FALSE;
+			}
+			sleep 100;
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( shielding && swimming != 3 )
+	{
+//		show shield;
+//		sleep 150;
+//		hide shield;
+		shielding = 0;
+		set ARMORED to 0;
+//		cache lblink;
+//		cache rblink;
+		sleep 5000;
+		shielding = 1;
+		set ARMORED to 1;
+//		dont-cache lblink;
+//		dont-shade lblink;
+//		dont-cache rblink;
+//		dont-shade rblink;
+	}
+}
+
+
+
+Create()
+{
+	set ARMORED to 1;			//armored to allow 'shielding' function when first hit
+	
+	hide height;
+	
+	hide pelvis2;
+	hide lthigh2;
+	hide lleg2;
+	hide rthigh2;
+	hide rleg2;
+	hide torso2;
+	hide ruparm2;
+	hide rlasgun;
+	hide rbarrels;
+	hide luparm2;
+	hide llasgun;
+	hide lbarrels;
+	hide nano1;
+	hide nano2;
+	hide nano3;
+	hide head2;
+	hide dgun;
+	hide dbarrel;
+		
+	hide rbigflash;
+	hide lfirept;
+	hide rflare;
+	hide lflare;
+	
+	move torso2 to y-axis [7.500000] now;
+	
+	dont-cache rbigflash;
+	dont-cache lfirept;
+	dont-cache rflare;
+	dont-cache lflare;
+	
+	hide nanospray;
+
+	hide nanospray1;
+	hide nanospray2;
+	hide nanospray3;
+	
+	upgrade_on=0;
+		
+	Moving_1 = 0;
+	Aiming_2 = 0;
+	Can_Aim_3 = 1;
+	Building_4 = 0;
+	kills = 0;
+	gun_1 = 0;
+	gun_2 = 3;
+	pimped = 0;
+	firing = 0;
+	firing_3 = 0;
+	firedelay = 800;
+	dgunning = 0;
+	lasering = 0;
+	shielding = 1;
+		
+	sleep 2;
+	
+	start-script MotionControl();
+	start-script Detect();
+
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	swimming = Func_Var_1;
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if ( upgrade_on )
+	{
+		piecenum = nanospray2;
+	}
+	if ( !upgrade_on )
+	{
+		piecenum = nanospray;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	if ( upgrade_on )
+	{
+		piecenum = torso2;
+	}
+	if ( !upgrade_on )
+	{
+		piecenum = torso;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = lfirept;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = rflare;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = lflare;
+	}			
+}
+
+FirePrimary()
+{
+	signal 8;
+	firing = 1;
+	if ( upgrade_on )
+	{
+		if( gun_1 == 1 )
+		{
+			show rflare;
+			sleep 100;
+			hide rflare;
+		}	
+		if( gun_1 == 2 )
+		{
+			show lflare;
+			sleep 100;
+			hide lflare;
+		}
+		++gun_1;
+		if( gun_1 == 3 )
+		{
+			gun_1 = 1;
+		}
+	}
+	if ( !upgrade_on )
+		{
+		if( gun_1 == 0 )
+		{
+			show lfirept;
+			sleep 100;
+			hide lfirept;
+		}	
+//		++gun_1;
+//		if( gun_1 == 1 )
+//		{
+//			gun_1 = 0;
+//		}
+	}
+}
+
+//==========================================================================================================================
+
+AimFromTertiary(piecenum)
+{
+	if ( upgrade_on )
+	{
+		piecenum = torso2;
+	}
+	if ( !upgrade_on )
+	{
+		piecenum = torso;
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( upgrade_on )
+	{
+		piecenum = dflash;
+	}
+	if( !upgrade_on )
+	{
+		piecenum = rbigflash;
+	}
+}
+
+
+
+FireTertiary()
+{
+	if ( upgrade_on )
+	{
+		explode dflash type BITMAPONLY | BITMAP5;
+	}
+	if ( !upgrade_on )
+	{
+		firing_3 = 1;
+		show rbigflash;
+		sleep 100;
+		hide rbigflash;
+		dont-cache glow;
+		sleep 4650;
+		firing_3 = 0;
+		cache glow;
+	}
+}
+
+//==========================================================================================================================
+
+
+
+FireSecondary()
+{
+	++gun_2;
+	if( gun_2 == 5 )
+	{
+		gun_2 = 3;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = torso2;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_2 == 3 )
+	{
+		piecenum = r1;
+	}
+	if( gun_2 == 4 )
+	{
+		piecenum = r2;
+	}
+}
+
+
+
+StartBuilding(Func_Var_1, Func_Var_2)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	Aiming_2 = 1;
+	Building_4 = 1;
+	while( !Can_Aim_3 )
+	{
+		sleep 100;
+	}
+	
+	sleep rand(25,250);
+	
+	stop-spin lbarrels around y-axis decelerate <2.000000>;
+	stop-spin rbarrels around y-axis decelerate <2.000000>;
+	
+	turn torso to y-axis Func_Var_1 speed <300.071429>;
+	turn luparm to x-axis <0.000000> - Func_Var_2 - <30.005495> speed <45.010989>;
+	turn torso2 to y-axis Func_Var_1 speed <300.071429>;
+	turn luparm2 to x-axis <0.000000> - Func_Var_2 - <30.005495> speed <45.010989>;
+	
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	
+	wait-for-turn torso2 around y-axis;
+	wait-for-turn luparm2 around x-axis;
+	
+	set INBUILDSTANCE to 1;
+}
+
+StopBuilding()
+{
+	Building_4 = 0;
+	set INBUILDSTANCE to 0;
+	signal 2;
+	set-signal-mask 2;
+	call-script RestorePosition();
+}

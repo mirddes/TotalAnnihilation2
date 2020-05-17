@@ -1,0 +1,38 @@
+- Stumpy and Raider increased weapon damage 10%
+- Leveler increased weapon damage 5%, increased turret traverse 40%
+- Immolator increased weapon spread by 30%, reduced DPS by 10%. Sunspot DPS reduced by 5%
+- Arm and Core LLT metal cost and buildtime reduced by 9%
+- tweaks to mine energy cost (general small reduction)
+- Minelayer vehicles small reduction in top speed and turnrate (still quite quick), reduction in acceleration for Arm's to closer to Core counterpart
+- HLTs both Arm and Core increase turret traverse rate by 50%
+- Zipper reduced weapon DPS by 20%, Freaker by 11%
+- Maverick 20% increase in energy cost, 5% increase in cost/buildtime
+- Sumo reduced metal cost/buildtime by 5%, increased health by 10%, 30% faster turret traverse, 2% range increase
+- Neutron and Stunner silos reduced range by 30%, increased metal cost/buildtime by 10%, energy cost by 20%
+- Invincible and Excelsior T3 battlecruisers increased metal cost/buildtime 10%, energy cost 20%, reduced health 15%
+- Epoch/Magnate T3 battleships increased energy cost 10%
+- Dragons eye sight towers reduced health by 60%
+- underwater metal extractors reduced cost/buildtime 10%
+
+
+
+2020 01 19 ------------------------------------------------------
+
+https://1drv.ms/u/s!Arsd_OIZPjDyg4Zv4SJqtr3VnFOeOg?e=CEw5dB
+Fixes:
+Fixed Mex upgrades not showing to opponents
+Fixed Moho upgrades
+Fixed bombers - bombing runs should not end prematurely now
+Fixes to T3 air transports (still not 100%, sometimes does not unload all units)
+Fixed build menu - Y key is T3 metal extractor now as it is with T1 and T2
+Removed all structures from special damage tables of all paralyzer weapons (to make the lists shorter and hopefully more reliable at applying stun)
+Minelayer "nano-disrupt" should work now for clearing trees, rocks etc, not for stunning units :P
+tweaks to some cannon sounds
+Balance tweaks:
+- Flash weapon accuracy should now be closer to OTA, a bit less reliable
+- Leveler lower damage, shorter reload (slight increase in firepower), small range increase, velocity increase, also tank speed slightly faster
+- Warrior main weapon higher damage, longer reload (slight increase in firepower), slight range increase
+- T2 amphibious tanks shorter reload and increased weapon velocity ~5%
+- Reaver small increase in speed, armour, firepower, weapon velocity increase
+- Scudd and Precluder 50% more damage, shorter reload, just over half explosion area
+- tweaks to sub health and damage - they now take less damage from surface weapons

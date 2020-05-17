@@ -1,0 +1,8309 @@
+/* Translate.tdf -- Translations of strings referenced in the game code */
+
+/*
+The recordname is the base string that is referenced by the code.  Note that
+they are case-sensitive, so "kills" and "KILLS" are two different strings.
+The entries in each record indicate the translated strings by language.
+Simply specify the language and provide the translation.  If a translation
+is not provided for a language, the base string will be used instead.
+*/
+
+
+// Ingame and Panel Messages
+
+[KILLS]
+	{
+	piglatin = ILLSKAY;
+	German = ABSCHÜSSE;
+	French = VICTIMES;
+	Italian = VITTIME;
+	Spanish = VÍCTIMAS;
+	}
+[Kills]
+	{
+	German = Abschüsse;
+	French = Victimes;
+	Italian = Vittime;
+	Spanish = Víctimas;
+
+	}
+[Kill]
+	{
+	German = Abschuß;
+	French = Victime;
+	Italian = Vittima;
+	Spanish = Víctima;
+	}
+
+
+[kill]
+	{
+	German = Abschuß;
+	French = victime;
+	Italian = vittima;
+	Spanish = víctima;
+	}
+
+[LOSSES]
+	{
+	piglatin = OSSESLAY;
+	German = VERLUSTE;
+	French = PERTES;
+	Italian = PERDITE;
+	Spanish = BAJAS;
+	}
+[Losses]
+	{
+	German = Verluste;
+	French = Pertes;
+	Italian = Perdite;
+	Spanish = Bajas;
+	}
+[kills]
+	{
+	piglatin = illskay;
+	German = Abschüsse;
+	French = victimes;
+	Italian = vittime;
+	Spanish = víctimas;
+	}
+[Veteran]
+	{
+	piglatin = Eteranvay;
+	German = Veteran;
+	French = Vétéran;
+	Italian = Veterano;
+	Spanish = Veterano;
+	}
+[Newbie]
+	{
+	piglatin = Ewbienay;
+	German = Frischling;
+	French = Novice;
+	Italian = Principiante;
+	Spanish = Novato;
+	}
+[PAUSED]
+	{
+	piglatin = AUSEDPAY;
+	German = PAUSE;
+	French = PAUSE;
+	Italian = PAUSA;
+	Spanish = PAUSA;
+	}
+
+// Loading screen
+
+[Map]
+	{
+	piglatin = Apmay;
+	German = Karte;
+	French = Carte;
+	Italian = Mappa;
+	Spanish = Mapa;
+	}
+[Map:]
+	{
+	piglatin = Apmay:;
+	German = Karte:;
+	French = Carte:;
+	Italian = Mappa:;
+	Spanish = Mapa:;
+	}
+
+[Terrain]
+	{
+	piglatin = Erraintay;
+	German = Gelände;
+	French = Terrain;
+	Italian = Terreno;
+	Spanish = Terreno;
+	}
+[Textures]
+	{
+	piglatin = Exturestay;
+	German = Texturen;
+	French = Textures;
+	Italian = Texture;
+	Spanish = Texturas;
+	}
+[Units]
+	{
+	piglatin = Unitsay;
+	German = Einheiten;
+	French = Unités;
+	Italian = Unità;
+	Spanish = Unidades;
+	}
+[Features]
+	{
+	piglatin = Eaturesfay;
+	German = Eigenschaften;
+	French = Topographie;
+	Italian = Topografia;
+	Spanish = Topografía;
+	}
+[FEATURES]
+	{
+	German = Eigenschaften;
+	French = Topographie;
+	Italian = TOPOGRAFIA;
+	Spanish = TOPOGRAFÍA;
+	}
+
+[MoveInfo]
+	{
+	piglatin = OvemayInfoay;
+	German = Bewegungsinfo;
+	French = Mouvement;
+	Italian = Movimento;
+	Spanish = Movimiento;
+	}
+[Explosions]
+	{
+	piglatin = Explosionsay;
+	German = Explosionen;
+	French = Explosions;
+	Italian = Esplosioni;
+	Spanish = Explosiones;
+	}
+[Synchronization complete]
+	{
+	piglatin = IncronizationSay ompletecay;
+	German = Synchronisation abgeschlossen;
+	French = Synchronisation terminée;
+	Italian = Sincronizzazione avvenuta;
+	Spanish = Sincronización completada;
+	}
+[player ready]
+	{
+	piglatin = Ayerplay eadyray;
+	German = Spieler bereit;
+	French = Joueur prêt;
+	Italian = giocatore pronto;
+	Spanish = jugador listo;
+	}
+[players ready]
+	{
+	piglatin = Ayersplay eadyray;
+	German = Spieler bereit;
+	French = Joueurs prêt;
+	Italian = giocatori pronti;
+	Spanish = jugadores listos;
+	}
+[Waiting for other players]
+	{
+	piglatin = Aitingway orfay ethay otheray ayersplay;
+	German = Warte auf andere Spieler.;
+	French = Attente des autres joueurs.;
+	Italian = In attesa degli altri giocatori.;
+	Spanish = Esperando a otros jugadores;
+	}
+[Synchronizing]
+	{
+	piglatin = Incronizingsay;
+	German = Synchronisiere...;
+	French = Synchronisation;
+	Italian = Sincronizzazione;
+	Spanish = Sincronizando...;
+	}
+[Waiting for the Creator]
+	{
+	piglatin = Aitingqay orfay ethay Eatorcray;
+	German = Warte auf den Schöpfer;
+	French = Attente du créateur;
+	Italian = In attesa del leader;
+	Spanish = Esperando al Creador;
+	}
+
+[3D Data]
+	{
+	German = 3D-Daten;
+	French = Données 3D;
+	Italian = Dati 3D;
+	Spanish = Datos 3D;
+	}
+[Animation]
+	{
+	German = Animation;
+	French = Animation;
+	Italian = Animazione;
+	Spanish = Animación;
+	}
+[Animations]
+	{
+	German = Animationen;
+	French = Animations;
+	Italian = Animazione;
+	Spanish = Animación;
+	}
+
+
+// Sides
+
+[Arm]
+	{
+	piglatin=rmAay;
+	German = Arm;
+	French = Arm;
+	Italian = Arm;
+	Spanish = Clan;
+	}
+[ARM]
+	{
+	piglatin=RMAay;
+	German = ARM;
+	French = ARM;
+	Italian = ARM;
+	Spanish = CLAN;
+	}
+[Core]
+	{
+	piglatin=oreCay;
+	German = Core;
+	French = Core;
+	Italian = Core;
+	Spanish = Núcleo;
+	}
+[CORE]
+	{
+	piglatin=ORECay;
+	German = CORE;
+	French = CORE;
+	Italian = CORE;
+	Spanish = NÚCLEO;
+	}
+[Arm Campaign]
+	{
+	German = Arm Missionen;
+	French = Missions Arm;
+	Italian = Campagna Arm;
+	Spanish = Misiones del Clan;
+	}
+[arm campaign]
+	{
+	German = Arm Missionen;
+	French = Missions Arm;
+	Italian = Campagna Arm;
+	Spanish = Misiones del Clan;
+	}
+[Core Campaign]
+	{
+	German = Core Missionen;
+	French = Missions Core;
+	Italian = Campagna Core;
+	Spanish = Misiones del Núcleo;
+	}
+
+
+// Menus
+
+[No Narration]
+	{
+	German = Erzählung;
+	French = Narration;
+	Italian = Narrazione;
+	Spanish = Sin narración;
+	}
+
+[Narration]
+	{
+	German = Erzählung;
+	French = Narration;
+	Italian = Narrazione;
+	Spanish = Narración;
+	}
+
+
+[Start]
+	{
+	piglatin=tartSay;
+	German = Start;
+	French = Démarrer;
+	Italian = Avvio;
+	Spanish = Comenzar;
+	}
+[Select]
+	{
+	piglatin=electSay;
+	German = Auswahl;
+	French = Sélection;
+	Italian = Seleziona;
+	Spanish = Elegir;
+	}
+[Previous Menu]
+	{
+	piglatin=revious MenuPay;
+	German = Zurück;
+	French = Menu précédent;
+	Italian = Menu precedente;
+	Spanish = Menú anterior;
+	}
+[Next]
+	{
+	piglatin=extNay;
+	German = Weiter;
+	French = Suivant;
+	Italian = Successivo;
+	Spanish = Siguiente;
+	}
+[Previous]
+	{
+	piglatin=reviousPay;
+	German = Zurück;
+	French = Précédent;
+	Italian = Precedente;
+	Spanish = Anterior;
+	}
+[SOUND]
+	{
+	piglatin=OUNDSay;
+	German = SOUND;
+	French = SON;
+	Italian = SUONI;
+	Spanish = SONIDO;
+	}
+[INTERFACE]
+	{
+	piglatin=NTERFACEIay;
+	German = STEUERUNG;
+	French = INTERFACE;
+	Italian = INTERFACCIA;
+	Spanish = INTERFAZ;
+	}
+[VISUALS]
+	{
+	piglatin=ISUALSVay;
+	German = OPTIK;
+	French = VISUEL;
+	Italian = VISUALE;
+	Spanish = GR¦FICOS; 
+	}
+[MUSIC]
+	{
+	piglatin=USICMay;
+	German = MUSIK;
+	French = MUSIQUE;
+	Italian = MUSICA;
+	Spanish = MÚSICA;
+	}
+
+[Set Difficulty]
+	{
+	German = Schwierigkeit;
+	French = Difficulté;
+	Italian = Difficoltà;
+	Spanish = Dificultad;
+	}
+
+[Skirmish]
+	{
+	piglatin=kirmishSay;
+	German = Gefecht;
+	French = Bataille;
+	Italian = Battaglia;
+	Spanish = Escaramuza;
+	}
+
+[Skirmish (%d players)]
+	{
+	German = Gefecht (%d Spieler);
+	French = Bataille (%d joueurs);
+	Italian = Battaglia (%d giocatori);
+	Spanish = Escaramuza (%d jugadores);
+	}
+[New Campaign]
+	{
+	piglatin=ew CampaignNay;
+	German = Neuer Feldzug;
+	French = Nouv. Campagne;
+	Italian = Nuova Campagna;
+	Spanish = Nueva batalla;
+	}
+
+[NEW CAMPAIGN]
+	{
+	German = NEUER FELDZUG;
+	French = NOUVELLE CAMPAGNE;
+	Italian = NUOVA CAMPAGNA;
+	Spanish = NUEVA BATALLA;
+	}
+	
+[Start Campaign]
+	{
+	piglatin=tart CampaignSay;
+	German = Feldzug starten;
+	French = Commencer campagne;
+	Italian = Inizia Campagna;
+	Spanish = Comenzar batalla;
+	}
+[Select Campaign]
+	{
+	piglatin=elect CampaignSay;
+	German = Feldzug auswählen;
+	French = Choisir la campagne;
+	Italian = Scegli la Campagna;
+	Spanish = Elegir batalla;
+	}
+
+[SELECT CAMPAIGN:]
+	{
+	German = FELDZUG AUSWÄHLEN:;
+	French = CHOISIR LA CAMPAGNE:;
+	Italian = SCEGLI LA CAMPAGNA:;
+	Spanish = ELEGIR BATALLA:;
+	}
+
+[Select Any Mission]
+	{
+	piglatin=elect Any MissionSay;
+	German = Irgeneine Mission auswählen;
+	French = Choisir n'importe quelle mission;
+	Italian = Scegli una Missione;
+	Spanish = Elegir cualquier misión;
+	}
+[Select Mission]
+	{
+	piglatin=elect MissionSay;
+	German = Mission auswählen;
+	French = Choisir une mission;
+	Italian = Scegli una Missione;
+	Spanish = Elegir misión;
+	}
+[Start Mission]
+	{
+	piglatin=tart MissionSay;
+	German = Mission beginnen;
+	French = Commencer la mission;
+	Italian = Comincia la Missione;
+	Spanish = Comenzar misión;
+	}
+[Undo Changes]
+	{
+	piglatin=ndo ChangesUay;
+	German = Keine Änderung;
+	French = Annuler modifs.;
+	Italian = Ripristina;
+	Spanish = Anular cambios;
+	}
+[Restore Defaults]
+	{
+	piglatin=estore DefaultsRay;
+	German = wieder Standard;
+	French = Par Défaut;
+	Italian = Default;
+	Spanish = Iniciales;
+	}
+[Restore Default]
+	{
+	German = wieder Standard;
+	French = Défaut;
+	Italian = Default;
+	Spanish = Opción inicial;
+	}
+[Exit to Menu]
+	{
+	piglatin=xit to Main MenuEay;
+	German = Hauptmenü;
+	French = Retour au menu principal;
+	Italian = Torna al menu;
+	Spanish = Salir al menú;
+	}
+[Exit Game]
+	{
+	piglatin=xit GameEay;
+	German = Spiel verlassen;
+	French = Quitter le jeu;
+	Italian = Esci dal gioco;
+	Spanish = Salir del juego;
+	}
+[Please Select Map]
+	{
+	piglatin=lease Select MapPay;
+	German = Karte wählen;
+	French = Carte;
+	Italian = Scegli la Mappa;
+	Spanish = Elegir mapa;
+	}
+[Load Map]
+	{
+	piglatin=oad MapLay;
+	German = Karte laden;
+	French = Charger carte;
+	Italian = Carica Mappa;
+	Spanish = Cargar mapa;
+	}
+[Select Side]
+	{
+	piglatin=elect SideSay;
+	German = Seite wählen;
+	French = Choix du camp;
+	Italian = Scelta fazione;
+	Spanish = Elegir ejército;
+	}
+
+// Generic gameplay stuff
+
+[Player]
+	{
+	piglatin=layerPay;
+	German = Spieler;
+	French = Joueur;
+	Italian = Giocatore;
+	Spanish = Jugador;
+	}
+
+[Players]
+	{
+	piglatin=layerPay;
+	German = Spieler;
+	French = Joueur;
+	Italian = Giocatori;
+	Spanish = Jugadores;
+	}
+
+
+[Players:]
+	{
+	German = Spieler:;
+	French = Joueur:;
+	Italian = Giocatori:;
+	Spanish = Jugadores:;
+	}
+
+[Allies]
+	{
+	piglatin=lliesAay;
+	German = Verbündete;
+	French = Alliés;
+	Italian = Alleati;
+	Spanish = Aliados;
+	}
+[ALLIES]
+	{
+	piglatin=LLIESAay;
+	German = VERBÜNDETE;
+	French = ALLIES;
+	Italian = ALLEATI;
+	Spanish = ALIADOS;
+	}
+[Ally]
+	{
+	piglatin=llyAay;
+	German = Verbündeter;
+	French = Allié;
+	Italian = Alleato;
+	Spanish = Aliado;
+	}
+[Side]
+	{
+	piglatin=ideSay;
+	German = Seite;
+	French = Camp;
+	Italian = Fazione;
+	Spanish = Ejército;
+	}
+[Metal]
+	{
+	piglatin=etalMay;
+	German = Metall;
+	French = Métal;
+	Italian = Metallo;
+	Spanish = Metal;
+	}
+[METAL]
+	{
+	German = METALL;
+	French = METAL;
+	Italian = METALLO;
+	Spanish = METAL;
+	}
+[Energy]
+	{
+	piglatin=nergyEay;
+	German = Energie;
+	French = Energie;
+	Italian = Energia;
+	Spanish = Energía;
+	}
+[ENERGY]
+	{
+	German = Energie;
+	French = Energie;
+	Italian = ENERGIA;
+	Spanish = ENERGÍA;
+	}
+
+[Color]
+	{
+	piglatin=olorCay;
+	German = Farbe;
+	French = Couleur;
+	Italian = Colore;
+	Spanish = Color;
+	}
+
+[mb]
+	{
+	German = mb;
+	French = mb;
+	Italian = Mb;
+	Spanish = mb;
+	}
+
+[Yes]
+	{
+	piglatin=esYay;
+	German = Ja;
+	French = Oui;
+	Italian = Sì;
+	Spanish = Sí;
+	}
+[No]
+	{
+	piglatin=oNay;
+	German = Nein;
+	French = Non;
+	Italian = No;
+	Spanish = No;
+	}
+[OK]
+	{
+	piglatin=KOay;
+	German = OK;
+	French = OK;
+	Italian = OK;
+	Spanish = OK;
+	}
+[Ok]
+	{
+	piglatin=kOay;
+	German = Ok;
+	French = Ok;
+	Italian = Ok;
+	Spanish = Ok;
+	}
+[Cancel]
+	{
+	piglatin=ancelCay;
+	German = Abbruch;
+	French = Annuler;
+	Italian = Annulla;
+	Spanish = Cancelar;
+	}
+[CANCEL]
+	{
+	piglatin=ANCELCay;
+	German = ABBRUCH;
+	French = ANNULER;
+	Italian = ANNULLA;
+	Spanish = CANCELAR;
+	}
+
+// Victory/Defeat Screen
+
+[Energy Produced]
+	{
+	German = Energie produziert;
+	French = Energie Produite;
+	Italian = Energia Prodotta;
+	Spanish = Energía producida;
+	}
+[Metal Produced]
+	{
+	German = Metall produziert;
+	French = Métal Extrait;
+	Italian = Metallo Prodotto;
+	Spanish = Metal producido;
+	}
+[Energy Wasted]
+	{
+	German = Energie vergeudet;
+	French = Excédent d'Energie;
+	Italian = Energia sprecata;
+	Spanish = Energía consumida;
+	}
+[Metal Wasted]
+	{
+	German = Metall vergeudet;
+	French = Excédent de Métal;
+	Italian = Metallo sprecato;
+	Spanish = Metal consumido;
+	}
+
+// Options menu
+
+[Options Menu]
+	{
+	German = Optionen;
+	French = Options;
+	Italian = Opzioni;
+	Spanish = Menú de Opciones;
+	}
+[GAME OPTIONS]
+	{
+	German = SPIELOPTIONEN;
+	French = OPTIONS DE JEU;
+	Italian = OPZIONI DI GIOCO;
+	Spanish = OPCIONES DE JUEGO;
+	}
+
+[Resume]
+	{
+	piglatin=esumeRay;
+	German = Weiter;
+	French = Continuer;
+	Italian = Continua;
+	Spanish = Actualizar;
+	}
+[Save Game]
+	{
+	piglatin=ave GameSay;
+	German = Speichern;
+	French = Sauvegarde;
+	Italian = Salva;
+	Spanish = Salvar;
+	}
+[Load Game]
+	{
+	piglatin=oad GameLay;
+	German = Laden;
+	French = Chargement;
+	Italian = Carica;
+	Spanish = Cargar;
+	}
+[Preferences]
+	{
+	piglatin=referencesPay;
+	German = Einstellungen;
+	French = Préférences;
+	Italian = Preferenze;
+	Spanish = Preferencias;
+	}
+[End Mission]
+	{
+	piglatin=nd MissionEay;
+	German = Mission beenden;
+	French = Fin de la mission;
+	Italian = Fine della missione;
+	Spanish = Acabar misión;
+	}
+[Help]
+	{
+	piglatin=elpHay;
+	German = Hilfe;
+	French = Aide;
+	Italian = Aiuto;
+	Spanish = Ayuda;
+	}
+[Briefing]
+	{
+	piglatin=riefingBay;
+	German = Briefing;
+	French = Briefing;
+	Italian = Briefing;
+	Spanish = Informe;
+	}
+[Mission Objective]
+	{
+	piglatin=ission ObjectiveMay;
+	German = Einsatzziel;
+	French = Objectif de mission ;
+	Italian = Obiettivo della missione;
+	Spanish = Objetivo de la misión;
+	}
+
+// Player settings
+
+[UNUSED]
+	{
+	piglatin=nusedUay;
+	German = Unbenutzt;
+	French = Inutilisé;
+	Italian = INUTILIZZATO;
+	Spanish = Sin usar;
+	}
+
+[unused]
+	{
+	piglatin=nusedUay;
+	German = Unbenutzt;
+	French = Inutilisé;
+	Italian = Inutilizzato;
+	Spanish = Sin usar;
+	}
+
+[AI]
+	{
+	piglatin=IAay;
+	German = KI;
+	French = IA;
+	Italian = IA;
+	Spanish = IA;
+	}
+[BLOCKED]
+	{
+	piglatin=lockedBay;
+	German = Gesperrt;
+	French = Bloqué;
+	Italian = BLOCCATO;
+	Spanish = Bloqueado;
+	}
+[No Limit]
+	{
+	piglatin=o LimitNay;
+	German = unbegr.;
+	French = Illimité;
+	Italian = No lim.;
+	Spanish = Sin límite;
+	}
+
+// CD controls
+
+[CD Player]
+	{
+	piglatin=D PlayerCay;
+	German = CD-Spieler;
+	French = Lecteur de CD;
+	Italian = Lettore CD;
+	Spanish = Lector de CD;
+	}
+[No Music]
+	{
+	piglatin=o MusicNay;
+	German = Keine Musik;
+	French = Pas de musique;
+	Italian = Musica disattivata;
+	Spanish = Sin música;
+	}
+[Repeat Track]
+	{
+	piglatin=epeat TrackRay;
+	German = Stück wiedeholen;
+	French = Répéter piste;
+	Italian = Esegui traccia;
+	Spanish = Repetir pista;
+	}
+[Repeat Track #]
+	{
+	piglatin=epeat Track #Ray;
+	German = Stück Nr.# wiederholen;
+	French = Répéter piste No.;
+	Italian = Esegui traccia #;
+	Spanish = Repetir Pista #.;
+	}
+[Repeat]
+	{
+	German = Wiederholen;
+	French = Répéter;
+	Italian = Esegui;
+	Spanish = Repetir;
+	}
+
+[Random Tracks]
+	{
+	piglatin=andom TracksRay;
+	German = Zufall;
+	French = Lecture aléatoire;
+	Italian = Tracce casuali;
+	Spanish = Pista aleatoria;
+	}
+[Specify Tracks]
+	{
+	piglatin=pecify TracksSay;
+	German = Stücke festlegen;
+	French = Choisir pistes;
+	Italian = Scegli tracce;
+	Spanish = Elegir pistas;
+	}
+[Play All Tracks]
+	{
+	piglatin=lay All TracksPay;
+	German = Alle Stücke spielen;
+	French = Globale;
+	Italian = Esegui tutte le tracce;
+	Spanish = Todas las pistas;
+	}
+[Play All]
+	{
+	German = Alle Stücke;
+	French = Globale;
+	Italian = Esegui tutto;
+	Spanish = Todas;
+	}
+[Track]
+	{
+	piglatin=rackTay;
+	German = Stück;
+	French = Piste;
+	Italian = Traccia;
+	Spanish = Pista;
+	}
+
+[Custom]
+	{
+	German = Spezifisch;
+	French = Spécifique;
+	Italian = Personalizza;
+	Spanish = Personalizar;
+	}
+
+
+[No Action]
+	{
+	piglatin=o ActionNay;
+	German = Keine Action;
+	French = Pas d'action;
+	Italian = Nessuna azione;
+	Spanish = Sin acción;
+	}
+[Battle]
+	{
+	piglatin=attleBay;
+	German = Schlacht;
+	French = Bataille;
+	Italian = Battaglia;
+	Spanish = Batalla;
+	}
+[Defeat]
+	{
+	piglatin=efeatDay;
+	German = Niederlage;
+	French = Défaite;
+	Italian = Sconfitta;
+	Spanish = Derrota;
+	}
+[Unused]
+	{
+	German = Unbenutzt;
+	French = Inutilisé;
+	Italian = Inutilizzato;
+	Spanish = Sin usar;
+	}
+
+
+[NO DISC]
+	{
+	German = Keine CD eingelegt;
+	French = Pas de CD;
+	Italian = CD NON PRESENTE;
+	Spanish = NO HAY CD;
+	}
+
+
+// Speeds
+
+[Normal]
+	{
+	piglatin=ormalNay;
+	German = Normal;
+	French = Normale;
+	Italian = Normale;
+	Spanish = Normal;
+	}
+[Slow]
+	{
+	piglatin=lowSay;
+	German = Langsam;
+	French = Lente;
+	Italian = Lento;
+	Spanish = Lento;
+	}
+[Slower]
+	{
+	piglatin=lowerSay;
+	German = Langsamer;
+	French = Très lente;
+	Italian = Molto lento;
+	Spanish = Más lento;
+	}
+[Fast]
+	{
+	piglatin=astFay;
+	German = Schnell;
+	French = Rapide;
+	Italian = Veloce;
+	Spanish = Rápido;
+	}
+[Faster]
+	{
+	piglatin=asterFay;
+	German = Schneller;
+	French = Très rapide;
+	Italian = Molto veloce;
+	Spanish = Más rápido;
+	}
+[Game Speed]
+	{
+	piglatin=ame SpeedGay;
+	German = Tempo;
+	French = Vitesse;
+	Italian = Velocità;
+	Spanish = Velocidad;
+	}
+[Mouse Speed]
+	{
+	piglatin=ouse SpeedMay;
+	German = Mausgeschwindigkeit;
+	French = Vitesse de la souris;
+	Italian = Velocità del mouse;
+	Spanish = Velocidad del ratón;
+	}
+[Screen Scroll]
+	{
+	piglatin=creen ScrollSay;
+	German = Bildschirmscrolling;
+	French = Défilement écran;
+	Italian = Vel. Scrolling;
+	Spanish = Scroll de pantalla;
+	}
+[Screen Text Delay]
+	{
+	piglatin=creen Text DelaySay;
+	German = Textverzögerung;
+	French = Délai textes;
+	Italian = Permanenza del testo;
+	Spanish = Velocidad texto;
+	}
+[Interface]
+	{
+	piglatin=nterfaceIay;
+	German = Steuerung;
+	French = Interface;
+	Italian = Interfaccia;
+	Spanish = Interfaz;
+	}
+[Unit Chat]
+	{
+	piglatin=nit ChatUay;
+	German = Einheiten-Chat;
+	French = Dialogue unités;
+	Italian = Chat tra le unità;
+	Spanish = Diálogo entre unidades;
+	}
+[Text Lines]
+	{
+	piglatin=ext LinesTay;
+	German = Textzeilen;
+	French = Texte;
+	Italian = Testo;
+	Spanish = Líneas de texto;
+	}
+[Game]
+	{
+	piglatin=ameGay;
+	German = Spiel;
+	French = Jeu;
+	Italian = Gioco;
+	Spanish = Juego;
+	}
+[Mouse]
+	{
+	piglatin=ouseMay;
+	German = Maus;
+	French = Souris;
+	Italian = Mouse;
+	Spanish = Ratón;
+	}
+[Screen]
+	{
+	piglatin=creenSay;
+	German = Bildschirm;
+	French = Ecran;
+	Italian = Schermo;
+	Spanish = Pantalla;
+	}
+[Text Delay (secs)]
+	{
+	piglatin=ext Delay (secs)Tay;
+	German = Verzögerung (Sek.);
+	French = Afficher texte;
+	Italian = Permanenza del testo;
+	Spanish = Duración texto;
+	}
+[Button Interface]
+	{
+	piglatin=utton InterfaceBay;
+	German = Steuerungsknopf;
+	French = Interface;
+	Italian = Interfaccia;
+	Spanish = Botón de interfaz;
+	}
+[Control]
+	{
+	German = Steuerung;
+	French = Contrôle;
+	Italian = Controllo;
+	Spanish = Control;
+	}
+
+
+// Gamespeed
+
+[Quick]
+	{
+	piglatin=uickQay;
+	German = Schnell;
+	French = Rapide;
+	Italian = Rapido;
+	Spanish = Rápido;
+	}
+[Sluggish]
+	{
+	piglatin=luggishSay;
+	German = Träge;
+	French = Lente;
+	Italian = Lento;
+	Spanish = Lento;
+	}
+[Rapid Fire]
+	{
+	piglatin=apid FireRay;
+	German = Schnellfeuer;
+	French = Tir Rapide;
+	Italian = Fuoco Rapido;
+	Spanish = Fuego rápido;
+	}
+
+// Chat settings
+
+[No Chat]
+	{
+	piglatin=o ChatNay;
+	German = Keine Meldungen;
+	French = Pas de dialogue;
+	Italian = Nessun Chat;
+	Spanish = Sin diálogo;
+	}
+[Only important info]
+	{
+	piglatin=nly important infoOay;
+	German = Nur wichtige Informationen;
+	French = Infos importantes uniquement;
+	Italian = Solo informazioni importanti;
+	Spanish = Sólo información importante;
+	}
+[Medium chat]
+	{
+	piglatin=edium chatMay;
+	German = Meldungen-Mittel;
+	French = Dialogue normal;
+	Italian = Chat standard;
+	Spanish = Diálogo normal;
+	}
+[Detailed chat]
+	{
+	piglatin=etailed chatDay;
+	German = Meldungen-Detailliert;
+	French = Dialogue détaillé;
+	Italian = Chat dettagliato;
+	Spanish = Diálogo detallado;
+	}
+[High chat level]
+	{
+	piglatin=igh chat levelHay;
+	German = Hoher Meldungs-Level;
+	French = Dialogue complet;
+	Italian = Chat completo;
+	Spanish = Diálogo completo;
+	}
+[All info chatted]
+	{
+	piglatin=ll info chattedAay;
+	German = Meldungen über alle Infos;
+	French = Toutes les informations;
+	Italian = Tutte le informazioni;
+	Spanish = Todo el diálogo;
+	}
+[ENEMIES]
+	{
+	piglatin=NEMIESEay;
+	German = GEGNER;
+	French = ENNEMIS;
+	Italian = NEMICI;
+	Spanish = ENEMIGOS;
+	}
+
+
+[Enemies]
+	{
+	piglatin=NEMIESEay;
+	German = Gegner;
+	French = Ennemis;
+	Italian = Nemici;
+	Spanish = Enemigos;
+	}
+
+
+
+[All]
+	{
+	piglatin=LLAay;
+	German = Alle;
+	French = Tous;
+	Italian = Tutti;
+	Spanish = Todos;
+	}
+
+
+[ALL]
+	{
+	piglatin=LLAay;
+	German = ALLE;
+	French = TOUS;
+	Italian = TUTTI;
+	Spanish = TODOS;
+	}
+[TALK TO:]
+	{
+	piglatin=ALK TO:Tay;
+	German = SPRICH MIT:;
+	French = PARLER A:;
+	Italian = PARLA CON:;
+	Spanish = HABLAR CON:;
+	}
+
+[Unit Sounds]
+	{
+	German = Sound Einheiten;
+	French = Son des unités;
+	Italian = Suono delle unità;
+	Spanish = Sonido unidades;
+	}
+[UNIT SOUNDS]
+	{
+	German = SOUND EINHEITEN;
+	French = SON DES UNITES;
+	Italian = SUONO DELLE UNITÀ;
+	Spanish = SONIDO UNIDADES;
+	}
+
+
+// Sound settings
+
+[On]
+	{
+	German = An;
+	French = Oui;
+	Italian = Sì;
+	Spanish = On;
+	}
+
+[Off]
+	{
+	piglatin=ffOay;
+	German = Aus;
+	French = Rien;
+	Italian = No;
+	Spanish = Off;
+	}
+[Mono]
+	{
+	piglatin=onoMay;
+	German = Mono;
+	French = Mono;
+	Italian = Mono;
+	Spanish = Mono;
+	}
+[Stereo]
+	{
+	piglatin=tereoSay;
+	German = Stereo;
+	French = Stéréo;
+	Italian = Stereo;
+	Spanish = Estéreo;
+	}
+[3d]
+	{
+	piglatin=d3ay;
+	German = 3D;
+	French = 3-D;
+	Italian = 3D;
+	Spanish = 3D;
+	}
+[Sound Effects Volume]
+	{
+	piglatin=ound Effects VolumeSay;
+	German = Lautstärke der Soundeffekte;
+	French = Volume effets sonores;
+	Italian = Volume degli effetti sonori;
+	Spanish = Volumen efectos sonido;
+	}
+[Music Volume]
+	{
+	piglatin=usic VolumeMay;
+	German = Musiklautstärke;
+	French = Volume musique;
+	Italian = Volume;
+	Spanish = Volumen de música;
+	}
+[Sound Volume]
+	{
+	piglatin=ound VolumeSay;
+	German = Sound-Lautstärke;
+	French = Volume son;
+	Italian = Volume;
+	Spanish = Volumen de sonido;
+	}
+[Sound Mode]
+	{
+	piglatin=ound ModeSay;
+	German = Soundmodus;
+	French = Mode sonore;
+	Italian = Suono;
+	Spanish = Tipo de sonido;
+	}
+[No Chatting]
+	{
+	piglatin=o ChattingNay;
+	German = Keine Chats;
+	French = Pas de dialogues;
+	Italian = Nessun dialogo;
+	Spanish = Sin diálogos;
+	}
+[TEST]
+	{
+	piglatin=ESTTay;
+	German = TEST;
+	French = TEST;
+	Italian = TEST;
+	Spanish = PRUEBA;
+	}
+
+[Sound Test]
+	{
+	German = Sound Test;
+	French = Test Son;
+	Italian = Test Sonoro;
+	Spanish = Prueba de sonido;
+	}
+	
+[SOUND TEST]
+	{
+	German = SOUND TEST;
+	French = SOUND TEST;
+	Italian = TEST SONORO;
+	Spanish = PRUEBA DE SONIDO;
+	}
+
+[Building Sounds]
+	{
+	piglatin=uilding SoundsBay;
+	German = Baugeräusche;
+	French = Sons de construction;
+	Italian = Suoni degli edifici;
+	Spanish = Sonido construcción;
+	}
+[Building]
+	{
+	German = Bauen;
+	French = Construire;
+	Italian = Costruzioni;
+	Spanish = Construcción;
+	}
+
+[Unit Speech]
+	{
+	piglatin=nit SpeechUay;
+	German = Einheitensprache;
+	French = Dialogues unités;
+	Italian = Chat tra le unità;
+	Spanish = Diálogo entre unidades;
+	}
+[Unit Chat Level]
+	{
+	piglatin=nit Chat LevelUay;
+	German = Chat-level;
+	French = Dialogue des unités;
+	Italian = Livello del Chat;
+	Spanish = Nivel diálogo unidades;
+	}
+[Unit Text Acks]
+	{
+	German = Anzeige Meldungen;
+	French = Dialogue des unités;
+	Italian = Chat tra le unità;
+	Spanish = Confirmación textos;
+	}
+[Chat Level Info]
+	{
+	piglatin=hat Level InfoCay;
+	German = Info Chat-Level;
+	French = Niveau informations;
+	Italian = Livello del Chat;
+	Spanish = Nivel de diálogos;
+	}
+[Unit Acknowledgement]
+	{
+	piglatin=nit AcknowledgementUay;
+	German = Info Chat-Level;
+	French = Confirmation unité;
+	Italian = Informazioni unità;
+	Spanish = Confirmación unidad;
+	}
+
+// Difficulty settings
+
+[Difficulty]
+	{
+	piglatin=ifficultyDay;
+	German = Schwierigkeit;
+	French = Difficulté;
+	Italian = Difficoltà;
+	Spanish = Dificultad;
+	}
+[Difficulty:]
+	{
+	piglatin=ifficultyDay:;
+	German = Schwierigkeit:;
+	French = Difficulté:;
+	Italian = Difficoltà:;
+	Spanish = Dificultad:;
+	}
+
+
+[Easy]
+	{
+	piglatin=asyEay;
+	German = Leicht;
+	French = Facile;
+	Italian = Facile;
+	Spanish = Fácil;
+	}
+[Medium]
+	{
+	piglatin=ediumMay;
+	German = Mittel;
+	French = Moyen;
+	Italian = Medio;
+	Spanish = Media;
+	}
+[Hard]
+	{
+	piglatin=ardHay;
+	German = Schwer;
+	French = Difficile;
+	Italian = Difficile;
+	Spanish = Difícil;
+	}
+
+[Mapped]
+	{
+	German = Alle Gebiete;
+	French = Tout;
+	Italian = Esplorata;
+	Spanish = Activado;
+	}
+
+[Unmapped]
+	{
+	German = Endeckt;
+	French = Explorée;
+	Italian = Inesplorata;
+	Spanish = Desactivado;
+	}
+
+
+// Starting resource levels
+
+[Low]
+	{
+	piglatin=owLay;
+	German = Gering;
+	French = Faible;
+	Italian = Bassa;
+	Spanish = Bajo;
+	}
+[High]
+	{
+	piglatin=ighHay;
+	German = Hoch;
+	French = Elevé;
+	Italian = Alta;
+	Spanish = Alto;
+	}
+
+// Interface menu
+
+[Left]
+	{
+	piglatin=eftLay;
+	German = Links;
+	French = Gauche;
+	Italian = Sinistra;
+	Spanish = Izquierdo;
+	}
+[Right]
+	{
+	piglatin=ightRay;
+	German = Rechts;
+	French = Droite;
+	Italian = Destra;
+	Spanish = Derecho;
+	}
+[Left Click]
+	{
+	piglatin=eft ClickLay;
+	German = Linksklick;
+	French = Clic gauche;
+	Italian = Sinistra;
+	Spanish = Izquierdo;
+	}
+[Right Click]
+	{
+	piglatin=ight ClickRay;
+	German = Rechtsklick;
+	French = Clic droit;
+	Italian = Destra;
+	Spanish = Derecho;
+	}
+
+// Visuals menu
+
+[Shading]
+	{
+	piglatin=hadingSay;
+	German = Shading;
+	French = Ombres;
+	Italian = Ombre;
+	Spanish = Tonalidad;
+	}
+[Antialias]
+	{
+	piglatin=ntialiasAay;
+	German = Anti-Aliasing;
+	French = Antialias;
+	Italian = Antialias;
+	Spanish = Anti-aliasing;
+	}
+[Anti-aliasing]
+	{
+	German = Anti-Aliasing;
+	French = Antialias;
+	Italian = Anti-aliasing;
+	Spanish = Anti-aliasing;
+	}
+[Map Mode]
+	{
+	piglatin=ap ModeMay;
+	German = Kartenmodus;
+	French = Mode carte;
+	Italian = Modalità Mappa;
+	Spanish = Tipo de mapa;
+	}
+[Gamma]
+	{
+	piglatin=ammaGay;
+	German = Helligkeit;
+	French = Gamma;
+	Italian = Gamma;
+	Spanish = Brillo;
+	}
+[Gamma Correction]
+	{
+	piglatin=amma CorrectionGay;
+	German = Gammakorrektur;
+	French = Correction gamma;
+	Italian = Gamma Correction;
+	Spanish = Ajuste Brillo;
+	}
+[Line Of Sight]
+	{
+	piglatin=ine Of SightLay;
+	German = Sichtlinie;
+	French = Champ de vision;
+	Italian = Linea visiva;
+	Spanish = Campo de Visión;
+	}
+[Object rendering]
+	{
+	piglatin=bject renderingOay;
+	German = Objekt-Rendering;
+	French = Calcul des objets;
+	Italian = Rendering;
+	Spanish = Resolución de objetos;
+	}
+[Screen Size]
+	{
+	piglatin=creen SizeSay;
+	German = Bildschirmgröße;
+	French = Taille écran;
+	Italian = Risoluzione;
+	Spanish = Tamaño de pantalla;
+	}
+[Size]
+	{
+	German = Größe;
+	French = Taille;
+	Italian = Grandezza;
+	Spanish = Tamaño;
+	}
+
+[Shadows]
+	{
+	German = Schatten;
+	French = Ombres Portées;
+	Italian = Ombre - unità;
+	Spanish = Sombras;
+	}
+[Building Shadows]
+	{
+	piglatin=uilding ShadowsBay;
+	German = Gebäudeschatten;
+	French = Ombres des bâtiments;
+	Italian = Ombre degli edifici;
+	Spanish = Sombras construcciones;
+	}
+[Vehicle Shadows]
+	{
+	piglatin=ehicle ShadowsVay;
+	German = Fahrzeugschatten;
+	French = Ombres des véhicules;
+	Italian = Ombre dei veicoli;
+	Spanish = Sombras vehículos;
+	}
+[True]
+	{
+	piglatin=rueTay;
+	German = Echt;
+	French = Réelle;
+	Italian = Reale;
+	Spanish = Real;
+	}
+[Set]
+	{
+	piglatin=etSay;
+	German = Einstellen;
+	French = Défini;
+	Italian = Imposta;
+	Spanish = Definir;
+	}
+
+// Video mode menu
+
+[Select Videomode]
+	{
+	piglatin=elect VideomodeSay;
+	German = Grafikmodus wählen;
+	French = Choix du mode vidéo;
+	Italian = Seleziona modalità video;
+	Spanish = Elegir modo vídeo;
+	}
+[Select Mode]
+	{
+	piglatin=elect ModeSay;
+	German = Modus wählen;
+	French = Choix du mode;
+	Italian = Seleziona modalità;
+	Spanish = Elegir modo;
+	}
+
+// Save / Load game menus
+
+[Name Of Game to Load]
+	{
+	piglatin=ame Of Game to LoadNay;
+	German = Name des zu ladenden Spiels;
+	French = Nom de la partie à charger;
+	Italian = Nome della partita da caricare;
+	Spanish = Nombre de la partida a cargar;
+	}
+[Name Of Game to Save]
+	{
+	piglatin=ame Of Game to SaveNay;
+	German = Name des zu sichernden Spiels;
+	French = Nom de la partie à sauvegarder;
+	Italian = Nome della partita da salvare;
+	Spanish = Nombre de la partida a salvar;
+	}
+[Reset List]
+	{
+	German = Umstellen;
+	French = Raffûter;
+	Italian = Azzera lista;
+	Spanish = Cancelar lista;
+	}
+
+[Delete Game]
+	{
+	piglatin=elete GameDay;
+	German = Spiel löschen;
+	French = Effacer;
+	Italian = Elimina;
+	Spanish = Borrar;
+	}
+
+[Delete List]
+	{
+	German = Liste löschen;
+	French = Effacer;
+	Italian = Elimina lista;
+	Spanish = Borrar lista;
+	}
+[Cancel Save]
+	{
+	piglatin=ancel SaveCay;
+	German = Speichern abbrechen;
+	French = Annuler sauvegarde;
+	Italian = Annulla il salvataggio;
+	Spanish = Cancelar guardado;
+	}
+[Game type:]
+	{
+	piglatin=ame type:Gay;
+	German = Spieltyp:;
+	French = Type de jeu:;
+	Italian = Tipo di gioco:;
+	Spanish = Tipo de partida:;
+	}
+[Mission/Map:]
+	{
+	piglatin=ission/Map:May;
+	German = Einsatz/Karte:;
+	French = Mission/carte:;
+	Italian = Missione/Mappa:;
+	Spanish = Misión/Mapa:;
+	}
+[Time elapsed:]
+	{
+	piglatin=ime elapsed:Tay;
+	German = Zeit bisher:;
+	French = Temps écoulé:;
+	Italian = Tempo trascorso;
+	Spanish = Tiempo transcurrido:;
+	}
+[Side:]
+	{
+	piglatin=ide:Say;
+	German = Seite:;
+	French = Camp:;
+	Italian = Fazione:;
+	Spanish = Ejército:;
+	}
+[Campaign:]
+	{
+	piglatin=ampaign:Cay;
+	German = Feldzug:;
+	French = Campagne:;
+	Italian = Campagna:;
+	Spanish = Batalla:;
+	}
+[There are no saved games to choose from]
+	{
+	German = Es sind keine gespeicherten Spiele vorhanden.;
+	French = Il n'y a pas de sauvegardes à charger;
+	Italian = Non vi è alcuna partita salvata;
+	Spanish = No hay partidas salvadas;
+	}
+
+[Mission:]
+	{
+	piglatin=ission:May;
+	German = Mission:;
+	French = Mission:;
+	Italian = Missione:;
+	Spanish = Misión:;
+	}
+[Time saved:]
+	{
+	piglatin=ime saved:Tay;
+	German = Zeit gespart:;
+	French = Heure de sauvegarde:;
+	Italian = Tempo:;
+	Spanish = Tiempo jugado:;
+	}
+
+// Multiplayer connection messages
+
+[The creator has left the game]
+	{
+	German = Der Schöpfer hat das Spiel verlassen;
+	French = Le créateur a quitté la partie;
+	Italian = Il Leader ha abbandonato la partita;
+	Spanish = El jugador ha abandonado la partida ;
+	}
+[Reject Now]
+	{
+	German = Jetzt ausschließen;
+	French = Rejecter maintenant;
+	Italian = Respingi subito;
+	Spanish = Expulsar;
+	}
+
+[will be rejected in %d seconds]
+	{
+	German = wirn in %d Sekunden ausgeschlossen;
+	French = sera rejeté dans %d secondes;
+	Italian = sarà respinto entro %d secondi;
+	Spanish = será expulsado en %d segundos;
+	}
+
+[You do not have a compatible version for this game.]
+	{
+	German = Sie haben für dieses Spiel keine kompatible Version.;
+	French = Vous n'avez pas de version compatible pour ce jeu.;
+	Italian = Non hai una versione compatibile per questo gioco;
+	Spanish = Versión del juego no compatible.;
+	}
+[is not responding]
+	{
+	German = antwortet nicht.;
+	French = ne répond pas;
+	Italian = non risponde;
+	Spanish = no responde;
+	}
+[Timed out while connecting to DirectPlay lobby!]
+	{
+	German = Zeitüberlauf beim Versuch, mit der DirectPlay-Lobby zu verbinden.;
+	French = Délai d'attente trop long pour la connexion à DirectPlay.;
+	Italian = Attesa eccessiva per la connessione a DirectPlay;
+	Spanish = ¡Tiempo agotado en la conexión a DirectPlay!;
+	}
+[Please insert the Installation CD (Disc 1) and select%s"%s" again.]
+	{
+	German = Bittle legen Sie die Installations-CD (Disc 1) ein und wählen Sie erneut %s"%s".;
+	French = Insérez le CD d'installation (Disc 1) et sélectionnez de nouveau %"%s".;
+	Italian = Inserisci il CD di installazione (Disco 1) e seleziona%s"%s" di nuovo.;
+	Spanish = Introduce el CD de instalación (Disco 1) y elige de nuevo%s""%s"".;
+	}
+
+[Please insert the Campaign CD (Disc 2) and try again]
+	{
+	German = Bitte legen Sie die Feldzug-CD (Disc 2) ein und versuchen Sie es erneut.;
+	French = Insérez le CD du campagne de Total Annihilation (Disc 2) et recommencez;
+	Italian = Inserisci il secondo CD e riprova;
+	Spanish = Introduce el CD de juego (Disco 2) e inténtalo de nuevo.;
+	}
+
+[Please insert the Multiplayer CD (Disc 1) and try again]
+	{
+	German = Bitte legen Sie die Multispieler-CD (Disc 1) ein und versuchen Sie es erneut.;
+	French = Insérez le CD du jeu de Total Annihilation (Disc 1) et recommencez;
+	Italian = Inserisci il CD multigiocatore (Disco 1) e riprova;
+	Spanish = Introduce el CD para multijugador (Disco 1) e inténtalo de nuevo.;
+	}
+
+[Fault while trying to excecute button action.]
+	{
+	German = Fehler beim ausführen der Button-Funktion.;
+	French = Erreur d'exécution lors d'une action.;
+	Italian = Errore durante l'esecuzione dell'azione;
+	Spanish = Error en el botón de ejecución.;
+	}
+[The "%s" service failed or took %stoo long. Please see the readmee%sfile for more information.]
+	{
+	German = Der "%s"-Dienst ist ausgefallen oder rauchte%szu lange. Nähere Information finden Sie in der Readme-Datei%.;
+	French = Le service "%s" a échoué ou bien le délai d'attente a été dépassé. Consultez les fichier readme%s pour plus d'informations.;
+	Italian = Il servizio "%s" non è disponibile, o richiede troppo tempo. Consulta il file di Readme%s per maggiori informazioni.;
+	Spanish = El servicio ""%s"" falló o tardó %sdemasiado. Busca más información en el archivo readme%s.;
+	}
+[Unable to connect to DirectPlay lobby.]
+	{
+	German = Kann nicht mit der DirectPlay-Lobby verbinden.;
+	French = Connexion impossible en mode DirectPlay.;
+	Italian = Impossibile connettersi in modalità DirectPlay.;
+	Spanish = Imposible conectar en modo DirectPlay.;
+	}
+[Unable to browse to URL: %s]
+	{
+	German = Kann nicht durch URL blättern: %s;
+	French = Impossible d'explorer URL :%s;
+	Italian = Impossibile accedere alla URL: %s;
+	Spanish = Imposible acceder a URL: %s;
+	}
+[Unable to invoke DLL: %s]
+	{
+	German = Kann DLL nicht aufrufen: %s;
+	French = Utilisation DLL: %s impossible;
+	Italian = Impossibile utilizzare la DLL %s;
+	Spanish = Imposible usar el DLL: %s;
+	}
+[Unable to execute command: %s]
+	{
+	German = Kann Befehl nicht ausführen: %s;
+	French = Impossible d'exécuter la commande: %s;
+	Italian = Impossibile eseguire il comando: %s;
+	Spanish = Imposible ejecutar la orden: %s;
+	}
+[Play on Mplayer]
+	{
+	German = Auf MPlayer spielen;
+	French = Jouer en MPlayer;
+	Italian = Gioca su Mplayer;
+	Spanish = Jugar Multijugador;
+	}
+[Play on TEN]
+	{
+	German = auf TEN spielen;
+	French = Accès Mplayer;
+	Italian = Gioca su TEN;
+	Spanish = 10 jugadores;
+	}
+[Get TEN]
+	{
+	German = Mit TEN verbinden;
+	French = Accès TEN;
+	Italian = Accedi a TEN;
+	Spanish = Acceder 10 jugadores;
+	}
+[Play on Kali]
+	{
+	German = Auf Kali spielen;
+	French = Jouer en mode Kali;
+	Italian = Gioca su Kali;
+	Spanish = Jugar modo Kali;
+	}
+[Get Kali]
+	{
+	German = Mit Kali verbinden;
+	French = Accès Kali;
+	Italian = Accedi a Kali;
+	Spanish = Acceder a Kali;
+	}
+[Play on HEAT]
+	{
+	German = Auf HEAT spielen;
+	French = Jouer en mode HEAT;
+	Italian = Gioca su HEAT;
+	Spanish = Jugar modo HEAT;
+	}
+[Get HEAT]
+	{
+	German = Mit HEAT verbinden;
+	French = Accès HEAT;
+	Italian = Accedi a HEAT;
+	Spanish = Acceder a HEAT;
+	}
+[Play on Wireplay]
+	{
+	German = Auf Wireplay spielen;
+	French = Jouer en mode Wireplay;
+	Italian = Gioca su Wireplay;
+	Spanish = Jugar modo Wireplay;
+	}
+[Get Wireplay (UK)]
+	{
+	German = Mit Wireplay verbinden (UK);
+	French = Accès Wireplay (UK);
+	Italian = Accedi a Wireplay (UK);
+	Spanish = Acceder a Wireplay (Reino Unido);
+	}
+[Play on DWANGO]
+	{
+	German = Auf DWANGO spielen;
+	French = Jouer en mode DWANGO;
+	Italian = Gioca su DWANGO;
+	Spanish = Jugar  modo DWANGO;
+	}
+[Get DWANGO]
+	{
+	German = Mit DWANGO verbinden;
+	French = Accès DWANGO;
+	Italian = Accedi a DWANGO;
+	Spanish = Acceder a DWANGO;
+	}
+[Could not match weapon type "%s" for synchronization!]
+	{
+	German = Konnte Waffentyp "%s" nicht anpassen!;
+	French = Type d'arme "%s" non conforme pour synchronisation.;
+	Italian = L'arma "%s" non è conforme al processo di sincronizzazione!;
+	Spanish = ¡Imposible sincronización con tipo de arma ""%s""!;
+	}
+	
+
+[Updating...]
+	{
+	German = Aktualisiere...;
+	French = Mise à Jour...;
+	Italian = Aggiornamento...;
+	Spanish = Actualizando...;
+	}
+
+[You must enter a game name]
+	{
+	piglatin=ou must enter a game nameYay;
+	German = Sie müssen einen Spielnamen eingeben;
+	French = Vous devez entrer un nom de partie;
+	Italian = Devi inserire il nome della partita;
+	Spanish = Introducir nombre de la partida;
+	}
+[You must enter your name]
+	{
+	piglatin=ou must enter your nameYay;
+	German = Sie müssen Ihren Namen eingeben;
+	French = Vous devez entrer votre nom;
+	Italian = Devi inserire il tuo nome;
+	Spanish = Introducir nombre del jugador;
+	}
+[You were rejected from the game]
+	{
+	piglatin=ou were rejected from the gameYay;
+	German = Sie wurden bei diesem Spiel abgelehnt;
+	French = Vous avez été rejeté de la partie;
+	Italian = Sei stato rifiutato dal gioco;
+	Spanish = Has sido expulsado de la partida;
+	}
+[The %s service failed or took%stoo long. Please see the readme%sfile for more information.]
+	{
+	piglatin=he %s function failed or took%stoo long. Please see the readme.txt file for more information.Tay;
+	German = Die Funktion %s ist fehlgeschlagen oder dauerte%szu lange. Bitte schauen Sie wegen weiterer Informationen%sin der Datei ReadMe nach.;
+	French = La fonction %s a échoué ou %sa pris trop de temps. Voir le fichier Lisezmoi.txt%spour plus d'informations.;
+	Italian = Il servizio %s non è disponibile o ha richiesto troppo tempo. Riferirsi al file readme.txt per ulteriori informazioni.;
+	Spanish = El servicio ""%s"" falló o tardó %sdemasiado. Busca más información en el archivo readme%s.;
+	}
+[Direct Connections]
+	{
+	piglatin=irect ConnectionsDay;
+	German = Directverbindungen;
+	French = Connexions directes;
+	Italian = Connessioni dirette;
+	Spanish = Conexiones directas;
+	}
+[Internet Access]
+	{
+	piglatin=nternet AccessIay;
+	German = Internet-Zugang;
+	French = Accés Internet;
+	Italian = Accesso a Internet;
+	Spanish = Acceso a Internet;
+	}
+[There are no multiplayer games to choose from]
+	{
+	piglatin=here are no multiplayer games to choose fromTay;
+	German = Es stehen keine Mehrspielerrunden zur Auswahl;
+	French = Pas de parties multijoueurs à choisir;
+	Italian = Non ci sono partite multigiocatore tra cui scegliere;
+	Spanish = No hay partidas multijugador para elegir;
+	}
+[Player has left the game]
+	{
+	piglatin=layer has left the gamePay;
+	German = Spieler hat das Spiel velassen;
+	French = Le joueur a quitté le jeu;
+	Italian = Il giocatore ha lasciato il gioco;
+	Spanish = El jugador ha abandonado la partida;
+	}
+[Player is joining the game]
+	{
+	piglatin=layer is joining the gamePay;
+	German = Spieler tritt der Runde bei;
+	French = Le joueur a rejoint la partie;
+	Italian = Il giocatore si è unito alla partita;
+	Spanish = El jugador se incorpora a la partida;
+	}
+[Player has disconnected]
+	{
+	piglatin=layer has disconnectedPay;
+	German = Spieler %s hat die Verbindung gelöst;
+	French = Le joueur %s s'est déconnecté;
+	Italian = Il giocatore si è scollegato;
+	Spanish = El jugador se ha desconectado;
+	}
+
+[Player %s has disconnected]
+	{
+	piglatin=layer has disconnectedPay;
+	German = Spieler hat die Verbindung gelöst;
+	French = Le joueur s'est déconnecté;
+	Italian = Il giocatore %s si è scollegato;
+	Spanish = El jugador %s se ha desconectado;
+	}
+
+[You did not have the correct password]
+	{
+	German = Sie haben das falsche Passwort eingegeben.;
+	French = Vous n'aviez pas le bon mot de passe;
+	Italian = Password errata;
+	Spanish = Clave incorrecta;
+	}
+
+[Waiting for other players]
+	{
+	German = Warte auf andere Spieler;
+	French = En attente des autres joueurs;
+	Italian = In attesa di altri giocatori;
+	Spanish = Esperando a otros jugadores;
+	}
+[10 seconds]
+	{
+	piglatin=0 seconds1ay;
+	German = 10 Sekunden;
+	French = 10 secondes;
+	Italian = 10 secondi;
+	Spanish = 10 segundos;
+	}
+[Please Select Provider]
+	{
+	piglatin=lease Select ProviderPay;
+	German = Bitte Provider aussuchen;
+	French = Veuillez indiquer votre fournisseur;
+	Italian = Seleziona il Provider;
+	Spanish = Elige Provider;
+	}
+[Select Provider]
+	{
+	piglatin=elect ProviderSay;
+	German = Provider aussuchen;
+	French = Choix du fournisseur;
+	Italian = Seleziona il Provider;
+	Spanish = Elegir Provider;
+	}
+
+// Multiplayer interface
+
+[Allied Victory]
+	{
+	German = Gemeinsamer Sieg;
+	French = Victoire Alliée;
+	Italian = Vittoria alleati;
+	Spanish = Victoria aliada;
+	}
+
+[Chosen Units]
+	{
+	piglatin=elected UnitsSay;
+	German = Einheiten;
+	French = Unités;
+	Italian = Unità;
+	Spanish = Uds. elegidas;
+	}
+
+[More Info]
+	{
+	German = Mehr Informationen;
+	French = Plus d'infos;
+	Italian = Ulteriori informazioni;
+	Spanish = Más información;
+	}
+
+[Enter Game Name]
+	{
+	piglatin=nter Game NameEay;
+	German = Bitte Spielnamen eingeben;
+	French = Entrez le nom de la partie;
+	Italian = Inserisci il nome del gioco;
+	Spanish = Nombre de la partida;
+	}
+[Enter Your Name]
+	{
+	piglatin=nter Your NameEay;
+	German = Bitte geben Sie Ihren Namen ein;
+	French = Entrez votre nom;
+	Italian = Inserisci il tuo nome;
+	Spanish = Nombre del jugador;
+	}
+[Create New Game]
+	{
+	piglatin=reate New GameCay;
+	German = Neues Spiel erstellen;
+	French = Création nouvelle partie;
+	Italian = Crea nuova partita;
+	Spanish = Crear nueva partida;
+	}
+[Password To Join]
+	{
+	piglatin=assword To JoinPay;
+	German = Passwort zum Mitspielen;
+	French = Mot de passe;
+	Italian = Password;
+	Spanish = Clave de acceso;
+	}
+[Closed]
+	{
+	piglatin=losedCay;
+	German = Geschlossen;
+	French = Fremée;
+	Italian = Chiusa;
+	Spanish = Cerrada;
+	}
+[The game is closed]
+	{
+	German = Das Spiel ist geschlossen.;
+	French = La partie est fermée;
+	Italian = Il gioco è chiuso;
+	Spanish = La partida está cerrada;
+	}
+[The game is full]
+	{
+	German = Das Spiel ist voll.;
+	French = La partie est pliene;
+	Italian = Il gioco è al completo;
+	Spanish = La partida está completa;
+	}
+
+[In Game]
+	{
+	piglatin=n GameIay;
+	German = Spielt;
+	French = En jeu;
+	Italian = In gioco;
+	Spanish = En juego;
+	}
+[Lounge]
+	{
+	piglatin=oungeLay;
+	German = Treffpunkt;
+	French = Salon;
+	Italian = Salone;
+	Spanish = Sala de encuentro;
+	}
+[Playing]
+	{
+	piglatin=layingPay;
+	German = Spielt;
+	French = Jeu;
+	Italian = Gioco;
+	Spanish = Jugando;
+	}
+[Full]
+	{
+	piglatin=ullFay;
+	German = Voll;
+	French = Plein;
+	Italian = Completo;
+	Spanish = Completa;
+	}
+[Reject Player:]
+	{
+	piglatin=eject Player?Ray;
+	German = Spieler ablehnen:;
+	French = Rejecter joueur:;
+	Italian = Rifiuta giocatore:;
+	Spanish = Expulsar jugador:;
+	}
+
+
+[Reject Player]
+	{
+	piglatin=eject Player?Ray;
+	German = Ablehnen;
+	French = Rejecter;
+	Italian = Rifiuta giocatore;
+	Spanish = Expulsar jugador;
+	}
+
+[Reject Player?]
+	{
+	piglatin=eject Player?Ray;
+	German = Spieler ablehnen?;
+	French = Rejecter joueur?;
+	Italian = Rifiuta giocatore?;
+	Spanish = ¿Expulsar jugador?;
+	}
+[Reject %s?]
+	{
+	piglatin=eject Player?Ray;
+	German = %s ablehnen?;
+	French = Rejecter %s?;
+	Italian = Rifiuta %s?;
+	Spanish = ¿Expulsar %s?;
+	}
+[Reject]
+	{
+	piglatin=eject Player?Ray;
+	German = ablehnen;
+	French = Rejecter;
+	Italian = Rifiuta;
+	Spanish = Expulsar;
+	}
+
+[Map]
+	{
+	piglatin=apMay;
+	German = Karte;
+	French = Carte;
+	Italian = Mappa;
+	Spanish = Mapa;
+	}
+[Not Selected]
+	{
+	piglatin=ot SelectedNay;
+	German = Nicht ausgewählt;
+	French = Non sélectionné;
+	Italian = Non selezionato;
+	Spanish = No seleccionado;
+	}
+[NOT SELECTED]
+	{
+	piglatin=ot SelectedNay;
+	German = NICHT AUSGEWÄHLT;
+	French = Non sélectionné;
+	Italian = NON SELEZIONATO;
+	Spanish = NO SELECCIONADO;
+	}
+
+[Join]
+	{
+	piglatin=oinJay;
+	German = Beitreten;
+	French = Joindre;
+	Italian = Partecipa;
+	Spanish = Incorporarse;
+	}
+[New]
+	{
+	piglatin=ewNay;
+	German = Neu;
+	French = Nouvelle;
+	Italian = Nuovo;
+	Spanish = Nueva;
+	}
+[Name of Game]
+	{
+	piglatin=ame of GameNay;
+	German = Spielname;
+	French = Nom de la partie;
+	Italian = Nome della partita;
+	Spanish = Nombre de la partida;
+	}
+[Plyrs]
+	{
+	piglatin=lyrsPay;
+	German = Spieler;
+	French = Joueurs;
+	Italian = Giocatori;
+	Spanish = Jgds;
+	}
+[Status]
+	{
+	piglatin=tatusSay;
+	German = Status;
+	French = Statut;
+	Italian = Partita;
+	Spanish = Estado;
+	}
+[Watch]
+	{
+	piglatin=atchWay;
+	German = Beobachten;
+	French = Observer;
+	Italian = Osserva;
+	Spanish = Observar;
+	}
+[Update]
+	{
+	piglatin=pdateUay;
+	German = Update;
+	French = Mise à jour;
+	Italian = Aggiorna;
+	Spanish = Actualizar;
+	}
+[LOS]
+	{
+	piglatin=OSLay;
+	German = Sichtlinie;
+	French = CDV;
+	Italian = LdO;
+	Spanish = CDV;
+	}
+
+[Cmdr]
+	{
+	piglatin=mdrCay;
+	German = Cmdr;
+	French = Cmdt;
+	Italian = Com.;
+	Spanish = Cmdte;
+	}
+[Ping]
+	{
+	piglatin=ingPay;
+	German = Ping;
+	French = Ping;
+	Italian = Ping;
+	Spanish = Ping;
+	}
+[Name]
+	{
+	German = Name;
+	French = Nom;
+	Italian = Nome;
+	Spanish = Nombre;
+	}
+
+[Your Name]
+	{
+	piglatin=our NameYay;
+	German = Ihr Name;
+	French = Votre nom;
+	Italian = Nome giocatore;
+	Spanish = Tu nombre;
+	}
+[Game Password]
+	{
+	piglatin=ame PasswordGay;
+	German = Spiel-Passwort;
+	French = Mot de passe;
+	Italian = Password del gioco;
+	Spanish = Clave de la partida;
+	}
+
+// Lounge options
+
+[Messages]
+	{
+	piglatin=essagesMay;
+	German = Nachrichten;
+	French = Messages;
+	Italian = Messaggi;
+	Spanish = Mensajes;
+	}
+[Mem.]
+	{
+	piglatin=em.May;
+	German = Speicher;
+	French = Mem.;
+	Italian = Mem.;
+	Spanish = Mem.;
+	}
+[Ready?]
+	{
+	piglatin=eady?Ray;
+	German = Bereit?;
+	French = Prêt?;
+	Italian = Pronti?;
+	Spanish = ¿Listo?;
+	}
+[Start Game]
+	{
+	piglatin=tart GameSay;
+	German = Start;
+	French = Démarrer;
+	Italian = Comincia;
+	Spanish = Comenzar;	
+	}
+[Select Map]
+	{
+	piglatin=elect MapSay;
+	German = Karte wählen;
+	French = Carte;
+	Italian = Mappa;
+	Spanish = Elegir mapa;
+	}
+[Resolution]
+	{
+	piglatin=esolutionRay;
+	German = Auflösung;
+	French = Résolution;
+	Italian = Risoluzione;
+	Spanish = Resolución;
+	}
+[Cmndr Ends Game]
+	{
+	piglatin=mndr Ends GameCay;
+	German = Commander beendet das Spiel;
+	French = Cmdt termine le jeu;
+	Italian = Il Com. termina il gioco;
+	Spanish = Cmdte finaliza la partida;
+	}
+[LOS Mode]
+	{
+	piglatin=OS ModeLay;
+	German = Sichtlinienmodus;
+	French = Mode CDV;
+	Italian = Modalità LdO;
+	Spanish = Modo CDV;
+	}
+[Cheat Codes]
+	{
+	piglatin=heat CodesCay;
+	German = Cheat Codes;
+	French = Codes;
+	Italian = Codici;
+	Spanish = Trucos;
+	}
+[Cheat Codes:]
+	{
+	piglatin=heat CodesCay:;
+	German = Cheat Codes:;
+	French = Codes:;
+	Italian = Codici:;
+	Spanish = Trucos:;
+	}
+
+[Disallowed]
+	{
+	German = Nicht Erlaubt;
+	French = Non;
+	Italian = Non ammessi;
+	Spanish = Sin trucos;
+	}
+[Allowed]
+	{
+	German = Erlaubt;
+	French = Oui;
+	Italian = Ammessi;
+	Spanish = Con trucos;
+	}
+[Watching]
+	{
+	German = Zusehen;
+	French = Observation;
+	Italian = Spettatori;
+	Spanish = Observar;
+	}
+[Watching:]
+	{
+	German = Zusehen:;
+	French = Observation:;
+	Italian = Spettatori:;
+	Spanish = Observar:;
+	}
+
+
+[Watching OK]
+	{
+	German = Zusehen;
+	French = Observation;
+	Italian = Osservazione;
+	Spanish = Observar OK;
+	}
+[No Watching]
+	{
+	German = Zusehen;
+	French = Observation;
+	Italian = Osservazione;
+	Spanish = No observar;
+	}
+[Game Open]
+	{
+	German = Spiel offen;
+	French = Ouverte;
+	Italian = Gioco aperto;
+	Spanish = Partida abierta;
+	}
+
+[Game Closed]
+	{
+	German = Geschlossen;
+	French = Partie Fermée;
+	Italian = Gioco chiuso;
+	Spanish = Partida cerrada;
+	}
+
+
+[Game Status]
+	{
+	German = Spielstatus;
+	French = Statuts;
+	Italian = Partita;
+	Spanish = Estado partida;
+	}
+
+[Watching Allowed]
+	{
+	piglatin=atching AllowedWay;
+	German = Zusehen erlaubt;
+	French = Observation autorisée;
+	Italian = Osservazione autorizzata;
+	Spanish = Permitido observar;
+	}
+[Map Name]
+	{
+	piglatin=ap NameMay;
+	German = Kartenname;
+	French = Nom de la carte;
+	Italian = Nome della mappa;
+	Spanish = Nombre del mapa;
+	}
+[Max Units]
+	{
+	piglatin=ax UnitsMay;
+	German = Max. Einheiten;
+	French = Unités maxi;
+	Italian = Max. unità;
+	Spanish = Uds. máximas;
+	}
+
+[Max Units:]
+	{
+	piglatin=ax UnitsMay:;
+	German = Max. Einheiten:;
+	French = Unités maxi:;
+	Italian = Max. unità:;
+	Spanish = Uds. máximas:;
+	}
+
+[Game Is Open]
+	{
+	piglatin=ame Is OpenGay;
+	German = Spiel ist offen;
+	French = La partie est ouverte;
+	Italian = Il gioco è aperto;
+	Spanish = Partida abierta;
+	}
+[Build Restrictions]
+	{
+	piglatin=uild RestrictionsBay;
+	German = Baubeschränkungen;
+	French = Restrictions;
+	Italian = Restrizioni;
+	Spanish = Restricción;
+	}
+
+// Skirmish menu
+
+[Start Skirmish]
+	{
+	piglatin=tart SkirmishSay;
+	German = Gefecht starten;
+	French = Lancer la bataille;
+	Italian = Inizia Battaglia;
+	Spanish = Comenzar escaramuza;
+	}
+[Location]
+	{
+	piglatin=ocationLay;
+	German = Ort;
+	French = Position;
+	Italian = Posizione;
+	Spanish = Ubicación;
+	}
+[Dead Commander]
+	{
+	German = Toter Commander;
+	French = Mort Commandeur;
+	Italian = Comandante morto;
+	Spanish = Comandante muerto;
+	}
+
+[Commander]
+	{
+	piglatin=ommanderCay;
+	German = Commander;
+	French = Commandant;
+	Italian = Comandante;
+	Spanish = Comandante;
+	}
+[Map:]
+	{
+	piglatin=ap:May;
+	German = Karte:;
+	French = Carte:;
+	Italian = Mappa:;
+	Spanish = Mapa:;
+	}
+
+// Restrictions menu
+
+[Max Per Player]
+	{
+	piglatin=ax Per PlayerMay;
+	German = Max. pro Spieler;
+	French = Maxi par joueur;
+	Italian = Max per giocatore;
+	Spanish = Max. por jugador;
+	}
+[Unit Build Restrictions]
+	{
+	piglatin=nit Build RestrictionsUay;
+	German = Einheiten-Baubeschränkungen;
+	French = Restrictions de constructions d'unités;
+	Italian = Restrizioni sulla costruzione di unità;
+	Spanish = Restricción constr. unidades;
+	}
+
+[Load List]
+	{
+	piglatin=oad ListLay;
+	German = Liste laden;
+	French = Charger liste;
+	Italian = Carica lista;
+	Spanish = Cargar lista;
+	}
+[Save List]
+	{
+	piglatin=ave ListSay;
+	German = Liste speichern;
+	French = Sauver liste;
+	Italian = Salva lista;
+	Spanish = Guardar lista;
+	}
+
+[Name of list to save]
+	{
+	German = Zu speichernder Listenname;
+	French = Nom de liste pour sauvegarde;
+	Italian = Nome della lista da salvare;
+	Spanish = Nombre de lista para guardar;
+	}
+
+[Show Picture]
+	{
+	piglatin=how PictureSay;
+	German = Bild zeigen;
+	French = Voir image;
+	Italian = Mostra immagine;
+	Spanish = Mostrar imagen;
+	}
+
+// Gameplay options
+
+[Fixed]
+	{
+	German = Festgelegt;
+	French = Définie;
+	Italian = Prefissata;
+	Spanish = Fija;
+	}
+
+[Random]
+	{
+	German = Zufällig;
+	French = Aléatoire;
+	Italian = Casuale;
+	Spanish = Aleatoria;
+	}
+
+
+[Specific]
+	{
+	German = Spezifisch;
+	French = Spécifique;
+	Italian = Specifica;
+	Spanish = Específica;
+	}
+
+
+[Fixed Locations]
+	{
+	piglatin=ixed LocationsFay;
+	German = Festgelekte Startpunkte;
+	French = Positions définies;
+	Italian = Posizioni prefissate;
+	Spanish = Ubicaciones fijas;
+	}
+[Random Locations]
+	{
+	piglatin=andom LocationsRay;
+	German = Zufällige Startpunkte;
+	French = Positions aléatoires;
+	Italian = Posizioni casuali;
+	Spanish = Ubicaciones aleatorias;
+	}
+
+[Game Ends]
+	{
+	piglatin=ames EndsGay;
+	German = Beendet Spiel;
+	French = Fin de partie;
+	Italian = Fine gioco;
+	Spanish = Fin;
+	}
+
+[Game ends]
+	{
+	piglatin=ames EndsGay;
+	German = Beendet Spiel;
+	French = Fin de partie;
+	Italian = Fine gioco;
+	Spanish = Fin;
+	}
+[Deathmatch]
+	{
+	German = Todesspiel;
+	French = Deathmatch;
+	Italian = Deathmatch;
+	Spanish = Deathmatch;
+	}
+[Continues]
+	{
+	piglatin=ame ContinuesGay;
+	German = Kein Ende;
+	French = Continuer;
+	Italian = Continua;
+	Spanish = Continuar;
+	}
+
+[Game Continues]
+	{
+	piglatin=ame ContinuesGay;
+	German = Kein Ende;
+	French = Continuer;
+	Italian = Continua;
+	Spanish = Continuar;
+	}
+
+[Mapping Mode]
+	{
+	German = Sichtbare Karte;
+	French = Visibilitié;
+	Italian = Mappa;
+	Spanish = Tipo de Mapa;
+	}
+[Mapping Mode:]
+	{
+	German = Sichtbare Karte:;
+	French = Visibilitié:;
+	Italian = Mappa:;
+	Spanish = Tipo de Mapa:;
+	}
+
+
+[Blank Map]
+	{
+	piglatin=lank MapBay;
+	German = Leere Karte;
+	French = Carte vide;
+	Italian = Mappa oscurata;
+	Spanish = Mapa en blanco;
+	}
+[Full Map]
+	{
+	piglatin=ull MapFay;
+	German = Volle Karte;
+	French = Carte complète;
+	Italian = Mappa esplorata;
+	Spanish = Mapa completo;
+	}
+[LOS Off]
+	{
+	piglatin=OS OffLay;
+	German = Inaktiv;
+	French = Pas de CDV;
+	Italian = LdO disattivata;
+	Spanish = CDV Off;
+	}
+[Permanent]
+	{
+	German = Inaktiv;
+	French = Pas de CDV;
+	Italian = Permanente;
+	Spanish = Permanente;
+	}
+[True LOS]
+	{
+	piglatin=rue LOSTay;
+	German = Echt;
+	French = Vrai CDV;
+	Italian = LdO reale;
+	Spanish = CDV Real;
+	}
+[Circular]
+	{
+	piglatin=ircularCay;
+	German = Rund;
+	French = Circulaire;
+	Italian = Circolare;
+	Spanish = Circular;
+	}
+[Starting Locations:]
+	{
+	piglatin=tart LocationSay:;
+	German = Startpunkt:;
+	French = Position de départ:;
+	Italian = Posizione:;
+	Spanish = Posición de inicio:;
+	}
+
+[Start Location]
+	{
+	piglatin=tart LocationSay;
+	German = Startpunkt;
+	French = Position de départ;
+	Italian = Posizione di partenza;
+	Spanish = Posición de inicio;
+	}
+[Commander Death]
+	{
+	piglatin=ommander DeathCay;
+	German = Tod des Commanders;
+	French = Mort du commandant;
+	Italian = Morte del Comandante;
+	Spanish = Muerte del comandante;
+	}
+
+[Commander Death:]
+	{
+	piglatin=ommander DeathCay:;
+	German = Commander:;
+	French = Commandant:;
+	Italian = Comandante:;
+	Spanish = Comandante:;
+	}
+
+[Mapping]
+	{
+	piglatin=appingMay;
+	German = Sichtbare Karte;
+	French = Carte;
+	Italian = Territorio;
+	Spanish = Mapeado;
+	}
+[Line of Sight]
+	{
+	piglatin=ine of SightLay;
+	German = Sichtlinie;
+	French = Champ de vision;
+	Italian = Linea visiva;
+	Spanish = Campo de Visión;
+	}
+[Line of Sight:]
+	{
+	piglatin=ine of SightLay:;
+	German = Sichtlinie:;
+	French = Champ de vision:;
+	Italian = Linea visiva:;
+	Spanish = Campo de Visión:;
+	}
+
+[Computer Opponent]
+	{
+	piglatin=omputer OpponentCay;
+	German = Computergegner;
+	French = Ordinateur;
+	Italian = Computer;
+	Spanish = Contra el ordenador;
+	}
+
+[Computer]
+	{
+	piglatin=omputer OpponentCay;
+	German = Computer;
+	French = Ordinateur;
+	Italian = Computer;
+	Spanish = Ordenador;
+	}
+
+[AI Opponent]
+	{
+	piglatin=I OpponentAay;
+	German = KI-Gegner;
+	French = Adversaire IA;
+	Italian = IA avversario;
+	Spanish = Rival IA;
+	}
+[Opponent]
+	{
+	piglatin=pponentOay;
+	German = Gegner;
+	French = Adversaire;
+	Italian = Avversario;
+	Spanish = Rival;
+	}
+[Exit the Battle]
+	{
+	piglatin=xit the BattleEay;
+	German = Schlacht verlassen;
+	French = Quitter la bataille;
+	Italian = Esci dalla battaglia;
+	Spanish = Abandonar la batalla;
+	}
+
+[Page 1]
+	{
+	German = Seite 1;
+	French = Page 1;
+	Italian = Pagina 1;
+	Spanish = Página 1;
+	}
+[Page 2]
+	{
+	German = Seite 2;
+	French = Page 2;
+	Italian = Pagina 2;
+	Spanish = Página 2;
+	}
+[Page 3]
+	{
+	German = Seite 3;
+	French = Page 3;
+	Italian = Pagina 3;
+	Spanish = Página 3;
+	}
+
+// Briefing messages
+
+[BACK TO START]
+	{
+	piglatin=ACK TO STARTBay;
+	German = ZURÜCK ZUM START;
+	French = RETOUR AU DEBUT;
+	Italian = TORNA ALL'INIZIO;
+	Spanish = VOLVER AL PRINCIPIO;
+	}
+[MORE...]
+	{
+	piglatin=ORE...May;
+	German = MEHR...;
+	French = SUITE...;
+	Italian = CONTINUA...;
+	Spanish = MÁS...;
+	}
+
+// Game over screen
+
+[Victory or Failure]
+	{
+	piglatin=ictory or FailureVay;
+	German = Sieg oder Niederlage;
+	French = Victoire ou échec;
+	Italian = Vittoria o sconfitta;
+	Spanish = Victoria o Derrota;
+	}
+[Main Menu]
+	{
+	piglatin=ain MenuMay;
+	German = Hauptmenü;
+	French = Menu principal;
+	Italian = Menu principale;
+	Spanish = Menú principal;
+	}
+[Game Statistics]
+	{
+	piglatin=ame StatisticsGay;
+	German = Spielstatistik;
+	French = Statistiques;
+	Italian = Statistiche;
+	Spanish = Estadísticas;
+	}
+
+[Statistics]
+	{
+	German = Statistik;
+	French = Statistiques;
+	Italian = Statistiche;
+	Spanish = Estadísticas;
+	}
+
+[Next Mission]
+	{
+	piglatin=ext MissionNay;
+	German = Nächste Mission;
+	French = Mission suivante;
+	Italian = Missione successiva;
+	Spanish = Siguiente misión;
+	}
+[Adjust Difficulty]
+	{
+	piglatin=djust DifficultyAay;
+	German = Schwierigkeit;
+	French = Ajuster difficulté.;
+	Italian = Imposta difficoltà;
+	Spanish = Ajustar dificultad;
+	}
+[Adjust skirmish difficulty.]
+	{
+	German = Schwierigkeitsgrad einstellen;
+	French = Ajuster difficulté.;
+	Italian = Difficoltà della battaglia.;
+	Spanish = Ajustar dificultad escaramuza;
+	}
+
+[You]
+	{
+	piglatin=ouYay;
+	German = Sie;
+	French = Vous;
+	Italian = Giocatore;
+	Spanish = Tú;
+	}
+[AI Player]
+	{
+	piglatin=I PlayerAay;
+	German = KI-Spieler;
+	French = Joueur IA;
+	Italian = IA giocatore;
+	Spanish = Jugador IA;
+	}
+[Units]
+	{
+	piglatin=nitsUay;
+	German = Einheiten;
+	French = Unités;
+	Italian = Unità;
+	Spanish = Unidades;
+	}
+[Score]
+	{
+	piglatin=coreSay;
+	German = Punkte;
+	French = Score;
+	Italian = Punteggio;
+	Spanish = Puntación;
+	}
+[Victory]
+	{
+	piglatin=ictoryVay;
+	German = Sieg;
+	French = Victoire;
+	Italian = Vittoria;
+	Spanish = Victoria;
+	}
+[Failure]
+	{
+	piglatin=ailureFay;
+	German = Niederlage;
+	French = Echec;
+	Italian = Sconfitta;
+	Spanish = Derrota;
+	}
+
+// Game commands
+
+[Total Units]
+	{
+	German = Einheiten;
+	French = Unités;
+	Italian = Unità;
+	Spanish = Unidades;
+	}
+[Stop Building]
+	{
+	piglatin=top BuildingSay;
+	German = Bau stoppen;
+	French = Arrêt de la construction;
+	Italian = Interrompi la costruzione;
+	Spanish = Detener construcción;
+	}
+[Options]
+	{
+	piglatin=ptionsOay;
+	German = Optionen;
+	French = Options;
+	Italian = Opzioni;
+	Spanish = Opciones;
+	}
+[Share]
+	{
+	piglatin=hareSay;
+	German = Teilen;
+	French = Partage;
+	Italian = Condividi;
+	Spanish = Compartir;
+	}
+
+// Share options
+
+[TRANSFER RESOURCES]
+	{
+	piglatin=RANSFER RESOURCESTay;
+	German = RESSOURCEN ÜBERTRAGEN;
+	French = TRANSFERT DE RESSOURCES;
+	Italian = TRASFERIMENTO RISORSE;
+	Spanish = TRANSFERIR RECURSOS;
+	}
+[Selected Units]
+	{
+	piglatin=elected UnitsSay;
+	German = Ausgewählte Einheiten;
+	French = Unités sélectionnées;
+	Italian = Unità selezionate;
+	Spanish = Uds. seleccionadas;
+	}
+[Select Player]
+	{
+	piglatin=elect Player:Say;
+	German = Spieler aussuchen:;
+	French = Choix du joueur:;
+	Italian = Scegli giocatore:;
+	Spanish = Elegir jugador:;
+	}
+[Map Info]
+	{
+	piglatin=ap InfoMay;
+	German = Karteninfo;
+	French = Info carte;
+	Italian = Info Mappa;
+	Spanish = Info mapa;
+	}
+
+// Unit status messages
+
+[five]
+	{
+	piglatin=ivefay;
+	German = fünf;
+	French = cinq;
+	Italian = cinque;
+	Spanish = cinco;
+	}
+[four]
+	{
+	piglatin=ourfay;
+	German = vier;
+	French = quatre;
+	Italian = quattro;
+	Spanish = cuatro;
+	}
+[three]
+	{
+	piglatin=hreetay;
+	German = drei;
+	French = trois;
+	Italian = tre;
+	Spanish = tres;
+	}
+[two]
+	{
+	piglatin=wotay;
+	German = zwei;
+	French = deux;
+	Italian = due;
+	Spanish = dos;
+	}
+[one]
+	{
+	piglatin=neoay;
+	German = eins;
+	French = une;
+	Italian = uno;
+	Spanish = uno;
+	}
+[zero]
+	{
+	piglatin=erozay;
+	German = null;
+	French = zéro;
+	Italian = zero;
+	Spanish = cero;
+	}
+
+
+[Building complete]
+	{
+	piglatin=uilding completeBay;
+	German = Bau abgeschlossen;
+	French = Construction terminée;
+	Italian = Costruzione completata;
+	Spanish = Construcción finalizada;
+	}
+[Capture failed]
+	{
+	piglatin=apture failedCay;
+	German = Eroberung fehlgeschlagen;
+	French = Capture échouée;
+	Italian = Cattura fallita;
+	Spanish = Captura fracasada;
+	}
+[Construction failed: target area was blocked]
+	{
+	piglatin=onstruction failed: target area was blockedCay;
+	German = Bau fehlgeschlagen: Zielgebiet war besetzt;
+	French = Construction échouée: zone bloquée;
+	Italian = Costruzione fallita: zona bloccata;
+	Spanish = Error de construcción: objetivo bloqueado;
+	}
+
+[Construction stopped]
+	{
+	German = Bau beendet;
+	French = Construction interrompue;
+	Italian = Costruzione interrotta;
+	Spanish = Construcción detenida;
+	}
+
+[Construction terminated]
+	{
+	German = Bau beendet;
+	French = Construction interrompue;
+	Italian = Costruzione terminata;
+	Spanish = Construcción finalizada;
+	}
+
+[Target area was blocked]
+	{
+	German = Zielgebiet war besetzt;
+	French = Zone bloquée;
+	Italian = Zona bloccata;
+	Spanish = Objetivo bloqueado;
+	}
+ 
+[Construction terminated by hostile action]
+	{
+	piglatin=onstruction terminated by hostile actionCay;
+	German = Bau durch Feindeinwirkung beendet;
+	French = Construction interrompue;
+	Italian = Costruzione interrotta per una azione ostile;
+	Spanish = Construcción finalizada por acción hostil;
+	}
+[How can I fix units when they keep blowing up?]
+	{
+	piglatin=ow can I fix units when they keep blowing up?Hay;
+	German = Wie soll ich Einheiten reparieren, wenn sie dauernd in die Luft gehen?;
+	French = Comment réparer le unités si elles continuent à exploser?;
+	Italian = Come posso riparare unità che continuano a esplodere?;
+	Spanish = ¿Cómo puedo reparar unidades si no dejan de explotar?;
+	}
+[I can't get there]
+	{
+	piglatin=can't get thereIay;
+	German = Da komme ich nicht hin;
+	French = Je ne peux pas atteindre ce point;
+	Italian = Zona bloccata;
+	Spanish = No puedo llegar allí;
+	}
+[I can't reach the construction site]
+	{
+	piglatin=can't reach the construction siteIay;
+	German = Ich komme nicht zur Baustelle;
+	French = Site de construction inaccessible;
+	Italian = Zona bloccata;
+	Spanish = No puedo llegar a la zona de construcción;
+	}
+
+[Landing aborted]
+	{
+	piglatin=anding abortedLay;
+	German = Landung abgebrochen;
+	French = Atterrisage annulé;
+	Italian = Atterraggio annullato;
+	Spanish = Aterrizaje suspendido;
+	}
+[Landing aborted: all pads are occupied]
+	{
+	piglatin=anding aborted: all pads are occupiedLay;
+	German = Landung abgebrochen: alle Landfeleder besetzt;
+	French = Atterrisage annulé: plates-formes occupées;
+	Italian = Tutte le piattaforme sono occupate;
+	Spanish = Aterrizaje suspendido: plataformas ocupadas;
+	}
+[Landing aborted: no pads available]
+	{
+	piglatin=anding aborted: no pads availableLay;
+	German = Landung abgebrochen: keine Landfelder;
+	French = Atterrisage annulé: pas de plate-forme disponible;
+	Italian = Atterraggio annullato;
+	Spanish = Aterrizaje suspendido: sin plataforma disponible;
+	}
+[Landing failed]
+	{
+	piglatin=anding failedLay;
+	German = Landung fehlgeschlagen;
+	French = Atterrissage échoué;
+	Italian = Atterraggio fallito;
+	Spanish = Aterrizaje fracasado;
+	}
+[Loading unit]
+	{
+	piglatin=oading unitLay;
+	German = Einheit wird verladen;
+	French = Chargement unité;
+	Italian = Caricamento unità;
+	Spanish = Cargando unidad;
+	}
+[Preparing for transport]
+	{
+	piglatin=reparing for transportPay;
+	German = Bereite Transport vor;
+	French = Préparation pour transport;
+	Italian = Preparazione per il trasporto;
+	Spanish = Preparando transporte;
+	}
+[Reclamate failed]
+	{
+	piglatin=eclamate failedRay;
+	German = Zurückforderung fehlgeschlagen;
+	French = Récupération échouée;
+	Italian = Recupero fallito;
+	Spanish = Recuperación fracasada;
+	}
+[Reclamating]
+	{
+	piglatin=eclamatingRay;
+	German = Wird zurückgefordert;
+	French = Récupération;
+	Italian = Recupero;
+	Spanish = Recuperando;
+	}
+[Reclamation failed]
+	{
+	piglatin=eclamation failedRay;
+	German = Zurückforderung fehlgeschlagen;
+	French = Récupération échouée;
+	Italian = Recupero fallito;
+	Spanish = Recuperación fracasada;
+	}
+[Repair aborted.]
+	{
+	German = Reparatur abgebrochen;
+	French = Réparation abandonnée;
+	Italian = Riparazione interrotta;
+	Spanish = Recuperación suspendida;
+	}
+[Repair mission failed]
+	{
+	German = Reparaturauftrag gescheitert;
+	French = Mission de réparation échouée;
+	Italian = Missione di riparazione fallita;
+	Spanish = Reparación fracasada;
+	}
+[Repairs unsuccessful.]
+	{
+	German = Reparaturen ohne Erfolg;
+	French = Réparations échouées;
+	Italian = Riparazioni fallite;
+	Spanish = Reparación fracasada;
+	}
+
+[Self destruct terminated]
+	{
+	piglatin=elf destruct terminatedSay;
+	German = Selbstzerstörung abgebrochen;
+	French = Autodestruction terminée;
+	Italian = Autodistruzione terminata;
+	Spanish = Autodestrucción finalizada;
+	}
+[Starting construction]
+	{
+	piglatin=tarting constructionSay;
+	German = Beginne Herstellung;
+	French = Début de construction;
+	Italian = Inizio costruzione;
+	Spanish = Comenzando construcción;
+	}
+[That unit cannot be captured]
+	{
+	piglatin=hat unit cannot be capturedTay;
+	German = Diese Einheit kann nicht erobert werden;
+	French = Cette unité ne peut pas être capturée;
+	Italian = Questa unità non può essere catturata;
+	Spanish = Imposible capturar la unidad;
+	}
+[That unit cannot be reclamated]
+	{
+	piglatin=hat unit cannot be reclamatedTay;
+	German = Diese Einheit kann nicht zurückgefordert werden;
+	French = Cette unité ne peut pas être récupérée;
+	Italian = Questa unità non può essere recuperata;
+	Spanish = Imposible recuperar la unidad;
+	}
+[That unit cannot be reclaimed]
+	{
+	piglatin=hat unit cannot be reclamatedTay;
+	German = Diese Einheit kann nicht zurückgefordert werden;
+	French = Cette unité ne peut pas être récupérée;
+	Italian = Questa unità non può essere recuperata;
+	Spanish = Imposible recuperar la unidad;
+	}
+
+[That unit is a cloud of vapor and cannot be captured]
+	{
+	piglatin=hat unit is a cloud of vapor and cannot be capturedTay;
+	German = Diese Einheit ist nur noch eine Dunstwolke und kann nicht erobert werden;
+	French = Cette unité est vaporisée et ne peut être capturée;
+	Italian = L'unità è distrutta: non può essere catturata;
+	Spanish = Esa unidad es una nube de vapor, imposible capturarla;
+	}
+[That unit is a cloud of vapor and cannot be reclamated]
+	{
+	piglatin=hat unit is a cloud of vapor and cannot be reclamatedTay;
+	German = Diese Einheit ist nur noch eine Dunstwolke und kann nicht zurückgefordert werden;
+	French = Cette unité est vaporisée et ne peut être récupérée;
+	Italian = L'unità è stata vaporizzata e non può essere recuperata;
+	Spanish = Esa unidad es una nube de vapor, imposible recuperarla;
+	}
+[Transport mission failed]
+	{
+	piglatin=ransport mission failedTay;
+	German = Transporteinsatz fehlgeschlagen;
+	French = Echec de la mission de transport;
+	Italian = Missione di trasporto fallita;
+	Spanish = Misión de transporte fracasada;
+	}
+
+[End Transport]
+	{
+	German = Transportende;
+	French = Fin de transport;
+	Italian = Fine del trasporto;
+	Spanish = Fin del transporte;
+	}
+
+[Unable to create any more units]
+	{
+	piglatin=nable to create any more unitsUay;
+	German = Kann keine weiteren Einheiten herstellen;
+	French = Création autres unités impossible;
+	Italian = Impossibile creare altre unità;
+	Spanish = Imposible crear más unidades;
+	}
+[Unable to unload unit]
+	{
+	piglatin=nable to unload unitUay;
+	German = Kann Einheit nicht entladen;
+	French = Déchargement unité impossible;
+	Italian = Impossibile scaricare l'unità;
+	Spanish = Imposible descargar unidad;
+	}
+[Unit is too heavy to transport]
+	{
+	piglatin=nit is too heavy to transportUay;
+	German = Einheit ist zu schwer für Transport;
+	French = Unité trop lourde pour transport;
+	Italian = Unità troppo pesante per essere trasportata;
+	Spanish = Ud. muy pesada para transportar;
+	}
+[Unit is too large to transport]
+	{
+	piglatin=nit is too large to transportUay;
+	German = Einheit ist zu groß für den Transport;
+	French = Unité trop grosse pour transport;
+	Italian = Unità troppo grande per essere trasportata;
+	Spanish = Ud. muy grande para transportar;
+	}
+[Unit repaired]
+	{
+	piglatin=nit repairedUay;
+	German = Einheit repariert;
+	French = Unité réparée;
+	Italian = Unità riparata;
+	Spanish = Unidad reparada;
+	}
+[Unloading]
+	{
+	piglatin=nloadingUay;
+	German = Entlade;
+	French = Déchargement;
+	Italian = Operazione di scarico;
+	Spanish = Descargando;
+	}
+[Unloading process is proceeding non-optimally]
+	{
+	piglatin=nloading process is proceeding non-optimallyUay;
+	German = Entladevorgang läuft nicht optimal;
+	French = Déchargement non optimal;
+	Italian = Il processo di scarico non è ottimale;
+	Spanish = Proceso de descarga no óptimo;
+	}
+[Waiting for construction area to clear]
+	{
+	piglatin=aiting for construction area to clearWay;
+	German = Warte darauf, daß Baubereich frei wird;
+	French = Zone de construction occupeé;
+	Italian = Zona bloccata;
+	Spanish = Esperando despeje de área de constr.;
+	}
+
+[Waiting for target area to clear]
+	{
+	German = Warte auf Zielbereich;
+	French = Zone ciblée occupeé;
+	Italian = Zona bloccata;
+	Spanish = Esperando despeje de área objetivo;
+	}
+
+[Waiting for construction pad to clear]
+	{
+	piglatin=aiting for construction pad to clearWay;
+	German = Warte darauf, daß Konstruktionsplattform frei wird;
+	French = Attente libération plate-forme de construction;
+	Italian = Attesa per lo sgombero di una piattaforma;
+	Spanish = Esperando despeje de plataforma de constr.;
+	}
+	
+
+// Miscellaneous
+
+[Warning! The currently installed version of Microsoft%sDirectX may not function properly with Total Annihilation.%sPlease install the version of DirectX included on the%sTotal Annihilation setup CD.]
+	{
+	German =Warnung! Die z.Z. installierte Version von Microsoft %sDirectX unterstützt Total Annihilation u.U. nicht. %sBitte installieren Sie die Direct X-Version,%s die sich auf der Total Annihilation-Installations-CD befindet.;
+	French = Attention ! La version de Microsoft%sDirectX installée actuellement peut ne pas fonctionner correctement avec Total Annihilation.%s Veuillez installer la version de DirectX inclut dans le CD de %sTotal Annihilation.;
+	Italian = Attenzione! La versione attualmente installata di Microsoft%sDirectX potrebbe non funzionare correttamente con Total Annihilation. %sSi prega di utilizzare la versione di DirectX fornita nel CD del gioco;
+	Spanish = ¡Alerta! La versión actual de DirectX%sde Microsoft puede no funcionar correctamente con Total Annihilation.%sInstala la versión de DirectX incluida en el CD%sde configuaración del juego.;
+	}
+
+[Warning!\n\nUnable to register %1 for DirectPlay.]
+	{
+	German = Warnung!\n\Kann %1 für Direct Play nicht registrieren.;
+	French = Attention !\n\n ne peut pas enregistrer %1 pour DirectPlay.;
+	Italian = Attenzione!\n\nImpossibile registrare %1 per DirectPlay;
+	Spanish = ¡Alerta!\n\nImposible registrar %1 para DirectPlay;
+	}
+
+[Unidentified object]
+	{
+	German = nicht identifiziertes Objekt;
+	French = Objet non identifié;
+	Italian = Oggetto non identificato;
+	Spanish = Objeto no identificado;
+	}
+
+[Game Time]
+	{
+	German = Spielzeit;
+	French = Temps de jeu;
+	Italian = Tempo di gioco;
+	Spanish = Tiempo de juego;
+	}
+
+[Human]
+	{
+	German = Mensch;
+	French = Joueur;
+	Italian = Giocatore;
+	Spanish = Jugador;
+	}
+[Human Player]
+	{
+	German = Mensch;
+	French = Joueur;
+	Italian = Giocatore;
+	Spanish = Jugador;
+	}
+
+[Open]
+	{
+	German = Offen;
+	French = Ouverte;
+	Italian = Inutilizzato;
+	Spanish = Disponible;
+	}
+
+[Error]
+	{
+	German = Fehler;
+	French = Erreur;
+	Italian = Errore;
+	Spanish = Error;
+	}
+
+[There are too many players enabled for this map]
+	{
+	German = Zu viele Spieler für diese Karte;
+	French = Nombre de joueurs trop élevé pour cette carte;
+	Italian = Ci sono troppi giocatori abilitati per questa mappa;
+	Spanish = Hay demasiados jugadores para este mapa;
+	}
+
+[There must be at least one human player and one AI opponent]
+	{
+	German = Es müssen mindestens ein Spieler und KI-Gegner vorhanded sein;
+	French = Il doit y avoir au moins un joueur et un adversaire géré par l'ordinateur;
+	Italian = Ci deve essere almeno un giocatore umano e un avversario IA;
+	Spanish = Debe haber un jugador y un adversario IA como mínimo;
+	}
+
+[There must be at least one player and one computer opponent]
+	{
+	German = Es müssen mindestens ein Spieler und KI-Gegner vorhanded sein;
+	French = Il doit y avoir au moins un joueur et un adversaire géré par l'ordinateur;
+	Italian = Selezionare almeno un giocatore umano e un avversario;
+	Spanish = Mínimo de un jugador y un ordenador como adversario;
+	}
+
+[You have lost connection with the game]
+	{
+	German = Die Verbindung zum Spiel ist verlorengegangen.;
+	French = Vous êtes déconnecté de la partie;
+	Italian = La connessione è saltata;
+	Spanish = Has perdido la conexión con el juego;
+	}
+[Lost connection with game]
+	{
+	German = Die Verbindung zum Spiel ist verlorengegangen.;
+	French = Vous êtes déconnecté de la partie;
+	Italian = Connessione saltata;
+	Spanish = Perdida conexión con el juego;
+	}
+
+
+[You need a unit you don't have for this game]
+	{
+	German = Sie benötigen für dieses Spiel eine Einheit, die Sie nicht haben;
+	French = Il vous faut une unité que vous n'avez pas pour ce jeu;
+	Italian = Hai bisogno di un'unità che non possiedi per questo gioco;
+	Spanish = Te falta una unidad para este juego;
+	}
+[You need a newer version of the game to enter]
+	{
+	German = Um beizutreten, benötigen Sie eine neuere Spielversion.;
+	French = Il vous faut une version plus récente du jeu pour entrer;
+	Italian = Per entrare hai bisogno di una versione più recente del gioco;
+	Spanish = Necesitas una versión más reciente del juego;
+	}
+[No watching is allowed for this game]
+	{
+	German = Bei diesem Spiel sind keine Zuschauer erlaubt.;
+	French = Il n'est pas autorisé de regarder cette partie;
+	Italian = Non è consentito osservare la partita;
+	Spanish = En esta partida no se admiten observadores;
+	}
+
+[Out of memory! Your hard disk may be full.]
+	{
+	German = Kein Speicher mehr! Festplatte ist u.U. voll.;
+	French = Pas assez de mémoire ! Votre disque dur est peut-être plien.;
+	Italian = Memoria esaurita! L'hard disk potrebbe essere pieno.;
+	Spanish = ¡Sin memoria! Puede que tu disco duro esté lleno.;
+	}
+
+// Unit speech
+
+[Under Attack]
+	{
+	German = Unter Beschuß;
+	French = Attaque ennemie;
+	Italian = Unità attaccata;
+	Spanish = Bajo ataque;
+	}
+
+[Arrived]
+	{
+	German = Eingetroffen;
+	French = à destination;
+	Italian = A destinazione;
+	Spanish = Llegada;
+	}
+
+[Cannot Comply]
+	{
+	German = kann nicht zustimmen;
+	French = Impossible d'exécuter cet ordre;
+	Italian = Impossibile eseguire l'ordine;
+	Spanish = Imposible ejecutar la orden;
+	}
+
+[Nanolathe Complete]
+	{
+	German = Nanostrahlung komplett;
+	French = NanoConstr. terminée;
+	Italian = Nanocostr. terminata;
+	Spanish = Nanotorno completo;
+	}
+
+[Cloaked]
+	{
+	German = Getarnt;
+	French = Camoufle;
+	Italian = Nascosto;
+	Spanish = Camuflado;
+	}
+
+[Visible]
+	{
+	German = Sichtbar;
+	French = Visible;
+	Italian = Visibile;
+	Spanish = Visible;
+	}
+
+
+// Mission states
+
+[Acknowledged]
+	{
+	German = Bestätigt;
+	French = Bien reçu;
+	Italian = Confermata;
+	Spanish = Recibido;
+	}
+[Activate]
+	{
+	German = Aktiviert;
+	French = Aktiver;
+	Italian = Abilita;
+	Spanish = Activar;
+	}
+[Airstrike]
+	{
+	German = Luftangriff;
+	French = Attaque aérienne;
+	Italian = Attacco aereo;
+	Spanish = Ataque aéreo;
+	}
+
+[Annihilating]
+	{
+	German = Vernichtet;
+	French = en pleine destruction;
+	Italian = Distruzione totale;
+	Spanish = Aniquilando;
+	}
+
+[Attacking]
+	{
+	German = Attackiert;
+	French = A l'attaque;
+	Italian = Azione di attacco;
+	Spanish = Atacando;
+	}
+
+[Being transported]
+	{
+	German = Wird transportiert;
+	French = En cours de transport;
+	Italian = In corso di trasporto;
+	Spanish = En transporte;
+	}
+[Capturing]
+	{
+	piglatin=apturingCay;
+	German = wird erobert;
+	French = Capture;
+	Italian = Cattura;
+	Spanish = Capturando;
+	}
+[Cloaking]
+	{
+	German = Tarnt;
+	French = en cours de camouflage;
+	Italian = Occultamento in corso;
+	Spanish = Camuflando;
+	}
+[Deactivate]
+	{
+	German = Deaktiviert;
+	French = Désactiver;
+	Italian = Disabilita;
+	Spanish = Desactivar;
+	}
+[Decloaking]
+	{
+	German = Enttarnt;
+	French = abandonne le camouflage;
+	Italian = Termine dell'occultamento;
+	Spanish = Abandonando camuflaje;
+	}
+
+[Defending]
+	{
+	German = Verteidigt;
+	French = En défense;
+	Italian = Azione di difesa;
+	Spanish = Defendiendo;
+	}
+
+[Diving]
+	{
+	German = Taucht ab;
+	French = En plongée;
+	Italian = Sott'acqua;
+	Spanish = En picado;
+	}
+
+[Engaging target]
+	{
+	German = Erfasst Ziel;
+	French = Attaque la cible;
+	Italian = Ricerca del bersaglio;
+	Spanish = Localizando objetivo;
+	}
+
+[Evading]
+	{
+	German = Weicht aus;
+	French = en manoeuvres d'évasion;
+	Italian = Manovra di evasione;
+	Spanish = maniobra de evasión;
+	}
+
+[Following]
+	{
+	German = Folgt;
+	French = en train de suivre;
+	Italian = All'inseguimento;
+	Spanish = Siguiendo;
+	}
+[Guarding]
+	{
+	German = Bewache;
+	French = De Garde;
+	Italian = Di guardia;
+	Spanish = Defendiendo;
+	}
+[Landing]
+	{
+	German = Landen;
+	French = Atterrissage;
+	Italian = Atterraggio;
+	Spanish = Aterrizaje;
+	}
+
+[Loading]
+	{
+	German = Lädt;
+	French = en cours de chargement;
+	Italian = Caricamento in corso;
+	Spanish = Cargando;
+	}
+
+[Moving]
+	{
+	German = Bewegt;
+	French = En mouvement;
+	Italian = In movimento;
+	Spanish = En movimiento;
+	}
+
+[Nanolathing]
+	{
+	German = Nanostrahlt;
+	French = NanoConstr. en cours;
+	Italian = Nanocostr. in corso;
+	Spanish = Usando nanotorno;
+	}
+
+[Paralyzed]
+	{
+	German = Paralysiert;
+	French = immobilisée;
+	Italian = Immobilizzata;
+	Spanish = Paralizado;
+	}
+
+[Parking]
+	{
+	German = Parkt;
+	French = en stationnement;
+	Italian = In attesa;
+	Spanish = Estacionado;
+	}
+
+[Patrolling]
+	{
+	German = Patrouilliert;
+	French = en patrouille;
+	Italian = In pattuglia;
+	Spanish = Patrullando;
+	}
+
+[Patrolling for damaged units]
+	{
+	German = Sucht nach beschäigten Einheiten;
+	French = Patrouille reperation;
+	Italian = In pattuglia;
+	Spanish = Buscando unidades dañadas;
+	}
+
+[Ready]
+	{
+	German = Fertig;
+	French = prêt;
+	Italian = Pronta;
+	Spanish = Listo;
+	}
+[Ready with orders]
+	{
+	German = Befehle ausgeführt;
+	French = Prêt pour les ordres;
+	Italian = Pronta per gli ordini;
+	Spanish = Listo con órdenes;
+	}
+
+[Reclaiming]
+	{
+	German = wandelt um;
+	French = récupération;
+	Italian = recupero;
+	Spanish = Recuperando;
+	}
+
+[Repairing]
+	{
+	German = Repariert;
+	French = En train de réparer;
+	Italian = Riparazione unità;
+	Spanish = Reparando;
+	}
+[Repair patrol]
+	{
+	German = Patrouille reparieren;
+	French = Patrouille réparation;
+	Italian = In pattuglia;
+	Spanish = Reparar patrulla;
+	}
+[Seeking to attack]
+	{
+	German = Versucht anzugreifen;
+	French = Cherche à lancer une attaque;
+	Italian = Tentativo di attacco;
+	Spanish = Preparando ataque;
+	}
+
+[Seeking to defend]
+	{
+	German = Versucht zu verteidigen;
+	French = essaye d'assurer la défense;
+	Italian = Tentativo di difesa;
+	Spanish = Preparando defensa;
+	}
+
+[Seeking to land]
+	{
+	German = Versucht zu landen;
+	French = Cherche à atterrir;
+	Italian = Atterraggio in corso;
+	Spanish = Preparando aterrizaje;
+	}
+
+[Seeking to guard]
+	{
+	German = Versucht zu schützen;
+	French = en cours de patrouille;
+	Italian = In guardia;
+	Spanish = Defendiendo;
+	}
+
+[SELF DESTRUCT ENGAGED]
+	{
+	German = SELBSTZERSTÖRUNG AKTIVIERT;
+	French = AUTODESTRUCTION ENCLENCHEE;
+	Italian = AUTODISTRUZIONE ATTIVATA;
+	Spanish = AUTODESTRUCCIÓN ACTIVADA;
+	}
+
+[Standby]
+	{
+	German = Wartet;
+	French = En Attente;
+	Italian = In attesa;
+	Spanish = En espera;
+	}
+
+[Stopping]
+	{
+	German = Stoppt;
+	French = à l'arrêt;
+	Italian = Ferma;
+	Spanish = Parado;
+	}
+
+[Suppressing fire]
+	{
+	German = Stellt Feuer ein;
+	French = cesse le feu;
+	Italian = Fuoco di soppressione;
+	Spanish = Alto el fuego;
+	}
+
+[Surfacing]
+	{
+	German = Taucht auf;
+	French = Fait surface;
+	Italian = Controllo;
+	Spanish = A la superficie;
+	}
+
+[Teleporting]
+	{
+	German = Teleportiert;
+	French = en téléportation;
+	Italian = Teletrasporto in corso;
+	Spanish = Teletransportando;
+	}
+
+[Under construction]
+	{
+	German = Im Bau;
+	French = En construction;
+	Italian = In costruzione;
+	Spanish = En construcción;
+	}
+
+[Under repair]
+	{
+	German = Wird repariert;
+	French = En réparations;
+	Italian = In riparazione;
+	Spanish = En reparación;
+	}
+
+[Unit is available]
+	{
+	German = Einheit ist verfügbar;
+	French = Unité disponible;
+	Italian = Unità disponibile;
+	Spanish = Unidad disponible;
+	}
+[Unloading]
+	{
+	piglatin=nloadingUay;
+	German = Entlade;
+	French = Déchargement;
+	Italian = Operazione di scarico;
+	Spanish = Descargando;
+	}
+
+[Waiting]
+	{
+	German = Wartet;
+	French = En attente;
+	Italian = In attesa;
+	Spanish = Esperando;
+	}
+
+[Waiting for attack]
+	{
+	German = Wartet auf Angriff;
+	French = En attente pour l'attaque;
+	Italian = In attesa dell'attacco;
+	Spanish = Esperando ataque;
+	}
+
+// Feature descriptions
+
+[Description]
+	{
+	German = Beschreibung;
+	French = Description;
+	Italian = Descrizione;
+	Spanish = Descripción;
+	}
+
+[Plant]
+	{
+	German = Pflanze;
+	French = Brûlée;
+	Italian = Impianto;
+	Spanish = Planta;
+	}
+
+[Burnt Plant]
+	{
+	German = Verbrannte Pflanze;
+	French = Végétation Brûlée;
+	Italian = Impianto bruciato;
+	Spanish = Planta quemada;
+	}
+
+[Fortification Wall]
+	{
+	German = Befestigungswand;
+	French = Périmètre de défense;
+	Italian = Mura fortificate;
+	Spanish = Defensa de perímetro;
+	}
+
+[Hole]
+	{
+	German = Loch;
+	French = Trou;
+	Italian = Buco;
+	Spanish = Agujero;
+	}
+[Crater]
+	{
+	German = Krater;
+	French = Cràtre;
+	Italian = Cratere;
+	Spanish = Cráter;
+	}
+
+[Foliage]
+	{
+	German = Gebüsch;
+	French = Végétation;
+	Italian = Vegetazione;
+	Spanish = Vegetación;
+	}
+
+[Rock]
+	{
+	German = Felsen;
+	French = Roche;
+	Italian = Pietra;
+	Spanish = Roca;
+	}
+[rock]
+	{
+	German = Felsen;
+	French = Roche;
+	Italian = Pietra;
+	Spanish = Roca;
+	}
+
+[Metal]
+	{
+	German = Metall;
+	French = Métal;
+	Italian = Metallo;
+	Spanish = Metal;
+	}
+[Rubble]
+	{
+	German = Geröll;
+	French = Décombres;
+	Italian = Rovine;
+	Spanish = Escombros;
+	}
+
+[Thermal Vent]
+	{
+	German = Thermalwind;
+	French = Aération thermique;
+	Italian = Fonte geotermica;
+	Spanish = Respiradero térmico;
+	}
+
+[Ventilation Engine]
+	{
+	German = Belüftungsanlage;
+	French = Aérateur;
+	Italian = Impianto di ventilazione;
+	Spanish = Ventilador;
+	}
+
+
+[Wreckage]
+	{
+	German = Trümmer;
+	French = Epave;
+	Italian = Rottami;
+	Spanish = Escombros;
+	}
+
+[Metal]
+	{
+	German = Metall;
+	French = Métal;
+	Italian = Metallo;
+	Spanish = Metal;
+	}
+
+[Burnt Foliage]
+	{
+	German = Verbranntes Waldgebiet;
+	French = Végétation Brûlée;
+	Italian = Vegetazione bruciata;
+	Spanish = Vegetación quemada;
+	}
+[Burnt Tree]
+	{
+	German = Verbrannter Baum;
+	French = Arbre Brûlée;
+	Italian = Albero bruciato;
+	Spanish = Árbol quemado;
+	}
+
+[Tree]
+	{
+	German = Baum;
+	French = Brûlée;
+	Italian = Albero;
+	Spanish = Árbol;
+	}
+
+	
+[Ice Chunks]
+	{
+	German = Eisklumpen;
+	French = Blocs de Glace;
+	Italian = Blocchi di ghiaccio;
+	Spanish = Bloques de hielo;
+	}
+
+[Damaged Terrain]
+	{
+	German = Beschädigtes Gelände;
+	French = Terrain endommagé;
+	Italian = Terreno danneggiato;
+	Spanish = Terreno dañado;
+	}
+[Damaged Surface]
+	{
+	German = Beschädigtes Gelände;
+	French = Terrain endommagé;
+	Italian = Superficie danneggiata;
+	Spanish = Superficie dañada;
+	}
+
+[DragonsTeeth]
+	{
+	German = Panzersperre;
+	French = Dent du dragon;
+	Italian = Denti del drago;
+	Spanish = Dragon's Teeth;
+	}
+
+[Dragons Teeth - NS]
+	{
+	German = Marine-Barrikade;
+	French = Dent du dragon naval;
+	Italian = Denti del drago - SN;
+	Spanish = Dragon's Teeth;
+	}
+
+[DragonsTeeth - NS]
+	{
+	German = Marine-Barrikade;
+	French = Dent du dragon naval;
+	Italian = Denti del drago - SN;
+	Spanish = Dragon's Teeth;
+	}
+
+
+[Metal Deposit]
+	{
+	German = Metallvorkommen;
+	French = Gisement de métal;
+	Italian = Deposito di metallo;
+	Spanish = Depósito de metal;
+	}
+
+[Node]
+	{
+	German = Rohstoff;
+	French = Nodule;
+	Italian = Nodo;
+	Spanish = Nódulo;
+	}
+
+[Spire]
+	{
+	German = Felsspitze;
+	French = Aiguille;
+	Italian = Guglia;
+	Spanish = Aguja;
+	}
+
+[Glyph]
+	{
+	German = Symbol;
+	French = Glyphe;
+	Italian = Glifo;
+	Spanish = Glifo;
+	}
+
+[Ruin]
+	{
+	German = Ruine;
+	French = Ruine;
+	Italian = Rovina;
+	Spanish = Ruina;
+	}
+
+[Seismic Monitor]
+	{
+	German = Erdbebenüberwachung;
+	French = Moniteur Sismique;
+	Italian = Rilevatore sismico;
+	Spanish = Monitor seísmico;
+	}
+
+[Pipe]
+	{
+	German = Rohr;
+	French = Tuyau;
+	Italian = Tubo;
+	Spanish = Tubería;
+	}
+[Communications Uplink]
+	{
+	German = Kommunikationsverbindung;
+	French = Moyen de Communications;
+	Italian = Mezzo di comunicazione;
+	Spanish = Enlace de comunicaciones;
+	}
+
+[Comm Uplink]
+	{
+	German = Kommunikationsverbindung;
+	French = Moyen de Communications;
+	Italian = Mezzo di comunicazione;
+	Spanish = Enlace de comunicaciones;
+	}
+
+
+[Communication Tower]
+	{
+	German = Kommunikationsturm;
+	French = Tour de communications;
+	Italian = Torre di comunicazione;
+	Spanish = Torre de comunicaciones;
+	}
+[Regulator Complex]
+	{
+	German = Regulatorkomplex;
+	French = Complexe Régulateur;
+	Italian = Complesso regolatore;
+	Spanish = Complejo regulador;
+	}
+
+[Thermal Regulator]
+	{
+	German = Thermostat;
+	French = Régulateur thermique;
+	Italian = Regolatore termico;
+	Spanish = Regulador térmico;
+	}
+
+[Transmitter]
+	{
+	German = Sender;
+	French = Transmetteur;
+	Italian = Trasmettitore;
+	Spanish = Transmisor;
+	}
+
+[Pressure Release Valve]
+	{
+	German = Druckentlastungsventil;
+	French = Valve de Relâchement de Pression;
+	Italian = Valvola di sfogo;
+	Spanish = Válvula de salida de presión;
+	}
+
+[Pressure Valve]
+	{
+	German = Druckeventil;
+	French = Valve;
+	Italian = Valvola di sfogo;
+	Spanish = Válvula de presión;
+	}
+
+
+
+// Multiplayer online interface messages
+
+[Invalid TCP/IP Address]
+	{
+	German = TCP/IP funktioniert je nach Verwendung nicht richtig.;
+	French = Risques de problèmes selon l'utilisation de TCP/IP.;
+	Italian = Indirizzo TCP/IP non valido;
+	Spanish = Dirección TCP/IP no válida;
+	}
+
+
+
+[Enter TCP address (leave blank to search)]
+	{
+	German = TCP-Adresse eingeben;
+	French = Entrer l'adresse TCP;
+	Italian = Inserire l'indirizzo TCP;
+	Spanish = Teclear dirección TCP (en blanco para buscar);
+	}
+[Phone Numbers]
+	{
+	German = Telefonnummern;
+	French = Numéros;
+	Italian = Numeri;
+	Spanish = Números tfno.;
+	}
+[Number]
+	{
+	German = Nummer;
+	French = Numéro;
+	Italian = Numero;
+	Spanish = Número;
+	}
+[Test String]
+	{
+	German = Testzeile;
+	French = Test Ligne;
+	Italian = Stringa di test;
+	Spanish = Cadena de prueba;
+	}
+
+[Modem]
+	{
+	German = Modem;
+	French = Modem;
+	Italian = Modem;
+	Spanish = Módem;
+	}
+
+[Port]
+	{
+	German = Port;
+	French = Port;
+	Italian = Porta;
+	Spanish = Puerto;
+	}
+
+	
+[Answer]
+	{
+	German = Antworten;
+	French = Répondre;
+	Italian = Risposta;
+	Spanish = Responder;
+	}
+[Dial]
+	{
+	German = Wählen;
+	French = Appeler;
+	Italian = Composizione;
+	Spanish = Marcar;
+	}
+[Host]
+	{
+	German = Host;
+	French = Hôte;
+	Italian = Host;
+	Spanish = Servidor;
+	}
+
+	
+[Play Free on TEN]
+	{
+	German = Spielen Sie gratis auf TEN;
+	French = Jeu libre sur TEN;
+	Italian = Gioco gratuito con TEN;
+	Spanish = Juego libre para 10 Jgds;
+	}
+[Play]
+	{
+	German = Spielen;
+	French = Jeu;
+	Italian = Gioca;
+	Spanish = Jugar;
+	}
+	
+[Unit Download]
+	{
+	German = Einheiten herunterladen;
+	French = Télécharger Unité;
+	Italian = Scaricamento unità;
+	Spanish = Bajar unidad;
+	}
+
+[Get Mplayer]
+	{
+	German = Mit MPlayer verbinden;
+	French = Entendre Mplayer;
+	Italian = Prendi Mplayer;
+	Spanish = Multijugador;
+	}
+
+
+// In game pop-up messages
+
+[Game Name]
+	{
+	German = Spielnamen;
+	French = Nom de la partie;
+	Italian = Nome della partita;
+	Spanish = Nombre de la partida;
+	}
+[Map game will play on]
+	{
+	German = Gewählte Spiel-Karte;
+	French = Carte choisie;
+	Italian = Scelta della mappa;
+	Spanish = Nombre del mapa;
+	}
+[Does dead commander end game?]
+	{
+	German = Beendet toter Commander das Spiel?;
+	French = La partie se termine-t-elle avec la destruction du Commandeur?;
+	Italian = La partita termina alla morte del Comandante?;
+	Spanish = ¿La muerte del comandante finaliza la partida?;
+	}
+[Average latency (big is bad)]
+	{
+	German = Durchschnittliche Zeitverzögerung;
+	French = Moyenne de Transmission;
+	Italian = Tempo medio di attesa;
+	Spanish = Capacidad media (mucha es nociva);
+	}
+[Type of Line of Sight]
+	{
+	German = Sichtlinientyp;
+	French = Type de Champ de Vision;
+	Italian = Tipo di visuale;
+	Spanish = Tipo de Campo de Visión;
+	}
+[Tells if you start with map]
+	{
+	German = Sichtbare Karte;
+	French = Visibilitié;
+	Italian = Visibilità;
+	Spanish = Visibilidad;
+	}
+[Starting Metal:]
+	{
+	German = Metallmenge:;
+	French = Editer Métal:;
+	Italian = Metallo iniziale:;
+	Spanish = Metal inicial:;
+	}
+[Starting Energy:]
+	{
+	German = Energiemenge:;
+	French = Editer Energie:;
+	Italian = Energia iniziale:;
+	Spanish = Energía inicial:;
+	}
+
+	
+[Starting metal amount]
+	{
+	German = Metallmenge starten;
+	French = Editer Métal;
+	Italian = Quantità di metallo iniziale;
+	Spanish = Metal inicial;
+	}
+[Starting energy amount]
+	{
+	German = Energiemenge starten;
+	French = Editer Energie;
+	Italian = Quantità di energia iniziale;
+	Spanish = Energía inicial;
+	}
+
+[Click to edit energy value.]
+	{
+	German = Klicken Sie, um Energiewert zu verwändern.;
+	French = Cliquez pour éditer la quantité d'énergie.;
+	Italian = Clicca per modificare la quantità di energia.;
+	Spanish = Pulsar para editar la cantidad de energía.;
+	}
+
+[Click to set energy value.]
+	{
+	German = Klicken Sie, um Energiewert einzugeben.;
+	French = Cliquez pour définir la quantité d'énergie.;
+	Italian = Clicca per impostare la quantità di energia.;
+	Spanish = Pulsar para fijar la cantidad de energía.;
+	}
+
+[Click to edit metal value.]
+	{
+	German = Klicken Sie, um Metallwert zu verwändern.;
+	French = Cliquez pour éditer la quantité de métal.;
+	Italian = Clicca per modificare la quantità di metallo.;
+	Spanish = Pulsar para editar la cantidad de metal.;
+	}
+
+[Click to set metal value.]
+	{
+	German = Klicken Sie, um Metallwert einzustellen.;
+	French = Cliquez pour définir la quantité de métal.;
+	Italian = Clicca per impostare la quantità di metallo.;
+	Spanish = Pulsar para fijar la cantidad de metal.;
+	}
+[Left click to increase metal. Right click to decrease metal.]
+	{
+	German = Linksklick erhöht Metall, Rechtsklick verringert es.;
+	French = Clic Gauche pour augmenter le métal. Clic Droit pour réduire le métal.;
+	Italian = Pulsante sinistro per aumentare il metallo, destro per diminuirlo.;
+	Spanish = Botón izqdo. para incrementar metal. Botón dcho. para reducir.;
+	}
+[Left click to increase energy. Right click to decrease energy.]
+	{
+	German = Linksklick erhöht Energie, Rechtsklick verringert sie.;
+	French = Clic Gauche pour augmenter l'énergie. Clic Droit pour réduire l'énergie.;
+	Italian = Pulsante sinistro per aumentare l'energia, destro per diminuirla.;
+	Spanish = Botón izqdo. para incrementar energía. Botón dcho. para reducir.;
+	}
+
+[Click to select an allegiance symbol.]
+	{
+	German = Klicken Sie, um ein Treuesymbol auszuwählen.;
+	French = Cliquez pour sélectionner un symbole d'allégeance.;
+	Italian = Clicca per selezionare un simbolo.;
+	Spanish = Pulsar para seleccionar un símbolo de alianza.;
+	}
+
+[Players in game / Max players]
+	{
+	German = Angemeldete Spieler/ Max. Spielerzahl;
+	French = Joueur Présent/Max. de Joueurs;
+	Italian = Giocatori presenti / Max giocatori;
+	Spanish = Jugadores/Nº máx. de jugadores;
+	}
+
+[Tells if game is in play]
+	{
+	German = Spiel Status;
+	French = Statut de jeu;
+	Italian = Stato del gioco;
+	Spanish = Estatus juego;
+	}
+[Game ends when commander is destroyed.]
+	{
+	German = Spiel endet, wenn Commander zerstört ist.;
+	French = Le jeu se termine quand le commandeur est détruit.;
+	Italian = Il gioco termina una volta distrutto il Comandante.;
+	Spanish = El juego finaliza si muere el Comandante.;
+	}
+
+[Game continues after Commander is destroyed.]
+	{
+	German = Spiel geht weiter, nachdem Commander zerstört ist.;
+	French = Le jeu continue quand le commandeur est détruit.;
+	Italian = Il gioco continua dopo la distruzione del Comandante.;
+	Spanish = El juego continua aunque muera el Comandante.;
+	}
+
+[Commanders are placed at pre-determined locations.]
+	{
+	German = Commander werden an vorbestimmten Positionen plaziert.;
+	French = Les commandeurs sont placés à des endroits définis.;
+	Italian = I Comandanti sono posizionati in punti predeterminati.;
+	Spanish = Los comandantes se situan en puntos predeterminados.;
+	}
+[Commanders are randomly placed on the battle field.]
+	{
+	German = Commander werden an zufällige Positionen plaziert.;
+	French = Les commandeurs sont placés aléatoirement sur le champ de bataille.;
+	Italian = I Comandanti sono posti casualmente sul campo di battaglia.;
+	Spanish = Los comandantes aparecen en puntos aleatorios.;
+	}
+
+[Terrain is blacked out until explored.]
+	{
+	German = Gelände erscheint schwarz, bis es erforscht wurde.;
+	French = Le terrain reste noir tant qu'il n'a pas été exploré.;
+	Italian = Le zone inesplorate risultano oscurate.;
+	Spanish = El terreno aparece en negro hasta que se explora.;
+	}
+
+[Terrain is visible.]
+	{
+	German = Gelände ist sichtbar.;
+	French = Le terrain est visible.;
+	Italian = Il terreno è visibile.;
+	Spanish = El terreno es visible.;
+	}
+
+[Terrain elevations affect a unit's view.]
+	{
+	German = Geländeerhabungen beinflussen die Sicht der Einheiten.;
+	French = Le dénivelé du terrain affecte le champ de vision des unités.;
+	Italian = L'altitudine influenza la visuale delle unità.;
+	Spanish = Las elevaciones del terreno afectan la visibilidad.;
+	}
+
+[Terrain elevations do not affect a unit's view.]
+	{
+	German = Geländeerhabungen beinflussen nicht die Sicht der Einheiten.;
+	French = Le dénivelé du terrain n'affecte pas le champ de vision d'une unité.;
+	Italian = L'altitudine non influenza la visuale delle unità.;
+	Spanish = Las elevaciones del terreno no afectan la visibilidad.;
+	}
+
+[All mapped terrain is visible.]
+	{
+	German = Alles Gelände der Karte ist sichtbar.;
+	French = Tout le terrain est visible.;
+	Italian = Tutto il terreno è visibile.;
+	Spanish = Todo el terreno es visible.;
+	}
+
+[Exit Mission]
+	{
+	German = Mission beenden;
+	French = Quitter la Mission;
+	Italian = Abbandona la missione;
+	Spanish = Abandonar misión;
+	}
+
+[Exit Skirmish]
+	{
+	German = Gefecht beenden;
+	French = Quitter la Bataille;
+	Italian = Abbandona la Battaglia;
+	Spanish = Abandonar escaramuza;
+	}
+
+[Exit Battle]
+	{
+	German = Gefecht beenden;
+	French = Quitter le Combat;
+	Italian = Abbandona il combattimento;
+	Spanish = Abandonar batalla;
+	}
+
+[Restart Mission]
+	{
+	German = Mission neu starten;
+	French = Recommencer la Mission;
+	Italian = Ricomincia la missione;
+	Spanish = Reiniciar misión;
+	}
+
+[Restart Skirmish]
+	{
+	German = Gefecht neu starten;
+	French = Recommencer la Bataille;
+	Italian = Ricomincia la Battaglia;
+	Spanish = Reiniciar escaramuza;
+	}
+
+[Restart]
+	{
+	German = Neustart;
+	French = Redémarrer;
+	Italian = Ricomincia;
+	Spanish = Reiniciar;
+	}	
+
+[Close Windows CD Player?]
+	{
+	German = Den unter Windows angemeldeten CD-Spieler schließen?;
+	French = Ferme le lecteur CD de Windows?;
+	Italian = Chiudo il lettore CD di Windows?;
+	Spanish = ¿Cerrar lector de CD en Windows?;
+	}
+
+[CD Music]
+	{
+	German = CD Musik;
+	French = Musique CD;
+	Italian = Musica da CD;
+	Spanish = CD de música;
+	}
+
+
+[Surrender this battle and return to main menu?]
+	{
+	German = Wollen Sie kapitulieren und ins Hauptmenü zurückkehren?;
+	French = Abandonner cette bataille et retourner au menu principal?;
+	Italian = Abbandona la battaglia e ritorna al menu principale?;
+	Spanish = ¿Abandonar esta batalla y volver al menú principal?;
+	}
+
+[Surrender this battle and exit to Windows?]
+	{
+	German = Wollen Sie kapitulieren und zu Windows zurückkehren?;
+	French = Abandonner cette bataille et retourner sous Windows?;
+	Italian = Abbandona la battaglia ed esci a Windows?;
+	Spanish = ¿Abandonar esta batalla y salir a Windows?;
+	}
+
+
+
+// Title Screen
+
+[SINGLE]
+	{
+	German = EINZEL;
+	French = SIMPLE;
+	Italian = SINGOLO;
+	Spanish = 1 JUGADOR;
+	}
+[Single]
+	{
+	German = Einzel;
+	French = Simple;
+	Italian = Singolo;
+	Spanish = 1 Jugador;
+	}
+
+[MULTI]
+	{
+	German = MEHRSPIELER;
+	French = MULTI;
+	Italian = MULTI;
+	Spanish = MULTI;
+	}
+
+[INTRO]
+	{
+	German = INTRO;
+	French = INTRO;
+	Italian = INTRO;
+	Spanish = INTRO;
+	}
+
+[EXIT]
+	{
+	German = ENDE;
+	French = QUITTER;
+	Italian = ESCI;
+	Spanish = SALIR;
+	}
+[Exit]
+	{
+	German = Ende;
+	French = Quitter;
+	Italian = Esci;
+	Spanish = Salir;
+	}
+
+// In-Game Help Screen
+
+[Keyboard Commands]
+	{
+	German = Tastaturbefehle;
+	French = Commandes au clavier;
+	Italian = Comandi da tastiera;
+	Spanish = Controles;
+	}
+
+[Title]
+	{
+	German = Titel;
+	French = Titre;
+	Italian = Titolo;
+	Spanish = Título;
+	}
+
+[SPACEBAR]
+	{
+	German = LEERTASTE;
+	French = BARRE ESPACE;
+	Italian = SPAZIO;
+	Spanish = BARRA ESPACIADORA;
+	}
+[Activate the game status bar]
+	{
+	German = Multiplayer-Spiel Punktetabelle;
+	French = Affichez un panneau de scores;
+	Italian = Attiva la Barra di Stato;
+	Spanish = Activa la barra de estado del juego;
+	}
+
+[F4]
+	{
+	German = F4;
+	French = F4;
+	Italian = F4;
+	Spanish = F4;
+	}
+[Bring up the multiplayer scorecard]
+	{
+	German = Aktiviert die Spielstatuszeile;
+	French = Activez la barre d'état de la partie;
+	Italian = Visualizza i punteggi dei giocatori;
+	Spanish = Cuadro de puntuación multijugador;
+	}
+[CTRL+F]
+	{
+	German = STRG+F;
+	French = CTRL+F;
+	Italian = CTRL+F;
+	Spanish = CTRL+F;
+	}
+[Select all factories]
+	{
+	German = Alle Fabriken auswählen;
+	French = Sélectionne toutes vos usine;
+	Italian = Seleziona Fabbriche;
+	Spanish = Seleccionar todas las fábricas;
+	}
+[TAB]
+	{
+	German = TAB;
+	French = TAB;
+	Italian = TAB;
+	Spanish = TAB;
+	}
+[Multiplayer options]
+	{
+	German = Mehrspieler-Features;
+	French = Options de multi-joueurs;
+	Italian = Opzioni Multigiocatore;
+	Spanish = Opciones multijugador;
+	}
+
+
+
+[ESC]
+	{
+	German = ESC;
+	French = ECHAP;
+	Italian = ESC;
+	Spanish = ESC;
+	}
+[Cancels the current command]
+	{
+	German = Bricht den aktivierten Befehl ab;
+	French = Annule l'ordre donné avant qu'il ne soit effectué;
+	Italian = Annulla il comando corrente;
+	Spanish = Cancelar la orden actual;
+	}
+
+[CTRL+1 - 9]
+	{
+	German = STRG+1 - 9;
+	French = CTRL+1 - 9;
+	Italian = CTRL+1 - 9;
+	Spanish = CTRL+1 - 9;
+	}
+
+[Assign the currently selected units to a squad]
+	{
+	German = Fügt die Einheiten einer Gruppe zu;
+	French = Former un escadron;
+	Italian = Assegna le unità selezionate ad una squadra;
+	Spanish = Crear una patrulla;
+	}
+
+[ALT1 - ALT9]
+	{
+	German = ALT1 - ALT9;
+	French = ALT1 - ALT9;
+	Italian = ALT1 - ALT9;
+	Spanish = ALT1 - ALT9;
+	}
+[Select squad]
+	{
+	German = Aktiviert die gerade festgelegte Einsatzgruppe;
+	French = Active l'escadron précédemment formé;
+	Italian = Seleziona squadra;
+	Spanish = Elegir patrulla;
+	}
+
+
+[F]
+	{
+	German = F;
+	French = F;
+	Spanish = F;
+	Italian = F;
+	}
+[Toggles fire orders]
+	{
+	German = Wechselt zwischen Feuerbefehle;
+	French = Passe le menu d’ordre - Feu;
+	Italian = Ordini di Fuoco;
+	Spanish = Activar/desactivar órdenes de fuego;
+	}
+
+
+[K]
+	{
+	German = K;
+	French = K;
+	Italian = K;
+	Spanish = K;
+	}
+[Toggles selected unit's cloaking capabilities]
+	{
+	German = Schaltet die Tarnung ein oder aus;
+	French = Active l'option camouflage;
+	Italian = Imposta l'occultamento di una unità;
+	Spanish = Activar/desactivar la capacidad de camuflaje;
+	}
+
+[V]
+	{
+	German = V;
+	French = V;
+	Italian = V;
+	Spanish = V;
+	}
+
+[Toggles move orders]
+	{
+	German = Wechselt zwischen Bewegungsbefehle;
+	French = Passe le menu d'ordre - Manoeuvre;
+	Italian = Ordini di Movimento;
+	Spanish = Activar/desactivar órdenes de movimiento;
+	}
+
+
+
+[B]
+	{
+	German = B;
+	French = B;
+	Italian = B;
+	Spanish = B;
+	}
+[Select the Build menu for the current unit]
+	{
+	German = Wählt das Bau Menü für diese Einheit;
+	French = Affiche le menu Construction de l'unité sélectionée;
+	Italian = Attiva il menu di Costruzione per l'unità selezionata;
+	Spanish = Activar Menú de Constr. para la ud. seleccionada;
+	}
+
+[O]
+	{
+	German = O;
+	French = O;
+	Italian = O;
+	Spanish = O;
+	}
+[Select the Orders menu for the current unit]
+	{
+	German = Wählt das Befehls-Menü für diese Einheit;
+	French = Affiche le menu Ordres de l'unité sélectionnée;
+	Italian = Attiva il menu Ordini per l'unità selezionata;
+	Spanish = Activar Menú de Órdenes para la ud. selec.;
+	}
+
+[1 - 9]
+	{
+	German = 1 - 9;
+	French = 1 - 9;
+	Italian = 1 - 9;
+	Spanish = 1 - 9;
+	}
+[Select the menu for the current unit]
+	{
+	German = Wählt das Menü für die aktivierte Einheit;
+	French = Sélectionne un menu pour l'unité choisie;
+	Italian = Seleziona il menu per l'unità corrente;
+	Spanish = Activar menú de la unidad seleccionada;
+	}
+
+
+[, (comma)]
+	{
+	German = , (Komma);
+	French = , (virgule);
+	Italian = , (virgola);
+	Spanish = , (coma);
+	}
+[Select the previous menu for that unit]
+	{
+	German = Wählt das vorherige Menü für die aktivierte Einheit;
+	French = Sélectionne le menu précédent de l'unité;
+	Italian = Seleziona il menu precedente per l'unità;
+	Spanish = Activar menú anterior de esa unidad;
+	}
+
+[. (period)]
+	{
+	German = . (Punkt);
+	French = . (point);
+	Italian = . (punto);
+	Spanish = . (punto);
+	}
+[Select the next menu for that unit]
+	{
+	German = Wählt das nächste Menü für diese Einheit;
+	French = Sélectionne le menu suivant de l'unité;
+	Italian = Seleziona il menu successivo per l'unità;
+	Spanish = Activar siguiente menú de esa unidad;
+	}
+
+
+[~ (tilde)]
+	{
+	German = #;
+	French = !;
+	Italian = *;
+	Spanish = *;
+	}
+[Toggle damage bars on the units]
+	{
+	German = Wechselt zwischen den Schadensleisten der Einheiten;
+	French = Fait apparaître la barre de dégâts des unités;
+	Italian = Attiva gli indicatori dei danni delle unità;
+	Spanish = Ver la barra de daño de las unidades;
+	}
+
+
+[PAUSE]
+	{
+	German = PAUSE;
+	French = PAUSE;
+	Italian = PAUSA;
+	Spanish = PAUSA;
+	}
+[Pause the game]
+	{
+	German = Unterbricht das Spiel;
+	French = Place le jeu en position pause;
+	Italian = Mette il gioco in pausa;
+	Spanish = Pausar el juego;
+	}
+
+[F1]
+	{
+	German = F1;
+	French = F1;
+	Italian = F1;
+	Spanish = F1;
+	}
+[Display information on selected unit]
+	{
+	German = Zeigt Informationen über die gewählte Einheit an;
+	French = Affiche des informations sur l'unité sélectionnée;
+	Italian = Informazioni relative all'unità selezionata;
+	Spanish = Mostrar información de la unidad seleccionada;
+	}
+
+[F2]
+	{
+	German = F2;
+	French = F2;
+	Italian = F2;
+	Spanish = F2;
+	}
+[Display the Options menu]
+	{
+	German = Öffnet das Optionenmenü;
+	French = Fait apparaître le Menu Options;
+	Italian = Menu delle Opzioni;
+	Spanish = Mostrar Menú de Opciones;
+	}
+
+[F3]
+	{
+	German = F3;
+	French = F3;
+	Italian = F3;
+	Spanish = F3;
+	}
+[Selects the unit that last reported]
+	{
+	German = Geht zu der Einheit, die zuletzt berichtet hat;
+	French = Affiche l'unité qui vient de communiquer avec vous;
+	Italian = Seleziona l'ultima unità contattata;
+	Spanish = Seleccionar la última unidad que informó;
+	}
+
+[CTRL+F9]
+	{
+	German = STRG+F9;
+	French = CTRL+F9;
+	Italian = CTRL+F9;
+	Spanish = CTRL+F9;
+	}
+[Screen capture]
+	{
+	German = Screen Capture, SHOT ####.pcx ;
+	French = Capture d'écran. Réalise une copie de l'écran.;
+	Italian = Crea una copia della schermata di gioco;
+	Spanish = Captura de pantalla;
+	}
+
+[F12]
+	{
+	German = F12;
+	French = F12;
+	Italian = F12;
+	Spanish = F12;
+	}
+[Clear all chat messages]
+	{
+	German = Löscht alle Nachrichten;
+	French = Efface tous les messages à l'écran;
+	Italian = Cancella tutti i messaggi di chat;
+	Spanish = Eliminar mensajes;
+	}
+
+[CTRL+A]
+	{
+	German = STRG+A;
+	French = CTRL+A;
+	Italian = CTRL+A;
+	Spanish = CTRL+A;
+	}
+[Select all units]
+	{
+	German = Alle Einheiten auswählen;
+	French = Sélectionne toutes vos unités;
+	Italian = Seleziona tutte le unità;
+	Spanish = Seleccionar todas las unidades;
+	}
+
+[CTRL+B]
+	{
+	German = STRG+B;
+	French = CTRL+B;
+	Italian = CTRL+B;
+	Spanish = CTRL+B;
+	}
+[Select all construction units except the Commander]
+	{
+	German = Fasst alle Konstr. Einheiten bis auf den Cmdr.;
+	French = Rappelle toutes unités de construction sauf Cmdt.;
+	Italian = Seleziona le unità di Costruzione tranne il Com.;
+	Spanish = Seleccionar uds. de constr. excepto al Cmdte.;
+	}
+	
+
+[CTRL+C]
+	{
+	German = STRG+C;
+	French = CTRL+C;
+	Italian = CTRL+C;
+	Spanish = CTRL+C;
+	}
+[Select the Commander]
+	{
+	German = Zentriert den Bildschirm und wählt den Commander;
+	French = Recentre l'écran et sélectionne votre Commandeur;
+	Italian = Seleziona il Comandante;
+	Spanish = Seleccionar al Comandante;
+	}
+
+[CTRL+D]
+	{
+	German = STRG+D;
+	French = CTRL+D;
+	Italian = CTRL+D;
+	Spanish = CTRL+D;
+	}
+[Destruct selected unit(s)]
+	{
+	German = Aktiviert Selbstzerstörung der gewählten Einheiten;
+	French = Active l'autodestruction des unités sélectionnées;
+	Italian = Distruggi l'unità selezionata;
+	Spanish = Destruir las unidades seleccionadas;
+	}
+
+[CTRL+S]
+	{
+	German = STRG+S;
+	French = CTRL+S;
+	Italian = CTRL+S;
+	Spanish = CTRL+S;
+	}
+[Select all units currently on the screen]
+	{
+	German = Wählt alle Einheiten auf dem Bildschirm;
+	French = Sélectionne toutes les unités à l'écran;
+	Italian = Seleziona tutte le unità attualmente sullo schermo;
+	Spanish = Seleccionar todas las unidades en pantalla;
+	}
+[CTRL+V]
+	{
+	German = STRG+V;
+	French = CTRL+V;
+	Italian = CTRL+V;
+	Spanish = CTRL+V;
+	}
+[Select all aircraft]
+	{
+	German = Fasst alle Luftfahrzeuge zusammen;	
+	French = Sélectionne tous les avions;
+	Italian = Seleziona i velivoli;
+	Spanish = Seleccionar todas las aeronaves;
+	}
+
+
+[CTRL+Z]
+	{
+	German = STRG+Z;
+	French = CTRL+Z;
+	Italian = CTRL+Z;
+	Spanish = CTRL+Z;
+	}
+[Select all units of same type]
+	{
+	German = Wählt alle Einheiten des selben Typs;
+	French = Sélectionne toutes les unités de même nature;
+	Italian = Seleziona tutte le unità dello stesso tipo;
+	Spanish = Seleccionar todas las uds. del mismo tipo;
+	}
+[CTRL+F5 - F8]
+	{
+	German = STRG+F5 - F8;
+	French = CTRL+F5 - F8;
+	Italian = CTRL+F5 - F8;
+	Spanish = CTRL+F5 - F8;
+	}
+[Applies a map bookmark at cursor location]
+	{
+	German = Setzt Positions-Marke an aktuelle Cursor-Position;
+	French = Pose un repère sur la carte à la place du curseur;
+	Italian = Poni un segnalino sulla mappa;
+	Spanish = Crear una marca de ubicación donde esté el cursor;
+	}
+
+[F5 - F8]
+	{
+	German = F5 - F8;
+	French = F5 - F8;
+	Italian = F5 - F8;
+	Spanish = F5 - F8;
+	}
+[Centers the screen on a map bookmark]
+	{
+	German = Zentriert Kartenausschnitt über Positions-Merker;
+	French = Centre l'écran sur un repère de carte;
+	Italian = Centra la mappa su un segnalino;
+	Spanish = Centrar la pantalla de ubicación;
+	}
+
+[A]
+	{
+	German = A;
+	French = A;
+	Italian = A;
+	Spanish = A;
+	}
+[Give an attack order]
+	{
+	German = Erteilt einen Angriffsbefehl;
+	French = Donne l'ordre d'attaquer;
+	Italian = Impartisci un ordine di attacco;
+	Spanish = Dar una orden de ataque;
+	}
+
+[G]
+	{
+	German = G;
+	French = G;
+	Italian = G;
+	Spanish = G;
+	}
+[Give a guard order]
+	{
+	German = Erteilt einen Bewachen-Befehl;
+	French = Donne l'ordre de protéger;
+	Italian = Impartisci un ordine di sorveglianza;
+	Spanish = Dar una orden de defensa;
+	}
+
+[M]
+	{
+	German = M;
+	French = M;
+	Italian = M;
+	Spanish = M;
+	}
+[Give a move order]
+	{
+	German = Erteilt einen Bewegen-Befehl;
+	French = Donne l'ordre de se déplacer;
+	Italian = Impartisci un ordine di movimento;
+	Spanish = Dar una orden de movimiento;
+	}
+
+[P]
+	{
+	German = P;
+	French = P;
+	Italian = P;
+	Spanish = P;
+	}
+[Give a patrol order]
+	{
+	German = Gibt einen Patrouille-Befehl;
+	French = Donne l'ordre de patrouiller;
+	Italian = Impartisci un ordine di pattugliamento;
+	Spanish = Dar una orden de patrulla;
+	}
+
+[S]
+	{
+	German = S;
+	French = S;
+	Italian = S;
+	Spanish = S;
+	}
+[Give a stop order (cancel previous orders)]
+	{
+	German = Gibt einen Haltbefehl;
+	French = Annule tous le ordres précédents;
+	Italian = Impartisci un ordine di stop;
+	Spanish = Anular las órdenes precedentes;
+	}
+
+[D]
+	{
+	German = D;
+	French = D;
+	Italian = D;
+	Spanish = D;
+	}
+[Use the Disintegrator Gun]
+	{
+	German = Den Disintegrator verwenden;
+	French = Utiliser le canon Désintégrateur;
+	Italian = Utilizza il cannone disintegratore (D-gun);
+	Spanish = Usar Arma -D;
+	}
+
+[C]
+	{
+	German = C;
+	French = C;
+	Italian = C;
+	Spanish = C;
+	}
+[Give a capture order]
+	{
+	German = Gibt einen Erobern-Befehl;
+	French = Donne l'ordre de capturer;
+	Italian = Impartisci un ordine di cattura;
+	Spanish = Dar una orden de captura;
+	}
+
+[R]
+	{
+	German = R;
+	French = R;
+	Italian = R;
+	Spanish = R;
+	}
+[Give a repair order]
+	{
+	German = Gibt einen Reparaturbefehl;
+	French = Donne l'ordre de réparer;
+	Italian = Impartisci un ordine di riparazione;
+	Spanish = Dar una orden de reparación;
+	}
+
+[E]
+	{
+	German = E;
+	French = E;
+	Italian = E;
+	Spanish = E;
+	}
+[Give a reclaim order]
+	{
+	German = Gibt einen Einfordern-Befehl;
+	French = Donne l'ordre de reprendre;
+	Italian = Impartisci un ordine di recupero;
+	Spanish = Dar una orden de recuperar;
+	}
+
+[H]
+	{
+	German = H;
+	French = H;
+	Italian = H;
+	Spanish = H;
+	}
+[Share resources with another player]
+	{
+	German = Teilt die Ressourcen mit einem anderen Spieler;
+	French = Partager les ressources avec un autre joueur;
+	Italian = Condividi le risorse con un altro giocatore;
+	Spanish = Compartir recursos con otro jugador;
+	}
+
+[N]
+	{
+	German = N;
+	French = N;
+	Italian = N;
+	Spanish = N;
+	}
+[Scroll to the next unit off screen]
+	{
+	German = Scroll zur nächsten Einheit;
+	French = Fait défiler l'écran vers l'unité hors champ;
+	Italian = Mostra l'unità più vicina oltre la schermata;
+	Spanish = Pasar a la siguiente ud. fuera de pantalla;
+	}
+
+[T]
+	{
+	German = T;
+	French = T;
+	Italian = T;
+	Spanish = T;
+	}
+[Track the selected unit]
+	{
+	German = Die gewählte Einheit vervolgen;
+	French = Recherche l'unité sélectionnée;
+	Italian = Traccia l'unità selezionata;
+	Spanish = Seguir el rastro a la unidad;
+	}
+
+[-]
+	{
+	German = -;
+	French = -;
+	Italian = -;
+	Spanish = -;
+	}
+[Reduce the game speed]
+	{
+	German = Verringert die Spielgeschwindigkeit;
+	French = Ralentir le jeu;
+	Italian = Riduci la velocità di gioco;
+	Spanish = Reducir la velocidad del juego;
+	}
+
+[+]
+	{
+	German = +;
+	French = +;
+	Italian = +;
+	Spanish = +;
+	}
+[Increase the game speed]
+	{
+	German = Erhöht die Spielgeschwindigkeit;
+	French = Accélérer le jeu;
+	Italian = Aumenta la velocità di gioco;
+	Spanish = Aumentar la velocidad del juego;
+	}
+
+[SHIFT]
+	{
+	German = SHIFT;
+	French = Majuscule;
+	Italian = SHIFT;
+	Spanish = Mayúscula;
+	}
+[Hold down to queue up multiple commands]
+	{
+	German = Halten, um mehrere Befehle einzugeben;
+	French = A maintenir enforcée pour cumuler les ordres;
+	Italian = Tenendolo premuto è possibile impartire più comandi;
+	Spanish = Mantener pulsada para acumular órdenes;
+	}
+
+[ENTER]
+	{
+	German = ENTER;
+	French = Entrée;
+	Italian = INVIO;
+	Spanish = ENTER;
+	}
+[Activate the message bar]
+	{
+	German = Aktiviert die Nachrichtenzeile;
+	French = Active la barre de messages;
+	Italian = Attiva la barra dei messaggi;
+	Spanish = Activar la barra de mensajes;
+	}
+[Turn Rate]
+	{
+	German = Umdrehungsrate;
+	French = Tournage;
+	Italian = Turni;
+	Spanish = Giro;
+	}
+
+
+// Multiplayer map names and descriptions
+
+[painted desert]
+	{
+	German = Die gemalte Wüste;
+	French = Désert de pastels;
+	Italian = Deserto Dipinto;
+	Spanish = Desierto pintado;
+	}
+[18 x 18  battle in the many mesas area.]
+	{
+	German = 18 x 18 Die Schlacht in der Wüste von Many Mesas.;
+	French = 18 x 18 Nombreux plateaux.;
+	Italian = 18 x 18 Battaglia nell'area Many Mesas.;
+	Spanish = 18 x 18 Batalla en las colinas.;
+	}
+
+[caldera's rim]
+	{
+	German = Calderas Rand;
+	French = Bord de Caldéra;
+	Italian = Sul bordo del vulcano;
+	Spanish = Borde de Caldera;
+	}
+[29 x 29  sunken volcanic crater in center of map]
+	{
+	German = 29 x 29 Versunkener Vulkankrater in der Kartenmitte.;
+	French = 29 x 29 Un ancien volcan occupe le centre de cette zone.;
+	Italian = 29 x 29 Un vulcano sommerso nel centro della mappa.;
+	Spanish = 29 x 29 Cráter volcánico hundido en el centro del mapa.;
+	}
+
+[coast to coast]
+	{
+	German = Von Küste zu Küste;
+	French = D'un rivage à l'autre;
+	Italian = Coast to coast;
+	Spanish = De costa a costa;
+	}
+[7 x 4  water between two coasts. weak tides.]
+	{
+	German = 7 x 4 Wasser zwischen den beiden Küsten. Schwache Gezeiten;
+	French = 7 x 4 Zone aqueuse séparée par 2 rivages. Faible marée.;
+	Italian = 7 x 4 Il mare separa le due coste. Deboli maree.;
+	Spanish = 7 x 4 Agua entre dos costas. Mareas débiles.;
+	}
+
+[dark side]
+	{
+	German = Die dunkle Seite;
+	French = Ténébrae;
+	Italian = Lato oscuro;
+	Spanish = Zona oscura;
+	}
+[6 x 5  lunar map with plenty of metal]
+	{
+	German = 6 x 5 Mondkarte mit großen Metallvorkommen.;
+	French = 6 x 5 Paysage lunaire principalement composé de métal.;
+	Italian = 6 x 5 Paesaggio lunare ricco di metallo.;
+	Spanish = 6 x 5 Mapa lunar con metal abundante.;
+	}
+
+[etorrep glacier]
+	{
+	German = Der Etorret-Gletscher;
+	French = Glacier d'Etorret;
+	Italian = Ghiacciaio Etorrep;
+	Spanish = Glaciar de Etorrep;
+	}
+[5 x 8  strong winds coming from ocean.]
+	{
+	German = 5 x 8 Starke Winde von der Seeseite.;
+	French = 5 x 8 Zone désertique battue par des vents marins.;
+	Italian = 5 x 8 Forti venti provenienti dall'oceano.;
+	Spanish = 5 x 8 Fuertes vientos procedentes del océano.;
+	}
+
+[fox holes]
+	{
+	German = Fuchsbau;
+	French = L'antre du renard;
+	Italian = Tane di volpe;
+	Spanish = Madrigueras de zorros;
+	}
+[7 x 7  strong winds. more metal on high ground.]
+	{
+	German = 7 x 7 Starke Winde. Mehr Metalle auf der Hochebene.;
+	French = 7 x 7 Secteur venteux et riche en métal.;
+	Italian = 7 x 7 Forti venti. Metallo sulle alture.;
+	Spanish = 7 x 7 Fuertes vientos. Más metal en terreno elevado.;
+	}
+[full moon]
+	{
+	German = Vollmond;
+	French = Pleine lune;
+	Italian = Luna piena;
+	Spanish = Luna llena;
+	}
+[8 x 8  fighting on the naryb highlands. no wind.]
+	{
+	German = 8 x 8 Kämpfe in den Maryb Highlands. Kein Wind.;
+	French = 8 x 8 Région montagneuse de Maryb. Vent inexistant.;
+	Italian = 8 x 8 Combattimento sulle alture Naryb. Zona priva di vento.;
+	Spanish = 8 x 8 Batalla en las montañas de Naryb. Sin viento.;
+	}
+
+
+[gods of war]
+	{
+	German = Die Kriegsgötter;
+	French = Les Dieux vengeurs;
+	Italian = Gli Dei della guerra;
+	Spanish = Dioses de la Guerra;
+	}
+[9 x 8  asymmetric water map.]
+	{
+	German = 9 x 8 Asymmetrische Seekarte;
+	French = 9 x 8 Zone aqueuse asymétrique.;
+	Italian = 9 x 8 Battaglia marina.;
+	Spanish = 9 x 8 Mapa aquático asimétrico.;
+	}
+
+
+
+[great divide]
+	{
+	German = Die Große Teilung;
+	French = La grand crevasse;
+	Italian = La grande spaccatura;
+	Spanish = Gran división;
+	}
+[5 x 8  fight through a mountain pass.]
+	{
+	German = 5 x 8 Kämpfen Sie sich über einen Gebirgspaß.;
+	French = 5 x 8 Col escarpé d'une vaste montagne.;
+	Italian = 5 x 8 Combattimento presso un passo di montagna.;
+	Spanish = 5 x 8 Lucha en un paso montañoso.;
+	}
+
+
+[hundred isles]
+	{
+	German = Hundert Inseln;
+	French = Les cent îsles;
+	Italian = Le cento isole;
+	Spanish = Cien islas;
+	}
+[12 x 12  fighting on over a hundred small islands]
+	{
+	German = 12 x 12 Kämpfen Sie sich durch einige hundert Inseln.;
+	French = 12 x 12 Zone composée d'une centaine de petites îles.;
+	Italian = 12 x 12 Combattimento sulle cento isole.;
+	Spanish = 12 x 12 Lucha en un centenar de pequeñas islas.;
+	}
+
+
+
+[kill the middle]
+	{
+	German = Die Mitte ausschalten;
+	French = La plaine du massacre;
+	Italian = La pianura dei massacri;
+	Spanish = Masacre en el centro;
+	}
+[13 x 13  powerful player in middle of map on island.]
+	{
+	German = 13 x 13 Ein mächtiger Spieler in der Mitte auf einer Insel.;
+	French = 13 x 13 Centre d'une île.;
+	Italian = 13 x 13 Il giocatore più potente sull'isola al centro.;
+	Spanish = 13 x 13 Jugador poderoso en centro de mapa sobre isla.;
+	}
+
+
+[king of the hill]
+	{
+	German = Der Hügelkönig;
+	French = Célébrite méritée;
+	Italian = Re della collina;
+	Spanish = El mejor de todos;
+	}
+[16 x 16  fight for a metal rich mountain. strong wind.]
+	{
+	German = 16 x 16 Kampf um einen Berg voller Metall. Starker Wind.;
+	French = 16 x 16 Montagne riche en métal. Vents violents.;
+	Italian = 16 x 16 Combattimento per una montagna ricca di metallo.;
+	Spanish = 16 x 16 Lucha en montaña rica en metal. Fuertes vientos.;
+	}
+
+
+[lava & two hills]
+	{
+	German = Lava mit zwei Bergen;
+	French = Les deux collines de lave;
+	Italian = Le due colline della lava;
+	Spanish = Lava y dos colinas;
+	}
+[9 x 8  two giant hills & a river of lava between them]
+	{
+	German = 9 x 8 Zwei riesige Berge und ein Lavastrom dazwischen.;
+	French = 9 x 8 Deux imposantes collines séparent une rivière de lave.;
+	Italian = 9 x 8 Due colline e un fiume di lava tra di esse.;
+	Spanish = 9 x 8 Dos colinas gigantes separadas por un río de lava.;
+	}
+
+
+
+[lava highground]
+	{
+	German = Die Lavahochebene;
+	French = Les hautes spères de lave;
+	Italian = Le alture di lava;
+	Spanish = Alturas volcánicas;
+	}
+[8 x 8  fight over narrow ramps.]
+	{
+	German = 8 x 8 Kämpfen Sie sich durch enge Karten.;
+	French = 8 x 8 Secteurs particulièrement étroits.;
+	Italian = 8 x8 Combattimento sulle strette rampe.;
+	Spanish = 8 x 8 Lucha en rampas estrechas.;
+	}
+
+
+[lava mania]
+	{
+	German = Lava-Manie;
+	French = Sol de feu;
+	Italian = Lava-mania;
+	Spanish = Lavamanía;
+	}
+[8 x 8  strong winds.]
+	{
+	German = 8 x 8 Starke Winde.;
+	French = 8 x 8 Vents violents.;
+	Italian = 8 x 8 Forti venti.;
+	Spanish = 8 x 8 Fuertes vientos.;
+	}
+
+
+[lava run]
+	{
+	German = Lavastorm;
+	French = La coulée de lave;
+	Italian = Colata di lava;
+	Spanish = Río de lava;
+	}
+[13 x 4  lava strip down center. high winds.]
+	{
+	German = 13 x 4 Ein Lavastreifen in der Mitte. Windig.;
+	French = 13 x 4 Terrain volcanique. Beaucoup de vent.;
+	Italian = 13 x 4 Terreno vulcanico. Forti venti.;
+	Spanish = 13 x 4 Río de lava en el centro. Fuertes vientos.;
+	}
+
+
+
+[greenhaven]
+	{
+	German = Greenhaven;
+	French = Vert-refuge;
+	Italian = Il paradiso verde;
+	Spanish = Paraíso verde;
+	}
+[16 x 16  large map with many hills to hide behind.]
+	{
+	German = 16 x 16 Große Karte mit vielen Hügeln und Verstecken.;
+	French = 16 x 16 Secteur avec diverses collines pour se dissimuler.;
+	Italian = 16 x 16 Grande mappa con numerose colline.;
+	Spanish = 16 x 16 Mapa grande con muchas colinas para ocultarse.;
+	}
+
+
+[metal heck]
+	{
+	German = Die Metallhölle;
+	French = Marais métallique;
+	Italian = Il mondo di metallo;
+	Spanish = Infierno metálico;
+	}
+[8 x 8  fight in the metal cross region.]
+	{
+	German = 8 x 8 Kämpfen Sie in einer launischen Metallwelt.;
+	French = 8 x 8 Région métallique.;
+	Italian = 8 x 8 Combattimento nel metallo.;
+	Spanish = 8 x 8 Lucha en la zona metálica.;
+	}
+
+
+
+[red hot lava]
+	{
+	German = Rote heiße Lava;
+	French = Monde en fusion;
+	Italian = Lava rovente;
+	Spanish = Lava al rojo vivo;
+	}
+[11 x 9  many hills and lava pools. plenty of metal]
+	{
+	German = 11 x 9 Viele Hügel und Lavaseen. Viel Metall.;
+	French = 11 x 9 Zone métallique et volcanique. Nombreuses collines.;
+	Italian = 11 x 9 Molte colline e pozze di lava. Abbondanza di metallo.;
+	Spanish = 11 x 9 Colinas y estanques de lava. Metal abundante.;
+	}
+
+
+
+[red planet]
+	{
+	German = Der rote Planet;
+	French = Planète rouge;
+	Italian = Il pianeta rosso;
+	Spanish = Planeta rojo;
+	}
+[9 x 9   many small hills and pools]
+	{
+	German = 9 x 9 Viele kleine Hügel und Seen.;
+	French = 9 x 9 Multiples collines et bassins de petites tailles.;
+	Italian = 9 x 9 Numerose colline e pozze.;
+	Spanish = 9 x 9 Pequeñas colinas y estanques.;
+	}
+
+
+[red triangle]
+	{
+	German = Das rote Dreieck;
+	French = Triangle rouge;
+	Italian = Il triangolo rosso;
+	Spanish = Triángulo rojo;
+	}
+[16 x 16  powerful tides and strong winds.]
+	{
+	German = 16 x 16 Mächtige Gezeiten und starke Winde.;
+	French = 16 x 16 Forte marée et vent violent.;
+	Italian = 16 x 16 Maree e forti venti.;
+	Spanish = 16 x 16 Fuertes mareas y vientos.;
+	}
+
+
+[ring atoll]
+	{
+	German = Das kreisrunde Atoll;
+	French = L'atoll encerclé;
+	Italian = L'atollo dell'anello;
+	Spanish = Atolón circular;
+	}
+[21 x 21  powerful tides. ground units can use shallow water.]
+	{
+	German = 21 x 21 Bodeneinheiten können sich in seichtem Wasser bewegen.;
+	French = 21 x 21 Grandes marées. Déplacements terrestres à marée basse.;
+	Italian = 21 x 21 Forti maree.;
+	Spanish = 21 x 21 Fuertes mareas. Desplazamientos sólo con marea baja.;
+	}
+
+[rock alley]
+	{
+	German = Die Felsenallee;
+	French = Passage de granite;
+	Italian = Passaggio di roccia;
+	Spanish = Pasaje rocoso;
+	}
+[9 x 21  fight in mountian valley.]
+	{
+	German = 9 x 21 Kämpfe im Bergtal.;
+	French = 9 x 21 Vallée au centre d'un secteur montagneux.;
+	Italian = 9 x 21 Battaglia in una valle di montagna.;
+	Spanish = 9 x 21 Lucha en el valle.;
+	}
+
+
+[sherwood]
+	{
+	German = Sherwood;
+	French = Sherwood;
+	Italian = Sherwood;
+	Spanish = Sherwood;
+	}
+[6 x 6  fighting around 3 large hills]
+	{
+	German = 6 x 6 Der Kampf rund um drei große Hügel.;
+	French = 6 x 6 Zone composée de 3 vastes collines.;
+	Italian = 6 x 6 Combattimento attorno a tre grandi colline.;
+	Spanish = 6 x 6 Lucha en torno a 3 grandes colinas.;
+	}
+
+[shore to shore]
+	{
+	German = Von Strand zu Strand;
+	French = D'un littoral à l'autre;
+	Italian = Di riva in riva;
+	Spanish = De orilla a orilla;
+	}
+[29 x 4  two coasts with large ocean between them.]
+	{
+	German = 29 x 4 Zwei Küstenstreifen mit großem Ozean dazwischen.;
+	French = 29 x 4 Deux rivages séparés par un gigantesque océan.;
+	Italian = 29 x 4 Due coste separate da un largo tratto di mare.;
+	Spanish = 29 x 4 Dos costas separadas por un gran océano.;
+	}
+
+
+[the desert triad]
+	{
+	German = Die Wüstentriade;
+	French = La triade du désert;
+	Italian = La triade del deserto;
+	Spanish = La tríada del desierto;
+	}
+[6 x 6  fighting on 3 mesas.]
+	{
+	German = 6 x 6 Kämpfen Sie auf drei flachen Ebenen.;
+	French = 6 x 6 Trois grands plateaux écrasés par le soleil.;
+	Italian = 6 x 6 Battaglia sulle tre mesas.;
+	Spanish = 6 x 6 Lucha en 3 colinas.;
+	}
+
+
+
+[two continents]
+	{
+	German = Zwei Kontinente;
+	French = Les deux continents;
+	Italian = I due continenti;
+	Spanish = Dos continentes;
+	}
+[22 x 25  metal in the middle of the map.]
+	{
+	German = 22 x 25 Metallvorkommen in der Kartenmitte.;
+	French = 22 x 25 Zone métallique au centre de cette région.;
+	Italian = 22 x 25 Abbondanza di metallo al centro di questa zona.;
+	Spanish = 22 x 25 Metal en el centro del mapa.;
+	}
+
+
+
+[yerrot mountains]
+	{
+	German = Die Yerrot-Berge;
+	French = Le mont Yerrot;
+	Italian = I monti Yerrot;
+	Spanish = Montañas Yerrot;
+	}
+[27 x 23  mountain range with lots of metal.]
+	{
+	German = 27 x 23 Berglandschaft mit reichem Metallvorkommen.;
+	French = 27 x 23 Région montagneuse, riche en métal.;
+	Italian = 27 x 23 Zona montuosa ricca di metallo.;
+	Spanish = 27 x 23 Cadena montañosa rica en metales.;
+	}
+
+
+[pincushion]
+	{
+	German = Das Nadelkissen;
+	French = La fourmilière;
+	Italian = Il puntaspilli;
+	Spanish = Alfiletero;
+	}
+[13 x 13  a fight amongst lava spires]
+	{
+	German = 13 x 13 Der Kampf zwischen den Lavaspitzen.;
+	French = 13 x 13 Terrain escarpé, composé de pics de lave.;
+	Italian = 13 x 13 Tra picchi di lava.;
+	Spanish = 13 x 13 Lucha entre agujas de lava.;
+	}
+
+
+
+[over crude water]
+	{
+	German = Über rauhe See;
+	French = En eaux troubles;
+	Italian = Sul mare;
+	Spanish = En aguas turbulentas;
+	}
+[25 x 25  a maze of metal bridges.]
+	{
+	German = 25 x 25 Im Labyrinth der Metallbrücken.;
+	French = 25 x 25 Un labyrinthe de ponts en acier.;
+	Italian = 25 x 25 Un labirinto di ponti di metallo.;
+	Spanish = 25 x 25 Laberinto de puentes metálicos.;
+	}
+
+
+
+[seven islands]
+	{
+	German = Sieben Inseln;
+	French = Les sept îles;
+	Italian = Le sette isole;
+	Spanish = Siete islas;
+	}
+[40 x 40  huge sea battle on core prime]
+	{
+	German = 40 x 40 Große Seeschlacht auf CORE PRIME.;
+	French = 40 x 40 Vaste océan sur Core Prime.;
+	Italian = 40 x 40 Grande battaglia marina su Core Prime.;
+	Spanish = 40 x 40 Gran batalla marina en Núcleo Uno.;
+	}
+
+
+[ashap plateau]
+	{
+	German = Das Ashap-Plateau;
+	French = Plateau d'Ashap;
+	Italian = L'altopiano Ashap;
+	Spanish = Meseta Ashap;
+	}
+[9 x 9  metal on rough lower level]
+	{
+	German = 9 x 9 Metall auf rauher unterer Ebene.;
+	French = 9 x 9 Terrain accidenté et riche en métal.;
+	Italian = 9 x 9 Terreno accidentato ricco di metallo.;
+	Spanish = 9 x 9 Terreno bajo, accidentado y rico en metal.;
+	}
+
+[the cold place]
+	{
+	German = Der kalte Palast;
+	French = Le glacis;
+	Italian = Il freddo;
+	Spanish = La zona fria;
+	}
+[15 x 11  fighting on a flat tundra with very strong winds.]
+	{
+	German = 15 x 11 Kämpfe in flacher Tundra bei starken Winden.;
+	French = 15 x 11 Terrain plat et battu par les vents.;
+	Italian = 15 x 11 Combattimento su una pianura battuta da forti venti.;
+	Spanish = 15 x 11 Lucha en una tundra azotada por el viento.;
+	}
+
+[evad river confluence]
+	{
+	German = Zusammenstoß am Evad River ;
+	French = L'affluent de la rivière Evad;
+	Italian = La confluenza del fiume Evad;
+	Spanish = Confluencia del río Evad;
+	}
+[11 x 10 map.  intermittent winds]
+	{
+	German = 11 x 10 Periodisch auftretende Winde.;
+	French = 11 x 10 Vents irréguliers.;
+	Italian = 11 x 10 Venti irregolari.;
+	Spanish = 11 x 10 Vientos intermitentes;
+	}
+
+[lava alley]
+	{
+	German = Lava-Allee;
+	French = Passage de lave;
+	Italian = Il passaggio di lava;
+	Spanish = Pasaje de lava;
+	}
+[18 x 18  fighting in narrow valleys.]
+	{
+	German = 18 x 18 Kampf in engen Tälern.;
+	French = 18 x 18 Zone composée d'étroites vallées.;
+	Italian = 18 x 18 Battaglia in strette vallate.;
+	Spanish = 18 x 18 Lucha en valles angostos.;
+	}
+
+[the pass]
+	{
+	German = Der Paß;
+	French = Le Col;
+	Italian = Il passo;
+	Spanish = El Paso;
+	}
+[7 x 4  fight to control a winding mountian pass.]
+	{
+	German = 7 x 4 Die Kontrolle über einen gewundenen Gebirgspaß.;
+	French = 7 x 4 Passage montagneux. Vent violent;
+	Italian = 7 x 4 Combattimento per il controllo di un passo ventoso.;
+	Spanish = 7 x 4 Lucha por un pasadizo montañoso. Fuertes vientos.;
+	}
+
+[anteer strait]
+	{
+	German = Straße von Anteer;
+	French = Anteer Straight;
+	Italian = Lo stretto di Anteer;
+	Spanish = Estrecho de Anteer;
+	}
+
+[18 x 18  fight in an iceburg filled ocean. strong tides.]
+	{
+	German = 18 x 18 Kampf im Eismeer. Starke Gezeiten.;
+	French = 18 x 18 Océan glacé. Nombreux icebergs et vent violent.;
+	Italian = 18 x 18 L'oceano ghiacciato. Numerosi iceberg e forti maree.;
+	Spanish = 18 x 18 Lucha en un océano helado. Fuertes mareas.;
+	}
+
+[metal isles]
+	{
+	German = Metall-Inseln;
+	French = Les îles de Métal;
+	Italian = Isole di Metallo;
+	Spanish = Islas de metal;
+	}
+[23 X 21  4 Symmetrical Metal Islands, good for sea battles]
+	{
+	German = 23 x 21 Vier symmetrische Metall-Inseln. Gut für Seeschlachten.;
+	French = 23 x 21 Excellent pour les combats navals.;
+	Italian = 23 x 21 Ottime per le battaglie sul mare.;
+	Spanish = 23 x 21 Cuatro islas de metal simétricas.;
+	}
+
+
+// Expansion Pack map names and descriptions
+
+[acid foursome]
+	{
+	German = Acid-Quartett;
+	French = Quatuor acidulé;
+	Italian = Acido per quattro;
+	Spanish = Acid-House;
+	}
+[13 X 13  Open plains and small lakes.]
+	{
+	German = 13 X 13 Offene Ebenen und kleine Seen.;
+	French = 13 X 13 Vastes plaines et petits lacs.;
+	Italian = 13 X 13 Spazi aperti e piccoli laghi.;
+	Spanish = 13 X 13 Llanuras abiertas y pequeños lagos.;
+	}
+
+
+[acid pools]
+	{
+	German = Achtung Säure!;
+	French = Baignade interdite;
+	Italian = Pozze di acido;
+	Spanish = Piscinas Acidas;
+	}
+[32 X 23  Masses of land with narrow passages.]
+	{
+	German = 32 X 32 Landmassen mit engen Passagen.;
+	French = 32 X 32 Continents reliés par des ponts naturels.;
+	Italian = 32 X 32 Isole con stretti passaggi.;
+	Spanish = 32 X 32 Masas de tierra con pasillos estrechos.;
+	}
+
+
+[acid trip]
+	{
+	German = Säure Trip;
+	French = La Mer d'Acide;
+	Italian = Viaggio nell'acido;
+	Spanish = Viaje Acido;
+	}
+[15 X 39  Watch out for the acid or you'll melt away.]
+	{
+	German = 15 X 39 Säure greift Metall an.;
+	French = 15 X 39 Là où il y a acide, il y a risque de dissolution.;
+	Italian = 15 X 39 Attenzione all'acido, o verrete sciolti.;
+	Spanish = 15 X 39 Cuidado con el ácido o te derretirás.;
+	}
+
+
+[assault on suburbia]
+	{
+	German = Sturm auf Suburbia;
+	French = A l'assaut des Faubourgs;
+	Italian = Assalto ai sobborghi;
+	Spanish = Asalto en Suburbia;
+	}
+[16 X 16 Crush 'em.]
+	{
+	German = 16 X 16 Auf zum Sieg.;
+	French = 16 X 16 Ecrasez-les !;
+	Italian = 16 X 16 Distruggete tutto.;
+	Spanish = 16 X 16 Cárgatelos.;
+	}
+
+
+[biggie biggs]
+	{
+	German = Absolut riesig;
+	French = Sauts de Puce;
+	Italian = Grande e grosso;
+	Spanish = Menéate;
+	}
+[36 X 16  Dance from island to island crushing your opponents.]
+	{
+	German = 36 X 16 Tanz von Insel zu Insel.;
+	French = 36 X 16 Valsez d'un île à l'autre en écrasant vos adversaires.;
+	Italian = 36 X 16 Da un'isola all'altra per distruggere gli avversari.;
+	Spanish = 36 X 16 Baila de isla en isla destruyendo a tus enemigos.;
+	}
+
+
+[block wars]
+	{
+	German = Häuserkampf;
+	French = Attention aux Ralentisseurs;
+	Italian = Guerre nei sobborghi;
+	Spanish = Esto es la guerra;
+	}
+[20 X 20  Battling through the Core Prime suburbs.]
+	{
+	German = 20 X 20 Kampf in den Vororten von Core Prime.;
+	French = 20 X 20 Bataille en banlieue de Core Prime.;
+	Italian = 20 X 20 Battaglia nei sobborghi di Core Prime.;
+	Spanish = 20 X 20 Pelea en los suburbios del Núcleo.;
+	}
+
+
+[brain coral]
+	{
+	German = Korallen;
+	French = Coraux Synaptiques;
+	Italian = Corallo;
+	Spanish = Coral y más coral;
+	}
+[20 X 20  Hydrous map with brain coral spiral.]
+	{
+	German = 20 X 20 Wasserkarte mit Korallenriffs.;
+	French = 20 X 20 Carte océanique agrémentée d'une spirale de coraux synaptiques.;
+	Italian = 20 X 20 Mappa subacquea con struttura corallina.;
+	Spanish = 20 X 20 Mapa acuático con extrañas formaciones coralinas.;
+	}
+
+
+[cavedog links cc]
+	{
+	German = Der Golfkurs;
+	French = Cavedog Contre-Attaque;
+	Italian = Collegamenti;
+	Spanish = Cavedog Links CC;
+	}
+[25 X 24  Keep your Kbots on the trails.]
+	{
+	German = 25 X 24 Kbots sollten auf den Wegen bleiben.;
+	French = 25 X 24 Que vos Kbots suivent la piste !;
+	Italian = 25 X 24 Tenete i vostri Kbot sulle piste.;
+	Spanish = 25 X 24 Controla a tus Kbots.;
+	}
+
+
+[checker ponds]
+	{
+	German = Schachbrettmuster;
+	French = Jeu de dames Chinoises;
+	Italian = Paludi;
+	Spanish = Piscinas de Damas;
+	}
+[13 X 13  Be wary of the many corrosive puddles.]
+	{
+	German = 13 X 13 Vorsicht vor den korrodierenden Pfützen.;
+	French = 13 X 13 Méfiez-vous de toutes ces flaques corrosives !;
+	Italian = 13 X 13 Fate attenzione alle pozze corrosive.;
+	Spanish = 13 X 13 Ten cuidado con los charcos corrosivos.;
+	}
+
+
+[cluster freak]
+	{
+	German = Metallgruppen;
+	French = Balle au Centre;
+	Italian = Ammasso spaventoso;
+	Spanish = Agrupamiento;
+	}
+[10 X 10  High winds with lots of metal in the middle.]
+	{
+	German = 10 X 10 Starke Winde - große Metallvorkommen in der Mitte.;
+	French = 10 X 10 Balayés par les vents avec beaucoup de métal au centre.;
+	Italian = 10 X 10 Forti venti, con parecchio metallo al centro.;
+	Spanish = 10 X 10 Fuertes vientos y toneladas de metal en el medio.;
+	}
+
+
+[comet catcher]
+	{
+	German = Kometenfänger;
+	French = Chasseur de Comètes;
+	Italian = Afferra-comete;
+	Spanish = Cazacometas;
+	}
+[12 X 15  Low gravity livens up this desolate landscape.]
+	{
+	German = 12 X 15 Geringe Schwerkraft belebt dieses desolate Gelände.;
+	French = 12 X 15 La faible gravité déride ce paysage désolé.;
+	Italian = 12 X 15 La bassa gravità vivacizza questo paesaggio.;
+	Spanish = 12 X 15 Gravedad baja en una llanura desolada.;
+	}
+
+
+[core prime industrial area]
+	{
+	German = Industriegebiet von Core Prime ;
+	French = Zone industrielle de Core Prime;
+	Italian = Area industriale di Core Prime;
+	Spanish = Zona Industrial del Núcleo;
+	}
+[21 X 21  Abandoned Core industrial area.]
+	{
+	German = 21 X 21 Ausgedehntes Industriegebiet.;
+	French = 21 X 21 Zone industrielle du Core abandonnée;
+	Italian = 21 X 21 Area industriale abbandonata.;
+	Spanish = 21 X 21 Zona industrial del Núcleo abandonada.;
+	}
+
+
+[crater islands]
+	{
+	German = Die Kraterinsel;
+	French = Iles Volcaniques;
+	Italian = Le isole Crater;
+	Spanish = Islas del Crater;
+	}
+[10 X 8  Fight your way across these shallow waters.]
+	{
+	German = 10 X 8 Kampf in den seichten Gewässern.;
+	French = 10 X 8 Frayez-vous un chemin dans ces eaux peu profondes !;
+	Italian = 10 X 8 Fatevi strada attraverso i bassi fondali.;
+	Spanish = 10 X 8 Ábrete paso por aguas poco profundas.;
+	}
+
+
+[crystal cracked]
+	{
+	German = Der Riß von Crystal;
+	French = Cristaux en folie;
+	Italian = Cristallo spezzato;
+	Spanish = Cristales rotos;
+	}
+[20 X 20 Two land masses split by an inland filled sea.]
+	{
+	German = 20 X 20 Zwei Landmassen, getrennt durch einen Binnensee.;
+	French = 20 X 20 Deux continents séparés par une mer intérieure. ;
+	Italian = 20 X 20 Due masse di terra divise dal mare.;
+	Spanish = 20 X 20 Dos masas de tierra separadas por el mar.;
+	}
+
+
+[crystal isles]
+	{
+	German = Die Inseln von Crystal;
+	French = Baston Cristalline;
+	Italian = Isole di cristallo;
+	Spanish = Islas de Cristal;
+	}
+[20 X 20 Crystal World ocean, dotted with reefs and islands.]
+	{
+	German = 20 X 20 Riffe und Inseln im Ozean von Crystal World.;
+	French = 20 X 20 Un océan du monde cristallin parsemé de récifs et d'îles. ;
+	Italian = 20 X 20 Un oceano cristallino, punteggiato da isole e scogliere.;
+	Spanish = 20 X 20 Océano del Mundo de Cristal, salpicado por arrecifes e islas.;
+	}
+
+
+[crystal maze]
+	{
+	German = Labyrinth von Crystal;
+	French = Labyrinthe de Cristal;
+	Italian = Labirinto di cristallo;
+	Spanish = Laberinto de Cristal;
+	}
+[10 X 10 Free-for-all in a maze of mountains.]
+	{
+	German = 10 X 10 Jeder gegen jeden im Berglabyrinth.;
+	French = 10 X 10 Tous les coups sont permis dans ce labyrinthe montagneux. ;
+	Italian = 10 X 10 Verso l'uscita in un labirinto di montagne.;
+	Spanish = 10 X 10 Vía libre en un laberinto de montañas.;
+	}
+
+
+[crystal treasure island]
+	{
+	German = Schatzinsel von Crystal;
+	French = L'Ile Cristalline au Trésor;
+	Italian = Isola del Tesoro;
+	Spanish = Isla del Tesoro;
+	}
+[12 X 13  Crystal map with metal-rich islands in the center.]
+	{
+	German = 12 X 13 Crystal-Karte mit metallreichen Inseln in der Mitte.;
+	French = 12 X 13 Carte cristalline centrée sur des îles riches en métaux.;
+	Italian = 12 X 13 Mappa di cristallo, con isole ricche di metallo al centro.;
+	Spanish = 12 X 13 Mapa de mundo de Cristal con islas ricas en metal en el centro.;
+	}
+
+
+[dire straits]
+	{
+	German = Achtung Gefahr!;
+	French = Dire Straits;
+	Italian = Dire Straits;
+	Spanish = Dire Straits;
+	}
+[15 X 17 Natural fortification to hide between.]
+	{
+	German = 15 X 17 Natürliche Verteidigung zum Verstecken.;
+	French = 15 X 17 Fortifications naturelles pour servir d'abris.;
+	Italian = 15 X 17 Fortificazioni naturali in cui nascondersi.;
+	Spanish = 15 X 17 Protecciones naturales tras las que esconderse.;
+	}
+
+
+[east indeez]
+	{
+	German = Inselkampf;
+	French = Les Iles de l'AntiPacifique;
+	Italian = A est;
+	Spanish = Hacia el Este;
+	}
+[28 X 19 Lots of islands, lots of water!]
+	{
+	German = 28 X 19 Viele Inseln, viel Wasser!;
+	French = 28 X 19 Beaucoup d'eau, beaucoup d'îles !;
+	Italian = 28 X 19 Molte isole, molta acqua!;
+	Spanish = 28 X 19 Muchas islas y ¡mucha agua!;
+	}
+
+
+[eastside westside]
+	{
+	German = Eastside Westside;
+	French = Rive Droite, Rive Gauche;
+	Italian = Da est a ovest;
+	Spanish = De este a oeste;
+	}
+[19 X 19  Find a park or reclaim large structures for metal.]
+	{
+	German = 19 X 19 Nutze die Überreste zerstörter Gebäude.;
+	French = 19 X 19 Emparez-vous d'un parc ou recyclez les vieilles structures.;
+	Italian = 19 X 19 Stabilite una postazione o cercate il metallo.;
+	Spanish = 19 X 19 Busca un sitio o recicla estructuras para tener metal.;
+	}
+
+[pc games' evad river delta]
+	{
+	German = Evad-Delta;
+	French = Delta de la rivière Evad;
+	Italian = Evasione del delta fluviale;
+	Spanish = Delta del Río Evad;
+	}
+[14 X 14, Battle for the Evad River Delta]
+	{
+	German = 14 X 14 Kämpfen Sie um das Evad-Delta.
+	French = 14 X 14 Bataille pour le contrôle du delta.;
+	Italian = 14 X 14 Combattete per evadere dal delta fluviale.;
+	Spanish = 14 X 14 Batalla por el delta del Río Evad.;
+	}
+
+
+[expanded confluence]
+	{
+	German = Ausgedehnter Zusammenfluß;
+	French = Le Delta de la Rivière Evad;
+	Italian = Confluenza di venti;
+	Spanish = Confluencia expandida;
+	}
+[22 X 22 More room to rumble on this old favorite.]
+	{
+	German = 22 X 22 Periodische Winde.;
+	French = 22 X 22 Une carte plus étendue pour ce classique.;
+	Italian = 22 X 22 Venti a intermittenza.;
+	Spanish = 22 X 22 Vientos intermitentes.;
+	}
+
+
+[flooded glaciers]
+	{
+	German = Überschwemmte Gletscher;
+	French = Titanic ta Mère;
+	Italian = Ghiacciai;
+	Spanish = Glaciares inundados;
+	}
+[12 X 10 Icy ocean battle.]
+	{
+	German = 12 X 10 Kämpfe im eisigen Ozean.;
+	French = 12 X 10 Bataille dans un océan polaire.;
+	Italian = 12 X 10 Battaglia su un oceano ghiacciato.;
+	Spanish = 12 X 10 Batalla en un océano helado.;
+	}
+
+
+[gasbag forests]
+	{
+	German = Wald der Gasblasen;
+	French = Gaz Malodorants;
+	Italian = Grandi foreste;
+	Spanish = Bosques de gas;
+	}
+[19 X 19  Large fields of gasplants block your path.]
+	{
+	German = 19 X 19 Große Felder von Gaspflanzen versperren den Weg.;
+	French = 19 X 19 Attention aux nuages de gaz qui gênent votre progression. ;
+	Italian = 19 X 19 Emissioni di gas bloccano la vostra strada.;
+	Spanish = 19 X 19 Grandes extensiones y plantas de gas.;
+	}
+
+
+[gasplant plain]
+	{
+	German = Gaspflanzen-Ebene;
+	French = Une bataille pétillante;
+	Italian = Emissioni di gas;
+	Spanish = Llanuras de plantas de gas;
+	}
+[10 X 8  Large plain for close encounters. Lots of geothermal.]
+	{
+	German = 10 X 8 Große Ebenen für direkte Konfrontationen. Viele Thermalwinde.;
+	French = 10 X 8 Une large pleine pour des chocs frontaux. Le règne de la géothermie.;
+	Italian = 10 X 8 Vasta pianura per incontri ravvicinati.;
+	Spanish = 10 X 8 Enrome llanura para encuentros bélicos. Muchas geotérmicas.;
+	}
+
+
+[higher ground]
+	{
+	German = Höhenlagen;
+	French = Vertige de la Mort;
+	Italian = Zone sopraelevate;
+	Spanish = Suelo más alto;
+	}
+[8 X 16  You take the high road and I'll take the low road.]
+	{
+	German = 8 X 16 Zwei Pässe - einer oben, einer unten.;
+	French = 8 X 16 Tu prends la route du haut, je prends celle du bas.;
+	Italian = 8 X 16 Meglio la strada alta o quella più in basso?;
+	Spanish = 8 X 16 Tu te vas por arriba y yo me voy por abajo.;
+	}
+
+
+[ice house]
+	{
+	German = Eishaus;
+	French = Intimité dans le Bac à Glace;
+	Italian = Casa di ghiaccio;
+	Spanish = La Casa de Hielo;
+	}
+[16 X 16  Large ice mountains hinder big guns.]
+	{
+	German = 16 X 16 Große Eisberge behindern die großen Geschütze.;
+	French = 16 X 16 Des hautes montagnes enneigées gênent l'artillerie lourde. ;
+	Italian = 16 X 16 L’ostacolo delle Grandi montagne di ghiaccio.;
+	Spanish = 16 X 16 Enormes montañas heladas con algunas sorpresas.;
+	}
+
+
+[ice scream]
+	{
+	German = Schreie im Eis;
+	French = Le Glacier rit;
+	Italian = Urlo agghiacciante;
+	Spanish = Grito en el Hielo;
+	}
+[15 X 39  Screaming won't be all you do on this forbidding world.]
+	{
+	German = 15 X 39 Schreien ist nicht alles auf dieser Welt.;
+	French = 15 X 39 Acier rit ! Venons en au fait sur ce monde hostile !;
+	Italian = 15 X 39 Urlare non sarà sufficiente in questo terribile paesaggio.;
+	Spanish = 15 X 39 Gritar no será lo único que harás en este mundo prohibido.;
+	}
+
+
+[icy bergs]
+	{
+	German = Eisberge;
+	French = Que d'eau, que d'eau ;
+	Italian = Ghiaccio;
+	Spanish = Icebergs;
+	}
+[28 X 28  Landless. Lots of sunken ships.]
+	{
+	German = 28 X 28 Kein Land, viele versunkene Schiffe.;
+	French = 28 X 28 Pas de terre mais beaucoup d'épaves.;
+	Italian = 28 X 28 Molte navi affondate.;
+	Spanish = 28 X 28 No hay masas terrestres, muchos barcos hundidos.;
+	}
+
+
+[john's pass]
+	{
+	German = Johns Paß;
+	French = Le Canal de John;
+	Italian = Il passo di John;
+	Spanish = El Pase de John;
+	}
+[10 X 15  Follow the river up the middle, if you dare!]
+	{
+	German = 10 X 15 Der Fluß führt zur Mitte.;
+	French = 10 X 15 Remontez le fleuve jusqu'au centre de la carte, si vous l'osez !;
+	Italian = 10 X 15 Percorrete il fiume nel centro, se ne avete il coraggio!;
+	Spanish = 10 X 15 Sigue el río hasta la mitad ¡si es que puedes!;
+	}
+
+
+[lake shore]
+	{
+	German = Seeufer;
+	French = Les Pavés et la Plage;
+	Italian = Riva del lago;
+	Spanish = La Orilla del Lago;
+	}
+[13 X 7  Large lake with islands in the middle.]
+	{
+	German = 13 X 7 Großer See mit Insel in der Mitte.;
+	French = 13 X 7 Un immense lac, des îles au centre.;
+	Italian = 13 X 7 Grande lago con isole nel mezzo.;
+	Spanish = 13 X 7 Gran lago con islas en el centro.;
+	}
+
+
+[luschaven]
+	{
+	German = Hafen von Lusch;
+	French = Aires de repos sur Lusch;
+	Italian = Luschaven;
+	Spanish = Luschaven;
+	}
+[17 X 16 Battle for control of dry land.]
+	{
+	German = 17 X 16 Kampf um die Kontrolle über das trockene Land.;
+	French = 17 X 16 Bataille pour le contrôle des terres sèches.;
+	Italian = 17 X 16 Battaglia per il controllo della terraferma.;
+	Spanish = 17 X 16 Batalla por el control de tierra firme.;
+	}
+
+
+[lusch puppy]
+	{
+	German = Konflikt auf Lusch;
+	French = Mini-Lusch;
+	Italian = Lusch;
+	Spanish = Pequeño Lusch;
+	}
+[11 X 7  Small map divided by grand mountains.]
+	{
+	German = 11 X 7 Große Berge durchziehen diese kleine Karte.;
+	French = 11 X 7 Petite carte divisée par de grandes montagnes. ;
+	Italian = 11 X 7 Piccola mappa divisa da grandi montagne.;
+	Spanish = 11 X 7 Pequeño mapa dividido por grandes montañas.;
+	}
+
+[moon quartet]
+	{
+	German = Mondquartett;
+	French = La face cachée de la Lune;
+	Italian = Quartetto lunare;
+	Spanish = El Cuarteto de la Luna;
+	}
+[20 X 20 Great map for team play.  Light side vs. dark side.]
+	{
+	German = 20 X 20 Karte für Teamspiele. Die helle Seite gegen die Dunkle Seite.;
+	French = 20 X 20 Une super carte pour des parties par équipe.;
+	Italian = 20 X 20 Per il gioco di squadra: faccia visibile vs. faccia oscura.;
+	Spanish = 20 X 20 Buen mapa para jugar en equipo.;
+	}
+
+[mounds of mars]
+	{
+	German = Die Berge des Mars;
+	French = Le rugby martien;
+	Italian = Colline su Marte;
+	Spanish = Montes de Marte;
+	}
+[8 X 17  For more than two players, play teams, North vs. South.]
+	{
+	German = 8 X 17 Nord gegen Süd. Bilden Sie Teams bei mehr als zwei Spielern.;
+	French = 8 X 17 Pour un véritable jeu par équipe, Nord contre Sud.;
+	Italian = 8 X 17 Per più di due giocatori, si gioca a squadre, Nord vs. Sud.;
+	Spanish = 8 X 17 Para más de dos, jugar en equipo. Norte vs. Sur.;
+	}
+
+
+[ooooweeee]
+	{
+	German = Ooowweee;
+	French = Tous pour Un, Chacun pour Soi;
+	Italian = Ooowwweeee;
+	Spanish = Ooowweee;
+	}
+[19 X 19  Nine islands of love and understanding.  Let's hug.]
+	{
+	German = 19 X 19 Neun Inseln der Liebe und des Verständnisses.;
+	French = 19 X 19 9 îles d'amour et de compassion. Embrassons-nous !;
+	Italian = 19 X 19 Nove isole di amore e comprensione. Abbracciatevi.;
+	Spanish = 19 X 19 Nueve islas de amor y comprensión. ¡Qué bonito!;
+	}
+
+
+[pillopeens]
+	{
+	German = Inselgrupppen;
+	French = Duel à Total Corral;
+	Italian = Isole Pillopeen;
+	Spanish = Pillopeens;
+	}
+[17 X 27 Island-hopping map.]
+	{
+	German = 17 X 27 Inselhüpfen.;
+	French = 17 X 27 Progressez île par île.;
+	Italian = 17 X 27 Da un'isola all'altra.;
+	Spanish = 17 X 27 Las islas serán tu esperanza.;
+	}
+
+
+[plains and passes]
+	{
+	German = Ebenen und Pässe;
+	French = Plaines et canyons;
+	Italian = Pianure e passi;
+	Spanish = Llanuras y Pasajes;
+	}
+[20 X 20  Large map with lots of metal.]
+	{
+	German = 20 X 20 Große Karte mit viel Metall.;
+	French = 20 X 20 Vaste carte avec de nombreux gisements de métaux. ;
+	Italian = 20 X 20 Grande mappa con molto metallo.;
+	Spanish = 20 X 20 Mapa grande con mucho metal.;
+	}
+
+
+[polar range]
+	{
+	German = Polargegend;
+	French = Banquise Polaire;
+	Italian = Zona polare;
+	Spanish = Línea Polar;
+	}
+[20 X 20  Large polar ice cap map. A bleak and forbidding world.]
+	{
+	German = 20 X 20 Große Polarkarte - rauhe und verbotene Welt.;
+	French = 20 X 20 Vaste carte de banquise, un monde sinistre et hostile.;
+	Italian = 20 X 20 Grande mappa ricoperta di ghiaccio. Un mondo oscuro.;
+	Spanish = 20 X 20 Gran mapa de hielos polares, un mundo desierto y prohibido.;
+	}
+
+[polyp fields]
+	{
+	German = Polypenfeld;
+	French = En rangs par Quatre;
+	Italian = Polipi;
+	Spanish = Campos de Pólipos;
+	}
+[27 X 22  Large geometric polyps litter this battlefield.]
+	{
+	German = 27 X 22 Große geometrische Polypen verunreinigen dieses Schlachtfeld.;
+	French = 27 X 22 Un champ de bataille géométrique.;
+	Italian = 27 X 22 Grandi polipi caratterizzano il campo di battaglia.;
+	Spanish = 27 X 22 Enormes pólipos repartidos por el campo de batalla.;
+	}
+
+
+[red river]
+	{
+	German = Red River;
+	French = La Rivière Rouge;
+	Italian = Il fiume rosso;
+	Spanish = Río Rojo;
+	}
+[21 X 30  Large river separates two land masses.]
+	{
+	German = 21 X 30 Großer Fluß teilt zwei Landmassen.;
+	French = 21 X 30 Un grand fleuve sépare deux continents. ;
+	Italian = 21 X 30 Un grande fiume separa due masse di terra.;
+	Spanish = 21 X 30 Un enorme río separa dos masas terrestres.;
+	}
+
+
+[red river north]
+	{
+	German = Der Norden des Red River;
+	French = En amont de la Rivière Rouge;
+	Italian = A nord del fiume rosso;
+	Spanish = Río Rojo del Norte;
+	}
+[21 X 14  Smaller segment of Red River.]
+	{
+	German = 21 X 14 Kleinerer Teil des Red Rivers.;
+	French = 21 X 14 Une portion de la rivière rouge.;
+	Italian = 21 X 14 Piccolo segmento del fiume rosso.;
+	Spanish = 21 X 14 Un trozo más pequeño del Río Rojo.;
+	}
+
+
+[ror shock]
+	{
+	German = Große Überraschung;
+	French = Chocs à gogo;
+	Italian = Shock;
+	Spanish = Sufre un shock;
+	}
+[26 X 26 Ocean Battles are a must for this fine map.  Big surprise in center!]
+	{
+	German = 26 X 26 Karte für Wasserschlachten. Große Überraschung in der Mitte.;
+	French = 26 X 26 Des batailles maritimes pour un paquet-surprise au centre !;
+	Italian = 26 X 26 Battaglie sull'oceano e grossa sorpresa al centro.;
+	Spanish = 26 X 26 Las batallas marítimas son una obligación. ¡Sorpresa en el centro!;
+	}
+
+
+[sail away]
+	{
+	German = Segeltörn;
+	French = Hissez les voiles;
+	Italian = Salpate!;
+	Spanish = Navegando;
+	}
+[12 X 20 High winds sweep these islands.]
+	{
+	German = 12 X 20 Starke Winde fegen über die Inseln.;
+	French = 12 X 20 Des vents violents balaient ces îles.;
+	Italian = 12 X 20 Forti venti spazzano le tre isole.;
+	Spanish = 12 X 20 Fuertes vientos barren las islas.;
+	}
+
+
+[sector 410b]
+	{
+	German = Sektor 410B;
+	French = Secteur 410B;
+	Italian = Settore 410B;
+	Spanish = Sector 410B;
+	}
+[25 X 22  Large mountains with narrow passes.]
+	{
+	German = 25 X 22 Hohe Berge mit schmalen Passagen.;
+	French = 25 X 22 De hautes montagnes avec des ravins étroits.;
+	Italian = 25 X 22 Grandi montagne con stretti passaggi.;
+	Spanish = 25 X 22 Enormes montañas con pasajes estrechos.;
+	}
+
+[show down]
+	{
+	German = Die Entscheidung;
+	French = La Confrontation;
+	Italian = Prava di forza;
+	Spanish = El Encuentro;
+	}
+[11 X 5  Meet in the middle.]
+	{
+	German = 11 X 5 Treffen Sie sich in der Mitte.;
+	French = 11 X 5 Rencontre au sommet;
+	Italian = 11 X 5 Incontratevi nel mezzo.;
+	Spanish = 11 X 5 Encuentra en el centro al enemigo.;
+	}
+
+[slate gordon]
+	{
+	German = Holprige Schlacht;
+	French = Epongez vos Ardoises;
+	Italian = Pianura Gordon;
+	Spanish = Este contra Oeste;
+	}
+[23 X 15 Great map for east/west rivalries.  Earthquakes.]
+	{
+	German = 23 X 15 Karte für Ost-/West-Rivalitäten. Erdbeben.;
+	French = 23 X 15 Choisissez votre camp: Est ou Ouest? Tremblements de terre.;
+	Italian = 23 X 15 Grandiosa mappa per battaglie est/ovest. Terremoti.;
+	Spanish = 23 X 15 Buen mapa para rivales en lados opuestos. Terremotos.;
+	}
+
+
+[slated fate]
+	{
+	German = Slate;
+	French = Les Ardoises du Destin ;
+	Italian = Destino perduto;
+	Spanish = El Destino de la Pizarra;
+	}
+[7 x 12 Search for metal in crevices.]
+	{
+	German = 7 X 12 Metallsuche in den Rissen und Spalten.;
+	French = 7 X 12 Attrapez le métal dans les crevasses. Pas besoin d'épuisette. ;
+	Italian = 7 X 12 Cercate il metallo nei crepacci.;
+	Spanish = 7 X 12 Busca el metal en las grietas.;
+	}
+
+
+[steel jungle]
+	{
+	German = Stahldschungel;
+	French = Dans l'Enfer de la Ville;
+	Italian = Giungla di metallo;
+	Spanish = Jungla de Acero;
+	}
+[20 x 10  Wake up and smell the coffee with the Morning War Show.]
+	{
+	German = 20 X 10 Stadtpanorama mit vielen Recyclingobjekten;
+	French = 20 X 10 Le quotidien du citadin moderne : coups de feu, violence !;
+	Italian = 20 x 10 Svegliatevi e annusate il profumo della guerra.;
+	Spanish = 20 X 10 Despierta y huele el café con el Show de la Guerra Matutino.;
+	}
+
+
+[surface meltdown]
+	{
+	German = Geschmolzene Oberfläche;
+	French = Confusion Nucléaire;
+	Italian = Superficie dissestata;
+	Spanish = La superficie se derrite;
+	}
+[15 X 17  Bumps, bumps, and more bumps.]
+	{
+	German = 15 X 17 Hügel, Hügel und nochmals Hügel.;
+	French = 15 X 17 Des bosses, des bosses et encore des bosses.;
+	Italian = 15 X 17 Balzi, balzi e di nuovo balzi.;
+	Spanish = 15 X 17 Baches, baches y más baches.;
+	}
+
+
+[temblorian mist]
+	{
+	German = Begenung im Nebel;
+	French = Brouillard sur Temblor;
+	Italian = Nebbie Tembloriane;
+	Spanish = Misterio en Temblor;
+	}
+[12 X 15  Make your way around the edges or fly across the center.]
+	{
+	German = 12 X 15 Wege außen herum - Flüge über das Zentrum.;
+	French = 12 X 15 Frayez-vous un passage par les côtés ou volez vers le centre.;
+	Italian = 12 X 15 Fatevi strada sul bordo, o volate attraverso il centro.;
+	Spanish = 12 X 15 Ábrete paso por las cornisas o vuela hacia el centro.;
+	}
+
+
+[the barrier reef]
+	{
+	German = Das Barrier-Riff;
+	French = La Tête sous l'Eau;
+	Italian = La scogliera;
+	Spanish = La Barrera de Coral;
+	}
+[19 X 19  Body of water separates two land masses.  Great underwater starts!]
+	{
+	German = 19 X 19 Wasser teilt zwei Landmassen. Start unter Wasser.;
+	French = 19 X 19 De super bases à construire sous un océan entre deux continents. ;
+	Italian = 19 X 19 Distese d'acqua separano due masse di terra.;
+	Spanish = 19 X 19 El agua separa dos masas de tierra. ¡Buen comienzo submarino!;
+	}
+
+
+[the bayou]
+	{
+	German = Die Lagune;
+	French = Le Bayou;
+	Italian = La baia;
+	Spanish = El Pantano;
+	}
+[20 X 20  Strong currents rush through this Bayou.]
+	{
+	German = 20 X 20 Starke Strömungen herrschen in dieser Lagune.;
+	French = 20 X 20 Des courants violents agitent le Bayou. ;
+	Italian = 20 X 20 Forti correnti movimentano la baia.;
+	Spanish = 20 X 20 Corrientes fuertes en este enorme pantano.;
+	}
+
+
+[town & country]
+	{
+	German = Stadt & Land;
+	French = Citadins contre Paysans ;
+	Italian = Città & campagna;
+	Spanish = Ciudad y Campo;
+	}
+[17 X 17  Urban vs. rural.]
+	{
+	German = 17 X 17 Städter gegen Landbevölkerung.;
+	French = 17 X 17 Citadins contre Paysans .;
+	Italian = 17 X 17 Urbano vs. rurale.;
+	Spanish = 17 X 17 Urbanos vs. Rurales.;
+	}
+
+
+[trout farm]
+	{
+	German = Forellenzucht;
+	French = A la pêche aux Truites;
+	Italian = Allevamento di trote;
+	Spanish = Piscifactoría;
+	}
+[15 X 15  Watch out for the sinkhole in the middle.]
+	{
+	German = 15 X 15 Tiefes Loch in der Mitte.;
+	French = 15 X 15 Attention au siphon central. ;
+	Italian = 15 X 15 Attenzione alla buca nel centro.;
+	Spanish = 15 X 15 Ten cuidado con el agujero del centro.;
+	}
+
+// Download Maps
+[cloudious prime]
+	{
+	German = Cloudious Prime;
+	French = Ciel nuageux;
+	Italian = Nuvole primordiali;
+	Spanish = Mundo Nuboso;
+	}
+[20 X 20  Island in the clouds with giant canyon.  Absurd wind.]
+	{
+	German = 20 X 20 Insel in den Wolken mit riesigen Canyons. Heftiger Wind.;
+	French = 20 X 20 Une île dans les nuages, un grand canyon, un vent terrible.;
+	Italian = 20 X 20 Un'isola nel mezzo delle nuvole con un canyon gigante.  Vento assurdo.;
+	Spanish = 20 X 20 Isla en las nubes con cañón gigante. Mucho viento.;
+	}
+
+
+// Battle Tactics Maps
+
+[aqua verdigris]
+	{		
+	German = Wasser-Grünspan;
+	French = Aqua Verdigris;
+	Italian = Aqua Verdigris;
+	Spanish = Pesadilla acuática;
+	}
+[12 x 12  Fighting around rings of Dragon's Teeth.]
+	{		
+	German = 12 X 12 Kampf in einem Ring aus Panzersperren;
+	French = 12 X 12 Devenez le Seigneur des Anneaux des Dents de Dragon.;
+	Italian = 12 X 12 Combattimento intorno alle spirali dei Denti del Drago.;
+	Spanish = 12 X 12 Lucha alrededor de círculos de dispositivos Dragon's Teeth.;
+	}
+
+[brilliant cut lake]
+	{		
+	German = Formschöner See;
+	French = Lac Artificiel étincelant;
+	Italian = Battaglia sul lago;
+	Spanish = Lago Brillante;
+	}
+[15 X 15  Fighting around a large lake.]
+	{		
+	German = 15 X 15 Kampf rund um einen großen See.;
+	French = 15 X 15 Bataille autour d'une vaste étendue d'eau.;
+	Italian = 15 X 15 Combattimento intorno a un lago.;
+	Spanish = 15 X 15 Lucha alrededor de un gran lago.;
+	}
+
+[canal crossing]
+	{		
+	German = Kanalüberquerung;
+	French = Franchissez les canaux;
+	Italian = Attraverso i canali;
+	Spanish = Cruzando el canal;
+	}
+[16 X 17  Four land masses separated by canals.]
+	{		
+	German = 16 X 17 Vier Landmassen, getrennt durch Kanäle.;
+	French = 16 X 17 Quatre continents séparés par des canaux.;
+	Italian = 16 X 17 Quattro territori separati da canali.;
+	Spanish = 16 X 17 Cuatro continentes separados por canales.;
+	}
+
+[metal gridlock]
+	{		
+	German = Metallene Sperren;
+	French = Entrelacs de métal;
+	Italian = Griglia metallica;
+	Spanish = Atasco metálico;
+	}
+[20 X 20  Five squares interlock to create defensive forts.]
+	{		
+	German = 20 X 20 Fünf Quadrate bilden ein Verteidigungsfort.;
+	French = 20 X 20 Cinq blocs se mêlent pour former des position défensives.;
+	Italian = 20 X 20 Cinque riquadri combinati per creare un fortino.;
+	Spanish = 20 X 20 Cuatro cuadrados se entrelazan para crear fuertes defensivos.;
+	}
+
+[wretched ridges]
+	{		
+	German = Scheußliche Bergkämme;
+	French = Corniches de l'Enfer;
+	Italian = Pendii scoscesi;
+	Spanish = Colinas malditas;
+	}
+[12 X 12  High ridges protect defensive areas.  Light forest.]
+	{		
+	German = 12 X 12 Hohe Bergkämme schützen die Gegend. Lichter Wald.;
+	French = 12 X 12 De hautes falaises protègent de vastes zones. Forêt clairsemée.;
+	Italian = 12 X 12 Alti pendii proteggono le aree difensive. Foresta rada.;
+	Spanish = 12 X 12 Grandes colinas protegen áreas defensivas. Bosque poco frondoso.;
+	}
+
+[coremageddon]
+	{
+	German = Cormageddon;
+	French = Coremageddon;
+	Italian = Coremageddon;
+	Spanish = Coremageddon;
+	}
+[13 X 20  Set up ambushes in this Core Prime maze.]
+	{
+	German = 13 X 20 Labyrinth auf Core Prime. Gut für Hinterhalte.;
+	French = 13 X 20 Embuscades dans le labyrinthe de Core Prime.;
+	Italian = 13 X 20 Preparate le vostre imboscate in questo vero labirinto Core.;
+	Spanish = 13 X 20 Emboscadas en este laberinto del Núcleo.;
+	}
+
+
+
+// Possible Error Messages
+
+[The requested campaign file, %s, does not exist.]
+	{
+	German = Die gewünschte Kampagnen-Datei, %s, existiert nicht.;
+	French = Le fichier %s correspondant à la campagne demandée n'existe pas.;
+	Italian = Il file della campagna %s non esiste.;
+	Spanish = El archivo de esa batalla, %s, no existe.;
+	}
+[Error -- Unnamed Mission]
+	{
+	German = Fehler - Unbenannte Mission;
+	French = Error -- Erreur - Pas de nom de mission;
+	Italian = Errore -- Missione senza nome;
+	Spanish = Error... misión sin nombre;
+	}
+[The requested mission file, %s, does not exist.]
+	{
+	German = Die gewünschte Missionsdatei, %s, existiert nicht.;
+	French = Le fichier %s correspondant à la mission demandée n'existe pas.;
+	Italian = Le fichier %s correspondant à la mission demandée n'existe pas.;
+	Spanish = El archivo de esa batalla, %s, no existe.;
+	}
+[No GlobalHeader block in mission file!]
+	{
+	German = Kein GlobalHeader-Block in Missionsdatei!;
+	French = Le fichier de la mission n'a pas de bloc GlobalHeader;
+	Italian = Nel file non è presente il blocco Globalheader!;
+	Spanish = ¡No hay bloque GlobalHeader en el archivo!;
+	}
+[No description available]
+	{
+	German = Keine Beschreibung verfügbar;
+	French = Pas de description disponible;
+	Italian = Non è disponibile alcuna descrizione.;
+	Spanish = Descripción no disponible;
+	}
+[No suitable schema type in mission file!]
+	{
+	German = Keine passendes Schema in Missionsdatei!;
+	French = Pas de schéma adéquat dans fichier de mission;
+	Italian = Nel file della missione non vi è alcuno schema riconoscibile!;
+	Spanish = ¡No hay ningún esquema adecuado en el archivo!;
+	}
+[Very bad news!  No MSG!]
+	{
+	German = Kein MSG;
+	French = Pas de MSG;
+	Italian = Nessun MSG!;
+	Spanish = ¡Mala suerte, no hay MSG!;
+	}
+[Hey, hoser!  The default meteor shower data was bogus!]
+	{
+	German = Der Standarddaten für Meteoritenschauer waren nicht korrekt.;
+	French = Les données pour les pluies de météores par défaut sont incorrectes;
+	Italian = I dati relativi alla pioggia di meteore non sono corretti!;
+	Spanish = ¡Error en los datos de lluvia de meteoritos!;
+	}
+[Could not open movie file, please check filename in INI.]
+	{
+	German = Konnte die Movie-Datei nicht finden, bitte Dateinamen in der INI prüfen.;
+	French = Impossible d'ouvrir le fichier. Vérifiez son nom dans INI;
+	Italian = Impossibile aprire il filmato specificato nel file .INI.;
+	Spanish = Imposible abrir fichero de animación, comprueba el nombre en INI;
+	}
+[Could not setup Direct Draw to play movie.]
+	{
+	German = Setup von DirectDraw zum Abspielen des Films war nicht möglich.;
+	French = Paramétrage de DirectDraw impossible;
+	Italian = Impossibile utilizzare Direct Draw.;
+	Spanish = Imposible configurar Direct Draw para ejecutar animación.;
+	}
+[Unsupported pixel format.]
+	{
+	German = Nicht unterstütztes Pixel-Format.;
+	French = Format de pixel non reconnu;
+	Italian = Formato dei pixel non supportato.;
+	Spanish = Formato de pixel no reconocido.;
+	}
+[Smacker Error]
+	{
+	German = Smacker-Fehler;
+	French = Erreur de smacker;
+	Italian = Errore dello smacker;
+	Spanish = Error de smacker;
+	}
+[Summary]
+	{
+	German = Zusammenfassung;
+	French = Résumé;
+	Italian = Resoconto;
+	Spanish = Sumario;
+	}
+[getbuilt]
+	{
+	German = wirdgebaut;
+	French = getbuilt;
+	Italian = getbuilt;
+	Spanish = getbuilt;
+	}
+[TransportDrop]
+	{
+	German = Transportaufgabe;
+	French = Largage transport;
+	Italian = Abbandona Trasporto;
+	Spanish = TransportDrop;
+	}
+[QueryTransport]
+	{
+	German = Anfrage Transport;
+	French = Question transport;
+	Italian = Richiedi Trasporto;
+	Spanish = Query Transport;
+	}
+[EndTransport]
+	{
+	German = Transportende;
+	French = Fin de transport;
+	Italian = Termina Trasporto;
+	Spanish = EndTransport;
+	}
+[QueryLandingPad]
+	{
+	German = Anfrage Landungsrampe;
+	French = Question atterrissage;
+	Italian = Richiesta di atterraggio;
+	Spanish = QueryLandingPad;
+	}
+[Landing aborted]
+	{
+	German = Landung abgebrochen;
+	French = Atterrissage annulé;
+	Italian = Atterraggio annullato;
+	Spanish = Aterrizaje cancelado;
+	}
+[Invalid logo setting]
+	{
+	German = Ungültige Logo-Einstellung;
+	French = Paramètres de logo invalides;
+	Italian = Impostazioni del logo non valide;
+	Spanish = Ajuste de logo erróneo;
+	}
+[Unable to start the thread!]
+	{
+	German = Kann die Seuqenz nicht starten.;
+	French = Erreur de chemin !;
+	Italian = Impossibile avviare il thread;
+	Spanish = ¡Imposible iniciar secuencia!;
+	}
+
+[Please insert the Total Annihilation CD and try again]
+	{
+	German = Bitte legen Sie die Total Annihilation CD ein und versuchen Sie es erneut.;
+	French = Insérez le CD de Total Annihilation et recommencez;
+	Italian = Inserire il CD di Total Annihilation e riprovare;
+	Spanish = Insertar el CD Total Annihilation y volver a intentar;
+	}
+
+[Please insert the Play CD and try again]
+	{
+	German = Bitte legen Sie die Spiel-CD ein und versuchen Sie es erneut.;
+	French = Insérez le CD du jeu de Total Annihilation et recommencez;
+	Italian = Inserire il CD del gioco e riprovare;
+	Spanish = Insertar el CD de juego y volver a intentar;
+	}
+[The Play CD was not found]
+	{
+	German = Bitte legen Sie die Spiel-CD;
+	French = Insérez le CD du jeu;
+	Italian = Il CD del gioco non è stato trovato;
+	Spanish = No se encuentra el CD de juego;
+	}
+[Please insert the Play CD]
+	{
+	German = Bitte legen Sie die Spiel-CD;
+	French = Insérez le CD du jeu;
+	Italian = Inserire il CD del gioco;
+	Spanish = Insertar el CD de juego;
+	}
+
+[Click to continue.]
+	{
+	German = Klicken Sie, um fortzufahren.;
+	French = Cliquez pour continuer;
+	Italian = Clicca per proseguire.;
+	Spanish = Pulsar para continuar;
+	}
+
+[Done]
+	{
+	German = Fertig;
+	French = Terminé;
+	Italian = Fatto;
+	Spanish = Terminado;
+	}
+
+[Record "%s" missing from feature files]
+	{
+	German = Die Aufzeichnung '%s' aus den Feature-Dateien fehlt;
+	French = Enregistrement "%s" manquant dans fichier features.;
+	Italian = Entrata "%s" mancante;
+	Spanish = Registro ""%s"" no encontrado en los ficheros;
+	}
+[An error occurred trying to use this service]
+	{
+	German = Beim Versuch, diesen Service zu benutzen, ist ein Fehler aufgetreten;
+	French = Une erreur est apparue pendant l'utilisation du service;
+	Italian = Si è verificato un errore nell'utilizzazione del servizio;
+	Spanish = Error durante esta operación;
+	}
+[expecting int]
+	{
+	German = erwarte Initi.;
+	French = Attente;
+	Italian = Attesa;
+	Spanish = En espera de int;
+	}
+[parse error reading AI profile %s\n%s\nlast string =]
+	{
+	German = Fehler beim Lesen der KI-Profile %s\n%s\nlast string =;
+	French = Erreur de lecture profil IA %s\n%s\nlast string =;
+	Italian = Errore di parse nella lettura del profilo IA %s\n%s\nultima stringa =;
+	Spanish = Error de lectura del perfil de IA %s\n%s\nlast string =;
+	}
+[None]
+	{
+	German = Keine;
+	French = Aucun;
+	Italian = Nessuno;
+	Spanish = Ninguno;
+	}
+
+[Incompatible units found.  They will be ignored.  Please download the latest version of the game.]
+	{
+	German = Inkompatible Einheiten gefunden. Diese werden ignoriert. Bitte laden Sie die neueste Version des Spiels herunter.;
+	French = Unités incompatibles décelées. Elles seront ignorées. Veuillez télécharger la dernière version du jeu.;
+	Italian = Le unità non compatibili saranno ignorate. Si prega di scaricare la versione più recente del gioco.;
+	Spanish = Encontradas unidades incompatible. Serán ignoradas. Descargar última versión del juego.;
+	}
+
+[Can't load MOVEINFO.TDF]
+	{
+	German = Kann MOVEINFO.TDF nicht laden.;
+	French = Chargement impossible MOVEINFO.TDF;
+	Italian = Impossibile caricare MOVEINFO.TDF;
+	Spanish = Imposible cargar MOVEINFO.TDF;
+	}
+
+[Can't load GAMEDATA.TDF]
+	{
+	German = Kann GAMEDATA.TDF nicht laden.;
+	French = Chargement impossible GAMEDATA.TDF;
+	Italian = Impossibile caricare GAMEDATA.TDF;
+	Spanish = Imposible cargar GAMEDATA.TDF;
+	}
+[Connecting  (ESC to abort)]
+	{
+	German = Verbinde (ESC, um abzubrechen);
+	French = Connexion en cours (Echap pour annuler);
+	Italian = Connessione in corso (ESC per uscire);
+	Spanish = Conectando (ESC para cancelar);
+	}
+[Lock]
+	{
+	German = Abschließen;
+	French = Verrouillé;
+	Italian = Chiudi;
+	Spanish = Bloquear;
+	}
+[Blk]
+	{
+	German = schwz.;
+	French = Noir;
+	Italian = Nero;
+	Spanish = Negro;
+	}
+[Gray]
+	{
+	German = Grau;
+	French = Gris;
+	Italian = Grigio;
+	Spanish = Gris;
+	}
+[Connecting... press ESC to abort]
+	{
+	German = Verbinde (ESC, um abzubrechen);
+	French = Connexion en cours (Echap pour annuler);
+	Italian = Connessione in corso (ESC per annullare);
+	Spanish = Conectando... pulsar ESC para cancelar;
+	}
+[Unable to find any modems]
+	{
+	German = Keine Modems feststellbar.;
+	French = Modem introuvable;
+	Italian = Impossibile trovare un modem;
+	Spanish = Módems no localizados;
+	}
+[allied with]
+	{
+	German = Verbündet mit;
+	French = est votre allié;
+	Italian = alleato con;
+	Spanish = Aliado con;
+	}
+[broke alliance with]
+	{
+	German = kündigt Allianz mit;
+	French = Alliance rompue avec;
+	Italian = alleanza interrotta con;
+	Spanish = Ha roto alianza con;
+	}
+[There are not enough game CDs present to play]
+	{
+	German = Für das Spiel sind nicht genügend Spiel-CDs vorhanden.;
+	French = Pas assez de CD du jeu présents pour pouvoir jouer.;
+	Italian = Non ci sono sufficienti CD per giocare;
+	Spanish = Insuficientes CDs de juego;
+	}
+[You must select a map before starting]
+	{
+	German = Sie müssen vor dem Start eine Karte auswählen.;
+	French = Choisissez une carte pour commencer;
+	Italian = Selezionare una mappa prima di cominciare;
+	Spanish = Seleccionar mapa para comenzar;
+	}
+[\nYou must select a map before starting\n\n]
+	{
+	German = \nSie müssen vor dem Start eine Karte auswählen.\n\n;
+	French = \nChoisissez une carte pour commencer\n\n;
+	Italian = \nSelezionare una mappa prima di cominciare\n\n;
+	Spanish = \nSeleccionar mapa para comenzar\n\n;
+	}
+
+[n/a]
+	{
+	German = n/v;
+	French = n/d;
+	Italian = n/d;
+	Spanish = n/d;
+	}
+[N/A]
+	{
+	German = n/v;
+	French = n/d;
+	Italian = n/d;
+	Spanish = n/d;
+	}
+
+[View Map]
+	{
+	German = Karte ansehen;
+	French = Voir la carte;
+	Italian = Mostra mappa;
+	Spanish = Ver mapa;
+	}
+
+[Could not find the multiplayer map!!]
+	{
+	German = Kann die Multiplayer-Karte nicht finden!;
+	French = Carte multijoueurs introuvable;
+	Italian = Impossibile trovare la mappa multigiocatore!;
+	Spanish = No localizado mapa multijugador;
+	}
+[does not have this map]
+	{
+	German = verfügt nicht über diese Karte.;
+	French = n'a pas cette carte;
+	Italian = non possiede questa mappa;
+	Spanish = Mapa no disponible;
+	}
+[There are no saved lists to choose from]
+	{
+	German = Es sind keine gespeicherten Listen vorhanden.;
+	French = Liste de sauvegarde introuvable.;
+	Italian = Non ci sono liste salvate tra cui scegliere;
+	Spanish = Imposible elección al no haber listas guardadas;
+	}
+[has left the scene]
+	{
+	German = hat die Bühne verlassen.;
+	French = nous a quitté;
+	Italian = ha abbandonato il gioco;
+	Spanish = Ha abandonado la partida;
+	}
+[has been shown the door]
+	{
+	German = wurde die Tür gewiesen.;
+	French = a été mis à la porte;
+	Italian = è stato messo alla porta;
+	Spanish = Ha sido expulsado;
+	}
+[has gone to a better place]
+	{
+	German = hat das Zeitliche gesegnet;
+	French = est parti visiter un autre site;
+	Italian = ha trovato qualcosa di meglio da fare;
+	Spanish = Ha pasado a mejor vida;
+	}
+[has bowed out]
+	{
+	German = wurde hinauskomplimentiert.;
+	French = a tiré sa révérence;
+	Italian = è scomparso;
+	Spanish = Se ha retirado;
+	}
+[has terminated]
+	{
+	German = ist von uns gegangen.;
+	French = a mis fin à ses activités;
+	Italian = ha smesso di giocare;
+	Spanish = Ha terminado;
+	}
+[has been eradicated]
+	{
+	German = wurde ausgelöscht.;
+	French = a été éliminé;
+	Italian = è stato eliminato;
+	Spanish = Ha sido eliminado;
+	}
+[has been liquidated]
+	{
+	German = wurde entfernt.;
+	French = a été liquidé;
+	Italian = è stato liquidato;
+	Spanish = Ha sido liquidado;
+	}
+[has been obliterated]
+	{
+	German = wurde vernichtet.;
+	French = a été exterminé;
+	Italian = è stato annientato;
+	Spanish = Ha sido eliminado;
+	}
+
+[forces have been obliterated]
+	{
+	German = Streitkräfte wurden zerstört;
+	French = les forces ont été annihilées;
+	Italian = le forze sono state annientate;
+	Spanish = Ejército eliminado;
+	}
+[vermin have been exterminated]
+	{
+	German = Geziefer wurde vernichtet;
+	French = la vermine a été exterminée;
+	Italian = i parassiti sono stati sterminati;
+	Spanish = Alimañas exterminadas;
+	}
+[forces have gone to a better place]
+	{
+	German = Streitkräfte haben das Zeitliche gesegnet;
+	French = les forces sont parties vers un monde meilleur;
+	Italian = le forze sono partite per un mondo migliore;
+	Spanish = Ejército ha pasado a mejor vida;
+	}
+
+[dropping a player due to TIMEOUT_SECS]
+	{
+	German = schließe einen Spieler wegen Zeitüberlaufs aus.;
+	French = Annulation d'un joueur pour cause de TIMEOUT_SECS;
+	Italian = eliminazione di un giocatore a causa di TIMEOUT_SECS;
+	Spanish = Jugador expulsado por TIMEOUT_SECS;
+	}
+[%s is joining the game...]
+	{
+	German = %s tritt dem Spiel bei;
+	French = %s a rejoint la partie;
+	Italian = %s si sta unendo alla partita;
+	Spanish = %s está accediendo a la partida...;
+	}
+[player dropped by DPSYS_]
+	{
+	German = Spieler von DPSYS ausgeschlossen;
+	French = Annulation joueur par DPSYS_;
+	Italian = giocatore eliminato per DPSYS_;
+	Spanish = Jugador expulsado por DPSYS_;
+	}
+[player '%s' set to startpos %d\n]
+	{
+	German = Fehler beim Lesen der KI-Profile %s\n%s\nlast string =,;
+	French = Joueur '%s' en position de départ %d\n;
+	Italian = giocatore '%s' in posizione di partenza %d\n;
+	Spanish = Jugador '%s' en posición de inicio %d\n;
+	}
+[You're out!  Continue Watching?]
+	{
+	German = Sie sind draußen! Wollen Sie weiter zusehen?;
+	French = C'est fini pour vous. Vous restez en spectateur ?;
+	Italian = Sei fuori! Continua a guardare?;
+	Spanish = ¡Estás fuera! ¿Continuar observando?;
+	}
+[Weapon]
+	{
+	German = Waffe;
+	French = Arme;
+	Italian = Arma;
+	Spanish = Arma;
+	}
+
+[Please insert a Total Annihilation CD and try again]
+	{
+	German = Bitte legen Sie die Total Annihilation-CD ein und versuchen Sie es erneut.;
+	French = Insérez un des CD du jeu et recommencez;
+	Italian = Inserire il CD di Total Annihilation e riprovare;
+	Spanish = Insertar CD Total Annihilation y volver a intentar;
+	}
+
+[Wind Speed]
+	{
+	German = Wind;
+	French = Vitesse du vent;
+	Italian = Vento;
+	Spanish = Viento;
+	}
+[Gravity]
+	{
+	German = Schwerkraft;
+	French = Pesanteur;
+	Italian = Gravità;
+	Spanish = Gravedad;
+	}
+[Tidal Strength]
+	{
+	German = Gezeitenstärke;
+	French = Force des marées;
+	Italian = Forza delle maree;
+	Spanish = Fuerza de las mareas;
+	}
+[There are no skirmish maps to choose from]
+	{
+	German = Keine Gefechtskarten zur Auswahl;
+	French = Choisissez une carte pour commencer;
+	Italian = Non ci sono schermate di battaglie tra cui scegliere;
+	Spanish = No hay mapas de escaramuzas;
+	}
+[There are no multiplayer maps to choose from]
+	{
+	German = Keine Multispielerkarten zur Auswahl;
+	French = Choisissez une carte pour commencer;
+	Italian = Non ci sono mappe multigiocatore tra cui scegliere;
+	Spanish = No hay mapas multijugadores;
+	}
+
+[No description available]
+	{
+	German = Keine Beschreibung verfügbar;
+	French = Pas de description disponible;
+	Italian = Nessuna descrizione disponibile;
+	Spanish = Descripción no disponible;
+	}
+
+[The terrain for the selected map does not exist.]
+	{
+	German = Das Gelände der ausgewählten Karte existiert nicht.;
+	French = Le terrain pour la carte sélectionnée n'existe pas.;
+	Italian = Il terreno della mappa selezionata non esiste.;
+	Spanish = No existe el terreno para el mapa seleccionada.;
+	}
+[All players may not be in the same allied group.]
+	{
+	German = Alle Spieler können nicht in derselben Allierten-Gruppe sein;
+	French = Tous les joueurs ne doivent pas être dans le même groupe.;
+	Italian = Attenzione, tutti i giocatori appartengono allo stesso gruppo;
+	Spanish = Todos los jugadores no pueden estar en la misma alianza.;
+	}
+[Error:  Sound system initialization failed.]
+	{
+	German = Fehler - Initialisierung des Soundsystems fehlgeschlagen.;
+	French = Error:  Erreur - Echec de l'initialisation sonore;
+	Italian = Errore: Inizializzazione sonora fallita.;
+	Spanish = Error: Fallo al iniciar el sistema de sonido.;
+	}
+[%s has taken the lead with %d kills]
+	{
+	German = %s hat mit %d Tötungen die Führung übernommen.;
+	French = %s mène la partie avec %d tués;
+	Italian = %s ha preso il comando della partita con %d vittime;
+	Spanish = %s es el líder con %d víctimas;
+	}
+
+[has taken the lead with %d kills]
+	{
+	German = hat mit %d Tötungen die Führung übernommen.;
+	French = mène la partie avec %d tués;
+	Italian = ha preso il comando della partita con %d vittime;
+	Spanish = Es el líder con %d víctimas;
+	}
+
+[has taken the lead with]
+	{
+	German = hat die Führung übernommen mit;
+	French = mène la partie avec;
+	Italian = ha preso il comando della partita con;
+	Spanish = Es el líder con;
+	}
+[kills]
+	{
+	German = Abschüsse;
+	French = Victimes;
+	Italian = vittime;
+	Spanish = Víctimas;
+	}
+
+
+
+[Player number %d invalid for unit %s]
+	{
+	German = Spielernummer %d für Einheit %s ungültig.;
+	French = Joueur numéro %d invalide pour unité %s;
+	Italian = Giocatore numero %d non valido per l'unità %s;
+	Spanish = Jugador %d no válido para unidad %s;
+	}
+
+[m/s]
+	{
+	German =  m/s;
+	French =  m/s;
+	Italian = m/s;
+	Spanish = m/s;
+	}
+
+[m/s/s]
+	{
+	German = m/s/s;
+	French = m/s/s;
+	Italian = m/s/s;
+	Spanish = m/s/s;
+	}
+
+[deg/s]
+	{
+	German = deg/s;
+	French = Gr./s;
+	Italian = /s;
+	Spanish = /s;
+	}
+
+[Cost]
+	{
+	German = Kosten;
+	French = Coût;
+	Italian = Costo;
+	Spanish = Coste;
+	}
+[Build Time]
+	{
+	German = Bauzeit;
+	French = Construction;
+	Italian = Tempo;
+	Spanish = Tiempo Constr.;
+	}
+[Max Velocity]
+	{
+	German = Geschwindigkeit;
+	French = Vitesse;
+	Italian = Velocità Max.;
+	Spanish = Velocidad máx.;
+	}
+[Acceleration]
+	{
+	German = Beschleunigung;
+	French = Accélération;
+	Italian = Accelerazione;
+	Spanish = Aceleración;
+	}
+[Weapons]
+	{
+	German = Waffe;
+	French = Arme;
+	Italian = Armi;
+	Spanish = Armas;
+	}
+
+[Speed]
+	{
+	German = Tempo;
+	French = Vitesse;
+	Italian = Velocità;
+	Spanish = Velocidad;
+	}
+
+[Normal]
+	{
+	German = Normal;
+	French = Normale;
+	Italian = Normale;
+	Spanish = Normal;
+	}
+
+
+[Game Speed Normal]
+	{
+	German = Tempo Normal;
+	French = Vitesse Normale;
+	Italian = Standard;
+	Spanish = Velocidad normal;
+	}
+[Invalid savegame file]
+	{
+	German = Ungültige gespeicherte Spieldatei;
+	French = Fichier de sauvegarde non valable;
+	Italian = File di salvataggio della partita non valido;
+	Spanish = Fichero guardar no válido;
+	}
+[Unable to start the loading thread!]
+	{
+	German = Kann die Ladesequenz nicht starten.;
+	French = Erreur de chemin de chargement !;
+	Italian = Impossibile avviare il processo di caricamento!;
+	Spanish = Imposible comenzar secuencia de carga;
+	}
+
+[DirectPlay registration failed.]
+	{
+	German = Registrierung von DirectPlay fehlgeschlagen.;
+	French = Echec de l'enregistrement DirectPlay;
+	Italian = Registrazione di DirectPlay fallita.;
+	Spanish = Error en DirectPlay;
+	}
+
+[Demo Version]
+	{
+	German = Demo Version;
+	French = Version Démo;
+	Italian = VERSIONE DIMOSTRATIVA;
+	Spanish = Versión Demo;
+	}
+
+[Settings]
+	{
+	German = Einstellungen;
+	French = Jeu;
+	Italian = Impostazioni;
+	Spanish = Adjustes;
+	}
+
+
+// Added for v2.0
+
+[Warning!  Your copy of Revision.GPF is the wrong version for this executable.  You may experience some problems if you continue playing.  Please download the latest version of the TA patch from www.cavedog.com and reinstall the patch.]
+	{
+	German = Warnung! Ihre Kopie der Datei Revision.GPF ist nicht kompatibel mit dieser Anwendung. Bitte laden Sie die neueste Version des "TA"-Patchs unter www.cavedog.com herunter und installieren Sie es erneut.;
+	French = Attention ! Votre version du fichier Revision.GPF n'est pas compatible avec ce programme, ce qui peut entraîner des problèmes. Téléchargez la nouvelle version du patch TA sur le site www.cavedog.com et réinstallez le patch.;
+	Italian = Attenzione! La vostra copia del file Revision.GPF non è quella corretta. Vi consigliamo di scaricare l'ultima patch per Total Annihilation dal sito www.cavedog.com e di installarla.;
+	Spanish = ¡Atención! La versión de la copia que actualmente tienes de Revision.GPF no es valida para este ejecutable. Por favor, descarga de Internet la versión más actualizada del patch de Total Annihilation y vuelve a instalarlo en tu PC.;
+	}
+
+[Can't add another player when game is closed.]
+	{
+	German = Es können nur neue Spieler beitreten, wenn das Programm aktiv ist.;
+	French = Impossible d'ajouter un nouveau joueur quand la partie est fermée.;
+	Italian = Impossibile aggiungere un nuovo giocatore.;
+	Spanish = No se puede añadir otro jugador cuando se cierra el juego.;
+	}
+
+[Direct Play failed to add new player.\n\nRecommended you go to previous screen and re-create the game session.\n]
+	{
+	German = Direct Play konnte keinen neuen Spieler hinzufügen. \n\nEs wird empfohlen, das Spiel  im vorhergehenden Bildschirm neu einzurichten.\n;
+	French = Impossible d'ajouter un nouveau joueur.n\n\Revenez à l'écran précédent et recommencer une nouvelle partie.\n;
+	Italian = Impossibile aggiungere un nuovo giocatore.\n\nSi raccomanda di tornare alla schermata precedente e ricreare la sessione di gioco.\n;
+	Spanish = Direct Play ha fallado al añadir otro jugador.\n\nTe recomendamos que vayas a la pantalla anterior y vuelvas a crear la sesión de juego.\n;
+	}
+
+[Direct Play failed to add new player.\n\nRecommended you go to previous screen and re-join the game session.\n]
+	{
+	German = Direct Play konnte keinen neuen Spieler hinzufügen. \n\nEs wird empfohlen, dem Spiel  über den vorhergehenden Bildschirm erneut beizutreten.\n;
+	French = Impossible d'ajouter un nouveau joueur.n\n\Revenez à l'écran précédent et rejoignez la partie en cours.\n;
+	Italian =Impossibile aggiungere un nuovo giocatore.\n\nSi raccomanda di tornare alla schermata precedente e provare a partecipare di nuovo.\n;
+	Spanish = Direct Play ha fallado al añadir otro jugador.\n\nTe recomendamos que vayas a la pantalla anterior y vuelvas a unirte a la sesión de juego.\n;
+	}
+
+[Square]
+	{
+	German = Quadrat;
+	French = Le carré;
+	Italian = Quadrato;
+	Spanish = Rectángulo;
+	}
+
+[Circle]
+	{
+	German = Kreis;
+	French = Le cercle;
+	Italian = Cerchio;
+	Spanish = Círculo;
+	}
+
+[Triangle]
+	{
+	German = Dreieck;
+	French = Le triangle;
+	Italian = Triangolo;
+	Spanish = Triángulo;
+	}
+
+[Star]
+	{
+	German = Stern;
+	French = L'étoile;
+	Italian = Stella;
+	Spanish = Estrella;
+	}
+
+[Moon]
+	{
+	German = Mond;
+	French = La lune;
+	Italian = Luna;
+	Spanish = Luna;
+	}
+
+[has joined the]
+	{
+	German = nimmt Teil an;
+	French = a rejoint;
+	Italian = ha raggiunto;
+	Spanish = se ha unido a;
+	}
+
+[has left the]
+	{
+	German = verläßt;
+	French = a quitté;
+	Italian = ha lasciato;
+	Spanish = ha dejado a;
+	}
+ 
+[anemone]
+	{
+	German = Anemone;
+	French = anémone;
+	Italian = ;
+	Spanish = anemona;
+	}
+
+[coral]
+	{
+	German = Koralle;
+	French = corail;
+	Italian = ;
+	Spanish = coral;
+	}
+
+[seaweed]
+	{
+	German = Seegras;
+	French = algues;
+	Italian = ;
+	Spanish = alga;
+	}
+
+[kelp]
+	{
+	German = Seetang;
+	French = varech;
+	Italian = ;
+	Spanish = quelpo;
+	}
+
+[You are placed in watch mode because you are hosting AI players which are still alive.  If you exit, they will be terminated.]
+	{
+	German = Sie wurden in den Zuschauermodus versetzt, weil in Ihrem Spiel noch KI-Spieler aktiv sind. Wenn Sie das Spiel beenden, werden diese Spieler ausgeschaltet.;
+	French = Vous êtes en mode watch car vous avez des hôtes AI encore en vie. Si vous sortez, la partie est terminée.;
+	Italian = Siete stati posti in modalità osservazione perché siete Host di giocatori ancora vivi. Se lasciaste la partita, essi verrebbero terminati.;
+	Spanish = Estás en modo sólo visionar porque estás albergando la IA de jugadores que aún están jugando. Si sales de este modo, su partida terminará.;
+	}
+
+[Unable to initialize scores reporting.]
+	{
+	German = Kann Übermittlung des Punktstandes nicht initialisieren.;
+	French = Impossible d'initializer les scores;
+	Italian = Impossibile inizializzare il rapporto dei punteggi.;
+	Spanish = No es posible inicializar el informe de puntuaciones.;
+	}
+
+[No sound driver is available for use.\n]
+	{
+	German = Kein Soundtreiber verfügbar.\n;
+	French = Il n'y a pas de carte son disponible pour l'utilisateur.\n;
+	Italian = Nessun driver sonoro disponibile per l'uso.\n;
+	Spanish = No hay ningun controlador de sonido que se pueda utilizar.\n;
+	}
+
+[Debug:  You must be in full-screen mode to play a movie.]
+	{
+	German = Debug:  Filmsequenzen gibt es nur im Vollbild-Modus.;
+	French = Debug: vous devez être en mode plein écran pour lancer la scène cinématique.;
+	Italian = Debug: dovete essere in modalità a pieno schermo per vedere un filmato.;
+	Spanish = Debug: Debes estar en modo a pantalla completa para ver la secuencia de vídeo.;
+	}
+
+[Old TED format no longer supported!]
+	{
+	German = Das alte TED-Format wird nicht mehr unterstützt!;
+	French = l'ancien format TED n'est plus supporté;
+	Italian = Il formato TED vecchio non è più supportato!;
+	Spanish = ¡El formato TED antiguo ya no es compatible!;
+	}
+
+[Can not start game with all players on the same team.]
+	{
+	German = Alle Spieler können nicht in derselben Allierten-Gruppe sein;
+	French = Tous les joueurs ne doivent pas être dans le même groupe.;
+	Italian = Attenzione, tutti i giocatori appartengono allo stesso gruppo;
+	Spanish = Todos los jugadores no pueden estar en la misma alianza.;
+	}
+
+
+// Added for Expansion Pack
+// Features
+
+[Transit Node]
+	{
+	German = Transitknoten;
+	French = Noeud routier;
+	Spanish = Nodo de Tránsito;
+	Italian = Nodo di transito;
+	}
+
+[Microwave Relay]
+	{
+	German = Mikrowellenstation;
+	French = Relais micro-ondes;
+	Spanish = Transmisor de Microondas;
+	Italian = Trasmettitore a microonde;
+	}
+[Climatic Optimizer]
+	{
+	German = Klimaoptimator;
+	French = Régulateur climatique;
+	Spanish = Optimizador Climático;
+	Italian = Ottimizzatore climatico;
+	}
+[Truck]
+	{
+	German = Lastwagen;
+	French = Camion;
+	Spanish = Camión;
+	Italian = Camion;
+	}
+[Manhole]
+	{
+	German = Kanaldeckel;
+	French = Bouche d'égout;
+	Spanish = Boca de Acceso;
+	Italian = Tombino;
+	}
+[Public Art]
+	{
+	German = Kunstwerk;
+	French = Monument;
+	Spanish = Arte Público;
+	Italian = Opera d'arte;
+	}
+[Car]
+	{
+	German = Auto;
+	French = Voiture;
+	Spanish = Coche;
+	Italian = Auto;
+	}
+[Building]
+	{
+	German = Gebäude;
+	French = Bâtiment;
+	Spanish = Edificio;
+	Italian = Edificio;
+	}
+[Willy Gates Bldg]
+	{
+	German = Gebäude;
+	French = Bâtiment;
+	Spanish = Edificio;
+	Italian = Edificio;
+	}
+[Barrier]
+	{
+	German = Sperre;
+	French = Barrière;
+	Spanish = Barrera;
+	Italian = Barriera;
+	}
+[barrier]
+	{
+	German = Sperre;
+	French = Barrière;
+	Spanish = Barrera;
+	Italian = Barriera;
+	}
+[Oolok Tree]
+	{
+	German = Oolokbaum;
+	French = Arbre d'Oolok;
+	Spanish = Árbol de Oolok;
+	Italian = Albero Oolok;
+	}
+[Gasbag]
+	{
+	German = Gasblase;
+	French = Poche de Gaz;
+	Spanish = Bolsa de Gas;
+	Italian = Sacca di gas;
+	}
+[Bridge]
+	{
+	German = Brücke;
+	French = Pont;
+	Spanish = Puente;
+	Italian = Ponte;
+	}
+[Ruined Bridge]
+	{
+	German = Zerstörte Brücke;
+	French = Pont en ruines;
+	Spanish = Puente en ruínas;
+	Italian = Ponte in rovina;
+	}
+[Factory]
+	{
+	German = Fabrik;
+	French = Usine;
+	Spanish = Edificio;
+	Italian = Fabbrica;
+	}
+[Cheese Factory]
+	{
+	German = Fabrik;
+	French = Usine;
+	Spanish = Factoría;
+	Italian = Fabbrica;
+	}
+[Public Hygiene Pod]
+	{
+	German = Hygienevorrichtung;
+	French = Vespasienne;
+	Spanish = Pod de Higiene Personal;
+	Italian = Capsula igienica personale;
+	}
+[Monorail Track]
+	{
+	German = Einschienenbahn;
+	French = Piste de Monorail;
+	Spanish = Camión Monoraíl;
+	Italian = Percorso della monorotaia;
+	}
+[Streetlight]
+	{
+	German = Straßenbeleuchtung;
+	French = Réverbère;
+	Spanish = Luz de Calle;
+	Italian = Illuminazione;
+	}
+
+// Chat messages
+[OK.  Will share metal if above %d]
+	{
+	German = OK.  Liefere Metall, wenn über %d;
+	French = OK. Partagerai métal si stock supérieur à %d;
+	Spanish = OK. Compartir metal si por encima de %d.;
+	Italian = OK.  Divideremo il metalle se superiore a %d;
+	}
+
+[OK.  Will share energy if above %d]
+	{
+	German = OK.  Liefere Energie, wenn über %d;
+	French = OK. Partagerai énergie si stock supérieur à %d;
+	Spanish = OK. Compartir energía si por encima de %d.;
+	Italian = OK.  Divideremo l'energia se superiore a %d;
+	}
+
+	
+

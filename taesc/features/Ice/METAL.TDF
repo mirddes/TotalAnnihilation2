@@ -1,0 +1,62 @@
+[IceMetal01]  // Medium
+	{
+	world=Ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icemetal;
+	seqname=metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=122;
+	damage=32009;
+	indestructible=1;
+	}
+
+[IceMetal02]  // Small
+	{
+	world=Ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icemetal;
+	seqname=metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=76;
+	damage=32009;
+	indestructible=1;
+	}
+
+[IceMetal03]  // Huge
+	{
+	world=Ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icemetal;
+	seqname=metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

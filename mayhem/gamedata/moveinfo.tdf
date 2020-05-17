@@ -1,0 +1,261 @@
+[CLASS0]		// CLIMBING KBOTS
+	{
+	Name=KBOTSS2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=15;
+	MaxSlope=32;
+	}
+[CLASS1]		// KBOTS
+	{
+	Name=KBOTSF2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=12;
+	MaxSlope=21;
+	}
+[CLASS2]		// COMMANDER, AMPHIB UNITS
+	{
+	Name=TANKDS2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=255;
+	MaxSlope=32;
+	}
+[CLASS3]		// AMPHIBIOUS TANKS
+	{
+	Name=TANKDH3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=20;
+	}
+[CLASS4]		// TANKS
+	{
+	Name=TANKSH3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=12;
+	MaxSlope=15;
+	}
+[CLASS5]		// SMALL TANKS
+	{
+	Name=TANKSH2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=12;
+	MaxSlope=15;
+	}
+[CLASS6]		// BIG KBOTS
+	{
+	Name=KBOTSF3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=18;
+	Maxslope=22;
+	}
+[CLASS7]		// WALKING MINES
+	{
+	Name=MINEDS1;
+	FootprintX=1;
+	FootprintZ=1;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=24;
+	}
+[CLASS8]		// SMALL SUBS
+	{
+	Name=BOATD3;
+	FootprintX=3;
+	FootprintZ=3;
+	MinWaterDepth=15;
+	}
+[CLASS9]		// DESTROYERS
+	{
+	Name=BOATS5;
+	FootprintX=5;
+	FootprintZ=5;
+	MinWaterDepth=3;
+	}
+[CLASS10]		// PT BOATS
+	{
+	Name=BOATS4;
+	FootprintX=4;
+	FootprintZ=4;
+	MinWaterDepth=3;
+	}
+[CLASS11]		// CRUISERS
+	{
+	Name=BOATS6;
+	FootprintX=6;
+	FootprintZ=6;
+	MinWaterDepth=3;
+	}
+[CLASS12]		// SPIDERS
+	{
+	Name=SPID3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=16;
+	Badslope=128;
+	}
+[CLASS13]		// LARGE HOVERS
+	{
+	Name=TANKHOVER4;
+	FootprintX=4;
+	FootprintZ=4;
+	MaxSlope=13;
+	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS14]		// MEDIUM HOVERS
+	{
+	Name=TANKHOVER3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxSlope=13;
+	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS15]		// SCOUT HOVERS
+	{
+	Name=TANKHOVER2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxSlope=16;
+	BadSlope=16;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS16]		// VERY LARGE HOVERS
+	{
+	Name=TANKHOVER5;
+	FootprintX=5;
+	FootprintZ=5;
+	MaxSlope=14;
+	BadSlope=14;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS17]		// SMALL SPIDERS
+	{
+	Name=SPID2;
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=12;
+	BadSlope=120;
+	}
+[CLASS18]		// LARGE SPIDERS
+	{
+	Name=SPID4;
+	FootprintX=4;
+	FootprintZ=4;
+	MaxWaterDepth=18;
+	}
+[CLASS19]		// LARGE TANKS
+	{
+	Name=TANKSH4;
+	FootprintX=4;
+	FootprintZ=4;
+	MaxWaterDepth=18;
+	MaxSlope=16;
+	BadSlope=15;
+	}
+[CLASS20]		// XL MOBILES
+	{
+	Name=TANKSH5;		
+	FootprintX=5;
+	FootprintZ=5;
+	MaxWaterDepth=20;
+	MaxSlope=17;
+	BadSlope=15;
+	}
+[CLASS21]		// XXL MOBILES
+	{
+	Name=TANKSH6;		
+	FootprintX=6;
+	FootprintZ=6;
+	MaxWaterDepth=23;
+	MaxSlope=18;
+	BadSlope=15;
+	}
+[CLASS22]		// LARGE SUBS
+	{
+	Name=BOATD5;
+	FootprintX=5;
+	FootprintZ=5;
+	MinWaterDepth=15;
+	}
+[CLASS23]		// BATTLESHIPS
+	{
+	Name=BOATD7;
+	FootprintX=7;
+	FootprintZ=7;
+	MinWaterDepth=20;
+	}
+[CLASS24]		// LARGE BATTLESHIPS
+	{
+	Name=BOATD8;
+	FootprintX=8;
+	FootprintZ=8;
+	MinWaterDepth=20;
+	}
+[CLASS25]		// CAPITAL SHIPS
+	{
+	Name=BOATD11;
+	FootprintX=11;
+	FootprintZ=11;
+	MinWaterDepth=25;
+	}
+[CLASS26]		// WALKING SHIPS!
+	{
+	Name=SWALK5;
+	FootprintX=5;
+	FootprintZ=5;
+	MaxSlope=32;
+	Minwaterdepth=-128;
+	}
+[CLASS27]		// AMPHIBIOUS SPIDERS
+	{
+	Name=SPIDDH3;
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=100;
+	}
+[CLASS28]		// I LIKE TURTLES
+	{
+	Name=TANKDH4;
+	FootprintX=4;
+	FootprintZ=4;
+	MaxWaterDepth=100;
+	MaxSlope=16;
+	MaxWaterslope=30;
+	}
+[CLASS29]		// XL AMPHIBIOUS
+	{
+	Name=TANKDH5;
+	FootprintX=5;
+	FootprintZ=5;
+	MaxWaterDepth=100;
+	MaxSlope=17;
+	MaxWaterslope=31;
+	}
+[CLASS30]		// XXL AMPHIBIOUS
+	{
+	Name=TANKDH6;
+	FootprintX=6;
+	FootprintZ=6;
+	MaxWaterDepth=100;
+	MaxSlope=18;
+	MaxWaterslope=32;
+	}
+[CLASS31]		// TINY SPIDERS
+	{
+	Name=SPID1;
+	FootprintX=1;
+	FootprintZ=1;
+	MaxWaterDepth=0;
+	}

@@ -1,0 +1,114 @@
+// Arm Amphibious Tank Script
+
+piece base,flare1,turret;
+
+static-var restore_delay;
+
+#define SIG_AIM 2
+#include "exptype.h"
+#include "rockunit.h"
+#include "hitweap.h"
+
+Create()
+	{
+	hide flare1;
+	restore_delay=3000;
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis 0 speed <35>;
+	turn barrel to x-axis 0 speed <15>;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <35>;
+	turn barrel to x-axis (0-pitch) speed <15>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrel around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	show flare1;
+	move barrel to z-axis [-2.4] speed [500];
+	sleep 150;
+	hide flare1;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0] speed [3.0];
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare1;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=turret;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare1;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode flare1 type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	FALL | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode flare1 type	FALL | BITMAP1;
+		explode turret type	SHATTER | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type	SHATTER | BITMAP2;
+		return( 0 );
+		}
+
+	// If severity is over 50, the unit just disintigrated.
+	corpsetype = 3;
+
+	explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP4;
+	explode flare1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

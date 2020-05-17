@@ -1,0 +1,16 @@
+[corxstor_dead]
+{
+world=All Worlds;
+description=Advanced storage Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+blocking=0;
+hitdensity=100;
+metal=3704;
+damage=6175;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,428 @@
+[Tree1]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=leaf1;
+	seqnameshad=leafshad;
+	seqnamereclamate=tree1reclamate;
+	energy = 250;
+
+	seqnameburn=leafyburn01;
+	seqnameburnshad=;
+	featureburnt=Tree1Dead;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=treeboom;
+	featuredead=smudge01;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree2]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=leaf2;
+	seqnameshad=leafshad;
+	seqnamereclamate=tree2reclamate;
+    	energy=250;
+
+	seqnameburn=leafyburn02;
+	seqnameburnshad=;
+	featureburnt=Tree2Dead;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=treeboom;
+	featuredead=smudge02;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree3]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=leaf3;
+	seqnameshad=leafshad;
+	seqnamereclamate=tree3reclamate;
+  	energy=250;
+
+	seqnameburn=leafyburn03;
+	seqnameburnshad=;
+	featureburnt=Tree3Dead;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=treeboom;
+	featuredead=smudge03;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree1Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy;
+	seqnameshad=crispyshad;
+	seqnamereclamate=crispyrec;
+	energy=50;
+
+	seqnamedie=;
+	featuredead=smudge03;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree2Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy2;
+	seqnameshad=crispy2shad;
+	seqnamereclamate=crispy2rec;
+    	energy=50;
+
+	seqnamedie=;
+	featuredead=smudge01;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree3Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy3;
+	seqnameshad=crispy3shad;
+	seqnamereclamate=crispy3rec;
+      energy=50;
+
+	seqnamedie=;
+	featuredead=smudge04;
+	featurereclamate=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree4]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=tree1;
+	seqnameshad=treeshad;
+	seqnamereclamate=tree4reclamate;
+	energy=250;
+
+	seqnameburn=treeburn1;
+	seqnameburnshad=;
+	featureburnt=Tree4Dead;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=TreeBurn;
+
+	seqnamedie=conifboom;
+	featuredead=smudge02;
+	featurereclamate=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree5]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=tree2;
+	seqnameshad=treeshad2;
+	seqnamereclamate=tree5reclamate;
+	energy=250;
+
+	seqnameburn=treeburn2;
+	seqnameburnshad=;
+	featureburnt=Tree5Dead;
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=TreeBurn;
+
+	seqnamedie=conifboom;
+	featuredead=smudge03;
+	featurereclamate=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree6]
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=tree3;
+	seqnameshad=treeshad3;
+	seqnamereclamate=tree6reclamate;
+	energy=250;
+
+	seqnameburn=treeburn3;
+	seqnameburnshad=;
+	featureburnt=Tree6Dead;  
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=TreeBurn;
+
+	seqnamedie=conifboom;
+	featuredead=smudge04;  
+	featurereclamate=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree4Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy4;
+	seqnameshad=crispy4shad;
+	seqnamereclamate=crispy4rec;
+	energy=50;
+
+	seqnamedie=;
+	featuredead=smudge03;
+	featurereclamate=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree5Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy5;
+	seqnameshad=crispy5shad;
+	seqnamereclamate=crispy5rec;
+    	energy=50;
+
+	seqnamedie=;
+	featuredead=smudge01;
+	featurereclamate=smudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree6Dead]
+	{
+	world=greenworld;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=crispy6;
+	seqnameshad=crispy6shad;
+	seqnamereclamate=crispy6rec;
+	energy=50;
+
+	seqnamedie=;
+	featuredead=smudge04;
+	featurereclamate=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Tree7]		// This is a copy of tree6, because some maps have this floating around.
+	{
+	world=greenworld;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=40;
+	filename=trees;
+	seqname=tree3;
+	seqnameshad=treeshad3;
+	seqnamereclamate=tree6reclamate;
+	energy=250;
+
+	seqnameburn=treeburn3;
+	seqnameburnshad=;
+	featureburnt=Tree6Dead;  
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=30;
+	burnweapon=TreeBurn;
+
+	seqnamedie=conifboom;
+	featuredead=smudge04;  
+	featurereclamate=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+

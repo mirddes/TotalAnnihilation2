@@ -1,0 +1,353 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  f1, f2, gun1, gun2, launchers, turret, top, tower,
+       door1, door2, door3, door4, door5, door6, door7, door8,
+       d2, d4, d6, d8, plate, base;
+
+static-var  on_1, busy_2, request_3, restore_4, pitch_5, gun_1;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState(timer)
+{
+	while( TRUE )
+	{
+		if( !request_3 AND on_1 )
+		{
+			busy_2 = 1;
+			on_1 = 0;
+			restore_4 = 0;
+			signal 2;
+			turn launchers to x-axis <-60> speed <200>;
+			move gun1 to z-axis [-3] speed [8.4];
+			move gun2 to z-axis [-3] speed [8.4];
+			sleep 360;
+			move door1 to y-axis [0] speed [10];
+			move door2 to y-axis [0] speed [10];
+			move door3 to y-axis [0] speed [10];
+			move door4 to y-axis [0] speed [10];
+			move door5 to y-axis [0] speed [10];
+			move door6 to y-axis [0] speed [10];
+			move door7 to y-axis [0] speed [10];
+			move door8 to y-axis [0] speed [10];
+			move plate to y-axis [-25] speed [32];
+			move launchers to y-axis [-2.5] speed [5];
+			sleep 600;
+			move turret to y-axis [-2.5] speed [5];
+			move tower to y-axis [-2] speed [4];
+			sleep 250;
+			turn door1 to x-axis <0> speed <240>;
+			turn door2 to x-axis <0> speed <240>;
+			turn door3 to z-axis <0> speed <240>;
+			turn door4 to z-axis <0> speed <240>;
+			turn door5 to x-axis <0> speed <240>;
+			turn door6 to x-axis <0> speed <240>;
+			turn door7 to z-axis <0> speed <240>;
+			turn door8 to z-axis <0> speed <240>;
+			//get SET_CLOAKED (1);
+			sleep 375;
+			set ARMORED to 1;
+			cache door1;
+			cache door2;
+			cache door3;
+			cache door4;
+			cache door5;
+			cache door6;
+			cache door7;
+			cache door8;
+			cache gun1;
+			cache gun2;
+			cache launchers;
+			cache turret;
+			cache tower;
+			cache plate;
+		}
+		if( request_3 and !on_1 )
+		{
+			busy_2 = 1;
+			on_1 = 1;
+			restore_4 = 20;
+			dont-cache door1;
+			dont-cache door2;
+			dont-cache door3;
+			dont-cache door4;
+			dont-cache door5;
+			dont-cache door6;
+			dont-cache door7;
+			dont-cache door8;
+			dont-cache gun1;
+			dont-cache gun2;
+			dont-cache launchers;
+			dont-cache turret;
+			dont-cache tower;
+			dont-cache plate;
+			//get SET_CLOAKED (0);
+			turn door1 to x-axis <89> speed <180>;
+			turn door2 to x-axis <89> speed <180>;
+			turn door3 to z-axis <89> speed <180>;
+			turn door4 to z-axis <89> speed <180>;
+			turn door5 to x-axis <-89> speed <180>;
+			turn door6 to x-axis <-89> speed <180>;
+			turn door7 to z-axis <-89> speed <180>;
+			turn door8 to z-axis <-89> speed <180>;
+			sleep 450;
+			set ARMORED to 0;
+			move door1 to y-axis [-10] speed [10];
+			move door2 to y-axis [-10] speed [10];
+			move door3 to y-axis [-10] speed [10];
+			move door4 to y-axis [-10] speed [10];
+			move door5 to y-axis [-10] speed [10];
+			move door6 to y-axis [-10] speed [10];
+			move door7 to y-axis [-10] speed [10];
+			move door8 to y-axis [-10] speed [10];
+			move plate to y-axis [0] speed [40];
+			sleep 500;
+			move tower to y-axis [0] speed [2];
+			move top to y-axis [0] speed [4];
+			sleep 200;
+			move turret to y-axis [0] speed [10];
+			move launchers to y-axis [0] speed [10];
+			move gun1 to z-axis [0] speed [9];
+			move gun2 to z-axis [0] speed [9];
+			turn launchers to x-axis 0 - pitch_5 speed <250>;
+		}
+		busy_2 = 0;
+		if( !restore_4 AND request_3 )
+		{
+			set ACTIVATION to 0;
+		}
+		if( restore_4 )
+		{
+			--restore_4;
+		}
+		sleep 250;
+	}
+	return (0);
+}
+
+Create()
+{
+	hide f1;
+	hide f2;
+	dont-cache f1;
+	dont-cache f2;
+	dont-shade gun1;
+	dont-shade gun2;
+	dont-shade launchers;
+	dont-shade turret;
+	dont-shade tower;
+	dont-shade plate;
+	dont-shade base;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade door5;
+	dont-shade door6;
+	dont-shade door7;
+	dont-shade door8;
+	dont-shade tower;
+	turn d2 to y-axis <45> now;
+	turn d4 to y-axis <45> now;
+	turn d6 to y-axis <45> now;
+	turn d8 to y-axis <45> now;
+	turn door1 to x-axis <89> now;
+	turn door2 to x-axis <89> now;
+	turn door3 to z-axis <89> now;
+	turn door4 to z-axis <89> now;
+	turn door5 to x-axis <-89> now;
+	turn door6 to x-axis <-89> now;
+	turn door7 to z-axis <-89> now;
+	turn door8 to z-axis <-89> now;
+	move door1 to y-axis [-10] now;
+	move door2 to y-axis [-10] now;
+	move door3 to y-axis [-10] now;
+	move door4 to y-axis [-10] now;
+	move door5 to y-axis [-10] now;
+	move door6 to y-axis [-10] now;
+	move door7 to y-axis [-10] now;
+	move door8 to y-axis [-10] now;
+	on_1 = 1;
+	busy_2 = 0;
+	request_3 = 0;
+	pitch_5 = 0;
+	gun_1 = 0;
+	sleep 100;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	restore_4 = 24;
+	start-script RequestState();
+	start-script SmokeUnit();
+	return (0);
+}
+
+Deactivate()
+{
+	request_3 = 0;
+	return (0);
+}
+
+Activate()
+{
+	request_3 = 1;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !request_3 )
+	{
+		set ACTIVATION to 1;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <450>;
+	while( !on_1 OR busy_2 )
+	{
+		pitch = pitch_5;
+		sleep 250;
+	}
+	turn turret to y-axis heading speed <450>;
+	turn launchers to x-axis <0> - pitch speed <280>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn launchers around x-axis;
+	Restore_4 = 20;
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		turn gun1 to z-axis 0 NOW;
+		show f1;
+		sleep 150;
+		hide f1;
+		sleep 150;
+		turn gun1 to z-axis <120> speed <400>;
+		gun_1 = 1;
+		return (0);
+	}
+	turn gun2 to z-axis 0 NOW;
+	show f2;
+	sleep 150;
+	hide f2;
+	sleep 150;
+	turn gun2 to z-axis <120> speed <400>;
+	gun_1 = 0;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = launchers;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide f1;
+	hide f2;
+	if( severity <= 25 )
+	{
+		if( on_1 )
+		{
+			corpsetype = 1;
+		}
+		if( !on_1 )
+		{
+			corpsetype = 2;
+		}
+		explode base type BITMAPONLY | BITMAP1;
+		explode gun1 type BITMAPONLY | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode door3 type BITMAPONLY | BITMAP5;
+		explode door4 type BITMAPONLY | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode gun2 type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode gun1 type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | BITMAP3;
+		explode door2 type FALL | BITMAP4;
+		explode door3 type FALL | BITMAP5;
+		explode door4 type FALL | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode gun2 type FALL | BITMAP4;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode gun1 type BITMAPONLY | BITMAP2;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	corpsetype = 4;
+	explode base type BITMAPONLY | BITMAP1;
+	explode gun1 type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tower type BITMAPONLY | BITMAP2;
+	explode turret type BITMAPONLY | BITMAP3;
+	explode gun2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

@@ -1,0 +1,10 @@
+MISSIONE 16.002ARMR
+Distruggere tutte le unità mobili, e catturare o eliminare le strutture nella fortezza magazzino sopra la vetta.
+
+&YPRIORITÀ&
+L’esercito Core ha il vantaggio di conoscere il terreno circostante alla perfezione; abbiamo comunque spinto il nemico sull’altro lato delle scogliere a Nord. Dovete distruggere tutte le unità mobili Core per cancellare la presenza del nemico su Rougpelt.
+
+INFORMAZIONI UTILI
+Fate molta attenzione alle piogge di meteore; la conformazione del terreno può rappresentare un ulteriore ostacolo per i vostri attacchi al magazzino. Una offensiva terra/aria dovrebbe rappresentare il modo migliore per raggiungere l’obiettivo.
+ 
+FINE

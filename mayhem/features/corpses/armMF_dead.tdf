@@ -1,0 +1,35 @@
+[armMF_DEAD]
+{
+World=All Worlds;
+Description=MoFo Wreckage;
+Category=arm_corpses;
+object=5x5a;
+featuredead=ARMMF_HEAP;
+Footprintx=5;
+Footprintz=5;
+Height=30;
+Blocking=1;
+HitDensity=100;
+Metal=15600;
+Damage=21000;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+[ARMMF_HEAP]
+{
+world=All Worlds;
+description=MoFo Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=7800;
+damage=22000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

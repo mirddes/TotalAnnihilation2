@@ -1,0 +1,8 @@
+MISSION 20.4CORE
+
+INTELL-TAP:
+Sensors indicate that there is an Arm Gate on the rocky outcropping to the north. It is consensus that the gate will lead to the Empyrrean system. Capture the Gate. 
+
+&RCapture the Arm Gate.&
+
+DO SO NOW.

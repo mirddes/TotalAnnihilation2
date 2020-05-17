@@ -1,0 +1,8 @@
+MISSION 7.3CORE
+
+INTELL-TAP:
+We have isolated a major Arm infestation on Crustal 2. Arm has conveniently constructed a metal farm there. Capturing the Moho Mines there will save us the trouble of building them ourselves. Control your units carefully or one may destroy a Moho before you can capture it.
+
+&RCapture a Moho Mine and destroy the Arm vermin.&
+
+DO SO NOW.

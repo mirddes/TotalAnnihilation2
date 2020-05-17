@@ -1,0 +1,34 @@
+LOS: 1-40
+6 free
+10, 20, 33, 34, 39, 40
+
+Lasers:	41-80
+5 free
+69, 76, 77, 78, 79
+
+Cannons: 81-120
+4 free
+89, 107, 109, 120
+
+Missiles: 121-140
+2 free
+139, 140 
+
+Rockets: 141-175
+7 free
+143, 144, 147, 162, 163, 166, 175
+
+Torpedos: 176-190
+2 free
+189, 190
+
+Misc/Units/Maps: 191-225
+5 free
+213, 222, 223, 224, 225
+
+VTOL: 226-254 (230-235 excluded for 3rd-party map weapons)
+4 free
+251, 252, 253, 254
+
+
+36 free IDs total

@@ -1,0 +1,248 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  Rumpf, Kanzel, lSchwanz, rSchwanz, lFluegel, rFluegel, lEnte, rEnte,
+       rSchweif, lSchweif, lBlitz, rBlitz;
+
+static-var  Static_Var_1, Static_Var_2, gun_3, Static_Var_4, bMoving;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 AND Static_Var_4 != 3 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Rumpf;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState(requestedstate, currentstate)
+{
+	signal 2;
+	set-signal-mask 2;
+	currentstate = Static_Var_1;
+	Static_Var_1 = requestedstate;
+	while( Static_Var_1 != currentstate )
+	{
+		if( !Static_Var_1 )
+		{
+			sleep 250;
+			Static_Var_2 = 0;
+			sleep 100;
+			move rFluegel to x-axis [0] speed [3.2];
+			move lFluegel to x-axis [0] speed [3.2];
+			move lSchwanz to z-axis [-3.2] speed [2.559998];
+			move rSchwanz to z-axis [-3.2] speed [2.559998];
+			move Kanzel to z-axis [0] speed [3.2];
+			wait-for-move Kanzel along z-axis;
+			move Kanzel to y-axis [0] speed [3.2];
+			turn Kanzel to x-axis <0> speed <19.780220>;
+			turn lFluegel to z-axis <29.670330> speed <29.670330>;
+			turn rFluegel to z-axis <-29.670330> speed <29.670330>;
+			wait-for-turn Kanzel around x-axis;
+			show lEnte;
+			show rEnte;
+			move rEnte to x-axis [0] speed [5.6];
+			move lEnte to x-axis [0] speed [5.6];
+			turn lSchwanz to z-axis <-89.010989> speed <178.021978>;
+			turn rSchwanz to z-axis <89.010989> speed <178.021978>;
+			sleep 400;
+			set ACTIVATION to 1;
+			currentstate = 0;
+		}
+		if( Static_Var_1 )
+		{
+			sleep 350;
+			Static_Var_2 = 1;
+			set ACTIVATION to 0;
+			move rEnte to x-axis [-2.4] speed [3.2];
+			move lEnte to x-axis [2.4] speed [3.2];
+			turn lSchwanz to z-axis <0> speed <89.010989>;
+			turn rSchwanz to z-axis <0> speed <89.010989>;
+			wait-for-move lEnte along x-axis;
+			hide lEnte;
+			hide rEnte;
+			turn lFluegel to z-axis <0> speed <29.670330>;
+			turn rFluegel to z-axis <0> speed <29.670330>;
+			turn Kanzel to x-axis <-19.780220> speed <19.780220>;
+			move Kanzel to y-axis [-0.2] speed [1.6];
+			wait-for-turn Kanzel around x-axis;
+			move rFluegel to x-axis [-7.2] speed [5.6];
+			move lFluegel to x-axis [7.2] speed [5.6];
+			move lSchwanz to z-axis [0] speed [2.559998];
+			move rSchwanz to z-axis [0] speed [2.559998];
+			move Kanzel to z-axis [-4] speed [3.2];
+			wait-for-move Kanzel along z-axis;
+			currentstate = 1;
+		}
+	}
+}
+
+TempoKontrolle(Func_Var_1, Func_Var_2, Func_Var_3, Func_Var_4)
+{
+	while( TRUE )
+	{
+		if( Static_Var_4 == 3 AND ( !bMoving ) )
+		{
+			emit-sfx 256 | 3 from lBlitz;
+			emit-sfx 256 | 3 from rBlitz;
+			emit-sfx 256 | 3 from lFluegel;
+			emit-sfx 256 | 3 from rFluegel;
+			emit-sfx 256 | 3 from Kanzel;
+			emit-sfx 256 | 3 from lSchwanz;
+			emit-sfx 256 | 3 from rSchwanz;
+		}
+		Func_Var_3 = get PIECE_XZ(Rumpf);
+		sleep 300;
+		Func_Var_4 = get PIECE_XZ(Rumpf);
+		Func_Var_1 = Func_Var_3 - Func_Var_4;
+		if( Func_Var_1 < 0 )
+		{
+			Func_Var_1 = 0 - Func_Var_1;
+		}
+		hide lSchweif;
+		hide rSchweif;
+		if( Static_Var_4 != 3 AND ( !Static_Var_2 ) AND Func_Var_3 != Func_Var_4 )
+		{
+			if( Func_Var_1 > Func_Var_2 )
+			{
+				show lSchweif;
+				show rSchweif;
+			}
+		}
+		Func_Var_2 = Func_Var_1 - 5;
+	}
+}
+
+Create()
+{
+	Static_Var_1 = 1;
+	Static_Var_2 = 0;
+	gun_3 = Rumpf;
+	bMoving = FALSE;
+	hide lSchweif;
+	hide rSchweif;
+	hide lEnte;
+	hide rEnte;
+	hide lBlitz;
+	hide rBlitz;
+	turn Kanzel to x-axis <-19.780220> now;
+	move Kanzel to z-axis [-4] now;
+	move Kanzel to y-axis [-0.2] now;
+	move rFluegel to x-axis [-7.2] now;
+	move lFluegel to x-axis [7.2] now;
+	move rEnte to x-axis [-2.4] now;
+	move lEnte to x-axis [2.4] now;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	start-script TempoKontrolle();
+}
+
+Activate()
+{
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+}
+
+StartMoving()
+{
+	bMoving = FALSE;
+}
+
+StopMoving()
+{
+	bMoving = TRUE;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_4 = Func_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Rumpf;
+}
+
+AimFromTertiary(piecenum)
+{
+	if( gun_3 )
+	{
+		piecenum = lBlitz;
+	}
+	else
+	{
+		piecenum = rBlitz;
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_3 )
+	{
+		piecenum = lBlitz;
+	}
+	else
+	{
+		piecenum = rBlitz;
+	}
+}
+
+FireTertiary()
+{
+	if( gun_3 )
+	{
+		show lBlitz;
+		sleep 150;
+		hide lBlitz;
+		gun_3 = Rumpf;
+	}
+	else
+	{
+		show rBlitz;
+		sleep 150;
+		hide rBlitz;
+		gun_3 = Kanzel;
+	}
+}
+
+AimTertiary(heading, pitch)
+{
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	explode Rumpf type SHATTER | BITMAP4;
+	explode Kanzel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lEnte type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rEnte type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lFluegel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rFluegel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lSchwanz type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rSchwanz type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	corpsetype = 0;
+}

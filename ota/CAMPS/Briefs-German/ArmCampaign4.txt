@@ -1,0 +1,13 @@
+MISSION 4.0004ARME
+Orten und zerstören Sie die feindlichen Bergbau- und Kommunikationsanlagen sowie alle Einheiten der CORE.
+
+PRIORITÄT 1
+Die Ausbreitung der CORE kann nicht länger hingenommen werden! Die Zerstörung aller Bergbau- und Kommunikationsanlagen an der Grenze wird die Datenübertragung der CORE unterbrechen und ihnen seltene Rohstoffe entziehen.
+
+NACHRICHTENDIENSTLICHE MITTEILUNG  
+&R*WARNUNG* *WARNUNG* *WARNUNG*&
+Die CORE-Basis ist gut geschützt. Errichten Sie einen Stützpunkt, damit Sie stark genug sind, um die Mission erfolgreich abzuschließen. Der Feind ist über Ihre Absichten wohl informiert und wird möglicherweise Pyro-Truppen gegen Sie ins Feld schicken. Ein Zeus-Modell vom Typ ARM-ZEUS steht Ihnen zu Ihrem Schutz zur Verfügung.
+
+&GEinheiten nach Möglichkeit reparieren.&
+
+ENDE

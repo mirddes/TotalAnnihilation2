@@ -1,0 +1,35 @@
+[corXCS_dead]
+{
+world=All Worlds;
+description=Walking Ship Wreckage;
+category=core_corpses;
+object=corXCS_dead;
+featuredead=corXCS_heap;
+footprintx=5;
+footprintz=5;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=2600;
+damage=3296;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corXCS_heap]
+{
+world=All Worlds;
+description=Walking Ship Wreckage;
+category=core_corpses;
+object=5x5d;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1300;
+damage=4296;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

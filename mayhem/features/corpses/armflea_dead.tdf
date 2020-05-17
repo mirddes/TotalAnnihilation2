@@ -1,0 +1,35 @@
+[armflea_dead]
+{
+world=All Worlds;
+description=Flea Wreckage;
+category=arm_corpses;
+object=armflea_dead;
+featuredead=armflea_heap;
+footprintx=1;
+footprintz=1;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=39;
+damage=60;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armflea_heap]
+{
+world=All Worlds;
+description=Flea Wreckage;
+category=heaps;
+object=1x1a;
+footprintx=1;
+footprintz=1;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=20;
+damage=60;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

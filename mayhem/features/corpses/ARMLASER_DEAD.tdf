@@ -1,0 +1,71 @@
+[ARMLPRIS_DEAD]
+{
+world=All Worlds;
+description=Extinguisher Wreckage;
+category=arm_corpses;
+object=armlpris_dead;
+featuredead=ARMLPRIS_heap;
+footprintx=5;
+footprintz=5;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=4128;
+damage=4600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMLPRIS_heap]
+{
+world=All Worlds;
+description=Extinguisher Wreckage;
+category=arm_corpses;
+object=5x5b;
+footprintx=5;
+footprintz=5;
+height=5;
+blocking=0;
+hitdensity=100;
+metal=2064;
+damage=5600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[corldark_dead]
+{
+world=All Worlds;
+description=Nightmare Wreckage;
+category=core_corpses;
+object=corldark_dead;
+featuredead=corldark_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=3968;
+damage=4500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corldark_heap]
+{
+world=All Worlds;
+description=Nightmare Wreckage;
+category=core_corpses;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=6;
+blocking=0;
+hitdensity=100;
+metal=1984;
+damage=5400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

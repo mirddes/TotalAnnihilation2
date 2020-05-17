@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Gas Bag Forests;
+	missiondescription=19 X 19  Large fields of gasplants block your path.;
+	planet=Acid;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2200;
+	maxwindspeed=4000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=1;
+	waterdamage=10;
+	numplayers=2, 3, 4, 5, 6, 7, 8, 9;
+	size=19 x 19;
+	memory=32 mb;
+	useonlyunits=Gasbag Forests.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Acid;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=368;
+				ZPos=384;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=8576;
+				ZPos=8704;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=9120;
+				ZPos=352;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=160;
+				ZPos=9136;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=5920;
+				ZPos=5424;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=3232;
+				ZPos=3856;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=8464;
+				ZPos=4528;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=4544;
+				ZPos=8864;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=4912;
+				ZPos=272;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=2944;
+				ZPos=7344;
+				}
+			}
+		}
+	}

@@ -1,0 +1,500 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  flare_01, flare_02, flare_03, flare_04, flare_05, flare_06, flare_07, flare_08, flare_09, flare_10, flare_11, flare_12,
+	   base, tower, stand, turret, sleeves, glow, radar,
+	   pod_01, pod_02, pod_03, pod_04, pod_05, pod_06, pod_07, pod_08, pod_09, pod_10, pod_11, pod_12;
+
+static-var  gun_1;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome ; 
+
+// Signal definitions
+#define SIG_AIM				2
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+	hide flare_01;
+	hide flare_02;
+	hide flare_03;
+	hide flare_04;
+	hide flare_05;
+	hide flare_06;
+	hide flare_07;
+	hide flare_08;
+	hide flare_09;
+	hide flare_10;
+	hide flare_11;
+	hide flare_12;
+	
+		
+//	dont-cache turret;
+//	dont-cache sleeve;
+//	dont-cache rotate1;
+//	dont-cache rotate2;
+//	dont-cache rotate3;
+//	dont-cache rotate4;
+//	dont-cache dome;
+//	dont-cache fix1;
+//	dont-cache fix2;
+		
+	dont-shade stand;
+	dont-shade turret;
+	dont-shade sleeves;
+	dont-shade pod_01;
+	dont-shade pod_02;
+	dont-shade pod_03;
+	dont-shade pod_04;
+	dont-shade pod_05;
+	dont-shade pod_06;
+	dont-shade pod_07;
+	dont-shade pod_08;
+	dont-shade pod_09;
+	dont-shade pod_10;
+	dont-shade pod_11;
+	dont-shade pod_12;
+	
+	dont-shade glow;
+	dont-shade radar;
+	
+	
+	dont-cache radar;
+			
+	gun_1 = 0;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+}
+
+RestoreAfterDelay()
+{
+	sleep 8000;
+	set-signal-mask 0;
+	turn turret to y-axis <0.000000> speed <180.000000>;
+	turn sleeves to x-axis <0.000000> speed <180.000000>;
+}
+
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	
+	turn turret to y-axis heading speed <360.000000>;
+	turn sleeves to x-axis <0.000000> - pitch speed <360.000000>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeves around x-axis;
+	
+	Start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	if( gun_1 == 0 )
+	{
+		explode flare_01 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 1 )
+	{
+		explode flare_02 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 2 )
+	{
+		explode flare_03 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 3 )
+	{
+		explode flare_04 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 4 )
+	{
+		explode flare_05 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 5 )
+	{
+		explode flare_06 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 6 )
+	{
+		explode flare_07 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 7 )
+	{
+		explode flare_08 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 8 )
+	{
+		explode flare_09 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 9 )
+	{
+		explode flare_10 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 10 )
+	{
+		explode flare_11 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	if( gun_1 == 11 )
+	{
+		explode flare_12 type BITMAPONLY | BITMAP5;
+		sleep 50;
+	}
+	
+	
+	++gun_1;
+	if( gun_1 == 12 )
+	{
+		gun_1 = 0;
+	}
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare_01;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare_02;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = flare_03;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = flare_04;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = flare_05;
+	}
+	if( gun_1 == 5 )
+	{
+		piecenum = flare_06;
+	}
+	if( gun_1 == 6 )
+	{
+		piecenum = flare_07;
+	}
+	if( gun_1 == 7 )
+	{
+		piecenum = flare_08;
+	}
+	if( gun_1 == 8 )
+	{
+		piecenum = flare_09;
+	}
+	if( gun_1 == 9 )
+	{
+		piecenum = flare_10;
+	}
+	if( gun_1 == 10 )
+	{
+		piecenum = flare_11;
+	}
+	if( gun_1 == 11 )
+	{
+		piecenum = flare_12;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+}
+
+
+//==============================================================================================
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode sleeves type BITMAPONLY | BITMAP1;
+		explode pod_01 type BITMAPONLY | BITMAP1;
+		explode pod_04 type BITMAPONLY | BITMAP1;
+		explode pod_03 type BITMAPONLY | BITMAP1;
+		explode pod_02 type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP5;
+		explode stand type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode sleeves type BITMAPONLY | BITMAP1;
+		explode pod_01 type FALL | BITMAP1;
+		explode pod_04 type FALL | BITMAP1;
+		explode pod_03 type BITMAPONLY | BITMAP1;
+		explode pod_02 type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP5;
+		explode stand type SHATTER | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode sleeves type BITMAPONLY | BITMAP1;
+		explode pod_01 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pod_04 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pod_03 type BITMAPONLY | BITMAP1;
+		explode pod_02 type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP5;
+		explode stand type SHATTER | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode sleeves type BITMAPONLY | BITMAP1;
+	explode pod_01 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pod_04 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pod_03 type BITMAPONLY | BITMAP1;
+	explode pod_02 type BITMAPONLY | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode stand type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+}

@@ -1,0 +1,10 @@
+MISIÓN 11.0003CLANT
+Conquistar la Puerta del Núcleo
+
+&YPRIORIDAD CRÍTICA&
+El Núcleo se resiste cada vez con más fiereza, síntoma seguro de que nos acercamos a otra Puerta... y, a través de ella, a otro de sus planetas. Esta batalla entregará el dominio de Tergiverse IV al Clan y abrirá otra salida. ¡Debemos vencer!
+
+INFORMACIÓN
+Hay una hondonada en el noreste. Creemos que la Puerta se encuentra allí. Los guardias ofrecerán mucha resistencia. &GEl uso combinado de unidades aéreas y terrestres será muy efectivo en esta misión.& 
+
+FIN

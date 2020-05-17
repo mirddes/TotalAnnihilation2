@@ -1,0 +1,331 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  torso, mlasflsh, bigflsh, nanospray, nanogun, luparm, ruparm, pelvis,
+       rthigh, lthigh, biggun, lleg, lfoot, rleg, rfoot, ring, ring2;
+
+static-var  Moving_1, Aiming_2;
+
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( Moving_1 )
+		{
+			move pelvis to y-axis [-0.50] now;
+			move bigflsh to x-axis [0] now;
+			move mlasflsh to y-axis [0] now;
+			move mlasflsh to z-axis [0] now;
+			move nanospray to x-axis [4.80] now;
+			move nanospray to y-axis [-8.40] now;
+			move nanospray to z-axis [-6.80] now;
+			turn pelvis to x-axis <3.93> speed <300>;
+			turn rthigh to x-axis <17.16> speed <300>;
+			turn lthigh to x-axis <-41.35> speed <300>;
+			turn lleg to x-axis <41.91> speed <300>;
+			turn lfoot to x-axis <-4.50> speed <300>;
+			turn rleg to x-axis <27.29> speed <300>;
+			turn rfoot to x-axis <-27.57> speed <300>;
+			sleep 120;
+			move pelvis to y-axis [-0.35] now;
+			turn pelvis to x-axis <5.05> speed <300>;
+			turn rthigh to x-axis <7.31> speed <300>;
+			turn lthigh to x-axis <-32.63> speed <300>;
+			turn lleg to x-axis <32.35> speed <300>;
+			turn lfoot to x-axis <-5.05> speed <300>;
+			turn rleg to x-axis <39.10> speed <300>;
+			turn rfoot to x-axis <-26.73> speed <300>;
+			sleep 110;
+			}
+		if( Moving_1 )
+		{
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.50> speed <300>;
+			turn rthigh to x-axis <-10.69> speed <300>;
+			turn lthigh to x-axis <-26.44> speed <300>;
+			turn lfoot to x-axis <-9.55> speed <300>;
+			turn rleg to x-axis <51.20> speed <300>;
+			sleep 100;
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.93> speed <300>;
+			turn rthigh to x-axis <-19.13> speed <300>;
+			turn lthigh to x-axis <1.12> speed <300>;
+			turn lleg to x-axis <6.47> speed <300>;
+			turn lfoot to x-axis <-9> speed <300>;
+			turn rleg to x-axis <52> speed <300>;
+			turn rfoot to x-axis <-22.51> speed <300>;
+			sleep 90;
+			move pelvis to y-axis [-0.15] now;
+			turn pelvis to x-axis <3.65> speed <300>;
+			turn rthigh to x-axis <-41.63> speed <300>;
+			turn lthigh to x-axis <7.87> speed <300>;
+			turn lleg to x-axis <9.55> speed <300>;
+			turn lfoot to x-axis <-16> speed <300>;
+			turn rleg to x-axis <50.92> speed <300>;
+			turn rfoot to x-axis <-5.63> speed <300>;
+			sleep 100;
+		}
+		if( Moving_1 )
+		{
+			move pelvis to y-axis [-0.30] now;
+			turn pelvis to x-axis <3.09> speed <300>;
+			turn rthigh to x-axis <-49.23> speed <300>;
+			turn lthigh to x-axis <11.25> speed <300>;
+			turn lleg to x-axis <18.57> speed <300>;
+			turn lfoot to x-axis <-22.51> speed <300>;
+			turn rleg to x-axis <32.91> speed <300>;
+			sleep 110;
+			move pelvis to y-axis [-0.50] now;
+			turn pelvis to x-axis <3.93> speed <300>;
+			turn rthigh to x-axis <-44.16> speed <300>;
+			turn lthigh to x-axis <18.57> speed <300>;
+			turn lleg to x-axis <22.79> speed <300>;
+			turn lfoot to x-axis <-26.44> speed <300>;
+			turn rleg to x-axis <48.66> speed <300>;
+			turn rfoot to x-axis <-8.44> speed <300>;
+			sleep 120;
+		}
+		if( Moving_1 )
+		{
+			move pelvis to y-axis [-0.35] now;
+			turn pelvis to x-axis <5.05> speed <300>;
+			turn rthigh to x-axis <-32.63> speed <300>;
+			turn lthigh to x-axis <3.09> speed <300>;
+			turn lleg to x-axis <43.60> speed <300>;
+			turn lfoot to x-axis <-27.29> speed <300>;
+			turn rleg to x-axis <40.51> speed <300>;
+			turn rfoot to x-axis <-12.94> speed <300>;
+			sleep 110;
+			move pelvis to y-axis [-0.20] now;
+			turn pelvis to x-axis <4.50> speed <300>;
+			turn rthigh to x-axis <-25.60> speed <300>;
+			turn lthigh to x-axis <-11.53> speed <300>;
+			turn lleg to x-axis <62.16> speed <300>;
+			turn rleg to x-axis <36> speed <300>;
+			turn rfoot to x-axis <-15.19> speed <300>;
+			sleep 100;
+			move pelvis to y-axis [0] now;
+			turn pelvis to x-axis <3.93> speed <300>;
+			turn rthigh to x-axis <6.19> speed <300>;
+			turn lthigh to x-axis <-25.60> speed <300>;
+			turn lleg to x-axis <71.74> speed <300>;
+			turn lfoot to x-axis <-26.44> speed <300>;
+			turn rleg to x-axis <3.09> speed <300>;
+			turn rfoot to x-axis <-11.53> speed <300>;
+			sleep 90;
+		}
+		if( Moving_1 )
+		{
+			move pelvis to y-axis [-0.15] now;
+			turn pelvis to x-axis <3.65> speed <300>;
+			turn rthigh to x-axis <16> speed <300>;
+			turn lthigh to x-axis <-39.38> speed <300>;
+			turn lleg to x-axis <54.57> speed <300>;
+			turn lfoot to x-axis <-23> speed <300>;
+			turn rleg to x-axis <7.87> speed <300>;
+			turn rfoot to x-axis <-18.85> speed <300>;
+			sleep 100;
+			move pelvis to y-axis [-0.35] now;
+			turn pelvis to x-axis <3.09> speed <300>;
+			turn rthigh to x-axis <22.22> speed <300>;
+			turn lthigh to x-axis <-47.54> speed <300>;
+			turn lleg to x-axis <40.23> speed <300>;
+			turn lfoot to x-axis <-7.87> speed <300>;
+			turn rleg to x-axis <10.69> speed <300>;
+			turn rfoot to x-axis <-23.35> speed <300>;
+			sleep 110;
+		}
+		if( !Moving_1 )
+		{
+			sleep 200;
+		}
+	}
+	return (0);
+}
+Create()
+{
+	hide bigflsh;
+	hide mlasflsh;
+	hide ring;
+	hide ring2;
+	Moving_1 = 0;
+	Aiming_2 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = mlasflsh;
+	return (0);
+}
+
+RestorePosition()
+{
+	set-signal-mask 0;
+	turn torso to y-axis <0> speed <90>;
+	turn luparm to x-axis <0> speed <45>;
+	turn biggun to x-axis <0> speed <45>;
+	Aiming_2 = 0;
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	start-script RestorePosition();
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = mlasflsh;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( Aiming_2 )
+	{
+		sleep 100;
+	}
+	turn torso to y-axis heading speed <300>;
+	turn luparm to x-axis ( ( <0> - pitch ) - <30> ) speed <110>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show mlasflsh;
+	sleep 100;
+	hide mlasflsh;
+	return (0);
+}
+
+AimFromTertiary(Func_Var_1)
+{
+	Func_Var_1 = 0;
+	return (0);
+}
+
+QueryTertiary(Func_Var_1)
+{
+	Func_Var_1 = 2;
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	Aiming_2 = 1;
+	turn torso to y-axis heading speed <300>;
+	turn biggun to x-axis ( <0> - pitch ) speed <110>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn biggun around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	Aiming_2 = 2;
+	show bigflsh;
+	sleep 100;
+	hide bigflsh;
+	move ruparm to z-axis [0] now;
+	move ruparm to z-axis [-2.50] speed [250];
+	move biggun to z-axis [0] now;
+	move biggun to z-axis [-5.20] speed [520];
+	move bigflsh to x-axis [0] now;
+	move mlasflsh to y-axis [0] now;
+	move mlasflsh to z-axis [0] now;
+	move nanospray to x-axis [4.80] now;
+	move nanospray to y-axis [-8.40] now;
+	move nanospray to z-axis [-6.80] now;
+	turn ruparm to x-axis <0> speed <300>;
+	turn ruparm to x-axis <-1.13> speed <113.47>;
+	sleep 10;
+	move ruparm to z-axis [-1.20] speed [16.25];
+	move biggun to z-axis [-2.80] speed [30];
+	turn ruparm to x-axis <0> speed <14.18>;
+	sleep 80;
+	move ruparm to z-axis [-0.25] speed [13.57];
+	move biggun to z-axis [-1.75] speed [15];
+	turn ruparm to x-axis <0> speed <0>;
+	sleep 70;
+	move ruparm to z-axis [-0.20] speed [1];
+	turn ruparm to x-axis <0.75> speed <15.13>;
+	turn ruparm to z-axis <0.37> speed <7.55>;
+	sleep 50;
+	move ruparm to z-axis [0] speed [5];
+	move biggun to z-axis [0] speed [43.75];
+	turn ruparm to x-axis <0> speed <18.91>;
+	turn ruparm to z-axis <0> speed <9.46>;
+	sleep 1800;
+	if( Aiming_2 == 2 )
+	{
+		Aiming_2 = 0;
+	}
+	return (0);
+}
+
+StartBuilding(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn torso to y-axis heading speed <300>;
+	turn luparm to x-axis ( ( <0> - pitch ) - <30> ) speed <110>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	set INBUILDSTANCE to 1;
+	return (0);
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	call-script RestorePosition();
+	return (0);
+}

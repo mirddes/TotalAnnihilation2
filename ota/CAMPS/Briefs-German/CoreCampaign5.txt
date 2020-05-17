@@ -1,0 +1,7 @@
+MISSION 5.1CORE
+Die Wachen am Tor ausschalten. Eine Basis errichten. Überleben.
+
+WAHRSCHEINLICHKEITSBERECHNUNG: 
+Barathrum ist eine feindliche Welt (&R72%,Irrtum:6%&). Seine Metalle aber sind für unseren Erfolg unerläßlich (&R88%,Irrtum:3%&).  Wesentlich ist daher die Errichtung einer Basis (&R67%,Irrtum:5%&). Die Plazierung von Metallextraktoren auf entsprechenden Vorkommen erhöht die Metallgewinnungsrate (&R82%,Irrtum:4%&).
+
+WALTEN SIE IHRES AMTES.

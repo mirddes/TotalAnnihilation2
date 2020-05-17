@@ -1,0 +1,215 @@
+[MoonCrater01]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=0;
+	filename=mooncraters;
+	seqname=crater01;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater02]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=0;
+	filename=mooncraters;
+	seqname=crater02;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater03]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=10;
+	footprintz=11;
+	height=0;
+	filename=mooncraters;
+	seqname=crater03;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater04]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=7;
+	footprintz=9;
+	height=0;
+	filename=mooncraters;
+	seqname=crater04;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater05]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=0;
+	filename=mooncraters;
+	seqname=crater05;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater06]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=8;
+	footprintz=8;
+	height=0;
+	filename=mooncraters;
+	seqname=crater06;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater07]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=48;
+	filename=mooncraters;
+	seqname=crater07;
+	seqnameshad=crater07shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater08]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=32;
+	filename=mooncraters;
+	seqname=crater08;
+	seqnameshad=;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[MoonCrater09]
+	{
+	world=MOON;
+	description=Crater;
+	category=craters;
+	animating=0;
+	footprintx=7;
+	footprintz=8;
+	height=32;
+	filename=mooncraters;
+	seqname=crater09;
+	seqnameshad=crater09shad;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

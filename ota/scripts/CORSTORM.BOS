@@ -1,0 +1,206 @@
+// Core Rocket Infantry - Rocko
+
+piece torso,rfirept,lfirept;
+
+static-var	gun;
+
+// Signals
+
+#define SIG_MOVEMENT 2
+#define SIG_AIM		4
+
+// Animations
+
+#define ANIM_VARIABLE   TRUE
+
+#include "..\anim3d\corstorm\walk.bos"
+
+// Smoking damage
+#define SMOKEPIECE1 torso
+#include "smokeunit.h"
+
+
+StartMoving()
+	{
+	signal SIG_MOVEMENT;            // kill off other move scripts
+	set-signal-mask SIG_MOVEMENT;   // so other scripts can kill us
+
+	call-script walk();             // Initiate walk cycle
+	}
+
+StopMoving()
+	{
+	signal SIG_MOVEMENT;            // kill off other move scripts
+	set-signal-mask SIG_MOVEMENT;   // so other scripts can kill us
+
+	// Restore the standard position
+
+	#define RESTORESPEED <150>
+
+	move pelvis to y-axis 0 speed [1];
+	turn pelvis to y-axis 0 speed RESTORESPEED;
+	turn pelvis to z-axis 0 speed RESTORESPEED;
+
+	turn rthigh to x-axis 0 speed RESTORESPEED;
+	turn rleg to x-axis 0 speed RESTORESPEED;
+	turn rfoot to x-axis 0 speed RESTORESPEED;
+
+	turn lthigh to x-axis 0 speed RESTORESPEED;
+	turn lleg to x-axis 0 speed RESTORESPEED;
+	turn lfoot to x-axis 0 speed RESTORESPEED;
+
+	#undef RESTORESPEED
+	}
+
+Create()
+	{
+	gun = 0;
+	start-script StopMoving();			// Set standard position
+	start-script SmokeUnit();
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=0;		// Aim from the torso
+	}
+
+QueryPrimary(piecenum)
+	{
+	if (gun == 0)
+		{
+		piecenum = 1;
+		}
+	if (gun == 1)
+		{
+		piecenum = 2;
+		}
+	}
+
+RestoreAfterDelay()
+	{
+	// Wait for something to happen
+	sleep 5000; // 4250;
+
+	// If we got this far without being killed, then nothing is
+	// happening.  Restore the standard position
+	turn turret to y-axis 0 speed <90>;
+	turn launcher to x-axis 0 speed <45>;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;					// kill off other aim scripts
+	set-signal-mask SIG_AIM;		// so other scripts can kill us
+
+	turn turret to y-axis heading speed <90>;
+	turn launcher to x-axis (0 - pitch) speed <45>;
+
+	wait-for-turn turret around y-axis;
+	wait-for-turn launcher around x-axis;
+
+	// Start a script that will wait, and restore the standard position if
+	// nothing happens after a while.  It inherits the SIG_AIM mask, so
+	// it will be killed if a re-aim occurrs
+	start-script RestoreAfterDelay();
+
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	if (gun == 0)
+		{
+		// Change launchers
+		gun = 1;
+		return 0 ;
+		}
+	if (gun == 1)
+		{
+		// Change launchers
+		gun = 0;
+		return 0 ;
+		}
+	}
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode ground type	BITMAPONLY | BITMAP1;
+		explode launcher type	BITMAPONLY | BITMAP2;
+		explode lfirept type	BITMAPONLY | BITMAP3;
+		explode lfoot type	BITMAPONLY | BITMAP4;
+		explode lleg type	BITMAPONLY | BITMAP5;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode pelvis type	BITMAPONLY | BITMAP2;
+		explode rfirept type	BITMAPONLY | BITMAP3;
+		explode rfoot type	BITMAPONLY | BITMAP4;
+		explode rleg type	BITMAPONLY | BITMAP5;
+		explode rthigh type	BITMAPONLY | BITMAP1;
+		explode torso type	BITMAPONLY | BITMAP2;
+		explode turret type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode ground type	FALL | BITMAP1;
+		explode launcher type	SHATTER | BITMAP2;
+		explode lfirept type	FALL | BITMAP3;
+		explode lfoot type	FALL | BITMAP4;
+		explode lleg type	FALL | BITMAP5;
+		explode lthigh type	FALL | BITMAP1;
+		explode pelvis type	FALL | BITMAP2;
+		explode rfirept type	FALL | BITMAP3;
+		explode rfoot type	FALL | BITMAP4;
+		explode rleg type	FALL | BITMAP5;
+		explode rthigh type	FALL | BITMAP1;
+		explode torso type	FALL | BITMAP2;
+		explode turret type	FALL | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode launcher type	SHATTER | BITMAP2;
+		explode lfirept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rfirept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torso type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode launcher type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode lfirept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rfirept type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torso type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}

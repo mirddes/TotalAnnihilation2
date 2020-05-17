@@ -1,0 +1,8 @@
+MISSION 5.1CORE
+
+INTELL-TAP: 
+Barathrum is a hostile world. Its metals are necessary for Core success.  Establishment of a base essential.  &YPlacement of Metal Extractors on metal deposits will increase metal extraction rate.&
+
+&RDestroy all Arm units.&
+
+DO SO NOW.

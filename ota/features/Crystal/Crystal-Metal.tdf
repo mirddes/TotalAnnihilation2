@@ -1,0 +1,125 @@
+[CrystalMetal1]  // Small
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CrystalMetal2]  // Medium
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=140;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CrystalMetal3]  // Huge
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=235;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CrystalAquaOre1]  // Small
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-aquaore01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CrystalAquaOre2]  // Medium
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-aquaore02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[CrystalAquaOre3]  // Huge
+	{
+	world=crystal;
+	description=Metal;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=crys-metal;
+	seqname=crys-aquaore03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

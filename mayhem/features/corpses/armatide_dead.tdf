@@ -1,0 +1,35 @@
+[ARMATIDE_dead]
+{
+world=All Worlds;
+description=Adv Tidal Wreckage;
+category=arm_corpses;
+object=armATIDE_dead;
+featuredead=armATIDE_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=238;
+damage=900;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armATIDE_heap]
+{
+world=All Worlds;
+description=Adv Tidal Wreckage;
+category=heaps;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=119;
+damage=923;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

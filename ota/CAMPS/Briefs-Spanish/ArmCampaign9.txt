@@ -1,0 +1,10 @@
+MISIÓN 9.0001CLANT
+Conquistar la Planta de Hidratación.
+
+&YPRIORIDAD&
+Hemos contenido la eficacia de nuestra unidad aérea en el enfrentamiento contra el Núcleo, hasta ahora... El Núcleo espera un ataque terrestre. Ha llegado el momento de sorprenderles. &GEdifica una planta de construcción de aeronaves& y utiliza las Unidades de Aire para apoderarte de sus emplazamientos de Defensa Aérea, que son mínimos. &GConstruye una unidad de transporte aéreo Atlas& para transportar tus unidades sobre sus unidades terrestres y conquista la Planta de Hidratación. 
+
+INFORMACIÓN
+La Planta de Hidratación está situada en un terreno fortificado y patrullado. Tus mejores posibilidades de éxito estriban en volar sobre las defensas del Núcleo. Habrá abundantes unidades de tierra pero la defensa antiaérea será mínima. Como de costumbre, la Puerta estará vigilada.
+
+FIN

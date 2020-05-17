@@ -1,0 +1,11 @@
+MISIÓN 13.002CLANB
+Destruir la base del Núcleo localizada sobre la Interfaz de Landown.
+
+&YPRIORIDAD&
+El Núcleo ha establecido un inmenso depósito de reserva de suministros para la guerra y pretende construir una base militar al otro lado de la barrera conocida como "Interfaz de Landown". La abrupta pared de la Interfaz discurre a lo largo de todos los kilómetros por los que Crustal 8 ha desplazado a Crustal 7.
+
+
+INFORMACIÓN
+Tendrás que encontrar la manera de superar la Interfaz de Landown para detener al Núcleo. &GHabrá que ir por el aire, Comandante.&
+
+FIN

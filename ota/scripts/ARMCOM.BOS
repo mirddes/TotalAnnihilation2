@@ -1,0 +1,250 @@
+// Arm Commander KBOT Script
+
+piece torso, ruparm, luparm, rbigflash, nanospray, pelvis, lfirept;
+
+// State variables
+static-var	bMoving, bAiming, bCanAim;
+static-var	aimtype;
+
+#include "exptype.h"
+
+// define signals
+#define SIG_AIM		2
+
+#define	ANIM_VARIABLE   bMoving
+#include "..\anim3d\armcom\walk.bos"
+#include "..\anim3d\armcom\walklegs.bos"
+#undef	ANIM_VARIABLE
+
+// Aiming definitions
+
+#define AIM_NONE	0
+#define AIM_DGUN	1
+
+
+MotionControl()
+	{
+	var	moving, aiming, just_moved;
+
+	// So the stand will get reset
+	just_moved = TRUE;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walklegs();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+
+			just_moved = TRUE;
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+
+			if (just_moved)
+				{
+				move pelvis to y-axis 0 speed [1];
+
+				turn rthigh to x-axis 0 speed <200>;
+				turn rleg to x-axis 0 speed <200>;
+
+				turn lthigh to x-axis 0 speed <200>;
+				turn lleg to x-axis 0 speed <200>;
+
+				if (NOT aiming)
+					{
+					turn torso to x-axis 0 speed <90>;
+					}
+
+				just_moved = FALSE;
+				}
+
+				sleep 100;
+			}
+		}
+	}
+
+Create()
+	{
+	hide rbigflash;
+	hide lfirept;
+	hide nanospray;
+
+	// Initial State
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+
+	aimtype = AIM_NONE;
+
+	// Motion control system
+	start-script MotionControl();
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=torso;
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	piecenum=nanospray;
+	}
+
+RestorePosition()
+	{
+	aimtype = AIM_NONE;
+
+	turn torso to y-axis 0 speed <90>;
+	turn ruparm to x-axis 0 speed <45>;
+	turn luparm to x-axis 0 speed <45>;
+
+	wait-for-turn torso around y-axis;
+	wait-for-turn ruparm around x-axis;
+	wait-for-turn luparm around x-axis;
+
+	bAiming = FALSE;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=torso;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=lfirept;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	// Don't override the big gun
+	if (aimtype == AIM_DGUN)
+	{	return( FALSE ); }
+
+	signal SIG_AIM;					// kill off other aim scripts
+	set-signal-mask SIG_AIM;		// so other scripts can kill us
+
+	// Announce that we would like to aim, and wait until we can
+	bAiming = TRUE;
+	while (NOT bCanAim)
+		{
+		sleep 100;
+		}
+
+	// Aim
+	turn torso to y-axis heading speed <300>;
+	turn luparm to x-axis (0-pitch-<30>) speed <45>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+
+	return( TRUE );
+	}
+
+FirePrimary()
+	{
+	// Muzzle flare
+	show lfirept;
+	sleep 100;
+	hide lfirept;
+	}
+
+AimFromTertiary(piecenum)
+	{
+	piecenum=torso;
+	}
+
+QueryTertiary(piecenum)
+	{
+	piecenum=rbigflash;
+	}
+
+AimTertiary(heading,pitch)
+	{
+	signal SIG_AIM;				// kill off other aim scripts
+	set-signal-mask SIG_AIM;	// so other scripts can kill us
+
+	// Announce that we would like to aim, and wait until we can
+	aimtype = AIM_DGUN;
+	bAiming = TRUE;
+	while (NOT bCanAim)
+		{
+		sleep 100;
+		}
+
+	// Aim
+	turn torso to y-axis heading speed <300>;
+	turn ruparm to x-axis (0 - pitch - <24>) speed <45>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn ruparm around x-axis;
+
+	return(TRUE);
+	}
+
+FireTertiary()
+	{
+	// Muzzle flare
+	show rbigflash;
+	sleep 100;
+	hide rbigflash;
+	}
+
+StartBuilding(heading,pitch)
+	{
+	// Announce that we would like to aim, and wait until we can
+	bAiming = TRUE;
+	while (NOT bCanAim)
+		{
+		sleep 100;
+		}
+
+	// Aim
+	turn torso to y-axis heading speed <300>;
+	turn luparm to x-axis (0 - pitch - <30>) speed <45>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+
+	// Announce that we are ready
+	set INBUILDSTANCE to TRUE;
+	}
+
+TargetCleared(which)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	call-script RestorePosition();
+	}
+
+StopBuilding()
+	{
+	// We are no longer in a position to build
+	set INBUILDSTANCE to FALSE;
+
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	call-script RestorePosition();
+	}

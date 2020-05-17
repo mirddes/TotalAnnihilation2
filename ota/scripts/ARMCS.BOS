@@ -1,0 +1,171 @@
+// Arm Construction Ship
+
+piece base, beam;
+
+static-var	buildheading;
+
+#include "EXPtype.h"
+#include "SFXtype.h"
+#include "StateChg.h"	// First time (of two)
+
+#define ANIM_VARIABLE TRUE
+#define	SIG_WAKE		2		// Signal mask for making a wake
+
+#include "..\anim3d\armcs\activatescr.bos"
+#include "..\anim3d\armcs\deactivatescr.bos"
+
+// Smoking damage
+#define SMOKEPIECE1 base
+#include "smokeunit.h"
+
+StartMoving()
+	{
+	signal SIG_WAKE;			// Kill anybody else that may be active
+	set-signal-mask SIG_WAKE;	// Die like a good servant when asked
+
+	while (TRUE)
+		{
+		// Make a bit of a wake
+		emit-sfx SFXTYPE_WAKE1 from wake1;
+		emit-sfx SFXTYPE_WAKE2 from wake2;
+
+		// Do this on an interval of x
+		sleep 150;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_WAKE;				// Kill anybody that may be active
+	}
+
+Go()
+	{
+	call-script activatescr();
+
+	turn turret to y-axis buildheading speed <160>;
+	wait-for-turn turret around y-axis;
+
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+
+	turn turret to y-axis <0> speed <160>;
+	wait-for-turn turret around y-axis;
+
+	call-script deactivatescr();
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	buildheading = <0>;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding(heading)
+	{
+	buildheading = heading;
+	start-script RequestState( ACTIVE );
+	}
+
+StopBuilding()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	piecenum=1;
+	}
+
+TargetHeading( heading )
+	{
+	buildheading = 0 - heading;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode arm type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode beam type	BITMAPONLY | BITMAP3;
+		explode door1 type	BITMAPONLY | BITMAP4;
+		explode door2 type	BITMAPONLY | BITMAP5;
+		explode nano type	BITMAPONLY | BITMAP1;
+		explode plate type	BITMAPONLY | BITMAP2;
+		explode turret type	BITMAPONLY | BITMAP3;
+		explode wake1 type	BITMAPONLY | BITMAP4;
+		explode wake2 type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode arm type	FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode beam type	FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode door1 type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+		explode door2 type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode nano type	FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode plate type	BITMAPONLY | BITMAP2;
+		explode turret type	FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode wake1 type	FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode wake2 type	FALL | EXPLODE_ON_HIT | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode arm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode beam type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door1 type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+		explode door2 type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode nano type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode plate type	BITMAPONLY | BITMAP2;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode arm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode beam type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door1 type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode door2 type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode nano type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode plate type	BITMAPONLY | BITMAP2;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode wake1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode wake2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	return( 0 );
+	}

@@ -1,0 +1,654 @@
+[lushfoliage01]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant01;
+	seqnamereclamate=lushplant01rec;
+      energy=75;
+
+	seqnameburn=lushplant01burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage02]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant02;
+	seqnamereclamate=lushplant02rec;
+      energy=75;
+
+	seqnameburn=lushplant02burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage03]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant03;
+	seqnamereclamate=lushplant03rec;
+      energy=75;
+
+	seqnameburn=lushplant03burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage04]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant04;
+	seqnamereclamate=lushplant04rec;
+      energy=75;
+
+	seqnameburn=lushplant04burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage05]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant05;
+	seqnamereclamate=lushplant05rec;
+      energy=75;
+
+	seqnameburn=lushplant05burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage06]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant06;
+	seqnamereclamate=lushplant06rec;
+      energy=75;
+
+	seqnameburn=lushplant06burn;
+	featureburnt=lushpsmudge01;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage07]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant07;
+	seqnamereclamate=lushplant07rec;
+      energy=75;
+
+	seqnameburn=lushplant07burn;
+	featureburnt=lushpsmudge02;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage2-01]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant201;
+	seqnameshad=lushpshad201;
+	seqnamereclamate=lushplant201rec;
+      energy=75;
+
+	seqnameburn=lushplant201burn;
+	featureburnt=lushpsmudge01;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge01;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage2-02]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant202;
+	seqnameshad=lushpshad202;
+	seqnamereclamate=lushplant202rec;
+      energy=75;
+
+	seqnameburn=lushplant202burn;
+	featureburnt=lushpsmudge02;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage2-03]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant203;
+	seqnameshad=lushpshad203;
+	seqnamereclamate=lushplant203rec;
+      energy=75;
+
+	seqnameburn=lushplant203burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage2-04]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant204;
+	seqnameshad=lushpshad204;
+	seqnamereclamate=lushplant204rec;
+      energy=75;
+
+	seqnameburn=lushplant204burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushfoliage2-05]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushplant205;
+	seqnameshad=lushpshad205;
+	seqnamereclamate=lushplant205rec;
+      energy=75;
+
+	seqnameburn=lushplant205burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushvine01]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushvine01;
+	seqnameshad=lushvineshad01;
+	seqnamereclamate=lushvine01rec;
+      energy=75;
+
+	seqnameburn=lushvine01burn;
+	featureburnt=lushpsmudge04;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushvine02]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushvine02;
+	seqnameshad=lushvineshad02;
+	seqnamereclamate=lushvine02rec;
+      energy=75;
+
+	seqnameburn=lushvine02burn;
+	featureburnt=lushpsmudge02;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[lushvine03]
+	{
+	world=lush;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=lushfoliage;
+	seqname=lushvine03;
+	seqnameshad=lushvineshad03;
+	seqnamereclamate=lushvine03rec;
+      energy=75;
+
+	seqnameburn=lushvine03burn;
+	featureburnt=lushpsmudge03;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=;
+	featuredead=lushpsmudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=lushpsmudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Lushpsmudge01]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushfoliage;
+	seqname=lushpsmudge01;
+	
+	featuredead=lushpsmudge01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Lushpsmudge02]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushfoliage;
+	seqname=lushpsmudge02;
+	
+	featuredead=lushpsmudge02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Lushpsmudge03]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushfoliage;
+	seqname=lushpsmudge03;
+	
+	featuredead=lushpsmudge03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Lushpsmudge04]
+	{
+	world=Lush;
+	description=Damaged Terrain;
+	category=smudges;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lushfoliage;
+	seqname=lushpsmudge04;
+	
+	featuredead=lushpsmudge04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

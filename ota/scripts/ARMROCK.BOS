@@ -1,0 +1,253 @@
+// Arm Rocket Infantry - Rocko
+
+piece torso,lbarrel,lmisspod,rshield;
+
+// State variables
+static-var	bMoving, bAiming, bCanAim;
+static-var	restore_delay;
+
+// define signals
+#define SIG_MOVEMENT	2
+#define SIG_AIM		4
+
+
+#define	ANIM_VARIABLE   bMoving
+#include "..\anim3d\armrock\walk.bos"
+#include "..\anim3d\armrock\walklegs.bos"
+#undef	ANIM_VARIABLE
+
+// Smoking damage
+#define SMOKEPIECE1 torso
+#include "smokeunit.h"
+
+MotionControl()
+	{
+	var	moving, aiming, just_moved;
+
+	// So the stand will get reset
+	just_moved = TRUE;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walklegs();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+
+			just_moved = TRUE;
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+
+			if (just_moved)
+				{
+				#define RESTORESPEED <200>
+
+				move pelvis to y-axis 0 speed [1];
+
+				turn rthigh to x-axis 0 speed RESTORESPEED;
+				turn rleg to x-axis 0 speed RESTORESPEED;
+				turn rfoot to x-axis 0 speed RESTORESPEED;
+
+				turn lthigh to x-axis 0 speed RESTORESPEED;
+				turn lleg to x-axis 0 speed RESTORESPEED;
+				turn lfoot to x-axis 0 speed RESTORESPEED;
+
+
+				if (NOT aiming)
+					{
+					turn torso to y-axis 0 speed <90>;
+					turn lmisspod to x-axis 0 speed RESTORESPEED;
+					}
+
+				#undef RESTORESPEED
+
+				just_moved = FALSE;
+				}
+
+				sleep 100;
+			}
+		}
+	}
+
+Create()
+	{
+	// Initial State
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+
+	restore_delay = 3000;
+
+	// Motion control system
+	start-script MotionControl();
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+RestoreAfterDelay()
+	{
+	// Wait for something to happen
+	sleep restore_delay;
+
+	// If we got this far without being killed, then nothing is
+	// happening.  Restore the standard position
+	turn torso to y-axis 0 speed <90>;
+	turn lmisspod to x-axis 0 speed <45>;
+
+	wait-for-turn torso around y-axis;
+	wait-for-turn lmisspod around x-axis;
+	bAiming = FALSE;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=0;		// Aim from the torso
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=1;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;					// kill off other aim scripts
+	set-signal-mask SIG_AIM;		// so other scripts can kill us
+
+	bAiming = TRUE;
+	while (NOT bCanAim)
+		{
+		sleep 100;
+		}
+	// Aim
+	turn torso to y-axis heading speed <130>;
+	turn lmisspod to x-axis <-90> speed <95>;
+
+	wait-for-turn torso around y-axis;
+	wait-for-turn lmisspod around x-axis;
+
+	start-script RestoreAfterDelay();
+
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	// Recoil
+	move lbarrel to y-axis [1.5] speed [25];
+	wait-for-move lbarrel along y-axis;
+	move lbarrel to y-axis [0] speed [0.75];
+	}
+
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode ground type	BITMAPONLY | BITMAP1;
+		explode lbarrel type	BITMAPONLY | BITMAP2;
+		explode lfirept2 type	BITMAPONLY | BITMAP3;
+		explode lfoot type	BITMAPONLY | BITMAP4;
+		explode lleg type	BITMAPONLY | BITMAP5;
+		explode lmisspod type	BITMAPONLY | BITMAP1;
+		explode lthigh type	BITMAPONLY | BITMAP2;
+		explode pelvis type	BITMAPONLY | BITMAP3;
+		explode rfoot type	BITMAPONLY | BITMAP4;
+		explode rleg type	BITMAPONLY | BITMAP5;
+		explode rshield type	BITMAPONLY | BITMAP1;
+		explode rthigh type	BITMAPONLY | BITMAP2;
+		explode torso type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode ground type	FALL | BITMAP1;
+		explode lbarrel type	FALL | BITMAP2;
+		explode lfirept2 type	FALL | BITMAP3;
+		explode lfoot type	FALL | BITMAP4;
+		explode lleg type	FALL | BITMAP5;
+		explode lmisspod type	FALL | BITMAP1;
+		explode lthigh type	FALL | BITMAP2;
+		explode pelvis type	FALL | BITMAP3;
+		explode rfoot type	FALL | BITMAP4;
+		explode rleg type	FALL | BITMAP5;
+		explode rshield type	FALL | BITMAP1;
+		explode rthigh type	FALL | BITMAP2;
+		explode torso type	SHATTER | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lfirept2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lmisspod type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rshield type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode torso type	SHATTER | BITMAP3;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lbarrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lfirept2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lmisspod type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rshield type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode torso type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}

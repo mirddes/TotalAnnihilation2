@@ -1,0 +1,625 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  RayTurret, RayGun, RayFocus, RayFire, M1, M2, M3, M4,
+       Flare, pelvis, rlleg, rfoot, llleg, lfoot, lupleg, rupleg, 
+       base, MHolder, MF1, MF2, MF3, MF4, LArm, RArm,
+       barrelsR, barrelsL, flareR, flareL, RS, LS, torso, r1, l1;
+
+static-var  busy_1, gun_2, gun_3, Moving_4, restore_5, Aiming_6, notmoved_7, Terrain_8;
+
+RestoreAfterDelay()
+{
+	sleep restore_5;
+	if( Aiming_6 AND ( restore_5 > 1 ) )
+	{
+		Aiming_6 = FALSE;
+		signal 2;
+		signal 4;
+		signal 16;
+		move RayFocus to z-axis [0] speed [6];
+		turn RayGun to y-axis <0> speed <70>;
+		turn RayGun to x-axis <0> speed <40>;
+		turn torso to y-axis <0> speed <80>;
+		turn RArm to x-axis <0> speed <50>;
+		turn RArm to x-axis <0> speed <50>;
+		turn barrelsR to z-axis <0> speed <300>;
+		turn barrelsR to z-axis <0> speed <300>;
+		move MHolder to z-axis [0] speed [0.75];
+		move MF1 to y-axis [0] speed [3];
+		move MF2 to y-axis [0] speed [3];
+		move MF3 to y-axis [0] speed [3];
+		move MF4 to y-axis [0] speed [3];
+		move M1 to y-axis [0] speed [2];
+		move M2 to y-axis [0] speed [2];
+		move M3 to y-axis [0] speed [2];
+		move M4 to y-axis [0] speed [2];
+		sleep 500;
+		if( !Aiming_6 )
+		{
+			stop-spin RayFocus around z-axis;
+			turn RS to z-axis <-90> speed <180>;
+			turn LS to z-axis <90> speed <180>;
+			move RS to x-axis [-1.4] speed [2.8];
+			move LS to x-axis [1.4] speed [2.8];
+			move RS to z-axis [-1] speed [1];
+			move LS to z-axis [-1] speed [1];
+		}
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( Terrain_8 <= 3 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from pelvis;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( ( restore_5 == 1 ) AND Aiming_6 )
+		{
+			restore_5 = 8000 - sleeptime;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	hide Flare;
+	hide FlareR;
+	hide FlareL;
+	dont-cache Flare;
+	dont-cache RayGun;
+	dont-cache RayFocus;
+	dont-cache RayFire;
+	spin Flare around z-axis speed <500>;
+	turn RS to z-axis <-90> NOW;
+	turn LS to z-axis <90> NOW;
+	move RS to z-axis [-1] NOW;
+	move LS to z-axis [-1] NOW;
+	move RS to x-axis [-1.4] NOW;
+	move LS to x-axis [1.4] NOW;
+	busy_1 = 0;
+	gun_2 = 0;
+	gun_3 = 0;
+	Moving_4 = 0;
+	restore_5 = 0;
+	Aiming_6 = 0;
+	notmoved_7 = 1;
+	set ARMORED to TRUE;
+	/*sleep 100;
+	set GRANT_UNITINFO to 1;
+	get SET_UNITINFO(uiHealTime,0);*/
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	/*get SET_UNITINFO(uiHealTime,20);
+	set GRANT_UNITINFO to 0;
+	if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+StartMoving()
+{
+	Moving_4 = TRUE;
+	if( busy_1 )
+	{
+		return(0);
+	}
+	busy_1 = 1;
+	while (Moving_4)
+	{
+		wait-for-turn rlleg around x-axis;//13.5
+		turn rupleg to x-axis <-30> speed <120>;//14
+		turn rfoot to x-axis <35> speed <180>;//14
+		turn base to z-axis <-3> speed <30>;//14
+		move rfoot to y-axis (get GROUND_HEIGHT(get PIECE_XZ(r1)) - get PIECE_Y(r1)) speed [40];//14
+		wait-for-turn rlleg around x-axis;//14.5
+		if (Moving_4)
+		{
+			turn llleg to x-axis <-35> speed <280>;//1
+			turn lfoot to x-axis <15> speed <280>;//1
+			move pelvis to y-axis [-3] speed [30];//15
+			turn rupleg to x-axis <-20> speed <180>;//15
+			turn rfoot to x-axis <20> speed <360>;//15
+			wait-for-turn rupleg around x-axis;//15.5
+		}
+		if (Moving_4)
+		{
+			turn base to z-axis <0> speed <6>;//16
+			turn rupleg to x-axis <20> speed <90>;//16
+			turn rlleg to x-axis <0> speed <45>;//16
+			turn rfoot to x-axis <-10> speed <90>;//16
+			wait-for-move pelvis along y-axis;//16
+			move pelvis to y-axis [2] speed [20];//16
+			wait-for-turn llleg around x-axis;//1.5
+			if ( Terrain_8 <= 3 )
+			{
+				emit-sfx 256 | 3 from rlleg;
+				emit-sfx 256 | 3 from rfoot;
+				emit-sfx 256 | 3 from LUpLeg;
+			}
+		}
+		if (Moving_4)
+		{
+			turn lupleg to x-axis <-15> speed <180>;//2
+			turn lfoot to x-axis <35> speed <52>;//2
+			wait-for-turn rupleg around x-axis;//16.5
+		}
+		if (Moving_4)
+		{
+			turn rupleg to x-axis <35> speed <45>;//17
+			turn rlleg to x-axis <20> speed <60>;//17
+			turn rfoot to x-axis <-40> speed <180>;//17
+			move pelvis to y-axis [0] speed [10];//17
+			wait-for-turn lupleg around x-axis;//2.5
+			if ( Terrain_8 <= 3 )
+			{
+				emit-sfx 256 | 3 from rlleg;
+				emit-sfx 256 | 3 from llleg;
+			}
+		}
+		if (Moving_4)
+		{
+			turn lupleg to x-axis <-40> speed <180>;//3
+			turn llleg to x-axis <20> speed <198>;//3
+			turn lfoot to x-axis <45> speed <36>;//3
+			wait-for-turn rupleg around x-axis;//17.5
+			wait-for-turn llleg around x-axis;//3.5
+		}
+		if (Moving_4)
+		{
+			turn lupleg to x-axis <-30> speed <120>;//4
+			turn lfoot to x-axis <35> speed <180>;//4
+			turn base to z-axis <3> speed <30>;//4
+			move lfoot to y-axis (get GROUND_HEIGHT(get PIECE_XZ(l1)) - get PIECE_Y(l1)) speed [40];//4
+			wait-for-turn llleg around x-axis;//4.5
+		}
+		if (Moving_4)
+		{
+			turn rlleg to x-axis <-35> speed <280>;//11
+			turn rfoot to x-axis <15> speed <280>;//11
+			move pelvis to y-axis [-3] speed [30];//5
+			turn lupleg to x-axis <-20> speed <180>;//5
+			turn lfoot to x-axis <20> speed <360>;//5
+			wait-for-turn lupleg around x-axis;//5.5
+			if ( Terrain_8 <= 3 )
+			{
+				emit-sfx 256 | 3 from llleg;
+				emit-sfx 256 | 3 from lfoot;
+				emit-sfx 256 | 3 from RUpLeg;
+			}
+		}
+		if (Moving_4)
+		{
+			turn base to z-axis <0> speed <6>;//6
+			turn lupleg to x-axis <20> speed <90>;//6
+			turn llleg to x-axis <0> speed <45>;//6
+			turn lfoot to x-axis <-10> speed <90>;//6
+			wait-for-move pelvis along y-axis;//6
+			move pelvis to y-axis [2] speed [20];//6
+			wait-for-turn rlleg around x-axis;//11.5
+		}
+		if (Moving_4)
+		{
+			turn rupleg to x-axis <-15> speed <180>;//12
+			turn rfoot to x-axis <35> speed <52>;//12
+			wait-for-turn lupleg around x-axis;//6.5
+			if ( Terrain_8 <= 3 )
+			{
+				emit-sfx 256 | 3 from rlleg;
+				emit-sfx 256 | 3 from llleg;
+			}
+		}
+		if (Moving_4)
+		{
+			turn lupleg to x-axis <35> speed <45>;//7
+			turn llleg to x-axis <20> speed <60>;//7
+			turn lfoot to x-axis <-40> speed <180>;//7
+			move pelvis to y-axis [0] speed [10];//7
+			wait-for-turn rupleg around x-axis;//12.5
+		}
+		if (Moving_4)
+		{
+			turn rupleg to x-axis <-40> speed <180>;//13
+			turn rlleg to x-axis <20> speed <198>;//13
+			turn rfoot to x-axis <45> speed <36>;//13
+			wait-for-turn lupleg around x-axis;//7.5
+		}
+	}
+	busy_1 = 0;
+	turn base to z-axis <0> speed <12>;
+	move pelvis to y-axis [0] speed [20];
+	turn rupleg to x-axis <0> speed <90>;
+	turn rlleg to x-axis <0> speed <90>;
+	turn rfoot to x-axis <0> speed <90>;
+	turn lupleg to x-axis <0> speed <90>;
+	turn llleg to x-axis <0> speed <90>;
+	turn lfoot to x-axis <0> speed <90>;
+	if ( Terrain_8 <= 3 )
+	{
+		emit-sfx 256 | 3 from rlleg;
+		emit-sfx 256 | 3 from llleg;
+		emit-sfx 256 | 3 from rfoot;
+		emit-sfx 256 | 3 from lfoot;
+	}
+}
+
+StopMoving()
+{
+	Moving_4 = 0;
+	notmoved_7 = 1;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Terrain_8 = Func_Var_1;
+	return (0);
+}
+
+GetReady()
+{
+	if( !Aiming_6 )
+	{
+		Aiming_6 = 1;
+		set-signal-mask 0;
+		move RayFocus to z-axis [4] speed [8];
+		move MHolder to z-axis [-1.5] speed [1];
+		move RS to x-axis [0] speed [5.6];
+		move LS to x-axis [0] speed [5.6];
+		move RS to z-axis [0] speed [6];
+		move LS to z-axis [0] speed [6];
+		sleep 250;
+		turn RS to z-axis <0> speed <180>;
+		turn LS to z-axis <0> speed <180>;
+		sleep 100;
+		move M1 to y-axis [2] speed [2.7];
+		sleep 50;
+		move M2 to y-axis [2] speed [2.7];
+		sleep 50;
+		move M3 to y-axis [2] speed [2.7];
+		sleep 50;
+		move M4 to y-axis [2] speed [2.7];
+		sleep 250;
+		move MF1 to y-axis [2] speed [4];
+		move MF2 to y-axis [2] speed [4];
+		move MF3 to y-axis [2] speed [4];
+		move MF4 to y-axis [2] speed [4];
+	}
+	return(0);
+}
+	
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !Aiming_6 )
+	{
+		start-script GetReady();
+	}
+	signal 2;
+	set-signal-mask 2;
+	turn RayGun to y-axis heading speed <120>;
+	turn RayGun to x-axis <0> - pitch speed <50>;
+	wait-for-move RayFocus along z-axis;
+	spin RayFocus around z-axis speed <500> accelerate <300>;
+	wait-for-turn RayGun around y-axis;
+	wait-for-turn RayGun around x-axis;
+	Restore_5 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	show Flare;
+	stop-spin RayFocus around z-axis;
+	move RayFire to z-axis [-5] speed [40];
+	sleep 200;
+	hide Flare;
+	move RayFire to z-axis [0] speed [8];
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Flare;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = raygun;
+}
+
+AimTertiary(heading, pitch)
+{
+	if( !Aiming_6 )
+	{
+		start-script GetReady();
+		sleep 500;
+	}
+	signal 4;
+	set-signal-mask 4;
+	turn torso to y-axis heading speed <100>;
+	turn RArm to x-axis <0> - pitch speed <40>;
+	turn LArm to x-axis <0> - pitch speed <40>;
+	wait-for-move RS along x-axis;
+	wait-for-move LS along x-axis;
+	wait-for-turn RS around z-axis;
+	wait-for-turn LS around z-axis;
+	wait-for-turn torso around y-axis;
+	wait-for-turn RArm around x-axis;
+	wait-for-turn LArm around x-axis;
+	Restore_5 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	if( !gun_2 )
+	{
+		turn barrelsR to z-axis 0 NOW;
+		show flareR;
+		sleep 120;
+		hide flareR;
+		turn barrelsR to z-axis <90> speed <600>;
+	}
+	if( gun_2 )
+	{
+		turn barrelsL to z-axis 0 NOW;
+		show flareL;
+		sleep 120;
+		hide flareL;
+		turn barrelsL to z-axis <90> speed <600>;
+	}
+	gun_2 = !gun_2;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = torso;
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_2 )
+	{
+		piecenum = flareR;
+		return(0);
+	}
+	piecenum = flareL;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = pelvis;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_3 == 0 )
+	{
+		piecenum = MF1;
+	}
+	if( gun_3 == 1 )
+	{
+		piecenum = MF2;
+	}
+	if( gun_3 == 2 )
+	{
+		piecenum = MF3;
+	}
+	if( gun_3 > 2 )
+	{
+		piecenum = MF4;
+	}
+}
+
+FireSecondary()
+{
+	if( gun_3 == 0 )
+	{
+		gun_3 = 1;
+		move MF1 to y-axis [-1.5] NOW;
+		sleep 250;
+		move MF1 to y-axis [2] speed [3];
+		return (0);
+	}
+	if( gun_3 == 1 )
+	{
+		gun_3 = 2;
+		move MF2 to y-axis [-1.5] NOW;
+		sleep 250;
+		move MF2 to y-axis [2] speed [3];
+		return (0);
+	}
+	if( gun_3 == 2 )
+	{
+		gun_3 = 3;
+		move MF3 to y-axis [-1.5] NOW;
+		sleep 250;
+		move MF3 to y-axis [2] speed [3];
+		return (0);
+	}
+	if( gun_3 > 2 )
+	{
+		gun_3 = 0;
+		move MF4 to y-axis [-1.5] NOW;
+		sleep 250;
+		move MF4 to y-axis [2] speed [3];
+		return (0);
+	}
+}
+
+AimSecondary(heading, pitch)
+{
+	if( !Aiming_6 )
+	{
+		start-script GetReady();
+		sleep 1000;
+	}
+	signal 16;
+	set-signal-mask 16;
+	Restore_5 = 1;
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	hide Flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode raygun type BITMAPONLY | BITMAP2;
+		explode lfoot type BITMAPONLY | BITMAP4;
+		explode M1 type BITMAPONLY | BITMAP5;
+		explode M2 type BITMAPONLY | BITMAP5;
+		explode M3 type FALL | BITMAP5;
+		explode M4 type FALL | BITMAP5;
+		explode MHolder type SHATTER | BITMAP2;
+		explode llleg type BITMAPONLY | BITMAP1;
+		explode lupleg type BITMAPONLY | BITMAP2;
+		explode pelvis type BITMAPONLY | BITMAP3;
+		explode rfoot type BITMAPONLY | BITMAP4;
+		explode rlleg type BITMAPONLY | BITMAP1;
+		explode rupleg type BITMAPONLY | BITMAP2;
+		explode RayTurret type BITMAPONLY | BITMAP5;
+		explode RayFire type FALL | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type FALL | BITMAP1;
+		explode raygun type SHATTER | BITMAP2;
+		explode lfoot type BITMAPONLY | BITMAP4;
+		explode MHolder type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		explode M1 type FALL | BITMAP5;
+		explode M2 type FALL | BITMAP5;
+		explode M3 type FALL | BITMAP5;
+		explode M4 type FALL | BITMAP5;
+		explode llleg type BITMAPONLY | BITMAP1;
+		explode lupleg type BITMAPONLY | BITMAP2;
+		explode pelvis type BITMAPONLY | BITMAP3;
+		explode rfoot type BITMAPONLY | BITMAP4;
+		explode rlleg type BITMAPONLY | BITMAP1;
+		explode rupleg type BITMAPONLY | BITMAP2;
+		explode RayTurret type BITMAPONLY | BITMAP5;
+		explode RayFire type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode raygun type SHATTER | BITMAP2;
+		explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode MHolder type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+		explode M1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode M2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode M3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode M4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode llleg type BITMAPONLY | BITMAP1;
+		explode lupleg type BITMAPONLY | BITMAP2;
+		explode pelvis type BITMAPONLY | BITMAP3;
+		explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rlleg type BITMAPONLY | BITMAP1;
+		explode rupleg type BITMAPONLY | BITMAP2;
+		explode RayTurret type BITMAPONLY | BITMAP5;
+		explode RayFire type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode raygun type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode MHolder type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode M1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode M2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode M3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode M4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode llleg type BITMAPONLY | BITMAP1;
+	explode lupleg type BITMAPONLY | BITMAP2;
+	explode pelvis type BITMAPONLY | BITMAP3;
+	explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rlleg type BITMAPONLY | BITMAP1;
+	explode rupleg type BITMAPONLY | BITMAP2;
+	explode RayTurret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode RayFire type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

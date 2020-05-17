@@ -1,0 +1,46 @@
+[UNITINFO]
+	{
+	UnitName=ARMZIG;
+	Version=1;
+	SIDE=ARM;
+	Objectname=ARMZIG;
+	Designation=SUM-MARDUK;
+	Name=Ziggurat;
+	Description=Panoptic Intel Array (Cloakable);
+	FootprintX=16;
+	FootprintZ=16;
+	BuildCostEnergy=1877952;
+	BuildCostMetal=29160;
+	MaxDamage=18900;
+	MaxWaterDepth=0;
+	MaxSlope=10;
+	EnergyUse=0;
+	BuildTime=540860;
+	WorkerTime=0;
+	BMcode=0;
+	Builder=1;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=0;
+	SightDistance=1024;
+	SoundCategory=ARM_SHGEN;
+	EnergyStorage=0;
+	MetalStorage=0;
+	Corpse=armzig_dead;
+	ExplodeAs=NUCLEAR_BLAST;
+	SelfDestructAs=NUCLEAR_BLASTSML;
+	Category=ARM BIG NAIR NSUB NSHP NLND ALL LEV4;
+	TEDClass=SPECIAL;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo oooooooooooooooo;
+	UnitNumber=82512;
+	activatewhenbuilt=0;
+	Weapon1=RANGE_3072;
+	Weapon2=RANGE_6144;
+	Weapon3=RANGE_12288;
+	antiweapons=1;
+	DamageModifier=0.25;
+	CloakCost=2500;
+	mincloakdistance=160;
+//	istargetingupgrade=1;
+	}

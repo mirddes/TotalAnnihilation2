@@ -1,0 +1,163 @@
+// Arm Advanced Shipyard Script
+
+piece base,slip,beam1,beam2,piling1,piling2,explode1,explode2;
+
+static-var spray,unitviewer,next_hit;
+
+#define	SIG_ACTIVATE	2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armasy\activatescr.bos"
+#include "..\anim3d\armasy\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "yard.h"
+
+Go()
+	{
+	dont-cache beam1;
+	dont-cache beam2;
+	dont-cache nano1;
+	dont-cache nano2;
+	dont-cache piling1;
+	dont-cache piling2;
+	dont-cache slip;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache beam1;
+	cache beam2;
+	cache nano1;
+	cache nano2;
+	cache piling1;
+	cache piling2;
+	cache slip;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	dont-shade beam1;
+	dont-shade beam2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade piling1;
+	dont-shade piling2;
+	dont-shade slip;
+	spray=0;
+	unitviewer = FALSE;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	if( spray == 0 )
+		{
+		piecenum=beam1;
+		}
+	if( spray != 0 )
+		{
+		piecenum=beam2;
+		}
+	spray = !spray;
+	}
+
+Demo()
+	{
+	unitviewer = TRUE;
+	}
+
+Activate()
+	{
+	signal SIG_ACTIVATE;
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	if (!unitviewer)
+		{
+		sleep 5000;
+		}
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+QueryBuildInfo(piecenum)
+	{
+	piecenum=slip;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=piling1;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	BITMAPONLY | BITMAP2;
+		explode beam2 type	BITMAPONLY | BITMAP3;
+		explode explode1 type	BITMAPONLY | BITMAP2;
+		explode explode2 type	BITMAPONLY | BITMAP3;
+		explode nano1 type	BITMAPONLY | BITMAP4;
+		explode nano2 type	BITMAPONLY | BITMAP5;
+		explode piling1 type	BITMAPONLY | BITMAP1;
+		explode piling2 type	BITMAPONLY | BITMAP2;
+		explode slip type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	BITMAPONLY | BITMAP2;
+		explode beam2 type	BITMAPONLY | BITMAP3;
+		explode explode1 type	BITMAPONLY | BITMAP2;
+		explode explode2 type	BITMAPONLY | BITMAP3;
+		explode nano1 type	BITMAPONLY | BITMAP4;
+		explode nano2 type	BITMAPONLY | BITMAP5;
+		explode piling1 type	BITMAPONLY | BITMAP1;
+		explode piling2 type	BITMAPONLY | BITMAP2;
+		explode slip type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	// If severity is over 50, the unit just disintigrated.
+	corpsetype = 3;
+
+	explode base type	BITMAPONLY | BITMAP1;
+	explode beam1 type	BITMAPONLY | BITMAP2;
+	explode beam2 type	BITMAPONLY | BITMAP3;
+	explode explode1 type	BITMAPONLY | BITMAP2;
+	explode explode2 type	BITMAPONLY | BITMAP3;
+	explode nano1 type	BITMAPONLY | BITMAP4;
+	explode nano2 type	BITMAPONLY | BITMAP5;
+	explode piling1 type	BITMAPONLY | BITMAP1;
+	explode piling2 type	BITMAPONLY | BITMAP2;
+	explode slip type	BITMAPONLY | BITMAP3;
+	return( 0 );
+	}

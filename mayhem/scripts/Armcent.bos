@@ -1,0 +1,222 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, door1, door2, lock, tube1, tube2, tube3, tube4;
+
+static-var  gun_1, state_2, request_3, busy_4, on_5, reload_6;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_4 )
+	{
+		return (0);
+	}
+	busy_4 = 1;
+	while( request_3 != state_2 )
+	{
+		if( request_3 and !state_2 )
+		{
+			move lock to x-axis [-4] speed [25];
+			sleep 160;
+			set ARMORED to 0;
+			turn door1 to z-axis <90> speed <120>;
+			turn door2 to z-axis <-90> speed <120>;
+			sleep 750;
+			move door1 to y-axis [-4] speed [25];
+			move door2 to y-axis [-4] speed [25];
+			sleep 160;
+			state_2 = 1;
+		}
+		if( !request_3 and state_2 )
+		{
+			state_2 = 0;
+			move door1 to y-axis [0] speed [16];
+			move door2 to y-axis [0] speed [16];
+			sleep 250;
+			turn door1 to z-axis <0> speed <90>;
+			turn door2 to z-axis <0> speed <90>;
+			sleep 1000;
+			move lock to x-axis [0] speed [25];
+			set ARMORED to 1;
+		}
+		sleep 200;
+	}
+	busy_4 = 0;
+}
+
+Create()
+{
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade lock;
+	state_2 = 0;
+	gun_1 = base;
+	request_3 = 0;
+	busy_4 = 0;
+	on_5 = 1;
+	reload_6 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 250;
+	}
+	start-script SmokeUnit();
+	set ARMORED to 1;
+}
+
+Activate()
+{
+	on_5 = 1;
+}
+
+Deactivate()
+{
+	on_5 = 0;
+	if( state_2 )
+	{
+		signal 2;
+		request_3 = 0;
+		start-script RequestState();
+	}
+}
+
+RestoreAfterDelay()
+{
+	sleep 4000;
+	if( state_2 )
+	{
+		request_3 = 0;
+		start-script RequestState();
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	while( ( !on_5 ) OR reload_6 )
+	{
+		sleep 250;
+	}
+	request_3 = 1;
+	start-script RequestState();
+	signal 2;
+	set-signal-mask 2;
+	while( !state_2 )
+	{
+		sleep 250;
+	}
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	++gun_1;
+	if( gun_1 == 4 )
+	{
+		reload_6 = 1;
+		sleep 500;
+		request_3 = 0;
+		start-script RequestState();
+		sleep 7000;
+		reload_6 = 0;
+		gun_1 = 0;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = tube1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = tube2;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = tube3;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = tube4;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide tube1;
+	hide tube2;
+	hide tube3;
+	hide tube4;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode lock type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode lock type FALL | BITMAP1;
+		explode base type SHATTER | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode lock type FALL | SMOKE | BITMAP2;
+		explode base type SHATTER | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode lock type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode door1 type BITMAPONLY | BITMAP2;
+	explode door2 type BITMAPONLY | BITMAP2;
+}

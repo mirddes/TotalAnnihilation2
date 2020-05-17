@@ -1,0 +1,36 @@
+[CORGORG_DEAD]
+{
+world=All Worlds;
+description=Gorgon Wreckage;
+category=CORE_corpses;
+object=CORGORG_DEAD;
+featuredead=CORGORG_HEAP;
+footprintx=2;
+footprintz=2;
+height=30;
+blocking=1;
+hitdensity=600;
+metal=5015;
+damage=10000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORGORG_HEAP]
+{
+world=All Worlds;
+description=Gorgon Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2508;
+damage=10100;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

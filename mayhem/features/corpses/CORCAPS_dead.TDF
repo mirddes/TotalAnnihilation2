@@ -1,0 +1,35 @@
+[corcaps_dead]
+{
+world=All Worlds;
+description=Omen Wreckage;
+category=core_corpses;
+object=corcaps_dead;
+featuredead=corcaps_heap;
+footprintx=8;
+footprintz=8;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=39225;
+damage=28000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corcaps_heap]
+{
+world=All Worlds;
+description=Omen Wreckage;
+category=core_corpses;
+object=6x6c;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=19613;
+damage=27000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

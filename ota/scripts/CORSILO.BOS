@@ -1,0 +1,199 @@
+// Core Missile Silo
+
+piece base, missile;
+
+static-var	ready, restore_delay;
+
+#define SIG_AIM		2
+#define AIMSPEED	<30>
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\corsilo\activatescr.bos"
+#include "..\anim3d\corsilo\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	show missile;
+	call-script activatescr();
+	ready = TRUE;
+	}
+
+Stop()
+	{
+	ready = FALSE;
+	sleep 4000;
+	call-script deactivatescr();
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	call-script InitState();
+	ready = FALSE;
+	dont-shade collar;
+	dont-shade doora1;
+	dont-shade doora2;
+	dont-shade doorb1;
+	dont-shade doorb2;
+	dont-shade doorb3;
+	dont-shade doorb4;
+	dont-shade doorb5;
+	dont-shade doorb6;
+	dont-shade lnchpad;
+	dont-shade missile;
+	restore_delay = 3000;
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	dont-cache collar;
+	dont-cache doora1;
+	dont-cache doora2;
+	dont-cache doorb1;
+	dont-cache doorb2;
+	dont-cache doorb3;
+	dont-cache doorb4;
+	dont-cache doorb5;
+	dont-cache doorb6;
+	dont-cache lnchpad;
+	dont-cache missile;
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	cache collar;
+	cache doora1;
+	cache doora2;
+	cache doorb1;
+	cache doorb2;
+	cache doorb3;
+	cache doorb4;
+	cache doorb5;
+	cache doorb6;
+	cache lnchpad;
+	cache missile;
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+AimPrimary(heading,pitch)
+	{
+	start-script RequestState( ACTIVE );
+	signal SIG_AIM;				// kill off other aim scripts
+	set-signal-mask SIG_AIM;	// so other scripts can kill us
+	while (!ready)
+		{
+		sleep( 250 );
+		}
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	hide missile;
+	ready = FALSE;
+	start-script RequestState( INACTIVE );
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=missile;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode collar type	BITMAPONLY | BITMAP2;
+		explode doora1 type	BITMAPONLY | BITMAP3;
+		explode doora2 type	BITMAPONLY | BITMAP4;
+		explode doorb1 type	BITMAPONLY | BITMAP5;
+		explode doorb2 type	BITMAPONLY | BITMAP1;
+		explode doorb3 type	BITMAPONLY | BITMAP2;
+		explode doorb4 type	BITMAPONLY | BITMAP3;
+		explode doorb5 type	BITMAPONLY | BITMAP4;
+		explode doorb6 type	BITMAPONLY | BITMAP5;
+		explode lnchpad type	BITMAPONLY | BITMAP1;
+		explode missile type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode collar type	SHATTER | BITMAP2;
+		explode doora1 type	FALL | BITMAP3;
+		explode doora2 type	FALL | BITMAP4;
+		explode doorb1 type	FALL | BITMAP5;
+		explode doorb2 type	FALL | BITMAP1;
+		explode doorb3 type	FALL | BITMAP2;
+		explode doorb4 type	FALL | BITMAP3;
+		explode doorb5 type	FALL | BITMAP4;
+		explode doorb6 type	FALL | BITMAP5;
+		explode lnchpad type	BITMAPONLY | BITMAP1;
+		explode missile type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode collar type	SHATTER | BITMAP2;
+		explode doora1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode doora2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode doorb1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode doorb2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode doorb3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode doorb4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode doorb5 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode doorb6 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lnchpad type	BITMAPONLY | BITMAP1;
+		explode missile type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode collar type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode doora1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode doora2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode doorb1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode doorb2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode doorb3 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode doorb4 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode doorb5 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode doorb6 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lnchpad type	BITMAPONLY | BITMAP1;
+	explode missile type	BITMAPONLY | BITMAP2;
+	return( 0 );
+	}

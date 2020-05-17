@@ -1,0 +1,35 @@
+[corxsub_dead]
+{
+world=All Worlds;
+description=Neptune Wreckage;
+category=core_corpses;
+object=corxsub_dead;
+featuredead=corxsub_heap;
+footprintx=5;
+footprintz=5;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=13080;
+damage=18960;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corxsub_heap]
+{
+world=All Worlds;
+description=Neptune Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=6540;
+damage=15040;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

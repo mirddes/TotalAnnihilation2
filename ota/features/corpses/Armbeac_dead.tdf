@@ -1,0 +1,40 @@
+[Armbeac_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=Armbeac_dead;
+	featuredead=Armbeac_heap;
+	footprintx=8;
+	footprintz=8;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=4171;
+	damage=8800;
+	reclaimable=1;
+	featurereclamate=smudge01;
+      seqnamereclamate=tree1reclamate;
+	}
+
+[Armbeac_heap]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=heaps;
+	object=7x7b;
+	footprintx=8;
+	footprintz=8;
+	height=4;
+	blocking=0;
+	hitdensity=100;
+	metal=2085;
+	damage=4400;
+	reclaimable=1;
+
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}
+
+
+

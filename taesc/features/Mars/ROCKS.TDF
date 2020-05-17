@@ -1,0 +1,2255 @@
+[MarsRock01]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock01;
+	seqnameshad=rock01shad;
+	seqnamereclamate=rock01rec;
+	metal=50;
+
+	featurereclamate=marsrock01scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock02]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=10;
+	filename=marsrocks;
+	seqname=rock02;
+	seqnameshad=rock02shad;
+	seqnamereclamate=rock02rec;
+	metal=50;
+
+	featurereclamate=marsrock02scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock03]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=10;
+	filename=marsrocks;
+	seqname=rock03;
+	seqnameshad=rock03shad;
+	seqnamereclamate=rock03rec;
+	metal=50;
+
+	featurereclamate=marsrock03scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock04]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock04;
+	seqnameshad=rock04shad;
+	seqnamereclamate=rock04rec;
+	metal=50;
+
+	featurereclamate=marsrock04scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock05]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock05;
+	seqnameshad=rock05shad;
+	seqnamereclamate=rock05rec;
+	metal=50;
+
+	featurereclamate=marsrock05scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock06]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+	filename=marsrocks;
+	seqname=rock06;
+	seqnameshad=rock06shad;
+	seqnamereclamate=rock06rec;
+	metal=25;
+
+	featurereclamate=marsrock06scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock07]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=10;
+	filename=marsrocks;
+	seqname=rock07;
+	seqnameshad=rock07shad;
+	seqnamereclamate=rock07rec;
+	metal=75;
+
+	featurereclamate=marsrock07scar;
+	featuredead=marsrock02hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock08]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock08;
+	seqnameshad=rock08shad;
+	seqnamereclamate=rock08rec;
+	metal=50;
+
+	featurereclamate=marsrock08scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock09]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=10;
+	filename=marsrocks;
+	seqname=rock09;
+	seqnameshad=rock09shad;
+	seqnamereclamate=rock09rec;
+	metal=75;
+
+	featurereclamate=marsrock09scar;
+	featuredead=marsrock02hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock10]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=10;
+	filename=marsrocks;
+	seqname=rock10;
+	seqnameshad=rock10shad;
+	seqnamereclamate=rock10rec;
+	metal=75;
+
+	featurereclamate=marsrock10scar;
+	featuredead=marsrock02hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock11]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock11;
+	seqnameshad=rock11shad;
+	seqnamereclamate=rock11rec;
+	metal=25;
+
+	featurereclamate=marsrock11scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock12]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock12;
+	seqnameshad=rock12shad;
+	seqnamereclamate=rock12rec;
+	metal=50;
+
+	featurereclamate=marsrock12scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock13]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=10;
+	filename=marsrocks;
+	seqname=rock13;
+	seqnameshad=rock13shad;
+	seqnamereclamate=rock13rec;
+	metal=50;
+
+	featurereclamate=marsrock13scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock14]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock14;
+	seqnameshad=rock14shad;
+	seqnamereclamate=rock14rec;
+	metal=50;
+
+	featurereclamate=marsrock14scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock15]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock15;
+	seqnameshad=rock15shad;
+	seqnamereclamate=rock15rec;
+	metal=50;
+
+	featurereclamate=marsrock15scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock16]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock16;
+	seqnameshad=rock16shad;
+	seqnamereclamate=rock16rec;
+	metal=50;
+
+	featurereclamate=marsrock16scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock17]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=10;
+	filename=marsrocks;
+	seqname=rock17;
+	seqnameshad=rock17shad;
+	seqnamereclamate=rock17rec;
+	metal=75;
+
+	featurereclamate=marsrock17scar;
+	featuredead=marsrock02hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock18]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock18;
+	seqnameshad=rock18shad;
+	seqnamereclamate=rock18rec;
+	metal=25;
+
+	featurereclamate=marsrock18scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock19]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=4;
+	filename=marsrocks;
+	seqname=rock19;
+	seqnameshad=rock19shad;
+	seqnamereclamate=rock19rec;
+	metal=25;
+
+	featurereclamate=marsrock19scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock20]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock20;
+	seqnameshad=rock20shad;
+	seqnamereclamate=rock20rec;
+	metal=50;
+
+	featurereclamate=marsrock20scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock21]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=10;
+	filename=marsrocks;
+	seqname=rock21;
+	seqnameshad=rock21shad;
+	seqnamereclamate=rock21rec;
+	metal=50;
+
+	featurereclamate=marsrock21scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock22]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock22;
+	seqnameshad=rock22shad;
+	seqnamereclamate=rock22rec;
+	metal=50;
+
+	featurereclamate=marsrock22scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock23]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock23;
+	seqnameshad=rock23shad;
+	seqnamereclamate=rock23rec;
+	metal=50;
+
+	featurereclamate=marsrock23scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock24]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock24;
+	seqnameshad=rock24shad;
+	seqnamereclamate=rock24rec;
+	metal=50;
+
+	featurereclamate=marsrock24scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock25]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock25;
+	seqnameshad=rock25shad;
+	seqnamereclamate=rock25rec;
+	metal=50;
+
+	featurereclamate=marsrock25scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock26]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock26;
+	seqnameshad=rock26shad;
+	seqnamereclamate=rock26rec;
+	metal=50;
+
+	featurereclamate=marsrock26scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock27]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock27;
+	seqnameshad=rock27shad;
+	seqnamereclamate=rock27rec;
+	metal=100;
+
+	featurereclamate=marsrock27scar;
+	featuredead=marsrock01hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock28]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock28;
+	seqnameshad=rock28shad;
+	seqnamereclamate=rock28rec;
+	metal=100;
+
+	featurereclamate=marsrock28scar;
+	featuredead=marsrock01hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock29]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock29;
+	seqnameshad=rock29shad;
+	seqnamereclamate=rock29rec;
+	metal=50;
+
+	featurereclamate=marsrock29scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock30]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock30;
+	seqnameshad=rock30shad;
+	seqnamereclamate=rock30rec;
+	metal=50;
+
+	featurereclamate=marsrock30scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock31]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock31;
+	seqnameshad=rock31shad;
+	seqnamereclamate=rock31rec;
+	metal=50;
+
+	featurereclamate=marsrock31scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock32]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock32;
+	seqnameshad=rock32shad;
+	seqnamereclamate=rock32rec;
+	metal=50;
+
+	featurereclamate=marsrock32scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock33]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock33;
+	seqnameshad=rock33shad;
+	seqnamereclamate=rock33rec;
+	metal=50;
+
+	featurereclamate=marsrock33scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock34]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock34;
+	seqnameshad=rock34shad;
+	seqnamereclamate=rock34rec;
+	metal=50;
+
+	featurereclamate=marsrock34scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock35]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock35;
+	seqnameshad=rock35shad;
+	seqnamereclamate=rock35rec;
+	metal=25;
+
+	featurereclamate=marsrock35scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock36]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock36;
+	seqnameshad=rock36shad;
+	seqnamereclamate=rock36rec;
+	metal=25;
+
+	featurereclamate=marsrock36scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock37]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock37;
+	seqnameshad=rock37shad;
+	seqnamereclamate=rock37rec;
+	metal=25;
+
+	featurereclamate=marsrock37scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock38]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock38;
+	seqnameshad=rock38shad;
+	seqnamereclamate=rock38rec;
+	metal=25;
+
+	featurereclamate=marsrock38scar;
+	featuredead=marsrock05hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock39]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock39;
+	seqnameshad=rock39shad;
+	seqnamereclamate=rock39rec;
+	metal=50;
+
+	featurereclamate=marsrock39scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock40]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock40;
+	seqnameshad=rock40shad;
+	seqnamereclamate=rock40rec;
+	metal=50;
+
+	featurereclamate=marsrock40scar;
+	featuredead=marsrock04hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock41]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock41;
+	seqnameshad=rock41shad;
+	seqnamereclamate=rock41rec;
+	metal=50;
+
+	featurereclamate=marsrock41scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock42]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=10;
+	filename=marsrocks2;
+	seqname=rock42;
+	seqnameshad=rock42shad;
+	seqnamereclamate=rock42rec;
+	metal=50;
+
+	featurereclamate=marsrock42scar;
+	featuredead=marsrock03hit;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock01Hit]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock01hit;
+	seqnameshad=rock01hitshad;
+	seqnamereclamate=rock01hitrec;
+	metal=75;
+
+	featurereclamate=marsrock01gone;	
+	featuredead=marsrock01gone;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock02Hit]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock02hit;
+	seqnameshad=rock02hitshad;
+	seqnamereclamate=rock02hitrec;
+	metal=50;
+
+	featurereclamate=marsrock02gone;
+	featuredead=marsrock02gone;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock03Hit]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock03hit;
+	seqnameshad=rock03hitshad;
+	seqnamereclamate=rock03hitrec;
+	metal=25;
+
+	featurereclamate=marsrock03gone;
+	featuredead=marsrock03gone;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock04Hit]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock04hit;
+	seqnameshad=rock04hitshad;
+	seqnamereclamate=rock04hitrec;
+	metal=25;
+
+	featurereclamate=marsrock04gone;
+	featuredead=marsrock04gone;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock05Hit]
+	{
+	world=mars;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock05hit;
+	seqnameshad=rock05hitshad;
+	seqnamereclamate=rock05hitrec;
+	metal=25;
+
+	featurereclamate=marsrock05gone;
+	featuredead=marsrock05gone;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MarsRock01Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock01gone;
+	seqnameshad=;
+
+	featuredead=marsrock01gone;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock02Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock02gone;
+	seqnameshad=;
+
+	featuredead=marsrock02gone;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock03Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock03gone;
+	seqnameshad=;
+
+	featuredead=marsrock03gone;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock04Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock04gone;
+	seqnameshad=;
+
+	featuredead=marsrock04gone;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock05Gone]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock05gone;
+	seqnameshad=;
+
+	featuredead=marsrock05gone;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock01Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock01goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock02Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock02goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock03Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock03goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock04Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock04goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock05Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock05goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock06Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock06goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock07Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock07goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock08Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock08goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock09Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock09goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock10Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock10goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock11Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock11goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock12Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock12goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock13Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock13goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock14Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock14goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock15Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock15goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock16Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock16goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock16scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock17Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock17goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock17scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock18Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock18goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock18scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock19Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock19goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock19scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock20Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock20goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock20scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock21Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock21goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock21scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock22Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock22goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock22scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock23Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock23goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock23scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock24Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock24goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock24scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock25Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock25goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock25scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock26Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock26goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock26scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock27Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock27goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock27scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock28Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock28goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock28scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock29Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock29goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock29scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock30Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock30goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock30scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock31Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock31goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock31scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock32Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock32goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock32scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock33Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock33goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock33scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock34Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock34goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock34scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock35Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock35goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock35scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock36Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock36goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock36scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock37Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock37goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock37scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock38Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock38goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock38scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock39Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock39goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock39scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock40Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock40goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock40scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock41Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock41goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock41scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MarsRock42Scar]
+	{
+	world=mars;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=marsrocks3;
+	seqname=rock42goneshad;
+	seqnameshad=;
+
+	featuredead=marsrock42scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

@@ -1,0 +1,186 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, dummy, cradle, arm1, arm2, post, door;
+
+static-var  Request_1, Busy_2, State_3, Reload_4;
+
+RequestState()
+{
+	if( busy_2 )
+	{
+		return (0);
+	}
+	busy_2 = 1;
+	while( Request_1 != State_3 )
+	{
+		if( Request_1 and !State_3 )
+		{
+			turn cradle to x-axis <0.000000> now;
+			turn cradle to x-axis <-90.000000> speed <45.390110>;
+			sleep 2001;
+			State_3 = 1;
+		}
+		if( !Request_1 and State_3 )
+		{
+			State_3 = 0;
+			turn cradle to x-axis <-90.000000> now;
+			turn cradle to x-axis <0.000000> speed <45.093407>;
+			sleep 2001;
+			if( Reload_4 )
+			{
+				sleep 1000;
+				turn door to z-axis <90> speed <180>;
+				sleep 500;
+				move post to x-axis [-3.8] speed [3.8];
+				sleep 3000;
+				show dummy;
+				move post to x-axis [0] speed [4.75];
+				sleep 800;
+				turn door to z-axis <0> speed <180>;
+				sleep 500;
+				Reload_4 = 0;
+			}
+				
+		}
+	}
+	busy_2 = 0;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+
+Create()
+{
+	dont-shade dummy;
+	dont-cache dummy;
+	Request_1 = 0;
+	Busy_2 = 0;
+	State_3 = 0;
+	Reload_4 = 0;
+	start-script SmokeUnit();
+}
+
+RestoreAfterDelay()
+{
+	sleep 8000;
+	set-signal-mask 0;
+	if( Request_1 )
+	{
+		Request_1 = 0;
+		start-script RequestState();
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	While( Reload_4 )
+	{
+		sleep 300;
+	}
+	while( !State_3 )
+	{
+		Request_1 = 1;
+		start-script RequestState();
+		sleep 300;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	Reload_4 = 1;
+	hide dummy;
+	sleep 600;
+	Request_1 = 0;
+	start-script RequestState();
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = dummy;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dummy type BITMAPONLY | BITMAP2;
+		explode cradle type BITMAPONLY | BITMAP3;
+		explode arm1 type BITMAPONLY | BITMAP4;
+		explode arm2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode dummy type SHATTER | BITMAP2;
+		explode cradle type BITMAPONLY | BITMAP3;
+		explode arm1 type FALL | BITMAP4;
+		explode arm2 type FALL | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode dummy type SHATTER | BITMAP2;
+		explode cradle type BITMAPONLY | BITMAP3;
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode dummy type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode cradle type BITMAPONLY | BITMAP3;
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

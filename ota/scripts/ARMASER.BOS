@@ -1,0 +1,194 @@
+// ARMASER -- Arm Eraser KBOT.
+
+piece torso;
+
+// State variables
+static-var	bMoving, bAiming, bCanAim;
+static-var	restore_delay;
+static-var	active;
+
+// define signals
+#define SIG_MOVEMENT	2
+
+#define	ANIM_VARIABLE   TRUE
+#include "..\anim3d\armaser\walk.bos"
+#include "..\anim3d\armaser\walklegs.bos"
+#include "..\anim3d\armaser\open.bos"
+#include "..\anim3d\armaser\close.bos"
+#undef	ANIM_VARIABLE
+
+// Smoking damage
+#define SMOKEPIECE1 torso
+#include "smokeunit.h"
+
+MotionControl()
+	{
+	var	moving, aiming, just_moved;
+
+	// So the stand will get reset
+	just_moved = TRUE;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walklegs();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+
+			just_moved = TRUE;
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+
+			if (just_moved)
+				{
+				#define RESTORESPEED <200>
+				turn rthigh to x-axis 0 speed RESTORESPEED;
+				turn rleg to x-axis 0 speed RESTORESPEED;
+				turn rfoot to x-axis 0 speed RESTORESPEED;
+				turn lthigh to x-axis 0 speed RESTORESPEED;
+				turn lleg to x-axis 0 speed RESTORESPEED;
+				turn lfoot to x-axis 0 speed RESTORESPEED;
+				#undef RESTORESPEED
+				just_moved = FALSE;
+				}
+				sleep 100;
+			}
+		}
+	}
+
+Create()
+	{
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+	restore_delay = 3000;
+	start-script MotionControl();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	signal SIG_MOVEMENT;            // kill off other aim scripts
+	set-signal-mask SIG_MOVEMENT;   // so other scripts can kill us
+	call-script open();		// Get into ready position
+	spin tongpivot around z-axis speed <100>;
+	}
+
+Deactivate()
+	{
+	signal SIG_MOVEMENT;            // kill off other aim scripts
+	set-signal-mask SIG_MOVEMENT;   // so other scripts can kill us
+	turn tongpivot to z-axis <0> speed <-100>;
+	wait-for-turn tongpivot around z-axis;
+	call-script close();	// Shut down
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	bAiming = FALSE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode lfoot type	BITMAPONLY | BITMAP1;
+		explode lleg type	BITMAPONLY | BITMAP1;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode ltong type	BITMAPONLY | BITMAP1;
+		explode pelvis type	BITMAPONLY | BITMAP1;
+		explode rfoot type	BITMAPONLY | BITMAP1;
+		explode rleg type	BITMAPONLY | BITMAP1;
+		explode rthigh type	BITMAPONLY | BITMAP1;
+		explode rtong type	BITMAPONLY | BITMAP1;
+		explode tongend type	BITMAPONLY | BITMAP1;
+		explode tongpivot type	BITMAPONLY | BITMAP1;
+		explode torso type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode lfoot type	FALL | BITMAP1;
+		explode lleg type	FALL | BITMAP1;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode ltong type	SHATTER | BITMAP1;
+		explode pelvis type	FALL | BITMAP1;
+		explode rfoot type	FALL | BITMAP1;
+		explode rleg type	FALL | BITMAP1;
+		explode rthigh type	BITMAPONLY | BITMAP1;
+		explode rtong type	FALL | BITMAP1;
+		explode tongend type	FALL | BITMAP1;
+		explode tongpivot type	FALL | BITMAP1;
+		explode torso type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lthigh type	BITMAPONLY | BITMAP1;
+		explode ltong type	SHATTER | BITMAP1;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rthigh type	BITMAPONLY | BITMAP1;
+		explode rtong type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode tongend type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode tongpivot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torso type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode lfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lthigh type	BITMAPONLY | BITMAP1;
+	explode ltong type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rfoot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rthigh type	BITMAPONLY | BITMAP1;
+	explode rtong type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tongend type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tongpivot type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torso type	BITMAPONLY | BITMAP1;
+	return( 0 );
+	}

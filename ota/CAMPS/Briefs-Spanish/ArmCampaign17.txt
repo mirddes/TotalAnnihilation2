@@ -1,0 +1,13 @@
+MISIÓN 17.003CLANR
+¡El Núcleo ha construido un silo de misiles nucleares! Localizar el silo y capturarlo.
+
+&YPRIORIDAD&
+De nuevo, el Núcleo apuesta fuerte. Las emisiones de energía indican que han terminado la construcción de un gran silo de misiles en esta zona. Creemos que el silo contiene cabezas nucleares. Debemos tomar el silo, tanto para eliminar la amenaza que representa como para conseguir la tecnología que contiene.
+
+
+INFORMACIÓN
+Sin duda el silo estará bien protegido y probablemente se encuentre localizado en la Isla de Brooban. Un ataque combinado mar/aire será lo más efectivo.
+
+&RCuidado con las lluvias de meteoritos.& 
+
+FIN

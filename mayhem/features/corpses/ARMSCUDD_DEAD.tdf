@@ -1,0 +1,36 @@
+[ARMSCUDD_DEAD]
+{
+world=All Worlds;
+description=Scudd Wreckage;
+category=core_corpses;
+object=ARMSCUDD_DEAD;
+featuredead=ARMSCUDD_HEAP;
+footprintx=4;
+footprintz=4;
+height=25;
+blocking=1;
+hitdensity=121;
+metal=5030;
+damage=7006;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMSCUDD_HEAP]
+{
+world=All Worlds;
+description=Scudd Wreckage;
+category=heaps;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2515;
+damage=7006;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

@@ -1,0 +1,68 @@
+//This is for missions where only sea, amphibious attacks will work. - air is made
+Weight AIBOOST 1
+Weight CTRL_V 1
+Weight GR 0
+Weight CTRL_N 1
+Weight CTRL_H 1
+Weight CTRL_Y 1
+Weight CTRL_L 0.375
+Weight CTRL_Q 0.5
+Weight CTRL_T 0.4
+Weight CTRL_I 0
+Weight ENERGY 0.2
+Weight CTRL_E 0.1
+Weight CTRL_R 0.1
+Weight CTRL_J 0.1
+Weight CTRL_X 0.05
+Weight CTRL_B 1.25
+Weight PLANT 0.3
+Weight NOAI 0
+Limit CTRL_E 10
+Limit CTRL_R 3
+Limit CTRL_J 4
+Limit CTRL_X 3
+
+plan easy
+
+Limit AIBOOST 0
+Limit AIC 1
+Limit CTRL_P 15
+Limit GR 0
+Limit CTRL_N 10
+Limit CTRL_H 5
+Limit CTRL_Y 5
+Limit CTRL_L 5
+Limit CTRL_T 5
+Limit CTRL_Q 10
+Limit CTRL_B 1
+Limit PLANT 1
+
+plan medium
+
+Limit AIBOOST 3
+Limit AIC 1
+Limit CTRL_P 30
+Limit GR 0
+Limit CTRL_N 20
+Limit CTRL_H 10
+Limit CTRL_Y 10
+Limit CTRL_L 10
+Limit CTRL_T 10
+Limit CTRL_Q 15
+Limit CTRL_B 2
+Limit PLANT 2
+
+plan hard
+
+Limit AIBOOST 25
+Limit AIC 2
+Limit CTRL_P 50
+Limit GR 0
+Limit CTRL_N 30
+Limit CTRL_H 15
+Limit CTRL_Y 15
+Limit CTRL_L 15
+Limit CTRL_T 15
+Limit CTRL_Q 20
+Limit CTRL_B 4
+Limit PLANT 3

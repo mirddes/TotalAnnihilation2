@@ -1,0 +1,7 @@
+MISSION 1.1CORE
+La faction Arm a envahi CORE PRIME. Une petite unité ennemie s'est emparée du Commandeur Core, alors que nos hommes le réparaient. Ils sont parvenus à le désactiver. Détruisez ces chiens de l'Arm. Réactivez le Commandeur.
+
+STATISTIQUES DE PROBABILITES:
+La probabilité que la faction Arm ait rejoint Core Prime est nulle (&R99%, marge d'erreur:1%&). Pourtant l'ennemi est là (&R99%, marge d'erreur:1%&). Détruisez toutes les unités de l'Arm (&R67%, marge d'erreur:4%&).
+
+Exécution

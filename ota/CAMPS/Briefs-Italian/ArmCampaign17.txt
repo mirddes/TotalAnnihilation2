@@ -1,0 +1,12 @@
+MISSIONE 17.003ARMR
+L’esercito Core ha costruito un deposito di missili nucleari! Localizzarlo e prenderne possesso. 
+
+&YPRIORITÀ&
+Le emissioni di energia indicano che le forze Core hanno completato la costruzione di una grande base in quest’area, che si pensa possa contenere missili con testate nucleari. Assumetene il controllo, per scongiurare la minaccia e acquisire la tecnologia che rappresenta.
+
+INFORMAZIONI UTILI
+Si ha la certezza che la base sia ben protetta, e che si trovi sull’isola di Brooban. Una combinazione di forze terra/aria potrebbe essere la soluzione migliore.
+
+&RSiate preparati alle frequenti piogge di meteore.& 
+
+FINE

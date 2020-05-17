@@ -1,0 +1,11 @@
+MISIÓN 19.005CLANR
+Destruir todas las unidades móviles y conquistar la Puerta intacta.
+
+&YPRIORIDAD&
+Hemos hecho que el Núcleo se replegara hacia los antiguos terraplenes conocidos como Motien Ramp. Allí han ensamblado una Puerta... quizás la última. No cabe duda de que Núcleo Uno, el mundo natal del Núcleo, debe de estar cerca. Destruye todas las unidades móviles de Motien Ramp y conquista la Puerta que hay allí.
+
+
+INFORMACIÓN
+Motien Ramp estará bien defendida. Además, ten cuidado con las lluvias de meteoritos.
+
+FIN

@@ -1,0 +1,10 @@
+MISSION 20.001ARMD
+Destroy the caretakers, and still functioning Core units, and secure Dump for Arm. 
+
+&YPRIORITY&
+Dump - the sole moon of Core Prime. . Destroy all of the units that you find on Dump. We will launch our invasion of the Core homeworld from here.
+
+INFO FEED
+There is no atmosphere, nor water on Dump. Therefore air units cannot fly, and sea units are useless here. This is a ground mission Commander. Also, Dump has been used as a depository for the damaged and destroyed waste of eons of Core war effort. &GReclaim the metal& that you will find lying about to build Arm units for use against Core.
+ 
+END

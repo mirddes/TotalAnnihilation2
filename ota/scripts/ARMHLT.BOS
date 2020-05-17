@@ -1,0 +1,116 @@
+// Arm Heavy Laser Defense Battery
+
+piece flash1,flash2,base,turret;
+
+static-var fire;
+
+#define SIG_AIM 2
+#define SMOKEPIECE1 base
+
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Create()
+	{
+	hide flash1;
+	hide flash2;
+	dont-cache flash1;
+	dont-cache flash2;
+	dont-cache guns;
+	dont-cache turret;
+	dont-shade flash1;
+	dont-shade flash2;
+	dont-shade guns;
+	dont-shade turret;
+	fire=0;
+	start-script SmokeUnit();
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <200>;
+	turn guns to x-axis (0-pitch) speed <200>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn guns around x-axis;
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+//	if (fire==0)
+//		{
+//		show flash1;
+//		sleep 150;
+//		hide flash1;
+//		}
+//	if (fire==1)
+//		{
+//		show flash2;
+//		sleep 150;
+//		hide flash2;
+//		}
+	fire = !fire;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=!fire;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=!fire;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flash1;
+	hide flash2;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flash1 type	BITMAPONLY | BITMAP2;
+		explode flash2 type	BITMAPONLY | BITMAP3;
+		explode guns type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flash1 type	FALL | BITMAP2;
+		explode flash2 type	FALL | BITMAP3;
+		explode guns type	BITMAPONLY | BITMAP4;
+		explode turret type	SHATTER | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode flash1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flash2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode guns type	BITMAPONLY | BITMAP4;
+		explode turret type	SHATTER | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode flash1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flash2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode guns type	BITMAPONLY | BITMAP4;
+	explode turret type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	return( 0 );
+	}

@@ -1,0 +1,35 @@
+[armphovr_dead]
+{
+world=All Worlds;
+description=Oasis Wreckage;
+category=arm_corpses;
+object=4x4d;
+featuredead=armphovr_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=500;
+damage=1200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armphovr_heap]
+{
+world=All Worlds;
+description=Oasis Wreckage;
+category=arm_corpses;
+object=3x3d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=250;
+damage=1200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

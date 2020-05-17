@@ -1,0 +1,41 @@
+[CORSENT_GUN]
+	{
+	ID=133;
+	name=Flak Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+	toairweapon=1;
+
+	range=720;
+	reloadtime=.95;
+	weapontimer=1;
+	weaponvelocity=900;
+	areaofeffect=110;
+	edgeeffectiveness=0.90;
+	soundstart=canlite2;
+	soundhit=xplomed2;
+
+	minbarrelangle=-24;
+
+	accuracy=1000;
+	tolerance=767;	
+	burnblow=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	color=1;
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=130;
+		}
+	}

@@ -1,0 +1,38 @@
+[ARMVULC_WEAPON]
+	{
+	ID=2;
+	name=Bertha Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=3080;
+	reloadtime=0.25;
+	weaponvelocity=800;
+	energypershot=2000;
+	areaofeffect=100;
+
+	soundstart=xplonuk4;
+	soundhit=xplonuk1;
+
+	accuracy=800;
+	aimrate=2500;
+	tolerance=300;
+//	holdtime=1;
+
+	explosiongaf=fx;
+	explosionart=NUKE1;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1000;
+		}
+	}

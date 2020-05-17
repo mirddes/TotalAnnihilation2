@@ -1,0 +1,8 @@
+MISSION 3.3CORE
+
+INTELL-TAP:
+Arm infestation is worse than anticipated. They have ambushed the guard posts on Thoroughfare 405 and are destroying passing transports. Put a stop to this foolishness. A convenient base will be necessary. Rescue as many transports as possible.
+
+&RDestroy them all.&
+
+DO SO NOW.

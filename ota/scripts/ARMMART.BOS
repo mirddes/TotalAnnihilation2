@@ -1,0 +1,113 @@
+// Arm Mobile Artillery
+
+piece base,flare,turret;
+
+static-var restore_delay;
+
+#define SIG_AIM 2
+#define SMOKEPIECE1 base
+#include "smokeunit.h"
+#include "exptype.h"
+#include "rockunit.h"
+#include "hitweap.h"
+
+Create()
+	{
+	hide flare;
+	restore_delay=3000;
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis 0 speed <50>;
+	turn sleeve to x-axis 0 speed <50>;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <50>;
+	turn sleeve to x-axis (0-pitch) speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	show flare;
+	move barrel to z-axis [-2.4] speed [500];
+	sleep 150;
+	hide flare;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0] speed [3.0];
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=turret;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	BITMAPONLY | BITMAP3;
+		explode sleeve type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | BITMAP3;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode turret type	FALL | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode barrel type	BITMAPONLY | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode sleeve type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	return( 0 );
+	}

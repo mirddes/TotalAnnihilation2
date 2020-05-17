@@ -1,0 +1,35 @@
+[coradon_dead]
+{
+world=All Worlds;
+description=Adonis Wreckage;
+category=core_corpses;
+object=coradon_dead;
+featuredead=coradon_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=7040;
+damage=7464;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coradon_heap]
+{
+world=All Worlds;
+description=Adonis Wreckage;
+category=heaps;
+object=4x4d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=7040;
+damage=8230;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

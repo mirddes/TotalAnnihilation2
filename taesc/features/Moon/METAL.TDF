@@ -1,0 +1,125 @@
+[MoonMetal01]  // Medium
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metal01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=112;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MoonMetal02]  // Small
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metal02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=56;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MoonMetal03]  // Huge
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metal03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MoonMetalDark01]  // Medium
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metaldark01;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=112;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MoonMetalDark02]  // Small
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metaldark02;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=56;
+	damage=32009;
+	indestructible=1;
+	}
+
+[MoonMetalDark03]  // Huge
+	{
+	world=MOON;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonmetal;
+	seqname=metaldark03;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

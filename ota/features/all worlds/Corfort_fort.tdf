@@ -1,0 +1,19 @@
+[Fortification_Core]
+	{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=corfort;
+	footprintx=2;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=95;
+	metal=21;
+	damage=1500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	}

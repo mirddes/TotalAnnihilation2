@@ -1,0 +1,35 @@
+[corwreck_dead]
+{
+world=All Worlds;
+description=Wrecker Wreckage;
+category=core_corpses;
+object=corwreck_dead;
+featuredead=corwreck_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=375;
+damage=1500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corwreck_heap]
+{
+World=All Worlds;
+Description=Wrecker Wreckage;
+Category=core_heaps;
+Object=3x3d;
+Footprintx=3;
+Footprintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=187;
+Damage=1500;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

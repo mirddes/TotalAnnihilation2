@@ -1,0 +1,170 @@
+[Lavavent001]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent001;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent002]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent002;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent003]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent003;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent004]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent004;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent005]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent005;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent006]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent006;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent007]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent007;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent008]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent008;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent009]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent009;
+	animtrans=1;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Lavavent010]
+	{
+	world=lava;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=lavastuff2;
+	seqname=tvent010;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}

@@ -1,0 +1,654 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, gangplank, nano1, nano2, nano3, nano4, clamp4b, clamp3b,
+       clamp2b, clamp1b, clamp1, clamp4, clamp2, clamp3, crane, clamplight4,
+       clamplight1, clamplight3, clamplight2, arm1a, arm2a, arm3a, arm4a, arm3b,
+       arm2b, arm4b, arm1b, lathe1, lathe2, lathe3, lathe4, glowybits, cranetop;
+
+static-var  Nano_1, ReqState_3, On_4, Busy_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState()
+{
+	while( !Busy_5 AND ( ReqState_3 != On_4 ) )
+	{
+		Busy_5 = 1;
+		if( ReqState_3 )
+		{
+			dont-cache arm1a;
+			dont-cache arm1b;
+			dont-cache arm2a;
+			dont-cache arm2b;
+			dont-cache arm3a;
+			dont-cache arm3b;
+			dont-cache arm4a;
+			dont-cache arm4b;
+			dont-cache clamp1;
+			dont-cache clamp1b;
+			dont-cache clamp2;
+			dont-cache clamp2b;
+			dont-cache clamp3;
+			dont-cache clamp3b;
+			dont-cache clamp4;
+			dont-cache clamp4b;
+			dont-cache crane;
+			dont-cache gangplank;
+			dont-cache lathe1;
+			dont-cache lathe2;
+			dont-cache lathe3;
+			dont-cache lathe4;
+			turn clamp4b to z-axis <0> now;
+	//		turn clamp4b to z-axis <28.84> speed <94.23>;
+			turn clamp3b to z-axis <0> now;
+	//		turn clamp3b to z-axis <34.46> speed <112.62>;
+			turn clamp2b to z-axis <0> now;
+	//		turn clamp2b to z-axis <-32.70> speed <107>;
+			turn clamp1b to z-axis <0> now;
+	//		turn clamp1b to z-axis <-30.95> speed <101.13>;
+	//		sleep 306;
+	//		turn clamp4b to z-axis <49> speed <57>;
+	//		turn clamp3b to z-axis <50> speed <42.24>;
+	//		turn clamp2b to z-axis <-49> speed <45.18>;
+	//		turn clamp1b to z-axis <-50> speed <52>;
+	
+			turn clamp4b to z-axis <49> speed <94>;
+			turn clamp3b to z-axis <50> speed <112>;
+			turn clamp2b to z-axis <-49> speed <117>;
+			turn clamp1b to z-axis <-50> speed <101>;
+			sleep 358;
+			turn clamp4b to z-axis <36.57> speed <38.59>;
+			turn clamp3b to z-axis <37.27> speed <37.52>;
+			turn clamp2b to z-axis <-39.38> speed <29>;
+			turn clamp1b to z-axis <-39> speed <32.16>;
+			sleep 328;
+			move clamp1 to x-axis [8.80] speed [28.57];
+			move clamp4 to x-axis [-8.35] speed [27.11];
+			turn clamp4b to z-axis <41.14> speed <14.84>;
+			turn clamp3b to z-axis <41.14> speed <12.55>;
+			turn clamp2b to z-axis <-41.14> speed <5.70>;
+			turn clamp1b to z-axis <-42.55> speed <11.41>;
+			sleep 308;
+	//		move clamp1 to x-axis [13.40] speed [7];
+	//		move clamp2 to x-axis [9] speed [14];
+	//		move clamp3 to x-axis [-8.65] speed [13];
+	//		move clamp4 to x-axis [-13.75] speed [8.22];
+	//		sleep 657;
+	//		move clamp1 to x-axis [15] speed [2.23];
+	//		move clamp2 to x-axis [13.30] speed [6];
+	//		move clamp3 to x-axis [-13.20] speed [6.35];
+	//		move clamp4 to x-axis [-15.15] speed [2];
+	
+			move clamp1 to x-axis [15] speed [7];
+			move clamp2 to x-axis [13.30] speed [14];
+			move clamp3 to x-axis [-13.20] speed [13];
+			move clamp4 to x-axis [-15.15] speed [8];
+			turn crane to x-axis <-10.19> speed <14.22>;
+			turn clamp4b to z-axis <15.82> speed <35.31>;
+			turn clamp1b to z-axis <-14.07> speed <39.73>;
+			sleep 717;
+			move clamp2 to x-axis [15.10] speed [3.31];
+			move clamp3 to x-axis [-14.95] speed [3.22];
+			move clamp4b to x-axis [-4.60] speed [8.47];
+			move clamplight4 to x-axis [2.45] speed [4.51];
+			move clamp1b to x-axis [4.60] speed [8.47];
+			move clamplight1 to x-axis [-2.25] speed [4.14];
+			turn crane to x-axis <-24.96> speed <27.20>;
+			turn clamp4b to z-axis <-36.22> speed <95.84>;
+			turn clamp3b to z-axis <13> speed <51.81>;
+			turn clamp2b to z-axis <-13.36> speed <51.16>;
+			turn clamp1b to z-axis <39.38> speed <98.43>;
+			sleep 543;
+			move clamp4b to y-axis [-5.25] speed [10];
+			move clamplight4 to x-axis [3.70] speed [2.39];
+			move clamp3b to x-axis [-4.60] speed [8.80];
+			move clamplight3 to x-axis [2.40] speed [4.59];
+			move clamp2b to x-axis [4.65] speed [8.89];
+			move clamplight2 to x-axis [-2] speed [3.92];
+			move clamp1b to y-axis [-5.20] speed [9.94];
+			move clamplight1 to x-axis [-3.50] speed [2.39];
+			turn crane to x-axis <-37.27> speed <23.53>;
+			turn clamp4b to z-axis <0> speed <69.25>;
+			turn clamp3b to z-axis <-36.92> speed <95.47>;
+			turn clamp2b to z-axis <39.74> speed <101.53>;
+			turn clamp1b to z-axis <0> speed <75.30>;
+			sleep 523;
+			move clamp3b to y-axis [-5] speed [9.66];
+			move clamplight3 to x-axis [3.65] speed [2.39];
+			move clamp2b to y-axis [-5] speed [9.66];
+			move clamplight2 to x-axis [-3.55] speed [2.87];
+	//		turn crane to x-axis <-48.53> speed <21.51>;
+			turn clamp3b to z-axis <0> speed <70.59>;
+			turn clamp2b to z-axis <0> speed <75.97>;
+	//		sleep 523;
+	//		turn crane to x-axis <-64.35> speed <30.25>;
+	//		sleep 523;
+	//		turn crane to x-axis <-82.99> speed <35.63>;
+	//		sleep 523;
+	//		turn crane to x-axis <-94.95> speed <22.86>;
+	//		sleep 523;
+	//		turn crane to x-axis <-92.84> speed <4>;
+	//		sleep 523;
+	//		turn crane to x-axis <-88.96> speed <7.40>;
+	//		sleep 523;
+	//		turn crane to x-axis <-90> speed <2>;
+			turn crane to x-axis <-90> speed <35>;
+			sleep 523;
+	//		turn arm1a to z-axis <8.09> speed <15.46>;
+	//		turn arm2a to z-axis <20> speed <38.32>;
+	//		turn arm3a to z-axis <-19.34> speed <36.98>;
+	//		turn arm4a to z-axis <-11.25> speed <21.51>;
+	//		sleep 523;
+	//		turn arm1a to z-axis <26> speed <31.30>;
+	//		turn arm2a to z-axis <41.84> speed <38>;
+	//		turn arm3a to z-axis <-42.55> speed <40.50>;
+	//		turn arm4a to z-axis <-25.32> speed <24.54>;
+	//		turn arm3b to z-axis <-29.89> speed <52.16>;
+	//		turn arm2b to z-axis <26.73> speed <46.64>;
+	//		sleep 573;
+	//		turn arm1a to z-axis <59.43> speed <60.41>;
+	//		turn arm2a to z-axis <73.85> speed <57.86>;
+	//		turn arm3a to z-axis <-73> speed <55.32>;
+	//		turn arm4a to z-axis <-53.45> speed <51>;
+	//		turn arm4b to z-axis <-36.21> speed <65.5>;
+	//		turn arm3b to z-axis <-75> speed <81.39>;
+	//		turn arm2b to z-axis <78.41> speed <93.47>;
+	//		turn arm1b to z-axis <40.44> speed <73.13>;
+	//		sleep 553;
+	//		turn arm1a to z-axis <77> speed <32>;
+	//		turn arm2a to z-axis <86.51> speed <23>;
+	//		turn arm3a to z-axis <-83.69> speed <19>;
+	//		turn arm4a to z-axis <-75> speed <39.42>;
+	//		turn arm4b to z-axis <-56> speed <36.24>;
+	//		turn arm1b to z-axis <69> speed <51.51>;
+	//		sleep 553;
+	//		turn arm1a to z-axis <87> speed <18.13>;
+	//		turn arm4a to z-axis <-87> speed <21.37>;
+	//		turn arm4b to z-axis <-78> speed <40.15>;
+	//		turn arm1b to z-axis <78> speed <16.19>;
+	
+			turn arm3b to z-axis <-74.90> speed <81.39>;
+			turn arm2b to z-axis <78.41> speed <93.47>;
+			turn arm2a to z-axis <86.51> speed <57>;
+			turn arm3a to z-axis <-83.69> speed <55>;
+			turn arm1a to z-axis <86.85> speed <60>;
+			turn arm4a to z-axis <-86.85> speed <50>;
+			turn arm4b to z-axis <-78.07> speed <65>;
+			turn arm1b to z-axis <77.71> speed <73>;
+			sleep 543;
+	//		move gangplank to z-axis [2.25] speed [4.22];
+			move arm1a to z-axis [-4.90] speed [9.19];
+			move arm4a to z-axis [-4.90] speed [9.19];
+	//		sleep 533;
+			move gangplank to z-axis [9.90] speed [13.12];
+			sleep 1286;
+			set YARD_OPEN to 1;
+			while( !( get YARD_OPEN ) )
+			{
+				sleep 1500;
+				set YARD_OPEN to 1;
+			}
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_3 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+			set YARD_OPEN to 0;
+			while( get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 0;
+			}
+			move gangplank to z-axis [9.90] now;
+			move gangplank to z-axis [2.25] speed [38.25];
+			move clamp1 to x-axis [15] now;
+			move clamp2 to x-axis [15.10] now;
+			move clamp3 to x-axis [-14.95] now;
+			move clamp4 to x-axis [-15.15] now;
+			move clamp4b to x-axis [-4.60] now;
+			move clamp4b to y-axis [-5.25] now;
+			move clamplight4 to x-axis [3.70] now;
+			move clamp3b to x-axis [-4.60] now;
+			move clamp3b to y-axis [-5] now;
+			move clamplight3 to x-axis [3.65] now;
+			move clamp2b to x-axis [4.65] now;
+			move clamp2b to y-axis [-5] now;
+			move clamplight2 to x-axis [-3.55] now;
+			move clamp1b to x-axis [4.60] now;
+			move clamp1b to y-axis [-5.20] now;
+			move clamplight1 to x-axis [-3.50] now;
+			move arm1a to z-axis [-4.90] now;
+			move arm4a to z-axis [-4.90] now;
+			turn crane to x-axis <-90> now;
+			turn clamp4b to z-axis <0> now;
+			turn clamp3b to z-axis <0> now;
+			turn clamp2b to z-axis <0> now;
+			turn clamp1b to z-axis <0> now;
+			turn arm1a to z-axis <86.85> now;
+			turn arm2a to z-axis <86.51> now;
+			turn arm3a to z-axis <-83.69> now;
+			turn arm4a to z-axis <-86.85> now;
+			turn arm4b to z-axis <-78.07> now;
+			turn arm3b to z-axis <-74.90> now;
+			turn arm2b to z-axis <78.41> now;
+			turn arm1b to z-axis <77.71> now;
+			sleep 200;
+			move gangplank to z-axis [0] speed [11.25];
+			move arm1a to z-axis [0] speed [24.50];
+			move arm4a to z-axis [0] speed [24.50];
+			sleep 200;
+	//		turn arm1a to z-axis <77> speed <49.23>;
+	//		turn arm4a to z-axis <-75.25> speed <58>;
+	//		turn arm4b to z-axis <-56.26> speed <109>;
+	//		turn arm1b to z-axis <68.92> speed <43.95>;
+	//		sleep 200;
+	//		turn arm1a to z-axis <59.43> speed <87.91>;
+	//		turn arm2a to z-axis <73.85> speed <63.30>;
+	//		turn arm3a to z-axis <-73.14> speed <52.75>;
+	//		turn arm4a to z-axis <-53.45> speed <109>;
+	//		turn arm4b to z-axis <-36.21> speed <100.21>;
+	//		turn arm1b to z-axis <40.44> speed <142.41>;
+	//		sleep 200;
+	
+	//		turn arm1a to z-axis <26> speed <167>;
+	//		turn arm2a to z-axis <41.84> speed <160>;
+	//		turn arm3a to z-axis <-42.55> speed <153>;
+	//		turn arm4a to z-axis <-25.32> speed <140.66>;
+	//		turn arm4b to z-axis <0> speed <181.09>;
+	//		turn arm3b to z-axis <-29.89> speed <225>;
+	//		turn arm2b to z-axis <26.73> speed <258.46>;
+	//		turn arm1b to z-axis <0> speed <202.20>;
+	//		sleep 200;
+	//		turn arm1a to z-axis <8.09> speed <90>;
+	//		turn arm2a to z-axis <20> speed <109>;
+	//		turn arm3a to z-axis <-19.34> speed <116>;
+	//		turn arm4a to z-axis <-11.25> speed <70.33>;
+	//		turn arm3b to z-axis <0> speed <149.45>;
+	//		turn arm2b to z-axis <0> speed <133.63>;
+	//		sleep 200;
+	//		turn arm1a to z-axis <0> speed <40.44>;
+	//		turn arm2a to z-axis <0> speed <100.22>;
+	//		turn arm3a to z-axis <0> speed <97>;
+	//		turn arm4a to z-axis <0> speed <56.26>;
+	//		turn arm1a to z-axis <0> speed <90>;
+	//		turn arm2a to z-axis <0> speed <109>;
+	//		turn arm3a to z-axis <0> speed <116>;
+	//		turn arm4a to z-axis <0> speed <70>;
+	
+			turn arm4b to z-axis <0> speed <181.09>;
+			turn arm3b to z-axis <-29.89> speed <225>;
+			turn arm2b to z-axis <26.73> speed <258.46>;
+			turn arm1b to z-axis <0> speed <202.20>;
+			turn arm3b to z-axis <0> speed <225>;
+			turn arm2b to z-axis <0> speed <258>;
+			turn arm1a to z-axis <0> speed <167>;
+			turn arm2a to z-axis <0> speed <160>;
+			turn arm3a to z-axis <0> speed <153>;
+			turn arm4a to z-axis <0> speed <140>;
+	
+	//		sleep 200;
+	//		turn crane to x-axis <-92.84> speed <14.07>;
+	//		sleep 200;
+	//		turn crane to x-axis <-91.07> speed <8.79>;
+	//		sleep 200;
+	//		turn crane to x-axis <-87.91> speed <15.82>;
+	//		sleep 200;
+	//		turn crane to x-axis <-82.99> speed <24.62>;
+	//		sleep 200;
+	//		turn crane to x-axis <-64.35> speed <93.18>;
+	//		sleep 200;
+	//		turn crane to x-axis <-48.53> speed <79.12>;
+			turn crane to x-axis <-48.53> speed <93>;
+			sleep 200;
+			move clamp3b to y-axis [0] speed [25.25];
+			move clamplight3 to x-axis [2.40] speed [6.25];
+			move clamp2b to y-axis [0] speed [25.25];
+			move clamplight2 to x-axis [-2] speed [7.50];
+			turn crane to x-axis <-37.27> speed <56.26>;
+			turn clamp3b to z-axis <-36.92> speed <184.62>;
+			turn clamp2b to z-axis <39.74> speed <198.68>;
+			sleep 200;
+			move clamp4b to y-axis [0] speed [26.25];
+			move clamplight4 to x-axis [2.45] speed [6.25];
+			move clamp3b to x-axis [0] speed [23];
+			move clamplight3 to x-axis [0] speed [12];
+			move clamp2b to x-axis [0] speed [23.25];
+			move clamplight2 to x-axis [0] speed [10.25];
+			move clamp1b to y-axis [0] speed [26];
+			move clamplight1 to x-axis [-2.25] speed [6.25];
+			turn crane to x-axis <-24.96> speed <61.53>;
+			turn clamp4b to z-axis <-36.22> speed <181.10>;
+			turn clamp3b to z-axis <13> speed <249.67>;
+			turn clamp2b to z-axis <-13.36> speed <265.49>;
+			turn clamp1b to z-axis <39.38> speed <196.92>;
+			sleep 200;
+			move clamp2 to x-axis [13.30] speed [9];
+			move clamp3 to x-axis [-13.20] speed [8.75];
+			move clamp4b to x-axis [0] speed [23];
+			move clamplight4 to x-axis [0] speed [12.25];
+			move clamp1b to x-axis [0] speed [23];
+			move clamplight1 to x-axis [0] speed [11.25];
+			turn crane to x-axis <-10.19> speed <73.85>;
+			turn clamp4b to z-axis <15.82> speed <260.22>;
+			turn clamp3b to z-axis <41.14> speed <140.66>;
+			turn clamp2b to z-axis <-41.14> speed <138.90>;
+			turn clamp1b to z-axis <-14.07> speed <267.25>;
+			sleep 200;
+	//		move clamp1 to x-axis [13.40] speed [8];
+	//		move clamp2 to x-axis [9] speed [21.25];
+	//		move clamp3 to x-axis [-8.65] speed [22.75];
+	//		move clamp4 to x-axis [-13.75] speed [7];
+			turn crane to x-axis <0> speed <50.98>;
+			turn clamp4b to z-axis <41.14> speed <126.59>;
+			turn clamp1b to z-axis <-42.55> speed <142.42>;
+	//		sleep 200;
+	//		move clamp1 to x-axis [8.80] speed [23];
+			move clamp2 to x-axis [0] speed [45.25];
+			move clamp3 to x-axis [0] speed [43.25];
+	//		move clamp4 to x-axis [-8.35] speed [27];
+	//		sleep 200;
+			move clamp1 to x-axis [0] speed [44];
+			move clamp4 to x-axis [0] speed [41.75];
+	//		turn clamp4b to z-axis <36.57> speed <22.85>;
+	//		turn clamp3b to z-axis <37.27> speed <19.34>;
+	//		turn clamp2b to z-axis <-39.38> speed <8.79>;
+	//		turn clamp1b to z-axis <-39> speed <17.58>;
+	//		sleep 200;
+	//		turn clamp4b to z-axis <28.84> speed <38.68>;
+	//		turn clamp3b to z-axis <34.46> speed <14.07>;
+	//		turn clamp2b to z-axis <-32.70> speed <33.41>;
+	//		turn clamp1b to z-axis <-30.95> speed <40.44>;
+	//		sleep 200;
+			turn clamp4b to z-axis <0> speed <144.18>;
+			turn clamp3b to z-axis <0> speed <172.31>;
+			turn clamp2b to z-axis <0> speed <163.51>;
+			turn clamp1b to z-axis <0> speed <154.73>;
+			sleep 400;
+			cache arm1a;
+			cache arm1b;
+			cache arm2a;
+			cache arm2b;
+			cache arm3a;
+			cache arm3b;
+			cache arm4a;
+			cache arm4b;
+			cache clamp1;
+			cache clamp1b;
+			cache clamp2;
+			cache clamp2b;
+			cache clamp3;
+			cache clamp3b;
+			cache clamp4;
+			cache clamp4b;
+			cache crane;
+			cache gangplank;
+			cache lathe1;
+			cache lathe2;
+			cache lathe3;
+			cache lathe4;
+		}
+		Busy_5 = 0;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade glowybits;
+	dont-cache glowybits;
+	dont-shade cranetop;
+	dont-cache cranetop;
+	dont-shade clamplight1;
+	dont-cache clamplight1;
+	dont-shade clamplight2;
+	dont-cache clamplight2;
+	dont-shade clamplight3;
+	dont-cache clamplight3;
+	dont-shade clamplight4;
+	dont-cache clamplight4;
+	dont-shade arm1a;
+	dont-shade arm1b;
+	dont-shade arm2a;
+	dont-shade arm2b;
+	dont-shade arm3a;
+	dont-shade arm3b;
+	dont-shade arm4a;
+	dont-shade arm4b;
+	dont-shade clamp1;
+	dont-shade clamp1b;
+	dont-shade clamp2;
+	dont-shade clamp2b;
+	dont-shade clamp3;
+	dont-shade clamp3b;
+	dont-shade clamp4;
+	dont-shade clamp4b;
+	dont-shade crane;
+	dont-shade gangplank;
+	dont-shade lathe1;
+	dont-shade lathe2;
+	dont-shade lathe3;
+	dont-shade lathe4;
+	dont-shade base;
+	Nano_1 = 0;
+	ReqState_3 = 0;
+	On_4 = 0;
+	Busy_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( !Nano_1 )
+	{
+		piecenum = nano1;
+	}
+	if( Nano_1 == 1 )
+	{
+		piecenum = nano2;
+	}
+	if( Nano_1 == 2 )
+	{
+		piecenum = nano3;
+	}
+	++Nano_1;
+	if( Nano_1 > 3 )
+	{
+		piecenum = nano4;
+		Nano_1 = 0;
+	}
+//	if( Nano_1 >= 5 )
+//	{
+//		Nano_1 = 1;
+//	}
+	return (0);
+}
+
+Activate()
+{
+	signal 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 1;
+	call-script RequestState();
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 0;
+	sleep 15000;
+	set-signal-mask 0;
+	if( !ReqState_3 )
+	{
+		call-script RequestState();
+	}
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = gangplank;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1a type BITMAPONLY | BITMAP1;
+		explode arm1b type BITMAPONLY | BITMAP2;
+		explode arm2a type BITMAPONLY | BITMAP3;
+		explode arm2b type BITMAPONLY | BITMAP4;
+		explode arm3a type BITMAPONLY | BITMAP5;
+		explode arm3b type BITMAPONLY | BITMAP1;
+		explode arm4a type BITMAPONLY | BITMAP2;
+		explode arm4b type BITMAPONLY | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode clamp1 type BITMAPONLY | BITMAP5;
+		explode clamp1b type BITMAPONLY | BITMAP1;
+		explode clamp2 type BITMAPONLY | BITMAP2;
+		explode clamp2b type BITMAPONLY | BITMAP3;
+		explode clamp3 type BITMAPONLY | BITMAP4;
+		explode clamp3b type BITMAPONLY | BITMAP5;
+		explode clamp4 type BITMAPONLY | BITMAP1;
+		explode clamp4b type BITMAPONLY | BITMAP2;
+		explode clamplight1 type BITMAPONLY | BITMAP3;
+		explode clamplight2 type BITMAPONLY | BITMAP4;
+		explode clamplight3 type BITMAPONLY | BITMAP5;
+		explode clamplight4 type BITMAPONLY | BITMAP1;
+		explode crane type BITMAPONLY | BITMAP2;
+		explode cranetop type BITMAPONLY | BITMAP3;
+		explode gangplank type BITMAPONLY | BITMAP4;
+		explode glowybits type BITMAPONLY | BITMAP5;
+		explode lathe1 type BITMAPONLY | BITMAP1;
+		explode lathe2 type BITMAPONLY | BITMAP2;
+		explode lathe3 type BITMAPONLY | BITMAP3;
+		explode lathe4 type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1a type FALL | BITMAP1;
+		explode arm1b type FALL | BITMAP2;
+		explode arm2a type FALL | BITMAP3;
+		explode arm2b type FALL | BITMAP4;
+		explode arm3a type FALL | BITMAP5;
+		explode arm3b type FALL | BITMAP1;
+		explode arm4a type FALL | BITMAP2;
+		explode arm4b type FALL | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode clamp1 type BITMAPONLY | BITMAP5;
+		explode clamp1b type FALL | BITMAP1;
+		explode clamp2 type BITMAPONLY | BITMAP2;
+		explode clamp2b type FALL | BITMAP3;
+		explode clamp3 type BITMAPONLY | BITMAP4;
+		explode clamp3b type FALL | BITMAP5;
+		explode clamp4 type BITMAPONLY | BITMAP1;
+		explode clamp4b type FALL | BITMAP2;
+		explode clamplight1 type FALL | BITMAP3;
+		explode clamplight2 type FALL | BITMAP4;
+		explode clamplight3 type FALL | BITMAP5;
+		explode clamplight4 type FALL | BITMAP1;
+		explode crane type BITMAPONLY | BITMAP2;
+		explode cranetop type BITMAPONLY | BITMAP3;
+		explode gangplank type BITMAPONLY | BITMAP4;
+		explode glowybits type BITMAPONLY | BITMAP5;
+		explode lathe1 type FALL | BITMAP1;
+		explode lathe2 type FALL | BITMAP2;
+		explode lathe3 type FALL | BITMAP3;
+		explode lathe4 type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1a type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode arm1b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode arm2a type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode arm2b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode arm3a type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode arm3b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode arm4a type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode arm4b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode base type BITMAPONLY | BITMAP4;
+	explode clamp1 type BITMAPONLY | BITMAP5;
+	explode clamp1b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode clamp2 type BITMAPONLY | BITMAP2;
+	explode clamp2b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode clamp3 type BITMAPONLY | BITMAP4;
+	explode clamp3b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode clamp4 type BITMAPONLY | BITMAP1;
+	explode clamp4b type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode clamplight1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode clamplight2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode clamplight3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode clamplight4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode crane type BITMAPONLY | BITMAP2;
+	explode cranetop type BITMAPONLY | BITMAP3;
+	explode gangplank type BITMAPONLY | BITMAP4;
+	explode glowybits type BITMAPONLY | BITMAP5;
+	explode lathe1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode lathe2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode lathe3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode lathe4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

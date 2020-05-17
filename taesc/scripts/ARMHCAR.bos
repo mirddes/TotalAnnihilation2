@@ -1,0 +1,419 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, base, body, oops, parts, land,  wakes, 
+	   wake1, wake2, wake3, wake4, wake5, wake6, wake7, wake8,
+	   beam1, beam2, land_rotate, radar, beam3;
+
+static-var  Static_Var_1, gun_1, spray;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_MOVE			32
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*
+RockUnit(anglex, anglez)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to x-axis anglex speed <50.000000>;
+	turn base to z-axis anglez speed <50.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <20.000000>;
+	turn base to x-axis <0.000000> speed <20.000000>;
+}
+*/
+
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 4
+	set-signal-mask 4;
+	turn base to z-axis Func_Var_2 speed <105.000000>;
+	turn base to x-axis Func_Var_1 speed <105.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.000000>;
+	turn base to x-axis <0.000000> speed <30.000000>;
+}
+*/
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 1 )
+		{
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		if( Static_Var_1 == 2 )
+		{
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+		}
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	sleep 150;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+	if( Static_Var_1 == 2 || Static_Var_1 == 1 )
+	{
+		dont-cache body;
+		dont-cache oops;
+		dont-cache parts;
+		dont-cache land_rotate;
+		dont-cache land;
+	}
+	if( Static_Var_1 != 2 && Static_Var_1 != 1 )
+	{
+		cache body;
+		cache oops;
+		cache parts;
+		dont-cache land_rotate;
+		dont-cache land;
+	}
+}
+
+Create()
+{
+	var angle;
+	move land to y-axis [39] now;
+	move land to z-axis [15.5] now;
+	hide flare1;
+	hide flare2;
+	
+	spray = 0;
+	gun_1 = 0;
+	
+	start-script SmokeUnit();
+	while(1)
+	{
+		angle = get XZ_ATAN(-419) - <0>;
+		turn land_rotate to y-axis angle now;
+		turn land_rotate to x-axis 0 now;
+		turn land_rotate to z-axis 0 now;
+		sleep 1;
+	}
+}
+
+Activate()
+{
+	set INBUILDSTANCE to 1;
+	spin radar around y-axis speed <60.010989>;
+}
+
+Deactivate()
+{
+	set INBUILDSTANCE to 0;
+	stop-spin radar around y-axis;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	return 1;
+}
+
+FirePrimary()
+{
+	if( gun_1 == 0 )
+	{
+		gun_1 = 1;
+	}
+	if( gun_1 == 1 )
+	{
+		gun_1 = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare2;
+	}
+}
+
+QueryLandingPad(Func_Var_1)
+{
+	Func_Var_1 = land;
+//	Func_Var_2 = 6;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( spray == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( spray == 1 )
+	{
+		piecenum = beam2;
+	}
+	if( spray == 2 )
+	{
+		piecenum = beam3;
+	}
+	++spray;
+	if( spray >= 3 )
+	{
+		spray = 0;
+	}
+//	spray = !spray;
+}
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide flare1;
+	hide flare2;
+	if( Static_Var_1 == 1 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode oops type SHATTER | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode parts type SHATTER | BITMAP1;
+			explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode oops type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode parts type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( Static_Var_1 == 2 )
+	{
+		if( severity <= 50 )
+		{
+			corpsetype = 2;
+			explode oops type SHATTER | BITMAP1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode parts type SHATTER | BITMAP1;
+			explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode oops type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode parts type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode oops type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode parts type BITMAPONLY | BITMAP1;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode oops type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode parts type SHATTER | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode oops type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode parts type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode land type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode oops type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode parts type SHATTER | EXPLODE_ON_HIT | BITMAP1;\
+}

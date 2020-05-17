@@ -1,0 +1,62 @@
+[LavaMetal1]  // Medium
+	{
+	world=lava;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavastuff2;
+	seqname=metal1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=142;
+	damage=32009;
+	indestructible=1;
+	}
+
+[LavaMetal2]  // Small
+	{
+	world=lava;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavastuff2;
+	seqname=metal2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[LavaMetal3]  // Huge
+	{
+	world=lava;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavastuff2;
+	seqname=metal3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=222;
+	damage=32009;
+	indestructible=1;
+	}

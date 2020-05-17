@@ -1,0 +1,10 @@
+MISSION 19.005ARMR
+Zerstören Sie alle mobilen Einheiten und erobern Sie das Tor. Unbeschädigt.
+
+&YPRIORITÄT&
+Die CORE konnten bis auf die alten Deiche zurückgedrängt werden, die man Motien-Rampe nennt. Sie haben dort ein Tor errichtet...das letzte Tor, möglicherweise. CORE PRIME, die Heimatwelt der CORE, liegt mit Sicherheit in der Nähe. Zerstören Sie alle beweglichen Einheiten auf der Rampe und erobern Sie das dort gelegene Tor.
+
+NACHRICHTENDIENSTLICHE MITTEILUNG
+Die Rampe ist schwer bewacht. Und, falls wir die Meteoritenschauer noch nicht erwähnt haben sollten...
+
+ENDE

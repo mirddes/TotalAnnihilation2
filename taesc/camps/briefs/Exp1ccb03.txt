@@ -1,0 +1,13 @@
+MISSION 3.3HCORE
+Arm reinforcements arrive as though without limit. No matter. Let them throw their entire arsenal at Hydross. The beacon is not here.
+
+INTELL-TAP:
+Defend Hydross to the last. Every moment that Arm wastes here brings them that much closer to their destruction. Every unit that you destroy is one less to face elsewhere. 
+
+The Hive Carrier will provide extended radar coverage, generate surplus power, and repair your seaplanes. Underwater metal storage facilities will maximize the metal accumulated by your salvage efforts. 
+
+&RDestroy all of the Arm units.&
+
+To complete this mission you must destroy all Arm units and Serpents.
+
+DO SO NOW.

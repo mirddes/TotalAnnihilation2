@@ -1,0 +1,17 @@
+[FloatingTeeth_Core]
+	{
+	world=allworld;
+	description=Floating Dragon's Teeth;
+	category=dragonteeth;
+	object=corfdrag;
+	footprintx=2;
+	footprintz=2;
+	height=100;
+	blocking=1;
+	hitdensity=100;
+	metal=14;
+	damage=3500;
+	reclaimable=1;
+	autoreclaimable=0;
+	nodrawundergray=1;
+	}

@@ -1,0 +1,8 @@
+MISSION 18.CORE
+
+INTELL-TAP:
+Arm controls this part of Nigh Pilago. The web of laser towers in this area has become a problem. The towers are powered by a single fusion power plant that is located in a dormant volcano to the north. Arm believes that it has an impenetrable web of protection. Analysis shows that there is a way through the web. Find the safe path to the island and send in bombers to destroy the Fusion Plant. 
+
+&RDestroy the Fusion Plant.&
+
+DO SO NOW.

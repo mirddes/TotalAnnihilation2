@@ -1,0 +1,80 @@
+[CrystalVent01]
+	{
+	world=crystal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=crys-vent;
+	seqname=crys-therm01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[CrystalVent02]
+	{
+	world=crystal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=crys-vent;
+	seqname=crys-therm02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[CrystalVent03]
+	{
+	world=crystal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=crys-vent;
+	seqname=crys-therm03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[CrystalVent04]
+	{
+	world=crystal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=crys-vent;
+	seqname=crys-therm04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[CrystalVent05]
+	{
+	world=crystal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=crys-vent;
+	seqname=crys-therm05;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+

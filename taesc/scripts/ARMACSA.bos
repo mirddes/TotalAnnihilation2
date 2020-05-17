@@ -1,0 +1,214 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, lwing, rwing, wake1, wake2, body, ltail, rtail, nanopoint;
+
+static-var  Static_Var_1, statechg_DesiredState, statechg_StateChanging;
+
+// Signal definitions
+#define SIG_MOVE			2
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		move lwing to x-axis [0.000000] now;
+		move lwing to x-axis [-5.760000] speed [4.819275];
+		move rwing to x-axis [0.000000] now;
+		move rwing to x-axis [5.760000] speed [4.819275];
+		sleep 996;
+	}
+	sleep 6;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move lwing to x-axis [-5.760000] now;
+		move lwing to x-axis [0.000000] speed [5.832318];
+		move rwing to x-axis [5.760000] now;
+		move rwing to x-axis [0.000000] speed [5.832318];
+		sleep 823;
+	}
+	sleep 7;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	call-script InitState();
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	set ARMORED to 1;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	set ARMORED to 0;
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		if( Static_Var_1 == 3 )
+		{
+			emit-sfx 256 | 3 from base;
+			emit-sfx 256 | 3 from lwing;
+			emit-sfx 256 | 3 from lwing;
+			emit-sfx 256 | 3 from wake1;
+			emit-sfx 256 | 3 from wake2;
+			emit-sfx 256 | 3 from ltail;
+			emit-sfx 256 | 3 from rtail;
+		}
+		sleep 150;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+StartBuilding()
+{
+	sleep rand(25,250);
+	set INBUILDSTANCE to 1;
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = nanopoint;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode LWing type BITMAPONLY | BITMAP1;
+		explode RWing type BITMAPONLY | BITMAP1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode nanopoint type BITMAPONLY | BITMAP5;
+		explode wake1 type BITMAPONLY | BITMAP1;
+		explode wake2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode LWing type BITMAPONLY | BITMAP1;
+		explode RWing type BITMAPONLY | BITMAP1;
+		explode body type SHATTER | BITMAP1;
+		explode nanopoint type FALL | BITMAP5;
+		explode wake1 type FALL | BITMAP1;
+		explode wake2 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode LWing type BITMAPONLY | BITMAP1;
+		explode RWing type BITMAPONLY | BITMAP1;
+		explode body type SHATTER | BITMAP1;
+		explode nanopoint type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode wake1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode LWing type BITMAPONLY | BITMAP1;
+	explode RWing type BITMAPONLY | BITMAP1;
+	explode body type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode nanopoint type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode wake1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Static_Var_1 = Func_Var_1;
+}

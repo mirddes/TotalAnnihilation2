@@ -1,0 +1,8 @@
+MISSION 19.3CORE
+
+INTELL-TAP:
+Arm has assembled a huge fleet at Vebreen Atoll. The fleet is heading north. There is an island that is directly in the fleet's route that will serve as base of operations. If any of the enemy ships gets above parallel 72 to the north, you have failed Commander. Do not fail. 
+
+&RStop the Arm fleet.&
+
+DO SO NOW.

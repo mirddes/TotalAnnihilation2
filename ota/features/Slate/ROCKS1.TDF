@@ -1,0 +1,478 @@
+[SlateRock01]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=18;
+	filename=slaterocks1;
+	seqname=sl-rock01;
+	seqnameshad=sl-rock01shad;
+	seqnamereclamate=sl-rock01rec;
+	metal=40;    
+
+	
+	featurereclamate=sl-rocksmudge1;
+	featuredead=sl-rockscar1;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateRock02]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=17;
+	filename=slaterocks1;
+	seqname=sl-rock02;
+	seqnameshad=sl-rock02shad;
+	seqnamereclamate=sl-rock02rec;
+	metal=42;    
+
+	
+	featurereclamate=sl-rocksmudge1;
+	featuredead=sl-rockscar1;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateRock03]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=26;
+	filename=slaterocks1;
+	seqname=sl-rock03;
+	seqnameshad=sl-rock03shad;
+	seqnamereclamate=sl-rock03rec;
+	metal=55;    
+
+	
+	featurereclamate=sl-rocksmudge3;
+	featuredead=SlateCrushed03;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateRock04]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=25;
+	filename=slaterocks1;
+	seqname=sl-rock04;
+	seqnameshad=sl-rock04shad;
+	seqnamereclamate=sl-rock04rec;
+	metal=60;    
+
+	
+	featurereclamate=sl-rocksmudge4;
+	featuredead=SlateCrushed04;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateRock05]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=50;
+	filename=slaterocks1;
+	seqname=sl-rock05;
+	seqnameshad=sl-rock05shad;
+	seqnamereclamate=sl-rock05rec;
+	metal=106;    
+
+	
+	featurereclamate=sl-rocksmudge5;
+	featuredead=SlateCrushed05;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+
+
+
+
+
+
+
+
+[SlateCrushed03]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=18;
+	filename=slaterocks1;
+	seqname=sl-crush03;
+	seqnameshad=sl-crush03shad;
+	seqnamereclamate=sl-crush03rec;
+	metal=20;    
+
+	
+	featurereclamate=sl-rocksmudge3;
+	featuredead=sl-rockscar3;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateCrushed04]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=slaterocks1;
+	seqname=sl-crush04;
+	seqnameshad=sl-crush04shad;
+	seqnamereclamate=sl-crush04rec;
+	metal=55;    
+
+	
+	featurereclamate=sl-rocksmudge4;
+	featuredead=sl-rockscar4;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[SlateCrushed05]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=25;
+	filename=slaterocks1;
+	seqname=sl-crush05;
+	seqnameshad=sl-crush05shad;
+	seqnamereclamate=sl-crush05rec;
+	metal=20;    
+
+	
+	featurereclamate=sl-rocksmudge5;
+	featuredead=slatecrushed205;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+
+
+
+
+
+
+
+[SlateCrushed205]
+	{
+	world=Slate;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=11;
+	filename=slaterocks1;
+	seqname=sl-crush205;
+	seqnameshad=sl-crush205shad;
+	seqnamereclamate=sl-crush205rec;
+	metal=15;    
+
+	
+	featurereclamate=sl-rocksmudge5;
+	featuredead=sl-rockscar5;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+
+
+
+
+
+
+
+[Sl-RockScar1]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar1;
+	
+	featuredead=sl-rockscar1;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockScar2]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar2;
+	
+	featuredead=sl-rockscar2;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockScar3]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar3;
+	
+	featuredead=sl-rockscar3;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockScar4]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar4;
+	
+	featuredead=sl-rockscar4;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockScar5]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar5;
+	
+	featuredead=sl-rockscar5;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockSmudge1]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar1;
+	
+	featuredead=sl-rocksmudge1;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockSmudge2]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar2;
+	
+	featuredead=sl-rocksmudge2;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockSmudge3]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar3;
+	
+	featuredead=sl-rocksmudge3;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockSmudge4]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar4;
+	
+	featuredead=sl-rocksmudge4;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[Sl-RockSmudge5]
+	{
+	world=Slate;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=slaterocks1;
+	seqname=sl-rockscar5;
+	
+	featuredead=sl-rocksmudge5;
+
+	animtrans=1;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+
+
+

@@ -1,0 +1,336 @@
+[IceChunk01]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk01;
+	seqnameshad=chunk01shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk02;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk02]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk02;
+	seqnameshad=chunk02shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk03]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk03;
+	seqnameshad=chunk03shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk04;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk04]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk04;
+	seqnameshad=chunk04shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk05]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk05;
+	seqnameshad=chunk05shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk06;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk06]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk06;
+	seqnameshad=chunk06shad;
+	
+	seqnamedie=iceboomii;
+	featuredead=icechunk06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk07]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=icechunks;
+	seqname=chunk07;
+	seqnameshad=chunk07shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk08;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk08]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=icechunks;
+	seqname=chunk08;
+	seqnameshad=chunk08shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk09]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk09;
+	seqnameshad=chunk09shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk10;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk10]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=icechunks;
+	seqname=chunk10;
+	seqnameshad=chunk10shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk11]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icechunks;
+	seqname=chunk11;
+	seqnameshad=chunk11shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk12;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk12]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icechunks;
+	seqname=chunk12;
+	seqnameshad=chunk12shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk13]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=0;
+	filename=icechunks;
+	seqname=chunk13;
+	seqnameshad=chunk13shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+
+[IceChunk14]
+	{
+	world=Ice;
+	description=Ice Chunks;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=icechunks;
+	seqname=chunk14;
+	seqnameshad=chunk14shad;
+	
+	seqnamedie=iceboom;
+	featuredead=icechunk14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	nodisplayinfo=1;
+	}
+

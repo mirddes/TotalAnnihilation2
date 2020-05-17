@@ -1,0 +1,36 @@
+[Armlmart_dead]
+{
+world=All Worlds;
+description=Colt Wreckage;
+category=arm_corpses;
+object=Armlmart_dead;
+featuredead=Armlmart_heap;
+footprintx=2;
+footprintz=2;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=123;
+damage=242;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[Armlmart_heap]
+{
+world=All Worlds;
+description=Colt Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=62;
+damage=503;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

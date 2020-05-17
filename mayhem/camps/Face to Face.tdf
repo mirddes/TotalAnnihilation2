@@ -1,0 +1,24 @@
+[HEADER]
+{
+campaignside=ARM;
+}
+[MISSION0]
+{
+	missionfile=Two Continents.ota;
+	missionname=1: Arm Invasion!;
+}
+[MISSION1]
+{
+	missionfile=Sherwood.ota;
+	missionname=2: Little Lost Kbot;
+}
+[MISSION2]
+{
+	missionfile=Great Divide.ota;
+	missionname=3: A Needed Breakthrough;
+}
+[MISSION3]
+{
+	missionfile=Shore to Shore.ota;
+	missionname=4: Face to Face;
+}

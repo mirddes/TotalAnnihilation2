@@ -1,0 +1,123 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  firept1, firept2, base, body, rotater1, rotater2, bubbles1, bubbles2,
+       bubbles3, bubbles4;
+
+static-var  gun_1, bMoving, delay_3;
+
+Create()
+{
+	gun_1 = 0;
+	bMoving = 0;
+	delay_3 = 0;
+	set ARMORED to 1;
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = 1;
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			emit-sfx 259 from bubbles2;
+			emit-sfx 259 from bubbles3;
+			spin rotater1 around z-axis speed <300>;
+			spin rotater2 around z-axis speed <300>;
+			sleep 150;
+		}
+		if( bMoving )
+		{
+			emit-sfx 259 from bubbles1;
+			emit-sfx 259 from bubbles4;
+		}
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	signal 8;
+	spin rotater1 around z-axis speed <0>;
+	spin rotater2 around z-axis speed <0>;
+}
+
+AimPrimary()
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( delay_3 )
+	{
+		wait-for-move firept1 along z-axis;
+		wait-for-move firept2 along z-axis;
+	}
+	return(1);
+}
+
+
+FirePrimary()
+{
+	delay_3 = 1;
+	if( !gun_1 )
+	{
+		move firept1 to z-axis [0.5] speed [500];
+		sleep 150;
+		move firept1 to z-axis [0] speed [0.4];
+	}
+	if( gun_1 )
+	{
+		move firept1 to z-axis [-0.5] speed [500];
+		sleep 150;
+		move firept1 to z-axis [0] speed [0.4];
+	}
+	gun_1 = !gun_1;
+	wait-for-move firept1 along z-axis;
+	wait-for-move firept2 along z-axis;
+	delay_3 = 0;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+Killed(severity, corpsetype)
+{
+	hide firept1;
+	hide firept2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode firept1 type BITMAPONLY | BITMAP2;
+		explode firept2 type BITMAPONLY | BITMAP3;
+		explode body type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode firept1 type FALL | SMOKE | BITMAP2;
+		explode firept2 type FALL | SMOKE | BITMAP3;
+		explode body type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode firept1 type FALL | SMOKE | FIRE | BITMAP2;
+	explode firept2 type FALL | SMOKE | FIRE | BITMAP3;
+	explode body type BITMAPONLY | BITMAP4;
+}

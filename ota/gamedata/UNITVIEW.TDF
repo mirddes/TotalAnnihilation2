@@ -1,0 +1,14 @@
+/*
+** UnitView.tdf -- Resource data for the Total Annihilation Unit Viewer
+**
+** Copyright 1997 Cavedog Entertainment
+*/
+
+[RESOURCES]
+	{
+	website=www.cavedog.com/;
+	logo=bitmaps\small_cavedog_logo.pcx;
+	armbackground=bitmaps\armbkg.pcx;
+	corebackground=bitmaps\corebkg.pcx;
+	};
+

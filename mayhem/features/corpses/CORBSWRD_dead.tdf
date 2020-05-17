@@ -1,0 +1,36 @@
+[CORBSWRD_dead]
+{
+world=All Worlds;
+description=Broadsword Wreckage;
+category=arm_corpses;
+object=CORBSWRD_dead;
+featuredead=CORBSWRD_heap;
+footprintx=3;
+footprintz=3;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=16856;
+damage=20794;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORBSWRD_heap]
+{
+world=All Worlds;
+description=Broadsword Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=8428;
+damage=21594;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

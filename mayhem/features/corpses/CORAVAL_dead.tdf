@@ -1,0 +1,35 @@
+[coraval_dead]
+{
+world=All Worlds;
+description=Avalanche Wreckage;
+category=core_corpses;
+object=coraval_dead;
+featuredead=coraval_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=288;
+damage=1820;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coraval_heap]
+{
+World=All Worlds;
+Description=Avalanche Wreckage;
+Category=core_heaps;
+Object=4x4d;
+Footprintx=4;
+Footprintz=4;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=144;
+Damage=1820;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

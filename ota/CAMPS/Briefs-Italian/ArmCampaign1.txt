@@ -1,0 +1,10 @@
+MISSIONE 1.0001ARME
+Stabilire una postazione di guardia attorno al Cancello Galattico.
+
+&Y*PRIORITÀ CRITICA*&
+Gli agenti Core sono riusciti a eludere i sistemi di sicurezza, e hanno appena raggiunto Empyrrean: il nostro Comandante sta per tornare sul pianeta, e i nemici intendono preparare un’imboscata nei pressi del cancello galattico che dovrà attraversare. Spostate le vostre unità sul luogo: il nostro Comandante deve assolutamente sopravvivere.
+
+INFORMAZIONI UTILI
+Il Cancello Galattico è localizzato nel cratere a Nord. &RSono previsti pattugliamenti da parte delle unità Core.&
+
+FINE

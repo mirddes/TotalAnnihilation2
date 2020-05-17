@@ -1,0 +1,8 @@
+MISSION 2.2CORE
+
+INTELL-TAP:
+A nest of Arm vermin has been located. They have established an untidy KBot Lab in Plaza B206. Build a base, and a Vehicle Plant. Produce sufficient units to eradicate the Arm vermin. 
+
+&RBuild a Vehicle Plant and destroy all of the Arm units.&
+
+DO SO NOW.

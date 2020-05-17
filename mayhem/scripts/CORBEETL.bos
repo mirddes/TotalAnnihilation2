@@ -1,0 +1,336 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece base, body, hatch, missile, L_F1, L_F2, L_M1, L_M2,
+      L_B1, L_B2, R_F1, R_F2, R_M1, R_M2, R_B1, R_B2;
+
+static-var  Moving_1, state_2, busy_3, request_5, reload_6, walking_7;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+Create()
+{
+	turn R_B1 to y-axis <-15> NOW;
+	turn R_F1 to y-axis <15> NOW;
+	turn L_F1 to y-axis <-15> NOW;
+	turn L_B1 to y-axis <15> NOW;	
+	Moving_1 = 0;
+	State_2 = 1;
+	Busy_3 = 0;
+	request_5 = 1;
+	reload_6 = 0;
+	walking_7 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+SweetSpot (piecenum)
+	{
+	piecenum = base;
+	}
+
+RequestState()
+{
+	if( busy_3 )
+	{
+		return(0);
+	}
+	busy_3 = 1;
+	while( state_2 != request_5 )
+	{
+		if( request_5 AND !state_2 )
+		{
+			turn body to x-axis <-80> speed <400>;
+			turn R_B2 to z-axis <0> speed <300>;
+			turn R_M2 to z-axis <0> speed <240>;
+			turn R_F2 to z-axis <0> speed <240>;
+			turn L_B2 to z-axis <0> speed <300>;
+			turn L_M2 to z-axis <0> speed <240>;
+			turn L_F2 to z-axis <0> speed <240>;
+			sleep 250;	
+			turn body to x-axis <0> speed <400>;
+			turn R_B1 to y-axis <-15> speed <45>;
+			turn R_F1 to y-axis <15> speed <60>;
+			turn L_F1 to y-axis <-15> speed <60>;
+			turn L_B1 to y-axis <15> speed <45>;
+			set ARMORED to FALSE;
+			sleep 200;
+			state_2 = 1;
+		}
+		if( !request_5 AND state_2 )
+		{
+			state_2 = 0;
+			signal 2;
+			turn hatch to x-axis <0> speed <180>;
+			Move body to y-axis [2] speed [4];	
+			turn body to x-axis <90> speed <450>;
+			turn R_B2 to z-axis <-60> speed <300>;
+			turn R_M2 to z-axis <-60> speed <300>;
+			turn R_F2 to z-axis <-60> speed <300>;
+			turn L_B2 to z-axis <60> speed <300>;
+			turn L_M2 to z-axis <60> speed <300>;
+			turn L_F2 to z-axis <60> speed <300>;
+			turn R_B1 to y-axis <0> speed <90>;
+			turn R_M1 to y-axis <0> speed <90>;
+			turn R_F1 to y-axis <0> speed <90>;
+			turn L_F1 to y-axis <0> speed <90>;
+			turn R_M1 to y-axis <0> speed <90>;
+			turn L_B1 to y-axis <0> speed <90>;
+			sleep 200;
+			turn body to x-axis <180> speed <420>;
+			sleep 160;
+			move body to y-axis [0] speed [10];
+			turn R_B2 to z-axis <-105> speed <120>;
+			turn R_M2 to z-axis <-105> speed <120>;
+			turn R_F2 to z-axis <-105> speed <120>;
+			turn L_B2 to z-axis <105> speed <120>;
+			turn L_M2 to z-axis <105> speed <120>;
+			turn L_F2 to z-axis <105> speed <120>;
+			set ARMORED to TRUE;	
+			sleep 100;
+		}
+		sleep 200;
+	}
+	busy_3 = 0;
+	return(0);
+}
+
+walk()
+{
+	Walking_7 = 1;
+	while( Moving_1 )
+	{
+		TURN R_B1 to y-axis <-30> speed <90>;
+		TURN L_F1 to y-axis <-30> speed <180>;
+		sleep 110;
+		if( Moving_1 )
+		{
+			TURN R_M1 to y-axis <-15> speed <90>;
+			TURN L_B1 to y-axis <0> speed <180>;
+			sleep 110;
+		}
+		if( Moving_1 )
+		{
+			TURN R_F1 to y-axis <0> speed <90>;
+			TURN L_M1 to y-axis <-15> speed <180>;
+			sleep 110;
+		}
+		if( Moving_1 )
+		{
+			TURN R_B1 to y-axis <0> speed <180>;
+			TURN L_F1 to y-axis <0> speed <90>;
+			sleep 110;
+		}
+		if( Moving_1 )
+		{
+			TURN R_M1 to y-axis <15> speed <180>;
+			TURN L_B1 to y-axis <30> speed <90>;
+			sleep 110;
+		}
+		if( Moving_1 )
+		{
+			TURN R_F1 to y-axis <30> speed <180>;
+			TURN L_M1 to y-axis <15> speed <90>;
+			sleep 110;
+		}
+	}
+	Walking_7 = 0;
+	turn R_B1 to y-axis <-15> speed <180>;
+	turn R_M1 to y-axis <0> speed <90>;
+	turn R_F1 to y-axis <15> speed <180>;
+	turn L_F1 to y-axis <-15> speed <180>;
+	turn L_M1 to y-axis <0> speed <90>;
+	turn L_B1 to y-axis <15> speed <180>;
+	return(0);
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+	if( !Walking_7 )
+	{
+		start-script walk();
+	}
+	if( !get ACTIVATION )
+	{
+		set ACTIVATION to 1;
+	}
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+	return(0);
+}
+
+Activate()
+{
+	request_5 = 1;
+	start-script requeststate();
+	return(0);
+}
+
+Deactivate()
+{
+	while( moving_1 )
+	{
+		sleep 250;
+	}
+	signal 2;
+	request_5 = 0;
+	start-script requeststate();
+	return(0);
+}
+
+RestoreAfterDelay()
+{
+	Sleep 12000;
+	turn hatch to x-axis <0> speed <60>;
+	reload_6 = 0;
+}
+
+AimPrimary()
+{
+	while( ( !state_2 OR reload_6 ) OR busy_3 )
+	{
+		sleep 250;
+	}
+	show missile;
+	turn hatch to x-axis <90> speed <90>;
+	reload_6 = 1;
+	wait-for-turn hatch around x-axis;
+	sleep 200;
+	signal 2;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+FirePrimary()
+{
+	reload_6 = 1;
+	hide missile;
+	sleep 1000;
+	turn hatch to x-axis <0> speed <60>;
+	sleep 5000;
+	reload_6 = 0;
+	return(0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = missile;
+}
+
+Killed(severity, corpsetype)
+	{
+	hide missile;
+	if (severity <= 25)
+	{
+		if( state_2 )
+		{
+			corpsetype = 1;
+		}
+		if( !state_2 )
+		{
+			corpsetype = 2;
+		}	
+		explode body type	BITMAPONLY | BITMAP2;
+		explode hatch type	BITMAPONLY | BITMAP1;
+		explode L_F1 type	BITMAPONLY | BITMAP4;
+		explode L_F2 type	BITMAPONLY | BITMAP3;
+		explode L_M1 type	FALL | BITMAP1;
+		explode L_M2 type	FALL | BITMAP1;
+		explode L_B1 type	BITMAPONLY | BITMAP4;
+		explode L_B2 type	BITMAPONLY | BITMAP3;
+		explode R_F1 type	BITMAPONLY | BITMAP4;
+		explode R_F2 type	BITMAPONLY | BITMAP3;
+		explode R_M1 type	BITMAPONLY | BITMAP4;
+		explode R_M2 type	BITMAPONLY | BITMAP3;
+		explode R_B1 type	BITMAPONLY | BITMAP3;
+		explode R_B2 type	FALL | BITMAP1;
+		return(0);
+	}
+	if (severity <= 50)
+	{
+		corpsetype = 3;
+		explode body type	BITMAPONLY | BITMAP4;
+		explode hatch type	FALL | BITMAP4;
+		explode L_F1 type	FALL | BITMAP3;
+		explode L_F2 type	FALL | BITMAP4;
+		explode L_M1 type	FALL | BITMAP3;
+		explode L_M2 type	FALL | BITMAP4;
+		explode L_B1 type	FALL | BITMAP3;
+		explode L_B2 type	FALL | BITMAP4;
+		explode R_F1 type	FALL | BITMAP3;
+		explode R_F2 type	FALL | BITMAP4;
+		explode R_M1 type	FALL | BITMAP3;
+		explode R_M2 type	FALL | BITMAP4;
+		explode R_B1 type	FALL | BITMAP3;
+		explode R_B2 type	FALL | BITMAP4;
+		return(0);
+	}
+	if (severity <= 99)
+	{
+		corpsetype = 4;
+		explode base type	BITMAPONLY | BITMAP4;
+		explode hatch type	BITMAPONLY | BITMAP2;
+		explode L_F1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode L_F2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode L_M1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode L_M2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode L_B1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode L_B2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode R_F1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode R_F2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode R_M1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode R_M2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode R_B1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode R_B2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return(0);
+	}
+	corpsetype = 4;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode hatch type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode L_F1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode L_F2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode L_M1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode L_M2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode L_B1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode L_B2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode R_F1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode R_F2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode R_M1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode R_M2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode R_B1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode R_B2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return(0);
+	}

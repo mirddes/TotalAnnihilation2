@@ -1,0 +1,35 @@
+[corach_dead]
+{
+world=All Worlds;
+description=Adv Cons Hover Wreckage;
+category=core_corpses;
+object=corach_dead;
+featuredead=corach_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=343;
+damage=992;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corach_heap]
+{
+world=All Worlds;
+description=Adv Cons Hover Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=172;
+damage=992;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

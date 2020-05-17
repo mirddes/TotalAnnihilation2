@@ -1,0 +1,11 @@
+MISSION 9.3TCORE
+Scouts have found the primary concentration of Arm forces on Temblor. They have taken our outpost at Cloud Isle. The bottomless vapor pits will only protect them for so long - though it may hold us back temporarily, it also limits their options - a perfect opportunity for slaughter! 
+
+INTELL-TAP:
+&RThe implosion device is nearly ready. Finish quickly here, and move all remaining forces to Gelidus.&
+
+Arm may have developed a new-tech fusion reactor. It has incorporated a cloaking mechanism. Destroy the reactor along with everything else. In a few days the technology will be obsolete...
+
+To complete this mission you must destroy all Arm units and mines.
+
+DO SO NOW.

@@ -1,0 +1,56 @@
+[GADGET0]
+	{
+	[COMMON]
+		{
+		id=0;
+		name=HEADER;
+		xpos=164;
+		ypos=147;
+		width=348;
+		height=117;
+		}
+	totalgadgets=2;
+	[VERSION]
+		{
+		major=0;
+		minor=0;
+		revision=0;
+		}
+	panel=;
+	crdefault=OK;
+	escdefault=;
+	defaultfocus=OK;
+	}
+[GADGET1]
+	{
+	[COMMON]
+		{
+		id=5;
+		name=Message;
+		xpos=6;
+		ypos=24;
+		width=335;
+		height=13;
+		attribs=2;
+		colorf=15;
+		active=1;
+		commonattribs=104;
+		}
+	text=Please insert the Play CD;
+	}
+[GADGET2]
+	{
+	[COMMON]
+		{
+		id=1;
+		name=OK;
+		xpos=253;
+		ypos=82;
+		width=80;
+		height=20;
+		attribs=2;
+		colorf=15;
+		active=1;
+		}
+	text=Ok;
+	}

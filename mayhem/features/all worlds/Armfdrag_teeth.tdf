@@ -1,0 +1,17 @@
+[FloatingTeeth]
+{
+world=allworld;
+description=Dragon's Teeth - NS;
+category=dragonteeth;
+object=armfdrag;
+footprintx=2;
+footprintz=2;
+height=26;
+blocking=1;
+hitdensity=100;
+metal=24;
+damage=4000;
+reclaimable=1;
+autoreclaimable=0;
+nodrawundergray=1;
+}

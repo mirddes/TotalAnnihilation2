@@ -1,0 +1,28 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  torp, base, GP;
+
+Create()
+{
+	dont-cache base;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 250;
+	}
+	sleep 1400;
+	hide base;
+	hide torp;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+}

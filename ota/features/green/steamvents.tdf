@@ -1,0 +1,175 @@
+[GreenVent01]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent02]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent03]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent04]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent05]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent05;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent06]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent06;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent07]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent07;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent08]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent08;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent09]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent09;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[GreenVent10]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=greenvents;
+	seqname=vent10;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[Geothermal]
+	{
+	world=greenworld;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=geotherm;
+	seqname=geotherm;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

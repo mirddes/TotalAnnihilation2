@@ -1,0 +1,684 @@
+[MetalTower01]
+	{
+	world=Metal;
+	description=Comm Uplink;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=75;
+	filename=towers;
+	seqname=tower01;
+	seqnameshad=tower01shad;
+	seqnamereclamate=tower01rec;
+	metal=150;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower01scar;
+	featuredead=tower01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower01Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower01scar;
+	seqnameshad=;
+
+	featuredead=tower01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower02]
+	{
+	world=Metal;
+	description=Comm Uplink;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=75;
+	filename=towers;
+	seqname=tower02;
+	seqnameshad=tower02shad;
+	seqnamereclamate=tower02rec;
+	metal=150;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower02scar;
+	featuredead=tower02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower02Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower02scar;
+	seqnameshad=;
+
+	featuredead=tower02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower03]
+	{
+	world=Metal;
+	description=Ventilation Engine;
+	category=building;
+	animating=0;
+	footprintx=8;
+	footprintz=7;
+	height=20;
+	filename=towers;
+	seqname=tower03;
+	seqnameshad=tower03shad;
+	seqnamereclamate=tower03rec;
+	metal=100;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower03scar;
+	featuredead=tower03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower03Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=8;
+	footprintz=7;
+	height=0;
+	filename=towerscars;
+	seqname=tower03scar;
+	seqnameshad=;
+
+	featuredead=tower03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower04]
+	{
+	world=Metal;
+	description=Ventilation Engine;
+	category=building;
+	animating=0;
+	footprintx=7;
+	footprintz=7;
+	height=0;
+	filename=towers;
+	seqname=tower04;
+	seqnameshad=tower04shad;
+	seqnamereclamate=tower04rec;
+	metal=100;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower04scar;
+	featuredead=tower04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower04Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=7;
+	height=0;
+	filename=towerscars;
+	seqname=tower04scar;
+	seqnameshad=;
+
+	featuredead=tower04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower05]
+	{
+	world=Metal;
+	description=Thermal Regulator;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towers;
+	seqname=tower05;
+	seqnameshad=tower05shad;
+	seqnamereclamate=tower05rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower05scar;
+	featuredead=tower05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower05Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower05scar;
+	seqnameshad=;
+
+	featuredead=tower05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower06]
+	{
+	world=Metal;
+	description=Thermal Regulator;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towers;
+	seqname=tower06;
+	seqnameshad=tower06shad;
+	seqnamereclamate=tower06rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower06scar;
+	featuredead=tower06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower06Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower06scar;
+	seqnameshad=;
+
+	featuredead=tower06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower07]
+	{
+	world=Metal;
+	description=Seismic Monitor;
+	category=building;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=0;
+	filename=towers;
+	seqname=tower07;
+	seqnameshad=tower07shad;
+	seqnamereclamate=tower07rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower07scar;
+	featuredead=tower07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower07Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower07scar;
+	seqnameshad=;
+
+	featuredead=tower07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower08]
+	{
+	world=Metal;
+	description=Seismic Monitor;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=towers;
+	seqname=tower08;
+	seqnameshad=tower08shad;
+	seqnamereclamate=tower08rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower08scar;
+	featuredead=tower08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower08Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=towerscars;
+	seqname=tower08scar;
+	seqnameshad=;
+
+	featuredead=tower08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower09]
+	{
+	world=Metal;
+	description=Regulator Complex;
+	category=building;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=10;
+	filename=towers;
+	seqname=tower09;
+	seqnameshad=tower09shad;
+	seqnamereclamate=tower09rec;
+	metal=50;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower09scar;
+	featuredead=tower09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower09Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=towerscars;
+	seqname=tower09scar;
+	seqnameshad=;
+
+	featuredead=tower09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower10]
+	{
+	world=Metal;
+	description=Pressure Valve;
+	category=building;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=3;
+	filename=towers;
+	seqname=tower10;
+	seqnameshad=tower10shad;
+	seqnamereclamate=tower10rec;
+	metal=25;
+
+	featurereclamate=tower10scar;
+	featuredead=tower10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower10Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=0;
+	filename=towerscars;
+	seqname=tower10scar;
+	seqnameshad=;
+
+	featuredead=tower10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower11]
+	{
+	world=Metal;
+	description=Thermal Regulator;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towers;
+	seqname=tower11;
+	seqnameshad=tower11shad;
+	seqnamereclamate=tower11rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower11scar;
+	featuredead=tower11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower11Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower11scar;
+	seqnameshad=;
+
+	featuredead=tower11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower12]
+	{
+	world=Metal;
+	description=Thermal Regulator;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towers;
+	seqname=tower12;
+	seqnameshad=tower12shad;
+	seqnamereclamate=tower12rec;
+	metal=75;
+
+	seqnamedie=smallboom;
+	featurereclamate=tower12scar;
+	featuredead=tower12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower12Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower12scar;
+	seqnameshad=;
+
+	featuredead=tower12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower13]
+	{
+	world=Metal;
+	description=Comm Uplink;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=75;
+	filename=towers;
+	seqname=tower13;
+	seqnameshad=tower13shad;
+	seqnamereclamate=tower13rec;
+	metal=150;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower13scar;
+	featuredead=tower13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower13Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower13scar;
+	seqnameshad=;
+
+	featuredead=tower13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MetalTower14]
+	{
+	world=Metal;
+	description=Comm Uplink;
+	category=building;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=75;
+	filename=towers;
+	seqname=tower14;
+	seqnameshad=tower14shad;
+	seqnamereclamate=tower14rec;
+	metal=150;
+
+	seqnamedie=bigboom;
+	featurereclamate=tower14scar;
+	featuredead=tower14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Tower14Scar]
+	{
+	world=Metal;
+	description=Damaged Surface;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=towerscars;
+	seqname=tower14scar;
+	seqnameshad=;
+
+	featuredead=tower14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

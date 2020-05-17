@@ -1,0 +1,207 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  Base, glow, spinner, steam, pieces;
+
+static-var  on_1, radiation_2; //buildangle, building, aicheck;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	/*var changed;
+	changed=0;*/
+	while( TRUE )
+	{
+		/*if (!changed AND !building AND (get LOCAL_SHARED_DATA(0,get UNIT_TEAM(get MY_ID))) > 1)
+		{
+			changed=1;
+			set UNIT_TYPE_CRC to CORMGEN2;
+		}*/
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from pieces;
+			emit-sfx smoketype from steam;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( healthpercent <= 10 )
+		{
+			radiation_2 = 1;
+		}
+		sleep sleeptime;
+	}
+}	
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	/*buildangle = rand(-8192,8192);
+	buildangle = buildangle + 32768;
+	set TURNZ to buildangle;
+	aicheck=get PLAYER_TYPE(get UNIT_TEAM(get MY_ID ));
+	building=0;*/
+	on_1 = 0;
+	radiation_2 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	/*if (aicheck==1)
+	{
+		set INBUILDSTANCE to 1;
+	}
+	if (aicheck==2)
+	{
+		if (rand(1,8) == 1)
+		{
+			set INBUILDSTANCE to 1;
+		}
+	}*/
+}
+
+EmitSteam()
+{
+	while( On_1 )
+	{
+		emit-sfx 256 | 1 from steam;
+		sleep 150;
+	}
+}
+
+Activate()
+{
+	if( !On_1 )
+	{
+		On_1 = 1;
+		dont-cache glow;
+		spin spinner around y-axis speed <720>;
+		start-script EmitSteam();
+	}
+}
+
+Deactivate()
+{
+	On_1 = 0;
+	cache glow;
+}
+
+/*QueryBuildInfo(piecenum)
+{
+	if (!building)
+	{
+		piecenum = base;
+		building=1;
+		set YARD_OPEN to 1;
+		sleep 33;
+		set YARD_OPEN to 0;
+		if (get CURRENT_ORDER_TARGET_ID)
+		{
+			get COB_START_SCRIPT(get CURRENT_ORDER_TARGET_ID,2,get MY_ID, buildangle);
+			if (aicheck==1)
+			{
+				set ACTIVATION to 0;
+				set GRANT_UNITINFO to 1;
+				get SET_UNITINFO(uiOnOffable,0);
+			}
+			start-script Deactivate();
+		}
+		while (get YARD_OPEN)
+		{
+			set YARD_OPEN to 0;
+			sleep 1000;
+		}
+		if (aicheck==1)
+		{
+			get SET_UNITINFO(uiOnOffable,1);
+			set GRANT_UNITINFO to 0;
+			set ACTIVATION to 1;
+		}
+		if (aicheck==2)
+		{
+			start-script Activate();
+		}
+		get UNIT_REBUILD_YARD;
+		building=0;
+	}
+}*/
+
+AimPrimary()
+{
+	signal 2;
+	set-signal-mask 2;
+	while( !radiation_2 )
+	{
+		sleep 500;
+	}
+	Return(1);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = pieces;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = pieces;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode glow type SHATTER | BITMAP3;
+		explode pieces type BITMAPONLY | BITMAPNUKE;
+		explode spinner type BITMAPONLY | BITMAP2;
+		explode Base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode glow type SHATTER | BITMAP3;
+		explode pieces type BITMAPONLY | BITMAPNUKE;
+		explode spinner type BITMAPONLY | BITMAP2;
+		explode Base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode glow type SHATTER | BITMAP3;
+	explode pieces type BITMAPONLY | BITMAPNUKE;
+	explode spinner type BITMAPONLY | BITMAP2;
+	explode Base type BITMAPONLY | BITMAP2;
+}

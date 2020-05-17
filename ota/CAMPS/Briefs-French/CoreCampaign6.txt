@@ -1,0 +1,7 @@
+MISSION 6.2 CORE
+Détruisez la base Arm située au nord.
+
+STATISTIQUES DE PROBABILITES:
+Vous serez attaqué par des unités aériennes de l'Arm (&R98%, marge d'erreur:1%&). Utilisez vos unités volantes pour contre-attaquer (&R65%, marge d'erreur:7%&).
+
+Exécution

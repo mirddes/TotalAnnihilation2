@@ -1,0 +1,34 @@
+[corhh_DEAD]
+{
+world=All Worlds;
+description=Crusher Wreckage;
+category=core_corpses;
+object=corhh_dead;
+featuredead=corhh_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=674;
+damage=2058;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corhh_HEAP]
+{
+world=All Worlds;
+description=Crusher Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+blocking=0;
+hitdensity=5;
+metal=337;
+damage=2058;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

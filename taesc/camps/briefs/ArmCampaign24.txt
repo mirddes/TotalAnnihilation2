@@ -1,0 +1,12 @@
+MISSION 24.004ARMCP
+Take control of the dome at Central Plaza.
+
+&YPRIORITY&
+We have found the Central Consciousness that directs the Core war machine. It lies beneath the huge dome at Central Plaza. Destroy the guard garrison stationed there and take the dome. When we control Central Consciousness, Core will surely be weakened sufficiently for Arm to secure the final victory!
+
+INFO FEED
+There are several entrances to the Central Plaza. Expect all of them to be well guarded.  Expect the dome to be extraordinarily well guarded as well. Core defenses will be savage. You must be equally savage Commander.
+
+Commander, you must stand at the top of the dome.
+ 
+END

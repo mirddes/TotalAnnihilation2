@@ -1,0 +1,10 @@
+MISIÓN 10.0002CLANT
+Destruir todas las unidades y estructuras del Núcleo. 
+
+&YPRIORIDAD&
+Para conseguir el dominio de Tergiverse IV es necesario destruir los emplazamientos del Núcleo atrincherados en la formación conocida como el Laberinto Bromid.
+
+INFORMACIÓN
+Una patrulla Zipper de reconocimiento ha quedado aislada al oeste. Rescata al equipo si es posible. Sus armas y velocidad serán útiles en esta misión. Si puedes capturar e interrogar a una unidad del Núcleo, su conocimiento será tuyo... y te ayudará mucho en el laberinto.
+
+FIN

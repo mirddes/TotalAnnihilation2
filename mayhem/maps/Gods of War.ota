@@ -1,0 +1,106 @@
+[GlobalHeader]
+	{
+	missionname=Gods of War;
+	missiondescription=9 X 8  Asymmetric water map.;
+	planet=Red Planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=20;
+	solarstrength=18;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=500;
+	maxwindspeed=4500;
+	gravity=132;
+	numplayers=2, 5;
+	size=9 x 9;
+	memory=16 mb;
+	useonlyunits=Gods of War.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=5;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=3840;
+				ZPos=1872;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=336;
+				ZPos=3696;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=464;
+				ZPos=1152;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=2784;
+				ZPos=3792;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=2224;
+				ZPos=256;
+				}
+			[special5]
+				{
+				specialwhat=StartPos7;
+				XPos=3968;
+				ZPos=1856;
+				}
+			[special6]
+				{
+				specialwhat=StartPos8;
+				XPos=2656;
+				ZPos=3808;
+				}
+			[special7]
+				{
+				specialwhat=StartPos9;
+				XPos=256;
+				ZPos=3632;
+				}
+			[special8]
+				{
+				specialwhat=StartPos10;
+				XPos=2288;
+				ZPos=224;
+				}
+			[special9]
+				{
+				specialwhat=StartPos6;
+				XPos=384;
+				ZPos=1072;
+				}
+			}
+		}
+	}

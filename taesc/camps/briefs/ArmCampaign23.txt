@@ -1,0 +1,12 @@
+MISSION 23.003ARMCP
+Push across the polluted waters to the Core port beyond. Destroy the port facilities and all Core Units..
+
+&YPRIORITY&
+Across Aqueous Body 397 is Port Complex .016. Build sufficient units to cross the oily waters and destroy any fortifications that you find at the Port. Our final push to Central Consciousness will then begin.
+
+INFO FEED
+The entrance to Port .016 is sure to be guarded - and we have lost the element of surprise. Core is certain to be ready for your assault. &RLosses will be heavy.&
+
+&GThe thoughts of all Empyrrean are with you Commander.&
+ 
+END

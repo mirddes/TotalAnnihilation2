@@ -1,0 +1,477 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  support, flare, Thigh1, Thigh2, Torso, Shoulder, Barrel, Foot2,
+       Foot1, Forearm, Leg2, Leg1, ground;
+
+static-var  Moving_1, Aiming_2, CanAim_3;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(JustMoved)
+{
+	JustMoved = 1;
+	while( TRUE )
+	{
+		if( Moving_1 AND Aiming_2 )
+		{
+			CanAim_3 = 1;
+			turn Thigh1 to x-axis <16.88> speed <420>;
+			turn Thigh2 to x-axis <-45.71> speed <420>;
+			turn Leg2 to x-axis <50.98> speed <420>;
+			turn Foot1 to x-axis <-16.53> speed <420>;
+			sleep 100;
+			turn Thigh1 to x-axis <24.26> speed <420>;
+			turn Thigh2 to x-axis <-41.14> speed <420>;
+			turn Leg2 to x-axis <43.25> speed <420>;
+			turn Foot1 to x-axis <-11.96> speed <420>;
+			sleep 100;
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <37.62> speed <420>;
+				turn Thigh2 to x-axis <-26.37> speed <420>;
+				turn Leg2 to x-axis <26.37> speed <420>;
+				turn Leg1 to x-axis <8.44> speed <420>;
+				sleep 100;
+				turn Thigh1 to x-axis <22.15> speed <420>;
+				turn Thigh2 to x-axis <-11.96> speed <420>;
+				turn Leg2 to x-axis <11.60> speed <420>;
+				turn Leg1 to x-axis <27.43> speed <420>;
+				sleep 100;
+			}
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <3.16> speed <420>;
+				turn Thigh2 to x-axis <7.00> speed <420>;
+				turn Leg2 to x-axis <-1.05> speed <420>;
+				turn Foot2 to x-axis <-6.33> speed <420>;
+				turn Leg1 to x-axis <53.45> speed <420>;
+				sleep 100;
+				turn Thigh1 to x-axis <-20.75> speed <420>;
+				turn Thigh2 to x-axis <20.75> speed <420>;
+				turn Foot2 to x-axis <-19.69> speed <420>;
+				turn Leg1 to x-axis <60.83> speed <420>;
+				sleep 100;
+			}
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <-39.38> speed <420>;
+				turn Thigh2 to x-axis <28.48> speed <420>;
+				turn Foot2 to x-axis <-27.08> speed <420>;
+				sleep 100;
+				turn Thigh1 to x-axis <-43.96> speed <420>;
+				turn Thigh2 to x-axis <34.81> speed <420>;
+				turn Foot2 to x-axis <-20.40> speed <420>;
+				turn Leg1 to x-axis <43.96> speed <420>;
+				turn Foot1 to x-axis <0.00> speed <420>;
+				sleep 100;
+			}
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <-31.99> speed <420>;
+				turn Thigh2 to x-axis <35.87> speed <420>;
+				turn Leg2 to x-axis <16.18> speed <420>;
+				turn Foot2 to x-axis <-13.71> speed <420>;
+				turn Leg1 to x-axis <32.35> speed <420>;
+				sleep 100;
+				turn Thigh1 to x-axis <-23.55> speed <420>;
+				turn Thigh2 to x-axis <23.55> speed <420>;
+				turn Leg2 to x-axis <40.43> speed <420>;
+				turn Leg1 to x-axis <24.26> speed <420>;
+				sleep 100;
+			}
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <-1.41> speed <420>;
+				turn Thigh2 to x-axis <-14.41> speed <420>;
+				turn Leg2 to x-axis <69.27> speed <420>;
+				turn Leg1 to x-axis <2.46> speed <420>;
+				sleep 100;
+				turn Thigh1 to x-axis <11.60> speed <420>;
+				turn Thigh2 to x-axis <-35.16> speed <420>;
+				turn Leg2 to x-axis <76.66> speed <420>;
+				turn Foot1 to x-axis <-14.07> speed <420>;
+				sleep 100;
+			}
+			JustMoved = 1;
+		}
+		if( Moving_1 AND !Aiming_2 )
+		{
+			CanAim_3 = 0;
+			move Thigh1 to z-axis [0.00] now;
+			move Thigh2 to z-axis [0.00] now;
+			move Torso to x-axis [0.00] now;
+			move Torso to y-axis [-0.05] now;
+			move Shoulder to x-axis [0.00] now;
+			move support to y-axis [0.00] now;
+			move support to z-axis [0.00] now;
+			move Barrel to x-axis [0.00] now;
+			move Foot2 to z-axis [0.00] now;
+			move Foot1 to x-axis [0.00] now;
+			move Foot1 to z-axis [0.00] now;
+			turn Thigh1 to x-axis <16.88> speed <420>;
+			turn Thigh2 to x-axis <-45.71> speed <420>;
+			turn Torso to x-axis <1.76> speed <420>;
+			turn Torso to z-axis <-0.70> speed <420>;
+			turn Shoulder to x-axis <-6.33> speed <420>;
+			turn Forearm to x-axis <-15.82> speed <420>;
+			turn Leg2 to x-axis <50.98> speed <420>;
+			turn Foot1 to x-axis <-16.53> speed <420>;
+			sleep 100;
+			move Torso to y-axis [0.00] now;
+			turn Thigh1 to x-axis <24.26> speed <420>;
+			turn Thigh2 to x-axis <-41.14> speed <420>;
+			turn Torso to x-axis <0.35> speed <420>;
+			turn Torso to z-axis <-0.35> speed <420>;
+			turn Shoulder to x-axis <-13.00> speed <420>;
+			turn Forearm to x-axis <-22.86> speed <420>;
+			turn Leg2 to x-axis <43.25> speed <420>;
+			turn Foot1 to x-axis <-11.96> speed <420>;
+			sleep 102;
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <37.62> speed <420>;
+				turn Thigh2 to x-axis <-26.37> speed <420>;
+				turn Torso to x-axis <0.00> speed <420>;
+				turn Torso to z-axis <0.00> speed <420>;
+				turn Shoulder to x-axis <-19.34> speed <420>;
+				turn Forearm to x-axis <-21.45> speed <420>;
+				turn Leg2 to x-axis <26.37> speed <420>;
+				turn Leg1 to x-axis <8.44> speed <420>;
+				sleep 104;
+				move Torso to y-axis [-0.30] now;
+				turn Thigh1 to x-axis <22.15> speed <420>;
+				turn Thigh2 to x-axis <-11.96> speed <420>;
+				turn Torso to x-axis <0.00> speed <420>;
+				turn Shoulder to x-axis <-17.93> speed <420>;
+				turn Forearm to x-axis <-5.27> speed <420>;
+				turn Leg2 to x-axis <11.60> speed <420>;
+				turn Leg1 to x-axis <27.43> speed <420>;
+				sleep 102;
+			}
+			if( Moving_1 )
+			{
+				move Torso to y-axis [-0.25] now;
+				turn Thigh1 to x-axis <3.16> speed <420>;
+				turn Thigh2 to x-axis <7.00> speed <420>;
+				turn Torso to x-axis <1.76> speed <420>;
+				turn Torso to z-axis <1.41> speed <420>;
+				turn Shoulder to x-axis <-5.27> speed <420>;
+				turn Forearm to x-axis <0.00> speed <420>;
+				turn Leg2 to x-axis <-1.05> speed <420>;
+				turn Foot2 to x-axis <-6.33> speed <420>;
+				turn Leg1 to x-axis <53.45> speed <420>;
+				sleep 102;
+				move Torso to y-axis [-0.10] now;
+				turn Thigh1 to x-axis <-20.75> speed <420>;
+				turn Thigh2 to x-axis <20.75> speed <420>;
+				turn Torso to x-axis <2.46> speed <420>;
+				turn Torso to z-axis <0.70> speed <420>;
+				turn Shoulder to x-axis <2.46> speed <420>;
+				turn Foot2 to x-axis <-19.69> speed <420>;
+				turn Leg1 to x-axis <60.83> speed <420>;
+				sleep 103;
+			}
+			if( Moving_1 )
+			{
+				move Torso to y-axis [-0.05] now;
+				turn Thigh1 to x-axis <-39.38> speed <420>;
+				turn Thigh2 to x-axis <28.48> speed <420>;
+				turn Torso to x-axis <0.70> speed <420>;
+				turn Shoulder to x-axis <1.41> speed <420>;
+				turn Foot2 to x-axis <-27.08> speed <420>;
+				sleep 103;
+				move Torso to y-axis [0.00] now;
+				turn Thigh1 to x-axis <-43.96> speed <420>;
+				turn Thigh2 to x-axis <34.81> speed <420>;
+				turn Torso to x-axis <0.35> speed <420>;
+				turn Torso to z-axis <0.35> speed <420>;
+				turn Shoulder to x-axis <1.05> speed <420>;
+				turn Foot2 to x-axis <-20.40> speed <420>;
+				turn Leg1 to x-axis <43.96> speed <420>;
+				turn Foot1 to x-axis <0.00> speed <420>;
+				sleep 103;
+			}
+			if( Moving_1 )
+			{
+				turn Thigh1 to x-axis <-31.99> speed <420>;
+				turn Thigh2 to x-axis <35.87> speed <420>;
+				turn Torso to x-axis <0.00> speed <420>;
+				turn Torso to z-axis <0.00> speed <420>;
+				turn Shoulder to x-axis <0.00> speed <420>;
+				turn Leg2 to x-axis <16.18> speed <420>;
+				turn Foot2 to x-axis <-13.71> speed <420>;
+				turn Leg1 to x-axis <32.35> speed <420>;
+				sleep 103;
+				move Torso to y-axis [-0.25] now;
+				turn Thigh1 to x-axis <-23.55> speed <420>;
+				turn Thigh2 to x-axis <23.55> speed <420>;
+				turn Leg2 to x-axis <40.43> speed <420>;
+				turn Leg1 to x-axis <24.26> speed <420>;
+				sleep 103;
+			}
+			if( Moving_1 )
+			{
+				move Torso to y-axis [-0.20] now;
+				turn Thigh1 to x-axis <-1.41> speed <420>;
+				turn Thigh2 to x-axis <-14.41> speed <420>;
+				turn Torso to x-axis <2.11> speed <420>;
+				turn Torso to z-axis <-2.11> speed <420>;
+				turn Shoulder to x-axis <-0.70> speed <420>;
+				turn Leg2 to x-axis <69.27> speed <420>;
+				turn Leg1 to x-axis <2.46> speed <420>;
+				sleep 103;
+				move Torso to y-axis [-0.15] now;
+				turn Thigh1 to x-axis <11.60> speed <420>;
+				turn Thigh2 to x-axis <-35.16> speed <420>;
+				turn Torso to z-axis <-1.05> speed <420>;
+				turn Shoulder to x-axis <-2.46> speed <420>;
+				turn Forearm to x-axis <-4.22> speed <420>;
+				turn Leg2 to x-axis <76.66> speed <420>;
+				turn Foot1 to x-axis <-14.07> speed <420>;
+				sleep 103;
+			}
+			JustMoved = 1;
+		}
+		if( !Moving_1 )
+		{
+			CanAim_3 = 1;
+			if( JustMoved )
+			{
+				move Thigh1 to z-axis [0.00] now;
+				move Thigh2 to z-axis [0.00] now;
+				move Torso to x-axis [0.00] now;
+				move Shoulder to x-axis [0.00] now;
+				move support to y-axis [0.00] now;
+				move support to z-axis [0.00] now;
+				move Barrel to x-axis [0.00] now;
+				move Foot2 to z-axis [0.00] now;
+				move Foot1 to x-axis [0.00] now;
+				move Foot1 to z-axis [0.00] now;
+				sleep 200;
+				JustMoved = 0;
+			}
+			sleep 100;
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	Moving_1 = 0;
+	Aiming_2 = 0;
+	CanAim_3 = 1;
+	hide flare;
+	dont-cache flare;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	start-script MotionControl();
+	/*if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Torso;
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	turn Torso to y-axis <0.00> speed <90.00>;
+	turn support to x-axis <0.00> speed <45.00>;
+	Aiming_2 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	Aiming_2 = 1;
+	while( !CanAim_3 )
+	{
+		sleep 200;
+	}
+	turn Torso to y-axis heading speed <120.00>;
+	turn support to x-axis <0.00> - pitch speed <50.00>;
+	wait-for-turn Torso around y-axis;
+	wait-for-turn support around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	move Barrel to z-axis [-5.00] speed [500.00];
+	show flare;
+	sleep 150;
+	turn Torso to x-axis <-10.00> speed <500.12>;
+	sleep 150;
+	hide flare;
+	turn Torso to x-axis <0.00> speed <20.00>;
+	move Barrel to z-axis [0.00] speed [3.00];
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = support;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode support type BITMAPONLY | BITMAP1;
+		explode Thigh1 type BITMAPONLY | BITMAP2;
+		explode Thigh2 type BITMAPONLY | BITMAP3;
+		explode Torso type BITMAPONLY | BITMAP4;
+		explode Shoulder type BITMAPONLY | BITMAP5;
+		explode Barrel type BITMAPONLY | BITMAP1;
+		explode Foot2 type BITMAPONLY | BITMAP2;
+		explode Foot1 type BITMAPONLY | BITMAP3;
+		explode Forearm type BITMAPONLY | BITMAP4;
+		explode Leg2 type BITMAPONLY | BITMAP5;
+		explode Leg1 type BITMAPONLY | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode support type FALL | BITMAP1;
+		explode Thigh1 type FALL | BITMAP2;
+		explode Thigh2 type FALL | BITMAP3;
+		explode Torso type SHATTER | BITMAP4;
+		explode Shoulder type FALL | BITMAP5;
+		explode Barrel type BITMAPONLY | BITMAP1;
+		explode Foot2 type FALL | BITMAP2;
+		explode Foot1 type FALL | BITMAP3;
+		explode Forearm type FALL | BITMAP4;
+		explode Leg2 type FALL | BITMAP5;
+		explode Leg1 type FALL | BITMAP1;
+		explode ground type FALL | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode support type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Torso type SHATTER | BITMAP4;
+		explode Shoulder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Barrel type BITMAPONLY | BITMAP1;
+		explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Forearm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	explode support type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Torso type SHATTER | BITMAP4;
+	explode Shoulder type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Barrel type BITMAPONLY | BITMAP1;
+	explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Forearm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

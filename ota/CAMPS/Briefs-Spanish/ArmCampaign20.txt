@@ -1,0 +1,10 @@
+MISIÓN 20.001CLAND
+Destruye a los guardianes y las unidades del Núcleo en funcionamiento para que el Clan domine Vertedero.
+
+&YPRIORIDAD&
+Vertedero... la única luna de Núcleo Uno. Destruye todas las unidades que encuentres allí. Desde esa luna lanzaremos nuestra invasión contra el planeta del Núcleo.
+
+INFORMACIÓN
+En Vertedero no hay atmósfera ni agua. Por tanto, las unidades aéreas y las marinas resultan inútiles. Es una misión de tierra, Comandante. Además, Vertedero ha sido durante eones el depósito de todo el armamento de guerra dañado o destruido del Núcleo. &GHazte con el metal& que encontrarás allí para construir unidades del Clan que podamos usar contra el Núcleo
+
+FIN

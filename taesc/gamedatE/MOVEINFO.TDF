@@ -1,0 +1,274 @@
+[CLASS0]
+	{
+	Name=TANKDS2;			//COMMANDER
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=32;
+	}
+[CLASS1]
+	{
+	Name=TANKSH2;			//MOBILE 2x2
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=23;
+	MaxSlope=15;
+	}
+[CLASS2]
+	{
+	Name=TANKSH3;			//MOBILE 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=23;
+	MaxSlope=15;
+	}
+[CLASS3]
+	{
+	Name=TANKDH3;			//AMPHIB 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=16;
+	}
+[CLASS4]
+	{
+	Name=TANKSH4;			//MOBILE 4x4
+	FootprintX=4;
+	FootprintZ=4;
+	MaxWaterDepth=23;
+	MaxSlope=16;
+	}
+[CLASS5]
+	{
+	Name=TANKDH4;			//AMPHIB 4x4
+	FootprintX=4;
+	FootprintZ=4;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=16;
+	}
+[CLASS6]
+	{
+	Name=TANKSH5;			//MOBILE 5x5
+	FootprintX=5;
+	FootprintZ=5;
+	MaxWaterDepth=23;
+	MaxSlope=16;
+	}
+[CLASS7]
+	{
+	Name=TANKSH6;			//MOBILE 6x6
+	FootprintX=6;
+	FootprintZ=6;
+	MaxWaterDepth=23;
+	MaxSlope=16;
+	}
+[CLASS8]
+	{
+	Name=TANKDH6;			//AMPHIB 6x6
+	FootprintX=6;
+	FootprintZ=6;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=16;
+	}
+[CLASS9]
+	{
+	Name=KBOTSS2;			//CLIMBER 2x2
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=23;
+	MaxSlope=32;
+	}
+[CLASS10]
+	{
+	Name=SPID2;				//SPIDER 2x2
+	FootprintX=2;
+	FootprintZ=2;
+	MaxWaterDepth=23;
+	}
+[CLASS11]
+	{
+	Name=CRAB3;				//CRAB 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MaxWaterDepth=255;
+	}
+[CLASS12]
+	{
+	Name=KBOTSF3;			//PELICAN 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MaxSlope=15;
+//	BadSlope=15;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS13]
+	{
+	Name=TANKHOVER3;		//HOVER 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MaxSlope=14;
+//	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS14]
+	{
+	Name=TANKHOVER4;		//HOVER 4x4
+	FootprintX=4;
+	FootprintZ=4;
+	MaxSlope=14;
+//	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS15]
+	{
+	Name=TANKHOVER5;		//HOVER 5x5
+	FootprintX=5;
+	FootprintZ=5;
+	MaxSlope=14;
+//	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS16]
+	{
+	Name=BOATD3;			//SUB 3x3
+	FootprintX=3;
+	FootprintZ=3;
+	MinWaterDepth=10;
+	}
+[CLASS17]
+	{
+	Name=BOATS4;			//SHIP 4x4
+	FootprintX=4;
+	FootprintZ=4;
+	MinWaterDepth=3;
+	}
+[CLASS18]
+	{
+	Name=BOATD6;			//SUB 6x6 SSUBs
+	FootprintX=6;
+	FootprintZ=6;
+	MinWaterDepth=15;
+	}
+[CLASS19]
+	{
+	Name=BOATS6;			//SHIP 6x6 Crusiers
+	FootprintX=6;
+	FootprintZ=6;
+	MinWaterDepth=3;
+	}
+
+[CLASS20]
+	{
+	Name=TANKSH8;			//MOBILE 8x8
+	FootprintX=8;
+	FootprintZ=8;
+	MaxWaterDepth=23;
+	MaxSlope=16;
+	}
+[CLASS21]
+	{
+	Name=TANKSH11;			//MOBILE 11x11 
+	FootprintX=8;
+	FootprintZ=8;
+	MaxWaterDepth=23;
+//	MinWaterDepth=-35;
+//	MaxWaterDepth=255;
+//	MaxWaterSlope=32;
+	MaxSlope=16;
+	}
+[CLASS22]
+	{
+	Name=BOATD8;			//NAVAL 8x8
+	FootprintX=8;
+	FootprintZ=8;
+	MinWaterDepth=15;
+	}
+[CLASS23]					//INFERNO 8x8
+	{
+	Name=BOATA8;
+	FootprintX=8;
+	FootprintZ=8;
+	MinWaterDepth=-40;
+	MaxSlope=16;
+//	BadSlope=10;
+	MaxWaterSlope=255;
+//	BadWaterSlope=255;
+	}
+[CLASS24]
+	{
+	Name=TANKHOVER8;		//HOVER 8x8
+	FootprintX=8;
+	FootprintZ=8;
+	MaxSlope=13;
+	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS25]
+	{
+	Name=BOATD11;			//NAVAL 11x11 BSUB
+	FootprintX=11;
+	FootprintZ=11;
+	MinWaterDepth=15;
+	}
+[CLASS26]					//RANCOR 11x11
+	{
+	Name=BOATA11;
+	FootprintX=11;
+	FootprintZ=11;
+	MinWaterDepth=-40;
+	MaxSlope=16;
+//	BadSlope=10;
+	MaxWaterSlope=255;
+//	BadWaterSlope=255;
+	}
+[CLASS27]
+	{
+	Name=SPID11;			//SPID 11x11 MKL
+	FootprintX=11;
+	FootprintZ=11;
+	MaxWaterDepth=255;
+	}
+[CLASS28]
+	{
+	Name=TANKHOVER11;		//HOVER 11x11 Big Hovers
+	FootprintX=11;
+	FootprintZ=11;
+	MaxSlope=13;
+	BadSlope=13;
+	MaxWaterSlope=255;
+	BadWaterSlope=255;
+	}
+[CLASS29]
+	{
+	Name=TANKDH13;			//AMPHIB 13x13 Olympus
+	FootprintX=13;
+	FootprintZ=13;
+	MaxWaterDepth=255;
+	MaxWaterSlope=32;
+	MaxSlope=20;
+	}
+[CLASS30]
+	{
+	Name=BOATD13;			//NAVAL 13x13 Dreads
+	FootprintX=13;
+	FootprintZ=13;
+	MinWaterDepth=15;
+	}
+
+[CLASS31]
+	{
+	Name=BOATD17;			//NAVAL 17x17 Flags
+	FootprintX=17;
+	FootprintZ=17;
+	MinWaterDepth=15;
+	}
+

@@ -1,0 +1,8 @@
+MISSION 10.2CORE
+
+INTELL-TAP:
+Core must break through the passage to the north known as the Gauntlet. Expect the Gauntlet to be well defended. Only when you are able to send a transport ship through the Gauntlet will we know for certain that the passage is safe.
+
+&RBuild a transport ship and sail it safely through the Gauntlet&
+
+DO SO NOW.

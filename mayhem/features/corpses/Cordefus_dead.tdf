@@ -1,0 +1,17 @@
+[cordefus_dead]
+{
+world=All Worlds;
+description=Decoy Fusion Wreckage;
+category=heaps;
+object=5x5d;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=403;
+damage=3400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

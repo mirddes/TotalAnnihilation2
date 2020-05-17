@@ -1,0 +1,106 @@
+[GlobalHeader]
+	{
+	missionname=The Desert Triad;
+	missiondescription=6 X 6  Fighting on 3 mesas.;
+	planet=Desert;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=35;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=0;
+	maxwindspeed=800;
+	gravity=112;
+	numplayers=2, 3, 6;
+	size=6 x 7;
+	memory=16 mb;
+	useonlyunits=The Desert Triad.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos3;
+				XPos=800;
+				ZPos=576;
+				}
+			[special1]
+				{
+				specialwhat=StartPos4;
+				XPos=2000;
+				ZPos=2752;
+				}
+			[special2]
+				{
+				specialwhat=StartPos8;
+				XPos=1280;
+				ZPos=2880;
+				}
+			[special3]
+				{
+				specialwhat=StartPos9;
+				XPos=2864;
+				ZPos=2256;
+				}
+			[special4]
+				{
+				specialwhat=StartPos1;
+				XPos=560;
+				ZPos=2544;
+				}
+			[special5]
+				{
+				specialwhat=StartPos2;
+				XPos=2560;
+				ZPos=1712;
+				}
+			[special6]
+				{
+				specialwhat=StartPos5;
+				XPos=512;
+				ZPos=1568;
+				}
+			[special7]
+				{
+				specialwhat=StartPos6;
+				XPos=2368;
+				ZPos=464;
+				}
+			[special8]
+				{
+				specialwhat=StartPos7;
+				XPos=1424;
+				ZPos=1536;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=1392;
+				ZPos=320;
+				}
+			}
+		}
+	}

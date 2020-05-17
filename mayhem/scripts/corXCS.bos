@@ -1,0 +1,861 @@
+
+#define TA			// This is a TA script
+
+piece 	base, Body, Case, Door1, Door2, Turret, Fork, Gun, Beam,
+		Front, Rear, Wake1, Wake2, Wake3, Wake4,
+		Leg1-1, Leg1-2, Leg1-3, Leg1-4, Leg2-1, Leg2-2, Leg2-3, Leg2-4,
+		Leg3-1, Leg3-2, Leg3-3, Leg3-4, Leg4-1, Leg4-2, Leg4-3, Leg4-4,
+		Leg5-1, Leg5-2, Leg5-3, Leg5-4, Leg6-1, Leg6-2, Leg6-3, Leg6-4,
+		Sk1-1, Sk1-3, End1, Sk2-1, Sk2-3, End2, Sk3-1, Sk3-3, End3,
+		Sk4-1, Sk4-3, End4, Sk5-1, Sk5-3, End5, Sk6-1, Sk6-3, End6,
+		Point1, Stride1, Point2, Stride2, Point3, Stride3,
+		Point4, Stride4, Point5, Stride5, Point6, Stride6;
+
+
+static-var  Onland, Build_Heading, LegGroupSelect, G1_Lock, G2_Lock, YLock, Moving, buildingid, buildingpos, buildingtype, buildingcrc;
+
+#define SMOKEPIECE1 Body
+#include "smokeunit.h"
+#include "sfxtype.h"
+#include "exptype.h"
+
+// Signal definitions
+#define SIG_MOVE			2
+#define ANG_SPEED			<50>		//The speed which all leg joints turn, too slow and legs don't move into position fast enough
+#define LIN_SPEED			[3.5]			//The speed which all leg segments move
+#define TOLERANCE			<4>			//The angle that a leg must be told to turn before it will move (Prevents Vibration)
+#define LIN_TOLERANCE		[5]			//The distance that the body must be told to move before it will move (Prevents Vibration)
+#define XZ_RANGE			[64]		//The maximum range that the seperate X and Z values can reach (+ or -)
+#define MAX_HEIGHT			[5]			//The maximum height that a leg moves upwards when in a stride
+#define MAX_SPEED 			[30]		//The maximim speed of a stride, this is proportional to the time the stride takes, and the length of the stride at a particular velocity
+#define DISPLACE			[12]		//The offset to the X axis telling the legs how far away from the origin their starting points are, default [20]
+#define REFRESH				130			//The sleep time before the script repeats itself
+#define RADIUS				[18]		//The Spherical radius the Stride point needs to be in, before the script takes action.
+#define THRESHOLD			[10]		//The Height at which the unit transforms from Ship to Zbot. When unit is in water, there is a height difference between the base of the unit and the ground
+#define LIMIT				<32>		//The Angle from normal that a leg turns (when Moving = 0) before another step is taken
+
+#define LEG_ACTIVATION\
+		move Leg1-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Leg2-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Leg3-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Leg4-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Leg5-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Leg6-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk1-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk2-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk3-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk4-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk5-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		move Sk6-1 to y-axis [-3.85] speed 2*LIN_SPEED;\
+		wait-for-move Sk6-1 along y-axis;\
+		move Leg1-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg2-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg3-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg4-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg5-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg6-2 to y-axis [-3.5] speed LIN_SPEED;\
+		move Leg1-4 to y-axis [-4.2] speed LIN_SPEED;\
+		move Leg2-4 to y-axis [-4.2] speed LIN_SPEED;\
+		move Leg3-4 to y-axis [-4.2] speed LIN_SPEED;\
+		move Leg4-4 to y-axis [-4.2] speed LIN_SPEED;\
+		move Leg5-4 to y-axis [-4.2] speed LIN_SPEED;\
+		move Leg6-4 to y-axis [-4.2] speed LIN_SPEED;\
+		
+#define LEG_DEACTIVATION\
+		turn Leg1-1 to y-axis <90> speed ANG_SPEED/2;\
+		turn Leg2-1 to y-axis <90> speed ANG_SPEED/2;\
+		turn Leg3-1 to y-axis <90> speed ANG_SPEED/2;\
+		turn Leg4-1 to y-axis <-90> speed ANG_SPEED/2;\
+		turn Leg5-1 to y-axis <-90> speed ANG_SPEED/2;\
+		turn Leg6-1 to y-axis <-90> speed ANG_SPEED/2;\
+		turn Leg1-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg2-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg3-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg4-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg5-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg6-1 to x-axis <-60> speed ANG_SPEED/2;\
+		turn Leg1-3 to x-axis <130> speed ANG_SPEED;\
+		turn Leg2-3 to x-axis <130> speed ANG_SPEED;\
+		turn Leg3-3 to x-axis <130> speed ANG_SPEED;\
+		turn Leg4-3 to x-axis <130> speed ANG_SPEED;\
+		turn Leg5-3 to x-axis <130> speed ANG_SPEED;\
+		turn Leg6-3 to x-axis <130> speed ANG_SPEED;\
+		wait-for-turn Leg6-1 around y-axis;\
+		move Leg1-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg2-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg3-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg4-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg5-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg6-2 to y-axis [0] speed LIN_SPEED;\
+		move Leg1-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg2-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg3-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg4-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg5-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg6-4 to y-axis [0] speed LIN_SPEED;\
+		move Leg1-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Leg2-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Leg3-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Leg4-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Leg5-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Leg6-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk1-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk2-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk3-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk4-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk5-1 to y-axis [0] speed 2*LIN_SPEED;\
+		move Sk6-1 to y-axis [0] speed 2*LIN_SPEED;\
+		
+#define ANGLE_RESET\
+		Angle1 = <0>; Angle2 = <0>; Angle3 = <0>; Angle4 = <0>; Angle5 = <0>; Angle6 = <0>;\
+		Test_Angle1 = <0>; Test_Angle2 = <0>; Test_Angle3 = <0>; Test_Angle4 = <0>; Test_Angle5 = <0>; Test_Angle6 = <0>;\
+		Height1 = [0];\
+		
+#define ALIGNMENT_START(Origin, Point)\
+			Angle=get XZ_ATAN(get PIECE_XZ(Origin) - get PIECE_XZ(Point));\
+			Xangle=get ATAN(get PIECE_Y(Point) - get PIECE_Y(Origin), get XZ_HYPOT(get PIECE_XZ(Point) - get PIECE_XZ(Origin)));\
+			Total_Angle=Xangle + 16384;\
+			Length=get HYPOT(get PIECE_Y(Origin) - get PIECE_Y(Point), get XZ_HYPOT(get PIECE_XZ(Point) - get PIECE_XZ(Origin)));\
+			Test_Angle=0;\
+			Angle_Increment=8192;\
+			
+#define ALIGNMENT_CALC(Origin, End)\
+	if(get HYPOT(get PIECE_Y(End) - get PIECE_Y(Origin), get XZ_HYPOT(get PIECE_XZ(End) - get PIECE_XZ(Origin))) > Length)\
+		{\
+		Test_Angle=Test_Angle + Angle_Increment;\
+		}\
+	Angle_Increment=Angle_Increment/2;\
+	
+		
+LegPosition()
+	{
+	var Angle, Xangle, Length, Total_Angle, Inner_Angle, Outer_Angle, Test_Angle, Angle_Increment,
+		Angle1, Test_Angle1, Angle2, Test_Angle2, Angle3, Test_Angle3, Angle4, Test_Angle4, Angle5, Test_Angle5, Angle6, Test_Angle6,
+		Height, Height1, Step;
+		
+	ANGLE_RESET;
+	
+	//This script controls the positioning of the legs. Each leg is moved so that its end point is aligned with the appropriate point.
+	//This allows for the legs to follow the points, which means that the points can be moved using X and Z movement allowing for alignment with the ground,
+	//resulting in fluid walking motion that adapts to the units movement.
+	
+	YLock = 1;
+	
+	while( TRUE )
+		{
+		if(YLock == 1)
+			{
+			//Attach feet to the ground
+			move Point1 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point1))- get PIECE_Y(Point1)) speed LIN_SPEED;
+			move Point2 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point2))- get PIECE_Y(Point2)) speed LIN_SPEED; 
+			move Point3 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point3))- get PIECE_Y(Point3)) speed LIN_SPEED; 
+			move Point4 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point4))- get PIECE_Y(Point4)) speed LIN_SPEED; 
+			move Point5 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point5))- get PIECE_Y(Point5)) speed LIN_SPEED; 
+			move Point6 to y-axis (get GROUND_HEIGHT(get PIECE_XZ(Point6))- get PIECE_Y(Point6)) speed LIN_SPEED; 
+			}
+			
+		if((get PIECE_Y(Base) - get GROUND_HEIGHT(get PIECE_XZ(Base))) < THRESHOLD)
+			{
+			//need to sort this parameter out.
+			//Body Tolerance
+			Height = (get GROUND_HEIGHT(get PIECE_XZ(Body)) - get PIECE_Y(Body)) + [20];
+			if((Height > (Height1 + LIN_TOLERANCE)) OR (Height < (Height1 - LIN_TOLERANCE)))
+				{
+				move Body to y-axis (Height) speed LIN_SPEED; Height1 = Height;
+				}
+
+			LEG_ACTIVATION;
+			Onland = 1;
+
+			//Leg 1
+			ALIGNMENT_START(Leg1-1, Stride1);
+			turn Sk1-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk1-1 to x-axis (0 - Inner_Angle) now;turn Sk1-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg1-1, End1);
+				}
+			
+			//Leg 1 Tolerance
+			if((Angle > (Angle1 + TOLERANCE)) OR (Angle < (Angle1 - TOLERANCE)))
+				{turn Leg1-1 to y-axis (Angle) speed ANG_SPEED; Angle1 = Angle;}
+			if((Test_Angle > (Test_Angle1 + TOLERANCE)) OR (Test_Angle < (Test_Angle1 - TOLERANCE)))
+				{turn Leg1-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg1-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle1 = Test_Angle;}
+				
+
+			//Leg 2
+			ALIGNMENT_START(Leg2-1, Stride2);
+			turn Sk2-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk2-1 to x-axis (0 - Inner_Angle) now;turn Sk2-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg2-1, End2);
+				}
+				
+			//Leg 2 Tolerance
+			if((Angle > (Angle2 + TOLERANCE)) OR (Angle < (Angle2 - TOLERANCE)))
+				{turn Leg2-1 to y-axis (Angle) speed ANG_SPEED; Angle2 = Angle;}
+			if((Test_Angle > (Test_Angle2 + TOLERANCE)) OR (Test_Angle < (Test_Angle2 - TOLERANCE)))
+				{turn Leg2-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg2-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle2 = Test_Angle;}
+
+
+			//Leg 3
+			ALIGNMENT_START(Leg3-1, Stride3);
+			turn Sk3-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk3-1 to x-axis (0 - Inner_Angle) now;turn Sk3-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg3-1, End3);
+				}
+				
+			//Leg 3 Tolerance
+			if((Angle > (Angle3 + TOLERANCE)) OR (Angle < (Angle3 - TOLERANCE)))
+				{turn Leg3-1 to y-axis (Angle) speed ANG_SPEED; Angle3 = Angle;}
+			if((Test_Angle > (Test_Angle3 + TOLERANCE)) OR (Test_Angle < (Test_Angle3 - TOLERANCE)))
+				{turn Leg3-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg3-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle3 = Test_Angle;}
+
+
+			//Leg 4
+			ALIGNMENT_START(Leg4-1, Stride4);
+			turn Sk4-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk4-1 to x-axis (0 - Inner_Angle) now;turn Sk4-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg4-1, End4);
+				}
+				
+			//Leg 4 Tolerance
+			if((Angle > (Angle4 + TOLERANCE)) OR (Angle < (Angle4 - TOLERANCE)))
+				{turn Leg4-1 to y-axis (Angle) speed ANG_SPEED; Angle4 = Angle;}
+			if((Test_Angle > (Test_Angle4 + TOLERANCE)) OR (Test_Angle < (Test_Angle4 - TOLERANCE)))
+				{turn Leg4-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg4-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle4 = Test_Angle;}
+
+
+			//Leg 5
+			ALIGNMENT_START(Leg5-1, Stride5);
+			turn Sk5-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk5-1 to x-axis (0 - Inner_Angle) now;turn Sk5-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg5-1, End5);
+				}
+				
+			//Leg 5 Tolerance
+			if((Angle > (Angle5 + TOLERANCE)) OR (Angle < (Angle5 - TOLERANCE)))
+				{turn Leg5-1 to y-axis (Angle) speed ANG_SPEED; Angle5 = Angle;}
+			if((Test_Angle > (Test_Angle5 + TOLERANCE)) OR (Test_Angle < (Test_Angle5 - TOLERANCE)))
+				{turn Leg5-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg5-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle5 = Test_Angle;}
+
+
+			//Leg 6
+			ALIGNMENT_START(Leg6-1, Stride6);
+			turn Sk6-1 to y-axis (Angle) now;
+			while(Angle_Increment!=0)
+				{
+				Inner_Angle=Total_Angle + Test_Angle + Angle_Increment;
+				Outer_Angle=(0 - 2*(Test_Angle + Angle_Increment));
+				turn Sk6-1 to x-axis (0 - Inner_Angle) now;turn Sk6-3 to x-axis (0 - Outer_Angle) now;
+				ALIGNMENT_CALC(Leg6-1, End6);
+				}
+				
+			//Leg 6 Tolerance
+			if((Angle > (Angle6 + TOLERANCE)) OR (Angle < (Angle6 - TOLERANCE)))
+				{turn Leg6-1 to y-axis (Angle) speed ANG_SPEED; Angle6 = Angle;}
+			if((Test_Angle > (Test_Angle6 + TOLERANCE)) OR (Test_Angle < (Test_Angle6 - TOLERANCE)))
+				{turn Leg6-1 to x-axis (0 - Inner_Angle) speed ANG_SPEED; turn Leg6-3 to x-axis (0 - Outer_Angle) speed 2*ANG_SPEED; Test_Angle6 = Test_Angle;}
+
+			//Turning Prevention - Sometimes when the unit turns, the stop moving function is called. This can cause the legs to go under the body and not look right.
+			//This script detects if the unit isn't moving and if the legs are about to turn to far. If that happens, the script enables a single stride to correct the problem.
+			if(Moving == 0)
+				{
+				if((Angle1 > (<90> + LIMIT)) OR (Angle1 < (<90> - LIMIT))){Step = 1;}
+				if((Angle2 > (<90> + LIMIT)) OR (Angle2 < (<90> - LIMIT))){Step = 1;}
+				if((Angle3 > (<90> + LIMIT)) OR (Angle3 < (<90> - LIMIT))){Step = 1;}
+				if((Angle4 > (<270> + LIMIT)) OR (Angle4 < (<270> - LIMIT))){Step = 1;}
+				if((Angle5 > (<270> + LIMIT)) OR (Angle5 < (<270> - LIMIT))){Step = 1;}
+				if((Angle6 > (<270> + LIMIT)) OR (Angle6 < (<270> - LIMIT))){Step = 1;}
+				if(Step == 1)
+					{
+					if(LegGroupSelect == 0){if(G1_Lock == 1){G1_Lock = 0;}}
+					if(LegGroupSelect == 1){if(G2_Lock == 1){G2_Lock = 0;}}
+					Step = 0;
+					}
+				}
+			}
+		if((get PIECE_Y(Base) - get GROUND_HEIGHT(get PIECE_XZ(Base))) >= THRESHOLD)
+			{
+			move Body to y-axis [0] speed LIN_SPEED;
+			Onland = 0;
+			
+			ANGLE_RESET;
+			LEG_DEACTIVATION;			
+			}
+		sleep REFRESH;
+		}
+	}
+
+		
+#define XZ_START\
+	Test_Distance = (0 - XZ_RANGE);\
+	Distance_Increment = XZ_RANGE;\
+	while(Distance_Increment != 0)\
+		{\
+		Distance=Test_Distance + Distance_Increment;\
+		
+#define X_END(Reference)\
+	if(((get XZ_ATAN(Location - get PIECE_XZ(Reference))) > <0>) AND ((get XZ_ATAN(Location - get PIECE_XZ(Reference))) < <180>))\
+		{\
+		Test_Distance=Distance;\
+		}\
+	Distance_Increment=Distance_Increment/2;\
+	}\
+		
+#define Z_END(Reference)\
+	if(((get XZ_ATAN(Location - get PIECE_XZ(Reference))) > <90>) AND ((get XZ_ATAN(Location - get PIECE_XZ(Reference))) < <270>))\
+		{\
+		Test_Distance=Distance;\
+		}\
+	Distance_Increment=Distance_Increment/2;\
+	}\
+	
+#define	G1_INTERRUPT\
+	G1_Interrupt = ((get HYPOT(get PIECE_Y(Leg1-1) - get PIECE_Y(Stride1), get XZ_HYPOT(get PIECE_XZ(Stride1) - get PIECE_XZ(Leg1-1)))) < RADIUS) AND ((get HYPOT(get PIECE_Y(Leg3-1) - get PIECE_Y(Stride3), get XZ_HYPOT(get PIECE_XZ(Stride3) - get PIECE_XZ(Leg3-1)))) < RADIUS) AND ((get HYPOT(get PIECE_Y(Leg5-1) - get PIECE_Y(Stride5), get XZ_HYPOT(get PIECE_XZ(Stride5) - get PIECE_XZ(Leg5-1)))) < RADIUS);\
+
+
+LegG1()
+	{
+	Var Location, Location1, Location3, Location5, G1_X, G1_Z, G1_Interrupt, Distance_Increment, Test_Distance, Distance;
+
+	G1_Lock = 1;
+	
+	while(TRUE)
+		{
+		if(Onland == 0)
+			{
+			move Point1 to x-axis (0 - DISPLACE) now;
+			move Point3 to x-axis (0 - DISPLACE) now; 
+			move Point5 to x-axis DISPLACE now; 
+			
+			move Point1 to z-axis [0] now;
+			move Point3 to z-axis [0] now;
+			move Point5 to z-axis [0] now;
+			
+			Location1 = get PIECE_XZ(Point1);
+			Location3 = get PIECE_XZ(Point3);
+			Location5 = get PIECE_XZ(Point5);
+			}
+			
+		if(Onland == 1)
+			{
+			if(G1_Lock == 1)
+				{
+				//XZ converter script
+				
+				//Leg 1
+				Location = Location1; move Point1 to x-axis [0] now; move Point1 to z-axis [0] now;
+				XZ_START; move Point1 to x-axis Distance now; X_END(Point1);
+				XZ_START; move Point1 to z-axis Distance now; Z_END(Point1);
+				
+				if(G2_Lock == 0){move Point6 to z-axis (0 - (Distance/2)) now;}
+				
+				//Leg 3
+				Location = Location3; move Point3 to x-axis [0] now; move Point3 to z-axis [0] now;
+				XZ_START; move Point3 to x-axis Distance now; X_END(Point3);
+				XZ_START; move Point3 to z-axis Distance now; Z_END(Point3);
+				
+				if(G2_Lock == 0){move Point4 to z-axis (0 - (Distance/2)) now;}
+				
+				//Leg 5
+				Location = Location5; move Point5 to x-axis [0] now; move Point5 to z-axis [0] now;
+				XZ_START; move Point5 to x-axis Distance now; X_END(Point5);
+				XZ_START; move Point5 to z-axis Distance now; Z_END(Point5);
+
+				if(G2_Lock == 0){move Point2 to z-axis (0 - (Distance/2)) now;}
+				}
+				
+			if(G1_Lock == 0)
+				{
+				//Produces a rough Parabolic path
+				move Point1 to x-axis (0 - DISPLACE) now;
+				move Point3 to x-axis (0 - DISPLACE) now; 
+				move Point5 to x-axis DISPLACE now; 
+				wait-for-move Point5 along x-axis;
+				
+				move Stride1 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				move Stride3 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				move Stride5 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				wait-for-move Stride5 along y-axis;
+
+				//Interrupt Script - Ends the stride if any Stride point is out of range of any leg in this group
+				G1_INTERRUPT;
+				if(G1_Interrupt)			
+					{		
+					move Stride1 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					move Stride3 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					move Stride5 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					wait-for-move Stride5 along y-axis;
+					}
+					
+				G1_INTERRUPT;
+				if(G1_Interrupt)			
+					{		
+					move Stride1 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					move Stride3 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					move Stride5 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					wait-for-move Stride5 along y-axis;
+					}
+					
+				G1_INTERRUPT;
+				if(G1_Interrupt)			
+					{		
+					move Stride1 to y-axis [0] speed MAX_SPEED;
+					move Stride3 to y-axis [0] speed MAX_SPEED;
+					move Stride5 to y-axis [0] speed MAX_SPEED;
+					wait-for-move Stride5 along y-axis;
+					}
+
+				move Stride1 to y-axis [0] now;
+				move Stride3 to y-axis [0] now;
+				move Stride5 to y-axis [0] now;
+				wait-for-move Stride5 along y-axis;
+				
+				Location1 = get PIECE_XZ(Point1);
+				Location3 = get PIECE_XZ(Point3);
+				Location5 = get PIECE_XZ(Point5);
+				
+				LegGroupSelect = 1;
+				G1_Lock = 1;
+				
+				if(Moving == 1)
+					{
+					G2_Lock = 0;
+					}
+				}
+			}
+		sleep REFRESH;
+		}
+	}
+	
+#define	G2_INTERRUPT\
+	G2_Interrupt = ((get HYPOT(get PIECE_Y(Leg2-1) - get PIECE_Y(Stride2), get XZ_HYPOT(get PIECE_XZ(Stride2) - get PIECE_XZ(Leg2-1)))) < RADIUS) AND ((get HYPOT(get PIECE_Y(Leg4-1) - get PIECE_Y(Stride4), get XZ_HYPOT(get PIECE_XZ(Stride4) - get PIECE_XZ(Leg4-1)))) < RADIUS) AND ((get HYPOT(get PIECE_Y(Leg6-1) - get PIECE_Y(Stride6), get XZ_HYPOT(get PIECE_XZ(Stride6) - get PIECE_XZ(Leg6-1)))) < RADIUS);\
+	
+LegG2()
+	{
+	Var Location, Location2, Location4, Location6, G2_X, G2_Z, G2_Interrupt, Distance_Increment, Test_Distance, Distance;
+
+	G2_Lock = 1;
+	
+	while(TRUE)
+		{
+		if(Onland == 0)
+			{
+			move Point2 to x-axis (0 - DISPLACE) now; 
+			move Point4 to x-axis DISPLACE now; 
+			move Point6 to x-axis DISPLACE now; 
+	
+			move Point2 to z-axis [0] now;
+			move Point4 to z-axis [0] now;
+			move Point6 to z-axis [0] now;
+
+			Location2 = get PIECE_XZ(Point2);
+			Location4 = get PIECE_XZ(Point4);	
+			Location6 = get PIECE_XZ(Point6);
+			}
+			
+		if(Onland == 1)
+			{
+			if(G2_Lock == 1)
+				{
+				//XZ converter script
+				
+				//Leg 2, Distance Stored
+				Location = Location2; move Point2 to x-axis [0] now; move Point2 to z-axis [0] now;
+				XZ_START; move Point2 to x-axis Distance now; X_END(Point2);
+				XZ_START; move Point2 to z-axis Distance now; Z_END(Point2);
+				
+				if(G1_Lock == 0){move Point5 to z-axis (0 - (Distance/2)) now;}
+				
+				//Leg 4
+				Location = Location4; move Point4 to x-axis [0] now; move Point4 to z-axis [0] now;
+				XZ_START; move Point4 to x-axis Distance now; X_END(Point4);
+				XZ_START; move Point4 to z-axis Distance now; Z_END(Point4);
+				
+				if(G1_Lock == 0){move Point3 to z-axis (0 - (Distance/2)) now;}
+				
+				//Leg 6
+				Location = Location6; move Point6 to x-axis [0] now; move Point6 to z-axis [0] now;
+				XZ_START; move Point6 to x-axis Distance now; X_END(Point6);
+				XZ_START; move Point6 to z-axis Distance now; Z_END(Point6);
+				
+				if(G1_Lock == 0){move Point1 to z-axis (0 - (Distance/2)) now;}
+				}
+				
+			if(G2_Lock == 0)
+				{
+				//Produces a rough Parabolic path			
+				move Point2 to x-axis (0 - DISPLACE) now; 
+				move Point4 to x-axis DISPLACE now; 
+				move Point6 to x-axis DISPLACE now; 
+				wait-for-move Point6 along x-axis;
+				
+				move Stride2 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				move Stride4 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				move Stride6 to y-axis MAX_HEIGHT/2 speed MAX_SPEED;
+				wait-for-move Stride6 along y-axis;
+				
+				//Interrupt Script - Ends the stride if any Stride point is out of range of any leg in this group
+				G2_INTERRUPT;
+				if(G2_Interrupt)			
+					{		
+					move Stride2 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					move Stride4 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					move Stride6 to y-axis MAX_HEIGHT speed MAX_SPEED/2;
+					wait-for-move Stride6 along y-axis;
+					}
+					
+				G2_INTERRUPT;
+				if(G2_Interrupt)		
+					{		
+					move Stride2 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					move Stride4 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					move Stride6 to y-axis MAX_HEIGHT/2 speed MAX_SPEED/2;
+					wait-for-move Stride6 along y-axis;
+					}
+					
+				G2_INTERRUPT;
+				if(G2_Interrupt)			
+					{		
+					move Stride2 to y-axis [0] speed MAX_SPEED;
+					move Stride4 to y-axis [0] speed MAX_SPEED;
+					move Stride6 to y-axis [0] speed MAX_SPEED;
+					wait-for-move Stride6 along y-axis;
+					}
+
+				move Stride2 to y-axis [0] now;
+				move Stride4 to y-axis [0] now;
+				move Stride6 to y-axis [0] now;
+				wait-for-move Stride6 along y-axis;
+
+				
+				Location2 = get PIECE_XZ(Point2);
+				Location4 = get PIECE_XZ(Point4);
+				Location6 = get PIECE_XZ(Point6);
+				
+				LegGroupSelect = 0;
+				G2_Lock = 1;
+				
+				if(Moving == 1)
+					{
+					G1_Lock = 0;
+					}
+				}
+			}
+		sleep REFRESH;	
+		}
+	}
+
+/*Static-var shieldcloaked, cloakcost, cloakcostm;
+
+Cloak(cloakdist, shieldID)
+{
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			shieldcloaked = 1;
+			get SET_CLOAKED(1);
+		}
+		//if the shield is now cloakdist the unit, the unit uses no energy to cloak
+		get SET_UNITINFO(uiCloakCost, 0);
+		get SET_UNITINFO(uiCloakCostMoving, 0);
+		//if unit somehow moves away from the shield (eg got transported) then reset cloak costs
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_UNITINFO(uiCloakCost, cloakcost);
+		get SET_UNITINFO(uiCloakCostMoving, cloakcostm);
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*shieldcloaked=0;
+	cloakcost = get GET_UNITINFO(uiCloakCost);
+	cloakcostm = get GET_UNITINFO(uiCloakCostMoving);
+	var bcheck;
+	bcheck = get BUILD_PERCENT_LEFT;*/
+	Build_Heading = 0;
+	LegGroupSelect = 0;
+	Onland = 0;
+	Moving = 0;
+	
+	turn Leg1-1 to x-axis <-60> now;
+	turn Leg2-1 to x-axis <-60> now;
+	turn Leg3-1 to x-axis <-60> now;
+	turn Leg4-1 to x-axis <-60> now;
+	turn Leg5-1 to x-axis <-60> now;
+	turn Leg6-1 to x-axis <-60> now;
+		
+	turn Leg1-3 to x-axis <130> now;
+	turn Leg2-3 to x-axis <130> now;
+	turn Leg3-3 to x-axis <130> now;
+	turn Leg4-3 to x-axis <130> now;
+	turn Leg5-3 to x-axis <130> now;
+	turn Leg6-3 to x-axis <130> now;
+		
+	turn Leg1-1 to y-axis <90> now;
+	turn Leg2-1 to y-axis <90> now;
+	turn Leg3-1 to y-axis <90> now;
+	turn Leg4-1 to y-axis <-90> now;
+	turn Leg5-1 to y-axis <-90> now;
+	turn Leg6-1 to y-axis <-90> now;
+	
+	start-script LegPosition(); //Aligns leg pieces to Stride Points
+	start-script LegG1(); //Legs 1, 3, 5
+	start-script LegG2(); //Legs 2, 4, 6
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	/*set GRANT_UNITINFO to 1;
+	get SET_UNITINFO(uiHealTime,20);
+	if( bcheck != 0 )
+	{
+		{
+			if (get LOCAL_SHARED_DATA(0,get UNIT_TEAM(get MY_ID)) < 4)
+			{
+		    	get LOCAL_SHARED_DATA(1,get UNIT_TEAM(get MY_ID),4);
+		    }
+		}
+	}*/
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if( TRUE )
+		{
+		turn Door1 to z-axis <-180> speed <95>;
+		turn Door2 to z-axis <180> speed <95>;
+		sleep 1100;
+		}
+	if( TRUE )
+		{
+		turn Fork to x-axis <0> now;
+		turn Fork to x-axis <75> speed <125>;
+		turn Gun to x-axis <0> now;
+		turn Gun to x-axis <-70> speed <115>;
+		sleep 450;
+		}
+	sleep 30;
+	turn Turret to y-axis Build_Heading speed <160>;
+	wait-for-turn Turret around y-axis;
+	set INBUILDSTANCE to 1;
+}
+
+Deactivate()
+{
+	set INBUILDSTANCE to 0;
+	turn Turret to y-axis <0> speed <160>;
+	wait-for-turn Turret around y-axis;
+	if( TRUE )
+		{
+		turn Fork to x-axis <75> now;
+		turn Fork to x-axis <0> speed <70>;
+		turn Gun to x-axis <-70> now;
+		turn Gun to x-axis <0> speed <65>;
+		sleep 1100;
+		}
+	if( TRUE )
+		{
+		turn Door1 to z-axis <0> speed <125>;
+		turn Door2 to z-axis <0> speed <125>;
+		sleep 450;
+		}
+	sleep 30;
+}
+
+StartBuilding(heading)
+	{
+	Build_Heading = heading;
+	set ACTIVATION to 1;
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	if ((get CURRENT_ORDER_TYPE) == 25)
+	{
+		buildingid=get CURRENT_ORDER_TARGET_ID;
+		if (buildingid)
+		{
+			buildingpos=get UNIT_XZ(buildingid);
+			buildingcrc=get UNIT_TYPE_CRC(buildingid);
+			buildingtype=get CURRENT_ORDER_PAR(1);
+		}
+	}*/
+	return (0);
+}
+
+StopBuilding()
+{
+	/*if ((get UNIT_XZ(buildingid)) == 0)
+	{
+		if (get TEST_BUILD_SPOT(buildingcrc,buildingpos))
+		{
+			var unitz,unitx;
+			unitz=get UNITZ(buildingid) - (get GROUND_HEIGHT(get UNIT_XZ(buildingid)) / 131072);
+			unitx=get UNITX(buildingid);
+			buildingpos=get MAKEDWORD(unitz,unitx);
+			get ORDER_SELF_POS(25,1,buildingpos,buildingtype);
+			buildingid=0;
+			buildingpos=0;
+			buildingtype=0;
+			buildingcrc=0;
+			return (0);
+		}
+	}*/
+	set ACTIVATION to 0;
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	Moving = 1;
+	if(LegGroupSelect == 0){G1_Lock = 0;}
+	if(LegGroupSelect == 1){G2_Lock = 0;}
+	while(TRUE)
+	{
+		if(Onland == 0)
+		{
+			emit-sfx 2 from Wake1;
+			emit-sfx 2 from Wake2;
+			emit-sfx 2 from Wake3;
+			emit-sfx 2 from Wake4;
+		}
+		sleep 250;
+	}
+}
+
+StopMoving()
+	{
+	signal SIG_MOVE;
+	Moving = 0;
+	/*if ((get CURRENT_ORDER_TYPE) == 25 AND (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2))
+	{
+		sleep 1000;
+		if (!moving AND get INBUILDSTANCE)
+		{
+			get ORDER_SELF(45,0);
+		}
+	}*/
+	}
+	
+QueryNanoPiece(piece_nano_comes_from)
+	{
+	piece_nano_comes_from = Beam;
+	}
+
+TargetHeading(heading)
+	{
+	Build_Heading = (0 - heading);
+	}
+
+SweetSpot(piece_enemy_fires_at)
+	{
+	piece_enemy_fires_at = Body;
+	}
+
+Killed(severity, corpsetype)
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode Body type	BITMAPONLY | BITMAP1;
+		explode Case type	BITMAPONLY | BITMAP1;
+		explode Door1 type	BITMAPONLY | BITMAP5;
+		explode Door2 type	BITMAPONLY | BITMAP5;
+		explode Turret type	BITMAPONLY | BITMAP1;
+		explode Fork type	BITMAPONLY | BITMAP4;
+		explode Gun type	BITMAPONLY | BITMAP3;
+		explode Front type	BITMAPONLY | BITMAP1;
+		explode Rear type	BITMAPONLY | BITMAP1;
+		explode Leg1-1 type	BITMAPONLY | BITMAP2;
+		explode Leg2-1 type	BITMAPONLY | BITMAP1;
+		explode Leg3-1 type	BITMAPONLY | BITMAP1;
+		explode Leg4-1 type	BITMAPONLY | BITMAP2;
+		explode Leg5-1 type	BITMAPONLY | BITMAP1;
+		explode Leg6-1 type	BITMAPONLY | BITMAP1;
+		return(0);
+		}
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode Body type	SHATTER | BITMAP4;
+		explode Case type	SHATTER | BITMAP3;
+		explode Door1 type	SHATTER | BITMAP4;
+		explode Door2 type	SHATTER | BITMAP4;
+		explode Turret type	SHATTER | BITMAP4;
+		explode Fork type	SHATTER | BITMAP4;
+		explode Gun type	SHATTER | BITMAP4;
+		explode Front type	SHATTER | BITMAP2;
+		explode Rear type	SHATTER | BITMAP2;
+		explode Leg1-1 type	SHATTER | BITMAP4;
+		explode Leg2-1 type	SHATTER | BITMAP4;
+		explode Leg3-1 type	SHATTER | BITMAP4;
+		explode Leg4-1 type	SHATTER | BITMAP4;
+		explode Leg5-1 type	SHATTER | BITMAP4;
+		explode Leg6-1 type	SHATTER | BITMAP4;
+		return(0);
+		}
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode Body type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Case type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Fork type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Gun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Front type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Rear type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Leg1-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Leg2-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Leg3-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Leg4-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Leg5-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Leg6-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return(0);
+		}
+	corpsetype = 3;
+	explode Body type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Case type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Fork type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Gun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Front type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Rear type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Leg1-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg2-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg3-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg4-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg5-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg6-1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return(0);
+	}
+

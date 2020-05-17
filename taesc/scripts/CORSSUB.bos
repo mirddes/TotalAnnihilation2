@@ -1,0 +1,224 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, tflare1, tflare2, base, launcher, door1, door2, lflare1, lflare2,
+       lflare3, bubbles1, bubbles2, rot1, rot2, turret1, turret2;
+
+static-var  restore_delay, statechg_DesiredState, statechg_StateChanging, ready, gun_3 ;
+
+// Signal definitions
+
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_MOVE			32
+
+#define BANK_MORE 80
+#define BANK_LESS 40
+#define BANK_DAMP_SPEED <30>
+#define BANK_REFRESH 300// Put some time long enough for the unit to have travelled a while, but short enough so the script doesn't have a too long reaction time
+#define BANK_SIGNIFICATIVE_SPEED [1]// Actually, it's not a speed, but a distance, the distance covered during BANK_REFRESH. If that distance is too low, the difference between the two xz is deemed too low to get a significative angle out of it. Since half of digit are lost when x and z get packed into xz, any distance under 65536=[0.4] will lose all its significative digits and so will be unuseable.
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent*healthpercent;
+	if( healthpercent < 66 )
+	{
+		emit-sfx 256 | 3 from base;
+		sleep sleeptime;
+		emit-sfx 256 | 3 from tflare1;
+		if( Rand( 1, 66 ) > healthpercent )
+		{
+			emit-sfx 256 | 3 from lflare1;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from door1;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from lflare3;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from tflare2;
+			sleep sleeptime;
+		}
+	}
+	start-script smokeunit();
+}
+
+BankClerck()
+{
+	var present_xz, past_xz, banking_angle;
+	while(1)
+	{
+		present_xz=get PIECE_XZ(base);
+		banking_angle=0;
+		if (get XZ_HYPOT(present_xz - past_xz)>=BANK_SIGNIFICATIVE_SPEED)
+			{
+			banking_angle=(0 - (((get XZ_ATAN(past_xz - present_xz))*BANK_MORE)/BANK_LESS));
+			}
+		turn base to z-axis banking_angle speed BANK_DAMP_SPEED;
+		past_xz=present_xz;
+		sleep BANK_REFRESH;
+	}
+}
+
+Create()
+{
+	SET ACTIVATION to 100;
+	SET ARMORED to 1;
+	hide lflare1;
+	hide lflare2;
+	hide lflare3;
+
+	restore_delay = 3000;
+
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+//	start-script BankClerck();
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from bubbles1;
+		emit-sfx 256 | 3 from bubbles2;
+//		emit-sfx 256 | 3 from wakes3;
+//		emit-sfx 256 | 3 from wakes4;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep 12000;
+	set-signal-mask 0; 
+	turn turret1 to y-axis <0.000000> speed <80.000000>;
+	turn turret2 to y-axis <0.000000> speed <80.000000>;
+}
+
+
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret1 to y-axis heading speed <360>;
+	wait-for-turn turret1 around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	sleep 150;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret1;
+}
+
+
+
+//=============================================================================
+
+AimSecondary(heading, pitch)
+{
+	signal SIG_AIM_2;
+	set-signal-mask SIG_AIM_2;
+	turn turret2 to y-axis heading speed <360>;
+	wait-for-turn turret2 around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireSecondary()
+{
+	sleep 150;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = flare2;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = turret2;
+}
+
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type BITMAPONLY | BITMAP1;
+		explode bubbles2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode tflare1 type BITMAPONLY | BITMAP5;
+		explode tflare2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type FALL | BITMAP1;
+		explode bubbles2 type FALL | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode tflare1 type FALL | BITMAP5;
+		explode tflare2 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode bubbles1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode bubbles2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode tflare1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode tflare2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode bubbles1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode bubbles2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode door1 type BITMAPONLY | BITMAP1;
+	explode door2 type BITMAPONLY | BITMAP5;
+	explode tflare1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode tflare2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	return (0);
+}

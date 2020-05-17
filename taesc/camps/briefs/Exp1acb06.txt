@@ -1,0 +1,14 @@
+MISSION 6.003ARML
+Solidify your defenses. Once the base is secure, search for and find the alien artifact that must be in the area.
+
+&Y*PRIORITY CRITICAL*&
+The alien artifact must be found if it exists. We do not know what secrets it may hold - but it must not fall into Core hands.
+
+INFO FEED
+Despite our efforts, Core remains strong. Their activities have taken on a certain desperation. The beacon must be near!
+
+&RIncreased encounters with Scorpions lead us to believe that the beacon is very near.& 
+
+To complete this mission you must capture the beacon and destroy all Core units and Scorpions.
+
+END

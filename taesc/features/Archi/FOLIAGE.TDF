@@ -1,0 +1,295 @@
+[ArchiFoliage01]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage01;
+	seqnamereclamate=frond01rec;
+      energy=75;
+
+	seqnameburn=frond01flame;
+	featureburnt=frond01crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond01scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage02]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage02;
+	seqnamereclamate=frond02rec;
+      energy=75;
+
+	seqnameburn=frond02flame;
+	featureburnt=frond02crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond02scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage03]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage03;
+	seqnamereclamate=frond03rec;
+      energy=75;
+
+	seqnameburn=frond03flame;
+	featureburnt=frond03crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond03scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage04]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage04;
+	seqnamereclamate=frond04rec;
+      energy=75;
+
+	seqnameburn=frond04flame;
+	featureburnt=frond04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond04scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage05]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage05;
+	seqnamereclamate=frond05rec;
+      energy=75;
+
+	seqnameburn=frond05flame;
+	featureburnt=frond05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond05scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage06]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=foliage06;
+	seqnamereclamate=frond06rec;
+      energy=75;
+
+	seqnameburn=frond06flame;
+	featureburnt=frond06crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond06scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage04x]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=folixtra04;
+	seqnamereclamate=folixtra04rec;
+      energy=75;
+
+	seqnameburn=folixtra04flame;
+	featureburnt=frond04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond04scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[ArchiFoliage05x]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifoli;
+	seqname=folixtra05;
+	seqnamereclamate=folixtra05rec;
+      energy=75;
+
+	seqnameburn=folixtra05flame;
+	featureburnt=frond05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=ShrubBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond05scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}

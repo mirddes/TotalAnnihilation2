@@ -1,0 +1,11 @@
+MISSION 6.3LCORE
+Intell intercepts confirm that Arm has the beacon! We must take it from them or our plan has failed! 
+
+INTELL-TAP:
+Indications are that Arm has the beacon well guarded. You must break through their defenses and capture the beacon. Do not destroy the beacon, it must be intact in order for it to be of any use to us. 
+
+&RCapture the beacon!&
+
+To complete this mission you must capture the beacon, and destroy all Arm units and Scorpions.
+
+DO SO NOW.

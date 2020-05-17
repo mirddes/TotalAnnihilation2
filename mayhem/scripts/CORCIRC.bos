@@ -1,0 +1,193 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, base, turret, barrel1, barrel2, barrel3, barrel4, barrel5, 
+       barrel6, sleeve1, sleeve2, sleeve3, sleeve4, sleeve5, sleeve6, spindle,
+       spinner;
+
+static-var  gun_1, angle;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*NanoFrameInit()
+{
+	hide flare1;
+}
+
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade barrel1;
+	dont-shade barrel2;
+	dont-shade barrel3;
+	dont-shade barrel4;
+	dont-shade barrel5;
+	dont-shade barrel6;
+	dont-shade sleeve1;
+	dont-shade sleeve2;
+	dont-shade sleeve3;
+	dont-shade sleeve4;
+	dont-shade sleeve5;
+	dont-shade sleeve6;
+	dont-cache barrel1;
+	dont-cache barrel2;
+	dont-cache barrel3;
+	dont-cache barrel4;
+	dont-cache barrel5;
+	dont-cache barrel6;
+	dont-cache sleeve1;
+	dont-cache sleeve2;
+	dont-cache sleeve3;
+	dont-cache sleeve4;
+	dont-cache sleeve5;
+	dont-cache sleeve6;
+	dont-cache flare1;
+	hide flare1;
+	gun_1 = flare1;
+	start-script SmokeUnit();
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	angle = pitch;
+	turn turret to y-axis heading speed <20>;
+	turn spinner to x-axis <0> - pitch speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn spindle around x-axis;
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		turn spindle to x-axis <0> - angle now;
+		move barrel1 to z-axis [-3] now;
+		show flare1;
+		sleep 50;
+		hide flare1;
+		gun_1 = 1;
+		move barrel1 to z-axis [0] speed [12];
+		sleep 100;
+		turn spindle to x-axis <60> - angle speed <300>;
+		return(0);
+	}
+	move barrel2 to y-axis [-2.5] now;
+	move barrel2 to z-axis [-1] now;
+	show flare1;
+	sleep 50;
+	hide flare1;
+	gun_1 = 0;
+	move barrel2 to y-axis [0] speed [10];
+	move barrel2 to z-axis [0] speed [4];
+	sleep 100;
+	turn spindle to x-axis <120> - angle speed <300>;
+	return(0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = spindle;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP5;
+		explode barrel2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel3 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel5 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode barrel6 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP5;
+		explode barrel1 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode barrel2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel4 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel5 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode barrel6 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP5;
+		explode spindle type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel3 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel5 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode barrel6 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP5;
+	explode spindle type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel3 type FALL | EXPLODE_ON_HIT | BITMAP2;
+	explode barrel4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel5 type FALL | EXPLODE_ON_HIT | BITMAP4;
+	explode barrel6 type FALL | EXPLODE_ON_HIT | BITMAP3;
+}

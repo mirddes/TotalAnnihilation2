@@ -1,0 +1,10 @@
+MISSION 5.0005ARME
+Locate the Galactic Gate. Eliminate the Core Base. Destroy all other Core units and capture the Galactic Gate.
+
+&Y*SPECIAL PRIORITY CRITICAL*&
+Destruction of the Core Base will eliminate their foul presence from Empyrrean once and for all. The Galactic Gate through which Core entered our homeworld is in the area. &G Find that Gate and Capture it&. The Gate will be used to take the fight off-world! 
+
+INFO FEED
+Immediate construction of a secure base is critical. Core deployment is massive, and their patrols are frequent. Core's weapon technology has advanced. &G You are advised to build advanced units also. & You will have a limited number of units on loan from the Empyrrean Navy at your disposal. You will find the new Triton class amphibious tank useful on this mission. 
+
+END

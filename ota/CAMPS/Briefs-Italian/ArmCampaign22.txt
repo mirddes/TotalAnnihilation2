@@ -1,0 +1,10 @@
+MISSIONE 22.002ARMCP
+Distruggere il deposito di immagazzinamento di energia.
+
+&YPRIORITÀ&
+I nemici possiedono un enorme complesso energetico, localizzato alle coordinate 6551:447, che fornisce gran parte della potenza necessaria per sostenere la guerra contro di noi. Dobbiamo &RDistruggere il deposito&. Si spera che tale mossa possa indebolire a sufficienza Central Consciousness, il cervello pulsante delle attività Core.
+
+INFORMAZIONI UTILI
+Il deposito di energia consta di numerosi globuli energetici e strutture di contenimento lungo i canali a Nord. Percorrete i canali e distruggete ogni cosa. 
+ 
+FINE

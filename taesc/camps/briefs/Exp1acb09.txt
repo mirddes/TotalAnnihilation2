@@ -1,0 +1,14 @@
+MISSION 9.003ARMT
+There is a Core base to the north, Core's final outpost on Temblor. If the Core Commander and the beacon are not there, they must be on Gelidus. We must finish here ASAP. 
+
+&Y*PRIORITY CRITICAL*&
+We have pursued the last of the Core units to their fortress. If the Core Commander is among the units there, so much the better... but we fear that he has left the planet already...
+
+INFO FEED
+&GTECHNO ADVANCEMENT:& The new AI targeting facility is now available. When used in combination with advanced radar can be very effective as it allows your units to automatically target enemy units using radar.
+
+&RWARNING!& The targeting facility requires an enormous amount of energy. You will want to turn it off until you have sufficient energy.
+
+To complete the mission you must destroy all Core units.
+
+END

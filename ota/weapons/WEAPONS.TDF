@@ -1,0 +1,1391 @@
+/* Weapons.tdf -- Miscellaneous weapon types */
+
+/* Allowed IDs = 0-39 */
+
+
+
+
+// Weapon type data
+
+	/* A weapon must fit into one of these basic categories */
+
+// 1) ballistic = Weapon is fired according to a ballistic path using gravity
+// 2) lineofsight = Weapon is fired in a straight line, gravity does not effect path
+// 3) dropped = Weapon is dropped in order to use it, typically a bomb but could be a chemical
+
+// ID is a unique value in the range 0-255 which identifies the weapon
+// range is in pixels
+// coverage is what the protection umbrella is for weapons that shoot other weapons
+// noexplode = No explosion when weapon impacts target
+// reloadtime = Seconds between shots (floating point allowed)
+// energypershot = Energy consumed per shot, most use none
+// weapontimer = How long weapon is active in seconds (floating point allowed), trajectory weapons use 0 so it is calculated
+// noautorange = When set the weapon will not detonate at range automatically, used mostly for heavy rockets
+// weaponvelocity = Maximum attainable weapon veolocity in pixels/second
+// weaponacceleration = Expressed in pixels/second/second
+// turnrate = Used for guided weapons, is in angular units (0-64k)/second
+// areaofeffect = The total area that receives that damage, one impact per unit in the area
+// edgeeffectiveness = The percentage (1.0 = 100%) of the damage that is inflicted at the edge of the area of effect.  Used for drop-off
+// turret = Weapon must be deployed from a turret with a 360 deg rotation and pitch
+// firestarter = Weapon will cause fires, expressed as a %, where 100% guarantees a fire
+// unitsonly = Weapon will only detonate on enemy units as opposed to obstructing terrain
+// burst = How many repeat times a weapon fires in one burst, ie. Flamethrower
+// burstrate = The time delay when in burst mode between events
+// sprayangle = Maximum deviation from the straight line to the target the weapon strays, used for burst weapons
+// randomdecay = Maximum time delta that burst weapon will randomly decay at end of path
+// groundbounce = Weapon will not detonate with the ground but instead bounce
+// flighttime = The time the unit will fly for after it enters the second phase of operation, used for starburst missiles
+// selfprop = Weapon is self propelled with a burn time described by flighttime
+// twophase = Indicates weapon operates in two phases
+// weapontype2 = Describes another weapon that the weapon turns into in the second phase
+// guidance = Indicates that weapon is guided and uses the turn rate above to track enemy unit
+// tracks = When set the weapon will track a moving target after a weapon conversion
+// waterweapon = Weapon is meant to travel through water
+// burnblow = Weapon will detonate when it comes to the end of its range
+// accuracy = Amount of accuracy in 64K deg that weapon is good for, 0=100%
+// tolerance = Amount of accuracy weapon will use when aiming, most are default 0
+// aimrate = How fast (on average) the weapon aims, in 64K deg / sec.  Used by UnitView.
+// startvelocity = Weapon will start at this velocity instead of 0
+// minbarrelangle = The minimum angle (in degrees) the barrels can point, used in ballistic calculations
+
+// Special weapon stuff
+// paralyzer = Weapon will stun the enemy for a length of time described in the damage field, time=ticks.
+
+// This stuff affects only the visuals of the weapon
+
+// model = 3D model to use as this weapon
+// color = Color of beam weapon from the game palette
+// color2 = Color to use on the beam weapon to make better and cooler, CGT
+// smoketrail = Indicates whether or not a weapon will emit a smoke trail
+// smokedelay = Smoke dispersal interval expressed in seconds
+// startsmoke = Draw a puff of smoke when the weapon fires
+// endsmoke = Draw a puff of smoke when weapon terminates
+// rendertype = Type of rendering system to use, 3D model, bitmap, etc.
+// beamweapon = Weapon is a straight beam weapon like a laser
+// explosiongaf = .GAF file that the explosion art is in
+// explosionart = name of animation sequence for explosion
+// waterexplosiongaf = .GAF file that the water explosion art is in
+// waterexplosionart = name of animation sequence for water explosion
+// propeller = if the model has a propeller that spins
+
+// This stuff affects the sounds the weapons make
+
+// soundstart = Sound to make when the weapon fires
+// soundhit = Sound to make when the weapon detonates (if the weapon detonates)
+// soundwater = Sound to make when the weapon hits the water
+// soundtrigger = Make the weapon sound when the weapon fires in burst mode
+
+
+// This stuff affects controlling the weapon
+
+// commandfire = This weapon will need to be expressly fired by the user each and every time it is used
+
+
+// This stuff describes the amount of metal and energy it takes to fire the weapon if applicable
+
+// energy = Amount of energy needed
+// metal = Amount of metal needed
+
+[NOWEAPON]
+	{
+	ID=0;
+	name=No Weapon;
+	range=16;
+
+	[DAMAGE]
+		{
+		default=0;
+		}
+	}
+
+[FLAMETHROWER]
+	{
+	ID=1;
+	name=Flame Thrower;
+	rendertype=5;
+	ballistic=1;
+	turret=1;
+
+	range=160;
+	reloadtime=1.2;
+	weapontimer=1;
+	weaponvelocity=188;
+	areaofeffect=32;
+	burst=17;
+	burstrate=.04;
+	sprayangle=1024;
+	randomdecay=.3;
+	soundstart=Flamhvy1;
+	soundhit=burn02;
+	firestarter=100;
+	groundbounce=1;
+	smokedelay=1;
+	startsmoke=0;
+	endsmoke=1;
+	tolerance=200;
+
+	[DAMAGE]
+		{
+		default=10;
+		corpyro=2;
+		}
+	}
+
+
+[ARMBOMB]
+	{
+	ID=3;
+	name=Bombs;
+	rendertype=6;
+	dropped=1;
+
+	model=bomb;
+
+	range=1280;
+	reloadtime=.18;
+	areaofeffect=48;
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	metal=10;
+	energy=50;
+
+	[DAMAGE]
+		{
+		default=158;
+		}
+	}
+
+[ARMADVBOMB]
+	{
+	ID=4;
+	name=Advanced Bombs;
+	rendertype=6;
+	dropped=1;
+
+	model=bomb;
+
+	range=1280;
+	reloadtime=.15;
+	areaofeffect=59;
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	metal=10;
+	energy=50;
+
+	[DAMAGE]
+		{
+		default=195;
+		}
+	}
+
+[CORBOMB]
+	{
+	ID=5;
+	name=Bombs;
+	rendertype=6;
+	dropped=1;
+
+	model=bomb;
+
+	range=1280;
+	reloadtime=.19;
+	areaofeffect=56;
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	metal=10;
+	energy=50;
+
+	[DAMAGE]
+		{
+		default=150;
+		}
+	}
+
+[CORADVBOMB]
+	{
+	ID=6;
+	name=Advanced Bombs;
+	rendertype=6;
+	dropped=1;
+
+	model=bomb;
+
+	range=1280;
+	reloadtime=.16;
+	areaofeffect=64;
+	soundstart=bombrel;
+	soundhit=xplomed2;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	metal=10;
+	energy=50;
+
+	[DAMAGE]
+		{
+		default=187;
+		}
+	}
+
+
+
+[MINDGUN]
+	{
+	ID=7;
+	name=Mind Gun;
+	rendertype=2;
+	lineofsight=1;
+
+	range=500;
+	reloadtime=1;
+	weapontimer=2;
+	weaponvelocity=91;
+	areaofeffect=16;
+	soundstart=phaser;
+	soundhit=explode;
+	unitsonly=1;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+
+[SBMISSILE]
+	{
+	ID=8;
+	name=Starburst Missile;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=missile;
+
+	range=300;
+	reloadtime=1.6;
+	weapontimer=1.5;
+	weaponvelocity=458;
+	startvelocity=458;
+	weaponacceleration=131;
+	turnrate=32000;
+	areaofeffect=16;
+	metalpershot=0;
+
+	soundstart=rocklit3;
+	soundhit=xplosml2;
+	firestarter=70;
+	smokedelay=.1;
+	flighttime=5;
+	selfprop=1;
+	smoketrail=1;
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=80;
+		}
+	}
+
+[COAX_TORPEDO]
+	{
+	ID=9;
+	name=Torpedo Launcher;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=torpedo;
+	propeller=1;
+
+	range=400;
+	reloadtime=2.6;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;
+	turnrate=500;
+	areaofeffect=16;
+	
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=400;
+		}
+	}
+
+[ARM_TORPEDO]
+	{
+	ID=10;
+	name=Unguided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=400;
+	reloadtime=2.7;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;
+	turnrate=500;
+	areaofeffect=16;	
+	soundstart=torpedo1;
+	soundhit=xplodep1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=350;
+		armsubk=115;
+		corshark=115;
+		}
+	}
+
+[CORE_TORPEDO]
+	{
+	ID=11;
+	name=Unguided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=400;
+	reloadtime=2.71;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;
+	turnrate=500;
+	areaofeffect=16;	
+	soundstart=torpedo2;
+	soundhit=xplodep3;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=370;
+		armsubk=130;
+		corshark=130;
+		}
+	}
+
+// Torpedos that are shot from the sub killer
+
+[ARMSMART_TORPEDO]
+	{
+	ID=12;
+	name=Guided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=375;
+	reloadtime=2.3;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=torpedo1;
+	soundhit=xplodep1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=200;
+		armsub=580;
+		corsub=580;
+
+		}
+	}
+
+[CORSMART_TORPEDO]
+	{
+	ID=13;
+	name=Guided Torpedo;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=375;
+	reloadtime=2.28;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=torpedo2;
+	soundhit=xplodep3;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=210;
+		armsub=600;
+		corsub=600;
+		}
+	}
+
+
+
+
+
+[ARMAIR_TORPEDO]
+	{
+	ID=14;
+	name=Torpedo Launcher;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=400;
+	reloadtime=8.5;
+	weapontimer=5;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=bombrel;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=6000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=750;
+		}
+	}
+
+
+[CORAIR_TORPEDO]
+	{
+	ID=15;
+	name=Torpedo Launcher;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=torpedo;
+	propeller=1;
+
+	range=400;
+	reloadtime=9;
+	weapontimer=5;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=bombrel;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=6000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=780;
+		}
+	}
+
+
+[EMG]
+	{
+	ID=16;
+	name=E.M.G.;
+	rendertype=4;	/* 2D bitmap */
+	color=2;		/* EMG bitmap shell, its a hack */
+	lineofsight=1;
+	turret=1;
+
+//	model=plasma;
+
+	range=180;
+	reloadtime=.4;
+	weapontimer=1;
+	weaponvelocity=300;
+	sprayangle=1024;
+	areaofeffect=8;
+	burst=3;
+	burstrate=.1;
+	soundstart=armsml2;
+	soundhit=lasrhit1;
+	soundtrigger=1;
+	tolerance=6000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=8;
+		}
+	}
+
+
+[VTOL_EMG]
+	{
+	ID=18;
+	name=E.M.G.;
+	rendertype=4;		/* 2D bitmap */
+	color=1;			/* EMG bitmap */
+	lineofsight=1;
+	turret=0;
+
+//	model=plasma;
+
+	range=370;
+	reloadtime=.6;
+	weapontimer=1;
+	weaponvelocity=450;
+	//startvelocity=150;
+	//weaponacceleration=200;
+	sprayangle=1024;
+	areaofeffect=8;
+	burst=4;
+	burstrate=.1;
+	soundstart=armsml3;
+	soundhit=lasrhit1;
+	soundtrigger=1;
+	tolerance=6000;
+	pitchtolerance=12000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=11;
+		}
+	}
+
+[VTOL_EMG2]
+	{
+	ID=19;
+	name=E.M.G.;
+	rendertype=4;	/* 2D bitmap */
+	color=1;		/* EMG bitmap */
+	lineofsight=1;
+	turret=0;
+
+//	model=plasma;
+
+	range=510;
+	reloadtime=.6;
+	weapontimer=1;
+	weaponvelocity=400;
+	sprayangle=1024;
+	areaofeffect=8;
+	burst=3;
+	burstrate=.1;
+	soundstart=emgpuls1;
+	soundhit=lasrhit1;
+	soundtrigger=1;
+	tolerance=11000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=12;
+		}
+	}
+
+[ARMCOMLASER]
+	{
+	ID=20;
+	name=J7 Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=200;
+	reloadtime=.85;
+	weaponvelocity=400;
+	areaofeffect=16;
+	duration=.03;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=70;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=60;
+		}
+	}
+
+
+[CORCOMLASER]
+	{
+	ID=21;
+	name=XC Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=200;
+	reloadtime=1.0;
+	weaponvelocity=400;
+	areaofeffect=16;
+	duration=.03;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=70;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=70;
+		}
+	}
+
+
+
+[ARM_DISINTEGRATOR]
+	{
+	ID=22;
+	name=Disintegrator;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+
+	model=dgun;
+
+	range=240;
+	reloadtime=1.2;
+	weapontimer=4;
+	energypershot=400;
+	weaponvelocity=200;
+	areaofeffect=48;
+	soundtrigger=1;
+	soundstart=disigun1;
+	soundhit=xplomas2;
+	firestarter=70;
+	beamweapon=1;
+	noexplode=1;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=30000;
+		}
+	}
+
+[CORE_DISINTEGRATOR]
+	{
+	ID=23;
+	name=Disintegrator;
+	rendertype=3;
+	lineofsight=1;
+	turret=1;
+
+	model=dgun;
+
+	range=240;
+	reloadtime=1.2;
+	weapontimer=4;
+	energypershot=400;
+	weaponvelocity=200;
+	areaofeffect=48;
+	soundtrigger=1;
+
+	soundstart=disigun1;
+	soundhit=xplomas2;
+
+	firestarter=70;
+	beamweapon=1;
+	noexplode=1;
+	commandfire=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=30000;
+		}
+	}
+
+[ARM_TOTAL_ANNIHILATOR]
+	{
+	ID=24;
+	name=Annihilator Weapon;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=1200;
+	reloadtime=5;
+	energypershot=2000;
+	weaponvelocity=1000;
+	areaofeffect=8;
+
+	soundstart=annigun1;
+	soundhit=xplolrg1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=144;	/* PURPLE */
+	color2=217;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=2500;
+		}
+	}
+
+[CORE_DOOMSDAY]
+	{
+	ID=25;
+	name=Doomsday Weapon;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=600;
+	reloadtime=8;
+	energypershot=800;
+	weaponvelocity=1000;
+	areaofeffect=8;
+
+	soundstart=annigun1;
+	soundhit=xplosml3;
+
+	firestarter=90;
+	beamweapon=1;
+	color=144;	/* PURPLE */
+	color2=217;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=2500;
+		}
+	}
+
+[LIGHTNING]
+	{
+	ID=26;
+	name=Lightning Gun;
+	rendertype=7;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=1.45;
+	weaponvelocity=400;
+	areaofeffect=8;
+	duration=10;
+	soundtrigger=1;
+
+	soundstart=lghthvy1;
+	soundhit=lashit;
+
+	firestarter=50;
+
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=196;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=180;
+		}
+	}
+
+[ATOMIC_BLAST]
+	{
+	ID=27;
+	name=Atomic Blast Weapon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=516;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	[DAMAGE]
+		{
+		default=2000;
+		}
+	}
+
+[ATOMIC_BLASTSML]
+	{
+	ID=28;
+	name=Atomic Blast Weapon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=260;
+	soundstart=largegun;
+	soundhit=xplonuk3;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	[DAMAGE]
+		{
+		default=1000;
+		}
+	}
+
+[ARM_PARALYZER]
+	{
+	ID=29;
+	name=Paralyzer;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+	paralyzer=1;
+	minbarrelangle=0;
+
+	range=220;
+	reloadtime=1.2;
+	weaponvelocity=600;
+	areaofeffect=8;
+	duration=.04;
+	soundtrigger=1;
+
+	soundstart=lasrlit1;
+	soundhit=lashit;
+
+	beamweapon=1;
+	color=209;	/* Redish */
+	color2=211;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	[DAMAGE]
+		{
+		default=900;		/* 15 seconds of paralysis */
+		}
+	}
+
+[AMD_ROCKET]
+	{
+	ID=30;
+	name=Rocket;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=amdrocket;
+
+	range=32000;
+	coverage=2000;
+	reloadtime=120;
+
+	noautorange=1;
+	weapontimer=4;
+	flighttime=60;
+
+	weaponvelocity=800;
+	weaponacceleration=60;
+	turnrate=32768;
+	areaofeffect=96;
+
+	energypershot=10000;
+	metalpershot=200;
+
+	stockpile=1;
+	interceptor=1;
+
+	soundstart=Rockhvy1;
+	soundhit=xplomed4;
+
+	firestarter=100;
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+	tracks=1;
+
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=500;
+		}
+	}
+
+[FMD_ROCKET]
+	{
+	ID=32;
+	name=Rocket;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=fmdmisl;
+
+	range=32000;
+	coverage=2000;
+	reloadtime=120;
+
+	noautorange=1;
+	weapontimer=4;
+	flighttime=60;
+
+	weaponvelocity=800;
+	weaponacceleration=60;
+	turnrate=32768;
+	areaofeffect=96;
+
+	energypershot=10000;
+	metalpershot=200;
+
+	stockpile=1;
+	interceptor=1;
+
+	soundstart=Rockhvy1;
+	soundhit=xplomed4;
+
+	firestarter=100;
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+	tracks=1;
+
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=500;
+		}
+	}
+
+[COREDEPTHCHARGE]
+	{
+	ID=34;
+	name=Depth Charge;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=DEPTHCHARGE;
+	propeller=1;
+
+	range=400;
+	reloadtime=2.6;
+	weapontimer=3;
+	weaponvelocity=100;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=80;
+		}
+	}
+
+[ARMDEPTHCHARGE]
+	{
+	ID=35;
+	name=Depth Charge;
+	rendertype=1;
+	lineofsight=1;
+	turret=0;
+
+	model=DEPTHCHARGE;
+	propeller=1;
+
+	range=410;
+	reloadtime=2.8;
+	weapontimer=3;
+	weaponvelocity=110;
+	startvelocity=100;
+	weaponacceleration=15;	
+
+	turnrate=10000;
+	areaofeffect=16;
+	soundstart=torpedo1;
+	soundhit=xplodep2;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	waterweapon=1;
+	burnblow=1;
+
+	tolerance=32767;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=70;
+		}
+	}
+
+
+/*
+[VTOL_FOOMISSILE]
+	{
+	// For the ARMFIG in the UnitViewer, since it got released
+	// with the wrong weapon.  Oops.
+
+	name=Guided Missiles;
+	}
+*/

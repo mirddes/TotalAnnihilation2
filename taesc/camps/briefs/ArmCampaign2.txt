@@ -1,0 +1,10 @@
+MISSION 2.0002ARME
+Build a base and destroy the Core KBot Lab. 
+
+&Y*SPECIAL PRIORITY& 
+Core has established a KBot Lab on Empyrrean! Remove its loathsome presence before Core strengthens its foothold on our homeworld!
+
+INFO FEED
+The KBot Lab is located across the river to the south. &YExpect Core patrols.&
+
+END

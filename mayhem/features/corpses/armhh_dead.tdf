@@ -1,0 +1,35 @@
+[armhh_dead]
+{
+world=All Worlds;
+description=Hippo Wreckage;
+category=arm_corpses;
+object=armhh_dead;
+featuredead=armhh_heap;
+footprintx=3;
+footprintz=3;
+height=24;
+blocking=1;
+hitdensity=4;
+metal=600;
+damage=2145;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armhh_heap]
+{
+world=All Worlds;
+description=Hippo Wreckage;
+category=arm_corpses;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=300;
+damage=2185;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,35 @@
+[CORREX_dead]
+{
+world=All Worlds;
+description=Smasher Wreckage;
+category=core_corpses;
+object=CORREX_dead;
+featuredead=CORREX_heap;
+footprintx=4;
+footprintz=4;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=9674;
+damage=15011;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORREX_heap]
+{
+world=All Worlds;
+description=Smasher Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=4837;
+damage=15967;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

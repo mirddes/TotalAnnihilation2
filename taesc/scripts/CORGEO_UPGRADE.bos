@@ -1,0 +1,34 @@
+piece base, turret, sleeve, barrel1, barrel2, upgrade, wtf, foot1, pipes1, foot2, pipes2 ;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+Create()
+	{
+		set ARMORED to 1;
+		dont-cache turret;
+		dont-cache sleeve;
+		dont-cache barrel1;
+		dont-cache barrel2;
+		
+		move wtf to y-axis [10] now;
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1000;
+		}
+		hide turret;
+		hide sleeve;
+		hide barrel1;
+		hide barrel2;
+		hide foot1;
+		hide pipes1;
+		hide foot2;
+		hide pipes2;
+	}
+	
+SweetSpot(piecenum)
+{
+	piecenum = wtf;
+}		
+	
+	

@@ -1,0 +1,12 @@
+MISSIONE 25.004ARMCP
+Sterminare una volta per tutte la civiltà Core. Condurre il Comandante in cima alla cupola di comando.
+
+&YPRIORITÀ CRITICA&
+Central Consciousness è nostra! Il cervello Core è nostro! Rimane un ultimo obiettivo: dopo il cervello è necessario distruggere il cuore del nemico. Dovrete assumere il controllo della cupola di controllo Core per finire la battaglia per sempre. 
+
+INFORMAZIONI UTILI
+Tutto ciò che è rimasto dell’impero Core è stato impiegato per difendere la cupola di comando: il Comandante nemico sarà senz’altro presente, per cui è necessario distruggerlo, insieme a ogni altra unità. Ricordate: anche la più semplice sentinella è in grado di ricostruire l’impero Core... 
+
+&RDistruggete& il Comandante sulla cupola di controllo. 
+ 
+FINE

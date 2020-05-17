@@ -1,0 +1,9 @@
+MISSION 1.1CORE
+Arm vermin have made planetfall on Core Prime. A small group has caught the Commander during maintenance and has deactivated him. Destroy all Arm vermin so that the Commander can be reactivated. 
+
+INTELL-TAP:
+The probability of Arm being on Core Prime is nil. Yet they are here.  
+
+&RDestroy all of the Arm units.&
+
+DO SO NOW.

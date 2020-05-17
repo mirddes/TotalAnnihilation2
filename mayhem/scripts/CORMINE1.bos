@@ -1,0 +1,133 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  feetl1, feetl2, feetl3, feetl4, feetr1, feetr2, feetr3, feetr4,
+       thigh1, thigh2, door1, door2, door3, door4, nano, post,
+       base;
+
+static-var  bMoving, walking;
+
+walklegs()
+{
+	if( walking )
+	{
+		return(0);
+	}
+	walking = 1;
+	if (bMoving )
+	{
+		move base to y-axis 0 speed [7.2];
+		sleep 125;
+	}
+	if ( bMoving )
+	{
+		move thigh1 to x-axis 0 speed [10];
+		move thigh2 to x-axis 0 speed [10];
+	}
+	while( bMoving )
+	{
+		move feetl2 to z-axis [0.250] speed [2];
+		move feetl3 to z-axis [0.250] speed [2];
+		move feetl4 to z-axis [-0.250] speed [2];
+		move feetr2 to z-axis [0.250] speed [2];
+		move feetr3 to z-axis [0.250] speed [2];
+		move feetr4 to z-axis [-0.250] speed [2];
+		turn feetl1 to x-axis <45> speed <365.851>;
+		turn feetr1 to x-axis <45> speed <369.746>;
+		turn feetr4 to x-axis <0> now;
+		sleep 123;
+		if( bMoving )
+		{
+			move feetl2 to z-axis [0.550] speed [1.807];
+			move feetl3 to z-axis [0.550] speed [1.807];
+			move feetl4 to z-axis [-0.550] speed [1.807];
+			move feetr2 to z-axis [0.550] speed [1.807];
+			move feetr3 to z-axis [0.550] speed [1.807];
+			move feetr4 to z-axis [-0.550] speed [1.807];
+			turn feetl1 to x-axis <89.517> speed <268.199>;
+			turn feetr1 to x-axis <89.517> speed <265.315>;
+			turn feetr2 to z-axis <0.956> speed <5.762>;
+			sleep 166;
+		}
+		if( bMoving )
+		{
+			move feetl1 to y-axis [-0.150] speed [0.915];
+			move feetl1 to z-axis [-0.200] speed [1.220];
+			move feetl2 to z-axis [0.850] speed [1.829];
+			move feetl3 to z-axis [0.850] speed [1.829];
+			move feetl4 to z-axis [-0.850] speed [1.829];
+			move feetr1 to y-axis [-0.150] speed [0.915];
+			move feetr1 to z-axis [-0.200] speed [1.220];
+			move feetr2 to z-axis [0.850] speed [1.829];
+			move feetr3 to z-axis [0.850] speed [1.829];
+			move feetr4 to z-axis [-0.850] speed [1.829];
+			turn feetl1 to x-axis <135> speed <277.307>;
+			turn feetr1 to x-axis <134.517> speed <274.390>;
+			turn feetr2 to z-axis <0> speed <5.834>;
+			sleep 164;
+		}
+		if( bMoving )
+		{
+			move feetl1 to y-axis [0] speed [75];
+			move feetl1 to z-axis [0] speed [100];
+			move feetl2 to x-axis [0] speed [0];
+			move feetl2 to z-axis [0] speed [425];
+			move feetl3 to z-axis [0] speed [425];
+			move feetl4 to z-axis [0] speed [425];
+			move feetr1 to y-axis [0] speed [75];
+			move feetr1 to z-axis [0] speed [100];
+			move feetr2 to z-axis [0] speed [425];
+			move feetr3 to z-axis [0] speed [425];
+			move feetr4 to z-axis [0] speed [425];
+			turn feetl1 to x-axis <0> speed <675>;
+			turn feetr1 to x-axis <0> speed <672>;
+			sleep 100;
+		}
+	}
+	walking = 0;
+	sleep 200;
+	if( !bMoving )
+	{
+		move thigh1 to x-axis [2] speed [8];
+		move thigh2 to x-axis [-2] speed [8];
+		sleep 250;
+	}
+	if( !bMoving )
+	{
+		move base to y-axis [-0.9] speed [3.6];
+	}
+}
+
+Create()
+{
+	bMoving = 0;
+	walking = 0;
+	move thigh1 to x-axis [2] NOW;
+	move thigh2 to x-axis [-2] NOW;
+	move base to y-axis [-0.9] NOW;
+}
+
+StartMoving()
+{
+	if( !bMoving )
+	{
+		bMoving = 1;
+		start-script walklegs();
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+}

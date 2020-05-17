@@ -1,0 +1,447 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, main, main2, main3, sphere, claw1, claw2, claw3, lights, 
+       mmbase, mm1, mm2, mm3, mm4, mm5, mm6, 
+       mm7, mm8, mm9, mm10, mm11, mm12, mmk1, mmk2, 
+       mmk3, mmk4, mmk5, mmk6, mmk7, mmk8, mmk9, mmk10,
+       mmk11, mmk12, mmg1, mmg2, mmg3, mmg4, mmg5, mmg6, 
+       mmg7, mmg8, mmg9, mmg10, mmg11, mmg12;
+
+static-var  on_1, busy_2, hit_3, timer_4, state_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype, smokepiece)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			smokepiece = Rand( 1, 13 );
+			if( smokepiece == 1 )
+			{
+				emit-sfx smoketype from main2;
+			}
+			if( smokepiece == 2 )
+			{
+				emit-sfx smoketype from mmg1;
+			}
+			if( smokepiece == 3 )
+			{
+				emit-sfx smoketype from mmg2;
+			}
+			if( smokepiece == 4 )
+			{
+				emit-sfx smoketype from mmg3;
+			}
+			if( smokepiece == 5 )
+			{
+				emit-sfx smoketype from mmg4;
+			}
+			if( smokepiece == 6 )
+			{
+				emit-sfx smoketype from mmg5;
+			}
+			if( smokepiece == 7 )
+			{
+				emit-sfx smoketype from mmg6;
+			}
+			if( smokepiece == 8 )
+			{
+				emit-sfx smoketype from mmg7;
+			}
+			if( smokepiece == 9 )
+			{
+				emit-sfx smoketype from mmg8;
+			}
+			if( smokepiece == 10 )
+			{
+				emit-sfx smoketype from mmg9;
+			}
+			if( smokepiece == 11 )
+			{
+				emit-sfx smoketype from mmg10;
+			}
+			if( smokepiece == 12 )
+			{
+				emit-sfx smoketype from mmg11;
+			}
+			if( smokepiece == 13 )
+			{
+				emit-sfx smoketype from mmg12;
+			}
+		}
+		sleeptime = healthpercent * 20;
+		if( sleeptime < 80 )
+		{
+			sleeptime = 80;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_2 )
+	{
+		return (0);
+	}
+	busy_2 = 1;
+	while( on_1 != state_5 )
+	{
+		if( on_1 AND !state_5 )
+		{
+			state_5 = 1;
+			move mmk1 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk2 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk3 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk4 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk5 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk6 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk7 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk8 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk9 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk10 to y-axis [2] speed [5];
+			sleep 40;
+			move mmk11 to y-axis [2] speed [5];
+			turn mmk1 to x-axis <179.5> speed <360>;
+			sleep 40;
+			move mmk12 to y-axis [2] speed [5];
+			turn mmk2 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk3 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk4 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk5 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk6 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk7 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk8 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk9 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk10 to x-axis <179.5> speed <360>;
+			sleep 40;
+			turn mmk11 to x-axis <179.5> speed <360>;
+			move mmk1 to y-axis [0] speed [5];
+			dont-cache mmg1;
+			sleep 40;
+			turn mmk12 to x-axis <179.5> speed <360>;
+			move mmk2 to y-axis [0] speed [5];
+			dont-cache mmg2;
+			sleep 40;
+			move mmk3 to y-axis [0] speed [5];
+			dont-cache mmg3;
+			sleep 40;
+			move mmk4 to y-axis [0] speed [5];
+			dont-cache mmg4;
+			sleep 40;
+			move mmk5 to y-axis [0] speed [5];
+			dont-cache mmg5;
+			sleep 40;
+			move mmk6 to y-axis [0] speed [5];
+			dont-cache mmg6;
+			sleep 40;
+			move mmk7 to y-axis [0] speed [5];
+			dont-cache mmg7;
+			sleep 40;
+			move mmk8 to y-axis [0] speed [5];
+			dont-cache mmg8;
+			sleep 40;
+			move mmk9 to y-axis [0] speed [5];
+			dont-cache mmg9;
+			sleep 40;
+			move mmk10 to y-axis [0] speed [5];
+			dont-cache mmg10;
+			sleep 40;
+			move mmk11 to y-axis [0] speed [5];
+			dont-cache mmg11;
+			sleep 40;
+			move mmk12 to y-axis [0] speed [5];
+			dont-cache mmg12;
+		}
+		if( !on_1 AND state_5 )
+		{
+			state_5 = 0;
+			cache mmg1;
+			move mmk1 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg2;
+			move mmk2 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg3;
+			move mmk3 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg4;
+			move mmk4 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg5;
+			move mmk5 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg6;
+			move mmk6 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg7;
+			move mmk7 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg8;
+			move mmk8 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg9;
+			move mmk9 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg10;
+			move mmk10 to y-axis [2] speed [5];
+			sleep 40;
+			cache mmg11;
+			move mmk11 to y-axis [2] speed [5];
+			turn mmk1 to x-axis <0> speed <360>;
+			sleep 40;
+			cache mmg12;
+			move mmk12 to y-axis [2] speed [5];
+			turn mmk2 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk3 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk4 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk5 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk6 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk7 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk8 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk9 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk10 to x-axis <0> speed <360>;
+			sleep 40;
+			turn mmk11 to x-axis <0> speed <360>;
+			move mmk1 to y-axis [0] speed [5];
+			sleep 40;
+			turn mmk12 to x-axis <0> speed <360>;
+			move mmk2 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk3 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk4 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk5 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk6 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk7 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk8 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk9 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk10 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk11 to y-axis [0] speed [5];
+			sleep 40;
+			move mmk12 to y-axis [0] speed [5];
+		}
+	}
+	busy_2 = 0;
+}
+
+Create()
+{
+	turn mm1 to y-axis <30> NOW;
+	turn mm2 to y-axis <60> NOW;
+	turn mm3 to y-axis <90> NOW;
+	turn mm4 to y-axis <120> NOW;
+	turn mm5 to y-axis <150> NOW;
+	turn mm6 to y-axis <180> NOW;
+	turn mm7 to y-axis <210> NOW;
+	turn mm8 to y-axis <240> NOW;
+	turn mm9 to y-axis <270> NOW;
+	turn mm10 to y-axis <300> NOW;
+	turn mm11 to y-axis <330> NOW;
+	dont-shade main;
+	dont-shade main2;
+	dont-shade claw1;
+	dont-shade claw2;
+	dont-shade claw3;
+	dont-shade main3;
+	//dont-shade sphere;
+	dont-shade mmg1;
+	dont-shade mmg2;
+	dont-shade mmg3;
+	dont-shade mmg4;
+	dont-shade mmg5;
+	dont-shade mmg6;
+	dont-shade mmg7;
+	dont-shade mmg8;
+	dont-shade mmg9;
+	dont-shade mmg10;
+	dont-shade mmg11;
+	dont-shade mmg12;
+	dont-shade mmk1;
+	dont-shade mmk2;
+	dont-shade mmk3;
+	dont-shade mmk4;
+	dont-shade mmk5;
+	dont-shade mmk6;
+	dont-shade mmk7;
+	dont-shade mmk8;
+	dont-shade mmk9;
+	dont-shade mmk10;
+	dont-shade mmk11;
+	dont-shade mmk12;
+	on_1 = 0;
+	busy_2 = 0;
+	hit_3 = 0;
+	timer_4 = 0;
+	state_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	dont-cache main2;
+	dont-cache lights;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if( !on_1 )
+	{
+		on_1 = 1;
+		start-script RequestState();
+	}
+}
+
+Deactivate()
+{
+	if( on_1 )
+	{
+		on_1 = 0;
+		start-script RequestState();
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode main type BITMAPONLY | BITMAP1;
+		explode main2 type BITMAPONLY | BITMAP2;
+		explode main3 type BITMAPONLY | BITMAP3;
+		explode claw1 type BITMAPONLY | BITMAP4;
+		explode claw2 type BITMAPONLY | BITMAP5;
+		explode claw3 type BITMAPONLY | BITMAP1;
+		explode sphere type BITMAPONLY | BITMAP2;
+		explode mmk1 type BITMAPONLY | BITMAP2;
+		explode mmk4 type BITMAPONLY | BITMAP3;
+		explode mmk7 type BITMAPONLY | BITMAP4;
+		explode mmk2 type BITMAPONLY | BITMAP5;
+		explode mmk5 type BITMAPONLY | BITMAP2;
+		explode mmk8 type BITMAPONLY | BITMAP3;
+		explode mmk3 type BITMAPONLY | BITMAP4;
+		explode mmk6 type BITMAPONLY | BITMAP5;
+		explode mmk9 type BITMAPONLY | BITMAP1;
+		explode mmk10 type BITMAPONLY | BITMAP1;
+		explode mmk11 type BITMAPONLY | BITMAP2;
+		explode mmk12 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode main type BITMAPONLY | BITMAP1;
+		explode main2 type BITMAPONLY | BITMAP2;
+		explode main3 type BITMAPONLY | BITMAP3;
+		explode claw1 type BITMAPONLY | BITMAP4;
+		explode claw2 type BITMAPONLY | BITMAP5;
+		explode claw3 type BITMAPONLY | BITMAP1;
+		explode sphere type BITMAPONLY | BITMAP2;
+		explode mmk1 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode mmk7 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode mmk2 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode mmk5 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode mmk8 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode mmk4 type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode mmk7 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode mmk10 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode mmk11 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk12 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode main type BITMAPONLY | BITMAP1;
+		explode main2 type BITMAPONLY | BITMAP2;
+		explode main3 type BITMAPONLY | BITMAP3;
+		explode claw1 type BITMAPONLY | BITMAP4;
+		explode claw2 type BITMAPONLY | BITMAP5;
+		explode claw3 type BITMAPONLY | BITMAP1;
+		explode sphere type BITMAPONLY | BITMAP2;
+		explode mmk1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode mmk7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode mmk2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode mmk5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode mmk8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode mmk4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode mmk7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode mmk10 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode mmk11 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode mmk12 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode main type BITMAPONLY | BITMAP1;
+	explode main2 type BITMAPONLY | BITMAP2;
+	explode main3 type BITMAPONLY | BITMAP3;
+	explode claw1 type BITMAPONLY | BITMAP4;
+	explode claw2 type BITMAPONLY | BITMAP5;
+	explode claw3 type BITMAPONLY | BITMAP1;
+	explode sphere type BITMAPONLY | BITMAP2;
+	explode mmk1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode mmk4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode mmk7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode mmk2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode mmk5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode mmk8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode mmk2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode mmk4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode mmk7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode mmk10 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode mmk11 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode mmk12 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

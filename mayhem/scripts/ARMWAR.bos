@@ -1,0 +1,627 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  torso, lflare, rflare, hips, l_thigh, r_thigh, head, luparm,
+       ruparm, rarm, larm, rleg, rfoot, lleg, lfoot, lgun,
+       rgun, sleeve, barrel, canflare;
+
+static-var  gun_1, bMoving, bAiming, restore_4, reset_5, walking;
+
+
+RestoreAfterDelay()
+{
+	sleep 5000; 
+	if( !reset_5 )
+	{
+		signal 2;
+		signal 4;
+		turn torso to y-axis <0> speed <90>;
+		turn sleeve to y-axis <0> speed <90>;
+		turn ruparm to x-axis <0> speed <90>;
+		turn rarm to x-axis <90> speed <90>;
+		turn luparm to x-axis <0> speed <90>;
+		turn larm to x-axis <90> speed <90>;
+		turn head to y-axis <0> speed <120>;
+		turn sleeve to x-axis <0> speed <60>;
+		wait-for-turn sleeve around y-axis;
+		wait-for-turn head around y-axis;
+		wait-for-turn sleeve around x-axis;
+		if( !restore_4 AND !reset_5 )
+		{
+			bAiming = 0;
+		}
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( restore_4 and !reset_5 )
+		{
+			restore_4 = 0;
+			reset_5 = 1;
+		}
+		sleep sleeptime;
+		if( !restore_4 and reset_5 )
+		{
+			reset_5 = 0;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+Create()
+{
+	hide canflare;
+	hide lflare;
+	hide rflare;
+	gun_1 = 0;
+	bMoving = 0;
+	bAiming = 0;
+	restore_4 = 0;
+	reset_5 = 0;
+	walking = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+	if( walking )
+	{
+		return(0);
+	}
+	walking = TRUE;	
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			move hips to y-axis [0] now;
+			move hips to y-axis [-0.169989] speed [3];
+			move l_thigh to y-axis [0] now;
+			move l_thigh to y-axis [0.169989] speed [3];
+			move r_thigh to y-axis [0.400000] now;
+			move r_thigh to y-axis [0.319989] speed [1];
+			move torso to y-axis [0] now;
+			move torso to y-axis [-0.119989] speed [2];
+			turn hips to x-axis <7.027473> now;
+			turn hips to x-axis <9> speed <50>;
+			turn l_thigh to x-axis <17.923077> now;
+			turn l_thigh to x-axis <20> speed <46>;
+			turn r_thigh to x-axis <-37.967033> now;
+			turn r_thigh to x-axis <-33> speed <82>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-7> speed <90>;
+				turn head to y-axis <9.835165> now;
+				turn head to y-axis <7> speed <100>;
+				turn luparm to x-axis <-14> speed <104>;
+				turn ruparm to x-axis <26> speed <89>;
+				turn rarm to x-axis <35> speed <430>;
+				turn larm to x-axis <-8> speed <179>;
+			}
+			turn rleg to x-axis <17.214286> now;
+			turn rleg to x-axis <13> speed <78>;
+			turn rfoot to x-axis <-22.5> now;
+			turn rfoot to x-axis <-13> speed <175>;
+			turn lleg to x-axis <0> now;
+			turn lleg to x-axis <10> speed <215>;
+			turn lfoot to x-axis <-16.868132> now;
+			turn lfoot to x-axis <-10> speed <136>;
+			sleep 49;
+			move hips to y-axis [-0.350000] speed [3];
+			move l_thigh to y-axis [0.350000] speed [3];
+			move r_thigh to y-axis [0.250000] speed [1];
+			move torso to y-axis [-0.239990] speed [2];
+			turn hips to x-axis <11> speed <50>;
+			turn l_thigh to x-axis <22> speed <46>;
+			turn r_thigh to x-axis <-29> speed <82>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-5> speed <90>;
+				turn head to y-axis <5> speed <43>;
+				turn luparm to x-axis <-9> speed <104>;
+				turn ruparm to x-axis <30> speed <89>;
+				turn rarm to x-axis <46> speed <430>;
+				turn larm to x-axis <-17> speed <179>;
+			}
+			turn rleg to x-axis <9> speed <78>;
+			turn rfoot to x-axis <8> speed <462>;
+			turn lleg to x-axis <21> speed <215>;
+			turn lfoot to x-axis <-3> speed <136>;
+			sleep 49;
+			move hips to y-axis [-0.169989] speed [4];
+			move l_thigh to y-axis [0.369989] speed [0];
+			move r_thigh to y-axis [0.119989] speed [2];
+			move torso to y-axis [0.500000] speed [7];
+			turn hips to x-axis <9> speed <62>;
+			turn l_thigh to x-axis <7> speed <351>;
+			turn r_thigh to x-axis <-20> speed <221>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-3> speed <90>;
+				turn head to y-axis <3> speed <54>;
+				turn luparm to x-axis <0> speed <209>;
+				turn ruparm to x-axis <16> speed <326>;
+				turn rarm to x-axis <42> speed <108>;
+				turn larm to x-axis <-3> speed <334>;
+			}
+			turn rleg to x-axis <7> speed <54>;
+			turn rfoot to x-axis <4> speed <104>;
+			turn lleg to x-axis <27> speed <163>;
+			turn lfoot to x-axis <-10> speed <163>;
+			sleep 42;
+			move hips to y-axis [0] speed [3];
+			move l_thigh to y-axis [0.400000] speed [0];
+			move r_thigh to y-axis [0] speed [2];
+			move torso to y-axis [0.350000] speed [6];
+			turn hips to x-axis <6> speed <58>;
+			turn l_thigh to x-axis <-7> speed <328>;
+			turn r_thigh to x-axis <-11> speed <207>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-1> speed <90>;
+				turn head to y-axis <1> speed <50>;
+				turn luparm to x-axis <8> speed <195>;
+				turn ruparm to x-axis <3> speed <304>;
+				turn rarm to x-axis <37> speed <101>;
+				turn larm to x-axis <10> speed <312>;
+			}
+			turn rleg to x-axis <4> speed <50>;
+			turn rfoot to x-axis <0> speed <97>;
+			turn lleg to x-axis <34> speed <152>;
+			turn lfoot to x-axis <-17> speed <152>;
+			sleep 45;
+		}
+		if( bMoving )
+		{
+			move l_thigh to y-axis [0.700000] speed [4];
+			move torso to y-axis [0.169989] speed [2];
+			turn hips to x-axis <5> speed <22>;
+			turn l_thigh to x-axis <-13> speed <91>;
+			turn r_thigh to x-axis <0> speed <165>;
+			if( !baiming )
+			{
+				turn torso to y-axis <2> speed <90>;
+				turn head to y-axis <-2> speed <44>;
+				turn luparm to x-axis <12> speed <64>;
+				turn ruparm to x-axis <-1> speed <71>;
+				turn rarm to x-axis <33> speed <198>;
+				turn larm to x-axis <14> speed <54>;
+			}
+			turn rfoot to x-axis <-8> speed <113>;
+			turn lleg to x-axis <23> speed <158>;
+			turn lfoot to x-axis <-12> speed <69>;
+			sleep 71;
+			move l_thigh to y-axis [1] speed [4];
+			move torso to y-axis [0] speed [2];
+			turn hips to x-axis <3> speed <21>;
+			turn l_thigh to x-axis <-20> speed <90>;
+			turn r_thigh to x-axis <12> speed <163>;
+			if( !baiming )
+			{
+				turn torso to y-axis <5> speed <90>;
+				turn head to y-axis <-5> speed <43>;
+				turn luparm to x-axis <17> speed <63>;
+				turn ruparm to x-axis <-7> speed <70>;
+				turn rarm to x-axis <29> speed <195>;
+				turn larm to x-axis <18> speed <53>;
+			}
+			turn rfoot to x-axis <-16> speed <112>;
+			turn lleg to x-axis <12> speed <156>;
+			turn lfoot to x-axis <-7> speed <68>;
+			sleep 72;
+		}
+		if( bMoving )
+		{
+			move l_thigh to y-axis [0.700000] speed [3];
+			turn hips to x-axis <5> speed <18>;
+			turn l_thigh to x-axis <-28> speed <92>;
+			turn r_thigh to x-axis <14> speed <26>;
+			if( !baiming )
+			{
+				turn torso to y-axis <7> speed <90>;
+				turn head to y-axis <-7> speed <22>;
+				turn luparm to x-axis <19> speed <22>;
+				turn ruparm to x-axis <-13> speed <68>;
+				turn rarm to x-axis <14> speed <158>;
+				turn larm to x-axis <26> speed <92>;
+			}
+			turn rleg to x-axis <2> speed <26>;
+			turn rfoot to x-axis <-16> speed <0>;
+			turn lleg to x-axis <14> speed <26>;
+			turn lfoot to x-axis <-16> speed <100>;
+			sleep 93;
+			move l_thigh to y-axis [0.400000] speed [3];
+			turn hips to x-axis <7> speed <18>;
+			turn l_thigh to x-axis <-37> speed <90>;
+			turn r_thigh to x-axis <17> speed <25>;
+			if( !baiming )
+			{
+				turn torso to y-axis <9> speed <90>;
+				turn head to y-axis <-9> speed <22>;
+				turn luparm to x-axis <21> speed <22>;
+				turn ruparm to x-axis <-19> speed <66>;
+				turn rarm to x-axis <0> speed <155>;
+				turn larm to x-axis <35> speed <90>;
+			}
+			turn rleg to x-axis <0> speed <25>;
+			turn rfoot to x-axis <-16> speed <0>;
+			turn lleg to x-axis <17> speed <25>;
+			turn lfoot to x-axis <-26> speed <98>;
+			sleep 95;
+		}
+		if( bMoving )
+		{
+			move hips to y-axis [-0.169989] speed [3];
+			move l_thigh to y-axis [0.319989] speed [1];
+			move r_thigh to y-axis [0.169989] speed [3];
+			move torso to y-axis [-0.119989] speed [2];
+			turn hips to x-axis <9> speed <50>;
+			turn l_thigh to x-axis <-33> speed <78>;
+			turn r_thigh to x-axis <19> speed <53>;
+			if( !baiming )
+			{
+				turn torso to y-axis <7> speed <90>;
+				turn head to y-axis <-7> speed <35>;
+				turn luparm to x-axis <25> speed <89>;
+				turn ruparm to x-axis <-14> speed <104>;
+				turn rarm to x-axis <-7> speed <143>;
+				turn larm to x-axis <50> speed <315>;
+			}
+			turn rleg to x-axis <10> speed <218>;
+			turn rfoot to x-axis <-8> speed <161>;
+			turn lleg to x-axis <13> speed <78>;
+			turn lfoot to x-axis <-9> speed <344>;
+			sleep 49;
+			move hips to y-axis [-0.350000] speed [3];
+			move l_thigh to y-axis [0.250000] speed [1];
+			move r_thigh to y-axis [0.350000] speed [3];
+			move torso to y-axis [-0.239990] speed [2];
+			turn hips to x-axis <11> speed <50>;
+			turn l_thigh to x-axis <-29> speed <78>;
+			turn r_thigh to x-axis <22> speed <53>;
+			if( !baiming )
+			{
+				turn torso to y-axis <5> speed <90>;
+				turn head to y-axis <-5> speed <35>;
+				turn luparm to x-axis <30> speed <89>;
+				turn ruparm to x-axis <-9> speed <104>;
+				turn rarm to x-axis <-14> speed <143>;
+				turn larm to x-axis <66> speed <315>;
+			}
+			turn rleg to x-axis <21> speed <218>;
+			turn rfoot to x-axis <0> speed <161>;
+			turn lleg to x-axis <9> speed <78>;
+			turn lfoot to x-axis <7> speed <344>;
+			sleep 49;
+			move hips to y-axis [-0.169989] speed [3];
+			move l_thigh to y-axis [0.119989] speed [2];
+			move r_thigh to y-axis [0.369989] speed [0];
+			move torso to y-axis [0.500000] speed [6];
+			turn hips to x-axis <9> speed <56>;
+			turn l_thigh to x-axis <-20> speed <194>;
+			turn r_thigh to x-axis <7> speed <314>;
+			if( !baiming )
+			{
+				turn torso to y-axis <3> speed <90>;
+				turn head to y-axis <-4> speed <41>;
+				turn luparm to x-axis <16> speed <288>;
+				turn ruparm to x-axis <0> speed <187>;
+				turn rarm to x-axis <-1> speed <265>;
+				turn larm to x-axis <61> speed <97>;
+			}
+			turn rleg to x-axis <36> speed <329>;
+			turn rfoot to x-axis <-5> speed <104>;
+			turn lleg to x-axis <7> speed <52>;
+			turn lfoot to x-axis <3> speed <82>;
+			sleep 47;
+			move hips to y-axis [0] speed [3];
+			move l_thigh to y-axis [0] speed [2];
+			move r_thigh to y-axis [0.400000] speed [0];
+			move torso to y-axis [0.350000] speed [6];
+			turn hips to x-axis <6> speed <54>;
+			turn l_thigh to x-axis <-11> speed <190>;
+			turn r_thigh to x-axis <-7> speed <307>;
+			if( !baiming )
+			{
+				turn torso to y-axis <2> speed <90>;
+				turn head to y-axis <-2> speed <40>;
+				turn luparm to x-axis <3> speed <282>;
+				turn ruparm to x-axis <8> speed <183>;
+				turn rarm to x-axis <10> speed <260>;
+				turn larm to x-axis <57> speed <95>;
+			}
+			turn rleg to x-axis <52> speed <322>;
+			turn rfoot to x-axis <-10> speed <102>;
+			turn lleg to x-axis <4> speed <51>;
+			turn lfoot to x-axis <0> speed <80>;
+			sleep 48;
+		}
+		if( bMoving )
+		{
+			move l_thigh to y-axis [0] speed [0];
+			move r_thigh to y-axis [0.700000] speed [4];
+			move torso to y-axis [0.169989] speed [2];
+			turn hips to x-axis <5> speed <21>;
+			turn l_thigh to x-axis <0> speed <161>;
+			turn r_thigh to x-axis <-13> speed <90>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-1> speed <90>;
+				turn head to y-axis <1> speed <52>;
+				turn luparm to x-axis <-2> speed <71>;
+				turn ruparm to x-axis <13> speed <66>;
+				turn rarm to x-axis <14> speed <54>;
+				turn larm to x-axis <43> speed <185>;
+			}
+			turn rleg to x-axis <39> speed <180>;
+			turn rfoot to x-axis <-7> speed <40>;
+			turn lleg to x-axis <4> speed <2>;
+			turn lfoot to x-axis <-8> speed <109>;
+			sleep 74;
+			move l_thigh to y-axis [0] speed [0];
+			move r_thigh to y-axis [1] speed [3];
+			move torso to y-axis [0] speed [2];
+			turn hips to x-axis <3> speed <20>;
+			turn l_thigh to x-axis <12> speed <157>;
+			turn r_thigh to x-axis <-20> speed <87>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-5> speed <50>;
+				turn head to y-axis <5> speed <50>;
+				turn luparm to x-axis <-7> speed <69>;
+				turn ruparm to x-axis <17> speed <64>;
+				turn rarm to x-axis <18> speed <53>;
+				turn larm to x-axis <29> speed <180>;
+			}
+			turn rleg to x-axis <25> speed <175>;
+			turn rfoot to x-axis <-4> speed <39>;
+			turn lleg to x-axis <4> speed <2>;
+			turn lfoot to x-axis <-16> speed <106>;
+			sleep 76;
+		}
+		if( bMoving )
+		{
+			move l_thigh to y-axis [0] speed [1];
+			move r_thigh to y-axis [0.700000] speed [3];
+			turn hips to x-axis <5> speed <18>;
+			move torso to y-axis [0] speed [5];
+			turn l_thigh to x-axis <15> speed <28>;
+			turn r_thigh to x-axis <-29> speed <93>;
+			if( !baiming )
+			{
+				turn torso to y-axis <-7> speed <90>;
+				turn head to y-axis <7> speed <22>;
+				turn luparm to x-axis <-13> speed <65>;
+				turn ruparm to x-axis <19> speed <20>;
+				turn rarm to x-axis <21> speed <29>;
+				turn larm to x-axis <14> speed <158>;
+			}
+			turn rleg to x-axis <21> speed <44>;
+			turn rfoot to x-axis <-12> speed <86>;
+			turn lleg to x-axis <2> speed <22>;
+			turn lfoot to x-axis <-16> speed <3>;
+		}
+		sleep 94;
+		if( !bMoving )
+		{
+			move l_thigh to y-axis [0] speed [3];
+			move r_thigh to y-axis [0] speed [3];
+			move torso to y-axis [0] speed [2];
+			move hips to y-axis [0] speed [5];
+			turn hips to x-axis <0> speed <60>;
+			turn r_thigh to x-axis <0> speed <200.082418>;
+			turn rleg to x-axis <0> speed <200.082418>;
+			turn rfoot to x-axis <0> speed <200.082418>;
+			turn l_thigh to x-axis <0> speed <200.082418>;
+			turn lleg to x-axis <0> speed <200.082418>;
+			turn lfoot to x-axis <0> speed <200.082418>;
+			if( !bAiming )
+			{
+				turn torso to y-axis <0> speed <90.038462>;
+				turn rarm to x-axis <0> speed <200.082418>;
+				turn ruparm to x-axis <0> speed <200.082418>;
+				turn larm to x-axis <0> speed <200.082418>;
+				turn luparm to x-axis <0> speed <200.082418>;
+			}
+			sleep 100;
+		}
+	}
+	walking = FALSE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+}
+
+AimFromSecondary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = luparm;
+	}
+	if( gun_1 )
+	{
+		piecenum = ruparm;
+	}
+}
+
+QuerySecondary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = lflare;
+	}
+	if( gun_1 )
+	{
+		piecenum = rflare;
+	}
+}
+
+FireSecondary()
+{
+	if( !gun_1 )
+	{
+		show lflare;
+		sleep 120;
+		hide lflare;
+		gun_1 = 1;
+		return (0);
+	}
+	show rflare;
+	sleep 120;
+	hide rflare;
+	gun_1 = 0;
+}
+
+AimSecondary(heading, pitch)
+{
+	if( !bAiming )
+	{
+		bAiming = 1;
+		sleep 150;
+		turn larm to x-axis <0> speed <100>;
+		turn rarm to x-axis <0> speed <100>;
+		sleep 200;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn torso to y-axis heading speed <180>;
+	turn luparm to x-axis <0> - pitch speed <100>;
+	turn ruparm to x-axis <0> - pitch speed <100>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn luparm around x-axis;
+	wait-for-turn ruparm around x-axis;
+	restore_4 = 1;
+	return (1);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = head;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = canflare;
+}
+
+FirePrimary()
+{
+	show canflare;
+	move barrel to z-axis [-1] speed [200];
+	sleep 120;
+	hide canflare;
+	sleep 200;
+	move barrel to z-axis [0] speed [2];
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !bAiming )
+	{
+		bAiming = 1;
+		sleep 150;
+		turn larm to x-axis <0> speed <100>;
+		turn rarm to x-axis <0> speed <100>;
+	}
+	signal 4;
+	set-signal-mask 4;
+	turn head to y-axis heading speed <240>;
+	turn sleeve to x-axis <0> - pitch speed <80>;
+	wait-for-turn head around y-axis;
+	wait-for-turn sleeve around x-axis;
+	restore_4 = 1;
+	return (1);
+}
+
+Killed(severity, corpsetype)
+{
+	hide canflare;
+	hide lflare;
+	hide rflare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode l_thigh type BITMAPONLY | BITMAP2;
+		explode r_thigh type BITMAPONLY | BITMAP3;
+		explode luparm type BITMAPONLY | BITMAP4;
+		explode ruparm type BITMAPONLY | BITMAP5;
+		explode rarm type BITMAPONLY | BITMAP1;
+		explode larm type BITMAPONLY | BITMAP2;
+		explode rleg type BITMAPONLY | BITMAP3;
+		explode rfoot type BITMAPONLY | BITMAP4;
+		explode lleg type BITMAPONLY | BITMAP5;
+		explode lfoot type BITMAPONLY | BITMAP1;
+		explode lgun type BITMAPONLY | BITMAP2;
+		explode rgun type BITMAPONLY | BITMAP2;
+		explode barrel type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode torso type SHATTER | BITMAP1;
+		explode l_thigh type FALL | BITMAP2;
+		explode r_thigh type FALL | BITMAP3;
+		explode luparm type FALL | BITMAP4;
+		explode ruparm type FALL | BITMAP5;
+		explode rarm type FALL | BITMAP1;
+		explode larm type FALL | BITMAP2;
+		explode rleg type FALL | BITMAP3;
+		explode rfoot type FALL | BITMAP4;
+		explode lleg type FALL | BITMAP5;
+		explode lfoot type FALL | BITMAP1;
+		explode lgun type FALL | BITMAP2;
+		explode rgun type FALL | BITMAP2;
+		explode barrel type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode torso type SHATTER | BITMAP1;
+	explode l_thigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode r_thigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode luparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ruparm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rarm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode larm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

@@ -1,0 +1,24 @@
+MISSION 7.001ARMT
+Core is well entrenched on this rock world... and they appear to be employing stall tactics. 
+
+With two of the four worlds under Arm control, it is critical that we move quickly to secure Temblor as well.
+
+&Y*PRIORITY CRITICAL*&
+Temblor is metal rich, though deposits tend to be hard to access and the richest veins are concentrated in deep fissures.
+
+Removing Core from Temblor gives Arm an important source for that valuable resource... while denying it to Core.
+
+INFO FEED
+Tremblor's crust is unstable, and prone to earthquakes. It would be wise to have a construction unit on patrol throughout your base at all times in order to make the repairs needed after an earthquake.
+
+The few surviving scouts report cloaked land mine fields. You will have clean up the mines as you progress. 
+
+Core emplacements will be heavily fortified and its approaches mined. 
+
+New units are available that will help you overcome these obstacles. The ever-reliable Peewee has been upgraded to a Warrior Class Kbot. You also have new fortifications and mines to defend your base.
+
+&RKeep in mind that Core has the beacon!& 
+
+To complete this mission you must destroy all Core units, and clear the minefields.
+
+END

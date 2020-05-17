@@ -1,0 +1,389 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  emit1, emit2, emit3, launcher2, counteraim, launcher, arms, turret, 
+       pole, wake1, wake2, wake3, wake4, wake5, wake6, wake7,
+       wake8, base, GP;
+
+static-var  Ready_1, Launcher_2, Depth_3, ReqState_4, Busy_5, AA_6, Delay_7, hit_8;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( !hit_8 )
+	{
+		hit_8 = 1;
+		turn base to z-axis Func_Var_2 speed <105>;
+		turn base to x-axis Func_Var_1 speed <105>;
+		wait-for-turn base around z-axis;
+		wait-for-turn base around x-axis;
+		turn base to z-axis <0> speed <30>;
+		turn base to x-axis <0> speed <30>;
+		sleep 100;
+		hit_8 = 0;
+	}
+	return (0);
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( Busy_5 )
+	{
+		ReqState_4 = requestedstate;
+		return (0);
+	}
+	Busy_5 = 1;
+	currentstate = ReqState_4;
+	ReqState_4 = requestedstate;
+	while( ReqState_4 != currentstate )
+	{
+		if( !ReqState_4 )
+		{
+			move pole to y-axis [0] now;
+			move pole to y-axis [1.10] speed [6];
+			move turret to y-axis [0] now;
+			move turret to y-axis [1.20] speed [6];
+			move arms to y-axis [0] now;
+			move launcher to y-axis [0] now;
+			sleep 177;
+			turn base to x-axis <3> speed <17>;
+			turn turret to y-axis <0> speed <0>;
+			turn arms to x-axis <-19> speed <106>;
+			turn launcher to x-axis <34> speed <188>;
+			sleep 181;
+			turn base to x-axis <-4> speed <43>;
+			turn arms to x-axis <-45> speed <143>;
+			turn launcher to x-axis <45> speed <60>;
+			sleep 179;
+			turn base to x-axis <0> speed <26>;
+			sleep 195;
+			Ready_1 = 1;
+			hide launcher;
+			show launcher2;
+			currentstate = 0;
+		}
+		if( ReqState_4 )
+		{
+			Ready_1 = 0;
+			hide launcher2;
+			show launcher;
+			move pole to y-axis [1.10] now;
+			move turret to y-axis [1.12] now;
+			move arms to y-axis [0] now;
+			move launcher to y-axis [0] now;
+			turn base to x-axis <0.34> now;
+			turn base to x-axis <-3> speed <15>;
+			turn turret to y-axis <0> now;
+			turn arms to x-axis <-45> now;
+			turn arms to x-axis <-3> speed <156>;
+			turn launcher to x-axis <45> now;
+			turn launcher to x-axis <41> speed <14>;
+			sleep 266;
+			move pole to y-axis [0] speed [4];
+			move turret to y-axis [0] speed [4];
+			turn base to x-axis <2> speed <22>;
+			turn arms to x-axis <0> speed <13>;
+			turn launcher to x-axis <20> speed <79>;
+			sleep 266;
+			move base to y-axis [-0.65] speed [2];
+			turn base to x-axis <2> speed <1>;
+			turn launcher to x-axis <0> speed <75>;
+			sleep 266;
+			move base to y-axis [0] speed [2];
+			turn base to x-axis <0> speed <9>;
+			sleep 302;
+			currentstate = 1;
+		}
+	}
+	Busy_5 = 0;
+	return (0);
+}
+
+MotionControl(count)
+{
+	while( TRUE )
+	{
+		count = 0;
+		if( Depth_3 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+		}
+		while( count < 10 )
+		{
+			turn gp to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <50>;
+			turn counteraim to y-axis get XZ_ATAN(0) speed <50>;
+			if( !Ready_1 )
+			{
+				turn launcher2 to y-axis (0 - get XZ_ATAN(0)) speed <50>;
+			}
+			++count;
+			sleep 33;
+		}
+	}
+	return (0);
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Depth_3 = Func_Var_1;
+	return (0);
+}
+
+Create()
+{
+	hide launcher2;
+	Ready_1 = 0;
+	Launcher_2 = 1;
+	ReqState_4 = 1;
+	Busy_5 = 0;
+	AA_6 = 0;
+	Delay_7 = 0;
+	hit_8 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+		turn gp to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+		turn counteraim to y-axis get XZ_ATAN(0) NOW;
+		turn launcher2 to y-axis (0 - get XZ_ATAN(0)) NOW;
+	}
+	start-script SmokeUnit();
+	start-script MotionControl(0);
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	AA_6 = 0;
+	set-signal-mask 0;
+	turn launcher2 to y-axis (0 - get XZ_ATAN(0)) speed <210>;
+	turn launcher2 to x-axis <0> speed <120>;
+	call-script RequestState(1);
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	AA_6 = 1;
+	start-script RequestState(0);
+	while( !Ready_1 )
+	{
+		sleep 50;
+		start-script RequestState(0);
+	}
+	signal 2;
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( Delay_7 )
+	{
+		wait-for-move launcher along y-axis;
+	}
+	turn launcher2 to y-axis ( heading - get XZ_ATAN(0)) speed <270>;
+	turn launcher2 to x-axis ( <0> - pitch ) speed <150>;
+	wait-for-turn launcher2 around y-axis;
+	wait-for-turn launcher2 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	start-script RequestState(0);
+	while( !Ready_1 OR AA_6 )
+	{
+		sleep 50;
+	}
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	while( Delay_7 )
+	{
+		wait-for-move launcher along y-axis;
+	}
+	turn launcher2 to y-axis ( heading - get XZ_ATAN(0)) speed <270>;
+	turn launcher2 to x-axis ( <0> - pitch ) speed <150>;
+	wait-for-turn launcher2 around y-axis;
+	wait-for-turn launcher2 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	delay_7 = 1;
+	++Launcher_2;
+	if( Launcher_2 > 3 )
+	{
+		Launcher_2 = 1;
+	}
+	move launcher to y-axis [-0.245] NOW;
+	move launcher to y-axis [0] speed [0.1];
+	wait-for-move launcher along y-axis;
+	delay_7 = 0;
+	return (0);
+}
+
+FirePrimary()
+{
+	delay_7 = 1;
+	++Launcher_2;
+	if( Launcher_2 > 3 )
+	{
+		Launcher_2 = 1;
+	}
+	move launcher to y-axis [-0.245] NOW;
+	move launcher to y-axis [0] speed [0.1];
+	wait-for-move launcher along y-axis;
+	delay_7 = 0;
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = launcher;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = launcher;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	if( Launcher_2 == 1 )
+	{
+		piecenum = emit1;
+	}
+	if( Launcher_2 == 2 )
+	{
+		piecenum = emit2;
+	}
+	if( Launcher_2 == 3 )
+	{
+		piecenum = emit3;
+	}
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	if( Launcher_2 == 1 )
+	{
+		piecenum = emit1;
+	}
+	if( Launcher_2 == 2 )
+	{
+		piecenum = emit2;
+	}
+	if( Launcher_2 == 3 )
+	{
+		piecenum = emit3;
+	}
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide launcher2;
+	hide emit1;
+	hide emit2;
+	hide emit3;
+	hide wake1;
+	hide wake2;
+	hide wake3;
+	hide wake4;
+	hide wake5;
+	hide wake6;
+	hide wake7;
+	hide wake8;
+	if( Depth_3 > 3 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode base type BITMAPONLY | BITMAP1;
+			explode launcher type BITMAPONLY | BITMAP2;
+			explode pole type BITMAPONLY | BITMAP3;
+			explode turret type BITMAPONLY | BITMAP4;
+			explode arms type BITMAPONLY | BITMAP5;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode launcher type BITMAPONLY | BITMAP2;
+		explode pole type FALL | BITMAP3;
+		explode turret type FALL | BITMAP4;
+		explode arms type SHATTER | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode launcher type BITMAPONLY | BITMAP2;
+		explode pole type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode arms type SHATTER | BITMAP5;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode launcher type BITMAPONLY | BITMAP2;
+	explode pole type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode arms type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	return (0);
+}

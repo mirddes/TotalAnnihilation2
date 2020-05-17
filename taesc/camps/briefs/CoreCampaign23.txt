@@ -1,0 +1,8 @@
+MISSION 23.2CORE
+
+INTELL-TAP:
+Arm is well fortified behind the foothills to the north. They are becoming foolishly desperate. Their irrational love of their homeworld may yet work in our favor. If Core can destroy the fortress here, Arm will fail. 
+
+&RDestroy all Arm vermin.&
+
+DO SO NOW.

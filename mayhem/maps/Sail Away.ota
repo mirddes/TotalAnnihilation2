@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Sail Away;
+	missiondescription=12 X 20 High winds sweep these islands.;
+	planet=Archipelago;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=24;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2500;
+	maxwindspeed=5500;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 3, 4, 5, 6;
+	size=12 x 20;
+	memory=32 mb;
+	useonlyunits=Sail Away.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaBattle;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=464;
+				ZPos=3488;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=5840;
+				ZPos=3872;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=5776;
+				ZPos=9664;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=208;
+				ZPos=9552;
+				}
+			[special4]
+				{
+				specialwhat=StartPos7;
+				XPos=2688;
+				ZPos=3856;
+				}
+			[special5]
+				{
+				specialwhat=StartPos8;
+				XPos=672;
+				ZPos=5712;
+				}
+			[special6]
+				{
+				specialwhat=StartPos10;
+				XPos=4480;
+				ZPos=5936;
+				}
+			[special7]
+				{
+				specialwhat=StartPos5;
+				XPos=1904;
+				ZPos=512;
+				}
+			[special8]
+				{
+				specialwhat=StartPos6;
+				XPos=5792;
+				ZPos=432;
+				}
+			[special9]
+				{
+				specialwhat=StartPos9;
+				XPos=2496;
+				ZPos=7712;
+				}
+			}
+		}
+	}

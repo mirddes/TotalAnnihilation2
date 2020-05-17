@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Brain Coral;
+	missiondescription=20 X 20  Hydrous map with brain coral spiral.;
+	planet=Water World;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=29;
+	solarstrength=29;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=300;
+	maxwindspeed=3000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 3, 4, 5, 6;
+	size=20 x 20;
+	memory=16 mb;
+	useonlyunits=Brain Coral.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Waterwrld;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=1648;
+				ZPos=4704;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=7504;
+				ZPos=5024;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=4608;
+				ZPos=1584;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=4624;
+				ZPos=7328;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=2016;
+				ZPos=6672;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=7376;
+				ZPos=2528;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=1808;
+				ZPos=2752;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=6928;
+				ZPos=7056;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=400;
+				ZPos=448;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=9696;
+				ZPos=9568;
+				}
+			}
+		}
+	}

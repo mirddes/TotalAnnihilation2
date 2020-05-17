@@ -1,0 +1,53 @@
+[armpopsol_dead]
+{
+world=All Worlds;
+description=Popup Solar Wreckage;
+category=arm_corpses;
+object=armpopsol_dead;
+featuredead=armpopsol_dead2;
+footprintx=5;
+footprintz=5;
+height=20;
+blocking=1;
+hitdensity=85;
+metal=248;
+damage=1000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armpopsol_dead2]
+{
+world=All Worlds;
+description=Popup Solar Wreckage;
+category=arm_corpses;
+object=armpopsol_dead2;
+featuredead=armpopsol_heap;
+footprintx=5;
+footprintz=5;
+height=5;
+blocking=0;
+hitdensity=50;
+metal=198;
+damage=1000;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armpopsol_heap]
+{
+world=All Worlds;
+description=Popup Solar Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=124;
+damage=1199;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

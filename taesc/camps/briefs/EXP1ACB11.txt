@@ -1,0 +1,18 @@
+MISSION 11.002ARMG
+We have repelled Core's first wave. You can expect them to regroup and attack again soon. Rebuild your base sufficiently in order to launch an attack on the ice floe to the west. Destroy the hovercraft and vtol plants there and then move to the mainland to the north.
+
+&Y*PRIORITY CRITICAL*&
+It is hoped that if you can destroy the manufacturing plants on the floe to the west, the final assault on the mainland will not have Core units to the rear. Though Core has had plenty of time to prepare for our move to the mainland, the beach to the north can be expected to be guarded.
+
+INFO FEED
+&RCore has developed a new more lethal kbot, the Sumo.& It is sure to make an appearence on the mainland (being too heavy for the floes). Though slow moving, the Sumo packs a nasty laser cannon and very, very heavy armor.
+
+For our part, Arm techs have assembled a battery of Bertha cannon weapons for your use. You will, however, need to build the necessary power generators and resource storage to power them. 
+
+You now also have the ability to produce the new Experimental Fusion Reactor. This unit replaces previous experimental cloakable reactors and is more than capable of meeting any of your energy requirements. In addition, advanced cloaking and shielding abilities will protect it from both the enemy and hail storms. 
+
+&RWARNING!: Do not allow the Experimental Fusion Reactor to be destroyed& as this will result in a highly descructive, matter/anti-matter explosion. It is up to you to decide if the advantages of concentrated energy production outweigh the potential risks. 
+  
+To complete the mission, you must destroy all Core units and &Rmove the your Commander to the base of the glacier& on the mainland.
+
+END

@@ -1,0 +1,36 @@
+[corsling_dead]
+{
+world=All Worlds;
+description=Slinger Wreckage;
+category=core_corpses;
+object=corsling_dead;
+featuredead=corsling_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=251;
+damage=1384;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[corsling_heap]
+{
+World=All Worlds;
+Description=Slinger Wreckage;
+Category=core_heaps;
+Object=3x3b;
+Footprintx=3;
+Footprintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=126;
+Damage=1384;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

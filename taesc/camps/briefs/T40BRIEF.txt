@@ -1,0 +1,20 @@
+Mission T40: Coordinated Assault
+
+The Arm have placed a heavy emphasis on battleships during their naval attacks.  They have established a forward base in our vicinity.  The coastline is heavily guarded by anti-air units.
+
+Every Arm Battleship and Construction Ship must be destroyed.
+&YAttention:&
+The Arm may attempt to intercept the attack using submarines.  The route must be clear before sending in amphibious tanks.
+
+Suggestions:
+The Hive carriers can repair damaged aircraft.  You may need to sacrifice your Rapiers in order to cripple the air defense and destroy Guardians, allowing your Crocs hit the shore.
+
+Battle Tactics:
+There are various methods for controlling multiple groups of aircraft:
+
+  1) Form the different types of aircraft into 
+     squads (use CTRL+#, where # is 1 through 9).
+  2) Use CTRL+P to select all offensive air units.
+  3) Use CTRL+O, CTRL+E, and CTRL+Q to select fighter, gunships, and bomber air units respectively.
+  4) Select one type of aircraft, then use CTRL+Z to 
+     select all units of the same type.

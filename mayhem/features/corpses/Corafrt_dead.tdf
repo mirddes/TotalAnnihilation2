@@ -1,0 +1,35 @@
+[Corafrt_dead]
+{
+world=All Worlds;
+description=Duster Wreckage;
+category=core_corpses;
+object=Corafrt_dead;
+featuredead=Corafrt_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=368;
+damage=880;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corafrt_heap]
+{
+world=All Worlds;
+description=Duster Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=184;
+damage=940;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

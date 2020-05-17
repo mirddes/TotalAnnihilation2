@@ -1,0 +1,962 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, link1, link2, link3, link4, link5, link6, link7,
+       link8, link9, link10, link11, link12, link13, link14, link15,
+       arm1, arm2, arm3, arm4, arm5, arm6, arm7, arm8,
+       thrust1, thrust2, thrust3, thrust4, thrust5, thrust6, thrust7, thrust8,
+       r1, r2, r3, r4, r5, r6, r7, r8,
+       lturret, lbarrel1, lbarrel2, lflare1, lflare2, door1, door2, wings;
+
+static-var  Speed_1, unitviewer, curr_loading_piece, gun_1, gun_2, myID, 
+            totw, maxw, maxu, h, w;
+
+static-var  u1-2, u3-4, u5-6, u7-8, u9-10, u11-12, u13-14, u15-16, busy, unused;
+
+#include "M2WEIGHT.h"
+
+#define INIT_LOADED_ID(value_at_which_init) \
+	u11-12=value_at_which_init; \
+	u9-10=value_at_which_init; \
+	u7-8=value_at_which_init; \
+	u5-6=value_at_which_init; \
+	u3-4=value_at_which_init; \
+	u1-2=value_at_which_init;
+ 
+// arrange transported units according to size and number being transported
+#define MOVE_LINKS\
+if( maxu == 15 )\
+/*all units are 2x2*/\
+{\
+	move Link1 to z-axis [0] speed [24];\
+	move Link2 to z-axis [0] speed [24];\
+	move Link3 to z-axis [0] speed [24];\
+	move Link4 to z-axis [0] speed [24];\
+	move Link5 to z-axis [0] speed [24];\
+	move Link6 to z-axis [0] speed [24];\
+	move Link7 to z-axis [0] speed [24];\
+	move Link8 to z-axis [0] speed [24];\
+	move Link9 to z-axis [0] speed [24];\
+	move Link10 to z-axis [0] speed [24];\
+	move Link11 to z-axis [0] speed [24];\
+	move Link12 to z-axis [0] speed [24];\
+	move Link13 to z-axis [0] speed [24];\
+	move Link14 to z-axis [0] speed [24];\
+	move Link15 to z-axis [0] speed [24];\
+	move Link1 to x-axis [0] speed [12];\
+	move Link2 to x-axis [0] speed [12];\
+	move Link3 to x-axis [0] speed [12];\
+	move Link4 to x-axis [0] speed [12];\
+	move Link5 to x-axis [0] speed [12];\
+	move Link6 to x-axis [0] speed [12];\
+	move Link7 to x-axis [0] speed [12];\
+	move Link8 to x-axis [0] speed [12];\
+	move Link9 to x-axis [0] speed [12];\
+	move Link10 to x-axis [0] speed [12];\
+	move Link11 to x-axis [0] speed [12];\
+	move Link12 to x-axis [0] speed [12];\
+	move Link13 to x-axis [0] speed [12];\
+	move Link14 to x-axis [0] speed [12];\
+	move Link15 to x-axis [0] speed [12];\
+}\
+if( maxu == 6 )\
+/*all units are 3x3 or less*/\
+{\
+	move Link2 to z-axis [3.25] NOW;\
+	move Link3 to z-axis [-3.25] NOW;\
+	move Link4 to x-axis [-13] NOW;\
+	move Link1 to x-axis [9.75] speed [8];\
+	move Link2 to x-axis [9.75] speed [8];\
+	move Link3 to x-axis [9.75] speed [8];\
+	move Link4 to x-axis [-3.25] speed [8];\
+	move Link5 to x-axis [3.25] speed [8];\
+	move Link6 to x-axis [-22.75] speed [12];\
+	move Link1 to z-axis [9.75] speed [16];\
+	move Link2 to z-axis [16.25] speed [24];\
+	move Link3 to z-axis [3.25] speed [16];\
+	move Link4 to z-axis [-26] speed [30];\
+	move Link5 to z-axis [9.75] speed [16];\
+	move Link6 to z-axis [16.25] speed [24];\
+}\
+if( maxu == 4 )\
+/*all units are 4x4 or less*/\
+{\
+	move Link1 to z-axis [13] NOW;\
+	move Link2 to z-axis [0] NOW;\
+	move Link3 to z-axis [-13] NOW;\
+	move Link4 to z-axis [0] NOW;\
+	move Link1 to x-axis [-13] speed [12];\
+	move Link2 to x-axis [13] speed [12];\
+	move Link3 to x-axis [-13] speed [12];\
+	move Link4 to x-axis [0] speed [12];\
+}\
+if( maxu == 2 )\
+/*both units are 5x5 or less*/\
+{\
+	move Link1 to z-axis [-9.75] speed [16];\
+	move Link2 to z-axis [9.75] NOW;\
+	move Link1 to x-axis [0] speed [16];\
+	move Link2 to z-axis [19.5] speed [16];\
+}\
+if( maxu == 1 )\
+/*one unit attached is between 6x6 and 8x8, or very heavy*/\
+{\
+	move Link1 to z-axis [-20] speed [16];\
+}
+ 
+#ifndef MAX_ID
+#define MAX_ID 70
+#define MIN_ID 69
+#define UNIT_ALLIED 74
+#define MY_ID 71
+#define UNIT_TEAM 72
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+ 
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+zabs=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+xabs=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((xabs/2)*65536 + (zabs/2)))\
+{\
+xz=500333222;\
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+LoadAllUnits(unit_to_load)
+{
+	var x, z, xabs, zabs, xz, min, max, distance;
+	min = get MIN_ID;
+	max = get MAX_ID;
+	for( unit_to_load = min; unit_to_load <= max; ++unit_to_load )
+	{
+		if( curr_loading_piece <= maxu ) //check if the transport isn't already full
+		{
+			//unit must be local to load it (yes this means you can pick up local AI units)
+			if( get UNIT_IS_ON_THIS_COMP(unit_to_load)) 
+			{
+				 //check unit's position is close enough to load
+				xz = get UNIT_XZ(unit_to_load) - get PIECE_XZ(base);
+				SECURE_XZ;
+				distance=get XZ_HYPOT(xz);
+				if( distance <= [95] && distance > [1])
+				{
+					h = get UNIT_HEIGHT(unit_to_load);
+					CALC_WEIGHT;
+					if( w <= maxw ) //confirm the unit isn't too heavy
+					{
+						if(curr_loading_piece==15)
+						{
+							u15-16=(u15-16/65536) * 65536 + unit_to_load;
+							move link15 to x-axis x NOW;
+							move link15 to z-axis z NOW;
+							move link15 to y-axis ((get GROUND_HEIGHT(link15)) - (get PIECE_Y(link15))) NOW;
+							attach-unit unit_to_load to link15;
+							explode link15 type BITMAP5;
+							move link15 to x-axis 0 NOW;
+							move link15 to z-axis 0 NOW;
+							move link15 to y-axis 0 - h NOW;
+							cache link15;
+						}
+						if(curr_loading_piece==14)
+						{
+							u13-14=(u13-14 - (u13-14/65536) * 65536) + unit_to_load * 65536;
+							move link14 to x-axis x NOW;
+							move link14 to z-axis z NOW;
+							move link14 to y-axis ((get GROUND_HEIGHT(link14)) - (get PIECE_Y(link14))) NOW;
+							attach-unit unit_to_load to link14;
+							explode link14 type BITMAP5;
+							move link14 to x-axis 0 NOW;
+							move link14 to z-axis 0 NOW;
+							move link14 to y-axis 0 - h NOW;
+							cache link14;
+						}
+						if(curr_loading_piece==13)
+						{
+							u13-14=(u13-14/65536) * 65536 + unit_to_load;
+							move link13 to x-axis x NOW;
+							move link13 to z-axis z NOW;
+							move link13 to y-axis ((get GROUND_HEIGHT(link13)) - (get PIECE_Y(link13))) NOW;
+							attach-unit unit_to_load to link13;
+							explode link13 type BITMAP5;
+							move link13 to x-axis 0 NOW;
+							move link13 to z-axis 0 NOW;
+							move link13 to y-axis 0 - h NOW;
+							cache link13;
+						}
+						if(curr_loading_piece==12)
+						{
+							u11-12=(u11-12 - (u11-12/65536) * 65536) + unit_to_load * 65536;
+							move link12 to x-axis x NOW;
+							move link12 to z-axis z NOW;
+							move link12 to y-axis ((get GROUND_HEIGHT(link12)) - (get PIECE_Y(link12))) NOW;
+							attach-unit unit_to_load to link12;
+							explode link12 type BITMAP5;
+							move link12 to x-axis 0 NOW;
+							move link12 to z-axis 0 NOW;
+							move link12 to y-axis 0 - h NOW;
+							cache link12;
+						}
+						if(curr_loading_piece==11)
+						{
+							u11-12=(u11-12/65536) * 65536 + unit_to_load;
+							move link11 to x-axis x NOW;
+							move link11 to z-axis z NOW;
+							move link11 to y-axis ((get GROUND_HEIGHT(link11)) - (get PIECE_Y(link11))) NOW;
+							attach-unit unit_to_load to link11;
+							explode link10 type BITMAP5;
+							move link11 to x-axis 0 NOW;
+							move link11 to z-axis 0 NOW;
+							move link11 to y-axis 0 - h NOW;
+							cache link11;
+						}
+						if(curr_loading_piece==10)
+						{
+							u9-10=(u9-10 - (u9-10/65536) * 65536) + unit_to_load * 65536;
+							move link10 to x-axis x NOW;
+							move link10 to z-axis z NOW;
+							move link10 to y-axis ((get GROUND_HEIGHT(link10)) - (get PIECE_Y(link10))) NOW;
+							attach-unit unit_to_load to link10;
+							explode link10 type BITMAP5;
+							move link10 to x-axis 0 NOW;
+							move link10 to z-axis 0 NOW;
+							move link10 to y-axis 0 - h NOW;
+							cache link10;
+						}
+						if(curr_loading_piece==9)
+						{
+							u9-10=(u9-10/65536) * 65536 + unit_to_load;
+							move link9 to x-axis x NOW;
+							move link9 to z-axis z NOW;
+							move link9 to y-axis ((get GROUND_HEIGHT(link9)) - (get PIECE_Y(link9))) NOW;
+							attach-unit unit_to_load to link9;
+							explode link9 type BITMAP5;
+							move link9 to x-axis 0 NOW;
+							move link9 to z-axis 0 NOW;
+							move link9 to y-axis 0 - h NOW;
+							cache link9;
+						}
+						if(curr_loading_piece==8)
+						{
+							u7-8=(u7-8 - (u7-8/65536) * 65536) + unit_to_load * 65536;
+							move link8 to x-axis x NOW;
+							move link8 to z-axis z NOW;
+							move link8 to y-axis ((get GROUND_HEIGHT(link8)) - (get PIECE_Y(link8))) NOW;
+							attach-unit unit_to_load to link8;
+							explode link8 type BITMAP5;
+							move link8 to x-axis 0 NOW;
+							move link8 to z-axis 0 NOW;
+							move link8 to y-axis 0 - h NOW;
+							cache link8;
+						}
+						if(curr_loading_piece==7)
+						{
+							u7-8=(u7-8/65536) * 65536 + unit_to_load;
+							move link12 to x-axis x NOW;
+							move link12 to z-axis z NOW;
+							move link12 to y-axis ((get GROUND_HEIGHT(link12)) - (get PIECE_Y(link12))) NOW;
+							attach-unit unit_to_load to link7;
+							explode link12 type BITMAP5;
+							move link12 to x-axis 0 NOW;
+							move link12 to z-axis 0 NOW;
+							move link7 to y-axis 0 - h NOW;
+							cache link7;
+						}
+						if(curr_loading_piece==6)
+						{
+							u5-6=(u5-6 - (u5-6/65536) * 65536) + unit_to_load * 65536;
+							move link6 to x-axis x NOW;
+							move link6 to z-axis z NOW;
+							move link6 to y-axis ((get GROUND_HEIGHT(link6)) - (get PIECE_Y(link6))) NOW;
+							attach-unit unit_to_load to link6;
+							explode link6 type BITMAP5;
+							move link6 to x-axis 0 NOW;
+							move link6 to z-axis 0 NOW;
+							move link6 to y-axis 0 - h NOW;
+							cache link6;
+							maxw = 8;
+						}
+						if(curr_loading_piece==5)
+						{
+							u5-6=(u5-6/65536) * 65536 + unit_to_load;
+							move link5 to x-axis x NOW;
+							move link5 to z-axis z NOW;
+							move link5 to y-axis ((get GROUND_HEIGHT(link5)) - (get PIECE_Y(link5))) NOW;
+							attach-unit unit_to_load to link5;
+							explode link5 type BITMAP5;
+							move link5 to x-axis 0 NOW;
+							move link5 to z-axis 0 NOW;
+							move link5 to y-axis 0 - h NOW;
+							cache link5;
+						}
+						if(curr_loading_piece==4)
+						{
+							u3-4=(u3-4 - (u3-4/65536) * 65536) + unit_to_load * 65536;
+							move link4 to x-axis x NOW;
+							move link4 to z-axis z NOW;
+							move link4 to y-axis ((get GROUND_HEIGHT(link4)) - (get PIECE_Y(link4))) NOW;
+							attach-unit unit_to_load to link4;
+							explode link4 type BITMAP5;
+							move link4 to x-axis 0 NOW;
+							move link4 to z-axis 0 NOW;
+							move link4 to y-axis 0 - h NOW;
+							cache link4;
+							maxw = 100;
+						}
+						if(curr_loading_piece==3)
+						{
+							u3-4=(u3-4/65536) * 65536 + unit_to_load;
+							move link3 to x-axis x NOW;
+							move link3 to z-axis z NOW;
+							move link3 to y-axis ((get GROUND_HEIGHT(link3)) - (get PIECE_Y(link3))) NOW;
+							attach-unit unit_to_load to link3;
+							explode link3 type BITMAP5;
+							move link3 to x-axis 0 NOW;
+							move link3 to z-axis 0 NOW;
+							move link3 to y-axis 0 - h NOW;
+							cache link3;
+						}
+						if(curr_loading_piece==2)
+						{
+							u1-2=(u1-2 - (u1-2/65536) * 65536) + unit_to_load * 65536;
+							move link2 to x-axis x NOW;
+							move link2 to z-axis z NOW;
+							move link2 to y-axis ((get GROUND_HEIGHT(link2)) - (get PIECE_Y(link2))) NOW;
+							attach-unit unit_to_load to link2;
+							explode link2 type BITMAP5;
+							move link2 to x-axis 0 NOW;
+							move link2 to z-axis 0 NOW;
+							move link2 to y-axis 0 - h NOW;
+							cache link2;
+							maxw = 640;
+						}
+						if(curr_loading_piece==1)
+						{
+							u1-2=(u1-2/65536) * 65536 + unit_to_load;
+							move link1 to x-axis x NOW;
+							move link1 to z-axis z NOW;
+							move link1 to y-axis ((get GROUND_HEIGHT(link1)) - (get PIECE_Y(link1))) NOW;
+							attach-unit unit_to_load to link1;
+							explode link1 type BITMAP5;
+							move link1 to x-axis 0 NOW;
+							move link1 to z-axis 0 NOW;
+							move link1 to y-axis 0 - h NOW;
+							cache link1;
+							maxw = 3000;
+						}
+						totw = totw + w;
+						//as total load increases, restrict the number of units that can be loaded
+						if( totw <= 90 )
+						{
+							maxu = 12;
+						}
+						if( totw > 90 )
+						{   maxu = 6;
+						}
+						if( totw > 600 )
+						{   maxu = 4;
+						}
+						if( totw > 3200 )
+						{   maxu = 2;
+						}
+						if( totw > 4000 )
+						{   maxu = 1;
+						}
+						++curr_loading_piece;
+					}
+					if( curr_loading_piece > maxu )
+					{
+						MOVE_LINKS;
+						return(0);
+					}
+				}
+			}
+		}
+	}
+	MOVE_LINKS
+	return(0);
+}
+ 
+UnloadAllUnits()
+{
+	var unit_to_unload;
+	move base to y-axis [0] speed [10];
+	busy = 1;
+	while( curr_loading_piece >= 1 )
+	{
+		if(curr_loading_piece==15)
+		{  
+			unit_to_unload=(u15-16)/65536;
+			move link15 to y-axis ((get GROUND_HEIGHT(link15)) - (get PIECE_Y(link15))) NOW;
+			drop-unit unit_to_unload;
+			move link15 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==14)
+		{
+			unit_to_unload=(u13-14 - (u13-14/65536)*65536);
+			move link14 to y-axis ((get GROUND_HEIGHT(link14)) - (get PIECE_Y(link14))) NOW;
+			drop-unit unit_to_unload;
+			move link14 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==13)
+		{
+			unit_to_unload=(u13-14)/65536;
+			move link13 to y-axis ((get GROUND_HEIGHT(link13)) - (get PIECE_Y(link13))) NOW;
+			drop-unit unit_to_unload;
+			move link13 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==12)
+		{  
+			unit_to_unload=(u11-12)/65536;
+			move link12 to y-axis ((get GROUND_HEIGHT(link12)) - (get PIECE_Y(link12))) NOW;
+			drop-unit unit_to_unload;
+			move link12 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==11)
+		{
+			unit_to_unload=(u11-12 - (u11-12/65536)*65536);
+			move link11 to y-axis ((get GROUND_HEIGHT(link11)) - (get PIECE_Y(link11))) NOW;
+			drop-unit unit_to_unload;
+			move link11 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==10)
+		{
+			unit_to_unload=(u9-10)/65536;
+			move link10 to y-axis ((get GROUND_HEIGHT(link10)) - (get PIECE_Y(link10))) NOW;
+			drop-unit unit_to_unload;
+			move link10 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==9)
+		{   unit_to_unload=(u9-10 - (u9-10/65536)*65536);
+			move link9 to y-axis ((get GROUND_HEIGHT(link9)) - (get PIECE_Y(link9))) NOW;
+			drop-unit unit_to_unload;
+			move link9 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==8)
+		{   unit_to_unload=(u7-8)/65536;
+			move link8 to y-axis ((get GROUND_HEIGHT(link8)) - (get PIECE_Y(link8))) NOW;
+			drop-unit unit_to_unload;
+			move link8 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==7)
+		{   unit_to_unload=(u7-8 - (u7-8/65536)*65536);
+			move link7 to y-axis ((get GROUND_HEIGHT(link7)) - (get PIECE_Y(link7))) NOW;
+			drop-unit unit_to_unload;
+			move link7 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==6)
+		{   unit_to_unload=(u5-6)/65536;
+			move link6 to y-axis ((get GROUND_HEIGHT(link6)) - (get PIECE_Y(link6))) NOW;
+			drop-unit unit_to_unload;
+			move link6 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==5)
+		{   unit_to_unload=(u5-6 - (u5-6/65536)*65536);
+			move link5 to y-axis ((get GROUND_HEIGHT(link5)) - (get PIECE_Y(link5))) NOW;
+			drop-unit unit_to_unload;
+			move link5 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==4)
+		{   unit_to_unload=(u3-4)/65536;
+			move link4 to y-axis ((get GROUND_HEIGHT(link4)) - (get PIECE_Y(link4))) NOW;
+			drop-unit unit_to_unload;
+			move link4 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==3)
+		{   unit_to_unload=(u3-4 - (u3-4/65536)*65536);
+			move link3 to y-axis ((get GROUND_HEIGHT(link3)) - (get PIECE_Y(link3))) NOW;
+			drop-unit unit_to_unload;
+			move link3 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==2)
+		{   unit_to_unload=(u1-2)/65536;
+			move link2 to y-axis ((get GROUND_HEIGHT(link2)) - (get PIECE_Y(link2))) NOW;
+			drop-unit unit_to_unload;
+			move link2 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==1)
+		{   unit_to_unload=(u1-2 - (u1-2/65536)*65536);
+			move link1 to y-axis ((get GROUND_HEIGHT(link1)) - (get PIECE_Y(link1))) NOW;
+			drop-unit unit_to_unload;
+			move link1 to y-axis 0 NOW;
+		}
+		h = get UNIT_HEIGHT(unit_to_unload);
+		CALC_WEIGHT;
+		totw = totw - w;
+		--curr_loading_piece;
+	}
+	if( totw <= 4000 )
+	{
+		maxu = 2;
+	}
+	if( totw <= 3200 )
+	{
+		maxu = 4;
+	}
+	if( totw <= 600 )
+	{
+		maxu = 6;
+	}
+	if( totw <= 90 )
+	{
+		maxu = 15;
+	}
+	busy = 0;
+}
+
+QueryTransport(piece_to_attach)
+{
+	piece_to_attach = curr_loading_piece;
+}
+
+LoadedAnim()
+{
+	turn arm1 to y-axis <-60> speed <48>;
+	turn arm2 to y-axis <60> speed <48>;
+	turn arm3 to y-axis <-60> speed <48>;
+	turn arm4 to y-axis <60> speed <48>;
+	turn arm5 to y-axis <60> speed <48>;
+	turn arm6 to y-axis <-60> speed <48>;
+	turn arm7 to y-axis <60> speed <48>;
+	turn arm8 to y-axis <-60> speed <48>;
+	move arm1 to x-axis [2] speed [1.6];
+	move arm2 to x-axis [-2] speed [1.6];
+	move arm3 to x-axis [1] speed [1.6];
+	move arm4 to x-axis [-1] speed [1.6];
+	move arm5 to x-axis [2] speed [1.6];
+	move arm6 to x-axis [-2] speed [1.6];
+	move arm7 to x-axis [1] speed [1.6];
+	move arm8 to x-axis [-1] speed [1.6];
+	move arm1 to z-axis [4] speed [3.2];
+	move arm2 to z-axis [4] speed [3.2];
+	move arm3 to z-axis [7] speed [5.6];
+	move arm4 to z-axis [7] speed [5.6];
+	move arm7 to z-axis [-3] speed [2.4];
+	move arm8 to z-axis [-3] speed [2.4];
+}
+
+EmptyAnim()
+{
+	turn arm1 to y-axis <0> speed <30>;
+	turn arm2 to y-axis <0> speed <30>;
+	turn arm3 to y-axis <0> speed <30>;
+	turn arm4 to y-axis <0> speed <30>;
+	turn arm5 to y-axis <0> speed <30>;
+	turn arm6 to y-axis <0> speed <30>;
+	turn arm7 to y-axis <0> speed <30>;
+	turn arm8 to y-axis <0> speed <30>;
+	move arm1 to x-axis [0] speed [1];
+	move arm2 to x-axis [0] speed [1];
+	move arm3 to x-axis [0] speed [1];
+	move arm4 to x-axis [0] speed [1];
+	move arm5 to x-axis [0] speed [1];
+	move arm6 to x-axis [0] speed [1];
+	move arm7 to x-axis [0] speed [1];
+	move arm8 to x-axis [0] speed [1];
+	move arm1 to z-axis [0] speed [4];
+	move arm2 to z-axis [0] speed [4];
+	move arm3 to z-axis [0] speed [7];
+	move arm4 to z-axis [0] speed [7];
+	move arm7 to z-axis [0] speed [3];
+	move arm8 to z-axis [0] speed [3];
+}
+
+Activate()
+{
+	if( unitviewer )
+	{
+		start-script LoadedAnim();
+	}
+}
+ 
+Deactivate()
+{
+	if( unitviewer )
+	{
+		start-script EmptyAnim();
+	}
+}
+ 
+BeginTransport()
+{
+	start-script LoadedAnim();
+}
+
+EndTransport()
+{
+	call-script UnloadAllUnits();
+	sleep 100;
+	if( curr_loading_piece <= 1 )
+	{
+		start-script EmptyAnim();
+		curr_loading_piece = 1;
+		totw = 0;
+		maxu = 12;
+		maxw = 10000;
+		move Link1 to x-axis [0] NOW;
+		move Link2 to x-axis [0] NOW;
+		move Link3 to x-axis [0] NOW;
+		move Link4 to x-axis [0] NOW;
+		move Link5 to x-axis [0] NOW;
+		move Link6 to x-axis [0] NOW;
+		move Link7 to x-axis [0] NOW;
+		move Link8 to x-axis [0] NOW;
+		move Link9 to x-axis [0] NOW;
+		move Link10 to x-axis [0] NOW;
+		move Link11 to x-axis [0] NOW;
+		move Link12 to x-axis [0] NOW;
+		move Link13 to x-axis [0] NOW;
+		move Link14 to x-axis [0] NOW;
+		move Link15 to x-axis [0] NOW;
+		move Link1 to z-axis [0] NOW;
+		move Link2 to z-axis [0] NOW;
+		move Link3 to z-axis [0] NOW;
+		move Link4 to z-axis [0] NOW;
+		move Link5 to z-axis [0] NOW;
+		move Link6 to z-axis [0] NOW;
+		move Link7 to z-axis [0] NOW;
+		move Link8 to z-axis [0] NOW;
+		move Link9 to z-axis [0] NOW;
+		move Link10 to z-axis [0] NOW;
+		move Link11 to z-axis [0] NOW;
+		move Link12 to z-axis [0] NOW;
+		move Link13 to z-axis [0] NOW;
+		move Link14 to z-axis [0] NOW;
+		move Link15 to z-axis [0] NOW;
+	}
+}
+
+Create()
+{
+	Speed_1 = 0;
+	gun_1 = 0;
+	gun_2 = 0;
+	myid = get MY_ID;
+	unitviewer = FALSE;
+	curr_loading_piece = 1;
+	totw = 0;
+	maxu = 15;
+	maxw = 10000;
+	h = 0;
+	w = 0;
+	busy = 0;
+	INIT_LOADED_ID(65537)  //would prevent crashes in case we retrieve an ID not stored yet just in case
+	hide lflare1;
+	hide lflare2;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Demo()
+{
+	unitviewer = TRUE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimPrimary()
+{
+	signal 16;
+	set-signal-mask 16;
+	while( busy or ( curr_loading_piece > maxu ))
+	{
+		sleep 250;
+	}
+	return(1);
+}
+
+FirePrimary()
+{
+	start-script LoadAllUnits();
+}
+
+ProcessFlames()
+{
+	while( TRUE )
+	{
+		if( Speed_1 == 1 OR Speed_1 == 2 )
+		{
+			emit-sfx 0 from thrust1;
+			emit-sfx 0 from thrust2;
+			emit-sfx 0 from thrust3;
+			emit-sfx 0 from thrust4;
+			emit-sfx 0 from thrust5;
+			emit-sfx 0 from thrust6;
+			emit-sfx 0 from thrust7;
+			emit-sfx 0 from thrust8;
+		}
+		sleep 67;
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+	Speed_1 = 0;
+}
+
+MoveRate1()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 1;
+}
+
+MoveRate2()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 2;
+}
+
+MoveRate3()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 3;
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	turn lturret to x-axis <0> speed <400>;
+	turn lbarrel1 to y-axis <0> speed <360>;
+	turn lbarrel2 to y-axis <0> speed <360>;
+	move door1 to y-axis [0] speed [0.25];
+	move door2 to y-axis [0] speed [0.2];
+	move door1 to z-axis [0] speed [5.4];
+	move door2 to z-axis [0] speed [5.4];
+	turn door1 to x-axis <8> speed <8>;
+	turn door2 to x-axis <-8> speed <8>;
+}
+	
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	move door1 to y-axis [-0.5] speed [2.4];
+	move door2 to y-axis [-0.5] speed [2];
+	move door1 to z-axis [-5.4] speed [10.8];
+	move door2 to z-axis [5.4] speed [10.8];
+	turn door1 to x-axis <-15> speed <30>;
+	turn door2 to x-axis <15> speed <30>;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+FireTertiary()
+{
+	++gun_1;
+	if( gun_1 > 7 )
+	{
+		gun_1 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = r1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = r2;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = r3;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = r4;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = r5;
+	}
+	if( gun_1 == 5 )
+	{
+		piecenum = r6;
+	}
+	if( gun_1 == 6 )
+	{
+		piecenum = r7;
+	}
+	if( gun_1 > 7 )
+	{
+		piecenum = r8;
+	}
+}
+
+/*AimSecondary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn lturret to y-axis heading speed <400>;
+	if(( pitch < 0 ) OR (pitch > <90> ))
+	{
+		turn lbarrel1 to x-axis 0 - pitch speed <400>;
+		turn lbarrel2 to x-axis 0 - pitch speed <400>;
+		wait-for-turn lbarrel1 around x-axis;
+		wait-for-turn lbarrel2 around x-axis;
+	}
+	wait-for-turn lturret around y-axis;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+FireSecondary()
+{
+	if( !gun_2 )
+	{
+		show lflare1;
+		sleep 150;
+		hide lflare1;
+	}
+	if( gun_2 )
+	{
+		show lflare2;
+		sleep 150;
+		hide lflare2;
+	}
+	gun_2 = !gun_2;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = lturret;
+}
+
+QuerySecondary(piecenum)
+{
+	if( !gun_2 )
+	{
+		piecenum = lflare1;
+		return(0);
+	}
+	piecenum = lflare2;
+}*/
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type BITMAPONLY | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type BITMAPONLY | BITMAP5;
+		explode thrust3 type BITMAPONLY | BITMAP1;
+		explode thrust5 type BITMAPONLY | BITMAP2;
+		explode thrust7 type BITMAPONLY | BITMAP3;
+		explode thrust2 type BITMAPONLY | BITMAP3;
+		explode thrust4 type BITMAPONLY | BITMAP4;
+		explode thrust6 type BITMAPONLY | BITMAP5;
+		explode thrust8 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type FALL | FIRE | BITMAP5;
+		explode thrust3 type FALL | FIRE | BITMAP1;
+		explode thrust5 type FALL | FIRE | BITMAP2;
+		explode thrust7 type FALL | FIRE | BITMAP3;
+		explode thrust2 type FALL | FIRE | BITMAP3;
+		explode thrust4 type FALL | FIRE | BITMAP4;
+		explode thrust6 type FALL | FIRE | BITMAP5;
+		explode thrust8 type FALL | FIRE | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode thrust3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		explode thrust5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+		explode thrust7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode thrust2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode thrust4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+		explode thrust6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode thrust8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1 type BITMAPONLY | BITMAP1;
+	explode arm2 type BITMAPONLY | BITMAP2;
+	explode arm3 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode base type BITMAPONLY | BITMAP4;
+	explode thrust1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode thrust3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+	explode thrust5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+	explode thrust7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode thrust2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode thrust4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+	explode thrust6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode thrust8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+}

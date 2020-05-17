@@ -1,0 +1,190 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, storage, glow, ring, bridge, pod1, pod2, pod3, pod4, pod5, pod6;
+
+static-var  statechg_DesiredState, statechg_StateChanging;
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		spin ring around y-axis speed <120.000000> accelerate <0.600000>;
+		spin storage around y-axis speed <-120.000000> accelerate <-0.600000>;
+		dont-cache glow;
+		sleep 1486;
+	}
+	sleep 14;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+
+		stop-spin ring around y-axis decelerate <0.600000>;
+		stop-spin storage around y-axis decelerate <-0.600000>;
+		cache glow;
+		sleep 1495;
+	}
+	sleep 7;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+//	move body to y-axis [45] now;
+	call-script InitState();
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+//	move body to y-axis [0] speed [10];
+}
+
+Activate()
+{
+	set ARMORED to 1;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	set ARMORED to 0;
+}
+
+StartBuilding()
+{
+	sleep rand(25,250);
+	set INBUILDSTANCE to 1;
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = base;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode ring type BITMAPONLY | BITMAP1;
+		explode bridge type BITMAPONLY | BITMAP1;
+		explode pod1 type BITMAPONLY | BITMAP1;
+		explode pod2 type BITMAPONLY | BITMAP1;
+		explode pod3 type BITMAPONLY | BITMAP1;
+		explode pod4 type BITMAPONLY | BITMAP1;
+		explode pod5 type BITMAPONLY | BITMAP1;
+		explode pod6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode ring type BITMAPONLY | BITMAP1;
+		explode bridge type BITMAPONLY | BITMAP1;
+		explode pod1 type BITMAPONLY | BITMAP1;
+		explode pod2 type FALL | BITMAP1;
+		explode pod3 type FALL | BITMAP1;
+		explode pod4 type FALL | BITMAP1;
+		explode pod5 type BITMAPONLY | BITMAP1;
+		explode pod6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode ring type BITMAPONLY | BITMAP1;
+		explode bridge type BITMAPONLY | BITMAP1;
+		explode pod1 type BITMAPONLY | BITMAP1;
+		explode pod2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pod3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pod4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode pod5 type BITMAPONLY | BITMAP1;
+		explode pod6 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode ring type BITMAPONLY | BITMAP1;
+	explode bridge type BITMAPONLY | BITMAP1;
+	explode pod1 type BITMAPONLY | BITMAP1;
+	explode pod2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pod3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pod4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode pod5 type BITMAPONLY | BITMAP1;
+	explode pod6 type BITMAPONLY | BITMAP1;
+}

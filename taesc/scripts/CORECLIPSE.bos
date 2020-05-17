@@ -1,0 +1,392 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece	base, body, fork, w1, w2, w3a, w4a, w5, w6, w7, pent1, pent2, llt1, llt2, naughty; 	
+
+static-var  statechg_DesiredState, statechg_StateChanging, flying, dontfire, landed ;
+
+
+// Signal definitions
+
+#define SIG_AIM				2
+#define SIG_AIM_3			4
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 88 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 88 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+				set ACTIVATION to 0;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 88 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+				set ACTIVATION to 0;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+				set ACTIVATION to 100;
+				if (landed >= 1)
+				{	
+					set ACTIVATION to 0;
+				}	
+			}
+		}
+		sleep 1000;
+	}
+}
+
+Activatescr()
+{
+	if( TRUE )
+	{
+		flying=1;
+		start-script OffScreenCheck();
+		
+		sleep 1000;
+	}
+	sleep 20;
+}
+
+Deactivatescr()
+{
+	if( TRUE )
+	{
+		if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+		{	
+			flying=0;
+		}
+		
+		sleep 1000;
+	}
+	sleep 12;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	landed = 0;
+	dontfire = 0;
+	dont-cache naughty;
+	
+	move naughty to y-axis  [8] now;
+	hide naughty;
+	
+//	move body to y-axis [45] now;
+	
+	call-script InitState();
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+//	move body to y-axis [0] speed [10];
+}
+
+Activate()
+{
+	if (dontfire >= 1)
+	{
+		set ACTIVATION to 0;
+	}	
+	set ARMORED to 1;
+	landed = 0;
+	start-script RequestState(0);
+	spin fork around z-axis speed <200.043956>;
+}
+
+Deactivate()
+{
+	spin fork around z-axis speed <0.000000>;
+	
+	if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+	{	
+		start-script RequestState(1);
+	}
+	if (flying == 0)
+	{
+		landed = 1;
+	}
+	set ARMORED to 0;
+	
+	
+}
+
+/*
+RestoreAfterDelay()
+{
+	sleep 10000;
+	set-signal-mask 0;
+	turn turret1 to y-axis <0.000000> speed <225.000000>;
+	turn mturret2 to y-axis <0> speed <180.000000>;
+	turn msleeve2 to x-axis <0> speed <180.000000>;
+	turn mturret3 to y-axis <0> speed <180.000000>;
+	turn msleeve3 to x-axis <0> speed <180.000000>;	
+}
+
+
+AimSecondary(heading, pitch)
+{
+	signal SIG_AIM_3;
+	set-signal-mask SIG_AIM_3;
+	
+	if( salvo_3 == 0 )
+	{
+		turn mturret2 to y-axis heading speed <360>;
+		turn msleeve2 to x-axis <0.000000> - pitch speed <360.000000>;
+	}
+	if( salvo_3 == 1 )
+	{
+		turn mturret3 to y-axis heading speed <360>;
+		turn msleeve3 to x-axis <0.000000> - pitch speed <360.000000>;
+	}
+	wait-for-turn mturret2 around y-axis;
+	wait-for-turn msleeve2 around x-axis;
+	wait-for-turn mturret3 around y-axis;
+	wait-for-turn msleeve3 around x-axis;
+	while( firing )
+	{
+		sleep 100;
+	}
+	Start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireSecondary()
+{
+	var gun_3_tmp;
+	gun_3_tmp = gun_3;
+	++gun_3;
+	if( gun_3 == 6 )
+	{
+		gun_3 = 2;
+	}
+	if( gun_3_tmp == 2 )
+	{
+		firing = 1;
+		salvo_3 = 0; 
+		sleep 150;
+		sleep firedelay;
+		firing = 0;		
+	}
+	if( gun_3_tmp == 3 )
+	{
+		firing = 1;
+		salvo_3 = 1; 
+		sleep 150;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_3_tmp == 4 )
+	{
+		firing = 1;
+		salvo_3 = 1; 
+		sleep 150;
+		sleep firedelay;
+		firing = 0;
+	}
+	if( gun_3_tmp == 5 )
+	{
+		firing = 1;
+		salvo_3 = 0; 
+		sleep 150;
+		sleep firedelay;
+		firing = 0;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	if( salvo_3 == 0 )
+		piecenum = mturret2;
+	if( salvo_3 == 1 )
+		piecenum = mturret3;
+}
+
+QuerySecondary(piecenum)
+{
+	if( gun_3 == 2 )
+		piecenum = mflare2a;
+	if( gun_3 == 3 )
+		piecenum = mflare2b;
+	if( gun_3 == 4 )
+		piecenum = mflare3a;
+	if( gun_3 == 5 )
+		piecenum = mflare3b;		
+}
+
+
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret1 to y-axis heading speed <450.131868>;
+//	turn sleeve1 to x-axis <0.000000> - pitch speed <450.131868>;
+	wait-for-turn turret1 around y-axis;
+//	wait-for-turn sleeve1 around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	if( gun_1 == 0 )
+	{
+//		start-script f1();
+		move gun1a to z-axis [-4.500000] now;
+		sleep 25;
+		move gun1a to z-axis [0.000000] speed [15.000000];
+	}
+	if( gun_1 == 1 )
+	{
+//		start-script f2();
+		move gun1b to z-axis [-4.500000] now;
+		sleep 25;
+		move gun1b to z-axis [0.000000] speed [15.000000];
+	}
+	gun_1 = !gun_1;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret1;
+}
+
+
+
+
+
+*/
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+/*
+	hide flare1a;
+	hide flare1b;
+	hide mflare2a;
+	hide mflare2b;
+	hide mflare3a;
+	hide mflare3b;
+	explode gun1a type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode gun1b type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode turret1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode mturret2 type FALL | EXPLODE_ON_HIT | BITMAP1;
+	explode mturret3 type FALL | EXPLODE_ON_HIT | BITMAP5;
+	explode base type BITMAPONLY | BITMAP1;
+	explode side1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode side2 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode bridge type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode decks type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+*/
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		return (0);
+	}
+	corpsetype = 3;
+}

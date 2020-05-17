@@ -1,0 +1,423 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, pipes, emit, dome, naughty, glow; 
+	   
+
+static-var  statechg_DesiredState, statechg_StateChanging, moving, landeg, playernumb, flying, dontfire;
+
+// Signal definitions
+#define SIG_MOVE		2
+#define SIG_AIM			4
+#define SIG_R			32
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+detectself()
+{
+	playernumb=get UNIT_TEAM(get MY_ID);
+}
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 88 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 88 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 88 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+			}
+		}
+		sleep 1000;
+	}
+}
+
+Activatescr()
+{
+	if( TRUE )
+	{
+		flying=1;
+		start-script OffScreenCheck();
+	}
+	sleep 20;
+}
+
+Deactivatescr()
+{
+	if( TRUE )
+	{
+		flying=0;
+	}
+	sleep 12;
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+/*
+ProcessFlames()
+{
+	var prevxz, xz, prevy, y;
+	xz = get PIECE_XZ(base);
+	y = get PIECE_Y(base);
+	prevxz = 0;
+	prevy = 0;
+	while( 1 )
+	{
+		xz = get PIECE_XZ(base);
+		y = get PIECE_Y(base);
+		if( y > get GROUND_HEIGHT(xz) + [5])
+		{
+			emit-sfx 0 from jet1;
+			emit-sfx 0 from jet2;
+			emit-sfx 0 from jet3;
+		}
+		if(prevxz == xz && prevy == y)
+		sleep 33;
+		prevxz = xz;
+		prevy = y;
+	}
+}
+*/
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+//			call-script pickup();
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+//			call-script dropoff();
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+adjust()
+{
+	while(1)
+	{
+		
+		turn emit to x-axis <0> now;
+		spin emit around x-axis speed <1000>;
+		sleep 20000;
+	}
+}
+
+Create()
+{
+	start-script adjust();
+	
+	dontfire=0;
+	dont-cache naughty;
+	move naughty to y-axis  [12] now;
+	hide naughty;
+	
+//	move body to y-axis [45] now;
+	
+	dont-cache emit;
+//	dont-shade dome;
+	
+	dont-cache glow;
+	hide glow;
+	
+	hide emit;
+	moving = 0;
+	spin emit around x-axis speed <1000>;
+	call-script InitState();
+
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	call-script detectself();
+	start-script SmokeUnit();
+//	start-script ProcessFlames();
+//	move body to y-axis [0] speed [10];
+	set ARMORED to 1;
+}
+
+
+
+
+Activate()
+{
+	set ARMORED to 1;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	set ARMORED to 0;
+}
+
+
+StartMoving()
+{
+//	signal 2;
+//	set-signal-mask SIG_MOVE;
+	moving = 1;
+}
+
+
+StopMoving()
+{
+//	signal 2;
+	moving = 0;
+}
+
+/*
+MoveRate1()
+{
+	signal 2;
+	set-signal-mask 2;
+//	start-script ProcessFlames();
+//	Static_Var_1 = 1;
+}
+
+MoveRate2()
+{
+	signal 2;
+	set-signal-mask 2;
+//	start-script ProcessFlames();
+//	Static_Var_1 = 2;
+}
+
+MoveRate3()
+{
+	signal 2;
+	set-signal-mask 2;
+//	start-script ProcessFlames();
+//	Static_Var_1 = 3;
+}
+*/
+
+hideflare()
+{
+	signal SIG_R;
+	set-signal-mask SIG_R;
+	show glow;
+	hide dome;
+	sleep 200;
+	hide emit;
+	hide glow;
+	show dome;
+	//turn spinner to x-axis <0> now;
+	//turn spinner2 to x-axis <0> now;
+	//turn flare to x-axis <0> now;
+}
+
+
+setSFXoccupy(Func_Var_1)
+{
+	landeg = Func_Var_1;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	while( (get PIECE_Y(base) - (get GROUND_HEIGHT(get PIECE_XZ(base))) ) < [60])
+	{
+		sleep 1000;
+	}
+	while(!landeg OR dontfire)
+	{
+		sleep 1000;
+	}
+	move emit to y-axis ((get GROUND_HEIGHT(get PIECE_XZ(base)) - get PIECE_Y(base))) now;
+	/*turn turret to y-axis heading speed <250>;
+	//turn gun to x-axis <0.000000> - pitch speed <250>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();*/
+
+	return (1);
+}
+
+QueryNanoPiece(piecenum)
+{
+	//start-script loopy();
+	piecenum = base;
+}
+
+FirePrimary()
+{
+	show emit;
+//	explode emit type BITMAPONLY | BITMAP5;
+	//if(rand(-9,1))
+	//{
+	//	explode flash type FALL | FIRE;
+	//}
+	start-script hideflare();
+	//show beam;
+	//show hider;
+//	move hider to y-axis (get(GROUND_HEIGHT(get PIECE_XZ(base)))- get PIECE_Y(base)) now;
+	//explode light type BITMAPONLY | BITMAP5;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = emit;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	explode base type BITMAPONLY | BITMAP1;
+	explode body type BITMAPONLY | BITMAP1;
+	explode pipes type BITMAPONLY | BITMAP5;
+	explode dome type BITMAPONLY | BITMAP1;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		return (0);
+	}
+	corpsetype = 3;
+}

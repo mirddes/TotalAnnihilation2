@@ -1,0 +1,373 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  flare1, flare2, flare3, flare4, tube1, tube2, tube3, tube4,
+       launcher, turret, tower, fan1, fan2, fan3, w1, w2, 
+       w3, w4, w5, w6, w7, w8, w9, base;
+
+static-var  busy_1, restore_2, on_3, request_4, searching_6, bubbles_7, sway_8,
+            gun_1;
+
+Sway()
+{
+	while( sway_8 )
+	{
+		turn base to x-axis <5> speed <12>;
+		turn base to z-axis <8> speed <18>;
+		wait-for-turn base around z-axis;
+		turn base to x-axis <-8> speed <18>;
+		turn base to z-axis <-5> speed <12>;
+		wait-for-turn base around x-axis;
+		if( sway_8 )
+		{
+			turn base to x-axis <8> speed <18>;
+			turn base to z-axis <5> speed <12>;
+			wait-for-turn base around z-axis;
+			turn base to x-axis <-5> speed <12>;
+			turn base to z-axis <-8> speed <18>;
+			wait-for-turn base around x-axis;
+		}
+	}
+	turn base to x-axis <0> speed <9>;
+	turn base to z-axis <0> speed <9>;
+}
+
+RequestState()
+{
+	set-signal-mask 0;
+	if( !busy_1 )
+	{
+		while( request_4 != on_3 )
+		{
+			busy_1 = 1;
+			if( request_4 )
+			{
+				on_3 = 1;
+				bubbles_7 = 1;
+				restore_2 = 20;
+				spin fan1 around y-axis speed <600> accelerate <50>;
+				spin fan2 around y-axis speed <600> accelerate <50>;
+				spin fan3 around y-axis speed <600> accelerate <50>;
+				move base to y-axis [-12] speed [12.5];
+				move tower to y-axis [0] speed [6]; 
+				sleep 440;
+				if( !sway_8 )
+				{
+					sway_8 = 1;
+					start-script sway();
+				}
+				set ARMORED to 0;
+				sleep 200;
+				move base to y-axis [0] speed [20];
+				sway_8 = 0;
+				sleep 350;
+			}
+			if( !request_4 )
+			{
+				on_3 = 0;
+				turn launcher to x-axis <0> speed <200>;
+				stop-spin fan1 around y-axis decelerate <4>;
+				stop-spin fan2 around y-axis decelerate <4>;
+				stop-spin fan3 around y-axis decelerate <4>;
+				if( !sway_8 )
+				{
+					sway_8 = 1;
+					start-script sway();
+				}
+				bubbles_7 = 1;
+				move base to y-axis [-12] speed [17];
+				sleep 1000;
+				set ARMORED to 1;
+				sway_8 = 0;
+				move tower to y-axis [-5] speed [5]; 
+				move base to y-axis [-20] speed [8];
+				sleep 1000;
+			}
+			bubbles_7 = 0;
+			sleep 250;
+		}
+		busy_1 = 0;
+	}
+	return (0);
+}
+
+ShowBubbles()
+{
+	while( TRUE )
+	{
+		if( bubbles_7 )
+		{
+			emit-sfx 256 | 3 from w1;
+			emit-sfx 256 | 3 from w2;
+			emit-sfx 256 | 3 from w3;
+			emit-sfx 256 | 3 from w4;
+			emit-sfx 256 | 3 from w5;
+			emit-sfx 256 | 3 from w6;
+			emit-sfx 256 | 3 from w7;
+			emit-sfx 256 | 3 from w8;
+			emit-sfx 256 | 3 from w9;
+		}
+		if( !restore_2 AND request_4 )
+		{
+			set ACTIVATION to 0;
+		}
+		if( restore_2 )
+		{
+			--restore_2;
+		}				
+		sleep 250;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <20>;
+	turn base to z-axis anglez speed <20>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis <0> - anglex speed <12>;
+	turn base to z-axis <0> - anglez speed <12>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis <0> speed <3>;
+	turn base to z-axis <0> speed <3>;
+	return (0);
+}
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	dont-cache flare1;
+	dont-cache flare2;
+	dont-cache flare3;
+	dont-cache flare4;
+	dont-cache tube1;
+	dont-cache tube2;
+	dont-cache tube3;
+	dont-cache tube4;
+	dont-cache launcher;
+	dont-cache turret;
+	dont-cache tower;
+	dont-cache fan1;
+	dont-cache fan2;
+	dont-cache fan3;
+	dont-cache base;
+	dont-shade tube1;
+	dont-shade tube2;
+	dont-shade tube3;
+	dont-shade tube4;
+	dont-shade launcher;
+	dont-shade turret;
+	dont-shade tower;
+	dont-shade fan1;
+	dont-shade fan2;
+	dont-shade fan3;
+	dont-shade base;
+	busy_1 = 0;
+	restore_2 = 0;
+	on_3 = 1;
+	request_4 = 1;
+	bubbles_7 = 0;
+	sway_8 = 0;
+	gun_1 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	restore_2 = 40;
+	start-script showbubbles();
+	spin fan1 around y-axis speed <600> accelerate <300>;
+	spin fan2 around y-axis speed <600> accelerate <300>;
+	spin fan3 around y-axis speed <600> accelerate <300>;
+	return (0);
+}
+
+Deactivate()
+{
+	if( request_4 )
+	{
+		request_4 = 0;
+		start-script RequestState();
+	}
+}
+
+Activate()
+{
+	if( !request_4 )
+	{
+		request_4 = 1;
+		start-script RequestState();
+	}
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = base;
+	set YARD_OPEN to 1;
+	sleep 50;
+	set YARD_OPEN to 0;
+	while (get YARD_OPEN)
+	{
+		set YARD_OPEN to 0;
+		sleep 1000;
+	}
+}
+
+AimPrimary(heading, pitch)
+{
+	if( !request_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( !on_3 OR busy_1 )
+	{
+		sleep 250;
+		turn turret to y-axis heading speed <140>;
+	}
+	turn turret to y-axis heading speed <480>;
+	turn launcher to x-axis <0> - pitch speed <270>;
+	while( gun_1 > 3 )
+	{
+		wait-for-move tube4 along z-axis;
+		turn turret to y-axis heading speed <480>;
+		turn launcher to x-axis <0> - pitch speed <270>;
+		gun_1 = 0;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn launcher around x-axis;
+	restore_2 = 20;
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		move tube1 to z-axis [0.5] NOW;
+		show flare1;
+		sleep 150;
+		hide flare1;
+		move tube1 to z-axis [0] speed [0.21];
+	}
+	if( gun_1 == 1 )
+	{
+		move tube2 to z-axis [0.5] NOW;
+		show flare2;
+		sleep 150;
+		hide flare2;
+		move tube2 to z-axis [0] speed [0.21];
+	}
+	if( gun_1 == 2)
+	{
+		move tube3 to z-axis [0.5] NOW;
+		show flare3;
+		sleep 150;
+		hide flare3;
+		move tube3 to z-axis [0] speed [0.21];
+	}
+	++gun_1;
+	if( gun_1 > 3 )
+	{
+		move tube4 to z-axis [0.5] NOW;
+		show flare4;
+		sleep 150;
+		hide flare4;
+		move tube4 to z-axis [0] speed [0.21];
+		wait-for-move tube4 along z-axis;
+		gun_1 = 0;
+	}
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = launcher;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		if( on_3 )
+		{
+			corpsetype = 1;
+		}
+		if( !on_3 )
+		{
+			corpsetype = 2;
+		}
+		explode base type BITMAPONLY | BITMAP1;
+		explode tube1 type BITMAPONLY | BITMAP2;
+		explode fan1 type BITMAPONLY | BITMAP3;
+		explode fan2 type BITMAPONLY | BITMAP4;
+		explode fan3 type BITMAPONLY | BITMAP5;
+		explode tube4 type BITMAPONLY | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode tube2 type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tube1 type BITMAPONLY | BITMAP2;
+		explode fan1 type FALL | BITMAP3;
+		explode fan2 type FALL | BITMAP4;
+		explode fan3 type FALL | BITMAP5;
+		explode tube4 type FALL | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode tube2 type FALL | BITMAP4;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tube1 type BITMAPONLY | BITMAP2;
+		explode fan1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode fan2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode fan3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode tube4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode tower type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode tube2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	corpsetype = 4;
+	explode base type BITMAPONLY | BITMAP1;
+	explode tube1 type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode fan1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode fan2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode fan3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode tube4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tower type BITMAPONLY | BITMAP2;
+	explode turret type BITMAPONLY | BITMAP3;
+	explode tube2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

@@ -1,0 +1,86 @@
+// Core Shark script
+
+piece torp1,torp2,base,wake;
+
+static-var fire;
+
+#define	SIG_WAKE	2
+#include "exptype.h"
+#include "SFXtype.h"
+
+Create()
+	{
+	fire=0;
+	}
+
+StartMoving()
+	{
+	signal SIG_WAKE;
+	set-signal-mask SIG_WAKE;
+
+	while (TRUE)
+		{
+		emit-sfx SFXTYPE_SUBBUBBLES from wake;
+		sleep 250;
+		}
+	}
+
+StopMoving()
+	{
+	signal SIG_WAKE;
+	}
+
+FirePrimary()
+	{
+	fire = !fire;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=fire;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode torp1 type	BITMAPONLY | BITMAP2;
+		explode torp2 type	BITMAPONLY | BITMAP3;
+		explode wake type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode torp1 type	BITMAPONLY | BITMAP2;
+		explode torp2 type	BITMAPONLY | BITMAP3;
+		explode wake type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode torp1 type	BITMAPONLY | BITMAP2;
+		explode torp2 type	BITMAPONLY | BITMAP3;
+		explode wake type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode torp1 type	BITMAPONLY | BITMAP2;
+	explode torp2 type	BITMAPONLY | BITMAP3;
+	explode wake type	BITMAPONLY | BITMAP4;
+	return( 0 );
+	}

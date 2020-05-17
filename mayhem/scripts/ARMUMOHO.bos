@@ -1,0 +1,258 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  base, arms1, arms2, emit1, emit2, emit3, emit4, flare1, 
+       torp1, turret1, flare2, torp2, turret2, upgrade, hidden;
+
+static-var  speed_1, speed_2, on_4, upgraded;
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( Rand( 1, 66 ) < healthpercent )
+		{
+			smoketype = 256 | 3;
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	speed_1 = 0;
+	speed_2 = 91;
+	on_4 = 0;
+	upgraded = 0;
+	dont-cache arms1;
+	dont-cache arms2;
+	dont-shade arms1;
+	dont-shade arms2;
+	hide upgrade;
+	hide torp1;
+	hide torp2;
+	hide turret1;
+	hide turret2;
+}
+
+Activate()
+{
+	if( !upgraded )
+	{
+		set INBUILDSTANCE to 1;
+	}
+	if( !On_4 )
+	{
+		On_4 = 1;
+		spin arms1 around y-axis speed speed_1 accelerate <0.5>;
+		spin arms2 around y-axis speed speed_2 accelerate <-0.5>;
+		while( On_4 )
+		{
+			emit-sfx 259 from emit1;
+			emit-sfx 259 from emit2;
+			emit-sfx 259 from emit3;
+			emit-sfx 259 from emit4;
+			sleep 250;
+		}
+	}
+}
+
+Deactivate()
+{
+	if ( on_4 )
+	{
+		On_4 = 0;
+		stop-spin arms1 around y-axis decelerate <2.5>;
+		stop-spin arms2 around y-axis decelerate <-2.5>;
+	}
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = hidden;
+	if( !upgraded )
+	{
+		set YARD_OPEN to 1;
+	}
+}
+
+StartBuilding()
+{
+	if( upgraded )
+	{
+		set INBUILDSTANCE to 0;
+		set YARD_OPEN to 0;
+		sleep 400;
+		if( !on_4 )
+		{
+			set ACTIVATION to 1;
+		}
+		return(0);
+	}
+	set YARD_OPEN to 1;
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+	sleep 400;
+	set YARD_OPEN to 0;
+	sleep 1000;
+	if( !on_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	if( get YARD_OPEN )
+	{
+		if( !upgraded )
+		{
+		upgraded = 1;
+		show upgrade;
+		dont-cache upgrade;
+		dont-shade upgrade;
+		hide base;
+		show torp1;
+		show torp2;
+		show turret1;
+		show turret2;
+		set ARMORED to 1;
+		}
+		return(0);
+	}
+	upgraded = 0;
+	hide upgrade;
+	show base;
+	hide torp1;
+	hide torp2;
+	hide turret1;
+	hide turret2;
+	set ARMORED to 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( !upgraded )
+	{
+		sleep 1000;
+	}
+	turn turret1 to y-axis heading speed <70>;
+	wait-for-turn turret1 around y-axis;
+	return (1);
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	while( !upgraded )
+	{
+		sleep 1000;
+	}
+	turn turret2 to y-axis heading speed <70>;
+	wait-for-turn turret2 around y-axis;
+	return (1);
+}
+
+FirePrimary()
+{
+	emit-sfx 256 | 3 from flare1;
+	move torp1 to z-axis [-5] speed [200];
+	sleep 250;
+	move torp1 to z-axis [0] speed [2.5];
+	return (0);
+}
+
+FireSecondary()
+{
+	emit-sfx 256 | 3 from flare2;
+	move torp2 to z-axis [-5] speed [200];
+	sleep 250;
+	move torp2 to z-axis [0] speed [2.5];
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+	return (0);
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = flare2;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+SetSpeed(Func_Var_1)
+{
+	speed_1 = Func_Var_1 * 6;
+	speed_2 = 0 - speed_1;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arms1 type BITMAPONLY | BITMAP1;
+		explode arms2 type BITMAPONLY | BITMAP3;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arms1 type SHATTER | BITMAP1;
+		explode arms2 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arms1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arms2 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode base type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arms1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arms2 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+}

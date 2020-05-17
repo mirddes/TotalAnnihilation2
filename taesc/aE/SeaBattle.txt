@@ -1,0 +1,4483 @@
+//  =========================================================================================================================
+//
+//  AI Profile name:
+//
+//    SeaBattle ("Classic" version)
+//
+//
+//  Version: 1.1.3
+//  Release date: April 30, 2019
+//
+//  Details about this version:
+//
+//    a) Recommended for maps with STARTING POSITIONS ISOLATED BY WATER
+//
+//    b) BUILDS ESCALATION AI CHEAT UNITS using following limits according to game difficulty setting:
+//
+//                                                  Easy    Medium    Hard
+//         Metal Extractor cheat unit                 0        1        2
+//         Underwater Metal Extractor cheat unit      0        2        3
+//
+//           The cheat unit abilities can be adjusted or nullified using Variable Levels of AI Cheat Units.  Additional
+//           details available at following link:
+//
+//           https://www.tauniverse.com/forum/showthread.php?t=45894
+//
+//    c) BUILDS LONG RANGE ARTILLERY using following limits according to game difficulty setting:
+//
+//                                                  Easy    Medium    Hard
+//         Arm Big Bertha / Core Intimidator          0        1        3
+//         Arm Vulcan / Core Buzzsaw                  0        1        2
+//         Arm Armageddon / Core Dictator             0        0        1
+//
+//           The above non-zero artillery values are often exceeded due to game engine not counting incomplete buildings when
+//           tallying unit quantities throughout a game.  Being SeaBattle, some AI could be isolated on islands, possibly
+//           small ones.  The higher artillery limits of other AI profiles are not used here.  Limited land mass needs to be
+//           shared with other useful structures.
+//
+//    d) DOES NOT BUILD mobile land based weapons.  Builds stationary land based weapons.  Various amphibious units were
+//       playtested but AI showed limited effectiveness deploying Krogoth and Raptor plodding through water.
+//
+//
+//    How this version compares to other planned SeaBattle AI profiles:
+//
+//                                                            Revised    AI Long Range    Smoother      Metal Map
+//                                                            YardMaps     Artillery    Naval Battle   Customized
+//                                                            --------     ---------    ------------   ----------
+//
+//    PROFILE YOU ARE VIEWING IS -->  SeaBattle Classic       optional      variable         no            no
+//
+//                                    SeaBattle Classic B     optional         no            no            no
+//
+//                                    SeaBattle Floatilla    integrated     variable        yes            no
+//
+//                                    SeaMetal                optional      variable         no           yes
+//
+//    "Revised YardMaps" to improve unit pathing on water and lessen jammed water based AI factories while retaining YardMap
+//    adjacency bonus capability.  Status of "optional" allows player to install the separately released revised YardMaps
+//    package if desired.
+//
+//    "AI Long Range Artillery" being Arm's Big Bertha / Vulcan / Armageddon and Core's Intimidator / Buzzsaw / Dictator.
+//    Status of "variable" indicates amount of artillery depends on game difficulty setting, as done in past versions of
+//    Escalation.  However, status of "no" allows player to choose any difficulty setting without facing AI long range
+//    artillery.  Hard difficulty games having AI relentlessly bombard player with vast amounts of Big Bertha and Intimidator
+//    can be avoided.  Player feedback asked for AI long range artillery suppression.
+//
+//    "Smoother Naval Battle" version avoids frequent AI naval (and hovercraft) Standby mode stall.  Naval stall issue exists
+//    in varying degrees since Total Annihilation v3.1c of 1998.  It is explained with greater detail in "Notable changes"
+//    section, below.  Formerly submerged units are replaced by floating versions.  For example, Underwater Metal Extractor
+//    becomes Floating Metal Extractor--can think of it resembling a floating oil drilling rig.  Submarines operate at
+//    surface of water and are targetable by land, sea, hovercraft and aircraft units.  With submerged combat layer removed,
+//    frequent Standby mode naval stall is nearly eliminated.  Usually, I prefer not altering units when developing
+//    Escalation AI, however, the repetitive naval stall significantly affects flow of game-play and needs to be addressed.
+//    Although "SeaBattle Floatilla" version removes submerged combat, some skirmish players may prefer this option of
+//    smoother naval battle.
+//
+//    "Metal Map Customized" has AI tuned for metal abundance offered by metal terrain--raising limits of metal extractors,
+//    factories, support structures/units and combat units.  This variant is available because I wanted to play an optimized
+//    SeaBattle on Seven Islands metal seabed map (within totala2.hpi).  Yep, that was the motivation.
+//
+//
+//  Additional tidbits:
+//
+//    An AI controlled mobile combat unit can temporarily stall in Standby mode on water maps when nearest enemy target is
+//    not targetable by the combat unit's weapon(s).  Standby mode can linger until non-targetable unit is destroyed or a
+//    targetable enemy unit moves closer.  Some examples of naval stall include:
+//
+//      - certain ships (without depth charge/torpedo) fixating on a submerged unit
+//      - certain hovercraft (without depth charge/torpedo) fixating on a submerged unit
+//      - mobile land unit fixating on a submerged unit
+//      - submarine fixating on a hovercraft unit (as of this writing, no submarine has a weapon able to target hovercraft)
+//
+//    Naval stall has existed in varying degrees since Total Annihilation v3.1c around 1998.  Its frequency increases as
+//    amount of submerged units increases.  The following list shows some significant plateaus.
+//
+//      Total Annhilation Version      Number of Submerged Units
+//
+//      Total Annihilation v3.1c          5
+//      Core Contingency expansion       15
+//      Escalation Beta v8.9.0           23
+//
+//    The naval Standby mode stall is related to game engine's limited handling of AI units.  Its one-track mind causes an AI
+//    mobile combat unit to focus on nearest enemy target even when unit's weapon(s) can not deal with the target.  Naval
+//    stall frequency would improve if game engine allowed AI unit cycling to second (third, fourth or fifth) nearest target
+//    before resorting to Standby mode.  Nonetheless, we must deal with the given situation.  This AI profile has been tuned
+//    for submarines to pick up some slack.  Reinforced sub packs will scour the sea floor knocking out submerged targets for
+//    surface battles to flow onwards.  Naval Standby mode stall duration has been improved, but not eliminated, compared to
+//    Escalation Beta v8.8.0.  If you prefer its nearly complete elimination, see "Smoother Naval Battle" section, above.
+//
+//    AI is designed to provide hard and medium game-play difficulty using the AI cheat units embedded within Escalation Beta
+//    version 4.2 and higher (except v8.5 which intentionally had its cheat units disabled).  Medium difficulty game-play
+//    feels closer to hard setting, than easy, because the cheat units included within Escalation allow medium AI to expand
+//    faster than intended.  However, medium builds smaller quantities of offensive and defensive units than hard.
+//
+//    If you prefer adjusting game-play difficulty using Variable Levels of AI Cheat Units (available from link, above), it
+//    is recommended to use medium difficulty setting.  Hard difficulty, having higher unit weights and limits, is less
+//    adaptable for lower difficulty game-play because it's aggressive expansion is more susceptible to resource starvation.
+//
+//    Medium difficulty was playtested to provide intended playability while using AI Cheat Level #07 through #09 of version
+//    1.2.
+//
+//    Hard difficulty setting was playtested to provide high degree of challenge using AI Cheat Level #10 through #11 of
+//    version 1.2.
+//
+//    Under non-cheating game conditions, easy is the only level with a reasonable chance of offering any decent game-play
+//    because it is tuned for the harsher economy.  Starting with 10,000 metal and 10,000 energy is highly recommended to
+//    help AI expand above a snail's pace.  The AI tries to perform without any cheat units while also being handicapped by
+//    reduced resource output.  Metal and energy output for AI is reduced by 50% on easy difficulty setting (output for human
+//    player is not affected).  For example, it gets only about 13 energy per Solar Collector.  Metal Extractor gives AI only
+//    about 1 metal from a high quality metal deposit, whereas normally it would give about 2 metal.  Easy AI's home base
+//    expands slower while hampered by these lower resource outputs.  It tries to compensate by using more Metal Extractors
+//    and Tidal Generators.  Easy AI game-play improves on maps with large share of metal deposits (40+) within harvesting
+//    range to feed its tier 1 and tier 2 metal starvation.  Those two tiers span significantly longer time than in medium
+//    and hard difficulty.
+//
+//    The metal and energy resource output for AI is reduced by 30% on medium difficulty.  Its factory production and home
+//    base expansion are tuned to use low/midrange cheat units to overcome the resource disadvantage and supplement its
+//    economy.  Without cheat units, medium setting is usually unable to sustain a healthy economy while maintaining an army
+//    and home base at a level that can be considered medium challenge.  However, on some high resource metal terrain maps,
+//    it has slightly more chance of offering reasonable game-play without cheating.
+//
+//    Furthermore, Resource Generator is not attractive for AI during easy and medium difficulty because the resource penalty
+//    causes it to have a draining negative net energy while making metal rather than favorable zero net energy when metal
+//    making during hard difficulty.  This denies a useful metal/energy source especially valuable on low metal maps and
+//    roughens the transition to Fusion Reactor.
+//
+//    How does all of the above regarding game difficulty level translate to playability?
+//    It can be summarized by the following table:
+//
+//    Difficulty    Challenge        AI cheating          AI Resource       Challenge
+//    Setting       (AI cheating)    Adjustability        Handicap          (AI non-cheating)
+//    -------       -------------    -------------        --------          -----------------
+//
+//    Easy          unavailable      unavailable          50% of normal     quite easy (resource handicap is a big roadblock)
+//
+//    Medium        low to high      wide range           70% of normal     not recommended (tuned for mid level cheating)
+//
+//    Hard          high             high difficulties    normal economy    not recommended (tuned for high level cheating)
+//
+//    During medium and hard difficulty settings, AI tries to be team friendly towards any allied human players by building
+//    some units that can provide shared intel under fog-of-war game conditions.  It's unable to afford building them under
+//    the harsher economy of easy level because of 50% resource AI handicap.
+//
+//    The intel units include:
+//      - Arm Eagle/Core Vulture (radar & jamming plane) mainly for RadarDistance
+//      - Arm Skimmer/Core Scrubber (scout hovercraft) for SightDistance
+//      - Arm Angler/Core Refuge (hover carrier) for RadarDistance and SonarDistance
+//      - Arm Colossus/Core Hive (light/escort carrier) for RadarDistance and SightDistance
+//      - Arm Tantalus/Core Argus (Experimental Omni Sensor Tower) mainly for RadarDistance
+//      - Arm/Core Advanced Radar Tower (long range radar)
+//      - Arm/Core Radar Tower
+//      - Arm/Core Advanced Sonar/Radar Station
+//      - Arm/Core Sonar/Radar Station
+//
+//    Playtested using AI starting with 10,000 metal and 10,000 energy (for all players) on water maps of about size 25 x 25
+//    (especially on map ZM5 - Sandy Isles Extended within ZealMapPack5.ufo) where each AI color had early game stage access
+//    to clearable/buildable land space spanning from about one to two "full-screen monitor area" for its home base area.
+//    Playtested at 1920 x 1200 screen resolution.  Intended for maps with small or no land mass for AI's home base.  It
+//    builds low quantities of land structures when possible.
+//
+//    This AI profile is designed for Total Annihilation: Escalation Beta and includes units up to v9.0.0.
+//
+//    Regarding backwards compatibility, this updated profile when used with Escalation Beta v6.3.1 through v8.5.0 supports
+//    more units in those versions than the profiles embedded within those Escalation releases.  In other words, the profiles
+//    within those Escalation versions were not actively updated for each release.  Additional AI profile downloads, status
+//    and information available at following link:
+//
+//      https://www.tauniverse.com/forum/showthread.php?t=45712
+//
+//
+//  Author: TAfan97
+//
+//    Can be messaged via Total Annihilation Universe forum private messaging at:
+//      https://www.tauniverse.com/forum/member.php?u=24519
+//    Generally active for Escalation AI development from November through April but mostly on hiatus outside of those
+//    months.  However, I can try to update Default and SeaBattle AI profiles whenever informed of a new Escalation version
+//    release.
+//
+//
+//  Changes include:
+//
+//    - With previous version (v1.1) tuned for less reliance on cheating AI units, it played on the tamer side (especially
+//      when combined with some overlooked tuning errors).  This version offers a medium and hard level more responsive to
+//      cheat units.  It will scale up better on larger maps where version 1.1 forces would be stretched too thin.  Easy
+//      difficulty is still non-cheating and will smoother get its 50% resource handicapped economy out of economic ruin--
+//      it still needs plenty of time to do it but not as much as before.
+//
+//    - Early game phase tuned for Commander to avoid some building choices such as higher BuildTime Resource Generator that
+//      could excessively delay building of first factory.  Commander sooner shares home base construction tasks with other
+//      construction units promoting faster and smoother expansion.  A side effect of this improvement is Commander, having
+//      less duties, may earlier begin Repair Patrol.  This early game stage tuning feature requires Escalation Beta v9.0.0
+//      which has an embedded AI tuned Sidedata.tdf.
+//
+//    - Adjustments for Arm Bulwark and Core Immolator moving from tier 1 to tier 2.
+//
+//    - Adjustments for Arm Recon and Core Blaze moving from tier 3 to tier 2.
+//
+//    - Corrected tuning errors and shortcomings significantly affecting AI game-play challenge during easy and medium
+//      difficulty of version 1.1
+//
+//
+//  Previous version:
+//
+//    Version: 1.1
+//    Date: April 14, 2019      - Added new units introduced in Escalation Beta v6.3.1 through v8.9.0 and removed
+//                                decommissioned units
+//                              - Improved AI naval stall issues
+//                              - Builds team friendly units that are of limited use to AI but can provide useful shared
+//                                sight intel to any allied human players under fog-of-war game conditions
+//                              - Easy and Medium difficulty setting retuned for improved game-play under non-cheating
+//                                conditions compared to SeaBattle profile in Escalation Beta v8.8.0
+//                              - This initial version was derived from SeaBattle AI profile released by Wotan within Total
+//                                Annihilation: Escalation Beta v6.3.1
+//                              - Unit production ratios of primary ships recommended by Total Annihilation Universe forum
+//                                member and expert level player Race
+//
+//  =========================================================================================================================
+
+
+// Note: AI anomalies observed when following two lines have value less than 0.02
+Weight ARM 0.2
+Weight CORE 0.2
+
+
+plan easy
+
+//arm
+
+//cheating ai units
+Weight ARMCHEAT 0
+Weight ARMUWCHEAT 0
+
+//aircraft tech 1
+Weight ARMATLAS 0
+Weight ARMFIG 4
+Weight ARMPEEP 0
+Weight ARMTHUND 2
+
+//aircraft tech 2
+Weight ARMAWAC 1
+Weight ARMBRAWL 6
+Weight ARMHAWK 5
+Weight ARMLANCE 4
+Weight ARMMUAT 0
+Weight ARMPNIX 3
+
+//seaplanes
+Weight ARMSEAP 0
+Weight ARMSEHAK 0
+Weight ARMSFIG 0
+
+//hovercraft tech 1
+Weight ARMAH 2
+Weight ARMANAC 5
+Weight ARMLH 3
+Weight ARMMH 5
+Weight ARMSH 1
+Weight ARMTHOVR 0
+
+//hovercraft tech 2
+Weight ARMHARL 5
+Weight ARMHART 5
+Weight ARMHCAR 0.5
+Weight ARMHFLAK 2
+Weight ARMHJAM 2
+Weight ARMHSTUN 1
+Weight ARMHTANK 6
+
+//kbots tech 1
+Weight ARMFLEA 0
+Weight ARMHAM 5
+Weight ARMJETH 2
+Weight ARMPW 0
+Weight ARMROCK 4
+Weight ARMVADER 0
+Weight ARMWAR 5
+
+//kbots tech 2
+Weight ARMAABOT 2
+Weight ARMAMPH 2
+Weight ARMASER 2
+Weight ARMDECOM 1
+Weight ARMFARK 0
+Weight ARMFAST 0
+Weight ARMFIDO 6
+Weight ARMMARK 2
+Weight ARMMAV 5
+Weight ARMSNIPE 3
+Weight ARMSPID 0
+Weight ARMSPY 0
+Weight ARMZEUS 7
+
+//vehicles tech 1
+Weight ARMFAV 1
+Weight ARMFLASH 4
+Weight ARMJAV 4
+Weight ARMMLV 0
+Weight ARMSAM 2
+Weight ARMSTUMP 5
+
+//vehicles tech 2
+Weight ARMBULL 7
+Weight ARMCROC 7
+Weight ARMJAM 2
+Weight ARMLATNK 5
+Weight ARMMANNI 2
+Weight ARMMART 7
+Weight ARMMERL 7
+Weight ARMSCAB 0
+Weight ARMSEER 2
+Weight ARMSPOT 1
+Weight ARMYORK 2
+
+//ships tech 1
+Weight ARMFRIG 4
+Weight ARMPT 1
+Weight ARMROY 5
+Weight ARMSUB 5
+Weight ARMTSHIP 0
+
+//ships tech 2
+Weight ARMAAS 5
+Weight ARMBATS 5
+Weight ARMCARRY 2
+Weight ARMCRUS 7
+Weight ARMMSHIP 7
+Weight ARMSCRAM 2
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Weight ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMSSUB 0
+// Maintain healthy quantity of offensive submarines to consistently deal with submerged targets lessening occurrences of
+// surface ships stalling in Standby mode when unable to target nearest submerged enemy unit
+Weight ARMSUBK 7
+Weight ARMTSUB 0
+
+//buildings tech 1
+Weight ARMASP 0.5
+Weight ARMASP_UPGRADE 10
+Weight ARMDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMESTOR 2.5
+Weight ARMGEN 0.05
+Weight ARMGEO 10
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 2
+Weight ARMGUARD_UPGRADE 2
+Weight ARMHLT 4
+Weight ARMHLT_UPGRADE 4
+Weight ARMLLT 5
+Weight ARMMAKR 1
+// MEX weight customized per difficulty level for expediting first factory
+// Weight ARMMEX 6
+Weight ARMMEX 4
+Weight ARMMSTOR 3
+Weight ARMRAD 2
+Weight ARMRL 4
+Weight ARMSOLAR 4
+Weight ARMWIN 0
+
+//buildings tech 2
+Weight ARMAMB 3
+Weight ARMAMD 0
+Weight ARMANNI 2
+Weight ARMARAD 2
+Weight ARMARL 3
+Weight ARMBRTHA 1
+Weight ARMBRTHA_UPGRADE 0
+Weight ARMEMP 0
+Weight ARMFIELD 0.5
+Weight ARMFLAK 3
+Weight ARMFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMFUS 2
+Weight ARMFUS_UPGRADE 10
+Weight ARMJAMMER 2
+Weight ARMMMKR 0.5
+Weight ARMMOHO 8
+Weight ARMORION 2
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMSES 1.5
+Weight ARMSMS 3
+Weight ARMSTUN 2
+
+//landmines
+Weight ARMMINE1 0
+Weight ARMMINE2 0
+Weight ARMMINE3 0
+Weight ARMMINE4 0
+Weight ARMMINE5 0
+Weight ARMMINE6 0
+Weight ARMMINE7 0
+
+//uw buildings tech 1
+Weight ARMFDRAG 0
+// Weight ARMFGUARD 3
+Weight ARMFGUARD 4
+Weight ARMFHLT 5
+// Weight ARMFLLT 5
+Weight ARMFLLT 7
+Weight ARMFMKR 1
+// Weight ARMFRT 4
+Weight ARMFRT 5
+Weight ARMSONAR 6
+// TIDE weight customized per difficulty level for expediting first factory
+// Weight ARMTIDE 7 > 5 > 3 > 4
+Weight ARMTIDE 5
+Weight ARMTL 5
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight ARMUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight ARMUWES 5
+// UWMEX weight customized per difficulty level for expediting first factory
+// Weight ARMUWMEX 6 > 4
+Weight ARMUWMEX 5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+// Weight ARMUWMFUS 1.75 > 1.5
+Weight ARMUWMFUS 1.75
+// Weight ARMUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight ARMUWMS 6
+
+//uw buildings tech 2
+Weight ARMASON 6.5
+Weight ARMATL 6.5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMUWFUS 6
+Weight ARMUWMMM 0.5
+Weight ARMUWMOHO 8
+
+//factories tech 1
+Weight ARMAP 0
+// Weight ARMFHP 5
+Weight ARMFHP 6
+Weight ARMHP 0
+Weight ARMLAB 0.5
+Weight ARMPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage more detrimental than settling for a single Floating Hovercraft Plant as first factory.  Lean
+// towards shipyard with a mindfully set limit to avoid multiples from becoming a big problem.
+Weight ARMSY 10
+Weight ARMVP 0
+
+//factories tech 2
+Weight ARMAAP 0
+Weight ARMAHP 0
+Weight ARMALAB 1
+Weight ARMAPLAT 1
+Weight ARMASY 3
+Weight ARMAVP 0
+Weight ARMFAHP 2
+
+//factories tech 3+
+Weight ARMEHP 0.4
+Weight ARMELAB 0
+Weight ARMEPLAT 0.2
+Weight ARMESY 0.8
+Weight ARMFAB 0
+Weight ARMFEHP 0.4
+Weight ARMGANT 0
+
+//aircraft tech 3+
+Weight ARMNOMAD 0
+Weight ARMNOMAD_FACT 0
+Weight ARMNOMAD_SD 0
+Weight ARMSBOMBER 1
+Weight ARMSFOIL 3
+Weight ARMSR71 0
+Weight ARMWING 0.5
+
+//hovercraft tech 3+
+Weight ARMCHARGER 0
+Weight ARMHBATS 1
+Weight ARMHCRUS 0.05
+Weight ARMHROY 5
+// Angler XL (Super Hover Carrier) restrict until official release
+Weight ARMHSCAR 0
+
+//kbots tech 3+
+Weight ARMASPID 0
+Weight ARMCERB 6
+Weight ARMMECH 3
+Weight ARMNOVA 5
+Weight ARMVERMIN 0
+
+//vehicles tech 3+
+Weight ARMAFAV 0.05
+Weight ARMASAM 2
+Weight ARMLGTNK 6
+Weight ARMMBT 7
+Weight ARMMCV 1
+Weight ARMSIEGE 3
+
+//ships tech 3+
+Weight ARMBSUB 2
+Weight ARMDREAD 2
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMNSUB 0
+Weight ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Weight ARMSCAR 1
+
+//buildings tech 3 and misc
+Weight ARMFORGE 0.05
+Weight ARMGATE 0
+Weight ARMMAS 9
+Weight ARMOMNI 2
+Weight ARMSBERTHA 0.1
+Weight ARMSFUS 1.5
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core problem resolved.
+Weight ARMSFUS_UPGRADE 0
+Weight ARMSHGEN 0.5
+Weight ARMSILO 0
+Weight ARMSMB 3.5
+Weight ARMTARG 0
+Weight ARMTECH 4
+Weight ARMVULC 0.5
+
+//construction units
+Weight ARMACA 8
+Weight ARMACH 8
+Weight ARMACK 8
+Weight ARMACSA 8
+Weight ARMACSUB 8
+Weight ARMACV 8
+Weight ARMCA 6
+Weight ARMCH 6
+Weight ARMCK 6
+Weight ARMCS 6
+Weight ARMCSA 6
+Weight ARMCV 6
+Weight ARMECA 10
+Weight ARMECH 10
+Weight ARMECK 10
+Weight ARMECS 10
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Weight ARMECSA 0
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 0
+Limit ARMUWCHEAT 0
+
+//aircraft tech 1
+Limit ARMATLAS 0
+Limit ARMFIG 15
+Limit ARMPEEP 0
+Limit ARMTHUND 5
+
+//aircraft tech 2
+Limit ARMAWAC 3
+Limit ARMBRAWL 15
+Limit ARMHAWK 20
+Limit ARMLANCE 10
+Limit ARMMUAT 0
+Limit ARMPNIX 5
+
+//seaplanes
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+
+//hovercraft tech 1
+Limit ARMAH 3
+Limit ARMANAC 15
+Limit ARMLH 3
+Limit ARMMH 9
+Limit ARMSH 3
+Limit ARMTHOVR 0
+
+//hovercraft tech 2
+Limit ARMHARL 5
+Limit ARMHART 5
+// ARMHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit ARMHCAR 1
+Limit ARMHFLAK 2
+Limit ARMHJAM 2
+Limit ARMHSTUN 2
+Limit ARMHTANK 10
+
+//kbots tech 1
+Limit ARMFLEA 0
+Limit ARMHAM 0
+Limit ARMJETH 0
+Limit ARMPW 0
+Limit ARMROCK 0
+Limit ARMVADER 0
+Limit ARMWAR 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: ARMAMPH (ineffective amphibious deployment by AI)
+// Unit(s) having amphibious MovementClass: ARMDECOM (COULD traverse water during 20181023 test)
+Limit ARMAABOT 0
+Limit ARMAMPH 0
+Limit ARMASER 0
+Limit ARMDECOM 5
+Limit ARMFARK 0
+Limit ARMFAST 0
+Limit ARMFIDO 0
+Limit ARMMARK 0
+Limit ARMMAV 0
+Limit ARMSNIPE 0
+Limit ARMSPID 0
+Limit ARMSPY 0
+Limit ARMZEUS 0
+
+//vehicles tech 1
+Limit ARMFAV 0
+Limit ARMFLASH 0
+Limit ARMJAV 0
+Limit ARMMLV 0
+Limit ARMSAM 0
+Limit ARMSTUMP 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: ARMCROC (ineffective amphibious deployment by AI)
+// Unit(s) having MaxWaterDepth=255: ARMSPOT (but could NOT traverse water during 20181023 test)
+Limit ARMBULL 0
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 0
+Limit ARMMANNI 0
+Limit ARMMART 0
+Limit ARMMERL 0
+Limit ARMSCAB 0
+Limit ARMSEER 0
+Limit ARMSPOT 0
+Limit ARMYORK 0
+
+//ships tech 1
+Limit ARMFRIG 10
+Limit ARMPT 5
+Limit ARMROY 8
+Limit ARMSUB 12
+Limit ARMTSHIP 0
+
+//ships tech 2
+Limit ARMAAS 7
+Limit ARMBATS 4
+Limit ARMCARRY 0
+Limit ARMCRUS 7
+Limit ARMMSHIP 5
+Limit ARMSCRAM 0
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Limit ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMSSUB 0
+Limit ARMSUBK 14
+Limit ARMTSUB 0
+
+//buildings tech 1
+Limit ARMASP 3
+Limit ARMASP_UPGRADE 3
+Limit ARMDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMESTOR 2
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit ARMGEN 0
+Limit ARMGEO 2
+Limit ARMGEO_UPGRADE 2
+Limit ARMGUARD 2
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 3
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 3
+Limit ARMMAKR 0
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit ARMMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMMSTOR 0
+Limit ARMRAD 2
+Limit ARMRL 3
+Limit ARMSOLAR 3
+Limit ARMWIN 0
+
+//buildings tech 2
+Limit ARMAMB 3
+Limit ARMAMD 0
+Limit ARMANNI 3
+Limit ARMARAD 2
+Limit ARMARL 4
+Limit ARMBRTHA 0
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMEMP 0
+Limit ARMFIELD 0
+Limit ARMFLAK 3
+Limit ARMFORT 0
+Limit ARMFUS 1
+Limit ARMFUS_UPGRADE 1
+Limit ARMJAMMER 2
+Limit ARMMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit ARMMOHO 5
+Limit ARMORION 3
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMSES 0
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMSMS 0
+Limit ARMSTUN 2
+
+//landmines
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+//uw buildings tech 1
+Limit ARMFDRAG 0
+// Limit ARMFGUARD 4
+Limit ARMFGUARD 20
+// Limit ARMFHLT 4
+Limit ARMFHLT 20
+// Limit ARMFLLT 3
+Limit ARMFLLT 9
+Limit ARMFMKR 0
+// Limit ARMFRT 10
+Limit ARMFRT 20
+Limit ARMSONAR 5
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+// Limit ARMTIDE 15
+Limit ARMTIDE 20
+// Limit ARMTL 5
+Limit ARMTL 10
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMUWES 18
+// Limit ARMUWMEX 7
+// Following line tuned for non-cheating resource handicap game conditions
+Limit ARMUWMEX 25
+// Limit ARMUWMFUS 10 > 15
+Limit ARMUWMFUS 20
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMUWMS 5
+
+//uw buildings tech 2
+Limit ARMASON 5
+// Limit ARMATL 5
+Limit ARMATL 15
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit ARMUWFUS 13
+Limit ARMUWMMM 0
+// Limit ARMUWMOHO 15
+// Following line tuned for non-cheating resource handicap game conditions
+Limit ARMUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit ARMAP 0
+Limit ARMFHP 1
+Limit ARMHP 0
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit ARMLAB 1
+Limit ARMPLAT 1
+Limit ARMSY 1
+Limit ARMVP 0
+
+//factories tech 2
+Limit ARMAAP 0
+Limit ARMAHP 0
+Limit ARMALAB 1
+Limit ARMAPLAT 1
+Limit ARMASY 2
+Limit ARMAVP 0
+Limit ARMFAHP 1
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit ARMEHP 1
+Limit ARMELAB 0
+Limit ARMEPLAT 1
+Limit ARMESY 1
+Limit ARMFAB 0
+Limit ARMFEHP 1
+Limit ARMGANT 0
+
+//aircraft tech 3+
+Limit ARMNOMAD 0
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMSBOMBER 2
+Limit ARMSFOIL 7
+Limit ARMSR71 0
+Limit ARMWING 2
+
+//hovercraft tech 3+
+Limit ARMCHARGER 0
+Limit ARMHBATS 5
+Limit ARMHCRUS 1
+// ARMHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit ARMHROY 15
+// Angler XL (Super Hover Carrier) restrict until official release
+Limit ARMHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMCERB (but could NOT traverse water during 20181023 test)
+//                                   ARMMECH (COULD traverse water during 20181023 test)
+Limit ARMASPID 0
+Limit ARMCERB 0
+Limit ARMMECH 10
+Limit ARMNOVA 1
+Limit ARMVERMIN 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMMCV (but could NOT traverse water during 20181023 test)
+Limit ARMAFAV 0
+Limit ARMASAM 0
+Limit ARMLGTNK 0
+Limit ARMMBT 0
+Limit ARMMCV 0
+Limit ARMSIEGE 0
+
+//ships tech 3+
+Limit ARMBSUB 1
+Limit ARMDREAD 1
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMNSUB 0
+Limit ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Limit ARMSCAR 1
+
+//buildings tech 3 and misc
+Limit ARMFORGE 0
+Limit ARMGATE 0
+Limit ARMMAS 10
+Limit ARMOMNI 0
+Limit ARMSBERTHA 0
+Limit ARMSFUS 1
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core issue resolved.
+Limit ARMSFUS_UPGRADE 0
+Limit ARMSHGEN 0
+Limit ARMSILO 0
+Limit ARMSMB 1
+Limit ARMTARG 0
+Limit ARMTECH 0
+Limit ARMVULC 0
+
+//construction units
+Limit ARMACA 0
+Limit ARMACH 2
+Limit ARMACK 1
+Limit ARMACSA 4
+Limit ARMACSUB 4
+Limit ARMACV 0
+Limit ARMCA 0
+Limit ARMCH 3
+Limit ARMCK 1
+Limit ARMCS 3
+Limit ARMCSA 4
+Limit ARMCV 0
+Limit ARMECA 0
+Limit ARMECH 2
+Limit ARMECK 0
+Limit ARMECS 2
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Limit ARMECSA 0
+Limit ARMECV 0
+
+//core
+
+//cheating ai units
+Weight CORCHEAT 0
+Weight CORUWCHEAT 0
+
+//aircraft tech 1
+Weight CORFINK 0
+Weight CORSHAD 2
+Weight CORVALK 0
+Weight CORVENG 4
+
+//aircraft tech 2
+Weight CORAPE 6
+Weight CORAWAC 1
+Weight CORHURC 3
+Weight CORMUAT 0
+Weight CORTITAN 4
+Weight CORVAMP 5
+
+//seaplanes
+Weight CORHUNT 0
+Weight CORSEAP 0
+Weight CORSFIG 0
+
+//hovercraft tech 1
+Weight CORAH 2
+Weight CORFH 3
+Weight CORMH 5
+Weight CORSH 1
+Weight CORSNAP 5
+Weight CORTHOVR 0
+
+//hovercraft tech 2
+Weight CORHARL 5
+Weight CORHART 5
+Weight CORHCAR 0.5
+Weight CORHFLAK 2
+Weight CORHJAM 2
+Weight CORHLAS 4
+Weight CORHTANK 6
+
+//kbots tech 1
+Weight CORAK 0
+Weight CORCRASH 2
+Weight CORMAK 5
+Weight CORROACH 0
+Weight CORSC 0
+Weight CORSTORM 4
+Weight CORTHUD 5
+
+//kbots tech 2
+Weight CORAABOT 2
+Weight CORAMPH 5
+Weight CORCAN 3
+Weight CORDECOM 1
+Weight CORFAST 0
+Weight CORHRK 7
+Weight CORMORT 7
+Weight CORNECRO 0
+Weight CORPYRO 4
+Weight CORSPEC 2
+Weight CORSPY 0
+Weight CORSUMO 5
+Weight CORVOYR 2
+
+//vehicles tech 1
+Weight CORFAV 1
+Weight CORGATOR 2
+Weight CORLEVLR 5
+Weight CORMIST 2
+Weight CORMLV 0
+Weight CORRAID 4
+
+//vehicles tech 2
+Weight CORETER 2
+Weight CORGOL 6
+Weight CORMABM 0
+Weight CORMANT 3
+Weight CORMART 7
+Weight CORMPAD 1
+Weight CORREAP 3
+Weight CORSEAL 7
+Weight CORSENT 2
+Weight CORVRAD 2
+Weight CORVROC 7
+
+//ships tech 1
+Weight CORFRIG 4
+Weight CORPT 1
+Weight CORROY 5
+Weight CORSUB 5
+Weight CORTSHIP 0
+
+//ships tech 2
+Weight CORARCH 5
+Weight CORBATS 5
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORBURN 0
+Weight CORCARRY 2
+Weight CORCRUS 7
+Weight CORMSHIP 7
+Weight CORSHARK 7
+Weight CORSJAM 2
+
+//buildings tech 1
+Weight CORASP 0.5
+Weight CORASP_UPGRADE 10
+Weight CORDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// CORESTOR weighting may appear high, however, it was gradually increased during playtesting until Core's overall energy
+// storage during early/mid-game stages could sufficiently keep pace with Arm's overall energy storage.  Arm's ability to
+// build ARMUWES is a significant factor.
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORESTOR 8.5
+Weight CORESTOR 2.5
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORGEN 6
+Weight CORGEN 0.05
+Weight CORGEO 10
+Weight CORGEO_UPGRADE 10
+Weight CORHLT 4
+Weight CORHLT_UPGRADE 4
+Weight CORLLT 5
+Weight CORMAKR 1
+// MEX weight customized per difficulty level for expediting first factory
+// Weight CORMEX 6
+Weight CORMEX 4
+Weight CORMSTOR 3
+Weight CORPUN 2
+Weight CORPUN_UPGRADE 2
+Weight CORRAD 2
+Weight CORRL 4
+Weight CORSOLAR 4
+Weight CORWIN 0
+
+//buildings tech 2
+Weight CORARAD 2
+Weight CORDOOM 2
+Weight CORFIELD 0.5
+Weight CORFLAK 3
+Weight CORFMD 0
+Weight CORFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight CORFUS 2
+Weight CORFUS_UPGRADE 10
+Weight CORINT 1
+Weight CORINT_UPGRADE 0
+Weight CORJAMMER 2
+Weight CORMMKR 0.5
+Weight CORMOHO 8
+Weight CORPLAS 3
+// Aim for some early/mid-game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORSES 2.5
+Weight CORSES 1.5
+Weight CORSMS 3
+Weight CORSPUN 2
+Weight CORTOAST 3
+Weight CORTRON 0
+Weight CORVIPE 2
+
+//landmines
+Weight CORMINE1 0
+Weight CORMINE2 0
+Weight CORMINE3 0
+Weight CORMINE4 0
+Weight CORMINE5 0
+Weight CORMINE6 0
+Weight CORMINE7 0
+
+//uw buildings tech 1
+Weight CORFDRAG 0
+Weight CORFHLT 5
+Weight CORFLLT 7
+Weight CORFMKR 1
+Weight CORFPUN 4
+Weight CORFRT 5
+Weight CORSONAR 6
+// TIDE weight customized per difficulty level for expediting first factory
+// Weight CORTIDE 7 > 5 > 3 > 4
+Weight CORTIDE 5
+Weight CORTL 5
+// Aim for some early/mid-game energy storage buffer safety margin
+// Weight CORUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight CORUWES 5
+// UWMEX weight customized per difficulty level for expediting first factory
+// Weight CORUWMEX 6 > 4
+Weight CORUWMEX 5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+// Weight CORUWMFUS 1.75 > 1.5
+Weight CORUWMFUS 1.75
+// Weight CORUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight CORUWMS 6
+
+//uw buildings tech 2
+Weight CORASON 6.5
+Weight CORATL 6.5
+Weight CORUWFUS 6
+Weight CORUWMMM 0.5
+Weight CORUWMOHO 8
+
+//factories tech 1
+Weight CORAP 0
+// Weight CORFHP 5
+Weight CORFHP 6
+Weight CORHP 0
+Weight CORLAB 0.5
+Weight CORPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage more detrimental than settling for a single Floating Hovercraft Plant as first factory.  Lean
+// towards shipyard with a mindfully set limit to avoid multiples from becoming a big problem.
+Weight CORSY 10
+Weight CORVP 0
+
+//factories tech 2
+Weight CORAAP 0
+Weight CORAHP 0
+Weight CORALAB 1
+Weight CORAPLAT 1
+Weight CORASY 3
+Weight CORAVP 0
+Weight CORFAHP 2
+
+//factories tech 3+
+Weight COREHP 0.4
+Weight COREPLAT 0.2
+Weight CORESY 0.8
+Weight COREVP 0
+Weight CORFAB 0
+Weight CORFEHP 0.4
+Weight CORGANT 0
+
+//aircraft tech 3+
+Weight CORBULK 0
+Weight CORECLIPSE 0.75
+Weight CORSHOCK 1
+Weight CORSKYNET 3.5
+Weight CORVIND 0.5
+
+//hovercraft tech 3+
+Weight CORCHARGER 0
+Weight CORHBATS 1
+Weight CORHCRUS 0.05
+Weight CORHROY 5
+// Tommy XL (Super Hover Carrier) restrict until official release
+Weight CORHSCAR 0
+
+//kbots tech 3+
+Weight CORJUGG 4
+Weight CORKROG 4
+Weight CORSPID 0
+Weight CORTAC 5
+Weight CORTALOS 6
+
+//vehicles tech 3+
+Weight CORAFAV 0.05
+Weight CORAMIST 2
+Weight CORBEH 7
+Weight CORLSTNK 7
+Weight CORMCV 3
+Weight CORPOUND 0
+
+//ships tech 3+
+Weight CORBSUB 2
+Weight CORDREAD 2
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Weight CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORSSUB 0
+Weight CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Weight CORBUZZ 0.5
+Weight CORGATE 0
+Weight CORMAS 9
+Weight CORNOVA 0.1
+Weight COROMNI 2
+Weight CORSFUS 1.5
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until problem resolved.
+Weight CORSFUS_UPGRADE 0
+Weight CORSHGEN 0.5
+Weight CORSILO 0
+Weight CORSMB 3.5
+Weight CORTARG 0
+Weight CORTECH 4
+Weight CORVAULT 0.05
+
+//construction units
+Weight CORACA 8
+Weight CORACH 8
+Weight CORACK 8
+Weight CORACSA 8
+Weight CORACSUB 8
+Weight CORACV 8
+Weight CORCA 6
+Weight CORCH 6
+Weight CORCK 6
+Weight CORCS 6
+Weight CORCSA 6
+Weight CORCV 6
+Weight CORECA 10
+Weight CORECH 10
+Weight CORECK 10
+Weight CORECS 10
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Weight CORECSA 0
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 0
+Limit CORUWCHEAT 0
+
+//aircraft tech 1
+Limit CORFINK 0
+Limit CORSHAD 5
+Limit CORVALK 0
+Limit CORVENG 15
+
+//aircraft tech 2
+Limit CORAPE 15
+Limit CORAWAC 3
+Limit CORHURC 5
+Limit CORMUAT 0
+Limit CORTITAN 10
+Limit CORVAMP 20
+
+//seaplanes
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+
+//hovercraft tech 1
+Limit CORAH 3
+Limit CORFH 3
+Limit CORMH 9
+Limit CORSH 3
+Limit CORSNAP 15
+Limit CORTHOVR 0
+
+//hovercraft tech 2
+Limit CORHARL 6
+Limit CORHART 4
+// CORHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit CORHCAR 1
+Limit CORHFLAK 2
+Limit CORHJAM 2
+Limit CORHLAS 3
+Limit CORHTANK 10
+
+//kbots tech 1
+Limit CORAK 0
+Limit CORCRASH 0
+Limit CORMAK 0
+Limit CORROACH 0
+Limit CORSC 0
+Limit CORSTORM 0
+Limit CORTHUD 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: CORAMPH (ineffective amphibious deployment by AI)
+// Unit(s) tested to be amphibious: CORDECOM (COULD traverse water during 20181023 test)
+Limit CORAABOT 0
+Limit CORAMPH 0
+Limit CORCAN 0
+Limit CORDECOM 5
+Limit CORFAST 0
+Limit CORHRK 0
+Limit CORMORT 0
+Limit CORNECRO 0
+Limit CORPYRO 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 0
+Limit CORVOYR 0
+
+//vehicles tech 1
+Limit CORFAV 0
+Limit CORGATOR 0
+Limit CORLEVLR 0
+Limit CORMIST 0
+Limit CORMLV 0
+Limit CORRAID 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: CORSEAL (ineffective amphibious deployment by AI)
+Limit CORETER 0
+Limit CORGOL 0
+Limit CORMABM 0
+Limit CORMANT 0
+Limit CORMART 0
+Limit CORMPAD 0
+Limit CORREAP 0
+Limit CORSEAL 0
+Limit CORSENT 0
+Limit CORVRAD 0
+Limit CORVROC 0
+
+//ships tech 1
+Limit CORFRIG 10
+Limit CORPT 5
+Limit CORROY 8
+Limit CORSUB 12
+Limit CORTSHIP 0
+
+//ships tech 2
+Limit CORARCH 7
+Limit CORBATS 4
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORBURN 0
+Limit CORCARRY 0
+Limit CORCRUS 7
+Limit CORMSHIP 5
+Limit CORSHARK 14
+Limit CORSJAM 0
+
+//buildings tech 1
+Limit CORASP 3
+Limit CORASP_UPGRADE 3
+Limit CORDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORESTOR 2
+// Limit CORESTOR 10
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit CORGEN 0
+Limit CORGEO 2
+Limit CORGEO_UPGRADE 2
+Limit CORHLT 3
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 3
+Limit CORMAKR 0
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit CORMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORMSTOR 0
+Limit CORPUN 2
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 2
+Limit CORRL 3
+Limit CORSOLAR 3
+Limit CORWIN 0
+
+//buildings tech 2
+Limit CORARAD 2
+Limit CORDOOM 3
+Limit CORFIELD 0
+Limit CORFLAK 3
+Limit CORFMD 0
+Limit CORFORT 0
+// Majority of energy powerplant generation PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Changed amount to match Arm's 1 FUS + 8 UWFUS
+// 2 UWFUS are accounted for by Core's extra UWMFUS, so: 1 + 8 - 2 = 7
+// If map has insufficient land mass to support this many FUS then it will be advantageous to Arm
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Limit CORFUS 7
+Limit CORFUS 1
+Limit CORFUS_UPGRADE 1
+Limit CORINT 0
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER 2
+Limit CORMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit CORMOHO 5
+Limit CORPLAS 4
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Limit CORSES 2
+Limit CORSES 0
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORSMS 0
+Limit CORSPUN 2
+// Following unit adjusted for SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Limit CORTOAST 3
+Limit CORTOAST 5
+Limit CORTRON 0
+Limit CORVIPE 3
+
+//landmines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+//uw buildings tech 1
+Limit CORFDRAG 0
+Limit CORFHLT 20
+Limit CORFLLT 9
+Limit CORFMKR 0
+Limit CORFPUN 20
+Limit CORFRT 20
+Limit CORSONAR 5
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+Limit CORTIDE 20
+Limit CORTL 10
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit CORUWES 18
+// Limit CORUWMEX 7
+// Following line tuned for non-cheating resource handicap game conditions
+Limit CORUWMEX 25
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Added amount equivalent to 2 UWFUS (for this Escalation version: 1000 / 75 * 2 = +27)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORUWMFUS 20
+// Limit CORUWMFUS 37 > 10
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORUWMS 5
+
+//uw buildings tech 2
+Limit CORASON 5
+Limit CORATL 15
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit CORUWFUS 13
+Limit CORUWMMM 0
+// Limit CORUWMOHO 15
+// Following line tuned for non-cheating resource handicap game conditions
+Limit CORUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit CORAP 0
+Limit CORFHP 1
+Limit CORHP 0
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit CORLAB 1
+Limit CORPLAT 1
+Limit CORSY 1
+Limit CORVP 0
+
+//factories tech 2
+Limit CORAAP 0
+Limit CORAHP 0
+Limit CORALAB 1
+Limit CORAPLAT 1
+Limit CORASY 2
+Limit CORAVP 0
+Limit CORFAHP 1
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit COREHP 1
+Limit COREPLAT 1
+Limit CORESY 1
+Limit COREVP 0
+Limit CORFAB 0
+Limit CORFEHP 1
+Limit CORGANT 0
+
+//aircraft tech 3+
+Limit CORBULK 0
+Limit CORECLIPSE 1
+Limit CORSHOCK 2
+Limit CORSKYNET 3
+Limit CORVIND 1
+
+//hovercraft tech 3+
+Limit CORCHARGER 0
+Limit CORHBATS 5
+Limit CORHCRUS 1
+// CORHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit CORHROY 15
+// Tommy XL (Super Hover Carrier) restrict until official release
+Limit CORHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: CORKROG (COULD traverse water during 20181023 test)
+Limit CORJUGG 0
+Limit CORKROG 10
+Limit CORSPID 0
+Limit CORTAC 1
+Limit CORTALOS 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: CORMCV (but could NOT traverse water during 20181023 test)
+Limit CORAFAV 0
+Limit CORAMIST 0
+Limit CORBEH 0
+Limit CORLSTNK 0
+Limit CORMCV 0
+Limit CORPOUND 0
+
+//ships tech 3+
+Limit CORBSUB 1
+Limit CORDREAD 1
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Limit CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORSSUB 0
+Limit CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Limit CORBUZZ 0
+Limit CORGATE 0
+Limit CORMAS 10
+Limit CORNOVA 0
+Limit COROMNI 0
+Limit CORSFUS 1
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until issue resolved.
+Limit CORSFUS_UPGRADE 0
+Limit CORSHGEN 0
+Limit CORSILO 0
+Limit CORSMB 1
+Limit CORTARG 0
+Limit CORTECH 0
+Limit CORVAULT 0
+
+//construction units
+Limit CORACA 0
+Limit CORACH 2
+Limit CORACK 1
+Limit CORACSA 4
+Limit CORACSUB 4
+Limit CORACV 0
+Limit CORCA 0
+Limit CORCH 3
+Limit CORCK 1
+Limit CORCS 3
+Limit CORCSA 4
+Limit CORCV 0
+Limit CORECA 0
+Limit CORECH 2
+Limit CORECK 0
+Limit CORECS 2
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Limit CORECSA 0
+Limit CORECV 0
+
+
+Plan medium
+
+//arm
+
+//cheating ai units
+// CHEAT/UWCHEAT weight customized per difficulty level relative to MEX/UWMEX weight for expediting first factory
+// Weight ARMCHEAT 10 > 6 > 4
+Weight ARMCHEAT 5
+// Weight ARMUWCHEAT 10 > 6 > 5 > 4 > 5
+Weight ARMUWCHEAT 6
+
+//aircraft tech 1
+Weight ARMATLAS 0
+Weight ARMFIG 4
+Weight ARMPEEP 0
+Weight ARMTHUND 2
+
+//aircraft tech 2
+Weight ARMAWAC 1
+Weight ARMBRAWL 6
+Weight ARMHAWK 5
+Weight ARMLANCE 4
+Weight ARMMUAT 0
+Weight ARMPNIX 3
+
+//seaplanes
+Weight ARMSEAP 0
+Weight ARMSEHAK 0
+Weight ARMSFIG 0
+
+//hovercraft tech 1
+Weight ARMAH 2
+Weight ARMANAC 5
+Weight ARMLH 3
+Weight ARMMH 5
+Weight ARMSH 1
+Weight ARMTHOVR 0
+
+//hovercraft tech 2
+Weight ARMHARL 5
+Weight ARMHART 5
+Weight ARMHCAR 0.5
+Weight ARMHFLAK 2
+Weight ARMHJAM 2
+Weight ARMHSTUN 1
+Weight ARMHTANK 6
+
+//kbots tech 1
+Weight ARMFLEA 0
+Weight ARMHAM 5
+Weight ARMJETH 2
+Weight ARMPW 0
+Weight ARMROCK 4
+Weight ARMVADER 0
+Weight ARMWAR 5
+
+//kbots tech 2
+Weight ARMAABOT 2
+Weight ARMAMPH 2
+Weight ARMASER 2
+Weight ARMDECOM 1
+Weight ARMFARK 0
+Weight ARMFAST 0
+Weight ARMFIDO 6
+Weight ARMMARK 2
+Weight ARMMAV 5
+Weight ARMSNIPE 3
+Weight ARMSPID 0
+Weight ARMSPY 0
+Weight ARMZEUS 7
+
+//vehicles tech 1
+Weight ARMFAV 1
+Weight ARMFLASH 4
+Weight ARMJAV 4
+Weight ARMMLV 0
+Weight ARMSAM 2
+Weight ARMSTUMP 5
+
+//vehicles tech 2
+Weight ARMBULL 7
+Weight ARMCROC 7
+Weight ARMJAM 2
+Weight ARMLATNK 5
+Weight ARMMANNI 2
+Weight ARMMART 7
+Weight ARMMERL 7
+Weight ARMSCAB 0
+Weight ARMSEER 2
+Weight ARMSPOT 1
+Weight ARMYORK 2
+
+//ships tech 1
+Weight ARMFRIG 4
+Weight ARMPT 1
+Weight ARMROY 5
+Weight ARMSUB 5
+Weight ARMTSHIP 0
+
+//ships tech 2
+Weight ARMAAS 5
+Weight ARMBATS 5
+Weight ARMCARRY 2
+Weight ARMCRUS 7
+Weight ARMMSHIP 7
+Weight ARMSCRAM 2
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Weight ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMSSUB 0
+// Maintain healthy quantity of offensive submarines to consistently deal with submerged targets lessening occurrences of
+// surface ships stalling in Standby mode when unable to target nearest submerged enemy unit
+Weight ARMSUBK 7
+Weight ARMTSUB 0
+
+//buildings tech 1
+Weight ARMASP 0.5
+Weight ARMASP_UPGRADE 10
+Weight ARMDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMESTOR 2.5
+Weight ARMGEN 0.05
+Weight ARMGEO 10
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 2
+Weight ARMGUARD_UPGRADE 2
+Weight ARMHLT 4
+Weight ARMHLT_UPGRADE 4
+Weight ARMLLT 5
+Weight ARMMAKR 1
+// MEX weight customized per difficulty level for expediting first factory
+// Weight ARMMEX 6
+Weight ARMMEX 4
+Weight ARMMSTOR 3
+Weight ARMRAD 2
+Weight ARMRL 4
+Weight ARMSOLAR 4
+Weight ARMWIN 0
+
+//buildings tech 2
+Weight ARMAMB 3
+Weight ARMAMD 0
+Weight ARMANNI 2
+Weight ARMARAD 2
+Weight ARMARL 3
+Weight ARMBRTHA 1
+Weight ARMBRTHA_UPGRADE 0
+Weight ARMEMP 0
+Weight ARMFIELD 0.5
+Weight ARMFLAK 3
+Weight ARMFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMFUS 2
+Weight ARMFUS_UPGRADE 10
+Weight ARMJAMMER 2
+Weight ARMMMKR 0.5
+Weight ARMMOHO 8
+Weight ARMORION 2
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMSES 1.5
+Weight ARMSMS 3
+Weight ARMSTUN 2
+
+//landmines
+Weight ARMMINE1 0
+Weight ARMMINE2 0
+Weight ARMMINE3 0
+Weight ARMMINE4 0
+Weight ARMMINE5 0
+Weight ARMMINE6 0
+Weight ARMMINE7 0
+
+//uw buildings tech 1
+Weight ARMFDRAG 0
+Weight ARMFGUARD 5
+Weight ARMFHLT 6
+Weight ARMFLLT 7
+Weight ARMFMKR 1
+Weight ARMFRT 6
+Weight ARMSONAR 7
+// TIDE weight customized per difficulty level for expediting first factory
+// Weight ARMTIDE 7 > 4.5
+Weight ARMTIDE 5
+Weight ARMTL 6
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight ARMUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight ARMUWES 5
+// UWMEX weight customized per difficulty level for expediting first factory
+// Weight ARMUWMEX 6 > 5 > 4
+Weight ARMUWMEX 5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+// Weight ARMUWMFUS 1.75 > 1.5
+Weight ARMUWMFUS 1.75
+// Weight ARMUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight ARMUWMS 6
+
+//uw buildings tech 2
+Weight ARMASON 7.5
+Weight ARMATL 7.5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMUWFUS 6
+Weight ARMUWMMM 0.5
+Weight ARMUWMOHO 8
+
+//factories tech 1
+Weight ARMAP 0
+// Weight ARMFHP 5
+Weight ARMFHP 6
+Weight ARMHP 3
+Weight ARMLAB 0.5
+Weight ARMPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage more detrimental than settling for a single Floating Hovercraft Plant as first factory.  Lean
+// towards shipyard with a mindfully set limit to avoid multiples from becoming a big problem.
+Weight ARMSY 10
+Weight ARMVP 0
+
+//factories tech 2
+Weight ARMAAP 0
+Weight ARMAHP 0
+Weight ARMALAB 1
+Weight ARMAPLAT 1
+Weight ARMASY 3
+Weight ARMAVP 0
+Weight ARMFAHP 2
+
+//factories tech 3+
+Weight ARMEHP 0.4
+Weight ARMELAB 0
+Weight ARMEPLAT 0.2
+Weight ARMESY 0.8
+Weight ARMFAB 0
+Weight ARMFEHP 0.4
+Weight ARMGANT 0
+
+//aircraft tech 3+
+Weight ARMNOMAD 0
+Weight ARMNOMAD_FACT 0
+Weight ARMNOMAD_SD 0
+Weight ARMSBOMBER 1
+Weight ARMSFOIL 3
+Weight ARMSR71 0
+Weight ARMWING 0.5
+
+//hovercraft tech 3+
+Weight ARMCHARGER 0
+Weight ARMHBATS 1
+Weight ARMHCRUS 0.05
+Weight ARMHROY 5
+// Angler XL (Super Hover Carrier) restrict until official release
+Weight ARMHSCAR 0
+
+//kbots tech 3+
+Weight ARMASPID 0
+Weight ARMCERB 6
+Weight ARMMECH 3
+Weight ARMNOVA 5
+Weight ARMVERMIN 0
+
+//vehicles tech 3+
+Weight ARMAFAV 0.05
+Weight ARMASAM 2
+Weight ARMLGTNK 6
+Weight ARMMBT 7
+Weight ARMMCV 1
+Weight ARMSIEGE 3
+
+//ships tech 3+
+Weight ARMBSUB 2
+Weight ARMDREAD 2
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMNSUB 0
+Weight ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Weight ARMSCAR 1
+
+//buildings tech 3 and misc
+Weight ARMFORGE 0.05
+Weight ARMGATE 0
+Weight ARMMAS 9
+Weight ARMOMNI 2
+Weight ARMSBERTHA 0.1
+Weight ARMSFUS 1.5
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core problem resolved.
+Weight ARMSFUS_UPGRADE 0
+Weight ARMSHGEN 0.5
+Weight ARMSILO 0
+Weight ARMSMB 3.5
+Weight ARMTARG 0
+Weight ARMTECH 4
+Weight ARMVULC 0.5
+
+//construction units
+Weight ARMACA 8
+Weight ARMACH 8
+Weight ARMACK 8
+Weight ARMACSA 8
+Weight ARMACSUB 8
+Weight ARMACV 8
+Weight ARMCA 6
+Weight ARMCH 6
+Weight ARMCK 6
+Weight ARMCS 6
+Weight ARMCSA 6
+Weight ARMCV 6
+Weight ARMECA 10
+Weight ARMECH 10
+Weight ARMECK 10
+Weight ARMECS 10
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Weight ARMECSA 0
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 1
+Limit ARMUWCHEAT 2
+
+//aircraft tech 1
+Limit ARMATLAS 0
+Limit ARMFIG 25
+Limit ARMPEEP 0
+Limit ARMTHUND 10
+
+//aircraft tech 2
+Limit ARMAWAC 5
+Limit ARMBRAWL 25
+Limit ARMHAWK 30
+Limit ARMLANCE 15
+Limit ARMMUAT 0
+Limit ARMPNIX 10
+
+//seaplanes
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+
+//hovercraft tech 1
+Limit ARMAH 4
+Limit ARMANAC 20
+Limit ARMLH 4
+Limit ARMMH 12
+Limit ARMSH 4
+Limit ARMTHOVR 0
+
+//hovercraft tech 2
+Limit ARMHARL 10
+Limit ARMHART 10
+// ARMHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit ARMHCAR 2
+Limit ARMHFLAK 4
+Limit ARMHJAM 2
+Limit ARMHSTUN 3
+Limit ARMHTANK 15
+
+//kbots tech 1
+Limit ARMFLEA 0
+Limit ARMHAM 0
+Limit ARMJETH 0
+Limit ARMPW 0
+Limit ARMROCK 0
+Limit ARMVADER 0
+Limit ARMWAR 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: ARMAMPH (ineffective amphibious deployment by AI)
+// Unit(s) having amphibious MovementClass: ARMDECOM (COULD traverse water during 20181023 test)
+Limit ARMAABOT 0
+Limit ARMAMPH 0
+Limit ARMASER 0
+Limit ARMDECOM 6
+Limit ARMFARK 0
+Limit ARMFAST 0
+Limit ARMFIDO 0
+Limit ARMMARK 0
+Limit ARMMAV 0
+Limit ARMSNIPE 0
+Limit ARMSPID 0
+Limit ARMSPY 0
+Limit ARMZEUS 0
+
+//vehicles tech 1
+Limit ARMFAV 0
+Limit ARMFLASH 0
+Limit ARMJAV 0
+Limit ARMMLV 0
+Limit ARMSAM 0
+Limit ARMSTUMP 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: ARMCROC (ineffective amphibious deployment by AI)
+// Unit(s) having MaxWaterDepth=255: ARMSPOT (but could NOT traverse water during 20181023 test)
+Limit ARMBULL 0
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 0
+Limit ARMMANNI 0
+Limit ARMMART 0
+Limit ARMMERL 0
+Limit ARMSCAB 0
+Limit ARMSEER 0
+Limit ARMSPOT 0
+Limit ARMYORK 0
+
+//ships tech 1
+Limit ARMFRIG 15
+Limit ARMPT 6
+Limit ARMROY 12
+Limit ARMSUB 16
+Limit ARMTSHIP 0
+
+//ships tech 2
+Limit ARMAAS 11
+Limit ARMBATS 7
+Limit ARMCARRY 1
+Limit ARMCRUS 11
+Limit ARMMSHIP 8
+Limit ARMSCRAM 2
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Limit ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMSSUB 0
+Limit ARMSUBK 20
+Limit ARMTSUB 0
+
+//buildings tech 1
+Limit ARMASP 3
+Limit ARMASP_UPGRADE 3
+Limit ARMDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMESTOR 2
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit ARMGEN 0
+Limit ARMGEO 2
+Limit ARMGEO_UPGRADE 2
+Limit ARMGUARD 2
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 3
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 4
+Limit ARMMAKR 0
+// Adjust MEX for CHEAT portion
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit ARMMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMMSTOR 0
+Limit ARMRAD 2
+Limit ARMRL 3
+Limit ARMSOLAR 3
+Limit ARMWIN 0
+
+//buildings tech 2
+Limit ARMAMB 4
+Limit ARMAMD 0
+Limit ARMANNI 4
+Limit ARMARAD 2
+Limit ARMARL 5
+Limit ARMBRTHA 1
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMEMP 0
+Limit ARMFIELD 1
+Limit ARMFLAK 4
+Limit ARMFORT 0
+Limit ARMFUS 2
+Limit ARMFUS_UPGRADE 2
+Limit ARMJAMMER 2
+Limit ARMMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit ARMMOHO 5
+Limit ARMORION 4
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMSES 2
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMSMS 0
+Limit ARMSTUN 3
+
+//landmines
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+//uw buildings tech 1
+Limit ARMFDRAG 0
+// Limit ARMFGUARD 7
+Limit ARMFGUARD 20
+// Limit ARMFHLT 7
+Limit ARMFHLT 20
+Limit ARMFLLT 7
+Limit ARMFMKR 0
+// Limit ARMFRT 15
+Limit ARMFRT 20
+Limit ARMSONAR 7
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+Limit ARMTIDE 15
+Limit ARMTL 10
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMUWES 28
+// Adjust UWMEX for UWCHEAT portion
+// Limit ARMUWMEX 7 > 5
+// Following line tuned for non-cheating resource handicap game conditions (Easy Limit * (0.5 / 0.7))
+Limit ARMUWMEX 18
+Limit ARMUWMFUS 15
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMUWMS 10
+
+//uw buildings tech 2
+Limit ARMASON 10
+Limit ARMATL 20
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit ARMUWFUS 19
+Limit ARMUWMMM 0
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * (0.5 / 0.7))
+Limit ARMUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit ARMAP 0
+Limit ARMFHP 1
+// Limit ARMHP 0
+Limit ARMHP 1
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit ARMLAB 1
+Limit ARMPLAT 1
+Limit ARMSY 2
+Limit ARMVP 0
+
+//factories tech 2
+Limit ARMAAP 0
+Limit ARMAHP 0
+Limit ARMALAB 1
+Limit ARMAPLAT 1
+// Limit ARMASY 2
+Limit ARMASY 3
+Limit ARMAVP 0
+// Limit ARMFAHP 1
+Limit ARMFAHP 2
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit ARMEHP 1
+Limit ARMELAB 0
+Limit ARMEPLAT 1
+Limit ARMESY 2
+Limit ARMFAB 0
+Limit ARMFEHP 2
+Limit ARMGANT 0
+
+//aircraft tech 3+
+Limit ARMNOMAD 0
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMSBOMBER 4
+Limit ARMSFOIL 14
+Limit ARMSR71 0
+Limit ARMWING 2
+
+//hovercraft tech 3+
+Limit ARMCHARGER 0
+Limit ARMHBATS 10
+Limit ARMHCRUS 3
+// ARMHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit ARMHROY 25
+// Angler XL (Super Hover Carrier) restrict until official release
+Limit ARMHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMCERB (but could NOT traverse water during 20181023 test)
+//                                   ARMMECH (COULD traverse water during 20181023 test)
+Limit ARMASPID 0
+Limit ARMCERB 0
+Limit ARMMECH 30
+Limit ARMNOVA 1
+Limit ARMVERMIN 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMMCV (but could NOT traverse water during 20181023 test)
+Limit ARMAFAV 0
+Limit ARMASAM 0
+Limit ARMLGTNK 0
+Limit ARMMBT 0
+Limit ARMMCV 0
+Limit ARMSIEGE 0
+
+//ships tech 3+
+Limit ARMBSUB 3
+Limit ARMDREAD 3
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMNSUB 0
+Limit ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Limit ARMSCAR 1
+
+//buildings tech 3 and misc
+Limit ARMFORGE 0
+Limit ARMGATE 0
+Limit ARMMAS 10
+Limit ARMOMNI 1
+Limit ARMSBERTHA 0
+Limit ARMSFUS 2
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core issue resolved.
+Limit ARMSFUS_UPGRADE 0
+Limit ARMSHGEN 1
+Limit ARMSILO 0
+Limit ARMSMB 2
+Limit ARMTARG 0
+Limit ARMTECH 1
+Limit ARMVULC 1
+
+//construction units
+Limit ARMACA 0
+Limit ARMACH 4
+Limit ARMACK 1
+Limit ARMACSA 7
+Limit ARMACSUB 6
+Limit ARMACV 0
+Limit ARMCA 0
+Limit ARMCH 4
+Limit ARMCK 1
+Limit ARMCS 4
+Limit ARMCSA 5
+Limit ARMCV 0
+Limit ARMECA 0
+Limit ARMECH 2
+Limit ARMECK 1
+Limit ARMECS 2
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Limit ARMECSA 0
+Limit ARMECV 0
+
+//core
+
+//cheating ai units
+// CHEAT/UWCHEAT weight customized per difficulty level relative to MEX/UWMEX weight for expediting first factory
+// Weight CORCHEAT 10 > 6 > 4
+Weight CORCHEAT 5
+// Weight CORUWCHEAT 10 > 6 > 5 > 4 > 5
+Weight CORUWCHEAT 6
+
+//aircraft tech 1
+Weight CORFINK 0
+Weight CORSHAD 2
+Weight CORVALK 0
+Weight CORVENG 4
+
+//aircraft tech 2
+Weight CORAPE 6
+Weight CORAWAC 1
+Weight CORHURC 3
+Weight CORMUAT 0
+Weight CORTITAN 4
+Weight CORVAMP 5
+
+//seaplanes
+Weight CORHUNT 0
+Weight CORSEAP 0
+Weight CORSFIG 0
+
+//hovercraft tech 1
+Weight CORAH 2
+Weight CORFH 3
+Weight CORMH 5
+Weight CORSH 1
+Weight CORSNAP 5
+Weight CORTHOVR 0
+
+//hovercraft tech 2
+Weight CORHARL 5
+Weight CORHART 5
+Weight CORHCAR 0.5
+Weight CORHFLAK 2
+Weight CORHJAM 2
+Weight CORHLAS 4
+Weight CORHTANK 6
+
+//kbots tech 1
+Weight CORAK 0
+Weight CORCRASH 2
+Weight CORMAK 5
+Weight CORROACH 0
+Weight CORSC 0
+Weight CORSTORM 4
+Weight CORTHUD 5
+
+//kbots tech 2
+Weight CORAABOT 2
+Weight CORAMPH 5
+Weight CORCAN 3
+Weight CORDECOM 1
+Weight CORFAST 0
+Weight CORHRK 7
+Weight CORMORT 7
+Weight CORNECRO 0
+Weight CORPYRO 4
+Weight CORSPEC 2
+Weight CORSPY 0
+Weight CORSUMO 5
+Weight CORVOYR 2
+
+//vehicles tech 1
+Weight CORFAV 1
+Weight CORGATOR 2
+Weight CORLEVLR 5
+Weight CORMIST 2
+Weight CORMLV 0
+Weight CORRAID 4
+
+//vehicles tech 2
+Weight CORETER 2
+Weight CORGOL 6
+Weight CORMABM 0
+Weight CORMANT 3
+Weight CORMART 7
+Weight CORMPAD 1
+Weight CORREAP 3
+Weight CORSEAL 7
+Weight CORSENT 2
+Weight CORVRAD 2
+Weight CORVROC 7
+
+//ships tech 1
+Weight CORFRIG 4
+Weight CORPT 1
+Weight CORROY 5
+Weight CORSUB 5
+Weight CORTSHIP 0
+
+//ships tech 2
+Weight CORARCH 5
+Weight CORBATS 5
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORBURN 0
+Weight CORCARRY 2
+Weight CORCRUS 7
+Weight CORMSHIP 7
+Weight CORSHARK 7
+Weight CORSJAM 2
+
+//buildings tech 1
+Weight CORASP 0.5
+Weight CORASP_UPGRADE 10
+Weight CORDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// CORESTOR weighting may appear high, however, it was gradually increased during playtesting until Core's overall energy
+// storage during early/mid-game stages could sufficiently keep pace with Arm's overall energy storage.  Arm's ability to
+// build ARMUWES is a significant factor.
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORESTOR 8.5
+Weight CORESTOR 2.5
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORGEN 6 > 4.5
+Weight CORGEN 0.05
+Weight CORGEO 10
+Weight CORGEO_UPGRADE 10
+Weight CORHLT 4
+Weight CORHLT_UPGRADE 4
+Weight CORLLT 5
+Weight CORMAKR 1
+// MEX weight customized per difficulty level for expediting first factory
+// Weight CORMEX 6
+Weight CORMEX 4
+Weight CORMSTOR 3
+Weight CORPUN 2
+Weight CORPUN_UPGRADE 2
+Weight CORRAD 2
+Weight CORRL 4
+Weight CORSOLAR 4
+Weight CORWIN 0
+
+//buildings tech 2
+Weight CORARAD 2
+Weight CORDOOM 2
+Weight CORFIELD 0.5
+Weight CORFLAK 3
+Weight CORFMD 0
+Weight CORFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight CORFUS 2
+Weight CORFUS_UPGRADE 10
+Weight CORINT 1
+Weight CORINT_UPGRADE 0
+Weight CORJAMMER 2
+Weight CORMMKR 0.5
+Weight CORMOHO 8
+Weight CORPLAS 3
+// Aim for some early/mid-game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORSES 2.5
+Weight CORSES 1.5
+Weight CORSMS 3
+Weight CORSPUN 2
+Weight CORTOAST 3
+Weight CORTRON 0
+Weight CORVIPE 2
+
+//landmines
+Weight CORMINE1 0
+Weight CORMINE2 0
+Weight CORMINE3 0
+Weight CORMINE4 0
+Weight CORMINE5 0
+Weight CORMINE6 0
+Weight CORMINE7 0
+
+//uw buildings tech 1
+Weight CORFDRAG 0
+Weight CORFHLT 6
+Weight CORFLLT 7
+Weight CORFMKR 1
+Weight CORFPUN 5
+Weight CORFRT 6
+Weight CORSONAR 7
+// TIDE weight customized per difficulty level for expediting first factory
+// Weight CORTIDE 7 > 4.5
+Weight CORTIDE 5
+Weight CORTL 6
+// Aim for some early/mid-game energy storage buffer safety margin
+// Weight CORUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight CORUWES 5
+// UWMEX weight customized per difficulty level for expediting first factory
+// Weight CORUWMEX 6 > 5 > 4
+Weight CORUWMEX 5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+// Weight CORUWMFUS 1.75 > 1.5
+Weight CORUWMFUS 1.75
+// Weight CORUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight CORUWMS 6
+
+//uw buildings tech 2
+Weight CORASON 7.5
+Weight CORATL 7.5
+Weight CORUWFUS 6
+Weight CORUWMMM 0.5
+Weight CORUWMOHO 8
+
+//factories tech 1
+Weight CORAP 0
+// Weight CORFHP 5
+Weight CORFHP 6
+Weight CORHP 3
+Weight CORLAB 0.5
+Weight CORPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage more detrimental than settling for a single Floating Hovercraft Plant as first factory.  Lean
+// towards shipyard with a mindfully set limit to avoid multiples from becoming a big problem.
+Weight CORSY 10
+Weight CORVP 0
+
+//factories tech 2
+Weight CORAAP 0
+Weight CORAHP 0
+Weight CORALAB 1
+Weight CORAPLAT 1
+Weight CORASY 3
+Weight CORAVP 0
+Weight CORFAHP 2
+
+//factories tech 3+
+Weight COREHP 0.4
+Weight COREPLAT 0.2
+Weight CORESY 0.8
+Weight COREVP 0
+Weight CORFAB 0
+Weight CORFEHP 0.4
+Weight CORGANT 0
+
+//aircraft tech 3+
+Weight CORBULK 0
+Weight CORECLIPSE 0.75
+Weight CORSHOCK 1
+Weight CORSKYNET 3.5
+Weight CORVIND 0.5
+
+//hovercraft tech 3+
+Weight CORCHARGER 0
+Weight CORHBATS 1
+Weight CORHCRUS 0.05
+Weight CORHROY 5
+// Tommy XL (Super Hover Carrier) restrict until official release
+Weight CORHSCAR 0
+
+//kbots tech 3+
+Weight CORJUGG 4
+Weight CORKROG 4
+Weight CORSPID 0
+Weight CORTAC 5
+Weight CORTALOS 6
+
+//vehicles tech 3+
+Weight CORAFAV 0.05
+Weight CORAMIST 2
+Weight CORBEH 7
+Weight CORLSTNK 7
+Weight CORMCV 3
+Weight CORPOUND 0
+
+//ships tech 3+
+Weight CORBSUB 2
+Weight CORDREAD 2
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Weight CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORSSUB 0
+Weight CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Weight CORBUZZ 0.5
+Weight CORGATE 0
+Weight CORMAS 9
+Weight CORNOVA 0.1
+Weight COROMNI 2
+Weight CORSFUS 1.5
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until problem resolved.
+Weight CORSFUS_UPGRADE 0
+Weight CORSHGEN 0.5
+Weight CORSILO 0
+Weight CORSMB 3.5
+Weight CORTARG 0
+Weight CORTECH 4
+Weight CORVAULT 0.05
+
+//construction units
+Weight CORACA 8
+Weight CORACH 8
+Weight CORACK 8
+Weight CORACSA 8
+Weight CORACSUB 8
+Weight CORACV 8
+Weight CORCA 6
+Weight CORCH 6
+Weight CORCK 6
+Weight CORCS 6
+Weight CORCSA 6
+Weight CORCV 6
+Weight CORECA 10
+Weight CORECH 10
+Weight CORECK 10
+Weight CORECS 10
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Weight CORECSA 0
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 1
+Limit CORUWCHEAT 2
+
+//aircraft tech 1
+Limit CORFINK 0
+Limit CORSHAD 10
+Limit CORVALK 0
+Limit CORVENG 25
+
+//aircraft tech 2
+Limit CORAPE 25
+Limit CORAWAC 5
+Limit CORHURC 10
+Limit CORMUAT 0
+Limit CORTITAN 15
+Limit CORVAMP 30
+
+//seaplanes
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+
+//hovercraft tech 1
+Limit CORAH 4
+Limit CORFH 4
+Limit CORMH 12
+Limit CORSH 4
+Limit CORSNAP 20
+Limit CORTHOVR 0
+
+//hovercraft tech 2
+Limit CORHARL 12
+Limit CORHART 8
+// CORHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit CORHCAR 2
+Limit CORHFLAK 4
+Limit CORHJAM 2
+Limit CORHLAS 4
+Limit CORHTANK 15
+
+//kbots tech 1
+Limit CORAK 0
+Limit CORCRASH 0
+Limit CORMAK 0
+Limit CORROACH 0
+Limit CORSC 0
+Limit CORSTORM 0
+Limit CORTHUD 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: CORAMPH (ineffective amphibious deployment by AI)
+// Unit(s) tested to be amphibious: CORDECOM (COULD traverse water during 20181023 test)
+Limit CORAABOT 0
+Limit CORAMPH 0
+Limit CORCAN 0
+Limit CORDECOM 6
+Limit CORFAST 0
+Limit CORHRK 0
+Limit CORMORT 0
+Limit CORNECRO 0
+Limit CORPYRO 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 0
+Limit CORVOYR 0
+
+//vehicles tech 1
+Limit CORFAV 0
+Limit CORGATOR 0
+Limit CORLEVLR 0
+Limit CORMIST 0
+Limit CORMLV 0
+Limit CORRAID 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: CORSEAL (ineffective amphibious deployment by AI)
+Limit CORETER 0
+Limit CORGOL 0
+Limit CORMABM 0
+Limit CORMANT 0
+Limit CORMART 0
+Limit CORMPAD 0
+Limit CORREAP 0
+Limit CORSEAL 0
+Limit CORSENT 0
+Limit CORVRAD 0
+Limit CORVROC 0
+
+//ships tech 1
+Limit CORFRIG 15
+Limit CORPT 6
+Limit CORROY 12
+Limit CORSUB 16
+Limit CORTSHIP 0
+
+//ships tech 2
+Limit CORARCH 11
+Limit CORBATS 7
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORBURN 0
+Limit CORCARRY 1
+Limit CORCRUS 11
+Limit CORMSHIP 8
+Limit CORSHARK 20
+Limit CORSJAM 2
+
+//buildings tech 1
+Limit CORASP 3
+Limit CORASP_UPGRADE 3
+Limit CORDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORESTOR 2
+// Limit CORESTOR 10
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit CORGEN 0
+Limit CORGEO 2
+Limit CORGEO_UPGRADE 2
+Limit CORHLT 3
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 4                                                                                              
+Limit CORMAKR 0
+// Adjust MEX for CHEAT portion
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit CORMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORMSTOR 0
+Limit CORPUN 2
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 2
+Limit CORRL 3
+Limit CORSOLAR 3
+Limit CORWIN 0
+
+//buildings tech 2
+Limit CORARAD 2
+Limit CORDOOM 4
+Limit CORFIELD 1
+Limit CORFLAK 4
+Limit CORFMD 0
+Limit CORFORT 0
+// Majority of energy powerplant generation PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Changed amount to match Arm's 2 FUS + 17 UWFUS
+// 2 UWFUS are accounted for by Core's extra UWMFUS, so: 2 + 17 - 2 = 17
+// If map has insufficient land mass to support this many FUS then it will be advantageous to Arm
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Limit CORFUS 17
+Limit CORFUS 2
+Limit CORFUS_UPGRADE 2
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+Limit CORINT 1
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER 2
+Limit CORMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit CORMOHO 5
+Limit CORPLAS 5
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORSES 2
+// Limit CORSES 4
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORSMS 0
+Limit CORSPUN 3
+// Following unit adjusted for SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Limit CORTOAST 4
+Limit CORTOAST 7
+Limit CORTRON 0
+Limit CORVIPE 4
+
+//landmines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+//uw buildings tech 1
+Limit CORFDRAG 0
+Limit CORFHLT 20
+Limit CORFLLT 7
+Limit CORFMKR 0
+Limit CORFPUN 20
+Limit CORFRT 20
+Limit CORSONAR 7
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+Limit CORTIDE 15
+Limit CORTL 10
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit CORUWES 28
+// Adjust UWMEX for UWCHEAT portion
+// Limit CORUWMEX 7 > 5
+// Following line tuned for non-cheating resource handicap game conditions (Easy Limit * (0.5 / 0.7))
+Limit CORUWMEX 18
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Added amount equivalent to 2 UWFUS (for this Escalation version: 1000 / 75 * 2 = +27)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORUWMFUS 15
+// Limit CORUWMFUS 37
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORUWMS 10
+
+//uw buildings tech 2
+Limit CORASON 10
+Limit CORATL 20
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit CORUWFUS 19
+Limit CORUWMMM 0
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * (0.5 / 0.7))
+Limit CORUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit CORAP 0
+Limit CORFHP 1
+// Limit CORHP 0
+Limit CORHP 1
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit CORLAB 1
+Limit CORPLAT 1
+Limit CORSY 2
+Limit CORVP 0
+
+//factories tech 2
+Limit CORAAP 0
+Limit CORAHP 0
+Limit CORALAB 1
+Limit CORAPLAT 1
+// Limit CORASY 2
+Limit CORASY 3
+Limit CORAVP 0
+// Limit CORFAHP 1
+Limit CORFAHP 2
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit COREHP 1
+Limit COREPLAT 1
+Limit CORESY 2
+Limit COREVP 0
+Limit CORFAB 0
+Limit CORFEHP 2
+Limit CORGANT 0
+
+//aircraft tech 3+
+Limit CORBULK 0
+Limit CORECLIPSE 2
+Limit CORSHOCK 4
+Limit CORSKYNET 5
+Limit CORVIND 2
+
+//hovercraft tech 3+
+Limit CORCHARGER 0
+Limit CORHBATS 10
+Limit CORHCRUS 3
+// CORHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit CORHROY 25
+// Tommy XL (Super Hover Carrier) restrict until official release
+Limit CORHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: CORKROG (COULD traverse water during 20181023 test)
+Limit CORJUGG 0
+Limit CORKROG 30
+Limit CORSPID 0
+Limit CORTAC 1
+Limit CORTALOS 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: CORMCV (but could NOT traverse water during 20181023 test)
+Limit CORAFAV 0
+Limit CORAMIST 0
+Limit CORBEH 0
+Limit CORLSTNK 0
+Limit CORMCV 0
+Limit CORPOUND 0
+
+//ships tech 3+
+Limit CORBSUB 3
+Limit CORDREAD 3
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Limit CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORSSUB 0
+Limit CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Limit CORBUZZ 1
+Limit CORGATE 0
+Limit CORMAS 10
+Limit CORNOVA 0
+Limit COROMNI 1
+Limit CORSFUS 2
+// Escalation v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven Islands
+// map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or semi-built?)
+// remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying all other
+// units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until issue resolved.
+Limit CORSFUS_UPGRADE 0
+Limit CORSHGEN 1
+Limit CORSILO 0
+Limit CORSMB 2
+Limit CORTARG 0
+Limit CORTECH 1
+Limit CORVAULT 0
+
+//construction units
+Limit CORACA 0
+Limit CORACH 4
+Limit CORACK 1
+Limit CORACSA 7
+Limit CORACSUB 6
+Limit CORACV 0
+Limit CORCA 0
+Limit CORCH 4
+Limit CORCK 1
+Limit CORCS 4
+Limit CORCSA 5
+Limit CORCV 0
+Limit CORECA 0
+Limit CORECH 2
+Limit CORECK 1
+Limit CORECS 2
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Limit CORECSA 0
+Limit CORECV 0
+
+
+// Reminder for SeaBattle AI intel related units
+//
+//   Shared intel units include:
+//     - Arm Eagle/Core Vulture (radar & jamming plane) ARMAWAC/CORAWAC mainly for RadarDistance
+//     - Arm Skimmer/Core Scrubber (scout hovercraft) ARMSH/CORSH for SightDistance
+//     - Arm Angler/Core Refuge (hover carrier) ARMHCAR/CORHCAR for RadarDistance and SonarDistance
+//     - Arm Colossus/Core Hive (light/escort carrier) ARMCARRY/CORCARRY for RadarDistance and SightDistance
+//     - Arm Tantalus/Core Argus (Experimental Omni Sensor Tower) ARMOMNI/COROMNI mainly for RadarDistance
+//     - Arm/Core Advanced Radar Tower (long range radar) ARMARAD/CORARAD for RadarDistance
+//     - Arm/Core Radar Tower ARMRAD/CORRAD for RadarDistance
+//     - Arm/Core Advanced Sonar/Radar Station (locates units) ARMASON/CORASON for SonarDistance and RadarDistance
+//     - Arm/Core Sonar/Radar Station (locates units) ARMSONAR/CORSONAR for SonarDistance and RadarDistance
+//
+//   Clandestine units include:
+//     - Arm Concealer/Core Blotter (radar jamming hovercraft) ARMHJAM/CORHJAM for RadarDistanceJam
+//     - Arm Fibber (radar jamming sub) ARMSCRAM for RadarDistanceJam and SightDistance
+//     - Core Phantom (radar jammer ship) CORSJAM for RadarDistanceJam and SightDistance
+//     - Arm Veil/Core Shroud (radar jamming tower) ARMJAMMER/CORJAMMER for RadarDistanceJam and SightDistance
+//     - Core Eclipse (experimental radar jamming/LOS VTOL) CORECLIPSE for RadarDistanceJam and SightDistance
+
+Plan Hard
+
+//arm
+
+//cheating ai units
+// Changed CHEAT after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// during non-cheating Hard difficulty when Weights SY 10, FHP 5, LAB 0.5, HP 0 with starting Metal 10,000 and Energy 10,000
+// Weight ARMCHEAT 10 > 7 > 4 > 3
+Weight ARMCHEAT 4
+// Changed UWCHEAT after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// during non-cheating Hard difficulty when Weights SY 10, FHP 5, LAB 0.5, HP 0 with starting Metal 10,000 and Energy 10,000
+// Weight ARMUWCHEAT 10 > 7 > 5 > 4
+Weight ARMUWCHEAT 5
+
+//aircraft tech 1
+Weight ARMATLAS 0
+Weight ARMFIG 4
+Weight ARMPEEP 0
+Weight ARMTHUND 2
+
+//aircraft tech 2
+Weight ARMAWAC 1
+Weight ARMBRAWL 6
+Weight ARMHAWK 5
+Weight ARMLANCE 4
+Weight ARMMUAT 0
+Weight ARMPNIX 3
+
+//seaplanes
+Weight ARMSEAP 0
+Weight ARMSEHAK 0
+Weight ARMSFIG 0
+
+//hovercraft tech 1
+Weight ARMAH 2
+Weight ARMANAC 5
+Weight ARMLH 3
+Weight ARMMH 5
+Weight ARMSH 1
+Weight ARMTHOVR 0
+
+//hovercraft tech 2
+Weight ARMHARL 6
+Weight ARMHART 6
+Weight ARMHCAR 0.5
+Weight ARMHFLAK 2
+Weight ARMHJAM 2
+Weight ARMHSTUN 2
+Weight ARMHTANK 6
+
+//kbots tech 1
+Weight ARMFLEA 0
+Weight ARMHAM 5
+Weight ARMJETH 2
+Weight ARMPW 0
+Weight ARMROCK 4
+Weight ARMVADER 0
+Weight ARMWAR 5
+
+//kbots tech 2
+Weight ARMAABOT 2
+Weight ARMAMPH 2
+Weight ARMASER 2
+Weight ARMDECOM 1
+Weight ARMFARK 0
+Weight ARMFAST 0
+Weight ARMFIDO 6
+Weight ARMMARK 2
+Weight ARMMAV 5
+Weight ARMSNIPE 3
+Weight ARMSPID 0
+Weight ARMSPY 0
+Weight ARMZEUS 7
+
+//vehicles tech 1
+Weight ARMFAV 1
+Weight ARMFLASH 4
+Weight ARMJAV 4
+Weight ARMMLV 0
+Weight ARMSAM 2
+Weight ARMSTUMP 5
+
+//vehicles tech 2
+Weight ARMBULL 7
+Weight ARMCROC 7
+Weight ARMJAM 2
+Weight ARMLATNK 5
+Weight ARMMANNI 2
+Weight ARMMART 7
+Weight ARMMERL 7
+Weight ARMSCAB 0
+Weight ARMSEER 2
+Weight ARMSPOT 1
+Weight ARMYORK 2
+
+//ships tech 1
+Weight ARMFRIG 4
+Weight ARMPT 1
+Weight ARMROY 5
+Weight ARMSUB 5
+Weight ARMTSHIP 0
+
+//ships tech 2
+Weight ARMAAS 5
+Weight ARMBATS 5
+Weight ARMCARRY 2
+Weight ARMCRUS 7
+Weight ARMMSHIP 7
+Weight ARMSCRAM 2
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Weight ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMSSUB 0
+// Maintain healthy quantity of offensive submarines to consistently deal with submerged targets lessening occurrences of
+// surface ships stalling in Standby mode when unable to target nearest submerged enemy unit
+Weight ARMSUBK 7
+Weight ARMTSUB 0
+
+//buildings tech 1
+Weight ARMASP 0.5
+Weight ARMASP_UPGRADE 10
+Weight ARMDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMESTOR 2.5
+// Relatively high Weight GEN could significantly delay building of first factory especially on Waterwrld-like maps
+Weight ARMGEN 4.5
+Weight ARMGEO 10
+Weight ARMGEO_UPGRADE 10
+Weight ARMGUARD 2
+Weight ARMGUARD_UPGRADE 2
+Weight ARMHLT 4
+Weight ARMHLT_UPGRADE 4
+// Relatively high Weight LLT could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+Weight ARMLLT 5
+Weight ARMMAKR 1
+// Relatively high Weight MEX could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+// Following line tuned for non-cheating game conditions
+// Weight ARMMEX 6 > 4
+// Following line tuned for cheating game conditions
+Weight ARMMEX 3
+Weight ARMMSTOR 3
+Weight ARMRAD 2
+// Relatively high Weight RL could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+Weight ARMRL 4
+// Relatively high Weight SOLAR could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+// Following line tuned for non-cheating game conditions
+// Weight ARMSOLAR 10 > 5 > 4
+// Following line tuned for cheating game conditions
+Weight ARMSOLAR 3
+Weight ARMWIN 0
+
+//buildings tech 2
+Weight ARMAMB 3
+Weight ARMAMD 0
+Weight ARMANNI 2
+Weight ARMARAD 2
+Weight ARMARL 3
+Weight ARMBRTHA 1
+Weight ARMBRTHA_UPGRADE 0
+Weight ARMEMP 0
+Weight ARMFIELD 0.5
+Weight ARMFLAK 3
+Weight ARMFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMFUS 2
+Weight ARMFUS_UPGRADE 10
+Weight ARMJAMMER 2
+Weight ARMMMKR 0.5
+Weight ARMMOHO 8
+Weight ARMORION 2
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMSES 1.5
+Weight ARMSMS 3
+Weight ARMSTUN 2
+
+//landmines
+Weight ARMMINE1 0
+Weight ARMMINE2 0
+Weight ARMMINE3 0
+Weight ARMMINE4 0
+Weight ARMMINE5 0
+Weight ARMMINE6 0
+Weight ARMMINE7 0
+
+//uw buildings tech 1
+Weight ARMFDRAG 0
+Weight ARMFGUARD 5
+Weight ARMFHLT 6
+Weight ARMFLLT 7
+Weight ARMFMKR 1
+Weight ARMFRT 6
+Weight ARMSONAR 6
+// Following line tuned for non-cheating game conditions
+// Weight ARMTIDE 7 > 6
+// Following line tuned for cheating game conditions
+// TIDE weight customized per difficulty level for expediting first factory
+Weight ARMTIDE 5
+Weight ARMTL 6
+// Aim for some early/mid-game energy storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight ARMUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight ARMUWES 5
+// Following line tuned for non-cheating game conditions
+// Weight ARMUWMEX 6 > 5
+// Following line tuned for cheating game conditions
+// UWMEX weight customized per difficulty level for expediting first factory
+Weight ARMUWMEX 4
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+Weight ARMUWMFUS 1.75
+// Weight ARMUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight ARMUWMS 6
+
+//uw buildings tech 2
+Weight ARMASON 7.5
+Weight ARMATL 7.5
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight ARMUWFUS 6
+Weight ARMUWMMM 0.5
+Weight ARMUWMOHO 8
+
+//factories tech 1
+Weight ARMAP 0
+// Changed FHP after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// when Weights SY 10, FHP 5, LAB 0.5, HP 0 during Hard difficulty with starting Metal 10,000 and Energy 10,000
+// Weight ARMFHP 5
+Weight ARMFHP 6
+Weight ARMHP 3
+// Changed LAB after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// when Weights SY 10, FHP 5, LAB 0.5, HP 0 during Hard difficulty with starting Metal 10,000 and Energy 10,000
+Weight ARMLAB 0.5
+// Weight ARMLAB 2
+Weight ARMPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage.  Mindfully set limit to avoid multiples from becoming a big problem.
+Weight ARMSY 10
+Weight ARMVP 0
+
+//factories tech 2
+Weight ARMAAP 0
+Weight ARMAHP 0
+Weight ARMALAB 1
+Weight ARMAPLAT 1
+Weight ARMASY 3
+Weight ARMAVP 0
+Weight ARMFAHP 2
+
+//factories tech 3+
+Weight ARMEHP 0.4
+Weight ARMELAB 0
+Weight ARMEPLAT 0.2
+Weight ARMESY 0.8
+Weight ARMFAB 0
+Weight ARMFEHP 0.4
+Weight ARMGANT 0
+
+//aircraft tech 3+
+Weight ARMNOMAD 0
+Weight ARMNOMAD_FACT 0
+Weight ARMNOMAD_SD 0
+Weight ARMSBOMBER 1
+Weight ARMSFOIL 3
+Weight ARMSR71 0
+Weight ARMWING 0.5
+
+//hovercraft tech 3+
+Weight ARMCHARGER 0
+Weight ARMHBATS 1
+Weight ARMHCRUS 2
+Weight ARMHROY 5
+// Angler XL (Super Hover Carrier) restrict until official release
+Weight ARMHSCAR 0
+
+//kbots tech 3+
+Weight ARMASPID 0
+Weight ARMCERB 6
+Weight ARMMECH 3
+Weight ARMNOVA 5
+Weight ARMVERMIN 0
+
+//vehicles tech 3+
+Weight ARMAFAV 0.05
+Weight ARMASAM 2
+Weight ARMLGTNK 6
+Weight ARMMBT 7
+Weight ARMMCV 1
+Weight ARMSIEGE 3
+
+//ships tech 3+
+Weight ARMBSUB 2
+Weight ARMDREAD 2
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Weight ARMNSUB 0
+Weight ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Weight ARMSCAR 1
+
+//buildings tech 3 and misc
+Weight ARMFORGE 0.05
+Weight ARMGATE 0
+Weight ARMMAS 9
+Weight ARMOMNI 2
+Weight ARMSBERTHA 0.1
+Weight ARMSFUS 1.5
+// Escalation Beta v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven
+// Islands map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or
+// semi-built?) remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying
+// all other units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core problem resolved.
+Weight ARMSFUS_UPGRADE 0
+Weight ARMSHGEN 0.5
+// Following upgrade may be experimental--it first appears in Escalation Beta v8.9.0.  Core does not have matching upgrade.
+Weight ARMSHGEN_UPG 10
+Weight ARMSILO 0
+Weight ARMSMB 3.5
+Weight ARMTARG 0
+Weight ARMTECH 4
+Weight ARMVULC 0.5
+
+//construction units
+Weight ARMACA 8
+Weight ARMACH 8
+Weight ARMACK 8
+Weight ARMACSA 8
+Weight ARMACSUB 8
+Weight ARMACV 8
+Weight ARMCA 6
+Weight ARMCH 6
+Weight ARMCK 6
+Weight ARMCS 6
+Weight ARMCSA 6
+Weight ARMCV 6
+Weight ARMECA 10
+Weight ARMECH 10
+Weight ARMECK 10
+Weight ARMECS 10
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Weight ARMECSA 0
+Weight ARMECV 10
+
+//cheating ai units
+Limit ARMCHEAT 2
+Limit ARMUWCHEAT 3
+
+//aircraft tech 1
+Limit ARMATLAS 0
+Limit ARMFIG 35
+Limit ARMPEEP 0
+Limit ARMTHUND 15
+
+//aircraft tech 2
+Limit ARMAWAC 7
+Limit ARMBRAWL 35
+Limit ARMHAWK 40
+Limit ARMLANCE 20
+Limit ARMMUAT 0
+Limit ARMPNIX 15
+
+//seaplanes
+Limit ARMSEAP 0
+Limit ARMSEHAK 0
+Limit ARMSFIG 0
+
+//hovercraft tech 1
+Limit ARMAH 5
+Limit ARMANAC 25
+Limit ARMLH 5
+Limit ARMMH 15
+Limit ARMSH 5
+Limit ARMTHOVR 0
+
+//hovercraft tech 2
+Limit ARMHARL 15
+Limit ARMHART 15
+// ARMHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit ARMHCAR 2
+Limit ARMHFLAK 10
+Limit ARMHJAM 2
+Limit ARMHSTUN 4
+Limit ARMHTANK 20
+
+//kbots tech 1
+Limit ARMFLEA 0
+Limit ARMHAM 0
+Limit ARMJETH 0
+Limit ARMPW 0
+Limit ARMROCK 0
+Limit ARMVADER 0
+Limit ARMWAR 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: ARMAMPH (ineffective amphibious deployment by AI)
+// Unit(s) having amphibious MovementClass: ARMDECOM (COULD traverse water during 20181023 test)
+Limit ARMAABOT 0
+Limit ARMAMPH 0
+Limit ARMASER 0
+Limit ARMDECOM 7
+Limit ARMFARK 0
+Limit ARMFAST 0
+Limit ARMFIDO 0
+Limit ARMMARK 0
+Limit ARMMAV 0
+Limit ARMSNIPE 0
+Limit ARMSPID 0
+Limit ARMSPY 0
+Limit ARMZEUS 0
+
+//vehicles tech 1
+Limit ARMFAV 0
+Limit ARMFLASH 0
+Limit ARMJAV 0
+Limit ARMMLV 0
+Limit ARMSAM 0
+Limit ARMSTUMP 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: ARMCROC (ineffective amphibious deployment by AI)
+// Unit(s) having MaxWaterDepth=255: ARMSPOT (but could NOT traverse water during 20181023 test)
+Limit ARMBULL 0
+Limit ARMCROC 0
+Limit ARMJAM 0
+Limit ARMLATNK 0
+Limit ARMMANNI 0
+Limit ARMMART 0
+Limit ARMMERL 0
+Limit ARMSCAB 0
+Limit ARMSEER 0
+Limit ARMSPOT 0
+Limit ARMYORK 0
+
+//ships tech 1
+Limit ARMFRIG 20
+Limit ARMPT 7
+Limit ARMROY 15
+Limit ARMSUB 20
+Limit ARMTSHIP 0
+
+//ships tech 2
+Limit ARMAAS 15
+Limit ARMBATS 10
+Limit ARMCARRY 2
+Limit ARMCRUS 15
+Limit ARMMSHIP 11
+Limit ARMSCRAM 3
+// Escort (Radar Jammer Ship) ARMSJAM was replaced by Fibber (Radar Jamming Sub) ARMSCRAM as a build option for human player.
+// However, ARMSJAM unit data FBI file still exists with "Side=ARM" so we retain unit in profile to prevent the default
+// "Weight ARM 0.2" from leading AI to build it.
+Limit ARMSJAM 0
+// Stalker (Assault Submarine) ARMSSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMSSUB 0
+Limit ARMSUBK 25
+Limit ARMTSUB 0
+
+//buildings tech 1
+// Limit ASP_UPGRADE intentionally exceeds Limit ASP to allow any extra ASP to be upgraded
+Limit ARMASP 4
+Limit ARMASP_UPGRADE 14
+Limit ARMDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMESTOR 2
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit ARMGEN 7
+Limit ARMGEO 2
+Limit ARMGEO_UPGRADE 2
+Limit ARMGUARD 3
+Limit ARMGUARD_UPGRADE 0
+Limit ARMHLT 3
+Limit ARMHLT_UPGRADE 0
+Limit ARMLLT 5
+Limit ARMMAKR 0
+// Adjust MEX for CHEAT portion
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit ARMMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMMSTOR 0
+Limit ARMRAD 2
+Limit ARMRL 3
+Limit ARMSOLAR 3
+Limit ARMWIN 0
+
+//buildings tech 2
+Limit ARMAMB 5
+Limit ARMAMD 0
+Limit ARMANNI 5
+Limit ARMARAD 2
+Limit ARMARL 6
+Limit ARMBRTHA 3
+Limit ARMBRTHA_UPGRADE 0
+Limit ARMEMP 0
+Limit ARMFIELD 2
+Limit ARMFLAK 5
+Limit ARMFORT 0
+Limit ARMFUS 3
+Limit ARMFUS_UPGRADE 3
+Limit ARMJAMMER 2
+Limit ARMMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit ARMMOHO 5
+Limit ARMORION 5
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMSES 2
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMSMS 1
+Limit ARMSTUN 4
+
+//landmines
+Limit ARMMINE1 0
+Limit ARMMINE2 0
+Limit ARMMINE3 0
+Limit ARMMINE4 0
+Limit ARMMINE5 0
+Limit ARMMINE6 0
+Limit ARMMINE7 0
+
+//uw buildings tech 1
+Limit ARMFDRAG 0
+// Limit ARMFGUARD 10
+Limit ARMFGUARD 20
+// Limit ARMFHLT 10
+Limit ARMFHLT 20
+Limit ARMFLLT 5
+Limit ARMFMKR 0
+Limit ARMFRT 20
+Limit ARMSONAR 10
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+Limit ARMTIDE 15
+Limit ARMTL 15
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit ARMUWES 38
+// Adjust UWMEX for UWCHEAT portion
+// Limit ARMUWMEX 7 > 4
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * 0.5)
+Limit ARMUWMEX 15
+Limit ARMUWMFUS 15
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit ARMUWMS 15
+
+//uw buildings tech 2
+Limit ARMASON 15
+Limit ARMATL 25
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit ARMUWFUS 25
+Limit ARMUWMMM 0
+// Limit ARMUWMOHO 15
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * 0.5)
+Limit ARMUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit ARMAP 0
+Limit ARMFHP 2
+// Changed HP after seeing game engine stubbornly not build SY (for that game it was 4th factory) until Game Time 1:03:00
+// and another AI (for that game it was 2nd factory) until Game Time 1:13:00 when Weights SY 10, FHP 6, LAB 2, HP 0
+// during Hard difficulty with starting Metal 10,000 and Energy 10,000
+// Limit ARMHP 0
+Limit ARMHP 1
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit ARMLAB 1
+Limit ARMPLAT 1
+// Limit ARMSY 2
+Limit ARMSY 3
+Limit ARMVP 0
+
+//factories tech 2
+Limit ARMAAP 0
+Limit ARMAHP 0
+Limit ARMALAB 1
+Limit ARMAPLAT 2
+// Limit ARMASY 3
+Limit ARMASY 4
+Limit ARMAVP 0
+// Limit ARMFAHP 1
+Limit ARMFAHP 3
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit ARMEHP 1
+Limit ARMELAB 0
+Limit ARMEPLAT 3
+// Limit ARMESY 2
+Limit ARMESY 3
+Limit ARMFAB 0
+// FEHP now higher than ESY because larger ships more often jammed in traffic
+// Limit ARMFEHP 1
+Limit ARMFEHP 5
+Limit ARMGANT 0
+
+//aircraft tech 3+
+Limit ARMNOMAD 0
+Limit ARMNOMAD_FACT 0
+Limit ARMNOMAD_SD 0
+Limit ARMSBOMBER 6
+Limit ARMSFOIL 20
+Limit ARMSR71 0
+Limit ARMWING 3
+
+//hovercraft tech 3+
+Limit ARMCHARGER 0
+Limit ARMHBATS 15
+Limit ARMHCRUS 7
+// ARMHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit ARMHROY 40
+// Angler XL (Super Hover Carrier) restrict until official release
+Limit ARMHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMCERB (but could NOT traverse water during 20181023 test)
+//                                   ARMMECH (COULD traverse water during 20181023 test)
+Limit ARMASPID 0
+Limit ARMCERB 0
+Limit ARMMECH 50
+Limit ARMNOVA 2
+Limit ARMVERMIN 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: ARMMCV (but could NOT traverse water during 20181023 test)
+Limit ARMAFAV 0
+Limit ARMASAM 0
+Limit ARMLGTNK 0
+Limit ARMMBT 0
+Limit ARMMCV 0
+Limit ARMSIEGE 0
+
+//ships tech 3+
+Limit ARMBSUB 5
+Limit ARMDREAD 5
+// Tempest (Nuclear Submarine) ARMNSUB currently decommissioned, however, its unit data FBI file still exists with
+// "Side=ARM" so we retain unit in profile to prevent the default "Weight ARM 0.2" from leading AI to build it
+Limit ARMNSUB 0
+Limit ARMNSUB_SURFACE 0
+// Atlantis (Battle Carrier / Radar Targeting Upgrade) ARMSCAR is built by AI because its weapons do not require stockpiled
+// ammunition--a drawback of Core's CORSCAR
+Limit ARMSCAR 2
+
+//buildings tech 3 and misc
+Limit ARMFORGE 0
+Limit ARMGATE 0
+Limit ARMMAS 10
+Limit ARMOMNI 2
+Limit ARMSBERTHA 1
+Limit ARMSFUS 3
+// Escalation Beta v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven
+// Islands map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or
+// semi-built?) remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying
+// all other units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Arm Experimental Shield Upgrade non-zero value as precaution until Core issue resolved.
+Limit ARMSFUS_UPGRADE 0
+Limit ARMSHGEN 2
+// Following upgrade may be experimental--it first appears in Escalation Beta v8.9.0.  Core does not have matching upgrade.
+Limit ARMSHGEN_UPG 2
+Limit ARMSILO 0
+Limit ARMSMB 3
+Limit ARMTARG 0
+Limit ARMTECH 2
+Limit ARMVULC 2
+
+//construction units
+Limit ARMACA 0
+// Limit ARMACH 10
+Limit ARMACH 6
+Limit ARMACK 1
+// Limit ARMACSA 10
+Limit ARMACSA 7
+// Limit ARMACSUB 10
+Limit ARMACSUB 8
+Limit ARMACV 0
+Limit ARMCA 0
+Limit ARMCH 6
+Limit ARMCK 1
+Limit ARMCS 6
+// Limit ARMCSA 10
+Limit ARMCSA 7
+Limit ARMCV 0
+Limit ARMECA 0
+Limit ARMECH 3
+Limit ARMECK 1
+Limit ARMECS 3
+// Exp. Construction Seaplane (Tech Level 3) ARMECSA currently decommissioned
+Limit ARMECSA 0
+Limit ARMECV 0
+
+//core
+
+//cheating ai units
+// Changed CHEAT after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// during non-cheating Hard difficulty when Weights SY 10, FHP 5, LAB 0.5, HP 0 with starting Metal 10,000 and Energy 10,000
+// Weight CORCHEAT 10 > 7 > 4 > 3
+Weight CORCHEAT 4
+// Changed UWCHEAT after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// during non-cheating Hard difficulty when Weights SY 10, FHP 5, LAB 0.5, HP 0 with starting Metal 10,000 and Energy 10,000
+// Weight CORUWCHEAT 10 > 7 > 5 > 4
+Weight CORUWCHEAT 5
+
+//aircraft tech 1
+Weight CORFINK 0
+Weight CORSHAD 2
+Weight CORVALK 0
+Weight CORVENG 4
+
+//aircraft tech 2
+Weight CORAPE 6
+Weight CORAWAC 1
+Weight CORHURC 3
+Weight CORMUAT 0
+Weight CORTITAN 4
+Weight CORVAMP 5
+
+//seaplanes
+Weight CORHUNT 0
+Weight CORSEAP 0
+Weight CORSFIG 0
+
+//hovercraft tech 1
+Weight CORAH 2
+Weight CORFH 3
+Weight CORMH 5
+Weight CORSH 1
+Weight CORSNAP 5
+Weight CORTHOVR 0
+
+//hovercraft tech 2
+Weight CORHARL 6
+Weight CORHART 4
+Weight CORHCAR 0.5
+Weight CORHFLAK 2
+Weight CORHJAM 2
+Weight CORHLAS 3
+Weight CORHTANK 6
+
+//kbots tech 1
+Weight CORAK 0
+Weight CORCRASH 2
+Weight CORMAK 5
+Weight CORROACH 0
+Weight CORSC 0
+Weight CORSTORM 4
+Weight CORTHUD 5
+
+//kbots tech 2
+Weight CORAABOT 2
+Weight CORAMPH 5
+Weight CORCAN 3
+Weight CORDECOM 1
+Weight CORFAST 0
+Weight CORHRK 7
+Weight CORMORT 7
+Weight CORNECRO 0
+Weight CORPYRO 4
+Weight CORSPEC 2
+Weight CORSPY 0
+Weight CORSUMO 5
+Weight CORVOYR 2
+
+//vehicles tech 1
+Weight CORFAV 1
+Weight CORGATOR 2
+Weight CORLEVLR 5
+Weight CORMIST 2
+Weight CORMLV 0
+Weight CORRAID 4
+
+//vehicles tech 2
+Weight CORETER 2
+Weight CORGOL 6
+Weight CORMABM 0
+Weight CORMANT 3
+Weight CORMART 7
+Weight CORMPAD 1
+Weight CORREAP 3
+Weight CORSEAL 7
+Weight CORSENT 2
+Weight CORVRAD 2
+Weight CORVROC 7
+
+//ships tech 1
+Weight CORFRIG 4
+Weight CORPT 1
+Weight CORROY 5
+Weight CORSUB 5
+Weight CORTSHIP 0
+
+//ships tech 2
+Weight CORARCH 5
+Weight CORBATS 5
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORBURN 0
+Weight CORCARRY 2
+Weight CORCRUS 7
+Weight CORMSHIP 7
+Weight CORSHARK 7
+Weight CORSJAM 2
+
+//buildings tech 1
+Weight CORASP 0.5
+Weight CORASP_UPGRADE 10
+Weight CORDRAG 0
+// Aim for some early game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// CORESTOR weighting may appear high, however, it was gradually increased during playtesting until Core's overall energy
+// storage during early/mid-game stages could sufficiently keep pace with Arm's overall energy storage.  Arm's ability to
+// build ARMUWES is a significant factor.
+// Relatively high Weight ESTOR could significantly delay building of first factory especially on Waterwrld-like maps
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORESTOR 8.5
+Weight CORESTOR 2.5
+// Relatively high Weight GEN could significantly delay building of first factory especially on Waterwrld-like maps
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Weight CORGEN 6
+Weight CORGEN 4.5
+Weight CORGEO 10
+Weight CORGEO_UPGRADE 10
+Weight CORHLT 4
+Weight CORHLT_UPGRADE 4
+// Relatively high Weight LLT could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+Weight CORLLT 5
+Weight CORMAKR 1
+// Relatively high Weight MEX could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+// Following line tuned for non-cheating game conditions
+// Weight CORMEX 6
+// Following line tuned for cheating game conditions
+Weight CORMEX 3
+Weight CORMSTOR 3
+Weight CORPUN 2
+Weight CORPUN_UPGRADE 2
+Weight CORRAD 2
+// Relatively high Weight RL could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+Weight CORRL 4
+// Relatively high Weight SOLAR could significantly delay building of first factory on Waterwrld-like maps due to slow walk
+// Following line tuned for non-cheating game conditions
+// Weight CORSOLAR 10 > 5 > 4
+// Following line tuned for cheating game conditions
+Weight CORSOLAR 3
+Weight CORWIN 0
+
+//buildings tech 2
+Weight CORARAD 2
+Weight CORDOOM 2
+Weight CORFIELD 0.5
+Weight CORFLAK 3
+Weight CORFMD 0
+Weight CORFORT 0
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight CORFUS 2
+Weight CORFUS_UPGRADE 10
+Weight CORINT 1
+Weight CORINT_UPGRADE 0
+Weight CORJAMMER 2
+Weight CORMMKR 0.5
+Weight CORMOHO 8
+Weight CORPLAS 3
+// Aim for some early/mid-game stage resource storage buffer safety margin
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy storage build pace of
+// ARMUWES + ARMESTOR + ARMSES synchronized with CORESTOR + CORSES
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Weight CORSES 2.5
+Weight CORSMS 3
+Weight CORSPUN 2
+Weight CORTOAST 3
+Weight CORTRON 0
+Weight CORVIPE 2
+
+//landmines
+Weight CORMINE1 0
+Weight CORMINE2 0
+Weight CORMINE3 0
+Weight CORMINE4 0
+Weight CORMINE5 0
+Weight CORMINE6 0
+Weight CORMINE7 0
+
+//uw buildings tech 1
+Weight CORFDRAG 0
+Weight CORFHLT 6
+Weight CORFLLT 7
+Weight CORFMKR 1
+Weight CORFPUN 5
+Weight CORFRT 6
+Weight CORSONAR 6
+// Following line tuned for non-cheating game conditions
+// Weight CORTIDE 7 > 6
+// Following line tuned for cheating game conditions
+// TIDE weight customized per difficulty level for expediting first factory
+Weight CORTIDE 5
+Weight CORTL 6
+// Aim for some early/mid-game energy storage buffer safety margin
+// Weight CORUWES 2 > 4  <-- need earlier energy storage to use FHLT when Commander perishes
+Weight CORUWES 5
+// Following line tuned for non-cheating game conditions
+// Weight CORUWMEX 6 > 5
+// Following line tuned for cheating game conditions
+// UWMEX weight customized per difficulty level for expediting first factory
+Weight CORUWMEX 4
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation; want combined energy production build pace of
+// ARMUWMFUS + ARMUWFUS + ARMFUS synchronized with CORUWMFUS + CORFUS
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// UWMFUS weight customized per difficulty level for expediting first factory
+Weight CORUWMFUS 1.75
+// Weight CORUWMS 3 > 4  <-- need earlier metal storage for reclaims when Commander perishes
+Weight CORUWMS 6
+
+//uw buildings tech 2
+Weight CORASON 7.5
+Weight CORATL 7.5
+Weight CORUWFUS 6
+Weight CORUWMMM 0.5
+Weight CORUWMOHO 8
+
+//factories tech 1
+Weight CORAP 0
+// Changed FHP after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// when Weights SY 10, FHP 5, LAB 0.5, HP 0 during Hard difficulty with starting Metal 10,000 and Energy 10,000
+// Weight CORFHP 5
+Weight CORFHP 6
+Weight CORHP 3
+// Changed LAB after seeing game engine stubbornly not build first factory (for that game it was SY) until Game Time 22:00
+// when Weights SY 10, FHP 5, LAB 0.5, HP 0 during Hard difficulty with starting Metal 10,000 and Energy 10,000
+Weight CORLAB 0.5
+// Weight CORLAB 2
+Weight CORPLAT 1
+// It is preferable to have shipyard as first factory.  However, we need to raise weight to an uncomfortably high value
+// attempting to coerce game engine to expedite our first factory.  We could end up with multiple shipyards too early and
+// lingering resource drainage.  Mindfully set limit to avoid multiples from becoming a big problem.
+Weight CORSY 10
+Weight CORVP 0
+
+//factories tech 2
+Weight CORAAP 0
+Weight CORAHP 0
+Weight CORALAB 1
+Weight CORAPLAT 1
+Weight CORASY 3
+Weight CORAVP 0
+Weight CORFAHP 2
+
+//factories tech 3+
+Weight COREHP 0.4
+Weight COREPLAT 0.2
+Weight CORESY 0.8
+Weight COREVP 0
+Weight CORFAB 0
+Weight CORFEHP 0.4
+Weight CORGANT 0
+
+//aircraft tech 3+
+Weight CORBULK 0
+Weight CORECLIPSE 0.75
+Weight CORSHOCK 1
+Weight CORSKYNET 3.5
+Weight CORVIND 0.5
+
+//hovercraft tech 3+
+Weight CORCHARGER 0
+Weight CORHBATS 1
+Weight CORHCRUS 2
+Weight CORHROY 5
+// Tommy XL (Super Hover Carrier) restrict until official release
+Weight CORHSCAR 0
+
+//kbots tech 3+
+Weight CORJUGG 4
+Weight CORKROG 4
+Weight CORSPID 0
+Weight CORTAC 5
+Weight CORTALOS 6
+
+//vehicles tech 3+
+Weight CORAFAV 0.05
+Weight CORAMIST 2
+Weight CORBEH 7
+Weight CORLSTNK 7
+Weight CORMCV 3
+Weight CORPOUND 0
+
+//ships tech 3+
+Weight CORBSUB 2
+Weight CORDREAD 2
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Weight CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Weight CORSSUB 0
+Weight CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Weight CORBUZZ 0.5
+Weight CORGATE 0
+Weight CORMAS 9
+Weight CORNOVA 0.1
+Weight COROMNI 2
+Weight CORSFUS 1.5
+// Escalation Beta v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven
+// Islands map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or
+// semi-built?) remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying
+// all other units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until problem resolved.
+Weight CORSFUS_UPGRADE 0
+Weight CORSHGEN 0.5
+Weight CORSILO 0
+Weight CORSMB 3.5
+Weight CORTARG 0
+Weight CORTECH 4
+Weight CORVAULT 0.05
+
+//construction units
+Weight CORACA 8
+Weight CORACH 8
+Weight CORACK 8
+Weight CORACSA 8
+Weight CORACSUB 8
+Weight CORACV 8
+Weight CORCA 6
+Weight CORCH 6
+Weight CORCK 6
+Weight CORCS 6
+Weight CORCSA 6
+Weight CORCV 6
+Weight CORECA 10
+Weight CORECH 10
+Weight CORECK 10
+Weight CORECS 10
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Weight CORECSA 0
+Weight CORECV 10
+
+//cheating ai units
+Limit CORCHEAT 2
+Limit CORUWCHEAT 3
+
+//aircraft tech 1
+Limit CORFINK 0
+Limit CORSHAD 15
+Limit CORVALK 0
+Limit CORVENG 35
+
+//aircraft tech 2
+Limit CORAPE 35
+Limit CORAWAC 7
+Limit CORHURC 15
+Limit CORMUAT 0
+Limit CORTITAN 20
+Limit CORVAMP 40
+
+//seaplanes
+Limit CORHUNT 0
+Limit CORSEAP 0
+Limit CORSFIG 0
+
+//hovercraft tech 1
+Limit CORAH 5
+Limit CORFH 5
+Limit CORMH 15
+Limit CORSH 5
+Limit CORSNAP 25
+Limit CORTHOVR 0
+
+//hovercraft tech 2
+Limit CORHARL 18
+Limit CORHART 12
+// CORHCAR possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+// However, this unit being IsAirBase=1 limits its combat activity so limit quantity to a supplementary role.
+Limit CORHCAR 2
+Limit CORHFLAK 10
+Limit CORHJAM 2
+Limit CORHLAS 5
+Limit CORHTANK 20
+
+//kbots tech 1
+Limit CORAK 0
+Limit CORCRASH 0
+Limit CORMAK 0
+Limit CORROACH 0
+Limit CORSC 0
+Limit CORSTORM 0
+Limit CORTHUD 0
+
+//kbots tech 2
+// Unit(s) having Floater=1: CORAMPH (ineffective amphibious deployment by AI)
+// Unit(s) tested to be amphibious: CORDECOM (COULD traverse water during 20181023 test)
+Limit CORAABOT 0
+Limit CORAMPH 0
+Limit CORCAN 0
+Limit CORDECOM 7
+Limit CORFAST 0
+Limit CORHRK 0
+Limit CORMORT 0
+Limit CORNECRO 0
+Limit CORPYRO 0
+Limit CORSPEC 0
+Limit CORSPY 0
+Limit CORSUMO 0
+Limit CORVOYR 0
+
+//vehicles tech 1
+Limit CORFAV 0
+Limit CORGATOR 0
+Limit CORLEVLR 0
+Limit CORMIST 0
+Limit CORMLV 0
+Limit CORRAID 0
+
+//vehicles tech 2
+// Unit(s) having Floater=1: CORSEAL (ineffective amphibious deployment by AI)
+Limit CORETER 0
+Limit CORGOL 0
+Limit CORMABM 0
+Limit CORMANT 0
+Limit CORMART 0
+Limit CORMPAD 0
+Limit CORREAP 0
+Limit CORSEAL 0
+Limit CORSENT 0
+Limit CORVRAD 0
+Limit CORVROC 0
+
+//ships tech 1
+Limit CORFRIG 20
+Limit CORPT 7
+Limit CORROY 15
+Limit CORSUB 20
+Limit CORTSHIP 0
+
+//ships tech 2
+Limit CORARCH 15
+Limit CORBATS 10
+// Inferno (Flamethrower Monitor) CORBURN currently decommissioned, however, its unit data FBI file still exists
+// with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORBURN 0
+Limit CORCARRY 2
+Limit CORCRUS 15
+Limit CORMSHIP 11
+Limit CORSHARK 25
+Limit CORSJAM 3
+
+//buildings tech 1
+// Limit ASP_UPGRADE intentionally exceeds Limit ASP to allow any extra ASP to be upgraded
+Limit CORASP 4
+Limit CORASP_UPGRADE 14
+Limit CORDRAG 0
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORESTOR 2
+// Limit CORESTOR 10
+// Resource Generator when making metal during Hard   difficulty drains 300 energy and      outputs 300 energy
+// Resource Generator when making metal during Medium difficulty drains 300 energy but only outputs 210 energy
+// Resource Generator when making metal during Easy   difficulty drains 300 energy but only outputs 150 energy
+Limit CORGEN 7
+Limit CORGEO 2
+Limit CORGEO_UPGRADE 2
+Limit CORHLT 3
+Limit CORHLT_UPGRADE 0
+Limit CORLLT 5
+Limit CORMAKR 0
+// Adjust MEX for CHEAT portion
+// Low quantity to save metal deposits for Mantle Extractors (too low can lead to Commander Repair Patrol issue)
+Limit CORMEX 5
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORMSTOR 0
+Limit CORPUN 3
+Limit CORPUN_UPGRADE 0
+Limit CORRAD 2
+Limit CORRL 3
+Limit CORSOLAR 3
+Limit CORWIN 0
+
+//buildings tech 2
+Limit CORARAD 2
+Limit CORDOOM 5
+Limit CORFIELD 2
+Limit CORFLAK 5
+Limit CORFMD 0
+Limit CORFORT 0
+// Majority of energy powerplant generation PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Changed amount to match Arm's 3 FUS + 25 UWFUS
+// 2 UWFUS are accounted for by Core's extra UWMFUS, so: 3 + 25 - 2 = 26
+// If map has insufficient land mass to support this many FUS then it will be advantageous to Arm
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+// Limit CORFUS 26
+Limit CORFUS 3
+Limit CORFUS_UPGRADE 3
+Limit CORINT 3
+Limit CORINT_UPGRADE 0
+Limit CORJAMMER 2
+Limit CORMMKR 0
+// Low quantity to save metal deposits for Mantle Extractors
+Limit CORMOHO 5
+Limit CORPLAS 6
+// Majority of energy storage PREFERRED underwater due to AI profile tuned for maps with less land mass, BUT...
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORSES 2
+// Limit CORSES 6
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORSMS 1
+Limit CORSPUN 5
+// Following unit adjusted for SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Limit CORTOAST 5
+Limit CORTOAST 10
+Limit CORTRON 0
+Limit CORVIPE 5
+
+//landmines
+Limit CORMINE1 0
+Limit CORMINE2 0
+Limit CORMINE3 0
+Limit CORMINE4 0
+Limit CORMINE5 0
+Limit CORMINE6 0
+Limit CORMINE7 0
+
+//uw buildings tech 1
+Limit CORFDRAG 0
+// Limit CORFHLT 10
+Limit CORFHLT 20
+Limit CORFLLT 5
+Limit CORFMKR 0
+// Limit CORFPUN 10
+Limit CORFPUN 20
+Limit CORFRT 20
+Limit CORSONAR 10
+// Do not need as many TIDE as non-cheating SOLAR because supplemented by UWMFUS
+Limit CORTIDE 15
+Limit CORTL 15
+// Majority of energy storage underwater due to AI profile tuned for maps with less land mass
+// Aim for combined energy storage among ESTOR SES UWES of 200,000 hard / 150,000 medium / 100,000 easy for high energy
+// weapons plus other energy drainage
+Limit CORUWES 38
+// Adjust UWMEX for UWCHEAT portion
+// Limit CORUWMEX 7 > 4
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * 0.5)
+Limit CORUWMEX 15
+// Following unit adjusted for CORUWFUS/UWES/SPUN no-show issue compensation (SPUN can appear under some cheat conditions)
+// Added amount equivalent to 2 UWFUS (for this Escalation version: 1000 / 75 * 2 = +27)
+// No-show issue of CORUWFUS/UWES bug-fixed 20190323, compensation no longer needed
+Limit CORUWMFUS 15
+// Limit CORUWMFUS 37
+// Aim for combined metal storage among MSTOR SMS UWMS of 15,000 hard / 10,000 medium / 5,000 easy for mid/late-game stage
+// juicy wreckage reclaims
+Limit CORUWMS 15
+
+//uw buildings tech 2
+Limit CORASON 15
+Limit CORATL 25
+// Majority of energy powerplant generation underwater due to AI profile tuned for maps with less land mass where
+// SFUS/FUS placement may be limited and relatively more exposed to excessive damage
+Limit CORUWFUS 25
+Limit CORUWMMM 0
+// Limit CORUWMOHO 15
+// Following line tuned for non-cheating game conditions (at least: Easy Limit * 0.5)
+Limit CORUWMOHO 25
+
+// Note: Somewhat conservative factory limits are used to set unit flow during early and mid-game stages.  However, during
+//       later game stage these limits are often significantly exceeded due to game engine not counting incomplete
+//       buildings when tallying unit quantities.  Also, limits appear to be somewhat ignored by game engine during tier-3
+//       stage if metal and energy production are consistently at healthy levels.
+
+//factories tech 1
+Limit CORAP 0
+Limit CORFHP 2
+// Changed HP after seeing game engine stubbornly not build SY (for that game it was 4th factory) until Game Time 1:03:00
+// and another AI (for that game it was 2nd factory) until Game Time 1:13:00 when Weights SY 10, FHP 6, LAB 2, HP 0
+// during Hard difficulty with starting Metal 10,000 and Energy 10,000
+// Limit CORHP 0
+Limit CORHP 1
+// Playtested Limit LAB 1 and Limit ALAB 1 to allow building DECOM (Decoy Commander) to help protect AI Commander.  However,
+// game engine gave LAB as first factory more often than low Weight LAB 0.5 should yield.  LAB as first factory was observed
+// to give questionable AI game-play.  Detriments included lack of construction on water and Construction Kbot depleting
+// Torpedo Launcher placements by building several along shoreline.  On the positive side, Resource Generator limit was
+// reached significantly before other AI, giving highest metal output during early/mid-game stage.  Naval production recovery
+// was speedy and effective whenever first Shipyard is built.  Further playtesting is required to determine repeatability of
+// events.  LAB, ALAB and, subsequently, DECOM viability remains questionable.
+Limit CORLAB 1
+Limit CORPLAT 1
+// Limit CORSY 2
+Limit CORSY 3
+Limit CORVP 0
+
+//factories tech 2
+Limit CORAAP 0
+Limit CORAHP 0
+Limit CORALAB 1
+Limit CORAPLAT 2
+// Limit CORASY 3
+Limit CORASY 4
+Limit CORAVP 0
+// Limit CORFAHP 1
+Limit CORFAHP 3
+
+//factories tech 3+
+// Preferably want Exp. Floating Hover Platform due to limited land availability, however, it currently has an AI build issue
+Limit COREHP 1
+Limit COREPLAT 3
+// Limit CORESY 2
+Limit CORESY 3
+Limit COREVP 0
+Limit CORFAB 0
+// FEHP now higher than ESY because larger ships more often jammed in traffic
+// Limit CORFEHP 1
+Limit CORFEHP 5
+Limit CORGANT 0
+
+//aircraft tech 3+
+Limit CORBULK 0
+Limit CORECLIPSE 3
+Limit CORSHOCK 6
+Limit CORSKYNET 7
+Limit CORVIND 3
+
+//hovercraft tech 3+
+Limit CORCHARGER 0
+Limit CORHBATS 15
+Limit CORHCRUS 7
+// CORHROY possessing both depth-charge and sonar has important capability of attacking submerged targets to avoid
+// situation where other mobile attacking units (without this combination of abilities) can stall/remain in Standby mode.
+Limit CORHROY 40
+// Tommy XL (Super Hover Carrier) restrict until official release
+Limit CORHSCAR 0
+
+//kbots tech 3+
+// Unit(s) having MaxWaterDepth=255: CORKROG (COULD traverse water during 20181023 test)
+Limit CORJUGG 0
+Limit CORKROG 50
+Limit CORSPID 0
+Limit CORTAC 1
+Limit CORTALOS 0
+
+//vehicles tech 3+
+// Unit(s) having MaxWaterDepth=255: CORMCV (but could NOT traverse water during 20181023 test)
+Limit CORAFAV 0
+Limit CORAMIST 0
+Limit CORBEH 0
+Limit CORLSTNK 0
+Limit CORMCV 0
+Limit CORPOUND 0
+
+//ships tech 3+
+Limit CORBSUB 5
+Limit CORDREAD 5
+// Rancor (Bombardment Monitor) CORRANCOR currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORRANCOR 0
+// AI unable to utilize nuclear missile weapon's stockpiled ammunition of Sanctuary (Strategic Carrier / Radar Targeting
+// Upgrade) CORSCAR
+Limit CORSCAR 0
+// Leviathan (Tactical Nuclear Missile Submarine) CORSSUB currently decommissioned, however, its unit data FBI file still
+// exists with "Side=CORE" so we retain unit in profile to prevent the default "Weight CORE 0.2" from leading AI to build it
+Limit CORSSUB 0
+Limit CORSSUB_SURFACE 0
+
+//buildings tech 3 and misc
+Limit CORBUZZ 2
+Limit CORGATE 0
+Limit CORMAS 10
+Limit CORNOVA 1
+Limit COROMNI 2
+Limit CORSFUS 3
+// Escalation Beta v8.9.0 CORSFUS_UPGRADE bug recently observed 20181125, as of this writing, on metal seabed map (Seven
+// Islands map within Totala2.hpi).  CORSFUS_UPGRADE was seen as very last AI built units (two of them) semi-damaged (or
+// semi-built?) remaining on metal seabed with no associated CORSFUS.  Attacking forces unable to target it after destroying
+// all other units belonging to that AI.  Its location appeared on minimap.  Command "+view" was used to reveal it.
+// Avoiding Experimental Shield Upgrade non-zero value until issue resolved.
+Limit CORSFUS_UPGRADE 0
+Limit CORSHGEN 2
+Limit CORSILO 0
+Limit CORSMB 3
+Limit CORTARG 0
+Limit CORTECH 2
+Limit CORVAULT 0
+
+//construction units
+Limit CORACA 0
+// Limit CORACH 10
+Limit CORACH 6
+Limit CORACK 1
+// Limit CORACSA 10
+Limit CORACSA 7
+// Limit CORACSUB 10
+Limit CORACSUB 8
+Limit CORACV 0
+Limit CORCA 0
+Limit CORCH 6
+Limit CORCK 1
+Limit CORCS 6
+// Limit CORCSA 10
+Limit CORCSA 7
+Limit CORCV 0
+Limit CORECA 0
+Limit CORECH 3
+Limit CORECK 1
+Limit CORECS 3
+// Exp. Construction Seaplane (Tech Level 3) CORECSA currently decommissioned
+Limit CORECSA 0
+Limit CORECV 0

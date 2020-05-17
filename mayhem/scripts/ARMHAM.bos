@@ -1,0 +1,650 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  pelvis, rfirept, lfirept, lcannon, rcannon, locase, lthigh, rthigh,
+       torso, rleg, rfoot, lleg, lfoot, upcase2, canbase, ground;
+
+static-var  Moving_1, Aiming_2, CanAim_3, Busy_4, Gun_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(JustMoved)
+{
+	JustMoved = 1;
+	while( TRUE )
+	{
+		if( Aiming_2 OR CanAim_3 )
+		{
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.50] now;
+				move lcannon to y-axis [0.00] now;
+				move lcannon to z-axis [0.00] now;
+				move rcannon to y-axis [0.00] now;
+				move rcannon to z-axis [0.00] now;
+				move locase to y-axis [0.00] now;
+				move rfirept to y-axis [-0.30] now;
+				move rfirept to z-axis [0.21] now;
+				move lfirept to y-axis [-0.30] now;
+				move lfirept to z-axis [0.21] now;
+				turn lthigh to x-axis <-62.93> now;
+				turn rthigh to x-axis <3.51> now;
+				turn rleg to x-axis <82.98> now;
+				turn rfoot to x-axis <-36.91> now;
+				turn lleg to x-axis <57.30> now;
+				turn lfoot to x-axis <5.26> now;
+				sleep 70;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-51.68> now;
+				turn rthigh to x-axis <-8.08> now;
+				turn rleg to x-axis <105.84> now;
+				turn rfoot to x-axis <-27.07> now;
+				turn lleg to x-axis <45.35> now;
+				turn lfoot to x-axis <5.97> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-39.37> now;
+				turn rthigh to x-axis <-20.03> now;
+				turn rleg to x-axis <118.85> now;
+				turn lleg to x-axis <38.68> now;
+				turn lfoot to x-axis <1.05> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [0.00] now;
+				turn lthigh to x-axis <-29.18> now;
+				turn rthigh to x-axis <-30.24> now;
+				turn rleg to x-axis <72.77> now;
+				turn rfoot to x-axis <-33.76> now;
+				turn lleg to x-axis <29.87> now;
+				turn lfoot to x-axis <-0.70> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-20.38> now;
+				turn rthigh to x-axis <-56.26> now;
+				turn rleg to x-axis <58.36> now;
+				turn lleg to x-axis <41.13> now;
+				turn lfoot to x-axis <-21.09> now;
+				sleep 60;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-16.52> now;
+				turn rthigh to x-axis <-57.66> now;
+				turn rleg to x-axis <-10.19> now;
+				turn lleg to x-axis <59.41> now;
+				turn lfoot to x-axis <-31.64> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <-4.57> now;
+				turn rthigh to x-axis <-65.40> now;
+				turn rleg to x-axis <35.86> now;
+				turn lleg to x-axis <53.44> now;
+				turn lfoot to x-axis <-33.76> now;
+				sleep 60;
+				move pelvis to y-axis [-0.50] now;
+				turn lthigh to x-axis <2.81> now;
+				turn rthigh to x-axis <-66.45> now;
+				turn rleg to x-axis <43.24> now;
+				turn rfoot to x-axis <-7.73> now;
+				turn lleg to x-axis <57.31> now;
+				turn lfoot to x-axis <-29.53> now;
+				sleep 60;
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <5.27> now;
+				turn rthigh to x-axis <-61.53> now;
+				turn rleg to x-axis <44.65> now;
+				turn rfoot to x-axis <16.87> now;
+				turn lleg to x-axis <78.41> now;
+				turn lfoot to x-axis <-34.80> now;
+				sleep 70;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-4.92> now;
+				turn rthigh to x-axis <-52.38> now;
+				turn rleg to x-axis <43.24> now;
+				turn rfoot to x-axis <9.14> now;
+				turn lleg to x-axis <100.55> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-21.45> now;
+				turn rthigh to x-axis <-36.21> now;
+				turn rfoot to x-axis <-7.03> now;
+				turn lleg to x-axis <103.73> now;
+				turn lfoot to x-axis <-52.74> now;
+				sleep 60;
+				move pelvis to y-axis [0.00] now;
+				turn lthigh to x-axis <-32.69> now;
+				turn rthigh to x-axis <-21.79> now;
+				turn rleg to x-axis <38.68> now;
+				turn rfoot to x-axis <-13.35> now;
+				turn lleg to x-axis <84.74> now;
+				turn lfoot to x-axis <-45.36> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-68.91> now;
+				turn rthigh to x-axis <-10.88> now;
+				turn rleg to x-axis <37.62> now;
+				turn rfoot to x-axis <-21.45> now;
+				turn lleg to x-axis <79.10> now;
+				turn lfoot to x-axis <-37.97> now;
+				sleep 60;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-61.18> now;
+				turn rthigh to x-axis <3.51> now;
+				turn rleg to x-axis <26.36> now;
+				turn rfoot to x-axis <-22.85> now;
+				turn lleg to x-axis <9.84> now;
+				sleep 60;
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <-63.29> now;
+				turn rthigh to x-axis <17.22> now;
+				turn rleg to x-axis <29.18> now;
+				turn rfoot to x-axis <-21.09> now;
+				turn lleg to x-axis <28.82> now;
+				turn lfoot to x-axis <-1.40> now;
+			}
+			CanAim_3 = 0;
+			sleep 60;
+			JustMoved = 1;
+		}
+		if( !Aiming_2 )
+		{
+			CanAim_3 = 1;
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.50] now;
+				move lcannon to y-axis [0.00] now;
+				move lcannon to z-axis [0.00] now;
+				move rcannon to y-axis [0.00] now;
+				move rcannon to z-axis [0.00] now;
+				move locase to y-axis [0.00] now;
+				move rfirept to y-axis [-0.30] now;
+				move rfirept to z-axis [0.21] now;
+				move lfirept to y-axis [-0.30] now;
+				move lfirept to z-axis [0.21] now;
+				turn lthigh to x-axis <-62.93> now;
+				turn rthigh to x-axis <3.51> now;
+				turn torso to z-axis <-4.57> now;
+				turn rleg to x-axis <82.98> now;
+				turn rfoot to x-axis <-36.91> now;
+				turn lleg to x-axis <57.30> now;
+				turn lfoot to x-axis <5.26> now;
+				sleep 70;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-51.68> now;
+				turn rthigh to x-axis <-8.08> now;
+				turn torso to z-axis <0.00> now;
+				turn rleg to x-axis <105.84> now;
+				turn rfoot to x-axis <-27.07> now;
+				turn lleg to x-axis <45.35> now;
+				turn lfoot to x-axis <5.97> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-39.37> now;
+				turn rthigh to x-axis <-20.03> now;
+				turn rleg to x-axis <118.85> now;
+				turn lleg to x-axis <38.68> now;
+				turn lfoot to x-axis <1.05> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [0.00] now;
+				turn lthigh to x-axis <-29.18> now;
+				turn rthigh to x-axis <-30.24> now;
+				turn torso to z-axis <1.75> now;
+				turn rleg to x-axis <72.77> now;
+				turn rfoot to x-axis <-33.76> now;
+				turn lleg to x-axis <29.87> now;
+				turn lfoot to x-axis <-0.70> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-20.38> now;
+				turn rthigh to x-axis <-56.26> now;
+				turn torso to z-axis <7.73> now;
+				turn rleg to x-axis <58.36> now;
+				turn lleg to x-axis <41.13> now;
+				turn lfoot to x-axis <-21.09> now;
+				sleep 60;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-16.52> now;
+				turn rthigh to x-axis <-57.66> now;
+				turn torso to z-axis <9.84> now;
+				turn rleg to x-axis <-10.19> now;
+				turn lleg to x-axis <59.41> now;
+				turn lfoot to x-axis <-31.64> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <-4.57> now;
+				turn rthigh to x-axis <-65.40> now;
+				turn torso to z-axis <10.19> now;
+				turn rleg to x-axis <35.86> now;
+				turn lleg to x-axis <53.44> now;
+				turn lfoot to x-axis <-33.76> now;
+				sleep 60;
+				move pelvis to y-axis [-0.50] now;
+				turn lthigh to x-axis <2.81> now;
+				turn rthigh to x-axis <-66.45> now;
+				turn torso to z-axis <7.03> now;
+				turn rleg to x-axis <43.24> now;
+				turn rfoot to x-axis <-7.73> now;
+				turn lleg to x-axis <57.31> now;
+				turn lfoot to x-axis <-29.53> now;
+				sleep 60;
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <5.27> now;
+				turn rthigh to x-axis <-61.53> now;
+				turn torso to z-axis <4.92> now;
+				turn rleg to x-axis <44.65> now;
+				turn rfoot to x-axis <16.87> now;
+				turn lleg to x-axis <78.41> now;
+				turn lfoot to x-axis <-34.80> now;
+				sleep 70;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-4.92> now;
+				turn rthigh to x-axis <-52.38> now;
+				turn torso to z-axis <0.00> now;
+				turn rleg to x-axis <43.24> now;
+				turn rfoot to x-axis <9.14> now;
+				turn lleg to x-axis <100.55> now;
+				sleep 60;
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-21.45> now;
+				turn rthigh to x-axis <-36.21> now;
+				turn torso to z-axis <0.00> now;
+				turn rfoot to x-axis <-7.03> now;
+				turn lleg to x-axis <103.73> now;
+				turn lfoot to x-axis <-52.74> now;
+				sleep 60;
+				move pelvis to y-axis [0.00] now;
+				turn lthigh to x-axis <-32.69> now;
+				turn rthigh to x-axis <-21.79> now;
+				turn torso to z-axis <-8.08> now;
+				turn rleg to x-axis <38.68> now;
+				turn rfoot to x-axis <-13.35> now;
+				turn lleg to x-axis <84.74> now;
+				turn lfoot to x-axis <-45.36> now;
+				sleep 60;
+			}
+			if( Moving_1 )
+			{
+				move pelvis to y-axis [-0.10] now;
+				turn lthigh to x-axis <-68.91> now;
+				turn rthigh to x-axis <-10.88> now;
+				turn torso to z-axis <-10.19> now;
+				turn rleg to x-axis <37.62> now;
+				turn rfoot to x-axis <-21.45> now;
+				turn lleg to x-axis <79.10> now;
+				turn lfoot to x-axis <-37.97> now;
+				sleep 60;
+				move pelvis to y-axis [-0.25] now;
+				turn lthigh to x-axis <-61.18> now;
+				turn rthigh to x-axis <3.51> now;
+				turn torso to z-axis <-8.77> now;
+				turn rleg to x-axis <26.36> now;
+				turn rfoot to x-axis <-22.85> now;
+				turn lleg to x-axis <9.84> now;
+				sleep 60;
+				move pelvis to y-axis [-0.40] now;
+				turn lthigh to x-axis <-63.29> now;
+				turn rthigh to x-axis <17.22> now;
+				turn torso to z-axis <-7.03> now;
+				turn rleg to x-axis <29.18> now;
+				turn rfoot to x-axis <-21.09> now;
+				turn lleg to x-axis <28.82> now;
+				turn lfoot to x-axis <-1.40> now;
+			}
+			CanAim_3 = 0;
+			sleep 60;
+			JustMoved = 1;
+		}
+		if( !Moving_1 )
+		{
+			if( JustMoved )
+			{
+				move pelvis to y-axis [0.00] speed [1.00];
+				turn rthigh to x-axis <0.00> speed <200.00>;
+				turn rleg to x-axis <0.00> speed <200.00>;
+				turn lthigh to x-axis <0.00> speed <200.00>;
+				turn lleg to x-axis <0.00> speed <200.00>;
+				if( !Aiming_2 )
+				{
+					turn torso to y-axis <0.00> speed <90.00>;
+				}
+				JustMoved = 0;
+			}
+			sleep 100;
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	Moving_1 = 0;
+	Aiming_2 = 0;
+	CanAim_3 = 0;
+	Busy_4 = 0;
+	Gun_5 = 0;
+	hide rfirept;
+	hide lfirept;
+	dont-shade locase;
+	dont-shade lcannon;
+	dont-shade rcannon;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+	/*if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+	/*if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		while (get UNIT_NEAREST(25,62,ARMLAB))
+		{
+			get ORDER_SELF(28,0);
+			sleep 1000;
+		}
+	}*/
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = pelvis;
+}
+
+RestoreAfterDelay()
+{
+	sleep 10000;
+	set-signal-mask 0;
+	CanAim_3 = 1;
+	Aiming_2 = 0;
+	turn torso to y-axis <0.00> speed <60.00>;
+	turn canbase to x-axis <0.00> speed <25.00>;
+	while( Busy_4 )
+	{
+		Busy_4 = 0;
+		move lcannon to y-axis [0.00] now;
+		move lcannon to z-axis [0.00] now;
+		move rcannon to y-axis [0.00] now;
+		move rcannon to z-axis [0.00] now;
+		move upcase2 to z-axis [-4.40] now;
+		move upcase2 to z-axis [0.95] speed [11.71];
+		move locase to y-axis [0.00] now;
+		move locase to z-axis [-0.75] now;
+		move rfirept to y-axis [-0.04] now;
+		move rfirept to z-axis [0.22] now;
+		move lfirept to y-axis [-0.04] now;
+		move lfirept to z-axis [0.22] now;
+		turn upcase2 to x-axis <-47.12> now;
+		turn locase to x-axis <61.54> now;
+		sleep 457;
+		move upcase2 to z-axis [1.70] speed [7.00];
+		turn upcase2 to x-axis <-41.14> speed <56.00>;
+		sleep 107;
+		move upcase2 to z-axis [0.00] speed [100.00];
+		move locase to z-axis [0.00] speed [44.12];
+		turn upcase2 to x-axis <0.00> speed <2400.00>;
+		turn locase to x-axis <0.00> speed <3600.00>;
+		sleep 28;
+	}
+	CanAim_3 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	Aiming_2 = 1;
+	while( CanAim_3 )
+	{
+		sleep 300;
+	}
+	while( !Busy_4 )
+	{
+		CanAim_3 = 1;
+		move lcannon to y-axis [0.00] now;
+		move lcannon to z-axis [0.00] now;
+		move rcannon to y-axis [0.00] now;
+		move rcannon to z-axis [0.00] now;
+		move locase to y-axis [0.00] now;
+		move locase to z-axis [0.00] now;
+		move rfirept to y-axis [-0.04] now;
+		move rfirept to z-axis [0.22] now;
+		move lfirept to y-axis [-0.04] now;
+		move lfirept to z-axis [0.22] now;
+		turn upcase2 to x-axis <0.00> now;
+		turn upcase2 to x-axis <-44.00> speed <88.00>;
+		turn locase to x-axis <0.00> now;
+		turn locase to x-axis <61.54> speed <123.08>;
+		sleep 500;
+		move upcase2 to z-axis [-4.40] speed [45.00];
+		turn upcase2 to x-axis <-47.12> speed <32.00>;
+		sleep 99;
+		turn upcase2 to x-axis <-91.06> speed <527.28>;
+		sleep 84;
+		turn upcase2 to x-axis <-20.00> speed <377.00>;
+		sleep 188;
+		turn upcase2 to x-axis <-47.12> speed <1450.00>;
+		Busy_4 = 1;
+		CanAim_3 = 0;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn torso to y-axis heading speed <60.00>;
+	turn canbase to x-axis <0.00> - pitch speed <25.00>;
+	wait-for-turn torso around y-axis;
+	wait-for-turn canbase around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = pelvis;
+}
+
+QueryPrimary(piecenum)
+{
+	if( !Gun_5 )
+	{
+		piecenum = rfirept;
+	}
+	if( Gun_5 )
+	{
+		piecenum = lfirept;
+	}
+}
+
+FirePrimary()
+{
+	if( !Gun_5 )
+	{
+		Gun_5 = 1;
+		show rfirept;
+		move rcannon to z-axis [-2.00] speed [25.00];
+		sleep 100;
+		hide rfirept;
+		move rcannon to z-axis [0.00] speed [4.00];
+		return (0);
+	}
+	Gun_5 = 0;
+	show lfirept;
+	move lcannon to z-axis [-2.00] speed [25.00];
+	sleep 100;
+	hide lfirept;
+	move lcannon to z-axis [0.00] speed [4.00];
+}
+
+Killed(severity, corpsetype)
+{
+	hide rfirept;
+	hide lfirept;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode pelvis type BITMAPONLY | BITMAP1;
+		explode lcannon type BITMAPONLY | BITMAP2;
+		explode rcannon type BITMAPONLY | BITMAP3;
+		explode locase type BITMAPONLY | BITMAP4;
+		explode lthigh type BITMAPONLY | BITMAP5;
+		explode rthigh type BITMAPONLY | BITMAP1;
+		explode torso type BITMAPONLY | BITMAP2;
+		explode rleg type BITMAPONLY | BITMAP3;
+		explode rfoot type BITMAPONLY | BITMAP4;
+		explode lleg type BITMAPONLY | BITMAP5;
+		explode lfoot type BITMAPONLY | BITMAP1;
+		explode upcase2 type BITMAPONLY | BITMAP2;
+		explode canbase type BITMAPONLY | BITMAP3;
+		explode ground type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode pelvis type FALL | BITMAP1;
+		explode lcannon type SHATTER | BITMAP2;
+		explode rcannon type SHATTER | BITMAP3;
+		explode locase type FALL | BITMAP4;
+		explode lthigh type FALL | BITMAP5;
+		explode rthigh type FALL | BITMAP1;
+		explode torso type BITMAPONLY | BITMAP2;
+		explode rleg type FALL | BITMAP3;
+		explode rfoot type FALL | BITMAP4;
+		explode lleg type FALL | BITMAP5;
+		explode lfoot type FALL | BITMAP1;
+		explode upcase2 type FALL | BITMAP2;
+		explode canbase type BITMAPONLY | BITMAP3;
+		explode ground type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lcannon type SHATTER | BITMAP2;
+		explode rcannon type SHATTER | BITMAP3;
+		explode locase type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode upcase2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode torso type BITMAPONLY | BITMAP2;
+		explode canbase type BITMAPONLY | BITMAP3;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	explode pelvis type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lcannon type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode rcannon type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode locase type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode upcase2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode torso type BITMAPONLY | BITMAP2;
+	explode canbase type BITMAPONLY | BITMAP3;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

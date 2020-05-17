@@ -1,0 +1,356 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, turret, sleeve, barrel, flare,
+	   leg1, leg2, leg3, leg4, leg5, leg6;
+	   
+static-var  bMoving, terrain_3, restore_delay, x_slope, z_slope;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( terrain_3 == 3 )
+			{
+				smoketype = 259;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( terrain_3!=0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(base)) - get GROUND_HEIGHT(get PIECE_XZ(flare)), get XZ_HYPOT(get PIECE_XZ(base) - get PIECE_XZ(flare)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(leg1)) - get GROUND_HEIGHT(get PIECE_XZ(leg6)), get XZ_HYPOT(get PIECE_XZ(leg1) - get PIECE_XZ(leg6)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( terrain_3==0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+		sleep sleeptime;
+	}
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	terrain_3 = Func_Var_1;
+}
+
+RockUnit(anglex, anglez)
+{
+	turn body to x-axis anglex speed <50>;
+	turn body to z-axis anglez speed <50>;
+	wait-for-turn body around z-axis;
+	wait-for-turn body around x-axis;
+	turn body to z-axis <0> speed <20>;
+	turn body to x-axis <0> speed <20>;
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	dont-cache flare;
+	bMoving = FALSE;
+	terrain_3 = 4;
+	x_slope = 0;
+	z_slope = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	restore_delay = 3000;
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = TRUE;
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			turn leg1 to y-axis <-11.25> now; 
+			turn leg1 to z-axis <19.480571> now;
+			turn leg1 to y-axis <0> speed <135>;
+			turn leg1 to z-axis <38.961143> speed <135>;
+			turn leg2 to y-axis <0> now;
+			turn leg2 to y-axis <-22.5> speed <135>;
+			turn leg3 to y-axis <11.25> now;
+			turn leg3 to z-axis <19.480571> now;
+			turn leg3 to y-axis <22.5> speed <135>;
+			turn leg3 to z-axis <0> speed <135>;
+			turn leg4 to y-axis <-22.5> now;
+			turn leg4 to y-axis <0> speed <135>;
+			turn leg5 to z-axis <-38.961143> now;
+			turn leg5 to y-axis <-11.25> speed <135>;
+			turn leg5 to z-axis <-19.480571> speed <135>;
+			turn leg6 to y-axis <22.5> now;
+			turn leg6 to y-axis <11.25> speed <135>;
+			turn leg6 to z-axis <-19.480571> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from leg1;
+			}
+			sleep 150;
+		}
+		if( bMoving )
+		{	
+			turn leg1 to y-axis <11.25> speed <135>;
+			turn leg1 to z-axis <19.480571> speed <135>;
+			turn leg2 to y-axis <-11.25> speed <135>;
+			turn leg2 to z-axis <19.480571> speed <135>;
+			turn leg3 to y-axis <0> speed <135>;
+			turn leg4 to y-axis <22.5> speed <135>;
+			turn leg5 to y-axis <-22.5> speed <135>;
+			turn leg5 to z-axis <0> speed <135>;
+			turn leg6 to y-axis <0> speed <135>;
+			turn leg6 to z-axis <-38.961143> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from leg4;
+			}
+			sleep 150;
+		}
+		if( bMoving )
+		{	
+			turn leg1 to y-axis <22.5> speed <135>;
+			turn leg1 to z-axis <0> speed <135>;
+			turn leg2 to y-axis <0> speed <135>;
+			turn leg2 to z-axis <38.961143> speed <135>;
+			turn leg3 to y-axis <-22.5> speed <135>;
+			turn leg4 to y-axis <11.25> speed <135>;
+			turn leg4 to z-axis <-19.480571> speed <135>;
+			turn leg5 to y-axis <0> speed <135>;
+			turn leg6 to y-axis <-11.25> speed <135>;
+			turn leg6 to z-axis <-19.480571> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from sleeve;
+			}
+			sleep 150;
+		}
+		if( bMoving )
+		{	
+			turn leg1 to y-axis <0> speed <135>;
+			turn leg2 to y-axis <11.25> speed <135>;
+			turn leg2 to z-axis <19.480571> speed <135>;
+			turn leg3 to y-axis <-11.25> speed <135>;
+			turn leg3 to z-axis <19.480571> speed <135>;
+			turn leg4 to y-axis <0> speed <135>;
+			turn leg4 to z-axis <-38.961143> speed <135>;
+			turn leg5 to y-axis <22.5> speed <135>;
+			turn leg6 to y-axis <-22.5> speed <135>;
+			turn leg6 to z-axis <0> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from leg1;
+			}
+			sleep 150;
+		}
+		if( bMoving )
+		{	
+			turn leg1 to y-axis <-22.5> speed <135>;
+			turn leg2 to y-axis <22.5> speed <135>;
+			turn leg2 to z-axis <0> speed <135>;
+			turn leg3 to y-axis <0> speed <135>;
+			turn leg3 to z-axis <38.961143> speed <135>;
+			turn leg4 to y-axis <-11.25> speed <135>;
+			turn leg4 to z-axis <-19.480571> speed <135>;
+			turn leg5 to y-axis <11.25> speed <135>;
+			turn leg5 to z-axis <-19.480571> speed <135>;
+			turn leg6 to y-axis <0> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from leg4;
+			}
+			sleep 150;
+		}
+		if( bMoving )
+		{	
+			turn leg1 to y-axis <-11.25> speed <135>; 
+			turn leg1 to z-axis <19.480571> speed <135>;
+			turn leg2 to y-axis <0> speed <135>;
+			turn leg3 to y-axis <11.25> speed <135>;
+			turn leg3 to z-axis <19.480571> speed <135>;
+			turn leg4 to y-axis <-22.5> speed <135>;
+			turn leg4 to z-axis <0> speed <135>;
+			turn leg5 to y-axis <0> speed <135>;
+			turn leg5 to z-axis <-38.961143> speed <135>;
+			turn leg6 to y-axis <22.5> speed <135>;
+			if( terrain_3 == 3 )
+			{
+				emit-sfx 259 from sleeve;
+			}
+			sleep 150;
+		}
+	}
+	turn leg1 to y-axis <0> speed <150>;
+	turn leg1 to z-axis <0> now;
+	turn leg2 to y-axis <0> speed <150>;
+	turn leg2 to z-axis <0> now;		
+	turn leg3 to y-axis <0> speed <150>;
+	turn leg3 to z-axis <0> now;		
+	turn leg4 to y-axis <0> speed <150>;
+	turn leg4 to z-axis <0> now;
+	turn leg5 to y-axis <0> speed <150>;
+	turn leg5 to z-axis <0> now;	
+	turn leg6 to y-axis <0> speed <150>;
+	turn leg6 to z-axis <0> now;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	turn turret to y-axis <0> speed <90>;
+	turn sleeve to x-axis <0> speed <40>;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <120>;
+	turn sleeve to x-axis <0> - pitch speed <40>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	move barrel to z-axis [-2] speed [500];
+	move sleeve to z-axis [0.5] speed [500];
+	sleep 150;
+	hide flare;
+	move barrel to z-axis [0] speed [2];
+	move sleeve to z-axis [0] speed [1];
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( terrain_3 == 3 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode body type BITMAPONLY | BITMAP1;
+			explode sleeve type BITMAPONLY | BITMAP4;
+			explode leg1 type BITMAPONLY | BITMAP2;
+			explode leg2 type BITMAPONLY | BITMAP2;
+			explode leg3 type BITMAPONLY | BITMAP2;
+			explode leg4 type BITMAPONLY | BITMAP2;
+			explode leg5 type BITMAPONLY | BITMAP2;
+			explode leg6 type BITMAPONLY | BITMAP2;		
+			explode barrel type BITMAPONLY | BITMAP3;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode sleeve type BITMAPONLY | BITMAP4;
+		explode leg1 type BITMAPONLY | BITMAP2;
+		explode leg2 type BITMAPONLY | BITMAP2;
+		explode leg3 type BITMAPONLY | BITMAP2;
+		explode leg4 type BITMAPONLY | BITMAP2;
+		explode leg5 type BITMAPONLY | BITMAP2;
+		explode leg6 type BITMAPONLY | BITMAP2;	
+		explode turret type SHATTER | BITMAP3;
+		explode barrel type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type SHATTER | BITMAP1;
+		explode sleeve type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode leg1 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg2 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg3 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg4 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg5 type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode leg6 type FALL | EXPLODE_ON_HIT | BITMAP2;		
+		explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode body type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode leg6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;	
+	explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

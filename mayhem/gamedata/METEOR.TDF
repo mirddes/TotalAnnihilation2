@@ -1,0 +1,8 @@
+[Default]
+{
+MeteorWeapon = Meteor;
+MeteorRadius = 4000;
+MeteorDensity = 100;
+MeteorDuration = 10;
+MeteorInterval = 180;
+}

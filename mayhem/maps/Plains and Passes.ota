@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Plains and Passes;
+	missiondescription=20 X 20  Large map with lots of metal.;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=27;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2200;
+	maxwindspeed=3709;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=4;
+	size=20 x 20;
+	memory=32 mb;
+	useonlyunits=Plains and Passes.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=736;
+				ZPos=3776;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=9568;
+				ZPos=5168;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=5616;
+				ZPos=1216;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=4048;
+				ZPos=9696;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=3936;
+				ZPos=5696;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=5904;
+				ZPos=4032;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=9136;
+				ZPos=9136;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=608;
+				ZPos=672;
+				}
+			[special8]
+				{
+				specialwhat=StartPos10;
+				XPos=4272;
+				ZPos=7712;
+				}
+			[special9]
+				{
+				specialwhat=StartPos9;
+				XPos=4512;
+				ZPos=3344;
+				}
+			}
+		}
+	}

@@ -1,0 +1,538 @@
+[Barrier01]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier01;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier02]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier02;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier03]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=1;
+	footprintz=4;
+	height=20;
+	filename=barriers;
+	seqname=barrier03;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier04]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=1;
+	footprintz=5;
+	height=80;
+	filename=barriers;
+	seqname=barrier04;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier05]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier05;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier06]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier06;
+	seqnameshad=barriershad06;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier07]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier07;
+	seqnameshad=barriershad07;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier08]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=4;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier08;
+	seqnameshad=barriershad08;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier09]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=5;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier09;
+	seqnameshad=barriershad09;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier10]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=5;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier10;
+	seqnameshad=barriershad10;
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier11]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=20;
+	filename=barriers;
+	seqname=barrier11;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier12]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier12;
+	seqnameshad=barriershad12;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier13]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier13;
+	seqnameshad=barriershad13
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier14]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier14;
+	seqnameshad=barriershad14;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier15]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier15;
+	seqnameshad=barriershad15;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier16]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	filename=barriers;
+	seqname=barrier16;
+	seqnameshad=barriershad16;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier17]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	filename=barriers;
+	seqname=barrier17;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier18]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	filename=barriers;
+	seqname=barrier18;
+	seqnameshad=barriershad18;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier19]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	filename=barriers;
+	seqname=barrier19;
+	seqnameshad=barriershad19;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier20]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier20;
+	seqnameshad=barriershad20;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier21]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier21;
+	seqnameshad=barriershad21;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier22]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier22;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Barrier23]
+	{
+	world=urban;
+	description=barrier;
+	category=barriers;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=barriers;
+	seqname=barrier23;
+	seqnameshad=barriershad23;
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

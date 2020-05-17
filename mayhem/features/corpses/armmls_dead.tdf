@@ -1,0 +1,35 @@
+[armmls_dead]
+{
+world=All Worlds;
+description=Valiant Wreckage;
+category=arm_corpses;
+object=armmls_dead;
+featuredead=armmls_heap;
+footprintx=4;
+footprintz=4;
+height=7;
+blocking=0;
+hitdensity=100;
+metal=194;
+damage=1140;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armmls_heap]
+{
+world=All Worlds;
+description=Valiant Wreckage;
+category=arm_corpses;
+object=armmls_dead;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=97;
+damage=1140;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

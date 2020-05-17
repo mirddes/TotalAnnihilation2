@@ -1,0 +1,13 @@
+MISSIONE 4.0004ARME
+Localizzare le fabbriche Core e i dispositivi di comunicazione. Distruggere tutte le unità ostili.
+
+PRIORITÀ 1
+L’invasione Core di Empyrrean è ancora in corso! Distruggete le fabbriche Core e la base di comunicazione sulla frontiera, per interrompere le trasmissioni di dati del nemico e privarlo dei preziosi minerali rari. 
+
+INFORMAZIONI UTILI
+&R*ATTENZIONE* *ATTENZIONE* *ATTENZIONE*&
+La base Core è ben protetta; costruite un quartier generale, in modo da avere le risorse sufficienti per portare a termine la missione. Il nemico è al corrente dei nostri movimenti, e potrebbe mandare squadre di Pyro assassini contro di voi. Verrete equipaggiati con un’unità Zeus. 
+
+&GRiparate le unità quando possibile.&
+
+FINE

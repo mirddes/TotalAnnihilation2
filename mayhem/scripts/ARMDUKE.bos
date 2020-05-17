@@ -1,0 +1,271 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  base, flare, turretbase, turret, sleeve, barrel, ffoot, bfoot,
+       lfoot, rfoot, fstrut, bstrut, lstrut, rstrut, fdoor, bdoor, GP;
+
+static-var bMoving, deployed, busy; 
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	bMoving = 0;
+	deployed = 0;
+	busy = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = 1;
+	while( busy )
+	{
+		sleep 250;
+		if( !bMoving )
+		{
+			return(0);
+		}
+	}
+	while( deployed >= bMoving )
+	{
+		busy = 1;
+		if( deployed > 1 )
+		{
+			deployed = 1;
+			turn fdoor to z-axis <10> speed <75>;
+			turn bdoor to z-axis <-10> speed <75>;
+			move bdoor to z-axis [-0.2] speed [1.5];
+			turn bfoot to x-axis <-90> speed <35>;
+			turn ffoot to x-axis <90> speed <35>;
+			turn rfoot to z-axis <90> speed <35>;
+			turn lfoot to z-axis <-90> speed <35>;
+			sleep 400;
+		}
+		if( ( deployed == 1 ) AND bMoving )
+		{
+			set ARMORED to 0;
+			turn fdoor to z-axis <0> speed <10>;
+			turn bdoor to z-axis <0> speed <10>;
+			move bdoor to z-axis [0] speed [0.2];
+			turn bfoot to x-axis <0> speed <90>;
+			move bstrut to y-axis [0] speed [2.2];
+			turn ffoot to x-axis <0> speed <90>;
+			move fstrut to y-axis [0] speed [2.8];
+			turn rfoot to z-axis <0> speed <90>;
+			move rfoot to y-axis [0] speed [0.4];
+			turn rstrut to z-axis <0> speed <14>;
+			turn lfoot to z-axis <0> speed <90>;
+			move lfoot to y-axis [0] speed [0.4];
+			turn lstrut to z-axis <0> speed <14>;
+			move turretbase to y-axis [0] speed [3];
+			move turret to y-axis [0] speed [3];
+			deployed = 0;
+			sleep 800;
+		}
+		busy = 0;
+		sleep 200;
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	sleep 1000;
+	while( busy )
+	{
+		sleep 250;
+		if( bMoving )
+		{
+			return(0);
+		}
+	}
+	if( !deployed AND !bMoving )
+	{
+		busy = 1;
+		turn bfoot to x-axis <-90> speed <90>;
+		move bstrut to y-axis [-2.2] speed [2.2];
+		turn ffoot to x-axis <90> speed <90>;
+		move fstrut to y-axis [-2.8] speed [2.8];
+		turn rfoot to z-axis <90> speed <90>;
+		move rfoot to y-axis [-0.4] speed [0.4];
+		turn rstrut to z-axis <-14> speed <14>;
+		turn lfoot to z-axis <-90> speed <90>;
+		move lfoot to y-axis [-0.4] speed [0.4];
+		turn lstrut to z-axis <14> speed <14>;
+		move turretbase to y-axis [4] speed [4];
+		move turret to y-axis [3] speed [3];
+		turn fdoor to z-axis <10> speed <20>;
+		turn bdoor to z-axis <-10> speed <20>;
+		move bdoor to z-axis [-0.2] speed [0.4];
+		deployed = 1;
+		sleep 1000;
+		if( !bMoving) 
+		{
+			set ARMORED to 1;
+			turn fdoor to z-axis <-20> speed <75>;
+			move bdoor to z-axis <20> speed <75>;
+			move bdoor to z-axis [0] speed [1.5];
+			turn ffoot to x-axis <104> speed <180>;
+			turn bfoot to x-axis <-104> speed <180>;
+			turn rfoot to z-axis <104> speed <180>;
+			turn lfoot to z-axis <-104> speed <180>;
+			deployed = 2;
+			sleep 400;
+		}
+		busy = 0;
+	}
+}
+
+RestoreAfterDelay()
+{
+	while( deployed > 1 )
+	{
+		sleep 400;
+	}
+	sleep 6000;
+	set-signal-mask 0;
+	turn turret to y-axis <0> speed <90>;
+	turn sleeve to x-axis <0> speed <40>;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <240>;
+	turn sleeve to x-axis <0> - pitch speed <80>;
+	wait-for-move barrel along z-axis;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	var speed1;
+	speed1 = [0.4];
+	if( deployed > 1 )
+	{
+		speed1 = [0.8];
+	}
+	show flare;
+	move barrel to z-axis [-1.2] NOW;
+	move barrel to z-axis [0] speed speed1;
+	sleep 150;
+	hide flare;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type BITMAPONLY | BITMAP3;
+		explode barrel type BITMAPONLY | BITMAP3;
+		explode fstrut type BITMAPONLY | BITMAP5;
+		explode bstrut type BITMAPONLY | BITMAP5;
+		explode lstrut type BITMAPONLY | BITMAP5;
+		explode rstrut type BITMAPONLY | BITMAP5;
+		explode fdoor type BITMAPONLY | BITMAP4;
+		explode bdoor type BITMAPONLY | BITMAP4;
+		
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | BITMAP3;
+		explode barrel type FALL | BITMAP3;
+		explode fstrut type SHATTER | BITMAP5;
+		explode bstrut type BITMAPONLY | BITMAP5;
+		explode lstrut type FALL | BITMAP5;
+		explode rstrut type FALL | BITMAP5;
+		explode fdoor type BITMAPONLY | BITMAP4;
+		explode bdoor type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | SMOKE | BITMAP3;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode fstrut type SHATTER | BITMAP5;
+		explode bstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode rstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode fdoor type FALL | SMOKE | BITMAP4;
+		explode bdoor type FALL | SMOKE | BITMAP4;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP2;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode fstrut type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode bstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode rstrut type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode fdoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode bdoor type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

@@ -1,0 +1,259 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  dish1, dish2, radar, door, plate, base, leg1, leg2, 
+       leg3, leg4, leg5, leg6;
+
+static-var  bMoving, request_1, state_2, busy_3;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	move radar to z-axis [0.5] NOW;
+	bMoving = FALSE;
+	request_1 = 0;
+	state_2 = 0;
+	busy_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+RequestState()
+{
+	while( !busy_3 AND request_1 != state_2 )
+	{
+		busy_3 = 1;
+		if( request_1 AND !state_2 )
+		{
+			turn dish1 to y-axis <0> NOW;
+			turn dish2 to y-axis <0> NOW;
+			move radar to z-axis [0.5] NOW;
+			turn door to x-axis <0> NOW;
+			move plate to y-axis [1.5] speed [6];
+			sleep 250;
+			set ARMORED to 0;
+			turn door to x-axis <120> speed <240>;
+			sleep 500;
+			turn dish1 to y-axis <100> speed <125>;
+			turn dish2 to y-axis <-100> speed <125>;
+			turn door to x-axis <180> speed <120>;
+			sleep 300;
+			move radar to z-axis [0] speed [1];
+			move plate to y-axis [0] speed [3];
+			sleep 500;
+			spin radar around y-axis speed <90>;
+			state_2 = 1;
+		}
+		if( !request_1 and state_2 )
+		{
+			state_2 = 0;
+			spin radar around y-axis speed <0>;
+			turn radar to y-axis <0> speed <90>;
+			turn dish1 to y-axis <0> speed <125>;
+			turn dish2 to y-axis <0> speed <125>;
+			sleep 600;
+			move plate to y-axis [1.5] speed [6];
+			sleep 300;
+			move radar to z-axis [0.5] speed [1];
+			turn door to x-axis <60> speed <240>;
+			sleep 500;
+			turn door to x-axis <0> speed <120>;
+			move plate to y-axis [0] speed [3];
+			set ARMORED to 1;
+		}
+	}
+	busy_3 = 0;
+}
+
+Activate()
+{
+	request_1 = 1;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	request_1 = 0;
+	start-script RequestState();
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = TRUE;
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			turn leg1 to y-axis <43> now;
+			turn leg1 to y-axis <0> speed <218>;
+			turn leg1 to z-axis <0> now;
+			turn leg1 to z-axis <0> speed <30>;
+			turn leg2 to z-axis <0> now;
+			turn leg2 to z-axis <31> speed <155>;
+			turn leg3 to y-axis <34> now;
+			turn leg3 to z-axis <-31> now;
+			turn leg3 to z-axis <0> speed <155>;
+			turn leg4 to y-axis <-40> now;
+			turn leg4 to y-axis <-39> speed <0>;
+			turn leg4 to z-axis <-31> now;
+			turn leg4 to z-axis <0> speed <152>;
+			turn leg5 to y-axis <-37> now;
+			turn leg5 to y-axis <0> speed <185>;
+			turn leg5 to z-axis <0> now;
+			turn leg6 to y-axis <0> now;
+			turn leg6 to y-axis <-30> speed <152>;
+			turn leg6 to z-axis <-45> now;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			turn leg1 to z-axis <31> speed <158>;
+			turn leg2 to y-axis <34> speed <173>;
+			turn leg2 to z-axis <31> speed <1>;
+			turn leg3 to y-axis <0> speed <246>;
+			turn leg3 to z-axis <0> speed <30>;
+			turn leg4 to y-axis <0> speed <200>;
+			turn leg5 to z-axis <-31> speed <155>;
+			turn leg6 to z-axis <3> speed <237>;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			turn leg1 to y-axis <55> speed <279>;
+			turn leg1 to z-axis <31> speed <30>;
+			turn leg2 to y-axis <34> speed <20>;
+			turn leg2 to z-axis <0> speed <152>;
+			turn leg3 to z-axis <31> speed <158>;
+			turn leg4 to y-axis <0> speed <30>;
+			turn leg4 to z-axis <-31> speed <152>;
+			turn leg5 to y-axis <-31> speed <158>;
+			turn leg5 to z-axis <-31> speed <30>;
+			turn leg6 to y-axis <0> speed <167>;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			turn leg1 to y-axis <43> speed <60>;
+			turn leg1 to z-axis <0> speed <152>;
+			turn leg2 to y-axis <0> speed <173>;
+			turn leg2 to z-axis <0> speed <3>;
+			turn leg3 to y-axis <34> speed <173>;
+			turn leg3 to z-axis <31> speed <0>;
+			turn leg4 to y-axis <-40> speed <197>;
+			turn leg4 to z-axis <-31> speed <0>;
+			turn leg5 to y-axis <-37> speed <27>;
+			turn leg5 to z-axis <0> speed <155>;
+			turn leg6 to y-axis <0> speed <15>;
+			turn leg6 to z-axis <-45> speed <237>;
+			sleep 200;
+		}
+	}
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode leg6 type BITMAPONLY | BITMAP1;
+		explode leg1 type BITMAPONLY | BITMAP1;
+		explode leg2 type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode radar type BITMAPONLY | BITMAP3;
+		explode leg3 type BITMAPONLY | BITMAP3;
+		explode leg4 type BITMAPONLY | BITMAP4;
+		explode leg5 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode leg1 type FALL | BITMAP1;
+		explode leg6 type FALL | BITMAP1;
+		explode radar type SHATTER | BITMAP2;
+		explode leg2 type FALL | BITMAP2;
+		explode leg3 type FALL | BITMAP3;
+		explode base type BITMAPONLY | BITMAP3;
+		explode leg4 type FALL | BITMAP4;
+		explode leg5 type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode radar type SHATTER | BITMAP2;
+		explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode leg3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode leg4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode leg5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode radar type BITMAPONLY | BITMAP3;
+	explode base type BITMAPONLY | BITMAP3;
+	explode leg3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode leg4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode leg5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+}

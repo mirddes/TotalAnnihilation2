@@ -1,0 +1,420 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  beam1, beam2, flare1a, flare1b, flare2a, flare2b, flare3a, flare3b, flare4a, flare4b, flare5a, flare5b,
+	   base, body, frame, deck, radar, pads, land1, land2, land3, land4, fusions, dome1, dome2, dome3, dome4,
+	   pivot1, wing1, pivot2, wing2, pivot3, wing3, pivot4, wing4, naughty, 
+	   ltur1, lslv1, lbar1a, lbar1b, ltur2, lslv2, lbar2a, lbar2b, ltur3, lslv3, lbar3a, lbar3b,
+	   ltur4, lslv4, lbar4a, lbar4b, ltur5, lslv5, lbar5a, lbar5b;
+
+static-var  statechg_DesiredState, statechg_StateChanging, Static_Var_2, spray, gun_3, flying, dontfire, landed;
+
+// Signal definitions
+#define SIG_AIM3				2
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 88 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 88 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+				set ACTIVATION to 0;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 88 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+				set ACTIVATION to 0;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+				set ACTIVATION to 100;
+				if (landed >= 1)
+				{	
+					set ACTIVATION to 0;
+				}	
+			}
+		}
+		sleep 1000;
+	}
+}
+
+activatescr()
+{
+	if( TRUE )
+	{
+		flying=1;
+		start-script OffScreenCheck();
+		
+//		turn pivot1 to x-axis <0> now;
+//		turn pivot2 to x-axis <0> now;
+//		turn pivot3 to x-axis <0> now;
+//		turn pivot4 to x-axis <0> now;
+		
+		turn pivot1 to x-axis <0> speed <38.945055>;
+		turn pivot2 to x-axis <0> speed <38.945055>;
+		turn pivot3 to x-axis <0> speed <38.945055>;
+		turn pivot4 to x-axis <0> speed <38.945055>;
+		
+		turn wing1 to x-axis <0> speed <19.945055>;
+		turn wing2 to x-axis <0> speed <19.945055>;
+		turn wing3 to x-axis <0> speed <19.945055>;
+		turn wing4 to x-axis <0> speed <19.945055>;
+		
+		sleep 99;
+	}
+	sleep 60;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+		{	
+			flying=0;
+		}
+//		turn pivot1 to x-axis <90> now;
+//		turn pivot2 to x-axis <90> now;
+//		turn pivot3 to x-axis <90> now;
+//		turn pivot4 to x-axis <90> now;
+		
+		turn pivot1 to x-axis <-90> speed <38.945055>;
+		turn pivot2 to x-axis <-90> speed <38.945055>;
+		turn pivot3 to x-axis <-90> speed <38.945055>;
+		turn pivot4 to x-axis <-90> speed <38.945055>;
+		
+		turn wing1 to x-axis <90> speed <19.945055>;
+		turn wing2 to x-axis <90> speed <19.945055>;
+		turn wing3 to x-axis <90> speed <19.945055>;
+		turn wing4 to x-axis <90> speed <19.945055>;
+		
+		sleep 99;
+		
+//		flying=0;
+	}
+	sleep 60;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	turn pivot1 to x-axis <-90> now;
+	turn pivot2 to x-axis <-90> now;
+	turn pivot3 to x-axis <-90> now;
+	turn pivot4 to x-axis <-90> now;
+	
+	turn wing1 to x-axis <90> now;
+	turn wing2 to x-axis <90> now;
+	turn wing3 to x-axis <90> now;
+	turn wing4 to x-axis <90> now;
+	
+	dontfire=0;
+	landed=0;
+	dont-cache naughty;
+	move naughty to y-axis  [30] now;
+	hide naughty;
+	
+	gun_3 = 0;
+	
+	Static_Var_2 = 1;
+	spray = 0;
+	
+	call-script InitState();
+	
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if (dontfire >= 1)
+	{
+		set ACTIVATION to 0;
+	}	
+	
+	set ARMORED to 1;
+	landed = 0;
+	set INBUILDSTANCE to 1;
+	spin radar around y-axis speed <60.005495>;
+	start-script RequestState(0);
+	
+}
+
+Deactivate()
+{
+	if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+	{	
+		start-script RequestState(1);
+	}
+	if (flying == 0)
+	{
+		landed = 1;
+	}
+	set ARMORED to 0;
+	set INBUILDSTANCE to 0;
+	stop-spin radar around y-axis;
+}
+
+QueryLandingPad(Func_Var_1, Func_Var_2, Func_Var_3, Func_Var_4)
+{
+	Func_Var_1 = 18;
+	Func_Var_2 = 19;
+	Func_Var_3 = 20;
+	Func_Var_4 = 21;
+	var Func_Var_5, Func_Var_6;
+	++Static_Var_2;
+	if( Static_Var_2 >= 5 )
+	{
+		Static_Var_2 = 1;
+	}
+	Func_Var_5 = 1;
+	while( Func_Var_5 <= Static_Var_2 )
+	{
+		Func_Var_6 = Func_Var_1;
+		Func_Var_1 = Func_Var_2;
+		Func_Var_2 = Func_Var_3;
+		Func_Var_3 = Func_Var_4;
+		Func_Var_4 = Func_Var_6;
+		++Func_Var_5;
+	}
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( spray == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( spray != 0 )
+	{
+		piecenum = beam2;
+	}
+	spray = !spray;
+}
+
+/*
+RestoreAfterDelay()
+{
+	sleep 3000;
+//	turn thrusters to x-axis <90> speed <38.945055>;
+//	turn body to x-axis <0> speed <38.945055>;
+}
+
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM3;
+	set-signal-mask SIG_AIM3;
+	while (dontfire OR landed)
+	{
+		sleep 250;
+	}	
+	return (1);
+}
+
+
+FirePrimary()
+{
+
+	if( gun_3 == 0 )
+	{
+		explode r1 type BITMAPONLY | BITMAP5;
+	}
+	if( gun_3 == 1 )
+	{
+		explode r2 type BITMAPONLY | BITMAP5;
+	}
+	if( gun_3 == 2 )
+	{
+		explode r3 type BITMAPONLY | BITMAP5;
+	}
+	if( gun_3 == 3 )
+	{
+		explode r4 type BITMAPONLY | BITMAP5;
+	}
+	if( gun_3 == 4 )
+	{
+		explode r5 type BITMAPONLY | BITMAP5;
+	}
+	if( gun_3 == 5 )
+	{
+		explode r6 type BITMAPONLY | BITMAP5;
+	}
+	++gun_3;
+	if (gun_3 == 6)
+	{
+		gun_3 = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+
+QueryPrimary(piecenum)
+{
+	if (gun_3 == 0)
+	{
+		piecenum = r1;
+	}
+	if (gun_3 == 1)
+	{
+		piecenum = r2;
+	}
+	if (gun_3 == 2)
+	{
+		piecenum = r3;
+	}
+	if (gun_3 == 3)
+	{
+		piecenum = r4;
+	}
+	if (gun_3 == 4)
+	{
+		piecenum = r5;
+	}
+	if (gun_3 == 5)
+	{
+		piecenum = r6;
+	}
+}
+*/
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP5;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP1;
+		explode wing4 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type SHATTER | BITMAP5;
+		explode wing2 type SHATTER | BITMAP1;
+		explode wing3 type FALL | BITMAP1;
+		explode wing4 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type SHATTER | BITMAP5;
+		explode wing2 type SHATTER | BITMAP1;
+		explode wing3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode wing1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode wing2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode wing3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

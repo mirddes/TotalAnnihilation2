@@ -1,0 +1,35 @@
+[armxhp_dead]
+{
+world=All Worlds;
+description=Exp Hoverplant Wreckage;
+category=arm_corpses;
+object=armxhp_dead;
+featuredead=armxhp_heap;
+footprintx=10;
+footprintz=8;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=6848;
+damage=6768;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armxhp_heap]
+{
+world=All Worlds;
+description=Exp Hoverplant Wreckage;
+category=heaps;
+object=7x7c;
+footprintx=10;
+footprintz=8;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3424;
+damage=6984;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

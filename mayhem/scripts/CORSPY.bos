@@ -1,0 +1,609 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  head, rthigh, lthigh, rfoot, lleg, lfoot, ltoes, lheel,
+       rleg, rtoes, rheel, shell;
+
+static-var  Moving_1;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from head;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [1.15] now;
+			move lthigh to y-axis [2.05] now;
+			move rfoot to y-axis [-0.70] now;
+			turn head to x-axis <-0.70> speed <420>;
+			turn rthigh to x-axis <12.31> speed <420>;
+			turn lthigh to x-axis <15.47> speed <420>;
+			turn lleg to x-axis <125.54> speed <420>;
+			turn lfoot to x-axis <-99.87> speed <420>;
+			turn ltoes to x-axis <-53.09> speed <420>;
+			turn lheel to x-axis <-41.49> speed <420>;
+			turn rleg to x-axis <48.16> speed <420>;
+			turn rfoot to x-axis <-47.47> speed <420>;
+			turn rtoes to x-axis <-11.96> speed <420>;
+			turn rheel to x-axis <-21.45> speed <420>;
+			sleep 38;
+			move rthigh to y-axis [1.09] now;
+			turn head to x-axis <-3.25> speed <420>;
+			turn rthigh to x-axis <19.60> speed <420>;
+			turn lthigh to x-axis <1.76> speed <420>;
+			turn lleg to x-axis <116.57> speed <420>;
+			turn lfoot to x-axis <-92.48> speed <420>;
+			turn ltoes to x-axis <-39.73> speed <420>;
+			turn lheel to x-axis <-32.44> speed <420>;
+			turn rleg to x-axis <49.84> speed <420>;
+			turn rfoot to x-axis <-49.93> speed <420>;
+			turn rtoes to x-axis <-15.74> speed <420>;
+			turn rheel to x-axis <-26.63> speed <420>;
+			sleep 37;
+			move rthigh to y-axis [1.00] now;
+			turn head to x-axis <-5.80> speed <420>;
+			turn rthigh to x-axis <26.90> speed <420>;
+			turn lthigh to x-axis <-11.96> speed <420>;
+			turn lleg to x-axis <107.60> speed <420>;
+			turn lfoot to x-axis <-85.10> speed <420>;
+			turn ltoes to x-axis <-26.37> speed <420>;
+			turn lheel to x-axis <-23.38> speed <420>;
+			turn rleg to x-axis <51.51> speed <420>;
+			turn rfoot to x-axis <-52.40> speed <420>;
+			turn rtoes to x-axis <-19.52> speed <420>;
+			turn rheel to x-axis <-31.82> speed <420>;
+			sleep 38;
+			move rthigh to y-axis [0.96] now;
+			turn head to x-axis <-8.35> speed <420>;
+			turn rthigh to x-axis <34.19> speed <420>;
+			turn lthigh to x-axis <-25.66> speed <420>;
+			turn lleg to x-axis <98.63> speed <420>;
+			turn lfoot to x-axis <-77.71> speed <420>;
+			turn ltoes to x-axis <-13.00> speed <420>;
+			turn lheel to x-axis <-14.33> speed <420>;
+			turn rleg to x-axis <53.18> speed <420>;
+			turn rfoot to x-axis <-54.86> speed <420>;
+			turn rtoes to x-axis <-23.30> speed <420>;
+			turn rheel to x-axis <-37.00> speed <420>;
+			sleep 37;
+		}
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [0.90] now;
+			turn head to x-axis <-10.90> speed <420>;
+			turn rthigh to x-axis <41.49> speed <420>;
+			turn lthigh to x-axis <-39.38> speed <420>;
+			turn lleg to x-axis <89.66> speed <420>;
+			turn lfoot to x-axis <-70.33> speed <420>;
+			turn ltoes to x-axis <0.35> speed <420>;
+			turn lheel to x-axis <-5.27> speed <420>;
+			turn rleg to x-axis <54.86> speed <420>;
+			turn rfoot to x-axis <-57.32> speed <420>;
+			turn rtoes to x-axis <-27.08> speed <420>;
+			turn rheel to x-axis <-42.20> speed <420>;
+			sleep 71;
+			move rthigh to y-axis [0.95] now;
+			move lthigh to y-axis [1.00] now;
+			move rleg to y-axis [0.08] now;
+			move rfoot to y-axis [-0.35] now;
+			turn head to x-axis <-5.45> speed <420>;
+			turn rthigh to x-axis <43.43> speed <420>;
+			turn lthigh to x-axis <-40.96> speed <420>;
+			turn lleg to x-axis <45.18> speed <420>;
+			turn lfoot to x-axis <-35.16> speed <420>;
+			turn ltoes to x-axis <-6.50> speed <420>;
+			turn lheel to x-axis <5.97> speed <420>;
+			turn rleg to x-axis <46.24> speed <420>;
+			turn rfoot to x-axis <-32.52> speed <420>;
+			turn rtoes to x-axis <-50.64> speed <420>;
+			turn rheel to x-axis <-69.45> speed <420>;
+			sleep 71;
+			move rthigh to y-axis [1.00] now;
+			move lthigh to y-axis [0.00] now;
+			move rleg to y-axis [0.15] now;
+			move rfoot to y-axis [0.00] now;
+			turn head to x-axis <0.00> speed <420>;
+			turn rthigh to x-axis <45.36> speed <420>;
+			turn lthigh to x-axis <-42.55> speed <420>;
+			turn lleg to x-axis <0.70> speed <420>;
+			turn lfoot to x-axis <0.00> speed <420>;
+			turn ltoes to x-axis <-13.36> speed <420>;
+			turn lheel to x-axis <17.23> speed <420>;
+			turn rleg to x-axis <37.62> speed <420>;
+			turn rfoot to x-axis <-7.74> speed <420>;
+			turn rtoes to x-axis <-74.20> speed <420>;
+			turn rheel to x-axis <-96.70> speed <420>;
+			sleep 24;
+			move rthigh to y-axis [0.98] now;
+			move lthigh to y-axis [0.00] now;
+			move rleg to y-axis [0.08] now;
+			turn head to x-axis <4.92> speed <420>;
+			turn lthigh to x-axis <-34.99> speed <420>;
+			turn lleg to x-axis <10.20> speed <420>;
+			turn ltoes to x-axis <-28.84> speed <420>;
+			turn lheel to x-axis <8.61> speed <420>;
+			turn rleg to x-axis <41.84> speed <420>;
+			turn rfoot to x-axis <-11.77> speed <420>;
+			turn rtoes to x-axis <-72.79> speed <420>;
+			sleep 23;
+		}
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [0.95] now;
+			move lthigh to y-axis [0.05] now;
+			move rleg to y-axis [0.00] now;
+			turn head to x-axis <9.85> speed <420>;
+			turn rthigh to x-axis <45.36> speed <420>;
+			turn lthigh to x-axis <-27.43> speed <420>;
+			turn lleg to x-axis <19.69> speed <420>;
+			turn ltoes to x-axis <-44.31> speed <420>;
+			turn lheel to x-axis <0.00> speed <420>;
+			turn rleg to x-axis <46.05> speed <420>;
+			turn rfoot to x-axis <-15.82> speed <420>;
+			turn rtoes to x-axis <-71.38> speed <420>;
+			turn rheel to x-axis <-96.70> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [0.95] now;
+			move lthigh to y-axis [0.38] now;
+			move lfoot to y-axis [-0.38] now;
+			move rfoot to y-axis [0.00] now;
+			turn head to x-axis <11.25> speed <420>;
+			turn rthigh to x-axis <50.46> speed <420>;
+			turn lthigh to x-axis <-14.94> speed <420>;
+			turn lleg to x-axis <22.15> speed <420>;
+			turn lfoot to x-axis <-16.88> speed <420>;
+			turn ltoes to x-axis <-22.15> speed <420>;
+			turn rleg to x-axis <62.42> speed <420>;
+			turn rfoot to x-axis <-24.79> speed <420>;
+			turn rtoes to x-axis <-55.91> speed <420>;
+			turn rheel to x-axis <-104.96> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [0.95] now;
+			move lthigh to y-axis [0.70] now;
+			move lfoot to y-axis [-0.75] now;
+			move rfoot to y-axis [0.00] now;
+			turn head to x-axis <12.66> speed <420>;
+			turn rthigh to x-axis <55.55> speed <420>;
+			turn lthigh to x-axis <-2.46> speed <420>;
+			turn lleg to x-axis <24.62> speed <420>;
+			turn lfoot to x-axis <-33.76> speed <420>;
+			turn ltoes to x-axis <0.00> speed <420>;
+			turn rleg to x-axis <78.77> speed <420>;
+			turn rfoot to x-axis <-33.76> speed <420>;
+			turn rtoes to x-axis <-40.44> speed <420>;
+			turn rheel to x-axis <-113.23> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [1.23] now;
+			move lthigh to y-axis [0.81] now;
+			move lfoot to y-axis [-0.74] now;
+			turn head to x-axis <9.31> speed <420>;
+			turn rthigh to x-axis <45.45> speed <420>;
+			turn lthigh to x-axis <1.23> speed <420>;
+			turn lleg to x-axis <30.59> speed <420>;
+			turn lfoot to x-axis <-37.27> speed <420>;
+			turn ltoes to x-axis <-2.98> speed <420>;
+			turn lheel to x-axis <-5.63> speed <420>;
+			turn rleg to x-axis <90.55> speed <420>;
+			turn rfoot to x-axis <-50.10> speed <420>;
+			turn rtoes to x-axis <-43.60> speed <420>;
+			turn rheel to x-axis <-97.32> speed <420>;
+			sleep 22;
+			move rthigh to y-axis [1.50] now;
+			move lthigh to y-axis [0.93] now;
+			move lfoot to y-axis [-0.73] now;
+			move rfoot to y-axis [0.00] now;
+			turn head to x-axis <5.98> speed <420>;
+			turn rthigh to x-axis <35.34> speed <420>;
+			turn lthigh to x-axis <4.92> speed <420>;
+			turn lleg to x-axis <36.57> speed <420>;
+			turn lfoot to x-axis <-40.79> speed <420>;
+			turn ltoes to x-axis <-5.98> speed <420>;
+			turn lheel to x-axis <-11.25> speed <420>;
+			turn rleg to x-axis <102.33> speed <420>;
+			turn rfoot to x-axis <-66.46> speed <420>;
+			turn rtoes to x-axis <-46.77> speed <420>;
+			turn rheel to x-axis <-81.41> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [1.77] now;
+			move lthigh to y-axis [1.00] now;
+			move lfoot to y-axis [-0.71] now;
+			move rfoot to y-axis [0.00] now;
+			turn head to x-axis <2.64> speed <420>;
+			turn rthigh to x-axis <25.23> speed <420>;
+			turn lthigh to x-axis <8.61> speed <420>;
+			turn lleg to x-axis <42.55> speed <420>;
+			turn lfoot to x-axis <-44.31> speed <420>;
+			turn ltoes to x-axis <-8.97> speed <420>;
+			turn lheel to x-axis <-16.88> speed <420>;
+			turn rleg to x-axis <114.10> speed <420>;
+			turn rfoot to x-axis <-82.81> speed <420>;
+			turn rtoes to x-axis <-49.93> speed <420>;
+			turn rheel to x-axis <-65.49> speed <420>;
+			sleep 22;
+		}
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [2.05] now;
+			move lthigh to y-axis [1.15] now;
+			move lfoot to y-axis [-0.70] now;
+			turn head to x-axis <-0.70> speed <420>;
+			turn rthigh to x-axis <15.12> speed <420>;
+			turn lthigh to x-axis <12.31> speed <420>;
+			turn lleg to x-axis <48.53> speed <420>;
+			turn lfoot to x-axis <-47.82> speed <420>;
+			turn ltoes to x-axis <-11.96> speed <420>;
+			turn lheel to x-axis <-22.51> speed <420>;
+			turn rleg to x-axis <125.88> speed <420>;
+			turn rfoot to x-axis <-99.16> speed <420>;
+			turn rtoes to x-axis <-53.10> speed <420>;
+			turn rheel to x-axis <-49.58> speed <420>;
+			sleep 39;
+			move rthigh to y-axis [2.00] now;
+			move lthigh to y-axis [1.09] now;
+			turn head to x-axis <-3.25> speed <420>;
+			turn rthigh to x-axis <1.58> speed <420>;
+			turn lthigh to x-axis <19.60> speed <420>;
+			turn lleg to x-axis <50.81> speed <420>;
+			turn lfoot to x-axis <-50.20> speed <420>;
+			turn ltoes to x-axis <-16.97> speed <420>;
+			turn lheel to x-axis <-28.22> speed <420>;
+			turn rleg to x-axis <115.60> speed <420>;
+			turn rfoot to x-axis <-91.96> speed <420>;
+			turn rtoes to x-axis <-39.00> speed <420>;
+			turn rheel to x-axis <-37.18> speed <420>;
+			sleep 39;
+			move rthigh to y-axis [2.00] now;
+			move lthigh to y-axis [1.00] now;
+			turn head to x-axis <-5.80> speed <420>;
+			turn rthigh to x-axis <-11.96> speed <420>;
+			turn lthigh to x-axis <26.90> speed <420>;
+			turn lleg to x-axis <53.10> speed <420>;
+			turn lfoot to x-axis <-52.57> speed <420>;
+			turn ltoes to x-axis <-21.97> speed <420>;
+			turn lheel to x-axis <-33.93> speed <420>;
+			turn rleg to x-axis <105.32> speed <420>;
+			turn rfoot to x-axis <-84.74> speed <420>;
+			turn rtoes to x-axis <-24.97> speed <420>;
+			turn rheel to x-axis <-24.79> speed <420>;
+			sleep 39;
+			move rthigh to y-axis [2.00] now;
+			move lthigh to y-axis [0.96] now;
+			turn head to x-axis <-8.35> speed <420>;
+			turn rthigh to x-axis <-25.49> speed <420>;
+			turn lthigh to x-axis <34.19> speed <420>;
+			turn lleg to x-axis <55.38> speed <420>;
+			turn lfoot to x-axis <-54.95> speed <420>;
+			turn ltoes to x-axis <-26.99> speed <420>;
+			turn lheel to x-axis <-39.65> speed <420>;
+			turn rleg to x-axis <95.00> speed <420>;
+			turn rfoot to x-axis <-77.53> speed <420>;
+			turn rtoes to x-axis <-10.90> speed <420>;
+			turn rheel to x-axis <-12.38> speed <420>;
+			sleep 39;
+		}
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [2.00] now;
+			move lthigh to y-axis [0.90] now;
+			move lfoot to y-axis [-0.70] now;
+			turn head to x-axis <-10.90> speed <420>;
+			turn rthigh to x-axis <-39.00> speed <420>;
+			turn lthigh to x-axis <41.49> speed <420>;
+			turn lleg to x-axis <57.66> speed <420>;
+			turn lfoot to x-axis <-57.32> speed <420>;
+			turn ltoes to x-axis <-32.00> speed <420>;
+			turn lheel to x-axis <-45.36> speed <420>;
+			turn rleg to x-axis <84.75> speed <420>;
+			turn rfoot to x-axis <-70.33> speed <420>;
+			turn rtoes to x-axis <3.16> speed <420>;
+			turn rheel to x-axis <0.00> speed <420>;
+			sleep 72;
+			move rthigh to y-axis [1.00] now;
+			move lthigh to y-axis [0.93] now;
+			move lleg to y-axis [0.08] now;
+			move lfoot to y-axis [-0.35] now;
+			turn head to x-axis <-5.45> speed <420>;
+			turn rthigh to x-axis <-40.96> speed <420>;
+			turn lthigh to x-axis <43.43> speed <420>;
+			turn lleg to x-axis <45.71> speed <420>;
+			turn lfoot to x-axis <-32.35> speed <420>;
+			turn ltoes to x-axis <-50.98> speed <420>;
+			turn lheel to x-axis <-66.27> speed <420>;
+			turn rleg to x-axis <51.34> speed <420>;
+			turn rfoot to x-axis <-35.16> speed <420>;
+			turn rtoes to x-axis <-5.63> speed <420>;
+			turn rheel to x-axis <6.50> speed <420>;
+			sleep 71;
+			move rthigh to y-axis [0.00] now;
+			move lthigh to y-axis [0.95] now;
+			move lleg to y-axis [0.15] now;
+			move lfoot to y-axis [0.00] now;
+			turn head to x-axis <0.00> speed <420>;
+			turn rthigh to x-axis <-42.90> speed <420>;
+			turn lthigh to x-axis <45.36> speed <420>;
+			turn lleg to x-axis <33.76> speed <420>;
+			turn lfoot to x-axis <-7.38> speed <420>;
+			turn ltoes to x-axis <-69.98> speed <420>;
+			turn lheel to x-axis <-87.21> speed <420>;
+			turn rleg to x-axis <17.93> speed <420>;
+			turn rfoot to x-axis <0.00> speed <420>;
+			turn rtoes to x-axis <-14.42> speed <420>;
+			turn rheel to x-axis <13.00> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [0.05] now;
+			move lleg to y-axis [0.08] now;
+			turn head to x-axis <4.92> speed <420>;
+			turn rthigh to x-axis <-35.34> speed <420>;
+			turn lleg to x-axis <40.09> speed <420>;
+			turn lfoot to x-axis <-11.60> speed <420>;
+			turn ltoes to x-axis <-71.00> speed <420>;
+			turn lheel to x-axis <-96.18> speed <420>;
+			turn rleg to x-axis <18.64> speed <420>;
+			turn rtoes to x-axis <-32.00> speed <420>;
+			turn rheel to x-axis <6.50> speed <420>;
+			sleep 23;
+		}
+		if( Moving_1 )
+		{
+			move rthigh to y-axis [0.10] now;
+			move lleg to y-axis [0.00] now;
+			turn head to x-axis <9.85> speed <420>;
+			turn rthigh to x-axis <-27.77> speed <420>;
+			turn lleg to x-axis <46.42> speed <420>;
+			turn lfoot to x-axis <-15.82> speed <420>;
+			turn ltoes to x-axis <-72.08> speed <420>;
+			turn lheel to x-axis <-105.14> speed <420>;
+			turn rleg to x-axis <19.34> speed <420>;
+			turn rtoes to x-axis <-49.58> speed <420>;
+			turn rheel to x-axis <0.00> speed <420>;
+			sleep 23;
+			move rthigh to y-axis [0.32] now;
+			move rfoot to y-axis [-0.35] now;
+			turn head to x-axis <11.25> speed <420>;
+			turn rthigh to x-axis <-15.30> speed <420>;
+			turn lthigh to x-axis <50.46> speed <420>;
+			turn lleg to x-axis <62.42> speed <420>;
+			turn lfoot to x-axis <-24.79> speed <420>;
+			turn ltoes to x-axis <-56.43> speed <420>;
+			turn lheel to x-axis <-108.66> speed <420>;
+			turn rleg to x-axis <21.80> speed <420>;
+			turn rfoot to x-axis <-16.88> speed <420>;
+			turn rtoes to x-axis <-24.79> speed <420>;
+			sleep 22;
+			move rthigh to y-axis [0.55] now;
+			move rfoot to y-axis [-0.70] now;
+			turn head to x-axis <12.66> speed <420>;
+			turn rthigh to x-axis <-2.81> speed <420>;
+			turn lthigh to x-axis <55.55> speed <420>;
+			turn lleg to x-axis <78.41> speed <420>;
+			turn lfoot to x-axis <-33.76> speed <420>;
+			turn ltoes to x-axis <-40.79> speed <420>;
+			turn lheel to x-axis <-112.16> speed <420>;
+			turn rleg to x-axis <24.26> speed <420>;
+			turn rfoot to x-axis <-33.76> speed <420>;
+			turn rtoes to x-axis <0.00> speed <420>;
+			sleep 24;
+			move rthigh to y-axis [0.70] now;
+			move lthigh to y-axis [1.23] now;
+			turn head to x-axis <9.31> speed <420>;
+			turn rthigh to x-axis <0.97> speed <420>;
+			turn lthigh to x-axis <45.54> speed <420>;
+			turn lleg to x-axis <90.19> speed <420>;
+			turn lfoot to x-axis <-50.29> speed <420>;
+			turn ltoes to x-axis <-43.87> speed <420>;
+			turn lheel to x-axis <-94.51> speed <420>;
+			turn rleg to x-axis <30.24> speed <420>;
+			turn rfoot to x-axis <-37.18> speed <420>;
+			turn rtoes to x-axis <-2.98> speed <420>;
+			turn rheel to x-axis <-5.36> speed <420>;
+			sleep 24;
+			move rthigh to y-axis [0.85] now;
+			move lthigh to y-axis [1.50] now;
+			turn head to x-axis <5.98> speed <420>;
+			turn rthigh to x-axis <4.75> speed <420>;
+			turn lthigh to x-axis <35.52> speed <420>;
+			turn lleg to x-axis <101.98> speed <420>;
+			turn lfoot to x-axis <-66.81> speed <420>;
+			turn ltoes to x-axis <-46.95> speed <420>;
+			turn lheel to x-axis <-76.83> speed <420>;
+			turn rleg to x-axis <36.21> speed <420>;
+			turn rfoot to x-axis <-40.62> speed <420>;
+			turn rtoes to x-axis <-5.97> speed <420>;
+			turn rheel to x-axis <-10.72> speed <420>;
+			sleep 24;
+			move rthigh to y-axis [1.00] now;
+			move lthigh to y-axis [1.77] now;
+			turn head to x-axis <2.64> speed <420>;
+			turn rthigh to x-axis <8.53> speed <420>;
+			turn lthigh to x-axis <25.49> speed <420>;
+			turn lleg to x-axis <113.76> speed <420>;
+			turn lfoot to x-axis <-83.34> speed <420>;
+			turn ltoes to x-axis <-50.00> speed <420>;
+			turn lheel to x-axis <-59.16> speed <420>;
+			turn rleg to x-axis <42.20> speed <420>;
+			turn rfoot to x-axis <-44.00> speed <420>;
+			turn rtoes to x-axis <-8.97> speed <420>;
+			turn rheel to x-axis <-16.08> speed <420>;
+			sleep 23;
+		}
+		if( !Moving_1 )
+		{
+			move rthigh to y-axis [0.00] speed [10.00];
+			move lthigh to y-axis [0.00] speed [10.00];
+			move lleg to y-axis [0.00] speed [10.00];
+			move rleg to y-axis [0.00] speed [10.00];
+			move lfoot to y-axis [0.00] speed [10.00];
+			move rfoot to y-axis [0.00] speed [10.00];
+			turn head to x-axis <0.00> speed <200.00>;
+			turn rthigh to x-axis <0.00> speed <200.00>;
+			turn lthigh to x-axis <0.00> speed <200.00>;
+			turn lleg to x-axis <0.00> speed <200.00>;
+			turn lfoot to x-axis <0.00> speed <200.00>;
+			turn ltoes to x-axis <0.00> speed <200.00>;
+			turn lheel to x-axis <0.00> speed <200.00>;
+			turn rleg to x-axis <0.00> speed <200.00>;
+			turn rfoot to x-axis <0.00> speed <200.00>;
+			turn rtoes to x-axis <0.00> speed <200.00>;
+			turn rheel to x-axis <0.00> speed <200.00>;
+			sleep 200;
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	Moving_1 = 0;
+	dont-cache shell;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	Moving_1 = 1;
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = head;
+}
+
+AimPrimary()
+{
+	return(1);
+}
+
+FirePrimary()
+{
+	hide shell;
+	sleep 12300;
+	show shell;
+	dont-cache shell;
+	return(0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = head;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = head;
+}
+
+Killed(severity, corpsetype)
+{
+	hide shell;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode head type BITMAPONLY | BITMAP1;
+		explode rthigh type BITMAPONLY | BITMAP2;
+		explode lthigh type BITMAPONLY | BITMAP3;
+		explode rfoot type BITMAPONLY | BITMAP4;
+		explode lleg type BITMAPONLY | BITMAP5;
+		explode lfoot type BITMAPONLY | BITMAP1;
+		explode ltoes type BITMAPONLY | BITMAP2;
+		explode lheel type BITMAPONLY | BITMAP3;
+		explode rleg type BITMAPONLY | BITMAP4;
+		explode rtoes type BITMAPONLY | BITMAP5;
+		explode rheel type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode head type SHATTER | BITMAP1;
+		explode rthigh type FALL | BITMAP2;
+		explode lthigh type FALL | BITMAP3;
+		explode rfoot type FALL | BITMAP4;
+		explode lleg type FALL | BITMAP5;
+		explode lfoot type FALL | BITMAP1;
+		explode ltoes type FALL | BITMAP2;
+		explode lheel type FALL | BITMAP3;
+		explode rleg type FALL | BITMAP4;
+		explode rtoes type FALL | BITMAP5;
+		explode rheel type FALL | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode head type SHATTER | BITMAP1;
+		explode rthigh type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode lthigh type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode rfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode lleg type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode lfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode ltoes type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode lheel type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode rleg type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode rtoes type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode rheel type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	explode head type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode rthigh type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode lthigh type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode rfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode lfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode ltoes type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode lheel type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode rleg type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode rtoes type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode rheel type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+}

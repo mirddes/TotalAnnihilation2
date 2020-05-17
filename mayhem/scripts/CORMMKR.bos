@@ -1,0 +1,235 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flap2, flap3, flap4, flap1, topcap, glowingthing;
+
+static-var  on_1, busy_2, timer_3, hit_4, state_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_2 )
+	{
+		return (0);
+	}
+	busy_2 = 1;
+	while( on_1 != state_5 )
+	{
+		if( on_1 )
+		{
+			dont-cache flap1;
+			dont-cache flap2;
+			dont-cache flap3;
+			dont-cache flap4;
+			dont-cache topcap;
+			move flap2 to z-axis [0.00] now;
+			move flap3 to z-axis [0.00] now;
+			move flap4 to x-axis [0.00] now;
+			turn flap3 to z-axis <0.00> now;
+			turn flap3 to z-axis <-69.34> speed <261.66>;
+			sleep 265;
+			turn flap2 to x-axis <-4.86> speed <18.28>;
+			turn flap4 to x-axis <-86.37> speed <324.69>;
+			set ARMORED to 0;
+			sleep 266;
+			turn flap2 to z-axis <69.34> speed <260.67>;
+			turn flap1 to x-axis <89.40> speed <336.14>;
+			turn topcap to y-axis <45.00> speed <169.20>;
+			sleep 266;
+			turn topcap to z-axis <-180.04> speed <676.85>;
+			move topcap to y-axis [-0.70] speed [57.71];
+			sleep 532;
+			state_5 = 1;
+		}
+		if( !on_1 )
+		{
+			move flap2 to z-axis [0.00] now;
+			move flap3 to z-axis [0.00] now;
+			move flap4 to x-axis [0.00] now;
+			move topcap to y-axis [-0.70] now;
+			move topcap to y-axis [-16.05] speed [57.92];
+			turn flap1 to x-axis <90.00> now;
+			turn flap2 to x-axis <0.00> now;
+			turn flap2 to z-axis <72.00> now;
+			turn flap3 to z-axis <-72.00> now;
+			turn flap4 to x-axis <-90.00> now;
+			turn topcap to y-axis <45.00> now;
+			turn topcap to z-axis <-180.04> now;
+			turn topcap to z-axis <0.00> speed <676.85>;
+			move topcap to y-axis [0.00] speed [60.34];
+			sleep 266;
+			turn topcap to y-axis <0.00> speed <169.20>;
+			turn flap1 to x-axis <0.00> speed <334.88>;
+			turn flap2 to z-axis <0.00> speed <260.67>;
+			sleep 266;
+			turn flap2 to x-axis <0.00> speed <18.28>;
+			turn flap4 to x-axis <0.00> speed <324.69>;
+			turn flap3 to z-axis <0.00> speed <260.67>;
+			set ARMORED to 1;
+			sleep 532;
+			cache flap1;
+			cache flap2;
+			cache flap3;
+			cache flap4;
+			cache topcap;
+			state_5 = 0;
+		}
+	}
+	busy_2 = 0;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade glowingthing;
+	dont-cache glowingthing;
+	dont-shade base;
+	dont-shade flap1;
+	dont-shade flap2;
+	dont-shade flap3;
+	dont-shade flap4;
+	dont-shade topcap;
+	on_1 = 0;
+	busy_2 = 0;
+	timer_3 = 0;
+	hit_4 = 0;
+	state_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	on_1 = 1;
+	hit_4 = 0;
+	timer_3 = 0;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	on_1 = 0;
+	start-script RequestState();
+	if( hit_4 )
+	{
+		while ( timer_3 AND on_1 )
+		{
+			timer_3 = timer_3 - 1;
+			sleep 1000;
+		}
+		if( !On_1 )
+		{
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get BUILD_PERCENT_LEFT )
+	{
+		return (0);
+	}
+	timer_3 = 6;
+	hit_4 = 1;
+	if( on_1 )
+	{
+		set ACTIVATION to 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flap2 type BITMAPONLY | BITMAP2;
+		explode flap3 type BITMAPONLY | BITMAP3;
+		explode flap4 type BITMAPONLY | BITMAP4;
+		explode flap1 type BITMAPONLY | BITMAP5;
+		explode topcap type BITMAPONLY | BITMAP1;
+		explode glowingthing type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flap2 type FALL | BITMAP2;
+		explode flap3 type FALL | BITMAP3;
+		explode flap4 type FALL | BITMAP4;
+		explode flap1 type FALL | BITMAP5;
+		explode topcap type BITMAPONLY | BITMAP1;
+		explode glowingthing type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode flap2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flap3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flap4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode flap1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode topcap type BITMAPONLY | BITMAP1;
+		explode glowingthing type SHATTER | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode flap2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flap3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flap4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode flap1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode topcap type BITMAPONLY | BITMAP1;
+	explode glowingthing type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+}

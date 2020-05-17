@@ -1,0 +1,8 @@
+MISSION 12.4CORE
+
+INTELL-TAP:
+Data taken from the captured Zeus indicates that there is a Galactic Gate on an island to the north. Take the Zeus to the Gate, then Capture the Gate. Without the Zeus, the Gate is useless to us.
+
+&RDeliver the Zeus to the Galactic Gate. Capture the Galactic Gate.&
+
+DO SO NOW.

@@ -1,0 +1,217 @@
+//gmta ai v5 - Thanks to Majorbiggs for setting this up
+//GMTA AI AirMetal. prepares for war by air.
+  //stuff the commander builds (initial build order)
+Weight AIAMEXC 20
+Weight AICMEXC 20
+Weight AIAUWMEXC 0.4
+Weight AIAUWMEXC 0.4
+Weight AIAMEX 3
+Weight AICMEX 3
+Weight AIAUWMEX 0.4
+Weight AICUWMEX 0.4
+Weight ARMVP 0.3
+Weight CORVP 0.3
+Weight ARMLAB 0.2
+Weight CORLAB 0.2
+Weight ARMAP 0.1
+Weight CORAP 0.1
+Weight ARMSY 0
+Weight CORSY 0
+Weight ENERGY 0.3
+Weight METAL 0.4
+Limit ARMMEX 20
+Limit CORMEX 20
+Limit ARMMOHO 20
+Limit CORMOHO 20
+Limit ENERGY 5
+Limit l1resource 15
+ //build mmkr units??
+Weight CTRL_I 0
+Limit CTRL_I 0
+ //plants
+Weight ARMAAP 0.7
+Weight CORAAP 0.7
+Weight ARMXAP 1
+Weight CORxAP 1
+Weight ARMAVP 0.05
+Weight CORAVP 0.05
+Weight ARMALAB 0.05
+Weight CORALAB 0.05
+Weight ARMHP 0
+Weight CORHP 0
+Weight ARMHPNS 0
+Weight CORHPNS 0
+Weight ARMPLAT 0
+Weight CORPLAT 0
+Weight ARMASY 0
+Weight CORASY 0
+Weight CTRL_F 0.1
+Weight CTRL_B 2
+ //offense + defense units
+Weight CTRL_P 1
+Weight GR 0
+Weight CTRL_N 0
+Weight CTRL_H 0
+Weight CTRL_L 0.1
+Weight CTRL_Q 3
+Weight CTRL_T 0
+Weight CTRL_Y 0
+Weight ARMMAKEANTI 10
+Weight CORMAKEANTI 10
+Limit ARMMAKEANTI 1000
+Limit CORMAKEANTI 1000
+  //resource units weighting and limiting.
+Limit ARMMLEX 25
+Limit CORAMEX 25
+   //low weighted stuff.
+Weight CTRL_R 0.1
+Weight CTRL_J 0.1
+Weight CTRL_X 0.2
+Weight ANTI 0.12
+Weight ARMASP 0.1
+Weight CORASP 0.1
+Weight ARMAARP 0.1
+Weight CORAARP 0.1
+   //AI wont build the units it has no good uses for
+Weight CTRL_M 0
+Weight NOAI 0
+Weight ARMMLS 0
+Weight ARMMLV 0
+Weight CORMLS 0
+Weight CORMLV 0
+ //this is so units that are oddballs in no categories would be weighted very very low
+Weight LEVEL1 0.1
+Weight LEVEL2 0.2
+Weight LEVEL3 0.3
+   //low limited units
+Limit ARMASP 3
+Limit CORASP 3
+Limit ARMAARP 3
+Limit CORAARP 3
+Limit ARMDECOM 3
+Limit CORDECOM 3
+Limit CORUWES 0
+Limit ARMUWES 0
+Limit ARMUWFUS 0
+Limit CORUWFUS 0
+Limit ARMUWMEX 0
+Limit CORUWMEX 0
+Limit ARMUWMS 0
+Limit CORUWMS 0
+Limit armUMOHO 0
+Limit corUMOHO 0
+Limit ARMADVTIDAL 0
+Limit CORADVTIDAL 0
+Limit ARMUWFCT 0
+Limit CORUWF 0
+  //special categories
+Limit CTRL_R 2
+Limit CTRL_J 2
+Limit CTRL_K 5
+ //defense unit limiting
+ //plant and construction unit limiting
+
+plan easy
+
+Limit AIBOOST 0
+Limit AIC 1
+Limit ARMMEX 25
+Limit CORMEX 25
+Limit ARMUWMEX 5
+Limit CORUWMEX 5
+Limit ARMMEXUP 2
+Limit CORMEXUP 2
+Limit ARMSOLAR 5
+Limit CORSOLAR 5
+Limit ARMWIN 5
+Limit CORWIN 5
+Limit ARMTIDE 3
+Limit CORTIDE 3
+Weight L3A 0.9
+Limit CTRL_X 2
+Limit CTRL_P 60
+Limit ARMCV 2
+Limit ARMACV 2
+Limit CORCV 2
+Limit CORACV 2
+Limit CORAAP 2
+Limit ARMAAP 2
+Limit CTRL_F 3
+Limit l1plant 2
+Limit CTRL_B 3
+Limit l1con 3
+Limit CTRL_L 2
+Limit CTRL_Q 5
+Limit LDFENS 1
+
+plan medium
+
+Limit AIC 1
+Limit AIAMEX 3
+Limit AICMEX 3
+Limit AIAUWMEX 1
+Limit AICUWMEX 1
+Limit ARMMEX 20
+Limit CORMEX 20
+Limit ARMUWMEX 5
+Limit CORUWMEX 5
+Limit ARMMEXUP 5
+Limit CORMEXUP 5
+Limit ARMSOLAR 4
+Limit CORSOLAR 4
+Limit ARMWIN 4
+Limit CORWIN 4
+Limit ARMTIDE 2
+Limit CORTIDE 2
+Weight L3A 1.5
+Limit CTRL_X 5
+Limit CTRL_P 150
+Limit ARMCV 2
+Limit ARMACV 3
+Limit CORCV 2
+Limit CORACV 3
+Limit CORAAP 4
+Limit ARMAAP 4
+Limit CTRL_F 5
+Limit l1plant 3
+Limit CTRL_B 7
+Limit l1con 4
+Limit CTRL_L 3
+Limit CTRL_Q 10
+Limit LDFENS 2
+
+plan hard
+
+Limit AIC 2
+Limit AIAMEX 25
+Limit AICMEX 25
+Limit AIAUWMEX 5
+Limit AICUWMEX 5
+Limit ARMMEX 0
+Limit CORMEX 0
+Limit ARMUWMEX 0
+Limit CORUWMEX 0
+Limit ARMMEXUP 10
+Limit CORMEXUP 10
+Limit ARMSOLAR 2
+Limit CORSOLAR 2
+Limit ARMWIN 2
+Limit CORWIN 2
+Limit ARMTIDE 1
+Limit CORTIDE 1
+Weight L3A 2.5
+Limit CTRL_X 10
+Limit CTRL_P 300
+Limit ARMCV 2
+Limit ARMACV 3
+Limit CORCV 2
+Limit CORACV 3
+Limit CORAAP 6
+Limit ARMAAP 6
+Limit CTRL_F 10
+Limit l1plant 4
+Limit CTRL_B 15
+Limit l1con 5
+Limit CTRL_L 5
+Limit CTRL_Q 20
+Limit LDFENS 3

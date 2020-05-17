@@ -1,0 +1,916 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, link1, link2, link3, link4, link5, link6, link7,
+       link8, link9, link10, link11, link12, link13, link14, link15,
+       arm1, arm2, arm3, arm4, arm5, arm6, arm7, arm8,
+       thrust1, thrust2, thrust3, thrust4, thrust5, thrust6, thrust7, thrust8,
+       r1, r2, r3, r4, r5, r6, r7, r8,
+       lturret, lbarrel1, lbarrel2, lflare1, lflare2, door1, door2, wings;
+
+static-var  Speed_1, unitviewer, curr_loading_piece, gun_1, gun_2, myid, weightfree, freelinks, 
+            occupied1, occupied2, occupied3, occupied4, occupied5, occupied6, occupied7, occupied8, 
+            occupied9, occupied10, occupied11, occupied12, occupied13, occupied14, occupied15, cap;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+
+/*TransportedHealer()
+{
+	// iterate through all transported units and heal them
+	var transported_unit;
+	while( TRUE )
+	{
+		transported_unit = get TRANSPORTING(myid);
+		while (transported_unit)
+		{
+			get MAKE_DAMAGE(dtHeal, 10, myid, transported_unit);
+			transported_unit = get PRIOR_UNIT(transported_unit);
+		}
+		sleep 500;
+	}
+}
+
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	Speed_1 = 0;
+	gun_1 = 0;
+	gun_2 = 0;
+	//myid = get MY_ID;
+	unitviewer = FALSE;
+	occupied1 = 0;
+	occupied2 = 0;
+	occupied3 = 0;
+	occupied4 = 0;
+	occupied5 = 0;
+	occupied6 = 0;
+	occupied7 = 0;
+	occupied8 = 0;
+	occupied9 = 0;
+	occupied10 = 0;
+	occupied11 = 0;
+	occupied12 = 0;
+	occupied13 = 0;
+	occupied14 = 0;
+	occupied15 = 0;
+	curr_loading_piece = 1;
+	FreeLinks = 15;
+	WeightFree = 16000;
+	hide lflare1;
+	hide lflare2;
+	// save/load skirmish fix (occupiedX are set correctly)
+	/*var transported_unit, i;
+	for (i=link1; i<=link12; ++i;)
+	{
+		transported_unit = get ATTACH_UNIT(2, i);
+		if (transported_unit)
+		{
+			if (i == link1)
+			{
+				occupied1 = transported_unit;
+			}
+			if (i == link2)
+			{
+				occupied2 = transported_unit;
+			}
+			if (i == link3)
+			{
+				occupied3 = transported_unit;
+			}
+			if (i == link4)
+			{
+				occupied4 = transported_unit;
+			}
+			if (i == link5)
+			{
+				occupied5 = transported_unit;
+			}
+			if (i == link6)
+			{
+				occupied6 = transported_unit;
+			}
+			if (i == link7)
+			{
+				occupied7 = transported_unit;
+			}
+			if (i == link8)
+			{
+				occupied8 = transported_unit;
+			}
+			if (i == link9)
+			{
+				occupied9 = transported_unit;
+			}
+			if (i == link10)
+			{
+				occupied10 = transported_unit;
+			}
+			if (i == link11)
+			{
+				occupied11 = transported_unit;
+			}
+			if (i == link12)
+			{
+				occupied12 = transported_unit;
+			}
+			if (i == link13)
+			{
+				occupied12 = transported_unit;
+			}
+			if (i == link14)
+			{
+				occupied12 = transported_unit;
+			}
+			if (i == link15)
+			{
+				occupied12 = transported_unit;
+			}
+		}
+	}*/
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	//start-script TransportedHealer();
+	//set GRANT_UNITINFO to 1;
+	//get SET_UNITINFO(uiHealTime, 20);
+}
+
+Demo()
+{
+	unitviewer = TRUE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+/*LoadUnit(footprintx, lUnitID)
+{
+	//check if current link piece is already occupied, if so go to the next one
+	while( get ATTACH_UNIT(2, curr_loading_piece) )
+	{
+		++curr_loading_piece;
+		//if the transport is fully occupied, end LoadUnit script. Don't load any more!
+		if( curr_loading_piece > cap )
+		{
+			return(0);
+		}
+	}
+	//find location of unit to be loaded and play animation at that location as it is loaded
+	var x, z, ground_h, UnitHeight;
+	ground_h = get GROUND_HEIGHT(get UNIT_XZ(lUnitID));
+    z = (get UNITZ(lUnitID)) - (ground_h / 163840);
+	x = get UNITX(lUnitID);
+	//get PLAY_GAF_ANIM(4, get MAKEDWORD(z, x), 0, 0);
+	//get ATTACH_UNIT(1, lUnitID, myID, curr_loading_piece );
+	--FreeLinks;
+	//adjust height of each link to height of unit so transported unit hangs underneath
+	UnitHeight = get UNIT_HEIGHT( lUnitId );
+	if( curr_loading_piece == 1 )
+	{
+		occupied1 = lUnitID;
+		move Link1 to y-axis 0 - UnitHeight NOW;
+		cache Link1;
+	}
+	if( curr_loading_piece == 2 )
+	{
+		occupied2 = lUnitID;
+		move Link2 to y-axis 0 - UnitHeight NOW;
+		cache Link2;
+	}
+	if( curr_loading_piece == 3 )
+	{
+		occupied3 = lUnitID;
+		move Link3 to y-axis 0 - UnitHeight NOW;
+		cache Link3;
+	}
+	if( curr_loading_piece == 4 )
+	{
+		occupied4 = lUnitID;
+		move Link4 to y-axis 0 - UnitHeight NOW;
+		cache Link4;
+	}
+	if( curr_loading_piece == 5 )
+	{
+		occupied5 = lUnitID;
+		move Link5 to y-axis 0 - UnitHeight NOW;
+		cache Link5;
+	}
+	if( curr_loading_piece == 6 )
+	{
+		occupied6 = lUnitID;
+		move Link6 to y-axis 0 - UnitHeight NOW;
+		cache Link6;
+	}
+	if( curr_loading_piece == 7 )
+	{
+		occupied7 = lUnitID;
+		move Link7 to y-axis 0 - UnitHeight NOW;
+		cache Link7;
+	}
+	if( curr_loading_piece == 8 )
+	{
+		occupied8 = lUnitID;
+		move Link8 to y-axis 0 - UnitHeight NOW;
+		cache Link8;
+	}
+	if( curr_loading_piece == 9 )
+	{
+		occupied9 = lUnitID;
+		move Link9 to y-axis 0 - UnitHeight NOW;
+		cache Link9;
+	}
+	if( curr_loading_piece == 10 )
+	{
+		occupied10 = lUnitID;
+		move Link10 to y-axis 0 - UnitHeight NOW;
+		cache Link10;
+	}
+	if( curr_loading_piece == 11 )
+	{
+		occupied11 = lUnitID;
+		move Link11 to y-axis 0 - UnitHeight NOW;
+		cache Link11;
+	}
+	if( curr_loading_piece == 12 )
+	{
+		occupied12 = lUnitID;
+		move Link12 to y-axis 0 - UnitHeight NOW;
+		cache Link12;
+	}
+	if( curr_loading_piece == 13 )
+	{
+		occupied13 = lUnitID;
+		move Link13 to y-axis 0 - UnitHeight NOW;
+		cache Link13;
+	}
+	if( curr_loading_piece == 14 )
+	{
+		occupied14 = lUnitID;
+		move Link14 to y-axis 0 - UnitHeight NOW;
+		cache Link14;
+	}
+	if( curr_loading_piece == 15 )
+	{
+		occupied15 = lUnitID;
+		move Link15 to y-axis 0 - UnitHeight NOW;
+		cache Link15;
+	}
+	// arrange transported units according to size and number being transported
+	if( Footprintx == 3 )
+	{
+		if( FreeLinks > 6 )
+		{
+			move Link2 to z-axis [3.25] NOW;
+			move Link3 to z-axis [-3.25] NOW;
+			move Link4 to x-axis [-13] NOW;
+		}
+		if( FreeLinks == 4 )
+		{
+			move Link1 to z-axis [9.75] speed [16];
+			move Link2 to z-axis [16.25] speed [16];
+			move Link3 to z-axis [3.25] speed [16];
+			move Link5 to x-axis [3.25] NOW;
+			move Link5 to z-axis [9.75] NOW;
+			move Link6 to x-axis [-22.75] NOW;
+			move Link6 to z-axis [16.25] NOW;
+			move Link7 to x-axis [3.25] NOW;
+			move Link7 to z-axis [-22.75] NOW;
+			move Link8 to x-axis [-22.75] NOW;
+			move Link8 to z-axis [-13] NOW;
+		}
+		if( FreeLinks == 3 )
+		{
+			move Link1 to x-axis [9.75] speed [16];
+		}
+		if( FreeLinks == 2 )
+		{
+			move Link2 to x-axis [9.75] speed [16];
+		}
+		if( FreeLinks == 1 )
+		{
+			move Link3 to x-axis [9.75] speed [16];
+		}
+		if( !FreeLinks )
+		{
+		}
+	}
+	if( Footprintx == 4 )
+	{
+		if( FreeLinks == 4 )
+		{
+			move Link2 to z-axis [13] NOW;
+			move Link3 to z-axis [-13] NOW;
+			move Link4 to x-axis [-26] NOW;
+			move Link5 to z-axis [26] NOW;
+			move Link6 to z-axis [-39] NOW;
+			move Link6 to x-axis [-26] NOW;
+		}
+		if( FreeLinks == 2 )
+		{
+			
+		}
+		if( FreeLinks == 1 )
+		{
+		}
+		if( !FreeLinks )
+		{
+			
+		}
+	}
+	if( Footprintx == 5 )
+	{
+		if( FreeLinks == 2 )
+		{
+			move Link1 to z-axis [-9.75] speed [16];
+			move Link2 to z-axis [9.75] NOW;
+			move Link3 to z-axis [-19.5] NOW;
+		}
+		if( FreeLinks == 1 )
+		{
+			move Link1 to z-axis [0] speed [16];
+			move Link2 to z-axis [19.5] speed [16];
+		}
+	}
+	if( Footprintx == 6 )
+	{
+		if( !FreeLinks )
+		{
+			move Link1 to z-axis [-20] speed [16];
+			move Link2 to z-axis [7] NOW;
+		}
+	}
+}
+
+QueryTransport(piece_to_attach)
+{	
+	var lSearchId, lUnitId, nCurrIdx, nFoundCount, footprintx, weight, delay; 
+	// if transport is empty, use order target unit size to set capacity
+	//lUnitID = get CURRENT_ORDER_TARGET_ID;
+	//weight = get GET_UNITINFO(uiBuildCostMetal, lUnitID);
+	curr_loading_piece = 1;
+	if( FreeLinks == 15 )
+	{
+		weightfree = 16000;
+		//footprintx = get GET_UNITINFO(uiFootprintX, lUnitID);
+		if( footprintx > 6 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 1 );
+			FreeLinks = 1;
+			cap = 1;
+		}
+		if( footprintx == 6 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 2 );
+			get SET_UNITINFO(uiTransportSize, 6 );
+			FreeLinks = 2;
+			cap = 2;
+		}
+		if( footprintx == 5 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 3 );
+			get SET_UNITINFO(uiTransportSize, 5 );
+			FreeLinks = 3;
+			cap = 3;
+		}
+		if( footprintx == 4 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 6 );
+			get SET_UNITINFO(uiTransportSize, 4 );
+			FreeLinks = 6;
+			cap = 6;
+		}
+		if( footprintx == 3 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 8 );
+			get SET_UNITINFO(uiTransportSize, 3 );
+			FreeLinks = 8;
+			cap = 8;
+		}		
+		if( footprintx == 2 )
+		{
+			get SET_UNITINFO(uiTransportCapacity, 15 );
+			get SET_UNITINFO(uiTransportSize, 2 );
+			FreeLinks = 15;
+			cap = 15;
+		}
+	}
+	//load the unit that was ordered to load (search array doesn't always pick this first)
+	start-script LoadUnit(footprintX, lUnitID);
+	//delay between each loaded unit depends on size
+	delay = (80 * Footprintx);
+	sleep delay;
+	//use search array to check and load all units within area
+	lSearchId = get FREE_ARRAY_ID(1);
+	nFoundCount = get UNITS_NEAR(usfOwner + usfAllied + usfExcludeAir + usfExcludeBuildings, 224, lSearchId, 0);
+	if( nFoundCount > 0) 
+	{
+	    nCurrIdx = 1;
+	    get CURRENT_ORDER_ABORT;
+		curr_loading_piece = 1;
+	    while( (nCurrIdx <= nFoundCount) AND FreeLinks AND weightfree ) 
+	    {
+			lUnitId = get UNITS_ARRAY_RESULT(lSearchId, nCurrIdx, 1);
+			while( get TRANSPORTED_BY(lUnitID) )
+			{
+				++nCurrIdx;
+				if( nCurrIdx > nFoundCount )
+				{
+					get CLEAR_ARRAY_ID(1, lSearchId);
+					Return(0);
+				}	
+				lUnitId = get UNITS_ARRAY_RESULT(lSearchId, nCurrIdx, 1);
+			}
+			weight = get GET_UNITINFO(uiBuildCostMetal, lUnitID);
+			//if weight capacity is not exceeded by currently chosen unit
+			//AND footprint is not too big then load it
+			if( ( weightfree - weight >= 0 ) AND ( get GET_UNITINFO(uiFootprintX, lUnitID) <= footprintx ) )
+			{
+				start-script LoadUnit(footprintX, lUnitID);
+				WeightFree = WeightFree - Weight;
+			}
+			sleep delay;
+	      ++nCurrIdx; 
+		}
+	}
+	piece_to_attach = curr_loading_piece;
+	get CLEAR_ARRAY_ID(1, lSearchId);
+}
+
+ConfirmVTOLTransport(loading, withpiece, transported_unit)
+{
+	if( !loading)
+	{
+		var i, allow_unload;
+		for (i=link1; i<=link15; ++i;)
+		{
+			if (i != withpiece)
+			{
+				transported_unit = get ATTACH_UNIT(2, i);
+				if (transported_unit)
+				{
+					allow_unload = get TEST_UNLOAD_POS(transported_unit);
+					if (allow_unload)
+					{
+						weightfree = weightfree + get GET_UNITINFO(uiBuildCostMetal, transported_unit);
+						++FreeLinks;
+						get ATTACH_UNIT(0, transported_unit);
+					}
+				}
+			}
+			if ((i == withpiece) | allow_unload)
+			{
+				if (i == link1)
+				{
+					occupied1 = 0;
+				}
+				if (i == link2)
+				{
+					occupied2 = 0;
+				}
+				if (i == link3)
+				{
+					occupied3 = 0;
+				}
+				if (i == link4)
+				{
+					occupied4 = 0;
+				}
+				if (i == link5)
+				{
+					occupied5 = 0;
+				}
+				if (i == link6)
+				{
+					occupied6 = 0;
+				}
+				if (i == link7)
+				{
+					occupied7 = 0;
+				}
+				if (i == link8)
+				{
+					occupied8 = 0;
+				}
+				if (i == link9)
+				{
+					occupied9 = 0;
+				}
+				if (i == link10)
+				{
+					occupied10 = 0;
+				}
+				if (i == link11)
+				{
+					occupied11 = 0;
+				}
+				if (i == link12)
+				{
+					occupied12 = 0;	
+				}
+				if (i == link13)
+				{
+					occupied13 = 0;	
+				}
+				if (i == link14)
+				{
+					occupied14 = 0;	
+				}
+				if (i == link15)
+				{
+					occupied15 = 0;	
+				}
+			}
+		}
+	}
+	
+}*/
+
+BeginTransport(Func_Var_1)
+{
+	turn arm1 to y-axis <-60> speed <48>;
+	turn arm2 to y-axis <60> speed <48>;
+	turn arm3 to y-axis <-60> speed <48>;
+	turn arm4 to y-axis <60> speed <48>;
+	turn arm5 to y-axis <60> speed <48>;
+	turn arm6 to y-axis <-60> speed <48>;
+	turn arm7 to y-axis <60> speed <48>;
+	turn arm8 to y-axis <-60> speed <48>;
+	move arm1 to x-axis [2] speed [1.6];
+	move arm2 to x-axis [-2] speed [1.6];
+	move arm3 to x-axis [1] speed [1.6];
+	move arm4 to x-axis [-1] speed [1.6];
+	move arm5 to x-axis [2] speed [1.6];
+	move arm6 to x-axis [-2] speed [1.6];
+	move arm7 to x-axis [1] speed [1.6];
+	move arm8 to x-axis [-1] speed [1.6];
+	move arm1 to z-axis [4] speed [3.2];
+	move arm2 to z-axis [4] speed [3.2];
+	move arm3 to z-axis [7] speed [5.6];
+	move arm4 to z-axis [7] speed [5.6];
+	move arm7 to z-axis [-3] speed [2.4];
+	move arm8 to z-axis [-3] speed [2.4];
+	//get SET_UNITINFO(uiHealTime, 0);
+}
+
+EndTransport()
+{
+	sleep 50;
+	if( ( FreeLinks >= cap ) OR ( weightfree >= 16000 ) )
+	{
+		turn arm1 to y-axis <0> speed <30>;
+		turn arm2 to y-axis <0> speed <30>;
+		turn arm3 to y-axis <0> speed <30>;
+		turn arm4 to y-axis <0> speed <30>;
+		turn arm5 to y-axis <0> speed <30>;
+		turn arm6 to y-axis <0> speed <30>;
+		turn arm7 to y-axis <0> speed <30>;
+		turn arm8 to y-axis <0> speed <30>;
+		move arm1 to x-axis [0] speed [1];
+		move arm2 to x-axis [0] speed [1];
+		move arm3 to x-axis [0] speed [1];
+		move arm4 to x-axis [0] speed [1];
+		move arm5 to x-axis [0] speed [1];
+		move arm6 to x-axis [0] speed [1];
+		move arm7 to x-axis [0] speed [1];
+		move arm8 to x-axis [0] speed [1];
+		move arm1 to z-axis [0] speed [4];
+		move arm2 to z-axis [0] speed [4];
+		move arm3 to z-axis [0] speed [7];
+		move arm4 to z-axis [0] speed [7];
+		move arm7 to z-axis [0] speed [3];
+		move arm8 to z-axis [0] speed [3];
+		//unit heals itself if not transporting
+		//get SET_UNITINFO(uiHealTime, 20);
+		// If all units unloaded, set transport max size back to 8
+		// ...and just to be sure, reset spare weight capacity too
+		//get SET_UNITINFO(uiTransportSize, 8 );
+		//get SET_UNITINFO(uiTransportCapacity, 15 );
+		FreeLinks = 15;
+		weightfree = 16000;
+		move Link1 to x-axis [0] NOW;
+		move Link2 to x-axis [0] NOW;
+		move Link3 to x-axis [0] NOW;
+		move Link4 to x-axis [0] NOW;
+		move Link5 to x-axis [0] NOW;
+		move Link6 to x-axis [0] NOW;
+		move Link7 to x-axis [0] NOW;
+		move Link8 to x-axis [0] NOW;
+		move Link1 to z-axis [0] NOW;
+		move Link2 to z-axis [0] NOW;
+		move Link3 to z-axis [0] NOW;
+		move Link4 to z-axis [0] NOW;
+		move Link5 to z-axis [0] NOW;
+		move Link6 to z-axis [0] NOW;
+		move Link7 to z-axis [0] NOW;
+		move Link8 to z-axis [0] NOW;
+	}
+}
+
+Activate()
+{
+	if( unitviewer )
+	{
+		start-script BeginTransport(0);
+	}
+}
+
+Deactivate()
+{
+	if( unitviewer )
+	{
+		start-script EndTransport(0);
+	}
+}
+
+ProcessFlames()
+{
+	while( TRUE )
+	{
+		if( Speed_1 == 1 OR Speed_1 == 2 )
+		{
+			emit-sfx 0 from thrust1;
+			emit-sfx 0 from thrust2;
+			emit-sfx 0 from thrust3;
+			emit-sfx 0 from thrust4;
+			emit-sfx 0 from thrust5;
+			emit-sfx 0 from thrust6;
+			emit-sfx 0 from thrust7;
+			emit-sfx 0 from thrust8;
+		}
+		sleep 67;
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+	Speed_1 = 0;
+}
+
+MoveRate1()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 1;
+}
+
+MoveRate2()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 2;
+}
+
+MoveRate3()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script ProcessFlames();
+	Speed_1 = 3;
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	turn lturret to x-axis <0> speed <400>;
+	turn lbarrel1 to y-axis <0> speed <360>;
+	turn lbarrel2 to y-axis <0> speed <360>;
+	move door1 to y-axis [0] speed [0.25];
+	move door2 to y-axis [0] speed [0.2];
+	move door1 to z-axis [0] speed [5.4];
+	move door2 to z-axis [0] speed [5.4];
+	turn door1 to x-axis <8> speed <8>;
+	turn door2 to x-axis <-8> speed <8>;
+}
+	
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	move door1 to y-axis [-0.5] speed [2.4];
+	move door2 to y-axis [-0.5] speed [2];
+	move door1 to z-axis [-5.4] speed [10.8];
+	move door2 to z-axis [5.4] speed [10.8];
+	turn door1 to x-axis <-15> speed <30>;
+	turn door2 to x-axis <15> speed <30>;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn lturret to y-axis heading speed <400>;
+	if(( pitch < 0 ) OR (pitch > <90> ))
+	{
+		turn lbarrel1 to x-axis 0 - pitch speed <400>;
+		turn lbarrel2 to x-axis 0 - pitch speed <400>;
+		wait-for-turn lbarrel1 around x-axis;
+		wait-for-turn lbarrel2 around x-axis;
+	}
+	wait-for-turn lturret around y-axis;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+FirePrimary()
+{
+	++gun_1;
+	if( gun_1 > 7 )
+	{
+		gun_1 = 0;
+	}
+}
+
+FireSecondary()
+{
+	if( !gun_2 )
+	{
+		show lflare1;
+		sleep 150;
+		hide lflare1;
+	}
+	if( gun_2 )
+	{
+		show lflare2;
+		sleep 150;
+		hide lflare2;
+	}
+	gun_2 = !gun_2;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = lturret;
+}
+
+QueryPrimary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = r1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = r2;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = r3;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = r4;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = r5;
+	}
+	if( gun_1 == 5 )
+	{
+		piecenum = r6;
+	}
+	if( gun_1 == 6 )
+	{
+		piecenum = r7;
+	}
+	if( gun_1 > 7 )
+	{
+		piecenum = r8;
+	}
+}
+
+QuerySecondary(piecenum)
+{
+	if( !gun_2 )
+	{
+		piecenum = lflare1;
+		return(0);
+	}
+	piecenum = lflare2;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type BITMAPONLY | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type BITMAPONLY | BITMAP5;
+		explode thrust3 type BITMAPONLY | BITMAP1;
+		explode thrust5 type BITMAPONLY | BITMAP2;
+		explode thrust7 type BITMAPONLY | BITMAP3;
+		explode thrust2 type BITMAPONLY | BITMAP3;
+		explode thrust4 type BITMAPONLY | BITMAP4;
+		explode thrust6 type BITMAPONLY | BITMAP5;
+		explode thrust8 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type FALL | FIRE | BITMAP5;
+		explode thrust3 type FALL | FIRE | BITMAP1;
+		explode thrust5 type FALL | FIRE | BITMAP2;
+		explode thrust7 type FALL | FIRE | BITMAP3;
+		explode thrust2 type FALL | FIRE | BITMAP3;
+		explode thrust4 type FALL | FIRE | BITMAP4;
+		explode thrust6 type FALL | FIRE | BITMAP5;
+		explode thrust8 type FALL | FIRE | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode thrust1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode thrust3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		explode thrust5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+		explode thrust7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode thrust2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode thrust4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+		explode thrust6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode thrust8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1 type BITMAPONLY | BITMAP1;
+	explode arm2 type BITMAPONLY | BITMAP2;
+	explode arm3 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode base type BITMAPONLY | BITMAP4;
+	explode thrust1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode thrust3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+	explode thrust5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+	explode thrust7 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode thrust2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode thrust4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+	explode thrust6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode thrust8 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+}

@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Gasplant Pain;
+	missiondescription=10 X 8  Large plain for close encounters. Lots of geothermal.;
+	planet=Acid;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=20;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2000;
+	maxwindspeed=4000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=1;
+	waterdamage=10;
+	numplayers=2, 4;
+	size=10 x 8;
+	memory=16 mb;
+	useonlyunits=Gasplant Plain.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=368;
+				ZPos=384;
+				}
+			[special1]
+				{
+				specialwhat=StartPos5;
+				XPos=2272;
+				ZPos=192;
+				}
+			[special2]
+				{
+				specialwhat=StartPos6;
+				XPos=2256;
+				ZPos=976;
+				}
+			[special3]
+				{
+				specialwhat=StartPos7;
+				XPos=2240;
+				ZPos=1648;
+				}
+			[special4]
+				{
+				specialwhat=StartPos8;
+				XPos=2272;
+				ZPos=2320;
+				}
+			[special5]
+				{
+				specialwhat=StartPos9;
+				XPos=2384;
+				ZPos=2976;
+				}
+			[special6]
+				{
+				specialwhat=StartPos10;
+				XPos=2336;
+				ZPos=3584;
+				}
+			[special7]
+				{
+				specialwhat=StartPos2;
+				XPos=4352;
+				ZPos=3520;
+				}
+			[special8]
+				{
+				specialwhat=StartPos3;
+				XPos=464;
+				ZPos=3328;
+				}
+			[special9]
+				{
+				specialwhat=StartPos4;
+				XPos=4320;
+				ZPos=288;
+				}
+			}
+		}
+	}

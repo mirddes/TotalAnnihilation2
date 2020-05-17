@@ -1,0 +1,229 @@
+[Rail01]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail01;
+	seqnameshad=railshad01;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail02]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail02;
+	seqnameshad=railshad02;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail03]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail03;
+	seqnameshad=railshad03;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail04]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail04;
+	seqnameshad=railshad04;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail05]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=200;
+	filename=rails;
+	seqname=rail05;
+	seqnameshad=railshad05;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail06]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=200;
+	filename=rails;
+	seqname=rail06;
+	seqnameshad=railshad06;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail07]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=200;
+	filename=rails;
+	seqname=rail07;
+	seqnameshad=railshad07;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail08]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail08;
+	seqnameshad=railshad08;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail09]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=200;
+	filename=rails;
+	seqname=rail09;
+	seqnameshad=railshad09;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[Rail10]
+	{
+	world=urban;
+	description=Monorail Track;
+	category=tracks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=200;
+	filename=rails;
+	seqname=rail10;
+	seqnameshad=railshad10;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=80;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}

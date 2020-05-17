@@ -1,0 +1,34 @@
+[CORLEVLR_WEAPON]
+	{
+	ID=172;
+	name=Light Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=260;
+	reloadtime=1.83;
+	weaponvelocity=280;
+	areaofeffect=84;
+	soundstart=canlite3;
+	soundhit=xplosml3;
+
+
+	tolerance=2000;
+	
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=180;
+		}
+	}

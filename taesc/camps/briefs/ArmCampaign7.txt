@@ -1,0 +1,10 @@
+MISSION 7.0002ARMTH
+Defend Larab Harbor. Preserve the Moho Mine there. Destroy all Core units. 
+
+&Y*SPECIAL PRIORITY*&
+The ARM stronghold and supply depot assembled at Larab Harbor must be preserved against all Core assaults. Metal is so rare on Thalassean that the Moho Mine at Larab must be protected at all cost.  Should the Moho be destroyed, you will have failed your Mission.
+
+INFO FEED
+We have reason to believe that there is a Core fleet hiding within a hurricane moving toward Larab. Be prepared! &YThe Enemy is sure to target the Moho Mine.&
+
+END

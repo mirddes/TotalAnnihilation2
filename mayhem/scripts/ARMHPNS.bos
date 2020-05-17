@@ -1,0 +1,238 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, pad, beam1, beam2, door1, door2, nano2, nano1, 
+       arm1, arm2, pontoons;
+
+static-var  nano_1, Request_2, State_3, Busy_4;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	while( ( !Busy_4 ) AND ( Request_2 != State_3 ) )
+	{
+		Busy_4 = 1;
+		if( Request_2 )
+		{
+			dont-cache beam1;
+			dont-cache beam2;
+			dont-cache arm1;
+			dont-cache arm2;
+			dont-cache nano1;
+			dont-cache nano2;
+			move base to y-axis [2] speed [2];
+			move door1 to z-axis [-6.5] speed [7.5];
+			move door2 to z-axis [6.5] speed [7.5];
+			sleep 800;
+			turn arm1 to y-axis <-30> speed <60>;
+			turn arm2 to y-axis <30> speed <60>;
+			sleep 500;
+			set YARD_OPEN to 1;
+			while( !get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 1;
+			}
+			set INBUILDSTANCE to 1;
+			State_3 = 1;
+		}
+		if( !Request_2 )
+		{
+			State_3 = 0;
+			set INBUILDSTANCE to 0;
+			set YARD_OPEN to 0;
+			while( get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 0;
+			}
+			move base to y-axis [0] speed [2];
+			turn arm1 to y-axis <-30> speed <60>;
+			turn arm2 to y-axis <30> speed <60>;
+			sleep 500;
+			move door1 to z-axis [0] speed [6];
+			move door2 to z-axis [0] speed [6];
+			sleep 1100;
+			cache beam1;
+			cache beam2;
+			cache arm1;
+			cache arm2;
+			cache nano1;
+			cache nano2;
+		}
+		Busy_4 = 0;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade beam1;
+	dont-shade beam2;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade arm1;
+	dont-shade arm2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade pad;
+	dont-cache pad;
+	nano_1 = 0;
+	Request_2 = 0;
+	State_3 = 0;
+	Busy_4 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( !nano_1 )
+	{
+		piecenum = beam1;
+	}
+	if( nano_1 )
+	{
+		piecenum = beam2;
+	}
+	nano_1 = !nano_1;
+}
+
+Activate()
+{
+	signal 2;
+	set BUGGER_OFF to 1;
+	Request_2 = 1;
+	call-script RequestState();
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	set BUGGER_OFF to 1;
+	Request_2 = 0;
+	sleep 8000;
+	set-signal-mask 0;
+	if( !Request_2 )
+	{
+		call-script RequestState();
+	}
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode beam1 type BITMAPONLY | BITMAP3;
+		explode beam2 type BITMAPONLY | BITMAP4;
+		explode door1 type BITMAPONLY | BITMAP5;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode nano2 type BITMAPONLY | BITMAP4;
+		explode nano1 type BITMAPONLY | BITMAP5;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode beam1 type FALL | BITMAP3;
+		explode beam2 type FALL | BITMAP4;
+		explode door1 type BITMAPONLY | BITMAP5;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode nano2 type SHATTER | BITMAP4;
+		explode nano1 type FALL | BITMAP5;
+		explode arm1 type FALL | BITMAP1;
+		explode arm2 type FALL | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode door1 type BITMAPONLY | BITMAP5;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode nano2 type SHATTER | BITMAP4;
+		explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode pad type BITMAPONLY | BITMAP2;
+	explode beam1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode beam2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode door1 type BITMAPONLY | BITMAP5;
+	explode door2 type BITMAPONLY | BITMAP1;
+	explode nano2 type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode nano1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=Metal Isles;
+	missiondescription=23 X 21  4 Symmetrical Metal Islands, good for sea battles;
+	planet=Metal;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=32;
+	solarstrength=22;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=127;
+	maxwindspeed=953;
+	gravity=112;
+	numplayers=2, 3, 4;
+	size=23 x 22;
+	memory=32 mb;
+	useonlyunits=metal isles.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaMetal;
+		SurfaceMetal=250;
+		MohoMetal=50;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=2736;
+				ZPos=8432;
+				}
+			[special1]
+				{
+				specialwhat=StartPos4;
+				XPos=2688;
+				ZPos=2000;
+				}
+			[special2]
+				{
+				specialwhat=StartPos2;
+				XPos=8880;
+				ZPos=2000;
+				}
+			[special3]
+				{
+				specialwhat=StartPos3;
+				XPos=8736;
+				ZPos=8288;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=2672;
+				ZPos=2224;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=8864;
+				ZPos=8512;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=9008;
+				ZPos=2192;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=2704;
+				ZPos=8208;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=4048;
+				ZPos=5152;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=7408;
+				ZPos=4976;
+				}
+			}
+		}
+	}

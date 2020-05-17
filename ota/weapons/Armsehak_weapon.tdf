@@ -1,0 +1,32 @@
+[ARMSEHAK_WEAPON]
+	{
+	ID=164;
+	name=Plasma Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=320;
+	reloadtime=1.8;
+	weaponvelocity=210;
+	areaofeffect=48;
+	soundstart=cannon2;
+	soundhit=xplomed4;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=112;
+		}
+	}
+

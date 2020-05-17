@@ -1,0 +1,12 @@
+MISSION 12.003ARMG
+Though we have been pushed back into the frigid seas offshore of the mainland, reinforcements have arrived and the invasion of the mainland has begun! Core has a fortified base above the glacier wall. It will not be an easy base to take. 
+
+&Y*PRIORITY CRITICAL*&
+Indications are that the beacon has been taken to the fortress, where it has been converted into a horrendous implosion device... and that device has been activated. We have very little time to establish our base and make the final assault on the fortress. 
+
+INFO FEED
+&RThe implosion device has been activated!& Succeed in completing this mission or the galaxy will end... and Arm with it.
+
+In order to complete this mission, the Core Commander and the beacon must be destroyed before its timer ends... You have 90 minutes to destroy the device and all of Core.   
+
+END

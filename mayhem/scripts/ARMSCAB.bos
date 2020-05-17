@@ -1,0 +1,350 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  ground, base, lbody, LRfoot, LFfoot, rbody, RFfoot, RRfoot,
+       launcher, emit, rupleg1, rleg1, rupleg2, rleg2, rupleg3, rleg3,
+       lupleg1, lleg1, lupleg2, lleg2, lupleg3, lleg3;
+
+static-var  Ready_1, Moving_2, Busy_3;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( Moving_2 )
+		{
+			turn base to x-axis <2.099> now;
+			turn base to x-axis <0.000> speed <14.000>;
+			turn base to y-axis <1.049> now;
+			turn base to y-axis <0.000> speed <2.000>;
+			turn rupleg1 to y-axis <27.418> now;
+			turn rupleg1 to y-axis <7.000> speed <132.000>;
+			turn rupleg2 to y-axis <-13.346> now;
+			turn rupleg2 to z-axis <0.000> now;
+			turn rupleg2 to z-axis <27.000> speed <184.000>;
+			turn rupleg3 to y-axis <27.769> now;
+			turn rupleg3 to y-axis <7.000> speed <136.000>;
+			turn lupleg1 to y-axis <21.429> now;
+			turn lupleg1 to z-axis <0.000> now;
+			turn lupleg1 to z-axis <-24.000> speed <165.000>;
+			turn lupleg2 to y-axis <-14.407> now;
+			turn lupleg2 to y-axis <0.000> speed <92.000>;
+			turn lupleg2 to z-axis <-7.379> now;
+			turn lupleg2 to z-axis <0.000> speed <49.000>;
+			turn lupleg3 to y-axis <13.346> now;
+			turn lupleg3 to z-axis <0.000> now;
+			turn lupleg3 to z-axis <-45.000> speed <304.000>;
+			turn lleg3 to z-axis <0.000> now;
+			turn lleg3 to z-axis <35.000> speed <238.000>;
+			turn lleg2 to z-axis <0.000> now;
+			turn lleg2 to z-axis <-11.000> speed <80.000>;
+			turn lleg1 to z-axis <0.000> now;
+			turn lleg1 to z-axis <11.000> speed <77.000>;
+			turn rleg3 to z-axis <0.000> now;
+			turn rleg3 to z-axis <8.000> speed <56.000>;
+			turn rleg2 to z-axis <0.000> now;
+			turn rleg2 to z-axis <-34.000> speed <233.000>;
+			turn rleg1 to z-axis <0.000> now;
+			turn rleg1 to z-axis <9.000> speed <63.000>;
+			sleep 149;
+			turn base to x-axis <-1.000> speed <7.000>;
+			turn base to y-axis <0.000> speed <7.000>;
+			turn rupleg1 to y-axis <-13.000> speed <138.000>;
+			turn rupleg2 to y-axis <8.000> speed <147.000>;
+			turn rupleg2 to z-axis <54.000> speed <178.000>;
+			turn rupleg3 to y-axis <-14.000> speed <145.000>;
+			turn lupleg1 to y-axis <1.000> speed <133.000>;
+			turn lupleg1 to z-axis <-64.000> speed <267.000>;
+			turn lupleg2 to y-axis <20.000> speed <143.000>;
+			turn lupleg3 to y-axis <-10.000> speed <157.000>;
+			turn lupleg3 to z-axis <-75.000> speed <203.000>;
+			turn lleg3 to z-axis <63.000> speed <187.000>;
+			turn lleg2 to z-axis <0.000> speed <79.000>;
+			turn lleg1 to z-axis <66.000> speed <365.000>;
+			turn rleg3 to z-axis <0.000> speed <56.000>;
+			turn rleg2 to z-axis <-63.000> speed <192.000>;
+			turn rleg1 to z-axis <0.000> speed <63.000>;
+			sleep 150;
+			turn base to x-axis <-1.000> speed <2.000>;
+			turn base to y-axis <-1.000> speed <4.000>;
+			turn rupleg1 to y-axis <-20.000> speed <46.000>;
+			turn rupleg2 to y-axis <17.000> speed <55.000>;
+			turn rupleg2 to z-axis <8.000> speed <302.000>;
+			turn rupleg3 to y-axis <-20.000> speed <37.000>;
+			turn lupleg1 to y-axis <-10.000> speed <79.000>;
+			turn lupleg1 to z-axis <-14.000> speed <333.000>;
+			turn lupleg2 to y-axis <31.000> speed <69.000>;
+			turn lupleg3 to y-axis <-15.000> speed <37.000>;
+			turn lupleg3 to z-axis <-10.000> speed <430.000>;
+			turn lleg3 to z-axis <17.000> speed <302.000>;
+			turn lleg1 to z-axis <10.000> speed <370.000>;
+			turn rleg2 to z-axis <-9.000> speed <356.000>;
+			sleep 151;
+			turn base to x-axis <0.000> speed <4.000>;
+			turn base to y-axis <0.000> speed <7.000>;
+			turn rupleg1 to y-axis <-13.000> speed <46.000>;
+			turn rupleg1 to z-axis <39.000> speed <262.000>;
+			turn rupleg2 to y-axis <11.000> speed <39.000>;
+			turn rupleg2 to z-axis <-2.000> speed <70.000>;
+			turn rupleg3 to y-axis <-3.000> speed <112.000>;
+			turn rupleg3 to z-axis <28.000> speed <189.000>;
+			turn lupleg1 to y-axis <0.000> speed <67.000>;
+			turn lupleg1 to z-axis <2.000> speed <110.000>;
+			turn lupleg2 to y-axis <19.000> speed <77.000>;
+			turn lupleg2 to z-axis <-40.000> speed <271.000>;
+			turn lupleg3 to y-axis <-7.000> speed <56.000>;
+			turn lupleg3 to z-axis <4.000> speed <100.000>;
+			turn lleg3 to z-axis <0.000> speed <119.000>;
+			turn lleg2 to z-axis <32.000> speed <218.000>;
+			turn lleg1 to z-axis <0.000> speed <70.000>;
+			turn rleg3 to z-axis <-17.000> speed <117.000>;
+			turn rleg2 to z-axis <0.000> speed <65.000>;
+			turn rleg1 to z-axis <-19.000> speed <131.000>;
+			sleep 150;
+			turn base to x-axis <0.000> speed <9.000>;
+			turn base to y-axis <1.000> speed <9.000>;
+			turn rupleg1 to y-axis <8.000> speed <140.000>;
+			turn rupleg1 to z-axis <52.000> speed <89.000>;
+			turn rupleg2 to y-axis <0.000> speed <75.000>;
+			turn rupleg3 to y-axis <15.000> speed <126.000>;
+			turn rupleg3 to z-axis <48.000> speed <131.000>;
+			turn lupleg1 to y-axis <9.000> speed <65.000>;
+			turn lupleg2 to y-axis <3.000> speed <105.000>;
+			turn lupleg2 to z-axis <-68.000> speed <185.000>;
+			turn lupleg3 to y-axis <1.000> speed <60.000>;
+			turn lleg3 to z-axis <-10.000> speed <67.000>;
+			turn lleg2 to z-axis <64.000> speed <210.000>;
+			turn lleg1 to z-axis <-5.000> speed <39.000>;
+			turn rleg3 to z-axis <-52.000> speed <232.000>;
+			turn rleg2 to z-axis <3.000> speed <23.000>;
+			turn rleg1 to z-axis <-50.000> speed <206.000>;
+			sleep 150;
+			turn base to x-axis <1.000> speed <4.000>;
+			turn base to y-axis <1.000> speed <2.000>;
+			turn rupleg1 to y-axis <16.000> speed <56.000>;
+			turn rupleg1 to z-axis <39.000> speed <89.000>;
+			turn rupleg2 to y-axis <-11.000> speed <75.000>;
+			turn rupleg3 to y-axis <24.000> speed <58.000>;
+			turn rupleg3 to z-axis <28.000> speed <131.000>;
+			turn lupleg1 to y-axis <20.000> speed <70.000>;
+			turn lupleg2 to y-axis <-3.000> speed <51.000>;
+			turn lupleg2 to z-axis <-40.000> speed <185.000>;
+			turn lupleg3 to y-axis <18.000> speed <110.000>;
+			turn lleg3 to z-axis <0.000> speed <67.000>;
+			turn lleg2 to z-axis <37.000> speed <178.000>;
+			turn lleg1 to z-axis <0.000> speed <39.000>;
+			turn rleg3 to z-axis <-17.000> speed <232.000>;
+			turn rleg2 to z-axis <0.000> speed <23.000>;
+			turn rleg1 to z-axis <-23.000> speed <178.000>;
+			sleep 300;
+		}
+		if( !Moving_2 )
+		{
+			sleep 100;
+		}
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	set ARMORED to 1;
+	Ready_1 = 0;
+	Moving_2 = 0;
+	Busy_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	start-script MotionControl();
+}
+
+StartMoving()
+{
+	Moving_2 = 1;
+}
+
+StopMoving()
+{
+	Moving_2 = 0;
+}
+
+RestoreAfterDelay(sleeptime)
+{
+	Busy_3 = 1;
+	sleeptime = Rand( 2000, 6000 );
+	sleep sleeptime;
+	sleeptime = 12000 - sleeptime;
+	Busy_3 = 0;
+	sleep sleeptime;
+	set-signal-mask 0;
+	Ready_1 = 0;
+	Busy_3 = 1;
+	move lbody to x-axis [-1.750] now;
+	move rbody to x-axis [1.600] now;
+	turn launcher to x-axis <98.445> now;
+	turn launcher to x-axis <0.000> speed <200.000>;
+	sleep 500;
+	set ARMORED to 1;
+	move lbody to x-axis [0.000] speed [5.000];
+	move rbody to x-axis [0.000] speed [5.000];
+	sleep 500;
+	Busy_3 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( Busy_3 )
+	{
+		sleep 300;
+	}
+	if( !Ready_1 )
+	{
+		Busy_3 = 1;
+		move lbody to x-axis [-1.750] speed [5.000];
+		move rbody to x-axis [1.600] speed [5.000];
+		sleep 350;
+		set ARMORED to 0;
+		turn launcher to x-axis <98.000> speed <200.000>;
+		sleep Rand( 500, 2650 );
+		Ready_1 = 1;
+		Busy_3 = 0;
+	}
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = emit;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lbody type BITMAPONLY | BITMAP2;
+		explode LRfoot type BITMAPONLY | BITMAP3;
+		explode LFfoot type BITMAPONLY | BITMAP4;
+		explode rbody type BITMAPONLY | BITMAP5;
+		explode RFfoot type BITMAPONLY | BITMAP1;
+		explode RRfoot type BITMAPONLY | BITMAP2;
+		explode launcher type BITMAPONLY | BITMAP3;
+		explode rupleg1 type BITMAPONLY | BITMAP4;
+		explode rleg1 type BITMAPONLY | BITMAP5;
+		explode rupleg2 type BITMAPONLY | BITMAP1;
+		explode rleg2 type BITMAPONLY | BITMAP2;
+		explode rupleg3 type BITMAPONLY | BITMAP3;
+		explode rleg3 type BITMAPONLY | BITMAP4;
+		explode lupleg1 type BITMAPONLY | BITMAP5;
+		explode lleg1 type BITMAPONLY | BITMAP1;
+		explode lupleg2 type BITMAPONLY | BITMAP2;
+		explode lleg2 type BITMAPONLY | BITMAP3;
+		explode lupleg3 type BITMAPONLY | BITMAP4;
+		explode lleg3 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lbody type BITMAPONLY | BITMAP2;
+		explode LRfoot type FALL | BITMAP3;
+		explode LFfoot type FALL | BITMAP4;
+		explode rbody type BITMAPONLY | BITMAP5;
+		explode RFfoot type FALL | BITMAP1;
+		explode RRfoot type FALL | BITMAP2;
+		explode launcher type BITMAPONLY | BITMAP3;
+		explode rupleg1 type FALL | BITMAP4;
+		explode rleg1 type FALL | BITMAP5;
+		explode rupleg2 type FALL | BITMAP1;
+		explode rleg2 type FALL | BITMAP2;
+		explode rupleg3 type FALL | BITMAP3;
+		explode rleg3 type FALL | BITMAP4;
+		explode lupleg1 type FALL | BITMAP5;
+		explode lleg1 type FALL | BITMAP1;
+		explode lupleg2 type FALL | BITMAP2;
+		explode lleg2 type FALL | BITMAP3;
+		explode lupleg3 type FALL | BITMAP4;
+		explode lleg3 type FALL | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode lbody type BITMAPONLY | BITMAP2;
+	explode LRfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode LFfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode rbody type BITMAPONLY | BITMAP5;
+	explode RFfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode RRfoot type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode launcher type BITMAPONLY | BITMAP3;
+	explode lupleg1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode lupleg2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode lupleg3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode lleg3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode rupleg1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+	explode rleg1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode rupleg2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode rleg2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode rupleg3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode rleg3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+}

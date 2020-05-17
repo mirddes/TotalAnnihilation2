@@ -1,0 +1,254 @@
+[HEADER]
+	{
+	campaignside=ARM;
+	}
+
+[MISSION0]
+	{
+	missionfile=AC01.ota;
+	missionname=1: A Hero Returns;
+	Germanmissionname=1: Ein Held kehrt zurück;
+	Frenchmissionname=1: Le retour du héros;
+	Italianmissionname=1: Ritorno di un eroe;
+	Spanishmissionname=1: Regresa un héroe;
+	}
+
+[MISSION1]
+	{
+	missionfile=AC02.ota;
+	missionname=2: CORE KBot Base, Destroy It!;
+	Germanmissionname=2: KBot Basis zerstören!;
+	Frenchmissionname=2: Détruire la base Kbot CORE;
+	Italianmissionname=2: Distruggere la base dei KBot!;
+	Spanishmissionname=2: ¡Destruir la base Kbot del NÚCLEO!;
+	}
+
+[MISSION2]
+	{
+	missionfile=AC03.ota;
+	missionname=3: Spider Technology;
+	Germanmissionname=3: Spider Technologie;
+	Frenchmissionname=3: Technologie Mygale;
+	Italianmissionname=3: Tecnologia Spider;
+	Spanishmissionname=3: Tecnología Spider;
+	}
+
+[MISSION3]
+	{
+	missionfile=AC04.ota;
+	missionname=4: CORE Contamination Spreads...;
+	Germanmissionname=4: Die CORE breiten sich weiter aus...;
+	Frenchmissionname=4: L'invasion doit être stoppée;
+	Italianmissionname=4: Scongiurare il pericolo...;
+	Spanishmissionname=4: Se extiende la contaminación del NÚCLEO...;
+	}
+
+[MISSION4]
+	{
+	missionfile=AC05.ota;
+	missionname=5: The Gate to Thalassean;
+	Germanmissionname=5: Das Tor nach Thalassean;
+	Frenchmissionname=5: La porte de Thalassean;
+	Italianmissionname=5: Varco per Thalassean;
+	Spanishmissionname=5: La Puerta a Thalassean;
+	}
+
+[MISSION5]
+	{
+	missionfile=AC06.ota;
+	missionname=6: Beachhead on Thalassean;
+	Germanmissionname=6: Brückenkopf auf Thalassean;
+	Frenchmissionname=6: Une tête de pont sur Thalassean;
+	Italianmissionname=6: Postazione su Thalassean;
+	Spanishmissionname=6: Base Costera en Thalassean;
+	}
+
+[MISSION6]
+	{
+	missionfile=AC07.ota;
+	missionname=7: The Defense of Larab Harbor;
+	Germanmissionname=7: Die Verteidigung von Larab Harbor;
+	Frenchmissionname=7: Défense du port de Larab;
+	Italianmissionname=7: La difesa di Larab Harbor;
+	Spanishmissionname=7: La defensa del Puerto de Larab;
+	}
+
+[MISSION7]
+	{
+	missionfile=AC08.ota;
+	missionname=8: The Gate to Tergiverse IV;
+	Germanmissionname=8: Das Tor nach Tergiverse IV;
+	Frenchmissionname=8: La Porte de Tergiverse IV;
+	Italianmissionname=8: Il varco per Tergiverse IV;
+	Spanishmissionname=8: La Puerta a Tergiverse IV;
+	}
+
+[MISSION8]
+	{
+	missionfile=AC09.ota;
+	missionname=9: The Hydration Plant;
+	Germanmissionname=9: Die Hydrierungsanlage;
+	Frenchmissionname=9: Le collecteur d'eau;
+	Italianmissionname=9: Sistema di idratazione;
+	Spanishmissionname=9: La Planta de Hidratación;
+	}
+
+[MISSION9]
+	{
+	missionfile=AC10.ota;
+	missionname=10: The Bromid Maze;
+	Germanmissionname=10: Das bromidische Labyrinth;
+	Frenchmissionname=10: Le Labyrinthe de Potasse;
+	Italianmissionname=10: Bromid Maze;
+	Spanishmissionname=10: El Laberinto Bromid;
+	}
+
+[MISSION10]
+	{
+	missionfile=AC11.ota;
+	missionname=11: The Gate to Barathrum;
+	Germanmissionname=11: Das Tor nach Baranthrum;
+	Frenchmissionname=11: Le Passage de Barathrum;
+	Italianmissionname=11: Varco per Barathrum;
+	Spanishmissionname=11: La Puerta a Barathrum;
+	}
+
+[MISSION11]
+	{
+	missionfile=AC12.ota;
+	missionname=12: Barathrum!;
+	Germanmissionname=12: Barathrum!;
+	Frenchmissionname=12: Barathrum;
+	Italianmissionname=12: Barathrum!;
+	Spanishmissionname=12: ¡Barathrum!;
+	}
+
+[MISSION12]
+	{
+	missionfile=AC13.ota;
+	missionname=13: Landown's Interface;
+	Germanmissionname=13: Landowns Höhenzug;
+	Frenchmissionname=13: L'Interface Terrestre;
+	Italianmissionname=13: Landown;
+	Spanishmissionname=13: Interfaz de Landown;
+	}
+
+[MISSION13]
+	{
+	missionfile=AC14.ota;
+	missionname=14: The Heat Increases;
+	Germanmissionname=14: Die Hitze steigt;
+	Frenchmissionname=14: La température explose;
+	Italianmissionname=14: La tensione sale;
+	Spanishmissionname=14: Sube la temperatura;
+	}
+
+[MISSION14]
+	{
+	missionfile=AC15.ota;
+	missionname=15: Rougpelt;
+	Germanmissionname=15: Rougpelt;
+	Frenchmissionname=15: Rougpelt;
+	Italianmissionname=15: Rougpelt;
+	Spanishmissionname=15: Rougpelt;
+	}
+
+[MISSION15]
+	{
+	missionfile=AC16.ota;
+	missionname=16: Stockpile at the Abutment.;
+	Germanmissionname=16: Das Vorratslager am Grenzwall;
+	Frenchmissionname=16: Les réserves derrière le contrefort;
+	Italianmissionname=16: Deposito in vetta;
+	Spanishmissionname=16: Depósito de Abutment;
+	}
+
+[MISSION16]
+	{
+	missionfile=AC17.ota;
+	missionname=17: Fortress at Brooban's Isle;
+	Germanmissionname=17: Die Festung auf Broobans Insel;
+	Frenchmissionname=17: La forteresse dans l'île de Brooban;
+	Italianmissionname=17: Fortezza sull'isola di Brooban;
+	Spanishmissionname=17: Fortaleza en la Isla de Brooban;
+	}
+
+[MISSION17]
+	{
+	missionfile=AC18.ota;
+	missionname=18: Vengeance!;
+	Germanmissionname=18: Rache!;
+	Frenchmissionname=18: Vengeance;
+	Italianmissionname=18: Vendetta!;
+	Spanishmissionname=18: ¡Venganza!;
+	}
+
+[MISSION18]
+	{
+	missionfile=AC19.ota;
+	missionname=19: The Motien Ramp;
+	Germanmissionname=19: Die Motien-Rampe;
+	Frenchmissionname=19: La rampe Motienne;
+	Italianmissionname=19: Motien Ramp;
+	Spanishmissionname=19: Motien Ramp;
+	}
+
+[MISSION19]
+	{
+	missionfile=AC20.ota;
+	missionname=20: Dump;
+	Germanmissionname=20: Dump;
+	Frenchmissionname=20: Dump;
+	Italianmissionname=20: Dump;
+	Spanishmissionname=20: Vertedero;
+	}
+
+[MISSION20]
+	{
+	missionfile=AC21.ota;
+	missionname=21: Welcome to CORE PRIME;
+	Germanmissionname=21: Willkommen auf CORE PRIME;
+	Frenchmissionname=21: Bienvenue à Core Prime;
+	Italianmissionname=21: Benvenuti su CORE PRIME;
+	Spanishmissionname=21: Bienvenido a NÚCLEO UNO;
+	}
+
+[MISSION21]
+	{
+	missionfile=AC22.ota;
+	missionname=22: Battle for Coordinate 6551:447;
+	Germanmissionname=22: Die Schlacht bei den Koordinaten 6551:447;
+	Frenchmissionname=22: Bataille pour le point 6551:447;
+	Italianmissionname=22: Le coordinate 6551:447;
+	Spanishmissionname=22: Lucha por las coordenadas 6551:447;
+	}
+
+[MISSION22]
+	{
+	missionfile=AC23.ota;
+	missionname=23: Crossing Aqueous Body 397;
+	Germanmissionname=23: Die Überquerung des Aqueous Body 397;
+	Frenchmissionname=23: Traverser la zone aqueuse n 397;
+	Italianmissionname=23: Aqueous Body 397;
+	Spanishmissionname=23: Cruzando Cuerpo Acuoso 397;
+	}
+
+[MISSION23]
+	{
+	missionfile=AC24.ota;
+	missionname=24: Breakthrough to Central Consciousness;
+	Germanmissionname=24: Der Durchbruch zum Zentralgewissen;
+	Frenchmissionname=24: Accéder à la Conscience Centrale;
+	Italianmissionname=24: Attacco a Central Consciousness;
+	Spanishmissionname=24: Ataque a la Conciencia Central;
+	}
+
+[MISSION24]
+	{
+	missionfile=AC25.ota;
+	missionname=25: CORE PRIME Apocalypse. Free at Last!;
+	Germanmissionname=25: Die Apokalypse von CORE PRIME;
+	Frenchmissionname=25: L'apocalypse de CORE PRIME;
+	Italianmissionname=25: L'Apocalisse di CORE PRIME;
+	Spanishmissionname=25: Apocalipsis en NÚCLEO UNO. ¡Al fin libres!;
+	}

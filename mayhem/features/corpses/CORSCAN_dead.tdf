@@ -1,0 +1,35 @@
+[corscan_dead]
+{
+world=All Worlds;
+description=Scanner Wreckage;
+category=core_corpses;
+object=corscan_dead;
+featuredead=corscan_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=162;
+damage=1020;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corscan_heap]
+{
+World=All Worlds;
+Description=Scanner Wreckage;
+Category=core_heaps;
+Object=3x3b;
+Footprintx=3;
+Footprintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=81;
+Damage=1220;
+Reclaimable=1;
+Featurereclamate=smudge01;
+Seqnamereclamate=tree1reclamate;
+}

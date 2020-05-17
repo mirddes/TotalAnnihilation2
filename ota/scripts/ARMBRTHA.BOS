@@ -1,0 +1,114 @@
+// Arm Big Bertha Cannon
+
+piece base,flare,turret;
+
+#define SIG_AIM 2
+#define SMOKEPIECE1 base
+
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Create()
+	{
+	hide flare;
+	dont-cache flare;
+	dont-cache barrel;
+	dont-cache sleeve;
+	dont-cache turret;
+	start-script SmokeUnit();
+	}
+
+AimPrimary(heading,pitch)
+	{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <5>;
+	turn sleeve to x-axis (0-pitch) speed <2>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	return(TRUE);
+	}
+
+FirePrimary()
+	{
+	move barrel to z-axis [-5] speed [500];
+	show flare;
+	sleep 250;
+	hide flare;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0] speed [3.0];
+	}
+
+TargetCleared(which)
+	{
+	stop-spin turret around y-axis;
+	stop-spin sleeve around x-axis;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=turret;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare;
+        if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	BITMAPONLY | BITMAP3;
+		explode sleeve type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | BITMAP3;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode turret type	FALL | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode barrel type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode sleeve type	SHATTER | BITMAP4;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return( 0 );
+		}
+
+	// If severity is over 50, the unit just disintigrated.
+	corpsetype = 3;
+
+	explode barrel type	BITMAPONLY | BITMAP1;
+	explode base type	BITMAPONLY | BITMAP2;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode sleeve type	SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	return( 0 );
+	}

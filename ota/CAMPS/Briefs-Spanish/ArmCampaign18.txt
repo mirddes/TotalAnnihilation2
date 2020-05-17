@@ -1,0 +1,10 @@
+MISIÓN 18.004CLANR
+¡El Núcleo ha tomado rehenes! Si los rehenes sufren algún daño, te corresponderá a ti vengarte de los responsables. ¡Destrúyelos a todos!
+
+&YPRIORIDAD&
+El Núcleo ha capturado unidades del Clan y amenaza con utilizarlas para dar ejemplo. ¡Si lo hacen, debes vengarte! No construyas nada... &R¡Destruye todas las unidades del Núcleo en la zona!&
+
+INFORMACIÓN
+Esto es Rougpelt, sin duda habrá lluvias de meteoritos.
+
+FIN

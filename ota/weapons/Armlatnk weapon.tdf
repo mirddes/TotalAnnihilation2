@@ -1,0 +1,37 @@
+[Armlatnk_weapon]
+	{
+	ID=166;
+	name=Lightning Gun;
+	rendertype=7;
+	lineofsight=1;
+	turret=1;
+
+	range=210;
+	reloadtime=1.55;
+	weaponvelocity=400;
+	areaofeffect=8;
+	duration=10;
+	soundtrigger=1;
+
+	soundstart=lghthvy1;
+	soundhit=lashit;
+
+	firestarter=50;
+
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=196;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=120;
+		}
+	}

@@ -1,0 +1,187 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, arm1, arm2, arm3, arm4, light4, light3, light2,
+       light1, centerlight;
+
+static-var  Request_1, Busy_2, State_3;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState()
+{
+	if( Busy_2 )
+	{
+		return (0);
+	}
+	Busy_2 = 1;
+	while( Request_1 != State_3 )
+	{
+		if( Request_1 )
+		{
+			State_3 = 1;
+			move arm1 to z-axis [-5.35] speed [4.89];
+			move arm2 to z-axis [5.30] speed [4.84];
+			move arm3 to x-axis [-5.50] speed [5.03];
+			move arm4 to x-axis [5.45] speed [4.98];
+			sleep 1094;
+			set ARMORED to 0;
+			move light4 to y-axis [1.20] speed [1.08];
+			move light3 to y-axis [1.20] speed [1.08];
+			move light2 to y-axis [1.20] speed [1.08];
+			move light1 to y-axis [1.15] speed [1.04];
+			sleep 1221;
+		}
+		if( !Request_1 )
+		{
+			move light4 to y-axis [0] speed [1];
+			move light3 to y-axis [0] speed [1];
+			move light2 to y-axis [0] speed [1];
+			move light1 to y-axis [0] speed [0.96];
+			sleep 1201;
+			set ARMORED to 1;
+			move arm1 to z-axis [0] speed [4.39];
+			move arm2 to z-axis [0] speed [4.34];
+			move arm3 to x-axis [0] speed [4.51];
+			move arm4 to x-axis [0] speed [4.47];
+			sleep 1279;
+			State_3 = 0;
+		}
+	}
+	Busy_2 = 0;
+	return (0);
+}
+
+Create()
+{
+	Request_1 = 1;
+	Busy_2 = 0;
+	State_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+Activate()
+{
+	Request_1 = 1;
+	start-script RequestState();
+	return (0);
+}
+
+Deactivate()
+{
+	Request_1 = 0;
+	start-script RequestState();
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 2;
+	set-signal-mask 2;
+	if( Request_1 )
+	{
+		set ACTIVATION to 0;
+	}
+	sleep 8000;
+	if( !Request_1 )
+	{
+		set-signal-mask 0;
+		set ACTIVATION to 1;
+	}
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1 type BITMAPONLY | BITMAP2;
+		explode arm2 type BITMAPONLY | BITMAP3;
+		explode arm3 type BITMAPONLY | BITMAP4;
+		explode arm4 type BITMAPONLY | BITMAP5;
+		explode light4 type BITMAPONLY | BITMAP1;
+		explode light3 type BITMAPONLY | BITMAP2;
+		explode light2 type BITMAPONLY | BITMAP3;
+		explode light1 type BITMAPONLY | BITMAP4;
+		explode centerlight type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1 type BITMAPONLY | BITMAP2;
+		explode arm2 type BITMAPONLY | BITMAP3;
+		explode arm3 type BITMAPONLY | BITMAP4;
+		explode arm4 type BITMAPONLY | BITMAP5;
+		explode light4 type FALL | BITMAP1;
+		explode light3 type FALL | BITMAP2;
+		explode light2 type FALL | BITMAP3;
+		explode light1 type FALL | BITMAP4;
+		explode centerlight type SHATTER | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1 type BITMAPONLY | BITMAP2;
+		explode arm2 type BITMAPONLY | BITMAP3;
+		explode arm3 type BITMAPONLY | BITMAP4;
+		explode arm4 type BITMAPONLY | BITMAP5;
+		explode light4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode light3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode light2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode light1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode centerlight type SHATTER | BITMAP5;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode arm1 type BITMAPONLY | BITMAP2;
+	explode arm2 type BITMAPONLY | BITMAP3;
+	explode arm3 type BITMAPONLY | BITMAP4;
+	explode arm4 type BITMAPONLY | BITMAP5;
+	explode light4 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode light3 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode light2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode light1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode centerlight type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	return (0);
+}

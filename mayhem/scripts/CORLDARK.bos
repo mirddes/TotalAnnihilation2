@@ -1,0 +1,286 @@
+piece  elec1, elec2, elec3, elec4, elec5, elec6, elec7, elec8, 
+       e2, e4, e6, e8, ball, gun, ring1, ring2, 
+       base, bottombase;
+
+static-var active, called;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+Generating()
+{
+	while (active==3)
+	{
+		spin ball around z-axis speed <1800>;
+		if (rand(0,1))
+		{
+			show elec1;
+		}
+		if (rand(0,1))
+		{
+			show elec2;
+		}
+		if (rand(0,1))
+		{
+			show elec3;
+		}
+		if (rand(0,1))
+		{
+			show elec4;
+		}
+		if (rand(0,1))
+		{
+			show elec5;
+		}
+		if (rand(0,1))
+		{
+			show elec6;
+		}
+		if (rand(0,1))
+		{
+			show elec7;
+		}
+		if (rand(0,1))
+		{
+			show elec8;
+		}
+		sleep 200;
+		hide elec1;
+		hide elec2;
+		hide elec3;
+		hide elec4;
+		hide elec5;
+		hide elec6;
+		hide elec7;
+		hide elec8;
+	}
+}
+
+Activate()
+	{
+	if (active < 3)
+		{
+		while (active)
+			{
+			sleep 100;
+			}
+		active=2;
+		dont-cache ring1;
+		dont-cache ring2;
+		spin ring1 around y-axis speed <500> accelerate <2>;
+		spin ring2 around y-axis speed <-500> accelerate <-2>;
+		sleep 5000;
+		show elec1;
+		show elec2;
+		show elec3;
+		show elec4;
+		show elec5;
+		show elec6;
+		show elec7;
+		show elec8;
+		sleep 500;
+		show ball;
+		sleep 20;
+		hide ball;
+		sleep 20;
+		show ball;
+		sleep 20;
+		hide ball;
+		sleep 20;
+		show ball;
+		sleep 20;
+		show ball;
+		sleep 20;
+		hide ball;
+		sleep 20;
+		show ball;
+		active=3;
+		start-script Generating();
+		}
+	}
+	
+Deactivate()
+	{
+	signal 2;
+	while (active < 3)
+		{
+		sleep 100;
+		}
+	active=1;
+	called=0;
+	stop-spin ring1 around y-axis decelerate <10>;
+	stop-spin ring2 around y-axis decelerate <-5>;
+	cache ring1;
+	cache ring2;
+	sleep 1000;
+	spin ball around y-axis speed 0;
+	spin ball around z-axis speed 0;
+	turn ball to y-axis <0> speed <600>;
+	turn ball to z-axis <0> speed <600>;
+	hide elec1;
+	hide elec2;
+	hide elec3;
+	hide elec4;
+	hide elec5;
+	hide elec6;
+	hide elec7;
+	hide elec8;
+	hide ball;
+	sleep 20;
+	show ball;
+	sleep 20;
+	hide ball;
+	sleep 20;
+	show ball;
+	sleep 20;
+	hide ball;
+	sleep 20;
+	show ball;
+	sleep 20;
+	hide ball;
+	sleep 20;
+	show ball;
+	sleep 20;
+	hide ball;
+	active=0;
+	}
+
+/*NanoFrameInit()
+{
+	hide ball;
+	hide elec1;
+	hide elec2;
+	hide elec3;
+	hide elec4;
+	hide elec5;
+	hide elec6;
+	hide elec7;
+	hide elec8;
+}
+
+Static-var shieldcloaked, cloakcost, cloakcostm;
+
+Cloak(cloakdist, shieldID)
+{
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			shieldcloaked = 1;
+			get SET_CLOAKED(1);
+		}
+		//if the shield is now cloakdist the unit, the unit uses no energy to cloak
+		get SET_UNITINFO(uiCloakCost, 0);
+		get SET_UNITINFO(uiCloakCostMoving, 0);
+		//if unit somehow moves away from the shield (eg got transported) then reset cloak costs
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_UNITINFO(uiCloakCost, cloakcost);
+		get SET_UNITINFO(uiCloakCostMoving, cloakcostm);
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*shieldcloaked=0;
+	cloakcost = get GET_UNITINFO(uiCloakCost);
+	cloakcostm = get GET_UNITINFO(uiCloakCostMoving);*/
+	active=0;
+	called=0;
+	hide ball;
+	hide elec1;
+	hide elec2;
+	hide elec3;
+	hide elec4;
+	hide elec5;
+	hide elec6;
+	hide elec7;
+	hide elec8;
+	dont-cache elec1;
+	dont-cache elec2;
+	dont-cache elec3;
+	dont-cache elec4;
+	dont-cache elec5;
+	dont-cache elec6;
+	dont-cache elec7;
+	dont-cache elec8;
+	turn e2 to y-axis <45> NOW;
+	turn e4 to y-axis <45> NOW;
+	turn e6 to y-axis <45> NOW;
+	turn e8 to y-axis <45> NOW;
+	spin elec1 around x-axis speed <-60>;
+	spin elec2 around x-axis speed <-60>;
+	spin elec3 around z-axis speed <60>;
+	spin elec4 around z-axis speed <60>;
+	spin elec5 around x-axis speed <60>;
+	spin elec6 around x-axis speed <60>;
+	spin elec7 around z-axis speed <-60>;
+	spin elec8 around z-axis speed <-60>;
+	dont-shade ball;
+	dont-cache ball;
+	dont-shade ring1;
+	dont-shade ring2;
+	}
+
+RestoreAfterDelay()
+{
+	sleep rand(8000,16000);
+	while (active < 3)
+		{
+		sleep 100;
+		}
+	set ACTIVATION to FALSE;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum=gun;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum=gun;
+}
+
+AimPrimary(heading, pitch)
+	{
+	signal 2;
+	set-signal-mask 2;
+	turn ball to y-axis heading NOW;
+	if (active < 3)
+		{
+		if (!called)
+			{
+			called=1;
+			set ACTIVATION to TRUE;
+			}
+		}
+	while (active < 3)
+		{
+		sleep 100;
+		}
+	start-script RestoreAfterDelay();
+	return (TRUE);
+	}
+		
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed(severity,corpsetype)
+	{
+	if (severity <= 50)
+		{
+		corpsetype=1;
+		}
+	if (severity > 50)
+		{
+		corpsetype=3;
+		}
+	explode base type BITMAPONLY | BITMAP1;
+	explode bottombase type BITMAPONLY | BITMAP1;
+	}

@@ -1,0 +1,465 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, pt, body, turret, gun, sleeve, barrel, flare, 
+       hip1, hip2, hip3, hip4, g1, g2, g3, g4,
+	   leg1, leg2, leg3, leg4, foot1, foot2, foot3, foot4,
+	   door1, door2, door3, door4, d1, d2;
+
+static-var  bMoving, restore_delay, gun_3, depth_4, speed1, speed2, speed3, speed4, speed5, speed6,
+            ready, busy, x_slope, z_slope;
+
+#define FBIMAXVELOCITY		[0.75] * 11
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_4 == 3 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_4 != 0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot2)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot2)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot4)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot4)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_4 == 0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+	}
+}
+
+MotionControl()
+{
+	var justmoved;
+	justmoved = 0;
+	while ( TRUE )
+	{
+		while( bMoving )
+		{
+			justmoved = 1;
+			turn hip4 to y-axis <-20> speed speed1;
+			turn leg4 to y-axis <40> speed speed2;
+			turn foot4 to y-axis <-20> speed speed1;
+			turn hip1 to y-axis <20> speed speed1;
+			turn leg1 to y-axis <-40> speed speed2;
+			turn foot1 to y-axis <20> speed speed1;
+			turn leg2 to z-axis <30> speed <300>;
+			turn foot2 to z-axis <-15> speed <167>;
+			turn foot2 to x-axis <0> speed <167>;
+			turn hip2 to y-axis <-20> speed speed3;
+			turn leg2 to y-axis <40> speed speed4;
+			turn foot2 to y-axis <-20> speed speed3;
+			move foot3 to y-axis [3] speed [30];
+			turn hip3 to y-axis <20> speed speed3;
+			turn leg3 to y-axis <-40> speed speed5;
+			turn foot3 to y-axis <20> speed speed4;
+			move body to z-axis [1] speed speed6;
+			wait-for-move body along z-axis;
+			move body to z-axis [0] speed speed6;
+			wait-for-turn leg2 around y-axis;
+			turn leg2 to z-axis <0> speed <400>;
+			turn foot2 to z-axis <0> speed <222>;
+			turn foot2 to x-axis <25> speed <50>;
+			move foot2 to y-axis 0 speed [40];
+			move foot3 to y-axis 0 speed [40];
+			wait-for-move foot2 along y-axis;
+			sleep 100;
+			if (bMoving)
+			{
+				turn hip2 to y-axis <20> speed speed1;
+				turn leg2 to y-axis <-40> speed speed2;
+				turn foot2 to y-axis <20> speed speed1;
+				turn hip3 to y-axis <-20> speed speed1;
+				turn leg3 to y-axis <40> speed speed2;
+				turn foot3 to y-axis <-20> speed speed1;
+				turn leg4 to z-axis <-30> speed <300>;
+				turn foot4 to z-axis <15> speed <167>;
+				turn foot4 to x-axis <0> speed <167>;
+				turn hip4 to y-axis <20> speed speed3;
+				turn leg4 to y-axis <-40> speed speed4;
+				turn foot4 to y-axis <20> speed speed3;
+				move body to z-axis [1] speed speed6;
+				move foot1 to y-axis [3] speed [30];
+				turn hip1 to y-axis <-20> speed speed3;
+				turn leg1 to y-axis <40> speed speed5;
+				turn foot1 to y-axis <-20> speed speed4;
+				wait-for-move body along z-axis;
+				move body to z-axis [0] speed speed6;
+				wait-for-turn leg4 around y-axis;
+				turn leg4 to z-axis <0> speed <400>;
+				turn foot4 to z-axis <0> speed <222>;
+				turn foot4 to x-axis <25> speed <50>;
+				move foot4 to y-axis 0 speed [40];
+				move foot1 to y-axis 0 speed [40];
+				sleep 100;
+			}
+		}
+		if( justmoved )
+		{
+			justmoved = 0;
+			turn hip1 to y-axis <0> speed <60>;
+			turn hip2 to y-axis <0> speed <60>;
+			turn hip3 to y-axis <0> speed <60>;
+			turn hip4 to y-axis <0> speed <60>;
+			turn leg1 to y-axis <0> speed <60>;
+			turn leg2 to y-axis <0> speed <60>;
+			turn leg3 to y-axis <0> speed <60>;
+			turn leg4 to y-axis <0> speed <60>;
+			turn foot1 to x-axis <0> speed <120>;
+			turn foot2 to x-axis <0> speed <120>;
+			turn foot3 to x-axis <0> speed <120>;
+			turn foot4 to x-axis <0> speed <120>;
+			turn foot1 to y-axis <0> speed <120>;
+			turn foot2 to y-axis <0> speed <120>;
+			turn foot3 to y-axis <0> speed <120>;
+			turn foot4 to y-axis <0> speed <120>;
+			turn foot1 to z-axis <0> speed <120>;
+			turn foot2 to z-axis <0> speed <120>;
+			turn foot3 to z-axis <0> speed <120>;
+			turn foot4 to z-axis <0> speed <120>;
+			move foot4 to y-axis 0 speed [40];
+			move foot1 to y-axis 0 speed [40];
+			move foot2 to y-axis 0 speed [40];
+			move foot3 to y-axis 0 speed [40];
+			move body to z-axis [0] now;
+		}
+		sleep 200;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	sleep 200;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+RestoreAfterDelay()
+{
+	set-signal-mask 2;
+	sleep restore_delay;
+	ready = 0;
+	turn turret to y-axis <0> speed <60>;
+	turn pt to y-axis <0> speed <60>;
+	turn body to y-axis <0> speed <60>;
+	turn gun to x-axis <0> speed <30>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	set-signal-mask 0;
+	if( !ready AND !busy )
+	{
+		busy = 1;
+		move door1 to y-axis [0.5] speed [2];
+		move door2 to y-axis [0.5] speed [2];
+		move door3 to y-axis [0.5] speed [2];
+		move door4 to y-axis [0.5] speed [2];
+		move turret to y-axis [0.5] speed [2];
+		wait-for-move turret along y-axis;
+		move door1 to z-axis [-3] speed [4];
+		move door2 to z-axis [3] speed [4];
+		move door3 to z-axis [-3] speed [4];
+		move door4 to z-axis [3] speed [4];
+		move door1 to x-axis [3] speed [2.5];
+		move door2 to x-axis [3] speed [2.5];
+		move door3 to x-axis [-3] speed [2.5];
+		move door4 to x-axis [-3] speed [2.5];
+		move barrel to z-axis [-5] speed [10];
+		wait-for-move barrel along z-axis;
+		move sleeve to z-axis [-2] speed [4];
+		wait-for-move sleeve along z-axis;
+		move turret to y-axis [-6] speed [12];
+		move gun to y-axis [-0.5] speed [2.5];
+		wait-for-move gun along y-axis;
+		move door1 to z-axis [0] speed [4];
+		move door2 to z-axis [0] speed [4];
+		move door3 to z-axis [0] speed [4];
+		move door4 to z-axis [0] speed [4];
+		move door1 to x-axis [0] speed [6];
+		move door2 to x-axis [0] speed [6];
+		move door3 to x-axis [0] speed [6];
+		move door4 to x-axis [0] speed [6];
+		set ARMORED to 1;
+		wait-for-move door1 along x-axis;
+		move door1 to y-axis [0] speed [2];
+		move door2 to y-axis [0] speed [2];
+		move door3 to y-axis [0] speed [2];
+		move door4 to y-axis [0] speed [2];
+		sleep 250;
+		busy = 0;
+	}
+}
+
+Create()
+{
+	var fbimv;
+	fbimv=FBIMAXVELOCITY;
+	speed1=fbimv / 22542 * <1>;
+	speed2=speed1 * 2;
+	speed3=fbimv / 19602 * <1>;
+	speed4=speed3 * 2;
+	speed5=speed4 * 2;
+	speed6=fbimv;
+	hide flare;
+	dont-cache flare;
+	bMoving = FALSE;
+	gun_3 = 0;
+	ready = 1;
+	busy = 0;
+	x_slope = 0;
+	z_slope = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	start-script MotionControl();
+	restore_delay = 8000;
+	start-script RestoreAfterDelay();
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_4 = Func_Var_1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_3 )
+	{
+		piecenum = d1;
+		return(0);
+	}
+	piecenum = d2;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( busy )
+	{
+		sleep 200;
+	}
+	if( !ready )
+	{
+		busy = 1;
+		ready = 1;
+		move door1 to y-axis [0.5] speed [2];
+		move door2 to y-axis [0.5] speed [2];
+		move door3 to y-axis [0.5] speed [2];
+		move door4 to y-axis [0.5] speed [2];
+		wait-for-move door1 along y-axis;
+		move door1 to z-axis [-3] speed [4];
+		move door2 to z-axis [3] speed [4];
+		move door3 to z-axis [-3] speed [4];
+		move door4 to z-axis [3] speed [4];
+		move door1 to x-axis [3] speed [2.5];
+		move door2 to x-axis [3] speed [2.5];
+		move door3 to x-axis [-3] speed [2.5];
+		move door4 to x-axis [-3] speed [2.5];
+		wait-for-move door1 along z-axis;
+		move turret to y-axis [0.5] speed [12];
+		set ARMORED to 0;
+		wait-for-move door1 along x-axis;
+		move sleeve to z-axis [0] speed [2];
+		wait-for-move turret along y-axis;
+		move door1 to z-axis [0] speed [4];
+		move door2 to z-axis [0] speed [4];
+		move door3 to z-axis [0] speed [4];
+		move door4 to z-axis [0] speed [4];
+		move door1 to x-axis [0] speed [6];
+		move door2 to x-axis [0] speed [6];
+		move door3 to x-axis [0] speed [6];
+		move door4 to x-axis [0] speed [6];
+		move gun to y-axis [0] speed [20];
+		wait-for-move sleeve along z-axis;
+		move barrel to z-axis [0] speed [5];
+		wait-for-move door1 along x-axis;
+		move door1 to y-axis [0] speed [2];
+		move door2 to y-axis [0] speed [2];
+		move door3 to y-axis [0] speed [2];
+		move door4 to y-axis [0] speed [2];
+		move turret to y-axis [0] speed [2];
+		sleep 250;	
+		busy = 0;
+	}	
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <60>;
+	turn body to y-axis <0> - heading speed <60>;
+	turn pt to y-axis heading speed <60>;
+	turn gun to x-axis <0> - pitch speed <50>;
+	wait-for-move flare along z-axis;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimTertiary()
+{
+	signal 4;
+	set-signal-mask 4;
+	wait-for-move d1 along y-axis;
+	wait-for-move d2 along y-axis;
+	return(1);
+}
+
+FirePrimary()
+{
+	show flare;
+	turn pt to x-axis <-5> speed <50>;
+	move barrel to z-axis [-2.4] speed [500];
+	move sleeve to z-axis [-1.2] speed [200];
+	move gun to z-axis [-1.5] speed [100];
+	move flare to z-axis [0.6] speed [500];
+	sleep 30;
+	move sleeve to z-axis 0 speed [2];
+	move gun to z-axis 0 speed [4];
+	turn pt to x-axis 0 speed <20>;
+	move flare to z-axis 0 speed [0.1];
+	sleep 120;
+	hide flare;
+	move barrel to z-axis 0 speed [1];
+	wait-for-move flare along z-axis;
+}
+
+FireTertiary()
+{
+	if( !gun_3 )
+	{
+		emit-sfx 256 | 3 from d1;
+		move d1 to y-axis [0.3] NOW;
+		move d1 to y-axis 0 speed [0.1];
+	}
+	if( gun_3 )
+	{
+		emit-sfx 256 | 3 from d2;
+		move d2 to y-axis [0.3] NOW;
+		move d2 to y-axis 0 speed [0.1];
+	}
+	gun_3 = !gun_3;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode barrel type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode foot1 type FALL | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type FALL | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode gun type BITMAPONLY | BITMAP3;
+		explode barrel type FALL | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type BITMAPONLY | BITMAP1;
+		explode foot1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot2 type FALL | BITMAP3;
+		explode foot3 type FALL | BITMAP3;
+		explode foot4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type SHATTER | BITMAP2;
+		explode gun type FALL | BITMAP3;
+		explode barrel type FALL | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode body type BITMAPONLY | BITMAP1;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode gun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

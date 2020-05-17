@@ -1,0 +1,105 @@
+[GlobalHeader]
+	{
+	missionname=Expanded Confluence;
+	missiondescription=22 X 22 More room to rumble on this old favorite.;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=18;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=1500;
+	maxwindspeed=3300;
+	gravity=112;
+	maxunits=200;
+	numplayers=2, 3, 4, 5, 6, 7, 8, 9;
+	size=22 x 22;
+	memory=32 mb;
+	useonlyunits=Expanded Confluence.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=3;
+		MohoMetal=30;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=640;
+				ZPos=992;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=10592;
+				ZPos=10560;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=10240;
+				ZPos=1824;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=704;
+				ZPos=9600;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=4864;
+				ZPos=1360;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=6544;
+				ZPos=10768;
+				}
+			[special6]
+				{
+				specialwhat=StartPos8;
+				XPos=8640;
+				ZPos=7264;
+				}
+			[special7]
+				{
+				specialwhat=StartPos9;
+				XPos=7600;
+				ZPos=3280;
+				}
+			[special8]
+				{
+				specialwhat=StartPos7;
+				XPos=2528;
+				ZPos=4416;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=6048;
+				ZPos=9104;
+				}
+			}
+		}
+	}

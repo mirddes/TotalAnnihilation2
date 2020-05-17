@@ -1,0 +1,259 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  flare1, flare2, barrel1, barrel2, sleeve, turret, base, arms, 
+       pieces, upgrade, up, hidden;
+
+static-var  Speed_1, Speed_2, Speed_3, on_4, gun_1, upgraded, unit_ID;
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	Speed_1 = 0;
+	Speed_2 = 91;
+	Speed_3 = 364;
+	gun_1 = 0;
+	on_4 = 0;
+	upgraded = 0;
+	hide upgrade;
+	hide up;
+	dont-shade arms;
+	hide flare1;
+	hide flare2;
+	dont-cache flare1;
+	dont-cache flare2;
+	dont-shade turret;
+	dont-shade sleeve;
+	dont-shade barrel1;
+	dont-shade barrel2;
+	hide turret;
+	hide sleeve;
+	hide barrel1;
+	hide barrel2;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if( !upgraded )
+	{
+		set INBUILDSTANCE to 1;
+	}
+	if ( !on_4 )
+	{
+		spin arms around y-axis speed Speed_1 accelerate Speed_2;
+		on_4 = 1;
+	}
+}
+
+Deactivate()
+{
+	if ( on_4 )
+	{
+		stop-spin arms around y-axis decelerate Speed_3;
+		on_4 = 0;
+	}
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = hidden;
+	if( !upgraded )
+	{
+		set YARD_OPEN to 1;
+	}
+}
+
+StartBuilding()
+{
+	if( !on_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	if( upgraded )
+	{
+		set INBUILDSTANCE to 0;
+		sleep 200;
+		set YARD_OPEN to 0;
+		return(0);
+	}
+	move arms to y-axis [1.2] speed [0.3];
+	set YARD_OPEN to 1;
+}
+
+StopBuilding()
+{
+	set INBUILDSTANCE to 0;
+	sleep 200;
+	set YARD_OPEN to 0;
+	sleep 1000;
+	if( !on_4 )
+	{
+		set ACTIVATION to 1;
+	}
+	if( get YARD_OPEN )
+	{
+		if( !upgraded )
+		{
+			upgraded = 1;
+			show upgrade;
+			show up;
+			dont-cache upgrade;
+			dont-cache up;
+			hide base;
+			hide pieces;	
+			show turret;
+			show sleeve;
+			show barrel1;
+			show barrel2;
+			set ARMORED to 1;
+		}
+		return(0);
+	}
+	upgraded = 0;
+	hide upgrade;
+	hide up;
+	show base;
+	show pieces;	
+	hide turret;
+	hide sleeve;
+	hide barrel1;
+	hide barrel2;
+	set ARMORED to 0;
+	move arms to y-axis [0] speed [1];
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( !upgraded )
+	{
+		sleep 1000;
+		signal 2;
+	}
+	turn turret to y-axis heading speed <300>;
+	turn sleeve to x-axis <0> - pitch speed <100>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		show flare1;
+		sleep 150;
+		hide flare1;
+	}
+	if( gun_1 )
+	{
+		show flare2;
+		sleep 150;
+		hide flare2;
+	}
+	gun_1 = !gun_1;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = sleeve;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+
+SweetSpot(piecenum)
+{
+	piecenum = pieces;
+}
+
+SetSpeed(Func_Var_1)
+{
+	Speed_1 = Func_Var_1 * 45;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arms type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		if( upgraded )
+		{
+			explode sleeve type BITMAPONLY | BITMAP1;
+			explode turret type FALL | EXPLODE_ON_HIT | BITMAP3;
+			explode barrel1 type FALL | BITMAP3;
+			explode barrel2 type FALL | BITMAP3;
+		}
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arms type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		if( upgraded )
+		{
+			explode sleeve type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+			explode turret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+			explode barrel1 type FALL | SMOKE | BITMAP3;
+			explode barrel2 type FALL | SMOKE | BITMAP3;
+		}
+		return (0);
+	}
+	corpsetype = 3;
+	explode arms type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+	if( upgraded )
+	{
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	}
+	return (0);
+}

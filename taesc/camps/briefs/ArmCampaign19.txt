@@ -1,0 +1,10 @@
+MISSION 19.005ARMR
+Destroy all mobile units and capture the Gate intact.
+
+&YPRIORITY&
+Core has been pushed back onto the ancient earthworks known as the Motien Ramp. They have assembled a Gate there... perhaps the final Gate. Surely Core Prime, the Core homeworld must be near. Destroy all mobile units at the Motien Ramp, and capture the Gate there.
+
+INFO FEED
+The Ramp will be well defended. Also, expect meteor showers.
+
+END

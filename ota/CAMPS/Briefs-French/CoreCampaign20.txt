@@ -1,0 +1,7 @@
+MISSION 20.4CORE
+Capturez la porte galactique ennemie.
+
+STATISTIQUES DE PROBABILITES:
+Les capteurs indiquent qu'un Passage Stellaire Arm est situé dans les montagnes du nord (&R78%, marge d'erreur:1%&). Cette porte galactique permet sans doute de rejoindre le système Empyrrean (&R59%, marge d'erreur:8%&). Emparez-vous de ce Passage.
+
+Exécution

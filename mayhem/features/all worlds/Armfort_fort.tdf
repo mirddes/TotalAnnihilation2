@@ -1,0 +1,18 @@
+[Fortification]
+{
+world=allworld;
+description=Fortification Wall;
+category=dragonteeth;
+object=armfort;
+footprintx=2;
+footprintz=2;
+height=50;
+blocking=1;
+hitdensity=99;
+metal=35;
+damage=12000;
+reclaimable=1;
+autoreclaimable=0;
+featuredead=RockTeeth;
+seqnamereclamate=tree1reclamate;
+}

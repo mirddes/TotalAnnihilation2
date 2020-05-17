@@ -1,0 +1,229 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, float1, float2, float3, float4, float5, float6, door1,
+       door2, door3, door4, glow;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade base;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade float1;
+	dont-shade float2;
+	dont-shade float3;
+	dont-shade float4;
+	dont-shade float5;
+	dont-shade float6;
+	dont-cache base;
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache door3;
+	dont-cache door4;
+	dont-cache float1;
+	dont-cache float2;
+	dont-cache float3;
+	dont-cache float4;
+	dont-cache float5;
+	dont-cache float6;
+	dont-cache glow;
+	dont-shade glow;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	move float1 to y-axis [0.000] now;
+	move float1 to z-axis [0.000] now;
+	move float1 to z-axis [-2.150] speed [2.230];
+	move float2 to x-axis [0.000] now;
+	move float2 to x-axis [-1.800] speed [1.870];
+	move float2 to y-axis [0.000] now;
+	move float2 to z-axis [0.000] now;
+	move float2 to z-axis [-1.050] speed [1.090];
+	move float3 to x-axis [0.000] now;
+	move float3 to x-axis [-1.750] speed [1.820];
+	move float3 to y-axis [0.000] now;
+	move float3 to z-axis [0.000] now;
+	move float3 to z-axis [1.000] speed [1.040];
+	move float4 to y-axis [0.000] now;
+	move float4 to z-axis [0.000] now;
+	move float4 to z-axis [2.150] speed [2.230];
+	move float5 to x-axis [0.000] now;
+	move float5 to x-axis [1.850] speed [1.920];
+	move float5 to y-axis [0.000] now;
+	move float5 to z-axis [0.000] now;
+	move float5 to z-axis [1.100] speed [1.140];
+	move float6 to x-axis [0.000] now;
+	move float6 to x-axis [1.850] speed [1.920];
+	move float6 to y-axis [0.000] now;
+	move float6 to z-axis [0.000] now;
+	move float6 to z-axis [-1.050] speed [1.090];
+	sleep 963;
+	set ARMORED to 0;
+	turn door1 to x-axis <-90.000> speed <93.000>;
+	turn door2 to x-axis <90.000> speed <93.000>;
+	turn door3 to z-axis <90.000> speed <93.000>;
+	turn door4 to z-axis <-90.000> speed <93.000>;
+	sleep 987;
+	move base to y-axis [0.000] speed [5.000];
+}
+
+Deactivate()
+{
+	move float1 to y-axis [0.000] now;
+	move float1 to z-axis [-2.150] now;
+	move float2 to x-axis [-1.800] now;
+	move float2 to y-axis [0.000] now;
+	move float2 to z-axis [-1.050] now;
+	move float3 to x-axis [-1.750] now;
+	move float3 to y-axis [0.000] now;
+	move float3 to z-axis [1.000] now;
+	move float4 to y-axis [0.000] now;
+	move float4 to z-axis [2.150] now;
+	move float5 to x-axis [1.850] now;
+	move float5 to y-axis [0.000] now;
+	move float5 to z-axis [1.100] now;
+	move float6 to x-axis [1.850] now;
+	move float6 to y-axis [0.000] now;
+	move float6 to z-axis [-1.050] now;
+	turn door1 to x-axis <0.000> speed <90.198>;
+	turn door2 to x-axis <0.000> speed <90.198>;
+	turn door3 to z-axis <0.000> speed <90.198>;
+	turn door4 to z-axis <0.000> speed <90.198>;
+	sleep 998;
+	set ARMORED to 1;
+	move float1 to z-axis [-0.730] speed [1.410];
+	move float2 to x-axis [-0.610] speed [1.180];
+	move float2 to z-axis [-0.360] speed [0.690];
+	move float3 to x-axis [-0.590] speed [1.150];
+	move float3 to z-axis [0.340] speed [0.660];
+	move float4 to z-axis [0.730] speed [1.410];
+	move float5 to x-axis [0.630] speed [1.210];
+	move float5 to z-axis [0.370] speed [0.720];
+	move float6 to x-axis [0.630] speed [1.210];
+	move float6 to z-axis [-0.360] speed [0.690];
+	sleep 1040;
+	move base to y-axis [-5.000] speed [5.000];
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = glow;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode float1 type BITMAPONLY | BITMAP2;
+		explode float2 type BITMAPONLY | BITMAP3;
+		explode float3 type BITMAPONLY | BITMAP4;
+		explode float4 type BITMAPONLY | BITMAP5;
+		explode float5 type BITMAPONLY | BITMAP1;
+		explode float6 type BITMAPONLY | BITMAP2;
+		explode door1 type BITMAPONLY | BITMAP3;
+		explode door2 type BITMAPONLY | BITMAP4;
+		explode door3 type BITMAPONLY | BITMAP5;
+		explode door4 type BITMAPONLY | BITMAP1;
+		explode glow type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode float1 type FALL | BITMAP2;
+		explode float2 type FALL | BITMAP3;
+		explode float3 type FALL | BITMAP4;
+		explode float4 type FALL | BITMAP5;
+		explode float5 type FALL | BITMAP1;
+		explode float6 type FALL | BITMAP2;
+		explode door1 type FALL | BITMAP3;
+		explode door2 type FALL | BITMAP4;
+		explode door3 type FALL | BITMAP5;
+		explode door4 type FALL | BITMAP1;
+		explode glow type SHATTER | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode float1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode float2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode float3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode float4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode float5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode float6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode glow type SHATTER | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode float1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode float2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode float3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode float4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode float5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode float6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode door4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode glow type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+}

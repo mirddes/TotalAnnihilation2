@@ -1,0 +1,269 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare, base, body, stand, turret, sleeve, barrela, barrelb,
+	   forkus1, forkus2, w1, w2 ;
+
+static-var  restore_delay, moving, swimming, disabled;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_MOVE			4
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to x-axis anglex speed <50.010989>;
+	turn base to z-axis anglez speed <50.010989>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <20.000000>;
+	turn base to x-axis <0.000000> speed <20.000000>;
+}
+
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to z-axis Func_Var_2 speed <105.021978>;
+	turn base to x-axis Func_Var_1 speed <105.021978>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.000000> speed <30.005495>;
+	turn base to x-axis <0.000000> speed <30.005495>;
+}
+*/
+
+EmitSFX()
+{
+	while( TRUE )
+	{
+		if( swimming == 3 )
+		{
+			set ARMORED to 1;
+			if( moving )
+			{
+				emit-sfx 259 from w1;
+				emit-sfx 259 from w2;
+			}
+		}
+		if( swimming != 3 )
+		{
+			set ARMORED to 0;
+		}	
+		sleep 250;
+	}
+}
+
+Create()
+{
+	hide flare;
+	
+	set ARMORED to 0;
+	
+	swimming = 4;
+	moving = 0;
+	disabled = 0;
+	
+	dont-cache flare;
+	
+	restore_delay = 3000;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	start-script EmitSFX();
+	spin forkus1 around z-axis speed <100.021978>;
+	spin forkus2 around z-axis speed <100.021978>;
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	swimming = Func_Var_1;
+}
+/*
+Activate()
+{
+	if( disabled )
+	{
+		set ACTIVATION to 0;
+		return (0);
+	}
+	if( moving )
+	{
+		set ACTIVATION to 0;
+		return (0);
+	}
+	spin forkus1 around z-axis speed <100.021978>;
+	spin forkus2 around z-axis speed <100.021978>;
+}
+
+Deactivate()
+{
+	spin forkus1 around z-axis speed <0.000000>;
+	spin forkus2 around z-axis speed <0.000000>;
+}
+*/
+/*
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get ACTIVATION )
+	{
+		disabled = 1;
+	}
+	if( disabled )
+	{
+		signal 4;
+		set-signal-mask 4;
+		set ACTIVATION to 0;
+		sleep 8000;
+		disabled = 0;
+		set ACTIVATION to 100;
+	}
+}
+*/
+
+StartMoving()
+{
+//	signal SIG_MOVE;
+//	set-signal-mask SIG_MOVE;
+	moving = TRUE;
+//	if( get ACTIVATION )
+//	{
+//		disabled = 1;
+//		set ACTIVATION to 0;
+//	}
+}
+
+StopMoving()
+{
+	moving = FALSE;
+//	if( disabled )
+//	{
+//		disabled = 0;
+//		set ACTIVATION to 100;
+//	}
+//	signal SIG_MOVE;
+}
+
+RestoreAfterDelay()
+{
+	sleep restore_delay;
+	turn turret to y-axis <0.000000> speed <270.021978>;
+	turn sleeve to x-axis <0.000000> speed <135.510989>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret to y-axis heading speed <540.021978>;
+	turn sleeve to x-axis <0.000000> - pitch speed <270.010989>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	move barrela to z-axis [-1.000000] speed [500.000000];
+	move barrelb to z-axis [-2.000000] speed [500.000000];
+	sleep 150;
+	hide flare;
+//	wait-for-move barrel1 along z-axis;
+	wait-for-move barrelb along z-axis;
+	move barrela to z-axis [0.000000] speed [3.000000];
+	move barrelb to z-axis [0.000000] speed [3.000000];
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode barrela type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrela type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare type FALL | BITMAP1;
+		explode turret type SHATTER | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode barrela type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type SHATTER | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrela type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode flare type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+}

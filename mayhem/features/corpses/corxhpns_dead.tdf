@@ -1,0 +1,35 @@
+[corxhpns_dead]
+{
+world=All Worlds;
+description=Exp Hover Platform NS Wreckage;
+category=core_corpses;
+object=corxhpns_dead;
+featuredead=corxhpns_heap;
+footprintx=10;
+footprintz=8;
+height=15;
+blocking=0;
+hitdensity=100;
+metal=7014;
+damage=6542;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corxhpns_heap]
+{
+world=All Worlds;
+description=Exp Hover Platform NS Wreckage;
+category=heaps;
+object=7x7c;
+footprintx=10;
+footprintz=8;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3508;
+damage=6984;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

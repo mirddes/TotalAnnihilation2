@@ -1,0 +1,39 @@
+[Armimpal_dead]
+{
+world=All Worlds;
+description=Impala Wreckage;
+category=arm_corpses;
+object=Armimpal_dead;
+featuredead=Armimpal_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=4800;
+damage=6500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[Armimpal_heap]
+{
+world=All Worlds;
+description=Impala Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2400;
+damage=6450;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+
+

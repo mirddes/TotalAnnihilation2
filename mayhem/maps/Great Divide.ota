@@ -1,0 +1,106 @@
+[GlobalHeader]
+	{
+	missionname=Great Divide;
+	missiondescription=5 X 8  Fight through a mountain pass.;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=0;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=0;
+	maxwindspeed=4000;
+	gravity=112;
+	numplayers=2;
+	size=5 x 8;
+	memory=16 mb;
+	useonlyunits=Great Divide.tdf;
+	DestroyAllUnits=1;
+	AllUnitsKilled=1;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=364;
+				ZPos=338;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=2295;
+				ZPos=3907;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=2275;
+				ZPos=266;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=470;
+				ZPos=3713;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=1929;
+				ZPos=1896;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=339;
+				ZPos=2582;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=1268;
+				ZPos=292;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=1420;
+				ZPos=3883;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=1528;
+				ZPos=2184;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=140;
+				ZPos=1537;
+				}
+			}
+		}
+	}

@@ -1,0 +1,68 @@
+[ARMFRT_MISSILE]
+	{
+	ID=143;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=700;
+	reloadtime=2;
+	weapontimer=5;
+	weaponvelocity=660;
+	startvelocity=470;
+	weaponacceleration=154;
+	turnrate=50000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=46;
+		ARMTHUND=97;
+		ARMBRAWL=97;
+		ARMPEEP=97;
+		ARMFIG=97;
+		ARMCA=97;
+		ARMACA=97;
+		ARMATLAS=97;
+		ARMPNIX=97;
+		ARMHAWK=97;
+		ARMLANCE=97;
+		CORFINK=97;
+		CORVENG=97;
+		CORVAMP=97;
+		CORHURC=97;
+		CORTITAN=97;
+		CORACA=97;
+		CORSHAD=97;
+		CORAPE=97;
+		CORCA=97;
+		CORVALK=97;
+		}
+	}
+

@@ -1,0 +1,20 @@
+MISSION 10.001ARMG
+Gelidus is the last world in the system. The Core Commander must be here somewhere! A landing zone has been cleared for you on an ice floe. Move quickly to establish you base there.
+
+&Y*PRIORITY CRITICAL*&
+You must establish a secure base on the floe and withstand the Core assaults that are sure to come. Once we are established on Gelidus, we can begin our final push toward the mainland in order to stop the Core Commander. Core may have patrols offshore. Eliminate them as well.
+
+INFO FEED
+&RExpect hail storms!& 
+
+The powerful winds of Gelidus pull the snow off the glaciers and compact it into enormous hailstones. When their weight is too great, they fall in devastating storms. Be ready to make repairs to your units as necessary. 
+
+The new "pop-up" units will serve you well on this world. They are nearly indestructible when they are retracted.
+
+There is an abandoned Core unit dump nearby that you can reclaim for metal and use to establish a base. Metal deposits are rare on the ice floes - make the most of the reclaimed metal.
+
+The Moho Metal Maker will also provide ample metal for your defenses on this barren world.
+
+To complete this mission you must destroy all Core units.
+
+END

@@ -1,0 +1,65 @@
+[DragonsTeeth]
+	{
+	world=allworld;
+	description=DragonsTeeth;
+	category=dragonteeth;
+	object=armdrag;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=8;
+	damage=4000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	}
+[DragonsTeeth_Core]
+	{
+	world=allworld;
+	description=DragonsTeeth;
+	category=dragonteeth;
+	object=cordrag;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=8;
+	damage=4000;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=smudge01;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	}
+
+[RockTeeth]
+	{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock4b;
+	seqnameshad=rock4bshad;
+	seqnamereclamate=rock04brec;
+	metal=6;
+
+	featurereclamate=rock04recscar;
+	featuredead=scar09;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+

@@ -1,0 +1,245 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  GP, Base, Popup, Doors, Door1, Door2, Door3, Door4,
+       p1a, p1b, p2a, p2b, p3a, p3b, p4a, p4b,
+       panels, panel1, panel2, panel3, panel4, panel1a, panel1b, panel2a,
+       panel2b, panel3a, panel3b, panel4a, panel4b;
+
+static-var hit_1, busy_2, on_3, timer_4, state_5; //dead, constructor_id, buildangle;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from Base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_2 )
+	{
+		return (0);
+	}
+	busy_2 = 1;
+	while( on_3 != state_5 )
+	{
+		if( on_3 )
+		{
+			state_5 = 1;
+			turn Door1 to z-axis <0.00> speed <150.00>;
+			turn Door2 to z-axis <0.00> speed <150.00>;
+			turn Door3 to x-axis <0.00> speed <150.00>;
+			turn Door4 to x-axis <0.00> speed <150.00>;
+			wait-for-turn Door1 around z-axis;
+			wait-for-turn Door2 around z-axis;
+			wait-for-turn Door3 around x-axis;
+			wait-for-turn Door4 around x-axis;
+			move panels to y-axis [0.00] speed [12.50];
+			sleep 400;
+			set ARMORED to 0;
+			move Popup to y-axis [0.00] speed [12.50];
+			wait-for-move Popup along y-axis;
+			turn panel1 to z-axis <45> speed <60.00>;
+			turn panel2 to z-axis <-45> speed <60.00>;
+			turn panel3 to x-axis <45> speed <60.00>;
+			turn panel4 to x-axis <-45> speed <60.00>;
+			sleep 750;
+			turn panel1a to y-axis <0> speed <120>;
+			turn panel1b to y-axis <0> speed <120>;
+			turn panel2a to y-axis <0> speed <120>;
+			turn panel2b to y-axis <0> speed <120>;
+			turn panel3a to y-axis <0> speed <120>;
+			turn panel3b to y-axis <0> speed <120>;
+			turn panel4a to y-axis <0> speed <120>;
+			turn panel4b to y-axis <0> speed <120>;
+			sleep 1500;
+		}
+		if( !on_3 )
+		{
+			state_5 = 0;
+			turn panel1a to y-axis <-175> speed <240>;
+			turn panel1b to y-axis <175> speed <240>;
+			turn panel2a to y-axis <-175> speed <240>;
+			turn panel2b to y-axis <175> speed <240>;
+			turn panel3a to y-axis <-175> speed <240>;
+			turn panel3b to y-axis <175> speed <240>;
+			turn panel4a to y-axis <-175> speed <240>;
+			turn panel4b to y-axis <175> speed <240>;
+			sleep 500;
+			turn panel1 to z-axis <-25> speed <180>;
+			turn panel2 to z-axis <25> speed <180>;
+			turn panel3 to x-axis <-25> speed <180>;
+			turn panel4 to x-axis <25> speed <180>;
+			sleep 300;
+			move Popup to y-axis [-16.00] speed [16.00];
+			sleep 200;
+			move panels to y-axis [-16.00] speed [16.00];
+			set ARMORED to 1;
+			sleep 300;
+			turn Door1 to z-axis <-179.04> speed <250.00>;
+			turn Door2 to z-axis <179.04> speed <250.00>;
+			turn Door3 to x-axis <-179.04> speed <250.00>;
+			turn Door4 to x-axis <179.04> speed <250.00>;
+			sleep 720;
+		}
+	}
+	busy_2 = 0;
+}
+
+Create()
+{
+	/*dead=0;
+	constructor_id=0;*/
+	timer_4 = 0;
+	hit_1 = 1;
+	busy_2 = 0;
+	on_3 = 0;
+	state_5 = 0;
+	dont-shade Doors;
+	dont-shade Door1;
+	dont-shade Door2;
+	dont-shade Door3;
+	dont-shade Door4;
+	turn panel1a to y-axis <-175> NOW;
+	turn panel1b to y-axis <175> NOW;
+	turn panel2a to y-axis <-175> NOW;
+	turn panel2b to y-axis <175> NOW;
+	turn panel3a to y-axis <-175> NOW;
+	turn panel3b to y-axis <175> NOW;
+	turn panel4a to y-axis <-175> NOW;
+	turn panel4b to y-axis <175> NOW;
+	turn p1a to x-axis <-22.5> NOW;
+	turn p1b to x-axis <22.5> NOW;
+	turn p2a to x-axis <22.5> NOW;
+	turn p2b to x-axis <-22.5> NOW;
+	turn p3a to z-axis <22.5> NOW;
+	turn p3b to z-axis <-22.5> NOW;
+	turn p4a to z-axis <-22.5> NOW;
+	turn p4b to z-axis <22.5> NOW;
+	turn panel1 to z-axis <-25> NOW;
+	turn panel2 to z-axis <25> NOW;
+	turn panel3 to x-axis <-25> NOW;
+	turn panel4 to x-axis <25> NOW;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	hit_1 = 0;
+	sleep 100;
+	if( !on_3 )
+	{
+		set ACTIVATION to 1;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	on_3 = 1;
+	timer_4 = 0;
+	hit_1 = 0;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	on_3 = 0;
+	start-script RequestState();
+	if( hit_1 )
+	{
+		hit_1 = 0;
+		while( timer_4 AND !on_3 )
+		{
+			--timer_4;
+			sleep 1000;
+		}
+		if( !timer_4 AND !on_3 )
+		{
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	timer_4 = 10;
+	if ( hit_1 )
+	{
+		return(0);
+	}
+	hit_1 = 1;
+	if( on_3 )
+	{
+		set ACTIVATION to 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Base;
+}
+
+Killed(severity, corpsetype)
+{
+	//dead=1;
+	if( on_3 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode panel1 type BITMAPONLY | BITMAP2;
+			explode panel2 type BITMAPONLY | BITMAP2;
+			explode panel3 type BITMAPONLY | BITMAP3;
+			explode panel4 type BITMAPONLY | BITMAP4;
+			explode Base type BITMAPONLY | BITMAP5;
+			explode Door1 type BITMAPONLY | BITMAP3;
+			explode Door2 type BITMAPONLY | BITMAP3;
+			explode Door3 type BITMAPONLY | BITMAP2;
+			explode Door4 type BITMAPONLY | BITMAP4;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode panel1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode panel2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode panel3 type BITMAPONLY | BITMAP3;
+		explode panel4 type BITMAPONLY | BITMAP4;
+		explode Base type BITMAPONLY | BITMAP5;
+		explode Door1 type FALL | SMOKE | BITMAP3;
+		explode Door2 type BITMAPONLY | BITMAP3;
+		explode Door3 type FALL | SMOKE | BITMAP2;
+		explode Door4 type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode panel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode panel2 type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode panel3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode panel4 type FALL | SMOKE | FIRE | BITMAP4;
+	explode Base type BITMAPONLY | BITMAP5;
+	explode Door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Door2 type BITMAPONLY | BITMAP3;
+	explode Door3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Door4 type BITMAPONLY | BITMAP4;
+}

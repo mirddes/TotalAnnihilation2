@@ -1,0 +1,246 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, Wing1a, Wing1b, Wing2a, Wing2b, Link, flare1,
+       flare2, flare3, flare4, smokey1, smokey2, smokey3, smokey4, smokey5;
+
+static-var  Speed_1, On_2, Moving_3, Random_6;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	Speed_1 = 0;
+	On_2 = 0;
+	Moving_3 = 0;
+	Random_6 = 0;
+	turn Wing1b to z-axis <-30> NOW;
+	turn Wing2b to z-axis <30> NOW;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	if( !On_2 )
+	{
+		turn Wing1a to z-axis <0> NOW;
+		turn Wing2a to z-axis <0> NOW;
+		turn Wing1a to z-axis <-115> speed <80>;
+		turn Wing2a to z-axis <115> speed <80>;
+	}	
+	On_2 = 1;
+}
+
+Deactivate()
+{
+	if( On_2 )
+	{
+		turn Wing1a to z-axis <-115> NOW;
+		turn Wing2a to z-axis <115> NOW;	
+		turn Wing1a to z-axis <0> speed <75>;
+		turn Wing2a to z-axis <0> speed <75>;
+	}
+	On_2 = 0;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+QueryTransport(Func_Var_1, Func_Var_2)
+{
+	Func_Var_1 = 6;
+}
+
+BeginTransport(Func_Var_1)
+{
+	move Link to y-axis [0.0000] - Func_Var_1 now;
+	move body to y-axis [3.5000] speed [3.5000];
+	if( !On_2 )
+	{
+		set ACTIVATION to 1;
+	}
+}
+
+EndTransport()
+{
+	if( On_2 )
+	{
+		set ACTIVATION to 0;
+	}	
+}
+
+Smog()
+{
+	set-signal-mask 8;
+	while( Moving_3 )
+	{
+		Random_6 = Rand( 1, 4 );
+		if( ( Speed_1 == 1 ) OR ( Speed_1 == 2 ) )
+		{
+			emit-sfx 0 from flare1;
+			sleep 30;
+			emit-sfx 256 | 1 from smokey1;
+			sleep 10;
+			emit-sfx 0 from flare2;
+			sleep 20;
+			emit-sfx 0 from flare3;
+			sleep 15;
+			emit-sfx 256 | 1 from smokey2;
+			sleep 15;
+			emit-sfx 256 | 1 from smokey3;
+			sleep 10;
+			emit-sfx 0 from flare4;
+			sleep 20;
+			emit-sfx 256 | 1 from smokey4;
+			sleep 25;
+			emit-sfx 256 | 1 from smokey5;
+		}
+		if( ( Random_6 == 1 ) AND ( Speed_1 == 1 ) )
+		{
+			emit-sfx 1 from flare1;
+			emit-sfx 256 | 1 from smokey1;
+		}
+		sleep 67;
+	}
+}
+
+StartMoving()
+{
+	if( !Moving_3 )
+	{
+		move Wing1b to x-axis [0] NOW;
+		move Wing2b to x-axis [0] NOW;
+		move Wing1b to x-axis [1] speed [0.5];
+		move Wing2b to x-axis [1] speed [0.5];
+	}
+	Moving_3 = 1;
+	
+}
+
+StopMoving()
+{
+	signal 8;
+	if( Moving_3 )
+	{
+		move Wing1b to x-axis [1] NOW;
+		move Wing2b to x-axis [1] NOW;
+		move Wing1b to x-axis [0] speed [0.5];
+		move Wing2b to x-axis [0] speed [0.5];
+	}
+	Moving_3 = 0;
+	Speed_1 = 0;
+}
+
+MoveRate1()
+{
+	signal 8;
+	set-signal-mask 8;
+	Speed_1 = 1;
+	start-script Smog();
+}
+
+MoveRate2()
+{
+	signal 8;
+	set-signal-mask 8;
+	Speed_1 = 2;
+	start-script Smog();
+}
+
+MoveRate3()
+{
+	signal 8;
+	set-signal-mask 8;
+	Speed_1 = 3;
+	start-script Smog();
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Link type BITMAPONLY | BITMAP2;
+		explode Wing1a type FALL | BITMAP4;
+		explode Wing1b type FALL | BITMAP4;
+		explode Wing2a type FALL | BITMAP4;
+		explode Wing2b type SHATTER | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Link type FALL | SMOKE | BITMAP2;
+		explode Wing1a type FALL | BITMAP4;
+		explode Wing1b type FALL | BITMAP4;
+		explode Wing2a type FALL | BITMAP4;
+		explode Wing2b type SHATTER | BITMAP4;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Link type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode Wing1a type SHATTER | BITMAP4;
+		explode Wing1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Wing2a type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode Wing2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode Link type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Wing1a type FALL | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Wing1b type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode Wing2a type FALL | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Wing2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+}

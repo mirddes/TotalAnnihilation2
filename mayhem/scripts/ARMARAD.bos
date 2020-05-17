@@ -1,0 +1,205 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, turret, dish1, dish2, arm1, arm2, post;
+
+static-var  Request_1, Busy_2, Rest_3, Hit_4, State_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( Busy_2 )
+	{
+		return (0);
+	}
+	Busy_2 = 1;
+	while( Request_1 != state_5 )
+	{
+		if( Request_1 )
+		{
+			state_5 = 1;
+			move post to y-axis [9.1] speed [16];
+			wait-for-move post along y-axis;
+			set ARMORED to 0;
+			turn dish1 to z-axis <84> speed <147>;
+			turn dish2 to z-axis <-84> speed <147>;
+			wait-for-turn dish1 around z-axis;
+			wait-for-turn dish2 around z-axis;
+			spin turret around y-axis speed <-30>;
+			spin arm1 around x-axis speed <100>;
+			spin arm2 around x-axis speed <-100>;
+		}
+		if( !Request_1 )
+		{
+			state_5 = 0;
+			turn turret to y-axis <0> speed <60>;
+			turn arm1 to x-axis <0> speed <100>;
+			turn arm2 to x-axis <0> speed <100>;
+			wait-for-turn turret around y-axis;
+			wait-for-turn arm1 around x-axis;
+			wait-for-turn arm2 around x-axis;
+			set ARMORED to 1;
+			turn dish1 to z-axis <0> speed <178>;
+			turn dish2 to z-axis <0> speed <178>;
+			wait-for-turn dish1 around z-axis;
+			wait-for-turn dish2 around z-axis;
+			move post to y-axis [0] speed [19];
+			wait-for-move post along y-axis;
+		}
+	}
+	Busy_2 = 0;
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}
+*/
+
+Create()
+{
+	dont-shade turret;
+	dont-shade arm1;
+	dont-shade arm2;
+	dont-shade dish1;
+	dont-shade dish2;
+	Request_1 = 0;
+	Busy_2 = 0;
+	Rest_3 = 0;
+	Hit_4 = 0;
+	State_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	Request_1 = 1;
+	Rest_3 = 0;
+	Hit_4 = 0;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	Request_1 = 0;
+	start-script RequestState();
+	if( hit_4 )
+	{
+		while( rest_3 and !Request_1 )
+		{
+			--rest_3;
+			sleep 1000;
+		}
+		if( !rest_3 and Hit_4 )
+		{
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get BUILD_PERCENT_LEFT )
+	{
+		return (0);
+	}
+	rest_3 = 8;
+	hit_4 = 1;
+	if( Request_1 )
+	{
+		set ACTIVATION to 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type BITMAPONLY | BITMAP5;
+		explode arm2 type BITMAPONLY | BITMAP1;
+		explode post type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type FALL | BITMAP5;
+		explode arm2 type FALL | BITMAP1;
+		explode post type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode post type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode dish1 type BITMAPONLY | BITMAP3;
+	explode dish2 type BITMAPONLY | BITMAP4;
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode post type BITMAPONLY | BITMAP2;
+}

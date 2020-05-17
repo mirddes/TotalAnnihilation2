@@ -1,0 +1,35 @@
+[corummm_dead]
+{
+world=All Worlds;
+description=Underwater Moho Maker Wreckage;
+category=core_corpses;
+object=corummm_dead;
+featuredead=corummm_heap;
+footprintx=5;
+footprintz=5;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=92;
+damage=600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corummm_heap]
+{
+world=All Worlds;
+description=Underwater Moho Maker Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=46;
+damage=600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

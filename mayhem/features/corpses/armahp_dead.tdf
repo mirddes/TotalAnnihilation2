@@ -1,0 +1,35 @@
+[Armahp_dead]
+{
+world=All Worlds;
+description=Adv Hover plant Wreckage;
+category=arm_corpses;
+object=Armahp_dead;
+featuredead=armahp_heap;
+footprintx=8;
+footprintz=7;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=1365;
+damage=2404;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armahp_heap]
+{
+world=All Worlds;
+description=Adv Hover Plant Wreckage;
+category=heaps;
+object=7x7a;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=682;
+damage=2404;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

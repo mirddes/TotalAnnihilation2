@@ -1,0 +1,862 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, flash1, flash2, body2, turret2, guns2, house, door, body, turret, guns, lasers, flash3, flash4, flash5, hole, cover, this, supports ;
+
+static-var  open, restore_delay, gun_1, upgraded, firedelay, firing, inlimbo, closing, building ;
+static-var	shield_on, charge_on, nbr_charge, nbr_shield, dome_on, nbr_dome; 
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	set-signal-mask 0;
+	closing = 1;
+	open = 0;
+	stop-spin turret around y-axis;
+	stop-spin guns around x-axis;
+	
+	turn guns to x-axis <90.000000> speed <300.000000>;
+	turn turret to y-axis <0.000000> speed <200.000000>;
+	wait-for-turn turret around y-axis;
+	
+	move body to y-axis [-16.000000] speed [80.000000];
+	wait-for-move body along y-axis;
+	hide body;
+	
+	move body to y-axis [-24.000000] speed [80.000000];
+	wait-for-move body along y-axis;
+	hide turret;
+	
+	move body to y-axis [-28.000000] speed [80.000000];
+	wait-for-move body along y-axis;
+	hide guns;
+	hide lasers;
+	
+	hide flash3;
+	hide flash4;
+	hide flash5;
+	sleep 200;
+	
+	show door;		
+	move door to y-axis [0.000000] speed [16.000000];
+	wait-for-move door along y-axis;
+	sleep 100;
+	
+	cache door;
+		
+	set ARMORED to 1;
+	
+	closing = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	inlimbo=1;
+	if ( upgraded )
+	{
+		while(closing)
+		{
+			sleep 100;
+		}
+		set ARMORED to 0;
+		if(( shield_on || dome_on))
+		{
+			set ARMORED to 1;
+		}
+		if( !open )
+		{
+			dont-cache door;
+						
+			move door to y-axis [-5.000000] speed [16.000000];
+			wait-for-move body along y-axis;
+			sleep 40;
+									
+			hide door;
+			turn guns to x-axis <90.000000> now;
+			turn turret to y-axis <0.000000> now;
+			show guns;
+			show lasers;
+			move body to y-axis [-24.000000] speed [80.000000];
+			wait-for-move body along y-axis;
+			
+			show turret;
+			move body to y-axis [-16.000000] speed [80.000000];
+			wait-for-move body along y-axis;
+			
+			show body;
+			move body to y-axis [0.000000] speed [80.000000];
+			wait-for-move body along y-axis;
+		}
+		open = 1;
+		turn turret to y-axis heading - <60> speed <300.021978>;
+		turn guns to x-axis <0.000000> - pitch speed <200.010989>;
+		wait-for-turn turret around y-axis;
+		wait-for-turn guns around x-axis;
+		while( firing )
+		{
+//			sleep firedelay;
+//			wait-for-turn turret around y-axis;
+//			wait-for-turn guns around x-axis;
+//			firing = 0;
+			sleep 50;
+		}
+		start-script RestoreAfterDelay();
+		inlimbo=0;
+		return (1);
+	}	
+	if ( !upgraded )
+	{
+		while(building)
+		{
+			sleep 100;
+		}
+		set ARMORED to 0;
+		if(( shield_on || dome_on))
+		{
+			set ARMORED to 1;
+		}
+		turn turret to y-axis heading now;
+		turn guns to x-axis <0.000000> - pitch now;
+		turn turret2 to y-axis heading speed <300.005495>;
+		turn guns2 to x-axis <0.000000> - pitch speed <200.010989>;
+		wait-for-turn turret2 around y-axis;
+		wait-for-turn guns2 around x-axis;
+		while( firing )
+		{
+//			sleep firedelay;
+//			wait-for-turn turret2 around y-axis;
+//			wait-for-turn guns2 around x-axis;
+//			firing = 0;
+			sleep 50;
+		}
+		inlimbo=0;
+		return (1);
+	}	
+}
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_charge = 0;
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_CHARGE)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						
+						if (distance > MOBILE_RADIUS_6)			//60-90 seconds
+						{
+							shgen_count = 0;
+						}
+						if (distance <= MOBILE_RADIUS_6)		//60 seconds
+						{
+							shgen_count = 5;
+						}
+						if (distance <= MOBILE_RADIUS_5)		//45 seconds
+						{
+							shgen_count = 4;
+						}
+						if (distance <= MOBILE_RADIUS_4)		//30 seconds
+						{
+							shgen_count = 3;
+						}
+						if (distance <= MOBILE_RADIUS_3)		//15 seconds
+						{
+							shgen_count = 2;
+						}
+						if (distance <= BOOST_RADIUS)
+						{
+							shgen_count = 1;
+							++nbr_charge;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_charge>=1)
+		{
+			if(!charge_on)
+			{
+				charge_on = 1;
+				sleep 1;
+				firedelay = 550;		//0.6 seconds
+				if (upgraded)
+				{
+					firedelay = 0;		//0.3 seconds
+				}
+			}
+		}
+		if(nbr_charge==0)
+		{
+			if(charge_on)
+			{
+				charge_on = 0;
+				sleep 1;
+				firedelay = 1150;		//1.2 seconds
+				if (upgraded)
+				{
+					firedelay = 550;	//0.6 seconds
+				}
+			}
+		}	
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		sleep rand(3000,4000);
+		if(shgen_count == 0)
+		{
+			sleep rand(60000,90000);
+		}
+		if(shgen_count == 1)
+		{
+			sleep rand(3000,4000);
+		}
+		if(shgen_count == 2)
+		{
+			sleep rand(8500,13500);
+		}
+		if(shgen_count == 3)
+		{
+			sleep rand(22500,28500);
+		}
+		if(shgen_count == 4)
+		{
+			sleep rand(30000,43500);
+		}
+		if(shgen_count == 5)
+		{
+			sleep rand(45000,58500);
+		}
+	}
+}	
+
+
+Upgrade()
+{
+	var xz, x, z, unit_ID, distance;
+	var max, min;
+	max = get MAX_ID;
+	min = get MIN_ID;
+	var myid;
+	myid= get MY_ID;
+
+	for (unit_ID = min; unit_ID <= max; ++unit_ID)
+	{
+		if(unit_ID != myid)
+		{
+			if(get UNIT_HEIGHT(unit_ID) == [7.75])
+			{
+				if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+				{
+					xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+					SECURE_XZ;
+					distance=get XZ_HYPOT(xz);
+					if (distance <= [2])
+					{
+						if (get UNIT_IS_ON_THIS_COMP(get(MY_ID)))
+						{
+							if (get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								drop-unit unit_ID;
+								attach-unit unit_ID to this;
+							}
+						}
+						firing = 1;
+						closing = 1;
+						
+						show cover;
+						
+						dont-cache door;
+						
+						move door to y-axis [-5.000000] now;
+						
+						show door;
+						show hole;
+						show house;
+						
+						open = 0;
+						set INBUILDSTANCE to 0;
+						upgraded = 1;
+						gun_1 = 2;
+						
+						turn guns2 to x-axis <90> speed <200>;
+						wait-for-turn guns2 around x-axis;
+						
+						turn turret2 to y-axis <0> speed <200>;
+						wait-for-turn turret around y-axis;
+						
+						move body2 to y-axis [-12] speed [80];
+						wait-for-move body2 along y-axis;
+						hide body2;
+						hide supports;
+						
+						move body2 to y-axis [-21] speed [80];
+						wait-for-move body2 along y-axis;
+						hide turret2;
+						
+						move body2 to y-axis [-27] speed [80];
+						wait-for-move body2 along y-axis;
+						hide guns2;
+						
+						hide door;
+						turn guns to x-axis <90.000000> now;
+						turn turret to y-axis <0.000000> now;
+						show guns;
+						show lasers;
+						move body to y-axis [-24.000000] speed [80.000000];
+						wait-for-move body along y-axis;
+						
+						show turret;
+						move body to y-axis [-16.000000] speed [80.000000];
+						wait-for-move body along y-axis;
+						
+						show body;
+						move body to y-axis [0.000000] speed [80.000000];
+						wait-for-move body along y-axis;
+			
+
+						turn turret to y-axis 0 - <60> speed <300.021978>;
+						turn guns to x-axis <0.000000> - 0 speed <200.010989>;
+						
+						wait-for-turn turret around y-axis;
+						wait-for-turn guns around x-axis;
+						
+						set ARMORED to 0;
+						if(( shield_on || dome_on))
+						{
+							set ARMORED to 1;
+						}
+						firedelay = 550;
+						if (charge_on)
+						{
+							firedelay = 0;
+						}
+						open = 1;
+						if(!inlimbo)
+						{		
+							signal SIG_AIM;
+							set-signal-mask SIG_AIM;
+							start-script RestoreAfterDelay();
+						}
+						firing = 0;
+						closing = 0;
+						return(0);
+					}
+				}
+			}
+		}
+	}
+}
+
+Create()
+{
+	nbr_charge = 0;
+	nbr_shield = 0;
+	nbr_dome = 0;
+	
+	charge_on = 0;
+	shield_on = 0;
+	dome_on = 0;
+	
+	inlimbo=0;
+	closing = 0;
+	
+	turn house to y-axis <60> now;
+	dont-cache cover;
+	hide cover;
+	
+	dont-cache hole;
+	
+	hide house;
+	hide door;
+	hide body;
+	hide turret;
+	hide guns;
+	hide lasers;
+	hide hole;
+	
+	
+	hide flash1;
+	hide flash2;
+	hide flash3;
+	hide flash4;
+	hide flash5;
+		
+	dont-cache flash1;
+	dont-cache flash2;
+	dont-cache flash3;
+	dont-cache flash4;
+	dont-cache flash5;
+	
+	
+	dont-cache guns2;
+	dont-cache turret2;
+	dont-cache guns;
+	dont-cache turret;
+	dont-cache lasers;
+	dont-cache hole;
+	dont-cache body;
+		
+	dont-shade flash1;
+	dont-shade flash2;
+	dont-shade flash3;
+	dont-shade flash4;
+	dont-shade flash5;
+		
+	dont-shade guns2;
+	dont-shade turret2;
+	
+	dont-shade guns;
+	dont-shade turret;
+	dont-shade lasers;
+	
+	dont-shade house;
+	dont-shade door;
+	dont-shade hole;
+	
+	gun_1 = 0;
+	upgraded = 0;
+	firedelay = 1150;
+	firing = 0;
+	open = 1;
+	restore_delay = 5000;
+	building = 0;
+
+	move body to y-axis [-30.000000] now;
+	turn guns to x-axis <90.000000> now;
+
+	set INBUILDSTANCE to 1;	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+}
+
+SetMaxReloadTime(Func_Var_1)
+{
+	restore_delay = Func_Var_1 * 2;
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = this;
+}
+
+
+StopBuilding()
+{
+//	if (!upgraded)
+//	{
+//		show supports;
+//		move supports to y-axis [0.000000] speed [4.000000];
+//		wait-for-move supports along y-axis;
+//		show supports;
+//	}
+	sleep 1;
+	
+	building = 0;
+	
+	set INBUILDSTANCE to 1;
+	set ACTIVATION to 0;
+	call-script upgrade();
+}
+
+StartBuilding()
+{
+//	dont-cache supports;
+//	move supports to y-axis [-5.000000] speed [4.000000];
+//	wait-for-move supports along y-axis;
+//	hide supports;
+	
+	building = 1;
+	set YARD_OPEN to 1;
+	set INBUILDSTANCE to 0;
+	set ACTIVATION to 1;
+}
+
+
+FirePrimary()
+{
+//	firing = 1;
+	if ( upgraded )
+	{
+		if( gun_1 == 2 )
+		{
+			firing = 1;
+			show flash3;
+			sleep 50;
+			hide flash3;
+			sleep firedelay;
+			firing = 0;
+		}	
+		if( gun_1 == 3 )
+		{
+			firing = 1;
+			show flash4;
+			sleep 50;
+			hide flash4;
+			sleep firedelay;
+			firing = 0;
+		}
+		if( gun_1 == 4 )
+		{
+			firing = 1;
+			show flash5;
+			sleep 50;
+			hide flash5;
+			sleep firedelay;
+			firing = 0;
+		}
+		++gun_1;
+		if( gun_1 == 5 )
+		{
+			gun_1 = 2;
+		}
+	}
+	if ( !upgraded )
+		{
+		if( gun_1 == 0 )
+		{
+			firing = 1;
+			show flash1;
+			sleep 50;
+			hide flash1;
+			sleep firedelay;
+			firing = 0;
+		}	
+		if( gun_1 == 1 )
+		{
+			firing = 1;
+			show flash2;
+			sleep 50;
+			hide flash2;
+			sleep firedelay;
+			firing = 0;
+		}
+		++gun_1;
+		if( gun_1 == 2 )
+		{
+			gun_1 = 0;
+		}
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flash1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flash2;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = flash3;
+	}			
+	if( gun_1 == 3 )
+	{
+		piecenum = flash4;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = flash5;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	if ( upgraded )
+	{
+		piecenum = guns;
+	}
+	if ( !upgraded )
+	{
+		piecenum = guns2;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flash1;
+	hide flash2;
+	hide flash3;
+	hide flash4;
+	hide flash5;
+	if( upgraded == 1 )
+	{
+		if( severity <= 80 )
+		{
+			if( open )
+			{
+				corpsetype = 1;
+			}
+			if( !open )
+			{
+				corpsetype = 2;
+			}
+			explode base type BITMAPONLY | BITMAP1;
+			explode flash1 type FALL | BITMAP1;
+			explode flash2 type FALL | BITMAP1;
+			explode guns type BITMAPONLY | BITMAP1;
+			explode turret type SHATTER | BITMAP5;
+			return (0);
+		}
+		corpsetype = 4;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flash1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flash2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode guns type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP5;
+		return (0);
+	}	
+	if( severity <= 50 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flash1 type FALL | BITMAP1;
+		explode flash2 type FALL | BITMAP1;
+		explode guns type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 4;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flash1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flash2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode guns type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP5;
+		return (0);
+	}
+	corpsetype = 5;
+	explode base type BITMAPONLY | BITMAP1;
+	explode flash1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flash2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode guns type BITMAPONLY | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+}

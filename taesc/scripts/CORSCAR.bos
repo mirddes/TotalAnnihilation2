@@ -1,0 +1,470 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, 
+	   tower1, turret1, flare1a, flare1b, tower2, turret2, flare2a, flare2b, 
+	   bridge, dish, side1, side2, backplat, land1, land2, land3, land4, land5,
+	   beam1, beam2, wake1, wake2, wake3, wake4, turret3, flare3a, flare3b, flare4a, flare4b;
+
+static-var  Static_Var_1, Static_Var_2, spray, gun_1, gun_3, salvo_3 ;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM3			4
+#define SIG_MOVE			32
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+			emit-sfx smoketype from bridge;
+			emit-sfx smoketype from turret2;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	hide flare1a;
+	hide flare2a;
+	hide flare1b;
+	hide flare2b;
+	hide flare3a;
+	hide flare4a;
+	hide flare3b;
+	hide flare4b;
+	
+	dont-cache flare1a;
+	dont-cache flare2a;
+	dont-cache flare1b;
+	dont-cache flare2b;
+	
+	dont-cache flare3a;
+	dont-cache flare4a;
+	dont-cache flare3b;
+	dont-cache flare4b;
+		
+	set ARMORED to 1;
+	Static_Var_1 = 0;
+	Static_Var_2 = 1;
+	spray = 0;
+	gun_1 = 3;
+	gun_3 = 0;
+
+//	turn turret2 to y-axis <-180.000000> now;
+//	turn silo to y-axis <-30.000000> now;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	spin dish around y-axis speed <60.005495>;
+}
+
+Activate()
+{
+	set INBUILDSTANCE to 1;
+//	dont-cache light;
+	spin dish around y-axis speed <60.005495>;
+}
+
+Deactivate()
+{
+	set INBUILDSTANCE to 0;
+	stop-spin dish around y-axis;
+//	cache light;
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		emit-sfx 2 from wake1;
+		emit-sfx 2 from wake2;
+		emit-sfx 2 from wake3;
+		emit-sfx 2 from wake4;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+QueryLandingPad(Func_Var_1, Func_Var_2, Func_Var_3, Func_Var_4, Func_Var_5)
+{
+	Func_Var_1 = 15;
+	Func_Var_2 = 16;
+	Func_Var_3 = 17;
+	Func_Var_4 = 18;
+	Func_Var_5 = 19;
+	var Func_Var_6, Func_Var_7;
+	++Static_Var_2;
+	if( Static_Var_2 >= 6 )
+	{
+		Static_Var_2 = 1;
+	}
+	Func_Var_6 = 1;
+	while( Func_Var_6 <= Static_Var_2 )
+	{
+		Func_Var_7 = Func_Var_1;
+		Func_Var_1 = Func_Var_2;
+		Func_Var_2 = Func_Var_3;
+		Func_Var_3 = Func_Var_4;
+		Func_Var_4 = Func_Var_5;
+		Func_Var_5 = Func_Var_7;
+		++Func_Var_6;
+	}
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( spray == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( spray != 0 )
+	{
+		piecenum = beam2;
+	}
+	spray = !spray;
+}
+
+
+RestoreAfterDelay()
+{
+	sleep 9000;
+	turn turret1 to y-axis <0.000000> speed <225.000000>;
+	turn turret2 to y-axis <-180.000000> speed <225.000000>;
+	turn turret3 to y-axis <0.000000> speed <225.000000>;
+	turn side1 to x-axis <0.000000> speed <225.000000>;
+	turn side2 to x-axis <0.000000> speed <225.000000>;
+}
+
+/*
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	
+	while( Static_Var_1 )
+	{
+		sleep 1;
+	}		
+	
+	move doora1 to x-axis [0.000000] now;
+	move doora1 to x-axis [2] speed [2.5];
+	move doora2 to x-axis [0.000000] now;
+	move doora2 to x-axis [-2] speed [2.5];
+	move doora1a to x-axis [0.000000] now;
+	move doora1a to x-axis [2] speed [2.5];
+	move doora2a to x-axis [0.000000] now;
+	move doora2a to x-axis [-2] speed [2.5];
+	move collar to y-axis [0.000000] now;
+	move collar to y-axis [0.000000] speed [0.000000];
+	move doorb5 to y-axis [0.000000] now;
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] now;
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	move missile to x-axis [-0.069995] now;
+	move missile to y-axis [0.009998] now;
+	move missile to z-axis [0.069995] now;
+	sleep 941;
+	
+	move collar to y-axis [5.350000] speed [6.669995];
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	sleep 802;
+	
+	move collar to y-axis [5.350000] speed [0.000000];
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	turn doorb5 to z-axis <89.428571> speed <150.565934>;
+	turn doorb6 to z-axis <-90.038462> speed <151.582418>;
+	turn doorb2 to x-axis <-181.423077> speed <305.423077>;
+	turn doorb4 to x-axis <180.659341> speed <304.142857>;
+	turn doorb1 to x-axis <-181.032967> speed <304.780220>;
+	turn doorb3 to x-axis <179.890110> speed <302.851648>;
+	sleep 594;
+	
+	move lnchpad to y-axis [14.400000] speed [9.050000];
+	sleep 1591;
+	
+	return (1);
+}
+
+FirePrimary()
+{
+	Static_Var_1 = 1;
+	hide missile;
+	explode blastpt type BITMAPONLY | BITMAP5;
+	sleep 150;
+	
+	move doora1 to x-axis [2] now;
+	move doora2 to x-axis [-2] now;
+	move doora1a to x-axis [2] now;
+	move doora2a to x-axis [-2] now;
+	move collar to y-axis [5.350000] now;
+	move lnchpad to y-axis [14.400000] now;
+	move lnchpad to y-axis [0.000000] speed [8.250000];
+	move missile to x-axis [-0.069995] now;
+	move missile to y-axis [0.009998] now;
+	move missile to z-axis [0.069995] now;
+	turn doorb5 to z-axis <89.428571> now;
+	turn doorb6 to z-axis <-90.038462> now;
+	turn doorb2 to x-axis <-181.423077> now;
+	turn doorb4 to x-axis <180.659341> now;
+	turn doorb1 to x-axis <-181.032967> now;
+	turn doorb3 to x-axis <179.890110> now;
+	sleep 1746;
+	
+	move collar to y-axis [5.350000] speed [0.000000];
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	turn doorb5 to z-axis <0.000000> speed <190.681319>;
+	turn doorb6 to z-axis <0.000000> speed <191.983516>;
+	turn doorb2 to x-axis <0.000000> speed <386.829670>;
+	turn doorb4 to x-axis <0.000000> speed <385.203297>;
+	turn doorb1 to x-axis <0.000000> speed <386.010989>;
+	turn doorb3 to x-axis <0.000000> speed <383.571429>;
+	sleep 469;
+	
+	move collar to y-axis [0.000000] speed [6.400000];
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	sleep 836;
+	
+	move doora1 to x-axis [0.000000] speed [4];
+	move doora2 to x-axis [0.000000] speed [4];
+	move doora1a to x-axis [0.000000] speed [4];
+	move doora2a to x-axis [0.000000] speed [4];
+	move collar to y-axis [0.000000] speed [0.000000];
+	move doorb5 to y-axis [0.000000] speed [0.000000];
+	move doorb6 to y-axis [0.000000] speed [0.000000];
+	sleep 576;
+	
+	Static_Var_1 = 0;
+	
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = missile;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = missile;
+}
+*/
+
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	
+	turn turret3 to y-axis heading speed <360>;
+	turn side1 to x-axis <0.000000> - pitch speed <360>;
+	turn side2 to x-axis <0.000000> - pitch speed <360>;
+	wait-for-turn turret3 around y-axis;
+	wait-for-turn side1 around x-axis;
+	wait-for-turn side2 around x-axis;
+	
+	Start-script RestoreAfterDelay();
+	return (1);
+}
+
+
+FirePrimary()
+{
+	++gun_1;
+	if( gun_1 == 7 )
+	{
+		gun_1 = 3;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret3;
+}
+
+
+QueryPrimary(piecenum)
+{
+	if (gun_1 == 3)
+	{
+		piecenum = flare3a;
+	}
+	if (gun_1 == 4)
+	{
+		piecenum = flare3b;
+	}
+	if (gun_1 == 5)
+	{
+		piecenum = flare4a;
+	}
+	if (gun_1 == 6)
+	{
+		piecenum = flare4b;
+	}
+}
+
+
+AimTertiary(heading, pitch)
+{
+	signal SIG_AIM3;
+	set-signal-mask SIG_AIM3;
+	if( salvo_3 == 0 )
+	{
+		turn turret1 to y-axis heading speed <450.000000>;
+		wait-for-turn turret1 around y-axis;
+	}
+	if( salvo_3 == 1 )
+	{
+		turn turret2 to y-axis heading speed <450.000000>;
+		wait-for-turn turret2 around y-axis;
+	}
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+
+FireTertiary()
+{
+	var gun_3_tmp;
+	gun_3_tmp = gun_3;
+	++gun_3;
+	if( gun_3 >= 4 )
+	{
+		gun_3 = 0;
+	}
+	
+	if( gun_3_tmp == 0 )
+	{
+		salvo_3 = 0;
+	}
+	if( gun_3_tmp == 1 )
+	{
+		salvo_3 = 1;
+	}
+	if( gun_3_tmp == 2 )
+	{
+		salvo_3 = 1;
+	}
+	if( gun_3_tmp == 3 )
+	{
+		salvo_3 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	if( salvo_3 == 0 )
+		piecenum = turret1;
+	if( salvo_3 == 1 )
+		piecenum = turret2;
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_3 == 0 )
+		piecenum = flare1a;
+	if( gun_3 == 1 )
+		piecenum = flare1b;
+	if( gun_3 == 2 )
+		piecenum = flare2a;
+	if( gun_3 == 3 )
+		piecenum = flare2b;
+}
+
+
+Killed(severity, corpsetype)
+{
+	hide flare1a;
+	hide flare2a;
+	hide flare1b;
+	hide flare2b;
+
+	hide flare3a;
+	hide flare4a;
+	hide flare3b;
+	hide flare4b;
+	
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode doora1 type BITMAPONLY | BITMAP1;
+		explode turret1 type BITMAPONLY | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP1;
+//		explode silo type BITMAPONLY | BITMAP1;
+		explode bridge type BITMAPONLY | BITMAP1;
+		explode dish type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode doora1 type BITMAPONLY | BITMAP1;
+		explode turret1 type FALL | BITMAP1;
+		explode turret2 type FALL | BITMAP1;
+//		explode silo type BITMAPONLY | BITMAP1;
+		explode bridge type FALL | BITMAP1;
+		explode dish type FALL | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode doora1 type BITMAPONLY | BITMAP1;
+		explode turret1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//		explode silo type BITMAPONLY | BITMAP1;
+		explode bridge type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode dish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+//	explode doora1 type BITMAPONLY | BITMAP1;
+	explode turret1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//	explode silo type BITMAPONLY | BITMAP1;
+	explode bridge type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode dish type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

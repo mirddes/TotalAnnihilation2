@@ -1,0 +1,272 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, plate, turret, arm, nano, beam, door1, door2;
+
+static-var  Nano_1, ReqState_2, Busy_3, On_4, Moving_5; //buildingid, buildingpos, buildingtype, buildingcrc;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var Smokepiece;
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			Smokepiece = Rand(1,2);
+			if( Smokepiece == 1 )
+			{
+				emit-sfx smoketype from door1;
+			}
+			if( Smokepiece == 2 )
+			{
+				emit-sfx smoketype from door2;
+			}
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 250 )
+		{
+			sleeptime = 250;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState(sleeptime)
+{
+	while( !Busy_3 AND ReqState_2 != On_4 )
+	{
+		Busy_3 = 1;
+		if( ReqState_2 )
+		{
+			turn door1 to z-axis <0> now;
+			turn door1 to z-axis <-65> speed <154>;
+			turn door2 to z-axis <0> now;
+			turn door2 to z-axis <65> speed <153>;
+			sleep 426;
+			move door1 to y-axis [-3.09] speed [7];
+			move door2 to y-axis [-3.05] speed [7];
+//			sleep 428;
+			move plate to y-axis [3.80] speed [8];
+			sleep 428;
+			turn arm to x-axis <85.02> speed <200>;
+			turn nano to x-axis <-69.02> speed <162>;
+			turn turret to y-axis Nano_1 speed <160>;
+			sleep 450;
+			wait-for-turn turret around y-axis;
+			sleeptime = Rand(1,500);
+			sleep sleeptime;
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_2 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+			turn turret to y-axis <0> speed <160>;
+//			wait-for-turn turret around y-axis;
+			move plate to y-axis [3.80] now;
+			move door1 to y-axis [-3.09] now;
+			move door2 to y-axis [-3.05] now;
+			turn door1 to z-axis <-65.70> now;
+			turn door2 to z-axis <65.24> now;
+			turn arm to x-axis <85.96> now;
+			turn arm to x-axis <0> speed <221>;
+			turn nano to x-axis <-69.74> now;
+			turn nano to x-axis <0> speed <179>;
+//			sleep 388;
+			move plate to y-axis [0] speed [9];
+			sleep 389;
+			move door1 to y-axis [0] speed [7];
+			move door2 to y-axis [0] speed [7];
+			sleep 389;
+			turn door1 to z-axis <0> speed <168>;
+			turn door2 to z-axis <0> speed <167>;
+			sleep 410;
+		}
+		Busy_3 = 0;
+	}
+	return (0);
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}
+*/	
+
+Create()
+{
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	var bcheck;
+	bcheck = get BUILD_PERCENT_LEFT;*/
+	Nano_1 = 0;
+	ReqState_2 = 0;
+	Busy_3 = 0;
+	On_4 = 0;
+	Moving_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	/*if( bcheck != 0 )
+	{
+		{
+			if (get LOCAL_SHARED_DATA(0,get UNIT_TEAM(get MY_ID)) < 2)
+			{
+		    	get LOCAL_SHARED_DATA(1,get UNIT_TEAM(get MY_ID),2);
+		    }
+		}
+	}*/
+	start-script SmokeUnit();
+	return (0);
+}
+
+StartMoving()
+{
+	Moving_5 = 1;
+}
+
+StopMoving()
+{
+	Moving_5 = 0;
+	/*if ((get CURRENT_ORDER_TYPE) == 25 AND (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2))
+	{
+		sleep 1000;
+		if (!Moving_5 AND !ReqState_2)
+		{
+			get ORDER_SELF(45,0);
+		}
+	}*/
+}
+
+TargetHeading(Func_Var_1)
+{
+	Nano_1 = ( 0 - Func_Var_1 );
+	return (0);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Nano_1 = Func_Var_1;
+	ReqState_2 = 1;
+	start-script RequestState();
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	if ((get CURRENT_ORDER_TYPE) == 25)
+	{
+		buildingid=get CURRENT_ORDER_TARGET_ID;
+		if (buildingid)
+		{
+			buildingpos=get UNIT_XZ(buildingid);
+			buildingcrc=get UNIT_TYPE_CRC(buildingid);
+			buildingtype=get CURRENT_ORDER_PAR(1);
+		}
+	}*/
+	return (0);
+}
+
+StopBuilding()
+{
+	/*if ((get UNIT_XZ(buildingid)) == 0)
+	{
+		if (get TEST_BUILD_SPOT(buildingcrc,buildingpos))
+		{
+			var unitz,unitx;
+			unitz=get UNITZ(buildingid) - (get GROUND_HEIGHT(get UNIT_XZ(buildingid)) / 131072);
+			unitx=get UNITX(buildingid);
+			buildingpos=get MAKEDWORD(unitz,unitx);
+			get ORDER_SELF_POS(25,1,buildingpos,buildingtype);
+			buildingid=0;
+			buildingpos=0;
+			buildingtype=0;
+			buildingcrc=0;
+			return (0);
+		}
+	}*/
+	ReqState_2 = 0;
+	sleep 5000;
+	if( !ReqState_2 )
+	{
+		start-script RequestState();
+	}
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = plate;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode plate type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode arm type BITMAPONLY | BITMAP4;
+		explode nano type BITMAPONLY | BITMAP5;
+		explode beam type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode plate type BITMAPONLY | BITMAP2;
+		explode turret type SHATTER | BITMAP3;
+		explode arm type FALL | BITMAP4;
+		explode nano type FALL | BITMAP5;
+		explode beam type FALL | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP2;
+		explode door2 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode plate type BITMAPONLY | BITMAP2;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode arm type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode nano type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode beam type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door1 type BITMAPONLY | BITMAP2;
+	explode door2 type BITMAPONLY | BITMAP3;
+	return (0);
+}

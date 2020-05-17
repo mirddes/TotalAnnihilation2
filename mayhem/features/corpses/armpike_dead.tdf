@@ -1,0 +1,33 @@
+[armpike_dead]
+{
+world=All Worlds;
+description=Pike Wreckage;
+category=arm_corpses;
+object=armpike_dead;
+featuredead=armpike_heap;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=2280;
+damage=2510;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[armpike_heap]
+{
+world=All Worlds;
+description=Pike Wreckage;
+category=arm_corpses;
+object=4x4d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1140;
+damage=2510;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}

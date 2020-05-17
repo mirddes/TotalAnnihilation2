@@ -1,0 +1,35 @@
+[armspdla_dead]
+{
+world=All Worlds;
+description=Hobo Wreckage;
+category=arm_corpses;
+object=armspdla_dead;
+featuredead=armspdla_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=226;
+damage=877;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armspdla_heap]
+{
+world=All Worlds;
+description=Hobo Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=113;
+damage=877;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

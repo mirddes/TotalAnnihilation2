@@ -1,0 +1,267 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, flare, turret, sleeve, barrel, torp, flare2, bubbles1,
+       bubbles2, bubbles3, bubbles4;
+
+static-var reload_1, Restore_2, reset_3, Terrain_4, hit_5, bMoving, x_slope, z_slope;
+
+RestoreAfterDelay()
+{
+	sleep 8000;
+	if( !restore_2 )
+	{
+		turn turret to y-axis <0> speed <50>;
+		turn sleeve to x-axis <0> speed <20>;
+		signal 2;
+		signal 4;
+	}
+	Reset_3 = 0;
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( Terrain_4 <= 3 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Restore_2 AND ( !Reset_3 ) )
+		{
+			Restore_2 = FALSE;
+			Reset_3 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	if( terrain_4 <= 3 )
+	{
+		Return(0);
+	}
+	turn base to x-axis anglex speed <50>;
+	turn base to z-axis anglez speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <15>;
+	turn base to x-axis <0> speed <15>;
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	reload_1 = 0;
+	Restore_2 = 0;
+	reset_3 = 0;
+	Terrain_4 = 0;
+	bMoving = FALSE;
+	x_slope = 0;
+	z_slope = 0;
+	set ARMORED to 1;
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	bMoving = TRUE;	
+	var lxsnxs, lzsnzs;	
+	while( bMoving )
+	{
+		if( terrain_4 <= 3 )
+		{
+				emit-sfx 256 | 3 from bubbles1;
+				emit-sfx 256 | 3 from bubbles2;
+				emit-sfx 256 | 3 from torp;
+		}
+		sleep 150;
+		if( terrain_4 <= 3 )
+		{
+				emit-sfx 256 | 3 from bubbles3;
+				emit-sfx 256 | 3 from bubbles4;
+		}
+		sleep 150;
+		lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		if( Terrain_4 != 0 )// Not transported: read the ground slope
+		{
+			x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(base)) - get GROUND_HEIGHT(get PIECE_XZ(flare)), get XZ_HYPOT(get PIECE_XZ(base) - get PIECE_XZ(flare)));
+			while(x_slope>32768)
+			{	x_slope=x_slope - 65536;	}
+			z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(bubbles1)) - get GROUND_HEIGHT(get PIECE_XZ(bubbles2)), get XZ_HYPOT(get PIECE_XZ(bubbles1) - get PIECE_XZ(bubbles2)));
+			while(z_slope>32768)
+			{	z_slope=z_slope - 65536;	}
+		}
+		if( Terrain_4 == 0 )// Transported: turn unit back to upright
+		{
+			x_slope=0;
+			z_slope=0;
+		}
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+		{	lxsnxs=0 - lxsnxs;	}// absoluted
+		if(lzsnzs<0)
+		{	lzsnzs=0 - lzsnzs;	}// absoluted
+		turn base to x-axis x_slope speed lxsnxs*3;
+		turn base to z-axis z_slope speed lzsnzs*3;
+	}
+	return (0);
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+	return (0);
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	Terrain_4 = Func_Var_1;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <70>;
+	turn sleeve to x-axis ( <0> - pitch ) speed <30>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	restore_2 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	move barrel to z-axis [-4] speed [500];
+	sleep 150;
+	hide flare;
+	wait-for-move barrel along z-axis;
+	move barrel to z-axis [0] speed [3];
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+AimTertiary()
+{
+	signal 4;
+	set-signal-mask 4;
+	while( reload_1 OR ( terrain_4 > 3 ) )
+	{
+		sleep 200;
+	}
+	restore_2 = 1;
+	Return(1);
+}
+
+FireTertiary()
+{
+	reload_1 = 1;
+	emit-sfx 256 | 3 from torp;
+	sleep 50;
+	emit-sfx 256 | 3 from torp;
+	sleep 50;
+	emit-sfx 256 | 3 from torp;
+	sleep 2200;
+	reload_1 = 0;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = torp;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = flare2;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type BITMAPONLY | BITMAP3;
+		explode barrel type BITMAPONLY | BITMAP4;
+		explode torp type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode sleeve type FALL | BITMAP3;
+		explode barrel type FALL | BITMAP4;
+		explode torp type FALL | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type SHATTER | BITMAP2;
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode torp type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode torp type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	return (0);
+}

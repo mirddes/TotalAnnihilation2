@@ -1,0 +1,63 @@
+[UNITINFO]
+{
+UnitName=CORVP;
+Version=1;
+Side=CORE;
+Objectname=CORVP;
+Designation=PAMT;
+Name=Vehicle Plant;
+Description=Tech Level 1 6 Metal/sec;
+FootprintX=7;
+FootprintZ=7;
+BuildCostEnergy=1100;
+BuildCostMetal=600;
+MaxDamage=2650;
+MaxWaterDepth=0;
+MaxSlope=10;
+EnergyUse=0;
+BuildTime=6000;
+WorkerTime=120;
+BMcode=0;
+Builder=1;
+ThreeD=1;
+ZBuffer=1;
+NoAutoFire=0;
+SightDistance=215;
+SoundCategory=TANKPLANT;
+EnergyStorage=100;
+MetalStorage=100;
+ExplodeAs=LARGE_BUILDINGEX;
+SelfDestructAs=LARGE_BUILDING;
+Category=ALL CORE LEVEL1 CTRL_F NOWEAPON NOTAIR NOTSUB;
+TEDClass=PLANT;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+YardMap=
+..ooo..
+..ooo..
+.ooooo.
+oocccoo
+ccccccc
+ccccccc
+.ccccc.;
+Corpse=corvp_dead;
+GermanName=Fahrzeugfabrik;
+GermanDescription=Tech Level 1;
+UnitNumber=150;
+FrenchName=Usine de véhicules;
+Frenchdescription=Niveau Tech 1;
+firestandorders=1;
+StandingFireOrder=2;
+mobilestandorders=1;
+StandingMoveOrder=1;
+canmove=1;
+canpatrol=1;
+canstop=1;
+SpanishName=Planta Constr. Vehículos;
+SpanishDescription=Produce vehículos;
+ItalianName=Fabbrica Veicoli;
+ItalianDescription=Produce veicoli;
+buildangle=2048;
+shootme=1;
+MetalMake=0.4;
+	EnergyMake=10;
+	}

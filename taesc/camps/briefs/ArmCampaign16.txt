@@ -1,0 +1,10 @@
+MISSION 16.002ARMR
+Destroy all mobile units, and capture or destroy the structures in the stockpile fortress above the Abutment.
+
+&YPRIORITY&
+Core has the advantage in that they have knowledge of the terrain hereabout. We have pushed them back to the other side of the cliffs to the north. You must destroy all of the Core mobile units there if we are to continue to push Core entirely off of Rougpelt.
+
+INFO FEED 
+Be ever wary of Rougpelt's meteor showers. The Abutment will be a formidable barrier against your attack on the Core stockpile, but the barrier limits Core's maneuverability as well. A strong and well coordinated air/ground attack should do the trick!
+ 
+END

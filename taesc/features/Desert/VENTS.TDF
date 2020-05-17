@@ -1,0 +1,96 @@
+[DryVent01]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[DryVent02]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[DryVent03]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[DryVent04]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[DryVent05]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent05;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[DryVent06]
+	{
+	world=Desert;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=dryvents;
+	seqname=vent06;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+

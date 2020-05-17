@@ -1,0 +1,36 @@
+[armduke_DEAD]
+{
+world=All Worlds;
+description=Duke Wreckage;
+category=arm_corpses;
+object=armduke_dead;
+featuredead=armduke_heap;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=60;
+metal=603;
+damage=1718;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[armduke_HEAP]
+{
+world=All Worlds;
+description=Duke Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=5;
+metal=302;
+damage=1718;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,35 @@
+[cormls_dead]
+{
+world=All Worlds;
+description=Limiter Wreckage;
+category=core_corpses;
+object=cormls_dead;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=209;
+damage=1225;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormls_heap]
+{
+world=All Worlds;
+description=Limiter Wreckage;
+category=core_corpses;
+object=3x3c;
+footprintx=4;
+footprintz=4;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=209;
+damage=1125;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

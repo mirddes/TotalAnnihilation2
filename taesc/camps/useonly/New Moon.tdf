@@ -1,0 +1,520 @@
+//  Airless, and can't build Core construction Vehicles or const. kbots.
+//  No windmills, shipyards water stuff or Metal makers either.
+
+[ARMACK]
+	{
+	}
+[ARMACV]
+	{
+	}
+[ARMALAB]
+	{
+	}
+[ARMALABE]
+	{
+	}
+[ARMALABW]
+	{
+	}
+[ARMAMD]
+	{
+	}
+[ARMANNI]
+	{
+	}
+[ARMARAD]
+	{
+	}
+[ARMASER]
+	{
+	}
+[ARMASY]
+	{
+	}
+[ARMASYE]
+	{
+	}
+[ARMASYN]
+	{
+	}
+[ARMASYW]
+	{
+	}
+[ARMATLAS]
+	{
+	}
+[ARMAVP]
+	{
+	}
+[ARMAVPE]
+	{
+	}
+[ARMAVPW]
+	{
+	}
+[ARMAWAC]
+	{
+	}
+[ARMBATS]
+	{
+	}
+[ARMBRAWL]
+	{
+	}
+[ARMBRTHA]
+	{
+	}
+[ARMBULL]
+	{
+	}
+[ARMCARRY]
+	{
+	}
+[ARMCK]
+	{
+	}
+[ARMSFUS]
+	{
+	}
+[ARMCOM]
+	{
+	}
+[ARMCROC]
+	{
+	}
+[ARMCRUS]
+	{
+	}
+[ARMCS]
+	{
+	}
+[ARMCV]
+	{
+	}
+[ARMDRAG]
+	{
+	}
+[ARMESTOR]
+	{
+	}
+[ARMFAST]
+	{
+	}
+[ARMFAV]
+	{
+	}
+[ARMFIDO]
+	{
+	}
+[ARMFIG]
+	{
+	}
+[ARMFLAK]
+	{
+	}
+[ARMFLASH]
+	{
+	}
+[ARMFORT]
+	{
+	}
+[ARMFORTH]
+	{
+	}
+[ARMFORTV]
+	{
+	}
+[ARMFWHG]
+	{
+	}
+[ARMFWVG]
+	{
+	}
+[ARMFWLLT]
+	{
+	}
+[ARMFUS]
+	{
+	}
+[ARMGATE]
+	{
+	}
+[ARMGEO]
+	{
+	}
+[ARMGUARD]
+	{
+	}
+[ARMHAM]
+	{
+	}
+[ARMHAWK]
+	{
+	}
+[ARMHLT]
+	{
+	}
+[ARMJAM]
+	{
+	}
+[ARMJETH]
+	{
+	}
+[ARMLAB]
+	{
+	}
+[ARMLABE]
+	{
+	}
+[ARMLABW]
+	{
+	}
+[ARMLANCE]
+	{
+	}
+[ARMLATNK]
+	{
+	}
+[ARMLLT]
+	{
+	}
+[ARMMAKR]
+	{
+	}
+[ARMMANNI]
+	{
+	}
+[ARMMARK]
+	{
+	}
+[ARMMART]
+	{
+	}
+[ARMMERL]
+	{
+	}
+[ARMMEX]
+	{
+	}
+[ARMMMKR]
+	{
+	}
+[ARMMOHO]
+	{
+	}
+[ARMMSHIP]
+	{
+	}
+[ARMMSTOR]
+	{
+	}
+[ARMPEEP]
+	{
+	}
+[ARMPNIX]
+	{
+	}
+[ARMPT]
+	{
+	}
+[ARMPW]
+	{
+	}
+[ARMRAD]
+	{
+	}
+[ARMRL]
+	{
+	}
+[ARMROCK]
+	{
+	}
+[ARMROY]
+	{
+	}
+[ARMSAM]
+	{
+	}
+[ARMSEER]
+	{
+	}
+[ARMSOLAR]
+	{
+	}
+[ARMSPID]
+	{
+	}
+[ARMSTUMP]
+	{
+	}
+[ARMSUB]
+	{
+	}
+[ARMSUBK]
+	{
+	}
+[ARMTHUND]
+	{
+	}
+[ARMTL]
+	{
+	}
+[ARMTSHIP]
+	{
+	}
+[ARMVADER]
+	{
+	}
+[ARMVP]
+	{
+	}
+[ARMVPE]
+	{
+	}
+[ARMVPN]
+	{
+	}
+[ARMVPW]
+	{
+	}
+[ARMWAR]
+	{
+	}
+[ARMZEUS]
+	{
+	}
+
+[CORACK]
+	{
+	}
+[CORACV]
+	{
+	}
+[CORAK]
+	{
+	}
+[CORALAB]
+	{
+	}
+[CORALABE]
+	{
+	}
+[CORALABN]
+	{
+	}
+[CORALABW]
+	{
+	}
+[CORAPE]
+	{
+	}
+[CORARAD]
+	{
+	}
+[CORASP]
+	{
+	}
+[CORASY]
+	{
+	}
+[CORASYE]
+	{
+	}
+[CORASYN]
+	{
+	}
+[CORASYW]
+	{
+	}
+[CORAVP]
+	{
+	}
+[CORAVPE]
+	{
+	}
+[CORAVPN]
+	{
+	}
+[CORAVPW]
+	{
+	}
+[CORBATS]
+	{
+	}
+[CORBUILD]
+	{
+	}
+[CORCAN]
+	{
+	}
+[CORCARRY]
+	{
+	}
+[CORCK]
+	{
+	}
+[CORCOM]
+	{
+	}
+[CORCRASH]
+	{
+	}
+[CORCRUS]
+	{
+	}
+[CORCS]
+	{
+	}
+[CORCV]
+	{
+	}
+[CORDOOM]
+	{
+	}
+[CORDRAG]
+	{
+	}
+[CORESTOR]
+	{
+	}
+[CORETER]
+	{
+	}
+[CORFAV]
+	{
+	}
+[CORFLAK]
+	{
+	}
+[CORFMD]
+	{
+	}
+[CORFUS]
+	{
+	}
+[CORGATE]
+	{
+	}
+[CORGATOR]
+	{
+	}
+[CORGEO]
+	{
+	}
+[CORGOL]
+	{
+	}
+[CORHLT]
+	{
+	}
+[CORHRK]
+	{
+	}
+[CORHURC]
+	{
+	}
+[CORINT]
+	{
+	}
+[CORLAB]
+	{
+	}
+[CORLABE]
+	{
+	}
+[CORLABW]
+	{
+	}
+[CORLEVLR]
+	{
+	}
+[CORLLT]
+	{
+	}
+[CORMART]
+	{
+	}
+[CORMEX]
+	{
+	}
+[CORMIST]
+	{
+	}
+[CORMOHO]
+	{
+	}
+[CORMORT]
+	{
+	}
+[CORMSHIP]
+	{
+	}
+[CORMSTOR]
+	{
+	}
+[CORPUN]
+	{
+	}
+[CORPYRO]
+	{
+	}
+[CORRAD]
+	{
+	}
+[CORRAID]
+	{
+	}
+[CORREAP]
+	{
+	}
+[CORRL]
+	{
+	}
+[CORROACH]
+	{
+	}
+[CORSEAL]
+	{
+	}
+[CORSOLAR]
+	{
+	}
+[CORSPEC]
+	{
+	}
+[CORSTORM]
+	{
+	}
+[CORSUMO]
+	{
+	}
+[CORTHUD]
+	{
+	}
+[CORTOAST]
+	{
+	}
+[CORTRUCK]
+	{
+	}
+[CORVOYR]
+	{
+	}
+[CORVP]
+	{
+	}
+[CORVPE]
+	{
+	}
+[CORVPN]
+	{
+	}
+[CORVPW]
+	{
+	}
+[CORVRAD]
+	{
+	}
+[CORVROC]
+	{
+	}

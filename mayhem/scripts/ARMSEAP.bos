@@ -1,0 +1,173 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  lwing, rwing, flare1, flare2, base, wake1, wake2, bombdrop;
+
+static-var  gun_1, terrain_2, moving_3;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+Create()
+{
+	gun_1 = 0;
+	terrain_2 = 3;
+	moving_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	turn rwing to y-axis <24.53> speed <17.55>;
+	turn lwing to y-axis <-24.07> speed <17.23>;
+	return (0);
+}
+
+Deactivate()
+{
+	move lwing to x-axis [-0.11] now;
+	move lwing to z-axis [0.47] now;
+	move rwing to x-axis [0.08] now;
+	move rwing to z-axis [0.38] now;
+	move flare1 to x-axis [5.02] now;
+	move flare1 to y-axis [0.65] now;
+	move flare1 to z-axis [6.62] now;
+	move flare2 to x-axis [-5.19] now;
+	move flare2 to y-axis [0.65] now;
+	move flare2 to z-axis [6.48] now;
+	turn lwing to y-axis <0> speed <16.51>;
+	turn rwing to y-axis <0> speed <16.82>;
+//		sleep 1524;
+	return (0);
+}
+
+MoveRate2()
+{
+	signal 2;
+	return (0);
+}
+
+StartMoving()
+{
+	if( !moving_3 )
+	{
+		moving_3 = 1;
+		while( moving_3 )
+		{
+			if( terrain_2 == 3 )
+			{
+				emit-sfx 256 | 3 from wake1;
+				emit-sfx 256 | 3 from wake2;
+				emit-sfx 256 | 3 from flare1;
+				emit-sfx 256 | 3 from flare2;
+				emit-sfx 256 | 3 from lwing;
+				emit-sfx 256 | 3 from rwing;
+				emit-sfx 256 | 3 from bombdrop;
+				emit-sfx 256 | 3 from base;
+			}
+			sleep 200;
+		}
+	}
+	return (0);
+}
+
+StopMoving()
+{
+	moving_3 = 0;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+	return (0);
+}
+
+FirePrimary()
+{
+	gun_1 = ( !gun_1 );
+	return (0);
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = bombdrop;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = bombdrop;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	hide wake1;
+	hide wake2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode lwing type BITMAPONLY | BITMAP1;
+		explode rwing type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode bombdrop type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode lwing type BITMAPONLY | BITMAP1;
+		explode rwing type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode bombdrop type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode lwing type BITMAPONLY | BITMAP1;
+	explode rwing type BITMAPONLY | BITMAP2;
+	explode base type BITMAPONLY | BITMAP3;
+	explode bombdrop type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	terrain_2 = Func_Var_1;
+	return (0);
+}

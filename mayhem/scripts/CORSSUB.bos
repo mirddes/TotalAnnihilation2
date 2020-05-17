@@ -1,0 +1,198 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  tflare1, tflare2, base, lflare1, launcher, door1, door2, lflare2,
+       lflare3, bubbles1, bubbles2;
+
+static-var  gun_1, reload_2, gun_3, ready_4, onoff;
+
+CloseDoors()
+{
+	ready_4 = 0;
+	Signal 2;
+	move lflare1 to y-axis [0] NOW;
+	move lflare2 to y-axis [0] NOW;
+	move lflare2 to y-axis [0] NOW;
+	move launcher to y-axis 0 speed [30];
+	wait-for-move launcher along y-axis;
+	turn door1 to x-axis 0 speed <75>;
+	turn door2 to x-axis 0 speed <75>;
+	sleep 1800;
+	gun_3 = 1;
+	sleep 5000;
+	reload_2 = 0;
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	set-signal-mask 0;
+	start-script Closedoors();
+}
+
+Create()
+{
+	hide launcher;
+	hide lflare1;
+	hide lflare2;
+	hide lflare3;
+	move launcher to y-axis [-5.000000] now;
+	move lflare1 to y-axis [-5.000000] now;
+	move lflare2 to y-axis [-5.000000] now;
+	move lflare3 to y-axis [-5.000000] now;
+	gun_1 = tflare2;
+	reload_2 = 0;
+	gun_3 = 1;
+	ready_4 = 0;
+	set ARMORED to 1;
+}
+
+Activate()
+{
+	onoff = 1;
+	start-script closedoors();
+}
+
+Deactivate()
+{
+	onoff = 0;
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from bubbles1;
+		emit-sfx 256 | 3 from bubbles2;
+		sleep 300;
+	}
+}
+
+StopMoving()
+{
+	signal 8;
+}
+
+FirePrimary()
+{
+	if( gun_1 == 1 )
+	{
+		gun_1 = base;
+		return (0);
+	}
+	gun_1 = tflare2;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 1 )
+	{
+		piecenum = tflare1;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = tflare2;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = launcher;
+}
+
+QueryTertiary(piecenum)
+{
+	if( gun_3 == 1 )
+	{
+		piecenum = lflare1;
+	}
+	if( gun_3 == 2 )
+	{
+		piecenum = lflare2;
+	}
+	if( gun_3 == 3 )
+	{
+		piecenum = lflare3;
+	}
+}
+
+AimTertiary(piecenum)
+{
+	signal 2;
+	set-signal-mask 2;
+	while( reload_2 or onoff )
+	{
+		sleep 500;
+	}
+	if( !ready_4 )
+	{
+		turn door1 to z-axis <135> speed <90>;
+		turn door2 to z-axis <-135> speed <90>;
+		sleep 1500;
+		move launcher to y-axis [30] speed [15];
+		wait-for-move launcher along y-axis;
+		move lflare1 to y-axis [30] NOW;
+		move lflare2 to y-axis [30] NOW;
+		move lflare2 to y-axis [30] NOW;
+		ready_4 = 1;
+	}
+	Start-script RestoreAfterDelay();
+	return(1);
+}
+
+FireTertiary()
+{
+	++gun_3;
+	if( gun_3 > 2 )
+	{
+		reload_2 = 1;
+		start-script closedoors();
+		gun_3 = 1;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide bubbles1;
+	hide bubbles2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode tflare1 type BITMAPONLY | BITMAP1;
+		explode tflare2 type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode tflare1 type FALL | BITMAP1;
+		explode tflare2 type FALL | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode door1 type BITMAPONLY | BITMAP4;
+		explode door2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode tflare1 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+	explode tflare2 type FALL | FIRE | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type BITMAPONLY | BITMAP3;
+	explode door1 type BITMAPONLY | BITMAP4;
+	explode door2 type BITMAPONLY | BITMAP5;
+}

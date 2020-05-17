@@ -1,0 +1,10 @@
+MISSION 1.0001ARME
+Establish a guard detail around the Galactic Gate.
+
+&Y*PRIORITY CRITICAL*&
+Core agents have somehow breached our security and are on Empyrrean. Worse yet, the Commander is off-planet and Core waits in ambush near the Gate through which he must return. Take your units to the Gate and secure it. Our Commander must return safely or we are lost.
+
+INFO FEED
+The Gate is located in the Crater to the north. &RExpect Core patrols.&
+
+END

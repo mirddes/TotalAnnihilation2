@@ -1,0 +1,14 @@
+Mission T37: Intimidator Rising
+
+The dogged Arm continue to resist despite our more than fair terms of surrender.  They will pay for their obstinacy.  We shall use one of our most decisive advantages in the coming battle.  Our plasma cannon, the Intimidator, inflicts 20% more damage than the Arm Big Bertha.
+
+&RBuild an Intimidator to the west.&  This will allow us to eradicate the Arm's forces on the Hasfap Mesa, effectively reducing the last enemy aircraft production facility in the area.
+
+The Arm have a line of Dragon's Teeth running north-south.  West of these fortifications lies a small base near a large cluster of spires.  Even farther west you will find the Arm's Hydration Plant.  Build your Intimidator near the Hydration Plant.
+
+Suggestions:
+Be sure to build some anti-air units as the Arm have an airbase in the area.
+
+Capture ground in large organized assaults rather than attacking with a steady stream of units.  Take time to repair and organize your units before each assault.
+Battle Tactics:
+Use CTRL+F to select all factories.  Then you can order all the factories to move their new units up to the same assembly point near the front.

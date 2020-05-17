@@ -1,0 +1,242 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, turret, barrel, flare, sleeve, wake1, wake2, wake3,
+       body, pivot;
+
+static-var  bMoving, depth_2, timer_3, Reset_4, x_slope, z_slope;
+
+RestoreAfterDelay()
+{
+	signal 2;
+	signal 4;
+	Reset_4 = 0;
+	turn turret to y-axis <0> speed <50>;
+	turn body to y-axis <0> speed <50>;
+	turn pivot to y-axis <0> speed <50>;
+	turn sleeve to x-axis <0> speed <40>;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;	
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_2 == 3 )
+			{
+				smoketype = 259;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			if( timer_3 > 0 )
+			{
+				timer_3 = timer_3 - 1;
+				Reset_4 = 1;
+			}
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				if( ( !timer_3 ) AND Reset_4 )
+				{
+					start-script RestoreAfterDelay();
+				}
+				if( depth_2 == 3 )
+				{
+					emit-sfx 259 from wake1;
+					emit-sfx 259 from wake2;
+					emit-sfx 259 from wake3;
+				}
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_2!=0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(base)) - get GROUND_HEIGHT(get PIECE_XZ(flare)), get XZ_HYPOT(get PIECE_XZ(base) - get PIECE_XZ(flare)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(wake1)) - get GROUND_HEIGHT(get PIECE_XZ(wake2)), get XZ_HYPOT(get PIECE_XZ(wake1) - get PIECE_XZ(wake2)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_2==0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+				if( ( !timer_3 ) AND Reset_4 )
+				{
+					start-script RestoreAfterDelay();
+				}
+			}
+		}
+		sleep sleeptime;
+	}
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}
+*/	
+
+Create()
+{
+	dont-cache flare;
+	hide flare;
+	depth_2 = 4;
+	bMoving = FALSE;
+	timer_3 = FALSE;
+	Reset_4 = 0;
+	x_slope = 0;
+	z_slope = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_2 = Func_Var_1;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <64>;
+	turn body to y-axis <0> - heading speed <64>;
+	turn pivot to y-axis heading speed <64>;
+	turn sleeve to x-axis <0> - pitch speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	timer_3 = 30;
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	turn pivot to x-axis <-5> speed <50>;
+	move barrel to z-axis [-3] speed [500];
+	sleep 150;
+	hide flare;
+	move barrel to z-axis [0] speed [10];
+	sleep 50;
+	turn pivot to x-axis <0> speed <20>;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+AimTertiary()
+{
+	while( depth_2 >= 4 )
+	{
+		sleep 500;
+	}
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	timer_3 = 30;
+	return (1);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	if( depth_2 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode barrel type BITMAPONLY | BITMAP1;
+		explode sleeve type BITMAPONLY | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode sleeve type FALL | EXPLODE_ON_HIT | BITMAP2;
+		explode base type BITMAPONLY | BITMAP3;
+		explode turret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type BITMAPONLY | BITMAP3;
+	explode turret type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+}

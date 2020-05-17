@@ -1,0 +1,8 @@
+MISSION 4.4CORE
+
+INTELL-TAP:  
+Arm has established itself at an intolerable level on our homeworld. There is a large infestation of them centered on Prime Block 520:522. This may be the location of the Gate by which they arrived on our world. 
+
+&RDestroy all Arm units. Capture the Arm Gate.&
+
+DO SO NOW.

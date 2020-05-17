@@ -1,0 +1,129 @@
+// Core Advanced Construction Vehicle
+
+piece base,beam;
+
+static-var buildheading;
+
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\coracv\activatescr.bos"
+#include "..\anim3d\coracv\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	call-script activatescr();
+	turn turret to y-axis buildheading speed <160>;
+	wait-for-turn turret around y-axis;
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	turn turret to y-axis <0> speed <160>;
+	wait-for-turn turret around y-axis;
+	call-script deactivatescr();
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	buildheading = <0>;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding(heading)
+	{
+	buildheading = heading;
+	start-script RequestState( ACTIVE );
+	}
+
+StopBuilding()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	piecenum=beam;
+	}
+
+TargetHeading( heading )
+	{
+	buildheading = 0 - heading;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam type	BITMAPONLY | BITMAP2;
+		explode door1 type	BITMAPONLY | BITMAP3;
+		explode door2 type	BITMAPONLY | BITMAP4;
+		explode gun type	BITMAPONLY | BITMAP5;
+		explode stand type	BITMAPONLY | BITMAP1;
+		explode turret type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam type	FALL | BITMAP2;
+		explode door1 type	BITMAPONLY | BITMAP3;
+		explode door2 type	BITMAPONLY | BITMAP4;
+		explode gun type	SHATTER | BITMAP5;
+		explode stand type	FALL | BITMAP1;
+		explode turret type	FALL | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode door1 type	BITMAPONLY | BITMAP3;
+		explode door2 type	BITMAPONLY | BITMAP4;
+		explode gun type	SHATTER | BITMAP5;
+		explode stand type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode beam type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode door1 type	BITMAPONLY | BITMAP3;
+	explode door2 type	BITMAPONLY | BITMAP4;
+	explode gun type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode stand type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

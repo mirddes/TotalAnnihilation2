@@ -1,0 +1,53 @@
+[corbeetl_dead]
+{
+world=All Worlds;
+description=Beetle Wreckage;
+category=core_corpses;
+object=corbeetl_dead;
+featuredead=corbeetl_heap;
+footprintx=2;
+footprintz=2;
+height=10;
+blocking=1;
+hitdensity=100;
+metal=135;
+damage=451;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corbeetl_dead2]
+{
+world=All Worlds;
+description=Beetle Wreckage;
+category=core_corpses;
+object=corbeetl_dead2;
+featuredead=corbeetl_heap;
+footprintx=2;
+footprintz=2;
+height=10;
+blocking=1;
+hitdensity=100;
+metal=67;
+damage=451;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corbeetl_heap]
+{
+world=All Worlds;
+description=Beetle Wreckage;
+category=heaps;
+object=2x2D;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=33;
+damage=451;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

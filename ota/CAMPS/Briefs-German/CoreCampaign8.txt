@@ -1,0 +1,7 @@
+MISSION 08.3CORE
+Erobern Sie das Galaxistor.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Das Tor liegt oberhalb des Lavastroms im Norden von Crustal 12 (&R92%,Irrtum:4%&). Mit heftigem Widerstand der ARM ist zu rechnen (&R86%,Irrtum:5%&).
+
+WALTEN SIE IHRES AMTES.

@@ -1,0 +1,96 @@
+[DragonsTeeth]
+{
+	world=allworld;
+	description=Dragon's Teeth;
+	category=dragonteeth;
+	object=armdrag;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=15;
+	damage=3500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=TeethSmudge;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+
+[DragonsTeeth_Core]
+{
+	world=allworld;
+	description=Dragon's Teeth;
+	category=dragonteeth;
+	object=cordrag;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=16;
+	damage=3600;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=TeethSmudge;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+
+[RockTeeth]
+{
+	world=greenworld;
+	description=Rubble;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=20;
+	filename=rockshurt2;
+	seqname=rock4b;
+	seqnameshad=rock4bshad;
+	seqnamereclamate=rock04brec;
+	metal=8;
+
+	featurereclamate=rock04recscar;
+	featuredead=teethSmudge;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=0;
+	hitdensity=100;
+	damage=1775;
+}
+
+[TeethSmudge]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=Smudges;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=trees;
+	seqname=smudge01;
+
+	featuredead=teethSmudge;
+
+	animtrans=1;			//0
+//	shadtrans=1;
+//	flamable=0;
+//	reclaimable=0;
+//	reproduce=0;
+//	reproducearea=6;
+	blocking=0;
+	hitdensity=100;			//0
+	damage=20000;
+	}
+
+
+
+

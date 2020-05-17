@@ -1,0 +1,14 @@
+MISSION 1.0001ARMH
+Core has had ample time to establish itself on Hydross. Using available new technology, establish a base and clear the sector of Core units. You will begin your search for the contingent Core Commander from here.
+
+&Y*PRIORITY CRITICAL*&
+Our scientists have developed new units and adapted others to this world. Core will have adapted as well. Prepare your defenses quickly.
+
+INFO FEED
+Because of the nearness to the system's sun, the polar ice caps have not formed on Hydross. The planet has no landmasses. You will have to construct your base entirely of water-based units. &RPay attention to your metal economy.&
+
+There is an indigenous life-form known as the Serpent. They will hamper our efforts to remove Core from Hydross. The Serpents must be destroyed as well.
+
+To complete this mission you must destroy all Core units and Serpents.
+
+END

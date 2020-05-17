@@ -1,0 +1,34 @@
+[DECOY_COMMANDER_BLAST]
+	{
+	ID=155;
+	name=Atomic Blast Weapon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=380;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	soundstart=largegun;
+	soundhit=xplonuk4;
+
+	explosiongaf=commboom;
+	explosionart=commboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	shakemagnitude=32;
+	shakeduration=2;
+
+	areaofeffect=950;
+	edgeeffectiveness=0.15;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}

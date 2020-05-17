@@ -1,0 +1,13 @@
+Mission T28: Crawling Destruction
+
+&REmergency!&  
+Our energy production base in the dense forests of Caladon is under attack.  The Core have sent a wave of Roaches in an effort to destroy our base.
+Protect the Geothermal Powerplants from destruction.  Do not leave a single Roach intact.
+
+Suggestions:
+Use your Fido to attack Roaches at long range.
+
+
+
+Battle Tactics:
+Press CTRL+K to select your Fidos and all other kbots with weapons.

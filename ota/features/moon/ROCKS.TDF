@@ -1,0 +1,1562 @@
+[MoonRock01]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=moonrocks2;
+	seqname=rock01;
+	seqnameshad=;
+	seqnamereclamate=rock01rec;
+	metal=25;
+
+	featurereclamate=moonrock01scar;
+	featuredead=moonrock01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock01Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock01scar;
+	seqnameshad=;
+
+	featuredead=moonrock01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock02]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=moonrocks;
+	seqname=rock02;
+	seqnameshad=;
+	seqnamereclamate=rock02rec;
+	metal=25;
+
+	featurereclamate=moonrock02scar;
+	featuredead=moonrock02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock02Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock02scar;
+	seqnameshad=;
+
+	featuredead=moonrock02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock03]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=3;
+	filename=moonrocks;
+	seqname=rock03;
+	seqnameshad=rock03shad;
+	seqnamereclamate=rock03rec;
+	metal=25;
+
+	featurereclamate=moonrock03scar;
+	featuredead=moonrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock03Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock03scar;
+	seqnameshad=;
+
+	featuredead=moonrock03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock04]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=2;
+	filename=moonrocks;
+	seqname=rock04;
+	seqnameshad=rock04shad;
+	seqnamereclamate=rock04rec;
+	metal=25;
+
+	featurereclamate=moonrock04scar;
+	featuredead=moonrock04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock04Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock04scar;
+	seqnameshad=;
+
+	featuredead=moonrock04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock05]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=1;
+	filename=moonrocks;
+	seqname=rock05;
+	seqnameshad=rock05shad;
+	seqnamereclamate=rock05rec;
+	metal=25;
+
+	featurereclamate=moonrock05scar;
+	featuredead=moonrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock05Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock05scar;
+	seqnameshad=;
+
+	featuredead=moonrock05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock06]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=3;
+	filename=moonrocks;
+	seqname=rock06;
+	seqnameshad=rock06shad;
+	seqnamereclamate=rock06rec;
+	metal=25;
+
+	featurereclamate=moonrock06scar;
+	featuredead=moonrock06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock06Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=1;
+	height=0;
+	filename=moonscars;
+	seqname=rock06scar;
+	seqnameshad=;
+
+	featuredead=moonrock06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock07]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=4;
+	filename=moonrocks;
+	seqname=rock07;
+	seqnameshad=rock07shad;
+	seqnamereclamate=rock07rec;
+	metal=25;
+
+	seqnamedie=rockboom;
+	featurereclamate=moonrock07scar;
+	featuredead=moonrock07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock07Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=moonscars;
+	seqname=rock07scar;
+	seqnameshad=;
+
+	featuredead=moonrock07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock08]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	filename=moonrocks;
+	seqname=rock08;
+	seqnameshad=rock08shad;
+	seqnamereclamate=rock08rec;
+	metal=50;
+
+	seqnamedie=rockboom;
+	featurereclamate=moonrock08scar;
+	featuredead=moonrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock08Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonscars;
+	seqname=rock08scar;
+	seqnameshad=;
+
+	featuredead=moonrock08scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock09]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=4;
+	filename=moonrocks;
+	seqname=rock09;
+	seqnameshad=rock09shad;
+	seqnamereclamate=rock09rec;
+	metal=50;
+
+	seqnamedie=rockboom;
+	featurereclamate=moonrock09scar;
+	featuredead=moonrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock09Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=moonscars;
+	seqname=rock09scar;
+	seqnameshad=;
+
+	featuredead=moonrock09scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock10]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=5;
+	filename=moonrocks;
+	seqname=rock10;
+	seqnameshad=rock10shad;
+	seqnamereclamate=rock10rec;
+	metal=50;
+
+	seqnamedie=rock10boom;
+	featurereclamate=moonrock10scar;
+	featuredead=mooncrush10;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock10Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rock10scar;
+	seqnameshad=;
+
+	featuredead=moonrock10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock11]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=5;
+	filename=moonrocks;
+	seqname=rock11;
+	seqnameshad=rock11shad;
+	seqnamereclamate=rock11rec;
+	metal=75;
+
+	seqnamedie=rock11boom;
+	featurereclamate=moonrock11scar;
+	featuredead=mooncrush11;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock11Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rock11scar;
+	seqnameshad=;
+
+	featuredead=moonrock11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock12]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=2;
+	filename=moonrocks;
+	seqname=rock12;
+	seqnameshad=rock12shad;
+	seqnamereclamate=rock12rec;
+	metal=75;
+
+	seqnamedie=rock12boom;
+	featurereclamate=moonrock12scar;
+	featuredead=mooncrush12;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock12Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rock12scar;
+	seqnameshad=;
+
+	featuredead=moonrock12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock13]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=9;
+	filename=moonrocks;
+	seqname=rock13;
+	seqnameshad=rock13shad;
+	seqnamereclamate=rock13rec;
+	metal=75;
+
+	seqnamedie=rock13boom;
+	featurereclamate=moonrock13scar;
+	featuredead=mooncrush13;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock13Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=moonscars;
+	seqname=rock13scar;
+	seqnameshad=;
+
+	featuredead=moonrock13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock14]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=6;
+	filename=moonrocks;
+	seqname=rock14;
+	seqnameshad=rock14shad;
+	seqnamereclamate=rock14rec;
+	metal=75;
+
+	seqnamedie=rock14boom;
+	featurereclamate=moonrock14scar;
+	featuredead=mooncrush14;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock14Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rock14scar;
+	seqnameshad=;
+
+	featuredead=moonrock14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock15]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=8;
+	filename=moonrocks;
+	seqname=rock15;
+	seqnameshad=rock15shad;
+	seqnamereclamate=rock15rec;
+	metal=100;
+
+	seqnamedie=rock15boom;
+	featurereclamate=moonrock15scar;
+	featuredead=mooncrush15;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock15Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=moonscars;
+	seqname=rock15scar;
+	seqnameshad=;
+
+	featuredead=moonrock15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock16]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=8;
+	filename=moonrocks;
+	seqname=rock16;
+	seqnameshad=rock16shad;
+	seqnamereclamate=rock16rec;
+	metal=75;
+
+	seqnamedie=rock16boom;
+	featurereclamate=moonrock16scar;
+	featuredead=mooncrush16;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock16Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rock16scar;
+	seqnameshad=;
+
+	featuredead=moonrock16scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock17]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=8;
+	filename=moonrocks;
+	seqname=rock17;
+	seqnameshad=rock17shad;
+	seqnamereclamate=rock17rec;
+	metal=100;
+
+	seqnamedie=rock17boom;
+	featurereclamate=moonrock17scar;
+	featuredead=mooncrush17;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock17Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=moonscars;
+	seqname=rock17scar;
+	seqnameshad=;
+
+	featuredead=moonrock17scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock18]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=12;
+	filename=moonrocks;
+	seqname=rock18;
+	seqnameshad=rock18shad;
+	seqnamereclamate=rock18rec;
+	metal=250;
+
+	seqnamedie=rock18boom;
+	featurereclamate=moonrock18scar;
+	featuredead=mooncrush18;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock18Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=0;
+	filename=moonscars;
+	seqname=rock18scar;
+	seqnameshad=;
+
+	featuredead=moonrock18scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonRock19]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=7;
+	height=8;
+	filename=moonrocks;
+	seqname=rock19;
+	seqnameshad=rock19shad;
+	seqnamereclamate=rock19rec;
+	metal=150;
+
+	seqnamedie=rock19boom;
+	featurereclamate=moonrock19scar;
+	featuredead=mooncrush19;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonRock19Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=7;
+	height=0;
+	filename=moonscars;
+	seqname=rock19scar;
+	seqnameshad=;
+
+	featuredead=moonrock19scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrushA]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=8;
+	footprintz=6;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush01;
+	seqnameshad=rockcrush01shad;
+	seqnamereclamate=rockcrush01rec;
+	metal=50;
+	
+	seqnamedie=rockcrush01boom;
+	featurereclamate=mooncrushAscar;
+	featuredead=mooncrushAscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrushAScar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=8;
+	footprintz=6;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush01scar;
+	seqnameshad=;
+
+	featuredead=mooncrushAscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrushB]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrushBscar;
+	featuredead=mooncrushBscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrushBScar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrushBscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrushC]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush03;
+	seqnameshad=rockcrush03shad;
+	seqnamereclamate=rockcrush03rec;
+	metal=25;
+	
+	seqnamedie=;
+	featurereclamate=mooncrushCscar;
+	featuredead=mooncrushCscar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrushCScar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=8;
+	footprintz=6;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush03scar;
+	seqnameshad=;
+
+	featuredead=mooncrushCscar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush18]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush01;
+	seqnameshad=rockcrush01shad;
+	seqnamereclamate=rockcrush01rec;
+	metal=50;
+	
+	seqnamedie=rockcrush01boom;
+	featurereclamate=mooncrush18scar;
+	featuredead=mooncrush18scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush18Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=9;
+	footprintz=9;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush01scar;
+	seqnameshad=;
+
+	featuredead=mooncrush18scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush19]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=7;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush01;
+	seqnameshad=rockcrush01shad;
+	seqnamereclamate=rockcrush01rec;
+	metal=50;
+	
+	seqnamedie=rockcrush01boom;
+	featurereclamate=mooncrush19scar;
+	featuredead=mooncrush19scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush19Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=7;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush01scar;
+	seqnameshad=;
+
+	featuredead=mooncrush19scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush10]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush10scar;
+	featuredead=mooncrush10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush10Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush10scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush11]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush11scar;
+	featuredead=mooncrush11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush11Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush11scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush12]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush12scar;
+	featuredead=mooncrush12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush12Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush12scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush13]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush13scar;
+	featuredead=mooncrush13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush13Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush13scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush14]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush14scar;
+	featuredead=mooncrush14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush14Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush14scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush15]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush15scar;
+	featuredead=mooncrush15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush15Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=6;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush15scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush16]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush16scar;
+	featuredead=mooncrush16scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush16Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush16scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[MoonCrush17]
+	{
+	world=MOON;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=mooncrush;
+	seqname=rockcrush02;
+	seqnameshad=rockcrush02shad;
+	seqnamereclamate=rockcrush02rec;
+	metal=50;
+	
+	seqnamedie=rockcrush02boom;
+	featurereclamate=mooncrush17scar;
+	featuredead=mooncrush17scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[MoonCrush17Scar]
+	{
+	world=MOON;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=moonscars;
+	seqname=rockcrush02scar;
+	seqnameshad=;
+
+	featuredead=mooncrush17scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+

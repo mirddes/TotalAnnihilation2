@@ -1,0 +1,8 @@
+MISSION 22.1CORE
+
+INTELL-TAP:
+You must move swiftly - before Arm can prepare. Destroy any guards at the Gate. There is a Bertha Cannon active to the south.  You have been provided all necessary units for this mission.
+
+&RCapture the Bertha Cannon.&
+
+DO SO NOW.

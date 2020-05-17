@@ -1,0 +1,10 @@
+MISSION 12.0001ARMB
+Destroy or capture all Core units and structures. Capture the MoHo Mine. 
+
+PRIORITY 1
+Barathrum! The molten metal-dense world where Core has established vast metal extraction farms and industrial complexes. Go for their heart Commander. Take out their extraction farm, but capture the MoHo Mine. You will hurt Core severely by depriving them of the resources of Barathrum's mineral rich mantle!
+
+INFO FEED
+The Gate will be guarded. Be ready. Secure an area and build a base ASAP. Be ready for air and ground attacks. &R*WARNING*& Core will resist as never before. Barathrum is absolutely critical to their war effort. 
+
+END

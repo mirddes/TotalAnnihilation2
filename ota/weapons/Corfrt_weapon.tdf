@@ -1,0 +1,68 @@
+[CORFRT_MISSILE]
+	{
+	ID=148;
+	name=Missiles;
+	rendertype=1;
+	lineofsight=1;
+	turret=1;
+
+	model=missile;
+
+	range=700;
+	reloadtime=2;
+	weapontimer=5;
+	weaponvelocity=660;
+	startvelocity=460;
+	weaponacceleration=152;
+	turnrate=50000;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=rockhvy2;
+	soundhit=xplomed2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=10000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=45;
+		ARMTHUND=95;
+		ARMBRAWL=95;
+		ARMPEEP=95;
+		ARMFIG=95;
+		ARMCA=95;
+		ARMACA=95;
+		ARMATLAS=95;
+		ARMPNIX=95;
+		ARMHAWK=95;
+		ARMLANCE=95;
+		CORFINK=95;
+		CORVENG=95;
+		CORVAMP=95;
+		CORHURC=95;
+		CORTITAN=95;
+		CORACA=95;
+		CORSHAD=95;
+		CORAPE=95;
+		CORCA=95;
+		CORVALK=95;
+		}
+	}
+

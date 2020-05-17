@@ -1,0 +1,35 @@
+[armhdpw_dead]
+{
+world=All Worlds;
+description=Hell DIVER Wreckage;
+category=arm_corpses;
+object=armhdpw_dead;
+featuredead=armhdpw_heap;
+footprintx=2;
+footprintz=2;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=58;
+damage=380;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armhdpw_heap]
+{
+world=All Worlds;
+description=Hell DIVER Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=29;
+damage=380;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

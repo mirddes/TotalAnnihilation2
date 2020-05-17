@@ -1,0 +1,271 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, hub, dish1, dish2, dish3, dish4, arm1, arm2,
+       arm3, arm4, dish1b, dish2b, dish3b, dish4b, energy;
+
+static-var  On_1, busy_2, state_3, timer_4, hit_5;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( timer_4 > 0 AND ( !on_1 ) )
+		{
+			timer_4 = timer_4 - sleeptime;
+		}
+		sleep sleeptime;
+		if( ( timer_4 <= 0 ) AND hit_5 )
+		{
+			timer_4 = 0;
+			hit_5 = 0;
+			if( !on_1 )
+			{
+				set ACTIVATION to 1;
+			}
+		}
+	}
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( busy_2 )
+	{
+		On_1 = requestedstate;
+		return (0);
+	}
+	busy_2 = 1;
+	while( On_1 != State_3 )
+	{
+		if( On_1 )
+		{
+			dont-cache energy;
+			spin energy around y-axis speed <-20>;
+			move hub to y-axis [8] speed [8];
+			sleep 500;
+			set ARMORED to 0;
+			turn arm1 to z-axis <0> speed <49>;
+			turn arm2 to x-axis <0> speed <49>;
+			turn arm3 to z-axis <0> speed <49>;
+			turn arm4 to x-axis <0> speed <49>;
+			sleep 1000;
+			turn dish1 to z-axis <0> speed <50>;
+			turn dish2 to x-axis <0> speed <50>;
+			turn dish3 to z-axis <0> speed <50>;
+			turn dish4 to x-axis <0> speed <50>;
+			sleep 500;
+			spin hub around y-axis speed <28> accelerate <4>;
+			spin arm1 around x-axis speed <70> accelerate <10>;
+			spin dish1b around x-axis speed <-140> accelerate <14>;
+			sleep 500;
+			spin arm2 around z-axis speed <-70> accelerate <8>;
+			spin dish2b around z-axis speed <140> accelerate <12>;
+			sleep 500;
+			spin arm3 around x-axis speed <-70> accelerate <6>;
+			spin dish3b around x-axis speed <140> accelerate <10>;
+			sleep 500;
+			spin arm4 around z-axis speed <70> accelerate <4>;
+			spin dish4b around z-axis speed <-140> accelerate <8>;
+			State_3 = 1;
+		}
+		if( !On_1 )
+		{
+			spin arm1 around x-axis speed <0>;
+			spin dish1b around x-axis speed <0>;
+			spin arm2 around z-axis speed <0>;
+			spin dish2b around z-axis speed <0>;
+			spin arm3 around x-axis speed <0>;
+			spin dish3b around x-axis speed <0>;
+			spin arm4 around z-axis speed <0>;
+			spin dish4b around z-axis speed <0>;
+			spin energy around y-axis speed <0>;
+			turn energy to y-axis <0> speed <40>;
+			turn hub to y-axis <0> speed <60>;
+			turn arm1 to x-axis <0> speed <70>;
+			turn arm2 to z-axis <0> speed <70>;
+			turn arm3 to x-axis <0> speed <70>;
+			turn arm4 to z-axis <0> speed <70>;
+			turn dish1b to x-axis <0> speed <140>;
+			turn dish2b to z-axis <0> speed <140>;
+			turn dish3b to x-axis <0> speed <140>;
+			turn dish4b to z-axis <0> speed <140>;
+			wait-for-turn hub around y-axis;
+			wait-for-turn arm1 around x-axis;
+			wait-for-turn dish1b around x-axis;
+			move hub to y-axis [0] speed [16];
+			turn arm1 to z-axis <-49> speed <100>;
+			turn arm2 to x-axis <-49> speed <100>;
+			turn arm3 to z-axis <49> speed <100>;
+			turn arm4 to x-axis <49> speed <100>;
+			sleep 500;
+			set ARMORED to 1;
+			turn dish1 to z-axis <-25> speed <50>;
+			turn dish2 to x-axis <-25> speed <50>;
+			turn dish3 to z-axis <25> speed <50>;
+			turn dish4 to x-axis <25> speed <50>;
+			sleep 500;
+			cache energy;
+			State_3 = 0;
+		}
+	}
+	busy_2 = 0;
+}
+
+/*Static-var shieldcloaked, cloakcost, cloakcostm;
+
+Cloak(cloakdist, shieldID)
+{
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			shieldcloaked = 1;
+			get SET_CLOAKED(1);
+		}
+		//if the shield is now cloakdist the unit, the unit uses no energy to cloak
+		get SET_UNITINFO(uiCloakCost, 0);
+		get SET_UNITINFO(uiCloakCostMoving, 0);
+		//if unit somehow moves away from the shield (eg got transported) then reset cloak costs
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_UNITINFO(uiCloakCost, cloakcost);
+		get SET_UNITINFO(uiCloakCostMoving, cloakcostm);
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*shieldcloaked=0;
+	cloakcost = get GET_UNITINFO(uiCloakCost);
+	cloakcostm = get GET_UNITINFO(uiCloakCostMoving);*/
+	turn arm1 to z-axis <-49> NOW;
+	turn arm2 to x-axis <-49> NOW;
+	turn arm3 to z-axis <49> NOW;
+	turn arm4 to x-axis <49> NOW;
+	turn dish1 to z-axis <-25> NOW;
+	turn dish2 to x-axis <-25> NOW;
+	turn dish3 to z-axis <25> NOW;
+	turn dish4 to x-axis <25> NOW;
+	dont-shade hub;
+	dont-shade arm1;
+	dont-shade arm2;
+	dont-shade arm3;
+	dont-shade arm4;
+	dont-shade dish1;
+	dont-shade dish2;
+	dont-shade dish3;
+	dont-shade dish4;
+	dont-shade dish1b;
+	dont-shade dish2b;
+	dont-shade dish3b;
+	dont-shade dish4b;
+	On_1 = 1;
+	busy_2 = 0;
+	state_3 = 0;
+	timer_4 = 0;
+	hit_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	On_1 = 1;
+	start-script RequestState();
+}
+
+Deactivate()
+{
+	On_1 = 0;
+	start-script RequestState();
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( get BUILD_PERCENT_LEFT )
+	{
+		return(0);
+	}
+	timer_4 = 8000;
+	if( !On_1 )
+	{
+		hit_5 = 1;
+		set ACTIVATION to 0;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode hub type BITMAPONLY | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type BITMAPONLY | BITMAP5;
+		explode arm2 type BITMAPONLY | BITMAP1;
+		explode energy type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode hub type SHATTER | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type FALL | BITMAP5;
+		explode arm2 type FALL | BITMAP1;
+		explode energy type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode hub type SHATTER | BITMAP2;
+		explode dish1 type BITMAPONLY | BITMAP3;
+		explode dish2 type BITMAPONLY | BITMAP4;
+		explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode energy type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode hub type SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode dish1 type BITMAPONLY | BITMAP3;
+	explode dish2 type BITMAPONLY | BITMAP4;
+	explode arm1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode arm2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode energy type BITMAPONLY | BITMAP2;
+}

@@ -1,0 +1,13 @@
+MISIÓN 23.003CLANCP
+Cruzar las aguas contaminadas hacia el puerto del Núcleo. Destruir las instalaciones del puerto y todas las unidades del Núcleo.
+
+&YPRIORIDAD&
+Al otro lado de Puerto Acuoso 397 está Puerto Complejo .016. Construye suficientes unidades para cruzar las aguas aceitosas y destruir cualquier fortificación que encuentres en el Puerto. Entonces comenzará nuestro asalto definitivo a la Conciencia Central.
+
+
+INFORMACIÓN
+No cabe duda de que la entrada a Puerto .016 estará bien vigilada... y no contamos con el elemento sorpresa. El Núcleo estará preparado para tu ataque. &RLas pérdidas serán elevadas.&
+
+&GTodo Empyrrean está contigo, Comandante.&
+ 
+FIN

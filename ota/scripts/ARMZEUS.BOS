@@ -1,0 +1,322 @@
+// Arm Pee-Wee KBOT Script
+
+piece torso, pelvis, flash;
+
+// State variables
+static-var	bMoving, bAiming, bCanAim;
+static-var	bHolstered, bHolsterAction;
+static-var	gun;
+static-var	restore_delay;
+
+// define signals
+#define SIG_MOVEMENT	2
+#define SIG_AIM		4
+
+#define	ANIM_VARIABLE   bMoving
+#include "..\anim3d\armzeus\walk.bos"
+#include "..\anim3d\armzeus\walklegs.bos"
+#undef	ANIM_VARIABLE
+#define	ANIM_VARIABLE   TRUE
+#include "..\anim3d\armzeus\drawgun.bos"
+#include "..\anim3d\armzeus\holstgun.bos"
+#undef	ANIM_VARIABLE
+
+// Smoking damage
+#define SMOKEPIECE1 torso
+#include "smokeunit.h"
+
+
+MotionControl()
+	{
+	var	moving, aiming, just_moved;
+
+	// So the stand will get reset
+	just_moved = TRUE;
+
+	while (TRUE)
+		{
+		moving = bMoving;
+		aiming = bAiming;
+
+		if (moving)
+			{
+			if (aiming)
+				{
+				bCanAim = TRUE;
+				call-script walklegs();
+				}
+
+			if (NOT aiming)
+				{
+				bCanAim = FALSE;
+				call-script walk();
+				}
+
+			just_moved = TRUE;
+			}
+
+		if (NOT moving)
+			{
+			bCanAim = TRUE;
+
+			if (just_moved)
+				{
+				#define RESTORESPEED <200>
+
+				move pelvis to y-axis 0 speed [1];
+
+				turn rthigh to x-axis 0 speed RESTORESPEED;
+				turn rleg to x-axis 0 speed RESTORESPEED;
+
+				turn lthigh to x-axis 0 speed RESTORESPEED;
+				turn lleg to x-axis 0 speed RESTORESPEED;
+
+				if (NOT aiming)
+					{
+					turn torso to y-axis 0 speed <90>;
+					}
+
+				#undef RESTORESPEED
+
+				just_moved = FALSE;
+				}
+
+				sleep 100;
+			}
+		}
+	}
+
+Create()
+	{
+	hide flash;
+	show backgun;
+	hide gun;
+
+	// Initial State
+	bMoving = FALSE;
+	bAiming = FALSE;
+	bCanAim = TRUE;
+	bHolstered = TRUE;
+	bHolsterAction = FALSE;
+
+	gun = 0;
+	restore_delay = 3000;
+
+	// Motion control system
+	start-script MotionControl();
+	start-script SmokeUnit();
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 2;
+	}
+
+StartMoving()
+	{
+	bMoving = TRUE;
+	}
+
+StopMoving()
+	{
+	bMoving = FALSE;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=0;
+	}
+
+RestoreAfterDelay()
+	{
+	// Wait for something to happen
+	sleep restore_delay;
+
+	// If we got this far without being killed, then nothing is
+	// happening.  Restore the standard position
+
+	turn torso to y-axis 0 speed <90>;
+
+	set-signal-mask 0;		// We can't die during the holstering process
+
+	// Holster the weapon
+	bHolsterAction = TRUE;
+	start-script holstgun();
+	sleep 530;
+	show backgun;
+	hide gun;
+	sleep 640;
+	bHolstered = TRUE;
+	bHolsterAction = FALSE;
+
+	wait-for-turn torso around y-axis;
+	bAiming = FALSE;
+	}
+
+AimPrimary(heading,pitch)
+	{
+	var	somebody_was_playing_with_my_holster;
+	somebody_was_playing_with_my_holster = FALSE;
+
+	signal SIG_AIM;					// kill off other aim scripts
+	set-signal-mask SIG_AIM;		// so other scripts can kill us
+
+	// Announce that we would like to aim, and wait until we can
+	bAiming = TRUE;
+	while (!bCanAim || bHolsterAction)
+		{
+		if (bHolsterAction)
+			{
+			somebody_was_playing_with_my_holster = TRUE;
+			}
+		sleep 100;
+		}
+
+	if (somebody_was_playing_with_my_holster)
+		{
+		// Kill them, now that they are finished
+		set-signal-mask 0;			// Don't kill me!
+		signal SIG_AIM;				// Kill off other aim scripts
+		set-signal-mask SIG_AIM;	// Okay.  Other scripts can kill us now
+		}
+
+	// Begin aiming
+	turn torso to y-axis heading speed <90>;
+
+	// Draw the weapon
+	if (bHolstered)
+		{
+		set-signal-mask 0;			// We can't die while drawing the gun
+		bHolsterAction = TRUE;
+		start-script drawgun();
+		sleep 400;
+		show gun;
+		hide backgun;
+		sleep 380;
+		bHolstered = FALSE;
+		bHolsterAction = FALSE;
+		set-signal-mask SIG_AIM;	// Okay, the weapon is out.  We are at the mercy of other scripts.
+		}
+
+	// Aim
+	turn gun to x-axis (0 - pitch) speed <90>;
+
+	wait-for-turn torso around y-axis;
+	wait-for-turn gun around x-axis;
+
+	// Start a script that will wait, and restore the standard position if
+	// nothing happens after a while.  It inherits the SIG_AIM mask, so
+	// it will be killed if a re-aim occurrs
+	start-script RestoreAfterDelay();
+
+	return( TRUE );
+	}
+
+AimFromPrimary(piecenum)
+	{
+	piecenum=0;		// Aim from the torso
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=2;
+	}
+
+FirePrimary()
+	{
+	// Muzzle flash
+	show flash;
+	sleep 100;
+	hide flash;
+	}
+
+#include "EXPtype.h"
+
+Killed( severity, corpsetype )
+	{
+	hide flash;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode backgun type	BITMAPONLY | BITMAP1;
+		explode flash type	BITMAPONLY | BITMAP2;
+		explode ground type	BITMAPONLY | BITMAP3;
+		explode gun type	BITMAPONLY | BITMAP4;
+		explode lelbow type	BITMAPONLY | BITMAP5;
+		explode lhand type	BITMAPONLY | BITMAP1;
+		explode lleg type	BITMAPONLY | BITMAP2;
+		explode lloarm type	BITMAPONLY | BITMAP3;
+		explode lthigh type	BITMAPONLY | BITMAP4;
+		explode luparm type	BITMAPONLY | BITMAP5;
+		explode pelvis type	BITMAPONLY | BITMAP1;
+		explode rleg type	BITMAPONLY | BITMAP2;
+		explode rloarm type	BITMAPONLY | BITMAP3;
+		explode rthigh type	BITMAPONLY | BITMAP4;
+		explode ruparm type	BITMAPONLY | BITMAP5;
+		explode torso type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode backgun type	FALL | BITMAP1;
+		explode flash type	FALL | BITMAP2;
+		explode ground type	FALL | BITMAP3;
+		explode gun type	FALL | BITMAP4;
+		explode lelbow type	FALL | BITMAP5;
+		explode lhand type	FALL | BITMAP1;
+		explode lleg type	FALL | BITMAP2;
+		explode lloarm type	FALL | BITMAP3;
+		explode lthigh type	FALL | BITMAP4;
+		explode luparm type	FALL | BITMAP5;
+		explode pelvis type	FALL | BITMAP1;
+		explode rleg type	FALL | BITMAP2;
+		explode rloarm type	FALL | BITMAP3;
+		explode rthigh type	FALL | BITMAP4;
+		explode ruparm type	FALL | BITMAP5;
+		explode torso type	SHATTER | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode backgun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flash type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lelbow type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lhand type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode lloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode luparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode ruparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode torso type	SHATTER | BITMAP1;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode backgun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flash type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode ground type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gun type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lelbow type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lhand type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode lleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode luparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode pelvis type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rloarm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rthigh type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode ruparm type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode torso type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	return( 0 );
+	}

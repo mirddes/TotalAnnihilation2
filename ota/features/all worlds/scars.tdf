@@ -1,0 +1,239 @@
+[Scar01]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=scars;
+	seqname=scar01;
+
+	featuredead=Scar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar02]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=scars;
+	seqname=scar02;
+
+	featuredead=Scar02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar03]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=scars;
+	seqname=scar03;
+
+	featuredead=Scar03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar04]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=scars;
+	seqname=scar04;
+
+	featuredead=Scar04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar05]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=scars;
+	seqname=scar05;
+
+	featuredead=Scar05;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar06]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=scars;
+	seqname=scar06;
+
+	featuredead=Scar06;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar07]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=scars;
+	seqname=scar07;
+
+	featuredead=Scar07;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar08]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=scars;
+	seqname=scar08;
+
+	featuredead=Scar08;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar09]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=scars;
+	seqname=scar09;
+
+	featuredead=Scar09;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Scar10]
+	{
+	world=allworld;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=scars;
+	seqname=scar10;
+
+	featuredead=Scar10;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

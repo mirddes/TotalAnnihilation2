@@ -1,0 +1,13 @@
+MISSION 4.0004ARME
+Locate Core mining and communications facilities. Destroy all Core units.
+
+PRIORITY 1
+Core contamination of Empyrrean has gone too far! Destruction of Core mining and communications base on the frontier will disrupt Core data transmissions, and deprive Core of rare minerals.  
+
+INFO FEED  
+&R*WARNING* *WARNING* *WARNING*&
+The Core base is well protected. Establish a base in order to have sufficient strength to complete the mission. The enemy is aware of your intent and may send Pyro Assassin teams against you. A Zeus Model Arm-Zeus is provided for your protection. 
+
+&GRepair units when possible.&
+
+END

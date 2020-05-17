@@ -1,0 +1,1129 @@
+[Palm01]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=46;
+	filename=archipelago;
+	seqname=palm01;
+	seqnameshad=palm01shad;
+	seqnamereclamate=palm01rec;
+    	energy=250;
+
+	seqnameburn=palm01flame;
+	seqnameburnshad=;
+	featureburnt=palm01crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm01crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=46;
+	filename=archipelago;
+
+	seqname=palm01crisp;
+	seqnameshad=palm01crispshad;
+	seqnamereclamate=palm01crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm02]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=archipelago;
+	seqname=palm02;
+	seqnameshad=palm02shad;
+	seqnamereclamate=palm02rec;
+    	energy=250;
+
+	seqnameburn=palm02flames;
+	seqnameburnshad=;
+	featureburnt=palm02crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm02crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=archipelago;
+
+	seqname=palm02crisp;
+	seqnameshad=palm02crispshad;
+	seqnamereclamate=palm02crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm03]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=55;
+	filename=archipelago;
+	seqname=palm03;
+	seqnameshad=palm03shad;
+	seqnamereclamate=palm03rec;
+    	energy=250;
+
+	seqnameburn=palm03flame;
+	seqnameburnshad=;
+	featureburnt=palm03crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm03crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=55;
+	filename=archipelago;
+
+	seqname=palm03crisp;
+	seqnameshad=palm03crispshad;
+	seqnamereclamate=palm03crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm04]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=archipalms;
+	seqname=palm04;
+	seqnameshad=palm04shad;
+	seqnamereclamate=palm04rec;
+    	energy=250;
+
+	seqnameburn=palm04flame;
+	seqnameburnshad=;
+	featureburnt=palm04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm04crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=54;
+	filename=archipalms;
+
+	seqname=palm04crisp;
+	seqnameshad=palm04crispshad;
+	seqnamereclamate=palm04crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge03;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm05]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=56;
+	filename=archipalms;
+	seqname=palm05;
+	seqnameshad=palm05shad;
+	seqnamereclamate=palm05rec;
+    	energy=250;
+
+	seqnameburn=palm05flame;
+	seqnameburnshad=;
+	featureburnt=palm05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm05crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=56;
+	filename=archipalms;
+
+	seqname=palm05crisp;
+	seqnameshad=palm05crispshad;
+	seqnamereclamate=palm05crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm06]
+	{
+	world=archipelago;
+	description=Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=archipalms;
+	seqname=palm06;
+	seqnameshad=palm06shad;
+	seqnamereclamate=palm06rec;
+    	energy=250;
+
+	seqnameburn=palm06flame;
+	seqnameburnshad=;
+	featureburnt=palm06crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=palmboom;
+	featuredead=smudge04;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Palm06crisp]
+	{
+	world=archipelago;
+	description=Burnt Tree;
+	category=trees;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=66;
+	filename=archipalms;
+
+	seqname=palm06crisp;
+	seqnameshad=palm06crispshad;
+	seqnamereclamate=palm06crisprec;
+    	energy=50;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=smudge02;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=smudge03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=10;
+	}
+
+[Frond01]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+	seqname=frond01;
+	seqnameshad=;
+	seqnamereclamate=frond01rec;
+    	energy=75;
+
+	seqnameburn=frond01flame;
+	seqnameburnshad=;
+	featureburnt=frond01crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond01scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond02]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+	seqname=frond02;
+	seqnameshad=;
+	seqnamereclamate=frond02rec;
+    	energy=75;
+
+	seqnameburn=frond02flame;
+	seqnameburnshad=;
+	featureburnt=frond02crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond02scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond03]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+	seqname=frond03;
+	seqnameshad=;
+	seqnamereclamate=frond03rec;
+    	energy=75;
+
+	seqnameburn=frond03flame;
+	seqnameburnshad=;
+	featureburnt=frond03crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond03scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond04]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond04;
+	seqnameshad=;
+	seqnamereclamate=frond04rec;
+    	energy=75;
+
+	seqnameburn=frond04flame;
+	seqnameburnshad=;
+	featureburnt=frond04crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond04scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond05]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond05;
+	seqnameshad=;
+	seqnamereclamate=frond05rec;
+    	energy=75;
+
+	seqnameburn=frond05flame;
+	seqnameburnshad=;
+	featureburnt=frond05crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond05scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond06]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond06;
+	seqnameshad=;
+	seqnamereclamate=frond06rec;
+    	energy=75;
+
+	seqnameburn=frond06flame;
+	seqnameburnshad=;
+	featureburnt=frond06crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond06scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond07]
+	{
+	world=archipelago;
+	description=Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond07;
+	seqnameshad=;
+	seqnamereclamate=frond07rec;
+    	energy=75;
+
+	seqnameburn=frond07flame;
+	seqnameburnshad=;
+	featureburnt=frond07crisp;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+	burnweapon=TreeBurn;
+
+	seqnamedie=frondboom;
+	featuredead=frond07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=1;
+	reclaimable=1;
+	featurereclamate=frond07scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond01crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+
+	seqname=frond01crisp;
+	seqnameshad=;
+	seqnamereclamate=frond01crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond01scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond02crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+
+	seqname=frond02crisp;
+	seqnameshad=;
+	seqnamereclamate=frond02crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond02scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond03crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archipelago;
+
+	seqname=frond03crisp;
+	seqnameshad=;
+	seqnamereclamate=frond03crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond03scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond04crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+
+	seqname=frond04crisp;
+	seqnameshad=;
+	seqnamereclamate=frond04crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond04scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond04scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond05crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+
+	seqname=frond05crisp;
+	seqnameshad=;
+	seqnamereclamate=frond05crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond05scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond05scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond06crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+
+	seqname=frond06crisp;
+	seqnameshad=;
+	seqnamereclamate=frond06crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond06scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond06scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond07crisp]
+	{
+	world=archipelago;
+	description=Burnt Foliage;
+	category=foliage;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+
+	seqname=frond07crisp;
+	seqnameshad=;
+	seqnamereclamate=frond07crisprec;
+    	energy=25;
+
+	burnmin=5;
+	burnmax=15;
+	sparktime=5;
+	spreadchance=90;
+
+	seqnamedie=;
+	featuredead=frond07scar;
+
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=frond07scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=10;
+	}
+
+[Frond01Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond01crisp;
+
+	featuredead=frond01scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond01scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond02Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond02crisp;
+
+	featuredead=frond02scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond02scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond03Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond03crisp;
+
+	featuredead=frond03scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond03scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond04Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond04crisp;
+
+	featuredead=frond04scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond04scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond05Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond05crisp;
+
+	featuredead=frond05scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond05scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond06Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond06crisp;
+
+	featuredead=frond06scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond06scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Frond07Scar]
+	{
+	world=archipelago;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=archifronds;
+	seqname=frond07crisp;
+
+	featuredead=frond07scar;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	featurereclamate=frond07scar;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

@@ -1,0 +1,13 @@
+MISSION 4.0004ARME
+Repérer et détruire les unités Core. Notamment, celles de communication et d'exploitation minière.
+
+PRIORITE 1
+Il faut bloquer l'invasion Core d'Empyrrean. Détruisez les bases minières et les unités de communication situées à la frontière, afin de priver l'ennemi d'informations et de minerais.
+
+INFOS STRATEGIQUES
+&R*ATTENTION* *ATTENTION* *ATTENTION*&
+La base Core est bien protégée. Construisez une place forte afin de générer la puissance nécessaire à cette difficile mission. L'ennemi connaît vos plans et il risque d'utiliser des unités d'assaut Pyroman contre vous. Des modèles de Kbots Zeus sont mis à votre disposition pour vous protéger.
+
+&GRéparer les unités quand cela est possible.&
+
+FIN

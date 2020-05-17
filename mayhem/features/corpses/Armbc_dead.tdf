@@ -1,0 +1,36 @@
+[ARMBC_dead]
+{
+world=All Worlds;
+description=Invincible Wreckage;
+category=arm_corpses;
+object=ARMBC_dead;
+featuredead=armBC_heap;
+footprintx=7;
+footprintz=7;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=6641;
+damage=16150;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMBC_heap]
+{
+world=All Worlds;
+description=Invincible Wreckage;
+category=heaps;
+object=6x6c;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3520;
+damage=16150;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

@@ -1,0 +1,39 @@
+[ARMMANNI_WEAPON]
+	{
+	ID=175;
+	name=Annihilator Weapon;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=700;
+	reloadtime=6;
+	energypershot=1500;
+	weaponvelocity=1000;
+	areaofeffect=8;
+	accuracy=100;
+
+	soundstart=annigun1;
+	soundhit=xplolrg1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=144;	/* PURPLE */
+	color2=217;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=1300;
+		}
+	}

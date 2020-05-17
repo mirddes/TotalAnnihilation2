@@ -1,0 +1,359 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  lflare1, lflare2, dflare1a, dflare1b, dflare2a, dflare2b, missiles, base, body, 
+	   winglets, wing1, wing2, wing3, wing4, laser1, laser2,
+	   rotate1, duallas1, rotate2, duallas2, naughty;
+
+static-var  statechg_DesiredState, statechg_StateChanging, gun_1, gun_3, flying, dontfire;
+
+// Signal definitions
+#define SIG_AIM				2
+
+OffScreenCheck(base_xz, base_x, base_z, ground, heading)
+{
+	while (flying)
+	{
+		signal 4;
+		base_xz = get PIECE_XZ(base);
+		base_x = base_xz / 65536;
+		base_z = base_xz - base_x * 65536;
+		ground = get GROUND_HEIGHT(get PIECE_XZ(base));
+		if (base_z < 44 OR ground < 0) 
+		{
+			++dontfire;
+			if (dontfire >= 60)
+			{
+				dontfire=60;
+			}
+		}
+		if (base_z > 44 OR ground >= 0)
+		{
+			if (dontfire >= 1)								//3 second grace period - set to 4 if used, 1 if not
+			{
+				show naughty;
+			}
+//			if ((dontfire >= 1) && (dontfire < 4))			//This provides a warning, comment out if not used
+//			{
+//				show naughty;
+//				sleep 250;
+//				hide naughty;
+//			}
+		}	
+		if (base_z > 44 && ground >= 0)
+		{
+			--dontfire;
+			if (dontfire >= 1)								//set to 4 if warning used, 1 if not
+			{
+				show naughty;
+			}
+			if (dontfire <= 0)								//set to 3 if warning used, 0 if not
+			{
+				dontfire=0;
+				hide naughty;
+			}
+		}
+		sleep 1000;
+	}
+}
+
+
+activatescr()
+{
+	if( TRUE )
+	{
+		flying=1;
+		
+		start-script OffScreenCheck();
+		
+		turn rotate1 to y-axis <0> now;
+		turn duallas1 to y-axis <0> now;
+		
+		turn rotate2 to y-axis <0> now;
+		turn duallas2 to y-axis <0> now;
+		
+		turn rotate1 to y-axis <-30> speed <38.945055>;
+		turn duallas1 to y-axis <30> speed <38.945055>;
+		
+		turn rotate2 to y-axis <30> speed <38.945055>;
+		turn duallas2 to y-axis <-30> speed <38.945055>;
+		
+		sleep 1326;
+	}
+	sleep 60;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		turn rotate1 to y-axis <-30> now;
+		turn duallas1 to y-axis <30> now;
+		
+		turn rotate2 to y-axis <30> now;
+		turn duallas2 to y-axis <-30> now;
+			
+		turn rotate1 to y-axis <0> speed <38.945055>;
+		turn duallas1 to y-axis <0> speed <38.945055>;
+		
+		turn rotate2 to y-axis <0> speed <38.945055>;
+		turn duallas2 to y-axis <0> speed <38.945055>;
+		
+		flying=0;
+		
+		sleep 1326;
+	}
+	sleep 60;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script activatescr();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script deactivatescr();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	dontfire=0;
+	
+	gun_1=0;
+	gun_3=6;
+	
+	dont-cache naughty;
+	move naughty to y-axis  [6] now;
+	hide naughty;
+	
+	call-script InitState();
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	set ARMORED to 1;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	start-script RequestState(1);
+	set ARMORED to 0;
+}
+
+/*
+RestoreAfterDelay()
+{
+	sleep 3000;
+	turn thrust1 to x-axis <90> speed <38.945055>;
+	turn thrust2 to x-axis <90> speed <38.945055>;
+	turn body to x-axis <0> speed <38.945055>;
+}
+*/
+
+FirePrimary()
+{
+	if(gun_1 == 0)
+	{
+		sleep 100;
+	}
+	if(gun_1 == 1)
+	{
+		sleep 100;
+	}
+	if(gun_1 == 2)
+	{
+		sleep 100;
+	}
+	if(gun_1 == 3)
+	{
+		sleep 100;
+	}
+	if(gun_1 == 4)
+	{
+		sleep 100;
+	}
+	if(gun_1 == 5)
+	{
+		sleep 100;
+	}
+	++gun_1;
+	if(gun_1 == 6)
+	{
+		gun_1 = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+QueryPrimary(piecenum)
+{
+	if (dontfire)
+	{
+		move lflare1 to x-axis [32000] now;
+		move lflare1 to z-axis [-32000] now;
+		
+		move lflare2 to x-axis [32000] now;
+		move lflare2 to z-axis [-32000] now;
+		
+		move dflare1a to x-axis [32000] now;
+		move dflare1a to z-axis [-32000] now;
+		
+		move dflare1b to x-axis [32000] now;
+		move dflare1b to z-axis [-32000] now;
+		
+		move dflare2a to x-axis [32000] now;
+		move dflare2a to z-axis [-32000] now;
+		
+		move dflare2b to x-axis [32000] now;
+		move dflare2b to z-axis [-32000] now;
+		
+		
+	}
+	if (!dontfire)
+	{
+		move lflare1 to x-axis [0] now;
+		move lflare1 to z-axis [0] now;
+		
+		move lflare2 to x-axis [0] now;
+		move lflare2 to z-axis [0] now;
+		
+		move dflare1a to x-axis [0] now;
+		move dflare1a to z-axis [0] now;
+		
+		move dflare1b to x-axis [0] now;
+		move dflare1b to z-axis [0] now;
+		
+		move dflare2a to x-axis [0] now;
+		move dflare2a to z-axis [0] now;
+		
+		move dflare2b to x-axis [0] now;
+		move dflare2b to z-axis [0] now;
+	}
+	piecenum = gun_1;
+}
+
+FireTertiary()
+{
+	sleep 100;
+}
+
+QueryTertiary(piecenum)
+{
+	if (dontfire)
+	{
+		move missiles to x-axis [32000] now;
+		move missiles to z-axis [-32000] now;
+	}
+	if (!dontfire)
+	{
+		move missiles to x-axis [0.00] now;
+		move missiles to z-axis [0.00] now;
+	}
+	piecenum = missiles;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP5;
+		explode wing2 type BITMAPONLY | BITMAP1;
+		explode wing3 type BITMAPONLY | BITMAP1;
+		explode wing4 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type SHATTER | BITMAP5;
+		explode wing2 type SHATTER | BITMAP1;
+		explode wing3 type FALL | BITMAP1;
+		explode wing4 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type SHATTER | BITMAP5;
+		explode wing2 type SHATTER | BITMAP1;
+		explode wing3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode wing1 type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode wing2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode wing3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

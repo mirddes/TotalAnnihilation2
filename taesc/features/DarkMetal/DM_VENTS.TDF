@@ -1,0 +1,34 @@
+[Dark Metal Vent 1]
+	{
+	world=Darkmetal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=DM_VENTS;
+	seqname=dm-vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+
+[Dark Metal Vent 2]
+	{
+	world=Darkmetal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=DM_VENTS;
+	seqname=dm-vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	nodisplayinfo=1;
+	}
+

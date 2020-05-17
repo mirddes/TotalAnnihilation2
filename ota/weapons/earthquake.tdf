@@ -1,0 +1,21 @@
+[EARTHQUAKE]
+	{
+	ID=227;
+	name=Earthquake;
+	rendertype=4;
+	color=255;		// (No art)
+	meteor=1;
+	noradar=1;
+
+	weaponvelocity=300;
+	areaofeffect=512;
+	edgeeffectiveness=0.75;
+
+	shakemagnitude=32;
+	shakeduration=2;
+
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}

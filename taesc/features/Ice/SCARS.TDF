@@ -1,0 +1,175 @@
+[IceChunk02Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icescars;
+	seqname=chunk02scar;
+
+	featuredead=icechunk02scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk04Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=icescars;
+	seqname=chunk04scar;
+
+	featuredead=icechunk04scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk06Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=0;
+	filename=icescars;
+	seqname=chunk06scar;
+
+	featuredead=icechunk06scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk08Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=icescars;
+	seqname=chunk08scar;
+
+	featuredead=icechunk08scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk10Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=icescars;
+	seqname=chunk10scar;
+
+	featuredead=icechunk10scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk12Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=icescars;
+	seqname=chunk12scar;
+
+	featuredead=icechunk12scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk13Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=0;
+	filename=icescars;
+	seqname=chunk13scar;
+
+	featuredead=icechunk13scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[IceChunk14Scar]
+	{
+	world=Ice;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=icescars;
+	seqname=chunk14scar;
+
+	featuredead=icechunk14scar;
+
+	animtrans=1;
+	flamable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

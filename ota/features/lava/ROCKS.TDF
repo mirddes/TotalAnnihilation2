@@ -1,0 +1,1322 @@
+[LavaRockC012]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=10;
+	filename=lavarockc;
+	seqname=rockC012;
+	seqnameshad=rockC012shad;
+	seqnamereclamate=rockC012rec;
+	metal=75;
+	
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockC012scar;
+	featuredead=lavarockC012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockC012Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=rockC012scar;
+	seqnameshad=;
+
+	featuredead=lavarockC012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockC015]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=14;
+	filename=lavarockc;
+	seqname=rockC015;
+	seqnameshad=rockC015shad;
+	seqnamereclamate=rockC015rec;
+	metal=75;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavarockC015scar;
+	featuredead=lavarockC015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockC015Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=rockC015scar;
+	seqnameshad=;
+
+	featuredead=lavarockC015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockC008]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=6;
+	filename=lavarockc;
+	seqname=rockC008;
+	seqnameshad=rockC008shad;
+	seqnamereclamate=rockC008rec;
+	metal=75;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavarockC008scar;
+	featuredead=lavarockC008scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockC008Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=rockC008scar;
+	seqnameshad=;
+
+	featuredead=lavarockC008scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockC003]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=30;
+	filename=lavarockc;
+	seqname=rockC003;
+	seqnameshad=rockC003shad;
+	seqnamereclamate=rockC003rec;
+	metal=150;
+
+	seqnamedie=rockC003boom;
+	featurereclamate=lavarockC003scar;
+	featuredead=lavacrushC003;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockC003Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=rockC003scar;
+	seqnameshad=;
+
+	featuredead=lavarockC003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockC005]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=20;
+	filename=lavarockc;
+	seqname=rockc005;
+	seqnameshad=rockc005shad;
+	seqnamereclamate=rockC005rec;
+	metal=125;
+
+	seqnamedie=rockC005boom;
+	featurereclamate=lavarockC005scar;
+	featuredead=lavacrushC005;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockC005Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=rockC005scar;
+	seqnameshad=;
+
+	featuredead=lavarockC005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockB017]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=6;
+	filename=lavarockb;
+	seqname=rockb017;
+	seqnameshad=rockb017shad;
+	seqnamereclamate=rockB017rec;
+	metal=75;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockB017scar;
+	featuredead=lavarockB017scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockB017Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=rockB017scar;
+	seqnameshad=;
+
+	featuredead=lavarockB017scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockB012]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=14;
+	filename=lavarockb;
+	seqname=rockb012;
+	seqnameshad=rockb012shad;
+	seqnamereclamate=rockB012rec;
+	metal=125;
+
+	seqnamedie=rockB012boom;
+	featurereclamate=lavarockB012scar;
+	featuredead=lavacrushB012;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockB012Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=rockB012scar;
+	seqnameshad=;
+
+	featuredead=lavarockB012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockB011]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=14;
+	filename=lavarockb;
+	seqname=rockb011;
+	seqnameshad=rockb011shad;
+	seqnamereclamate=rockB011rec;
+	metal=75;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockB011scar;
+	featuredead=lavarockB011scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockB011Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=rockB011scar;
+	seqnameshad=;
+
+	featuredead=lavarockB011scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA016]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=6;
+	filename=lavarocka;
+	seqname=rocka016;
+	seqnameshad=rocka016shad;
+	seqnamereclamate=rockA016rec;
+	metal=75;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockA016scar;
+	featuredead=lavarockA016scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA016Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=rockA016scar;
+	seqnameshad=;
+
+	featuredead=lavarockA016scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA015]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=10;
+	filename=lavarocka;
+	seqname=rocka015;
+	seqnameshad=rocka015shad;
+	seqnamereclamate=rockA015rec;
+	metal=100;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavarockA015scar;
+	featuredead=lavarockA015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA015Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=rockA015scar;
+	seqnameshad=;
+
+	featuredead=lavarockA015scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA012]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=4;
+	filename=lavarocka;
+	seqname=rocka012;
+	seqnameshad=rocka012shad;
+	seqnamereclamate=rockA012rec;
+	metal=75;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavarockA012scar;
+	featuredead=lavarockA012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA012Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=rockA012scar;
+	seqnameshad=;
+
+	featuredead=lavarockA012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA008]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=32;
+	filename=lavarocka;
+	seqname=rocka008;
+	seqnameshad=rocka008shad;
+	seqnamereclamate=rockA008rec;
+	metal=100;
+
+	seqnamedie=rockA008boom;
+	featurereclamate=lavarockA008scar;
+	featuredead=lavacrushA008;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA008Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=rockA008scar;
+	seqnameshad=;
+
+	featuredead=lavarockA008scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA006]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=4;
+	filename=lavarocka;
+	seqname=rocka006;
+	seqnameshad=rocka006shad;
+	seqnamereclamate=rockA006rec;
+	metal=75;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockA006scar;
+	featuredead=lavarockA006scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA006Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=rockA006scar;
+	seqnameshad=;
+
+	featuredead=lavarockA006scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA004]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=8;
+	height=0;
+	filename=lavarocka;
+	seqname=rocka004;
+	seqnameshad=rocka004shad;
+	seqnamereclamate=rockA004rec;
+	metal=150;
+
+	seqnamedie=rockA004boom;
+	featurereclamate=lavarockA004scar;
+	featuredead=lavacrushA004;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA004Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=8;
+	height=0;
+	filename=lavascars;
+	seqname=rockA004scar;
+	seqnameshad=;
+
+	featuredead=lavarockA004scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA013]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=4;
+	filename=lavarocka;
+	seqname=rocka013;
+	seqnameshad=rocka013shad;
+	seqnamereclamate=rockA013rec;
+	metal=100;
+
+	seqnamedie=rockA013boom;
+	featurereclamate=lavarockA013scar;
+	featuredead=lavacrushA013;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA013Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=rockA013scar;
+	seqnameshad=;
+
+	featuredead=lavarockA013scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA005]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=2;
+	filename=lavarocka;
+	seqname=rocka005;
+	seqnameshad=rocka005shad;
+	seqnamereclamate=rockA005rec;
+	metal=75;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavarockA005scar;
+	featuredead=lavarockA005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA005Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=lavascars;
+	seqname=rockA005scar;
+	seqnameshad=;
+
+	featuredead=lavarockA005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaRockA003]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=8;
+	filename=lavarocka;
+	seqname=rocka003;
+	seqnameshad=rocka003shad;
+	seqnamereclamate=rockA003rec;
+	metal=125;
+
+	seqnamedie=rockA003boom;
+	featurereclamate=lavarockA003scar;
+	featuredead=lavacrushA003;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaRockA003Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=rockA003scar;
+	seqnameshad=;
+
+	featuredead=lavarockA003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrush01]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrush01scar;
+	featuredead=lavacrush01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrush01Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrush01scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrush02]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush02;
+	seqnameshad=lavacrush02shad;
+	seqnamereclamate=lavacrush02rec;
+	metal=25;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrush02scar;
+	featuredead=lavacrush02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrush02Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush02scar;
+	seqnameshad=;
+
+	featuredead=lavacrush02scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrush03]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush03;
+	seqnameshad=lavacrush03shad;
+	seqnamereclamate=lavacrush03rec;
+	metal=25;
+
+	seqnamedie=rockboom01;
+	featurereclamate=lavacrush03scar;
+	featuredead=lavacrush03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrush03Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush03scar;
+	seqnameshad=;
+
+	featuredead=lavacrush03scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushA003]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushA003scar;
+	featuredead=lavacrushA003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushA003Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushA003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushA004]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=8;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushA004scar;
+	featuredead=lavacrushA004scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushA004Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=8;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushA004scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushA008]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushA008scar;
+	featuredead=lavacrushA008scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushA008Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushA008scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushA013]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush02;
+	seqnameshad=lavacrush02shad;
+	seqnamereclamate=lavacrush02rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushA013scar;
+	featuredead=lavacrushA013scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushA013Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush02scar;
+	seqnameshad=;
+
+	featuredead=lavacrushA013scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushB012]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushB012scar;
+	featuredead=lavacrushB012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushB012Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushB012scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushC003]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushC003scar;
+	featuredead=lavacrushC003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushC003Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=6;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushC003scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}
+
+[LavaCrushC005]
+	{
+	world=lava;
+	description=Rock;
+	category=rocks;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavastuff2;
+	seqname=lavacrush01;
+	seqnameshad=lavacrush01shad;
+	seqnamereclamate=lavacrush01rec;
+	metal=50;
+
+	seqnamedie=rockboom02;
+	featurereclamate=lavacrushC005scar;
+	featuredead=lavacrushC005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	reclaimable=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[LavaCrushC005Scar]
+	{
+	world=lava;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=lavascars;
+	seqname=lavacrush01scar;
+	seqnameshad=;
+
+	featuredead=lavacrushC005scar;
+
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=20000;
+	}

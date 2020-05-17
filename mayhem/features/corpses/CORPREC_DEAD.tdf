@@ -1,0 +1,37 @@
+[CORPREC_DEAD]
+{
+world=All Worlds;
+description=Precluder Wreckage;
+category=core_corpses;
+object=CORPREC_DEAD;
+featuredead=CORPREC_HEAP;
+footprintx=4;
+footprintz=4;
+height=30;
+blocking=1;
+hitdensity=121;
+metal=5427;
+damage=8400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[CORPREC_HEAP]
+{
+world=All Worlds;
+description=Precluder rubble;
+category=heaps;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2714;
+damage=8400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

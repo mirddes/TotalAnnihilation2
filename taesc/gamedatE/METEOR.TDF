@@ -1,0 +1,8 @@
+[Default]
+	{
+	MeteorWeapon = Meteor;
+	MeteorRadius = 300;		// A bit under a screen in size
+	MeteorDensity = 2;		// About two strikes per second
+	MeteorDuration = 5;		// Five seconds per strike
+	MeteorInterval = 60;	// One minute between strikes
+	}

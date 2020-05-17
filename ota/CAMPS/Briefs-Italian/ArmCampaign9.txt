@@ -1,0 +1,10 @@
+MISSIONE 9.0001ARMT
+Prendere possesso degli impianti di idratazione.
+
+&YPRIORITÀ&
+Abbiamo sempre tenuto nascoste le nostre forze aeree, nella lotta contro il nemico... Ora è giunto il momento di sorprenderlo. &GCostruite una fabbrica di velivoli& e utilizzate le unità prodotte per spazzare via la flebile resistenza aerea nemica. &GCostruite un’unità di trasporto Atlas& per raggiungere le forze di terra Core e prendere possesso del loro impianto di idratazione. 
+
+INFORMAZIONI UTILI
+L’impianto di idratazione è localizzato all’interno di un territorio fortificato e frequentemente pattugliato. Il miglior modo per portare a termine la missione consiste nel sorvolare le massicce difese terrestri Core affrontando la resistenza aerea.
+
+FINE

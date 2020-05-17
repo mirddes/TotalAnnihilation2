@@ -1,0 +1,36 @@
+[Generic Unit]
+	{
+	description = Just Plain 'ol boring units;
+	}
+[CTRL_L]
+	{
+	description = Defenses;
+	}
+[CTRL_X]
+	{
+	description = X-weapons -- Nukes, Berthas...;
+	}
+[Underwater]
+	{
+	description = Underwater units;
+	}
+[Metal]
+	{
+	description = Metal producers;
+	}
+[CTRL_F]
+	{
+	description = Unit Creation plant;
+	}
+[CTRL_B]
+	{
+	description = C-units;
+	}
+[CTRL_Q]
+	{
+	description = Anti-Air defenses;
+	}
+[Energy]
+	{
+	description = Energy producers;
+	}

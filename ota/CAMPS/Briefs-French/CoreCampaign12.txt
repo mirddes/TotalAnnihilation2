@@ -1,0 +1,7 @@
+MISSION 12.4CORE
+Apportez le Zeus au Passage Stellaire. Emparez-vous de cette porte galactique.
+
+STATISTIQUES DE PROBABILITES:
+Le Passage Stellaire est situé sur une île au nord (&R77%, marge d'erreur:2%&).
+
+Exécution

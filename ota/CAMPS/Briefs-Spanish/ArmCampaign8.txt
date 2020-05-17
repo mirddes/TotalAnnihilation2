@@ -1,0 +1,12 @@
+MISIÓN 8.0003CLANTH
+Conquistar la Puerta Galáctica.
+
+&YPRIORIDAD ESPECIAL& &YPRINCIPAL&
+Una escuadra de motoras Skeeter ha encontrado una isla muy vigilada en dirección norte. Los niveles de emisión de energía indican que allí puede haber una Puerta Galáctica del Núcleo. Localiza la Puerta y conquístala. ¡Así Thalassean quedará bajo el dominio del Clan... y tendrá la puerta abierta hacia otro planeta del Núcleo!.
+
+
+
+INFORMACIÓN
+Es vital que construyas de inmediato una base segura. ¡El Núcleo no entregará la Puerta sin luchar! &G¡Ten cuidado para no destruir la Puerta con bombardeos desde el mar!&
+
+FIN

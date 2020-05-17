@@ -1,0 +1,17 @@
+[FloatingTeeth]
+{
+	world=allworld;
+	description=Shark's Teeth;
+	category=dragonteeth;
+	object=armfdrag;
+	footprintx=2;
+	footprintz=2;
+	height=75;
+	blocking=1;
+	hitdensity=100;
+	metal=15;
+	damage=3500;
+	reclaimable=1;
+	autoreclaimable=0;
+	nodrawundergray=1;
+}

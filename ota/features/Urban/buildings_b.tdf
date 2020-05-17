@@ -1,0 +1,1723 @@
+[Building01]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=11;
+	footprintz=10;
+	height=460;
+	filename=ur-buildings1;
+	seqname=ur-building01;
+	seqnameshad=u-buildshad01;
+	seqnamereclamate=u-buildrec01;
+	metal=10400;
+
+	seqnamedie=ur-boom01;
+	featuredead=Building01b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=3000;
+	}
+
+[Building01b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=11;
+	footprintz=10;
+	height=400;
+	filename=ur-buildings1;
+	seqname=u-buildwreck01;
+	seqnameshad=u-wreckshad01;
+	seqnamereclamate=u-wreckrec01;
+	metal=8000;
+
+	seqnamedie=ur-boom01b;
+	featuredead=Building01c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building01c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=11;
+	footprintz=10;
+	height=100;
+	filename=ur-buildings1;
+	seqname=u-gird01;
+	seqnameshad=u-girdshad01;
+	seqnamereclamate=u-girdrec01;
+	metal=4000;
+
+	seqnamedie=ur-boom01c;
+	featuredead=Buildingscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building02]
+	{
+	world=urban;
+	description=Willy Gates Bldg;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=11;
+	height=200;
+	filename=ur-buildings1;
+	seqname=ur-building02;
+	seqnameshad=u-buildshad02;
+	seqnamereclamate=u-buildrec02;
+	metal=6000;
+
+	seqnamedie=ur-boom02;
+	featuredead=Building02b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building02b]
+	{
+	world=urban;
+	description=Willy Gates Bldg;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=11;
+	height=175;
+	filename=ur-buildings1;
+	seqname=u-buildwreck02;
+	seqnameshad=u-wreckshad02;
+	seqnamereclamate=u-wreckrec02;
+	metal=4000;
+
+	seqnamedie=ur-boom02b;
+	featuredead=Building02c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building02c]
+	{
+	world=urban;
+	description=Willy Gates Bldg;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=11;
+	height=385;
+	filename=ur-buildings1;
+	seqname=u-gird02;
+	seqnameshad=u-girdshad02;
+	seqnamereclamate=u-girdrec02;
+	metal=3000;
+
+	seqnamedie=ur-boom02c;
+	featuredead=Buildingscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building03]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=10;
+	height=280;
+	filename=ur-buildings1;
+	seqname=ur-building03;
+	seqnameshad=u-buildshad03;
+	seqnamereclamate=u-buildrec03;
+	metal=7500;
+
+	seqnamedie=ur-boom03;
+	featuredead=Building03b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building03b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=10;
+	height=200;
+	filename=ur-buildings1;
+	seqname=u-buildwreck03;
+	seqnameshad=u-wreckshad03;
+	seqnamereclamate=u-wreckrec03;
+	metal=5000;
+
+	seqnamedie=ur-boom03b;
+	featuredead=Building03c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building03c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=10;
+	height=185;
+	filename=ur-buildings1;
+	seqname=u-gird03;
+	seqnameshad=u-girdshad03;
+	seqnamereclamate=u-girdrec03;
+	metal=2500;
+
+	seqnamedie=ur-boom03c;
+	featuredead=Buildingscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building04]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=8;
+	height=490;
+	filename=ur-buildings1;
+	seqname=ur-building04;
+	seqnameshad=u-buildshad04;
+	seqnamereclamate=u-buildrec04;
+	metal=10000;
+
+	seqnamedie=ur-boom04;
+	featuredead=Building04b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=4000;
+	}
+
+[Building04b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=8;
+	height=400;
+	filename=ur-buildings1;
+	seqname=u-buildwreck04;
+	seqnameshad=u-wreckshad04;
+	seqnamereclamate=u-wreckrec04;
+	metal=7000;
+
+	seqnamedie=ur-boom04b;
+	featuredead=Building04c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2500;
+	}
+
+[Building04c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=8;
+	height=385;
+	filename=ur-buildings1;
+	seqname=u-gird04;
+	seqnameshad=u-girdshad04;
+	seqnamereclamate=u-girdrec04;
+	metal=4000;
+
+	seqnamedie=ur-boom04c;
+	featuredead=Buildingscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+
+[Building05]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=7;
+	height=420;
+	filename=ur-buildings1;
+	seqname=ur-building05;
+	seqnameshad=u-buildshad05;
+	seqnamereclamate=u-buildrec05;
+	metal=7000;
+
+	seqnamedie=ur-boom05;
+	featuredead=Building05b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=3000;
+	}
+
+[Building05b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=7;
+	height=380;
+	filename=ur-buildings1;
+	seqname=u-buildwreck05;
+	seqnameshad=u-wreckshad05;
+	seqnamereclamate=u-wreckrec05;
+	metal=4000;
+
+	seqnamedie=ur-boom05b;
+	featuredead=Building05c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building05c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=9;
+	footprintz=7;
+	height=325;
+	filename=ur-buildings1;
+	seqname=u-gird05;
+	seqnameshad=u-girdshad05;
+	seqnamereclamate=u-girdrec05;
+	metal=2500;
+
+	seqnamedie=ur-boom05c;
+	featuredead=Buildingscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+
+
+
+
+[Buildingscar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=11;
+	footprintz=10;
+	height=0;
+	filename=ur-leftovers;
+	seqname=ur-buildscar01;
+
+	featuredead=Buildingscar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Buildingscar02]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=9;
+	footprintz=14;
+	height=0;
+	filename=ur-buildings1;
+
+	seqname=ur-buildscar02;
+
+	featuredead=Buildingscar02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar03]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=9;
+	footprintz=10;
+	height=0;
+	filename=ur-buildings1;
+	seqname=ur-buildscar03;
+
+	featuredead=Buildingscar03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar04]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=0;
+	filename=ur-buildings1;
+	seqname=ur-buildscar04;
+
+	featuredead=Buildingscar04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar05]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=9;
+	footprintz=7;
+	height=0;
+	filename=ur-buildings1;
+	seqname=ur-buildscar05;
+
+	featuredead=Buildingscar05;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Building06]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=6;
+	height=220;
+	filename=ur-buildings2;
+	seqname=ur-building06;
+	seqnameshad=u-buildshad06;
+	seqnamereclamate=u-buildrec06;
+	metal=11000;
+
+	seqnamedie=ur-boom06;
+	featuredead=Building06b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=4000;
+	}
+
+[Building06b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=6;
+	height=220;
+	filename=ur-buildings2;
+	seqname=u-buildwreck06;
+	seqnameshad=u-wreckshad06;
+	seqnamereclamate=u-wreckrec06;
+	metal=9000;
+
+	seqnamedie=ur-boom06b;
+	featuredead=Building06c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2500;
+	}
+
+[Building06c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=6;
+	height=180;
+	filename=ur-buildings2;
+	seqname=u-gird06;
+	seqnameshad=u-girdshad06;
+	seqnamereclamate=u-girdrec06;
+	metal=5000;
+
+	seqnamedie=ur-boom06c;
+	featuredead=Buildingscar06;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building07]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=460;
+	filename=ur-buildings2;
+	seqname=ur-building07;
+	seqnameshad=u-buildshad07;
+	seqnamereclamate=u-buildrec07;
+	metal=9985;
+
+	seqnamedie=ur-boom07;
+	featuredead=Building07b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar07;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=3800;
+	}
+
+[Building07b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=420;
+	filename=ur-buildings2;
+	seqname=u-buildwreck07;
+	seqnameshad=u-wreckshad07;
+	seqnamereclamate=u-wreckrec07;
+	metal=5800;
+
+	seqnamedie=ur-boom07b;
+	featuredead=Building07c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar07;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2500;
+	}
+
+[Building07c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=250;
+	filename=ur-buildings2;
+	seqname=u-gird07;
+	seqnameshad=u-girdshad07;
+	seqnamereclamate=u-girdrec07;
+	metal=3500;
+
+	seqnamedie=ur-boom07c;
+	featuredead=Buildingscar07;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar07;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building08]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=110;
+	filename=ur-buildings2;
+	seqname=ur-building08;
+	seqnameshad=u-buildshad08;
+	seqnamereclamate=u-buildrec08;
+	metal=2000;
+
+	seqnamedie=ur-boom08;
+	featuredead=Building08b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar08;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building08b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=100;
+	filename=ur-buildings2;
+	seqname=u-buildwreck08;
+	seqnameshad=u-wreckshad08;
+	seqnamereclamate=u-wreckrec08;
+	metal=1000;
+
+	seqnamedie=ur-boom08b;
+	featuredead=Building08c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar08;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=925;
+	}
+
+[Building08c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=85;
+	filename=ur-buildings2;
+	seqname=u-gird08;
+	seqnameshad=u-girdshad08;
+	seqnamereclamate=u-girdrec08;
+	metal=500;
+
+	seqnamedie=ur-boom08c;
+	featuredead=Buildingscar08;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar08;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=500;
+	}
+
+[Building09]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=110;
+	filename=ur-buildings2;
+	seqname=ur-building09;
+	seqnameshad=u-buildshad09;
+	seqnamereclamate=u-buildrec09;
+	metal=1850;
+
+	seqnamedie=ur-boom09;
+	featuredead=Building09b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar09;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building09b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=95;
+	filename=ur-buildings2;
+	seqname=u-buildwreck09;
+	seqnameshad=u-wreckshad09;
+	seqnamereclamate=u-wreckrec09;
+	metal=875;
+
+	seqnamedie=ur-boom09b;
+	featuredead=Building09c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar09;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=750;
+	}
+
+[Building09c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=70;
+	filename=ur-buildings2;
+	seqname=u-gird09;
+	seqnameshad=u-girdshad09;
+	seqnamereclamate=u-girdrec09;
+	metal=500;
+
+	seqnamedie=ur-boom09c;
+	featuredead=Buildingscar09;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar09;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=500;
+	}
+
+[Building10]
+	{
+	world=urban;
+	description=Cheese Factory;
+	category=buildings;
+	animating=0;
+	footprintx=7;
+	footprintz=11;
+	height=105;
+	filename=ur-buildings2;
+	seqname=ur-building10;
+	seqnameshad=u-buildshad10;
+	seqnamereclamate=u-buildrec10;
+	metal=6500;
+
+	seqnamedie=ur-boom10;
+	featuredead=Building10b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar10;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building10b]
+	{
+	world=urban;
+	description=Cheese Factory;
+	category=buildings;
+	animating=0;
+	footprintx=7;
+	footprintz=11;
+	height=95;
+	filename=ur-buildings2;
+	seqname=u-buildwreck10;
+	seqnameshad=u-wreckshad10;
+	seqnamereclamate=u-buildrec10;
+	metal=3500;
+
+	seqnamedie=ur-boom10b;
+	featuredead=Building10c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar10;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1500;
+	}
+
+[Building10c]
+	{
+	world=urban;
+	description=Cheese Factory;
+	category=buildings;
+	animating=0;
+	footprintx=7;
+	footprintz=11;
+	height=85;
+	filename=ur-buildings2;
+	seqname=u-gird10;
+	seqnameshad=u-girdshad10;
+	seqnamereclamate=u-girdrec10;
+	metal=1500;
+
+	seqnamedie=ur-boom10c;
+	featuredead=Buildingscar10;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar10;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=875;
+	}
+
+
+
+
+
+[Buildingscar06]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=12;
+	footprintz=6;
+	height=0;
+	filename=ur-leftovers;
+	seqname=ur-buildscar06;
+
+	featuredead=Buildingscar06;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Buildingscar07]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=12;
+	footprintz=10;
+	height=0;
+	filename=ur-buildings2;
+	seqname=ur-buildscar07;
+
+	featuredead=Buildingscar07;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar08]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=6;
+	footprintz=4;
+	height=0;
+	filename=ur-buildings2;
+	seqname=ur-buildscar08;
+
+	featuredead=Buildingscar08;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar09]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=ur-buildings2;
+	seqname=ur-buildscar09;
+
+	featuredead=Buildingscar09;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar10]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=7;
+	footprintz=11;
+	height=0;
+	filename=ur-buildings2;
+	seqname=ur-buildscar10;
+
+	featuredead=Buildingscar10;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+
+
+
+
+
+
+
+
+
+
+[Building11]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=8;
+	height=140;
+	filename=ur-buildings3;
+	seqname=ur-building11;
+	seqnameshad=u-buildshad11;
+	seqnamereclamate=u-buildrec11;
+	metal=7000;
+
+	seqnamedie=ur-boom11;
+	featuredead=Building11b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar11;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2500;
+	}
+
+[Building11b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=8;
+	height=120;
+	filename=ur-buildings3;
+	seqname=u-buildwreck11;
+	seqnameshad=u-wreckshad11;
+	seqnamereclamate=u-wreckrec11;
+	metal=5000;
+
+	seqnamedie=ur-boom11b;
+	featuredead=Building11c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar11;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building11c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=8;
+	height=95;
+	filename=ur-buildings3;
+	seqname=u-gird11;
+	seqnameshad=u-girdshad11;
+	seqnamereclamate=u-girdrec11;
+	metal=3000;
+
+	seqnamedie=ur-boom11c;
+	featuredead=Buildingscar11;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar11;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building12]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=230;
+	filename=ur-buildings3;
+	seqname=ur-building12;
+	seqnameshad=u-buildshad12;
+	seqnamereclamate=u-buildrec12;
+	metal=4250;
+
+	seqnamedie=ur-boom12;
+	featuredead=Building12b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar12;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=1000;
+	}
+
+[Building12b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=200;
+	filename=ur-buildings3;
+	seqname=u-buildwreck12;
+	seqnameshad=u-wreckshad12;
+	seqnamereclamate=u-wreckrec12;
+	metal=2600;
+
+	seqnamedie=ur-boom12b;
+	featuredead=Building12c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar12;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=750;
+	}
+
+[Building12c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=200;
+	filename=ur-buildings3;
+	seqname=u-gird12;
+	seqnameshad=u-girdshad12;
+	seqnamereclamate=u-girdrec12;
+	metal=908;
+
+	seqnamedie=ur-boom12c;
+	featuredead=Buildingscar12;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar12;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=500;
+	}
+
+[Building13]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=140;
+	filename=ur-buildings3;
+	seqname=ur-building13;
+	seqnameshad=u-buildshad13;
+	seqnamereclamate=u-buildrec13;
+	metal=4000;
+
+	seqnamedie=ur-boom13;
+	featuredead=Building13b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar13;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=1000;
+	}
+
+[Building13b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=100;
+	filename=ur-buildings3;
+	seqname=u-buildwreck13;
+	seqnameshad=u-wreckshad13;
+	seqnamereclamate=u-wreckrec13;
+	metal=1500;
+
+	seqnamedie=ur-boom13b;
+	featuredead=Building13c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar13;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=750;
+	}
+
+[Building13c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=385;
+	filename=ur-buildings3;
+	seqname=u-gird13;
+	seqnameshad=u-girdshad13;
+	seqnamereclamate=u-girdrec13;
+	metal=975;
+
+	seqnamedie=ur-boom13c;
+	featuredead=Buildingscar13;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar13;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=500;
+	}
+
+[Building14]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=160;
+	filename=ur-buildings3;
+	seqname=ur-building14;
+	seqnameshad=u-buildshad14;
+	seqnamereclamate=u-buildrec14;
+	metal=5000;
+
+	seqnamedie=ur-boom14;
+	featuredead=Building14b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar14;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building14b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=100;
+	filename=ur-buildings3;
+	seqname=u-buildwreck14;
+	seqnameshad=u-wreckshad14;
+	seqnamereclamate=u-wreckrec14;
+	metal=1000;
+
+	seqnamedie=ur-boom14b;
+	featuredead=Building14c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar14;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=70;
+	damage=975;
+	}
+
+[Building14c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=50;
+	filename=ur-buildings3;
+	seqname=u-gird14;
+	seqnameshad=u-girdshad14;
+	seqnamereclamate=u-girdrec14;
+	metal=500;
+
+	seqnamedie=ur-boom14c;
+	featuredead=Buildingscar14;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar14;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=55;
+	damage=500;
+	}
+
+[Building15]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=170;
+	filename=ur-buildings3;
+	seqname=ur-building15;
+	seqnameshad=u-buildshad15;
+	seqnamereclamate=u-buildrec15;
+	metal=2900;
+
+	seqnamedie=ur-boom15;
+	featuredead=Building15b;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar15;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[Building15b]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=95;
+	filename=ur-buildings3;
+	seqname=u-buildwreck15;
+	seqnameshad=u-wreckshad15;
+	seqnamereclamate=u-wreckrec15;
+	metal=1005;
+
+	seqnamedie=ur-boom15b;
+	featuredead=Building15c;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar15;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=90;
+	damage=1500;
+	}
+
+[Building15c]
+	{
+	world=urban;
+	description=Building;
+	category=buildings;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=90;
+	filename=ur-buildings3;
+	seqname=u-gird15;
+	seqnameshad=u-girdshad15;
+	seqnamereclamate=u-girdrec15;
+	metal=753;
+
+	seqnamedie=ur-boom15c;
+	featuredead=Buildingscar15;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=Buildingscar15;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=975;
+	}
+
+
+
+
+
+
+[Buildingscar11]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=7;
+	height=0;
+	filename=ur-leftovers;
+	seqname=ur-buildscar11;
+
+	featuredead=Buildingscar11;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[Buildingscar12]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=ur-buildings3;
+	seqname=ur-buildscar12;
+
+	featuredead=Buildingscar12;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar13]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=0;
+	filename=ur-buildings3;
+	seqname=ur-buildscar13;
+
+	featuredead=Buildingscar13;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar14]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=0;
+	filename=ur-buildings3;
+	seqname=ur-buildscar14;
+
+	featuredead=Buildingscar14;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+[Buildingscar15]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=ur-buildings3;
+	seqname=ur-buildscar15;
+
+	featuredead=Buildingscar15;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

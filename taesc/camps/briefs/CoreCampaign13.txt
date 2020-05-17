@@ -1,0 +1,8 @@
+MISSION 13.1CORE
+
+INTELL-TAP:
+Destroy the guards at the Gate. Capture what is useful to you. Use your D-Gun on the rest. There is no need to build a base. The plant life provides a source for energy should you need it.  The seas are unsafe - use the Atlas. Move quickly, and capture the advanced radar tower on the mainland. 
+
+&RCapture the Atlas and use it to fly to the mainland. Capture the advanced radar tower.&
+
+DO SO NOW.

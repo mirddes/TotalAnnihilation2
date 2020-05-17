@@ -1,0 +1,150 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, base, wing1, wing2, rearthrust;
+
+static-var  gun_1, busy_2;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MoveRate2()
+{
+	if( Rand( 1, 10 ) == 1 AND ( !busy_2 ) )
+	{
+		busy_2 = 1;
+		turn base to z-axis <240.00> speed <120.00>;
+		wait-for-turn base around z-axis;
+		turn base to z-axis <120.00> speed <180.00>;
+		wait-for-turn base around z-axis;
+		turn base to z-axis <0.00> speed <120.00>;
+		busy_2 = 0;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	gun_1 = 0;
+	busy_2 = 0;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	move wing1 to x-axis [0.00] now;
+	move wing1 to x-axis [2.00] speed [2.00];
+	move wing1 to z-axis [0.00] now;
+	move wing1 to z-axis [-0.55] speed [0.55];
+	move wing2 to x-axis [0.00] now;
+	move wing2 to x-axis [-2.25] speed [2.25];
+	move wing2 to z-axis [0.00] now;
+	move wing2 to z-axis [-0.60] speed [0.60];
+}
+
+Deactivate()
+{
+	move wing1 to x-axis [2.00] now;
+	move wing1 to x-axis [0.00] speed [2.00];
+	move wing1 to z-axis [-0.55] now;
+	move wing1 to z-axis [0.00] speed [0.55];
+	move wing2 to x-axis [-2.25] now;
+	move wing2 to x-axis [0.00] speed [2.25];
+	move wing2 to z-axis [-0.60] now;
+	move wing2 to z-axis [0.00] speed [0.60];
+}
+
+QueryPrimary(piecenum)
+{
+	if( !gun_1 )
+	{
+	piecenum = flare1;
+	}
+	if( gun_1 )
+	{
+	piecenum = flare2;
+	}
+	gun_1 = !gun_1;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = base;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type BITMAPONLY | BITMAP2;
+		explode wing2 type BITMAPONLY | BITMAP3;
+		explode rearthrust type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode wing1 type SHATTER | BITMAP2;
+		explode wing2 type SHATTER | BITMAP3;
+		explode rearthrust type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode wing1 type SHATTER | BITMAP2;
+	explode wing2 type SHATTER | BITMAP3;
+	explode rearthrust type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

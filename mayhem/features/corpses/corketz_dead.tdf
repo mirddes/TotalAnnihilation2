@@ -1,0 +1,36 @@
+[corketz_dead]
+{
+World=All Worlds;
+Description=Ketzer Wreckage;
+Category=core_corpses;
+Object=corketz_dead;
+FeatureDead=corketz_heap;
+FootPrintx=3;
+FootPrintz=3;
+Height=30;
+Blocking=1;
+HitDensity=100;
+Metal=6732;
+Damage=12210;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+[corketz_heap]
+{
+World=All Worlds;
+Description=Ketzer Wreckage;
+Category=heaps;
+Object=3x3a;
+FootPrintx=3;
+FootPrintz=3;
+Height=4;
+Blocking=0;
+HitDensity=100;
+Metal=3366;
+Damage=13210;
+Reclaimable=1;
+FeatureReclamate=smudge01;
+SeqNameReclamate=tree1reclamate;
+}
+

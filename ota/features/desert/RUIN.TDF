@@ -1,0 +1,439 @@
+[DryRuin01]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=4;
+	footprintz=4;
+	height=15;
+	filename=ruins1;
+	seqname=ruin01;
+	seqnameshad=ruin01shad;
+	
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin02]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=15;
+	filename=ruins1;
+	seqname=ruin02;
+	seqnameshad=ruin02shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin03]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=7;
+	footprintz=4;
+	height=15;
+	filename=ruins1;
+	seqname=ruin03;
+	seqnameshad=ruin03shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin04]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=15;
+	filename=ruins1;
+	seqname=ruin04;
+	seqnameshad=ruin04shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin05]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=15;
+	filename=ruins1;
+	seqname=ruin05;
+	seqnameshad=ruin05shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin06]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=15;
+	filename=ruins1;
+	seqname=ruin06;
+	seqnameshad=ruin06shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin07]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=4;
+	footprintz=5;
+	height=15;
+	filename=ruins1;
+	seqname=ruin07;
+	seqnameshad=ruin07shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin08]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=2;
+	footprintz=6;
+	height=15;
+	filename=ruins1;
+	seqname=ruin08;
+	seqnameshad=ruin08shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin09]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=15;
+	filename=ruins1;
+	seqname=ruin09;
+	seqnameshad=ruin09shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin10]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=6;
+	footprintz=8;
+	height=15;
+	filename=ruins1;
+	seqname=ruin10;
+	seqnameshad=ruin10shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin11]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=15;
+	filename=ruins1;
+	seqname=ruin11;
+	seqnameshad=ruin11shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin12]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=15;
+	filename=ruins1;
+	seqname=ruin12;
+	seqnameshad=ruin12shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin13]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=6;
+	footprintz=2;
+	height=15;
+	filename=ruins1;
+	seqname=ruin13;
+	seqnameshad=ruin13shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin14]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=5;
+	footprintz=5;
+	height=15;
+	filename=ruins1;
+	seqname=ruin14;
+	seqnameshad=ruin14shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin15]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=15;
+	filename=ruins1;
+	seqname=ruin15;
+	seqnameshad=ruin15shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin16]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=5;
+	footprintz=2;
+	height=15;
+	filename=ruins1;
+	seqname=ruin16;
+	seqnameshad=ruin16shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin17]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=15;
+	filename=ruins1;
+	seqname=ruin17;
+	seqnameshad=ruin17shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin18]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=2;
+	footprintz=7;
+	height=15;
+	filename=ruins1;
+	seqname=ruin18;
+	seqnameshad=ruin18shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin19]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=5;
+	footprintz=4;
+	height=15;
+	filename=ruins1;
+	seqname=ruin19;
+	seqnameshad=ruin19shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}
+
+[DryRuin20]
+	{
+	world=Desert;
+	description=Ruin;
+	category=ruin;
+	animating=0;
+	footprintx=6;
+	footprintz=5;
+	height=15;
+	filename=ruins1;
+	seqname=ruin20;
+	seqnameshad=ruin20shad;
+
+
+	animtrans=0;
+	shadtrans=1;
+	indestructible=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	}

@@ -1,0 +1,38 @@
+[armemg_dead]
+{
+world=All Worlds;
+description=Sunspot Wreckage;
+category=arm_corpses;
+object=armemg_dead;
+featuredead=armemg_heap;
+footprintx=3;
+footprintz=3;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=184;
+damage=1640;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armemg_heap]
+{
+world=All Worlds;
+description=Sunspot Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=92;
+damage=1640;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+
+

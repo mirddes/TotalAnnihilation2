@@ -1,0 +1,461 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1a, flare1b, flare1c, flare2a, flare2b, flare2c, turret, sleeve1,
+       sleeve2, barrel1a, barrel1b, barrel1c, barrel2a, barrel2b, barrel2c, turretb, 
+       sleeveb, barrelb, flash, base, lf, lb, rf, rb,
+       tp, body, front, back, left, right;
+
+static-var  gun_1, delay_2, restore_3, timer_4, bMoving, x_slope, z_slope;
+
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	if( !restore_3 )
+	{
+		signal 2;
+		signal 4;
+		turn turret to y-axis <0.00> speed <30.00>;
+		turn sleeve1 to x-axis <0.00> speed <15.00>;
+		turn sleeve2 to x-axis <0.00> speed <15.00>;
+		turn turretb to y-axis <0.00> speed <80.00>;
+		turn sleeveb to x-axis <0.00> speed <50.00>;
+		gun_1 = 0;
+	}	
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		if( timer_4 < 0 AND restore_3 )
+		{
+			timer_4 = 0;
+			restore_3 = 0;
+			start-script RestoreAfterDelay();
+		}
+		sleep sleeptime;
+		if( restore_3 )
+		{
+			timer_4 = timer_4 - sleeptime;
+		}
+	}
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis anglex speed <50>;
+	turn base to z-axis anglez speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0.> speed <20>;
+	turn base to x-axis <0.> speed <20>;
+}
+
+MoveControl()
+{
+	//var lxsnxs, lzsnzs, 
+	var dir;
+	dir = get XZ_ATAN(0);
+	while( TRUE )
+	{
+		/*lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(back)) - get GROUND_HEIGHT(get PIECE_XZ(front)), get XZ_HYPOT(get PIECE_XZ(back) - get PIECE_XZ(front)));
+		while(x_slope>32768)
+		{
+			x_slope=x_slope - 65536;
+		}
+		z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(right)) - get GROUND_HEIGHT(get PIECE_XZ(left)), get XZ_HYPOT(get PIECE_XZ(right) - get PIECE_XZ(left)));
+		while(z_slope>32768)
+		{
+			z_slope=z_slope - 65536;
+		}		
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+			{lxsnxs=0 - lxsnxs; }// absoluted
+		if(lzsnzs<0)
+			{lzsnzs=0 - lzsnzs; }// absoluted
+		if( ( x_slope <= 2730 ) AND ( x_slope >= -2730 ) )
+		{
+			turn body to x-axis ( x_slope * 0.5 ) speed lxsnxs*2;
+		}
+		if( ( z_slope <= 2730 ) AND ( z_slope >= -2730 ) )
+		{
+			turn body to z-axis ( z_slope * 0.5 ) speed lzsnzs*2;
+		}
+		if( x_slope > 2730 )
+		{
+			turn body to x-axis ( x_slope - 1365 ) speed lxsnxs*2;
+		}
+		if( x_slope < -2730 )
+		{
+			turn body to x-axis ( x_slope + 1365 ) speed lxsnxs*2;
+		}
+		if( z_slope > 2730 )
+		{
+			turn body to z-axis ( z_slope - 1365 ) speed lzsnzs*2;
+		}
+		if( z_slope < -2730 )
+		{
+			turn body to z-axis ( z_slope + 1365 ) speed lzsnzs*2;
+		}
+		turn tp to x-axis x_slope speed lxsnxs*2;
+		turn tp to z-axis z_slope speed lzsnzs*2;*/
+		dir = dir - get XZ_ATAN(0);
+		if( bmoving == 1 )
+		{
+			if(( dir > <1> ) OR ( dir < <-1> ))
+			{
+				turn lf to y-axis <-15> speed <15>;
+				turn lb to y-axis <15> speed <15>;
+				turn rf to y-axis <15> speed <15>;
+				turn rb to y-axis <-15> speed <15>;
+			}
+		}
+		if( bMoving == 2)
+		{
+			turn lf to y-axis 5 * dir speed <15>;
+			turn lb to y-axis 0 - ( 5 * dir ) speed <15>;
+			turn rf to y-axis 5 * dir speed <15>;
+			turn rb to y-axis 0 - ( 5 * dir ) speed <15>;
+		}
+		if(	bMoving == 3)
+		{
+			turn lf to y-axis 2.5 * dir speed <15>;
+			turn lb to y-axis 0 - ( 2.5 * dir ) speed <15>;
+			turn rf to y-axis 2.5 * dir speed <15>;
+			turn rb to y-axis 0 - ( 2.5 * dir ) speed <15>;
+		}
+		dir = get XZ_ATAN(0);
+		sleep 130;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	hide flare1a;
+	hide flare1b;
+	hide flare1c;
+	hide flare2a;
+	hide flare2b;
+	hide flare2c;
+	hide flash;
+	dont-cache flare1a;
+	dont-cache flare1b;
+	dont-cache flare1c;
+	dont-cache flare2a;
+	dont-cache flare2b;
+	dont-cache flare2c;
+	dont-cache flash;
+	gun_1 = 0;
+	delay_2 = 0;
+	restore_3 = 0;
+	timer_4 = 0;
+	bMoving = 0;
+	x_slope = 0;
+	z_slope = 0;
+	set ARMORED to TRUE;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	start-script MoveControl();
+	/*if (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2)
+	{
+		var target,lasttarget;
+		lasttarget=0;
+		while (1)
+		{
+			if ((get CURRENT_ORDER_TYPE) == 6)
+			{
+				target=get CURRENT_ORDER_TARGET_ID;
+				while ((get CURRENT_ORDER_TYPE) == 6)
+				{
+					target=get CURRENT_ORDER_TARGET_ID;
+					if (target != lasttarget)
+					{
+						get LOCAL_SHARED_DATA(1,20 + (get UNIT_TEAM(get MY_ID)),target);
+					}
+					lasttarget=target;
+					sleep 500;
+				}
+				if ((get CURRENT_ORDER_TYPE) == 41)
+				{
+					target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					while (!(get UNIT_XZ(target)))
+					{
+						sleep 500;
+						target=get LOCAL_SHARED_DATA(0,20 + (get UNIT_TEAM(get MY_ID)));
+					}
+					get ORDER_UNIT_UNIT(6,get MY_ID,target,0);
+				}
+			}
+			sleep 500;
+		}
+	}*/
+}
+
+StartMoving()
+{
+	bMoving = 1;
+}
+	
+MoveRate1()
+{
+	bMoving=1;
+}
+	
+MoveRate2()
+{
+	bMoving=2;
+}
+	
+MoveRate3()
+{
+	bMoving=3;
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	turn lf to y-axis <0> speed <15>;
+	turn lb to y-axis <0> speed <15>;
+	turn rf to y-axis <0> speed <15>;
+	turn rb to y-axis <0> speed <15>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <60.00>;
+	turn sleeve1 to x-axis <0.00> - pitch speed <25.00>;
+	turn sleeve2 to x-axis <0.00> - pitch speed <25.00>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve1 around x-axis;
+	wait-for-turn sleeve2 around x-axis;
+	timer_4 = 5000;
+	restore_3 = 1;
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !Gun_1 )
+	{
+		move barrel1a to z-axis [-4] speed [500];
+		show flare1a;
+		sleep 150;
+		hide flare1a;
+		move barrel1a to z-axis [0] speed [2.5];
+	}
+	if( Gun_1 == 1 )
+	{
+		move barrel1b to z-axis [-4] speed [500];
+		show flare1b;
+		sleep 150;
+		hide flare1b;
+		move barrel1b to z-axis [0] speed [2.5];
+	}
+	if( Gun_1 == 2 )
+	{
+		delay_2 = 1;
+		move barrel1c to z-axis [-4] speed [500];
+		show flare1c;
+		sleep 150;
+		hide flare1c;
+		move barrel1c to z-axis [0] speed [2.5];
+	}
+	if( Gun_1 == 3 )
+	{
+		move barrel2a to z-axis [-4] speed [500];
+		show flare2a;
+		sleep 150;
+		hide flare2a;
+		move barrel2a to z-axis [0] speed [2.5];
+	}
+	if( Gun_1 == 4 )
+	{
+		move barrel2b to z-axis [-4] speed [500];
+		show flare2b;
+		sleep 150;
+		hide flare2b;
+		move barrel2b to z-axis [0] speed [2.5];
+	}
+	++Gun_1;
+	if( Gun_1 > 5 )
+	{
+		move barrel2c to z-axis [-4] speed [500];
+		show flare2c;
+		sleep 150;
+		hide flare2c;
+		move barrel2c to z-axis [0] speed [2.5];
+		gun_1 = 0;
+	}
+	return(0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = sleeve1;
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 0;
+	set-signal-mask 4;
+	turn turretb to y-axis heading speed <160.00>;
+	if( pitch > -10 )
+	{
+		turn sleeveb to x-axis <0.00> - pitch speed <80.00>;
+	}
+	if( pitch <= -10 )
+	{
+		turn sleeveb to x-axis <10> speed <80>;
+	}
+	wait-for-turn turretb around y-axis;
+	wait-for-turn sleeveb around x-axis;
+	timer_4 = 5000;
+	restore_3 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	move barrelb to z-axis [-3.00] speed [500];
+	move sleeveb to z-axis [-1.5] speed [500];
+	wait-for-move barrelb along z-axis;
+	show flash;
+	sleep 150;
+	hide flash;
+	move barrelb to z-axis [0.00] speed [1.2];
+	move sleeveb to z-axis [0.00] speed [1.5];
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = flash;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = sleeveb;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1a;
+	hide flare1b;
+	hide flare1c;
+	hide flare2a;
+	hide flare2b;
+	hide flare2c;
+	hide flash;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP4;
+		explode sleeve1 type BITMAPONLY | BITMAP1;
+		explode sleeve2 type BITMAPONLY | BITMAP5;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeveb type BITMAPONLY | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode barrelb type BITMAPONLY | BITMAP3;
+		return (1);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP4;
+		explode sleeve1 type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode sleeve2 type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeveb type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode barrelb type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		return (1);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode sleeve1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode sleeve2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeveb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode barrelb type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel1a type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel1b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode barrel1c type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel2a type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+		explode barrel2b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode barrel2c type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+		return (1);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP5;
+	explode sleeve1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode sleeve2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP3;
+	explode sleeveb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turretb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrelb type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel1a type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode barrel1b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode barrel1c type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel2a type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP2;
+	explode barrel2b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+	explode barrel2c type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP3;
+	return (1);
+}

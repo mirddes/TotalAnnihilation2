@@ -1,0 +1,53 @@
+// Core Energy Storage Facility
+
+piece base;
+
+#define SMOKEPIECE1 base
+#include "smokeunit.h"
+#include "EXPtype.h"
+
+Create()
+	{
+	start-script SmokeUnit();
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dome type	BITMAPONLY | BITMAP2;
+		explode windows type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dome type	BITMAPONLY | BITMAP2;
+		explode windows type	SHATTER | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY  | BITMAP1;
+		explode dome type	BITMAPONLY  | BITMAP2;
+		explode windows type	SHATTER | BITMAP3;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY  | BITMAP1;
+	explode dome type	BITMAPONLY  | BITMAP2;
+	explode windows type	SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}

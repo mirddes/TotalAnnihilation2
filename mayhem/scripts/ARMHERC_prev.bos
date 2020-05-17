@@ -1,0 +1,783 @@
+
+
+#include "sfxtype.h"
+#include "exptype.h"
+#define TA			// This is a TA script
+
+piece  base, link1, link2, link3, link4, link5, link6, link7,
+       link8, link9, link10, link11, link12, arm1, arm2, arm3, 
+       arm4, arm5, jet1a, jet1b, jet2a, jet2b, jet3a, jet3b,
+       jet4a, jet4b, jet5a, jet5b, podL1, podL2, podL3, podL4, 
+       podR1, podR2, podR3, podR4, turret1, launcher1, turret2, launcher2, 
+       f1a, f1b, f1c, f2a, f2b, f2c, cover;
+
+static-var  Speed_1, unitviewer, curr_loading_piece, gun_1, myID, 
+            totw, maxw, maxu, h, w;
+            
+static-var  u1-2, u3-4, u5-6, u7-8, u9-10, u11-12, unused;
+
+#define INIT_LOADED_ID(value_at_which_init) \
+	u11-12=value_at_which_init; \
+	u9-10=value_at_which_init; \
+	u7-8=value_at_which_init; \
+	u5-6=value_at_which_init; \
+	u3-4=value_at_which_init; \
+	u1-2=value_at_which_init;
+
+/*load the unit, and reduce the maximum weight of the next unit as it fills up*/
+#define STORE_UNIT(Unit_to_Store)\
+if(curr_loading_piece==12)\
+{u11-12=(u11-12 - (u11-12/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link12;\
+	move link12 to y-axis 0 - h NOW;\
+	cache link12;}\
+if(curr_loading_piece==11)\
+{u11-12=(u11-12/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link11;\
+	move link11 to y-axis 0 - h NOW;\
+	cache link11;}\
+if(curr_loading_piece==10)\
+{u9-10=(u9-10 - (u9-10/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link10;\
+	move link10 to y-axis 0 - h NOW;\
+	cache link10;}\
+	if(curr_loading_piece==9)\
+{u9-10=(u9-10/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link9;\
+	move link9 to y-axis 0 - h NOW;\
+	cache link9;}\
+if(curr_loading_piece==8)\
+{u7-8=(u7-8 - (u7-8/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link8;\
+	move link8 to y-axis 0 - h NOW;\
+	cache link8;}\
+if(curr_loading_piece==7)\
+{u7-8=(u7-8/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link7;\
+	move link7 to y-axis 0 - h NOW;\
+	cache link7;}\
+if(curr_loading_piece==6)\
+{u5-6=(u5-6 - (u5-6/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link6;\
+	move link6 to y-axis 0 - h NOW;\
+	cache link6;\
+	maxw = 5;}\
+if(curr_loading_piece==5)\
+{u5-6=(u5-6/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link5;\
+	move link5 to y-axis 0 - h NOW;\
+	cache link5;}\
+if(curr_loading_piece==4)\
+{u3-4=(u3-4 - (u3-4/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link4;\
+	move link4 to y-axis 0 - h NOW;\
+	cache link4;\
+	maxw = 80;}\
+if(curr_loading_piece==3)\
+{u3-4=(u3-4/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link3;\
+	move link3 to y-axis 0 - h NOW;\
+	cache link3;}\
+if(curr_loading_piece==2)\
+{u1-2=(u1-2 - (u1-2/65536) * 65536) + Unit_to_Store * 65536;\
+	attach-unit Unit_to_Store to link2;\
+	move link2 to y-axis 0 - h NOW;\
+	cache link2;\
+	maxw = 500;}\
+if(curr_loading_piece==1)\
+{u1-2=(u1-2/65536) * 65536 + Unit_to_Store;\
+	attach-unit Unit_to_Store to link1;\
+	move link1 to y-axis 0 - h NOW;\
+	cache link1;\
+	maxw = 2400;}
+
+// arrange transported units according to size and number being transported
+#define MOVE_LINKS\
+if( maxu == 12 )\
+{\
+	move Link1 to z-axis [6.5] speed [9.6];\
+	move Link2 to z-axis [6.5] speed [9.6];\
+	move Link3 to z-axis [-6.5] speed [9.6];\
+	move Link4 to z-axis [-6.5] speed [9.6];\
+	move Link9 to z-axis [6.5] speed [9.6];\
+	move Link10 to z-axis [-6.5] speed [9.6];\
+	move Link1 to z-axis [13] speed [19.2];\
+	move Link2 to z-axis [13] speed [19.2];\
+	move Link3 to z-axis [-13] speed [19.2];\
+	move Link4 to z-axis [-13] speed [19.2];\
+	move Link5 to z-axis [6.5] speed [19.2];\
+	move Link6 to z-axis [6.5] speed [19.2];\
+	move Link7 to z-axis [-6.5] speed [19.2];\
+	move Link8 to z-axis [-6.5] speed [19.2];\
+	move Link9 to z-axis [13] speed [19.2];\
+	move Link10 to z-axis [-13] speed [19.2];\
+	move Link11 to z-axis [6.5] speed [19.2];\
+	move Link12 to z-axis [-6.5] speed [19.2];\
+	move Link1 to x-axis [6.5] speed [9.6];\
+	move Link2 to x-axis [-6.5] speed [9.6];\
+	move Link3 to x-axis [6.5] speed [9.6];\
+	move Link4 to x-axis [-6.5] speed [9.6];\
+	move Link5 to x-axis [6.5] speed [9.6];\
+	move Link6 to x-axis [-6.5] speed [9.6];\
+	move Link7 to x-axis [6.5] speed [9.6];\
+	move Link8 to x-axis [-6.5] speed [9.6];\
+}\
+if( maxu == 6 )\
+{\
+	move Link1 to x-axis [-6.5] NOW;\
+	move Link3 to x-axis [-6.5] NOW;\
+	move Link5 to x-axis [-6.5] NOW;\
+	move Link1 to x-axis [3.25] speed [8];\
+	move Link2 to x-axis [-3.25] speed [8];\
+	move Link3 to x-axis [3.25] speed [8];\
+	move Link4 to x-axis [-3.25] speed [8];\
+	move Link1 to z-axis [3.25] speed [16];\
+	move Link2 to z-axis [3.25] speed [16];\
+	move Link3 to z-axis [-3.25] speed [16];\
+	move Link4 to z-axis [-3.25] speed [16];\
+	move Link5 to x-axis [3.25] speed [8];\
+	move Link6 to x-axis [-3.25] speed [8];\
+	move Link1 to z-axis [9.75] speed [16];\
+	move Link2 to z-axis [9.75] speed [16];\
+	move Link3 to z-axis [-9.75] speed [16];\
+	move Link4 to z-axis [-9.75] speed [16];\
+}\
+if( maxu == 4 )\
+{\
+	move Link1 to x-axis [-6.5] NOW;\
+	move Link3 to x-axis [-6.5] NOW;\
+	move Link1 to z-axis [-6.5] speed [12.8];\
+	move Link2 to z-axis [-6.5] speed [12.8];\
+	move Link1 to x-axis [6.5] speed [9.6];\
+	move Link2 to x-axis [-6.5] speed [9.6];\
+	move Link1 to z-axis [9.75] speed [12.8];\
+	move Link2 to z-axis [9.75] speed [12.8];\
+	move Link3 to z-axis [-9.75] speed [12.8];\
+	move Link4 to z-axis [-9.75] speed [12.8];\
+	move Link3 to x-axis [6.5] speed [9.6];\
+	move Link4 to x-axis [-6.5] speed [9.6];\
+}\
+if( maxu == 2 )\
+{\
+	move Link1 to x-axis [-6.5] NOW;\
+	move Link1 to z-axis [-6.5] speed [9.6];\
+	move Link2 to x-axis [6.5] NOW;\
+	move Link2 to z-axis [-9.75] NOW;\
+	move Link1 to z-axis [11.75] speed <9.6>;\
+	move Link2 to z-axis [-24.75] speed <9.6>;\
+}\
+if( maxu == 1 )\
+{\
+	move Link1 to x-axis [-6.5] NOW;\
+	move Link1 to z-axis [-6.5] speed [8];\
+}
+
+#ifndef MAX_ID
+#define MAX_ID 70
+#define MIN_ID 69
+#define UNIT_ALLIED 74
+#define MY_ID 71
+#define UNIT_TEAM 72
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+#include "M2WEIGHT.h"
+
+LoadAllUnits(unit_to_load)
+{
+	var x, z, xz, min, max, distance;
+	min = get MIN_ID;
+	max = get MAX_ID;
+	for( unit_to_load = min; unit_to_load <= max; ++unit_to_load )
+	{
+		if( curr_loading_piece <= maxu ) //check if the transport isn't already full
+		{
+			if( get UNIT_ALLIED(unit_to_load)) //unit must be allied
+			{
+				 //check unit's position is close enough to load
+				xz = get UNIT_XZ(unit_to_load) - get PIECE_XZ(base);
+				SECURE_XZ;
+				distance=get XZ_HYPOT(xz);
+				if( distance <= [95] AND distance > [1])
+				{
+					h = get UNIT_HEIGHT(unit_to_load);
+					CALC_WEIGHT;
+					if( w <= maxw ) //confirm the unit isn't too heavy
+					{
+						STORE_UNIT(unit_to_load);
+						totw = totw + w;
+						//as total load increases, restrict the number of units that can be loaded
+						if( totw > 96 )
+						{	maxu = 6;
+						}
+						if( totw > 600 )
+						{	maxu = 4;
+						}
+						if( totw > 2560 )
+						{	maxu = 2;
+						}
+						if( totw >= 3000 )
+						{	maxu = 1;
+						}
+						++curr_loading_piece;
+					}
+					if( curr_loading_piece > maxu )
+					{
+						MOVE_LINKS;
+						return(0);
+					}
+				}
+			}
+		}
+	}
+	MOVE_LINKS
+	return(0);
+}
+
+UnloadAllUnits()
+{
+	var unit_to_unload;
+	while( curr_loading_piece >= 1 )
+	{
+		if(curr_loading_piece==12)
+		{	unit_to_unload=(u11-12)/65536;
+			move link12 to y-axis ((get GROUND_HEIGHT(link12)) - (get PIECE_Y(link12))) NOW;
+			drop-unit unit_to_unload;
+			explode link12 type BITMAP5;
+			move link12 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==11)
+		{	unit_to_unload=(u11-12 - (u11-12/65536)*65536);
+			move link11 to y-axis ((get GROUND_HEIGHT(link11)) - (get PIECE_Y(link11))) NOW;
+			drop-unit unit_to_unload;
+			explode link11 type BITMAP5;
+			move link11 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==10)
+		{	unit_to_unload=(u9-10)/65536;
+			move link10 to y-axis ((get GROUND_HEIGHT(link10)) - (get PIECE_Y(link10))) NOW;
+			drop-unit unit_to_unload;
+			explode link10 type BITMAP5;
+			move link10 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==9)
+		{	unit_to_unload=(u9-10 - (u9-10/65536)*65536);
+			move link9 to y-axis ((get GROUND_HEIGHT(link9)) - (get PIECE_Y(link9))) NOW;
+			drop-unit unit_to_unload;
+			explode link9 type BITMAP5;
+			move link9 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==8)
+		{	unit_to_unload=(u7-8)/65536;
+			move link8 to y-axis ((get GROUND_HEIGHT(link8)) - (get PIECE_Y(link8))) NOW;
+			drop-unit unit_to_unload;
+			explode link8 type BITMAP5;
+			move link8 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==7)
+		{	unit_to_unload=(u7-8 - (u7-8/65536)*65536);
+			move link7 to y-axis ((get GROUND_HEIGHT(link7)) - (get PIECE_Y(link7))) NOW;
+			drop-unit unit_to_unload;
+			explode link7 type BITMAP5;
+			move link7 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==6)
+		{	unit_to_unload=(u5-6)/65536;
+			move link6 to y-axis ((get GROUND_HEIGHT(link6)) - (get PIECE_Y(link6))) NOW;
+			drop-unit unit_to_unload;
+			explode link6 type BITMAP5;
+			move link6 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==5)
+		{	unit_to_unload=(u5-6 - (u5-6/65536)*65536);
+			move link5 to y-axis ((get GROUND_HEIGHT(link5)) - (get PIECE_Y(link5))) NOW;
+			drop-unit unit_to_unload;
+			explode link5 type BITMAP5;
+			move link5 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==4)
+		{	unit_to_unload=(u3-4)/65536;
+			move link4 to y-axis ((get GROUND_HEIGHT(link4)) - (get PIECE_Y(link4))) NOW;
+			drop-unit unit_to_unload;
+			explode link4 type BITMAP5;
+			move link4 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==3)
+		{	unit_to_unload=(u3-4 - (u3-4/65536)*65536);
+			move link3 to y-axis ((get GROUND_HEIGHT(link3)) - (get PIECE_Y(link3))) NOW;
+			drop-unit unit_to_unload;
+			explode link3 type BITMAP5;
+			move link3 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==2)
+		{	unit_to_unload=(u1-2)/65536;
+			move link2 to y-axis ((get GROUND_HEIGHT(link2)) - (get PIECE_Y(link2))) NOW;
+			drop-unit unit_to_unload;
+			explode link2 type BITMAP5;
+			move link2 to y-axis 0 NOW;
+		}
+		if(curr_loading_piece==1)
+		{	unit_to_unload=(u1-2 - (u1-2/65536)*65536);
+			move link1 to y-axis ((get GROUND_HEIGHT(link1)) - (get PIECE_Y(link1))) NOW;
+			drop-unit unit_to_unload;
+			explode link1 type BITMAP5;
+			move link1 to y-axis 0 NOW;
+		}
+		h = get UNIT_HEIGHT(unit_to_unload);
+		CALC_WEIGHT;
+		totw = totw - w;
+		sleep 11;
+		--curr_loading_piece;
+	}
+}
+
+AimPrimary()
+{
+	signal 16;
+	set-signal-mask 16;
+	while(TRUE)
+	{
+		sleep 250;
+	}
+	return(1);
+}
+
+Create()
+{
+	Speed_1 = 0;
+	gun_1 = 0;
+	myID = get MY_ID;
+	unitviewer = FALSE;
+	curr_loading_piece = 1;
+	totw = 0;
+	maxw = 10000;
+	maxu = 12;
+	h = 0;
+	w = 0;
+	INIT_LOADED_ID(65537)  // Not necessary, but would prevent crashes in case we retrieve an ID not stored yet
+	hide f1a;
+	hide f1b;
+	hide f1c;
+	hide f2a;
+	hide f2b;
+	hide f2c;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+}
+
+Demo()
+{
+	unitviewer = TRUE;
+}
+
+/*
+QueryTransport(piece_to_attach)
+{
+	piece_to_attach = link1;
+}*/
+
+LoadedAnim()
+{
+	move arm1 to x-axis [6.5] speed [4];
+	move arm2 to x-axis [-6.5] speed [4];
+	move arm3 to x-axis [6.5] speed [3.25];
+	move arm4 to x-axis [-6.5] speed [3.25];
+	move arm5 to z-axis [-5] speed [2.5];
+	turn arm1 to y-axis <10> speed <6.2>;
+	turn arm2 to y-axis <-10> speed <6.2>;
+	turn arm3 to y-axis <-10> speed <5>;
+	turn arm4 to y-axis <10> speed <5>;
+	move podL1 to x-axis [-5] speed [3];
+	move podR1 to x-axis [5] speed [3];
+	move podL2 to x-axis [-5] speed [3.5];
+	move podR2 to x-axis [5] speed [3.5];
+	move podL3 to x-axis [-5] speed [2.5];
+	move podR3 to x-axis [5] speed [2.5];
+	move podL4 to x-axis [-5] speed [2];
+	move podR4 to x-axis [5] speed [2]; 
+	sleep 400;
+}
+
+EmptyAnim()
+{
+	move arm1 to x-axis [0] speed [4];
+	move arm2 to x-axis [0] speed [4];
+	move arm3 to x-axis [0] speed [4];
+	move arm4 to x-axis [0] speed [4];
+	move arm5 to z-axis [0] speed [3];
+	turn arm1 to y-axis <0> speed <6.2>;
+	turn arm2 to y-axis <0> speed <6.2>;
+	turn arm3 to y-axis <0> speed <6.2>;
+	turn arm4 to y-axis <0> speed <6.2>;
+	move podL1 to x-axis [0] speed [5];
+	move podR1 to x-axis [0] speed [5];
+	move podL2 to x-axis [0] speed [5];
+	move podR2 to x-axis [0] speed [5];
+	move podL3 to x-axis [0] speed [5];
+	move podR3 to x-axis [0] speed [5];
+	move podL4 to x-axis [0] speed [5];
+	move podR4 to x-axis [0] speed [5];
+}
+
+Activate()
+{
+	if( unitviewer )
+	{
+		start-script LoadedAnim();
+	}
+}
+
+Deactivate()
+{
+	if( unitviewer )
+	{
+		start-script EmptyAnim();
+	}
+}
+
+BeginTransport()
+{
+	call-script LoadAllUnits();
+	start-script LoadedAnim();
+}
+
+EndTransport()
+{
+	call-script UnloadAllUnits();
+	sleep 100;
+	if( curr_loading_piece < 1 )
+	{
+		start-script EmptyAnim();
+		curr_loading_piece = 1;
+		totw = 0;
+		maxu = 12;
+		maxw = 10000;
+		move Link1 to x-axis [0] NOW;
+		move Link2 to x-axis [0] NOW;
+		move Link3 to x-axis [0] NOW;
+		move Link4 to x-axis [0] NOW;
+		move Link5 to x-axis [0] NOW;
+		move Link6 to x-axis [0] NOW;
+		move Link7 to x-axis [0] NOW;
+		move Link8 to x-axis [0] NOW;
+		move Link1 to z-axis [0] NOW;
+		move Link2 to z-axis [0] NOW;
+		move Link3 to z-axis [0] NOW;
+		move Link4 to z-axis [0] NOW;
+		move Link5 to z-axis [0] NOW;
+		move Link6 to z-axis [0] NOW;
+		move Link7 to z-axis [0] NOW;
+		move Link8 to z-axis [0] NOW;
+		move Link9 to z-axis [0] NOW;
+		move Link10 to z-axis [0] NOW;
+		move Link11 to z-axis [0] NOW;
+		move Link12 to z-axis [0] NOW;
+	}
+}
+
+ProcessFlames()
+{
+	while( TRUE )
+	{
+		if( Speed_1 == 1 OR Speed_1 == 2 )
+		{
+			emit-sfx 0 from jet1a;
+			emit-sfx 0 from jet1b;
+			emit-sfx 0 from jet2a;
+			emit-sfx 0 from jet2b;
+			emit-sfx 0 from jet3a;
+			emit-sfx 0 from jet3b;
+			emit-sfx 0 from jet4a;
+			emit-sfx 0 from jet4b;
+			emit-sfx 0 from jet5a;
+			emit-sfx 0 from jet5b;
+		}
+		sleep 67;
+	}
+}
+
+Startmoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	start-script ProcessFlames();
+}
+
+StopMoving()
+{
+	signal 8;
+	Speed_1 = 0;
+	turn arm1 to x-axis <0> speed <10>;
+	turn arm2 to x-axis <0> speed <10>;
+	turn arm3 to x-axis <0> speed <10>;
+	turn arm4 to x-axis <0> speed <10>;
+}
+
+MoveRate1()
+{
+	signal 8;
+	set-signal-mask 8;
+	start-script ProcessFlames();
+	turn arm1 to x-axis <10> speed <5>;
+	turn arm2 to x-axis <10> speed <5>;
+	turn arm3 to x-axis <10> speed <5>;
+	turn arm4 to x-axis <10> speed <5>;
+	Speed_1 = 1;
+}
+
+MoveRate2()
+{
+	signal 8;
+	set-signal-mask 8;
+	start-script ProcessFlames();
+	turn arm1 to x-axis <20> speed <5>;
+	turn arm2 to x-axis <20> speed <5>;
+	turn arm3 to x-axis <20> speed <5>;
+	turn arm4 to x-axis <20> speed <5>;
+	Speed_1 = 2;
+}
+
+MoveRate3()
+{
+	signal 8;
+	set-signal-mask 8;
+	start-script ProcessFlames();
+	turn arm1 to x-axis <30> speed <5>;
+	turn arm2 to x-axis <30> speed <5>;
+	turn arm3 to x-axis <30> speed <5>;
+	turn arm4 to x-axis <30> speed <5>;
+	Speed_1 = 3;
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	turn turret1 to x-axis <0> speed <400>;
+	turn turret1 to x-axis <0> speed <400>;
+	turn launcher1 to y-axis <0> speed <360>;
+	turn launcher2 to y-axis <0> speed <360>;
+}
+	
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret1 to y-axis heading speed <500>;
+	turn turret2 to y-axis heading speed <500>;
+	if(( pitch > 0 ) AND (pitch < <90> ))
+	{
+		turn launcher1 to x-axis 0 - pitch speed <400>;
+		turn launcher2 to x-axis 0 - pitch speed <400>;
+		wait-for-turn launcher1 around x-axis;
+		wait-for-turn launcher2 around x-axis;
+	}
+	wait-for-turn turret1 around y-axis;
+	wait-for-turn turret2 around y-axis;
+	start-script RestoreAfterDelay();
+	Return(1);
+}
+
+FireTertiary()
+{
+	if( !gun_1 )
+	{
+		show f1a;
+		sleep 150;
+		hide f1a;
+	}
+	if( gun_1 == 1 )
+	{
+		show f2a;
+		sleep 150;
+		hide f2a;
+	}
+	if( gun_1 == 2 )
+	{
+		show f1b;
+		sleep 150;
+		hide f1b;
+	}
+	if( gun_1 == 3 )
+	{
+		show f2b;
+		sleep 150;
+		hide f2b;
+	}
+	if( gun_1 == 4 )
+	{
+		show f1c;
+		sleep 150;
+		hide f1c;
+	}
+	++gun_1;
+	if( gun_1 > 5 )
+	{
+		show f2c;
+		sleep 150;
+		hide f2c;
+		gun_1 = 0;
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_1 )
+	{
+		piecenum = f1a;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = f2a;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = f1b;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = f2b;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = f1c;
+	}
+	if( gun_1 > 4 )
+	{
+		gun_1 = 0;
+		piecenum = f2c;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type BITMAPONLY | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode jet1a type BITMAPONLY | BITMAP5;
+		explode jet2a type BITMAPONLY | BITMAP1;
+		explode jet3a type BITMAPONLY | BITMAP2;
+		explode jet4a type BITMAPONLY | BITMAP3;
+		explode jet5a type BITMAPONLY | BITMAP4;
+		explode jet1b type BITMAPONLY | BITMAP3;
+		explode jet2b type BITMAPONLY | BITMAP4;
+		explode jet3b type BITMAPONLY | BITMAP5;
+		explode jet4b type BITMAPONLY | BITMAP1;
+		explode jet5b type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode jet1a type FALL | FIRE | BITMAP5;
+		explode jet2a type FALL | FIRE | BITMAP1;
+		explode jet3a type FALL | FIRE | BITMAP2;
+		explode jet4a type FALL | FIRE | BITMAP3;
+		explode jet5a type FALL | FIRE | BITMAP4;
+		explode jet1b type FALL | FIRE | BITMAP3;
+		explode jet2b type FALL | FIRE | BITMAP4;
+		explode jet3b type FALL | FIRE | BITMAP5;
+		explode jet4b type FALL | FIRE | BITMAP1;
+		explode jet5b type FALL | FIRE | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP2;
+		explode arm3 type SHATTER | BITMAP3;
+		explode base type BITMAPONLY | BITMAP4;
+		explode jet1a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode jet2a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		explode jet3a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+		explode jet4a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode jet5a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+		explode jet1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+		explode jet2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+		explode jet3b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+		explode jet4b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+		explode jet5b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1 type BITMAPONLY | BITMAP1;
+	explode arm2 type BITMAPONLY | BITMAP2;
+	explode arm3 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode base type BITMAPONLY | BITMAP4;
+	explode jet1a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode jet2a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+	explode jet3a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+	explode jet4a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode jet5a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+	explode jet1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP3;
+	explode jet2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP4;
+	explode jet3b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP5;
+	explode jet4b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP1;
+	explode jet5b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT |  BITMAP2;
+}

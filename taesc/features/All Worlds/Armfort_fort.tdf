@@ -1,0 +1,21 @@
+[Fortification]
+{
+	world=allworld;
+	description=Fortification Wall;
+	category=dragonteeth;
+	object=armfort;
+	footprintx=2;
+	footprintz=2;
+	height=55;
+	blocking=1;
+	hitdensity=97;
+	metal=54;
+	damage=10500;
+	reclaimable=1;
+	autoreclaimable=0;
+	featurereclamate=TeethSmudge;
+	featuredead=RockTeeth;
+	seqnamereclamate=tree1reclamate;
+	nodrawundergray=1;
+}
+

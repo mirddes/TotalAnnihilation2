@@ -1,0 +1,32 @@
+[armmine1]
+	{
+	ID=184;
+	name=Level 1 Mine;
+	rendertype=4;
+	ballistic=1;
+	
+
+	range=480;
+	reloadtime=3.6;
+	weaponvelocity=250;
+	areaofeffect=160;
+	soundstart=largegun;
+	soundhit=exmine1;
+
+	edgeeffectiveness=0.1;
+
+	explosiongaf=fx;
+	explosionart=explode2;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	shakemagnitude=0;
+	shakeduration=0;
+
+	[DAMAGE]
+		{
+		default=400;
+		armmine1=30;
+		}
+	}

@@ -1,0 +1,278 @@
+// Arm Doomsday Machine Script
+
+piece base,flare;
+
+static-var active,restore_delay;
+
+#define SIG_AIM		2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armanni\activatescr.bos"
+#include "..\anim3d\armanni\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	dont-cache arm;
+	dont-cache barrel;
+	dont-cache case1;
+	dont-cache case2;
+	dont-cache case3;
+	dont-cache case4;
+	dont-cache case5;
+	dont-cache case6;
+	dont-cache container1;
+	dont-cache container2;
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache energy;
+	dont-cache flare;
+	dont-cache gun;
+	dont-cache plate1;
+	dont-cache plate2;
+	dont-cache radar;
+	dont-cache turret;
+	call-script activatescr();
+	spin radar around x-axis speed <100>;
+	active = TRUE;
+	}
+
+Stop()
+	{
+	active = FALSE;
+	stop-spin radar around x-axis;
+	turn radar to x-axis <0> speed <100>;
+	wait-for-turn radar around x-axis;
+	call-script deactivatescr();
+	cache arm;
+	cache barrel;
+	cache case1;
+	cache case2;
+	cache case3;
+	cache case4;
+	cache case5;
+	cache case6;
+	cache container1;
+	cache container2;
+	cache door1;
+	cache door2;
+	cache energy;
+	cache flare;
+	cache gun;
+	cache plate1;
+	cache plate2;
+	cache radar;
+	cache turret;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	dont-shade arm;
+	dont-shade barrel;
+	dont-shade case1;
+	dont-shade case2;
+	dont-shade case3;
+	dont-shade case4;
+	dont-shade case5;
+	dont-shade case6;
+	dont-shade container1;
+	dont-shade container2;
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade energy;
+	dont-shade flare;
+	dont-shade gun;
+	dont-shade plate1;
+	dont-shade plate2;
+	dont-shade radar;
+	dont-shade turret;
+	hide flare;
+	active = FALSE;
+	call-script InitState();
+	start-script SmokeUnit();
+	restore_delay = 3000;
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SetMaxReloadTime(time)
+	{
+	restore_delay = time * 5;
+	}
+
+RestoreAfterDelay()
+	{
+	sleep restore_delay;
+	turn turret to y-axis <0> speed <50>;
+	turn gun to x-axis <0> speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+AimPrimary(heading,pitch)
+	{
+	start-script RequestState( ACTIVE );
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	while (!active)
+		{
+		sleep( 250 );
+		}
+	turn turret to y-axis heading speed <50>;
+	turn gun to x-axis (0-pitch) speed <50>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn gun around x-axis;
+	start-script RestoreAfterDelay();
+	return(TRUE);
+	}
+
+TargetCleared(which)
+	{
+	stop-spin turret around y-axis;
+	stop-spin gun around x-axis;
+	}
+
+FirePrimary()
+	{
+	show flare;
+	sleep 150;
+	hide flare;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum=flare;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	hide flare;
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode arm type	BITMAPONLY | BITMAP1;
+		explode barrel type	BITMAPONLY | BITMAP2;
+		explode base type	BITMAPONLY | BITMAP3;
+		explode case1 type	BITMAPONLY | BITMAP4;
+		explode case2 type	BITMAPONLY | BITMAP5;
+		explode case3 type	BITMAPONLY | BITMAP1;
+		explode case4 type	BITMAPONLY | BITMAP2;
+		explode case5 type	BITMAPONLY | BITMAP3;
+		explode case6 type	BITMAPONLY | BITMAP4;
+		explode container1 type	BITMAPONLY | BITMAP5;
+		explode container2 type	BITMAPONLY | BITMAP1;
+		explode door1 type	BITMAPONLY | BITMAP2;
+		explode door2 type	BITMAPONLY | BITMAP3;
+		explode energy type	BITMAPONLY | BITMAP4;
+		explode flare type	BITMAPONLY | BITMAP5;
+		explode gun type	BITMAPONLY | BITMAP1;
+		explode plate1 type	BITMAPONLY | BITMAP2;
+		explode plate2 type	BITMAPONLY | BITMAP3;
+		explode radar type	BITMAPONLY | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode arm type	BITMAPONLY | BITMAP1;
+		explode barrel type	FALL | BITMAP2;
+		explode base type	BITMAPONLY | BITMAP3;
+		explode case1 type	BITMAPONLY | BITMAP4;
+		explode case2 type	BITMAPONLY | BITMAP5;
+		explode case3 type	BITMAPONLY | BITMAP1;
+		explode case4 type	BITMAPONLY | BITMAP2;
+		explode case5 type	BITMAPONLY | BITMAP3;
+		explode case6 type	BITMAPONLY | BITMAP4;
+		explode container1 type	BITMAPONLY | BITMAP5;
+		explode container2 type	BITMAPONLY | BITMAP1;
+		explode door1 type	FALL | BITMAP2;
+		explode door2 type	FALL | BITMAP3;
+		explode energy type	FALL | BITMAP4;
+		explode flare type	FALL | BITMAP5;
+		explode gun type	SHATTER | BITMAP1;
+		explode plate1 type	BITMAPONLY | BITMAP2;
+		explode plate2 type	BITMAPONLY | BITMAP3;
+		explode radar type	FALL | BITMAP4;
+		explode turret type	BITMAPONLY | BITMAP5;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode arm type	BITMAPONLY | BITMAP1;
+		explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode base type	BITMAPONLY | BITMAP3;
+		explode case1 type	BITMAPONLY | BITMAP4;
+		explode case2 type	BITMAPONLY | BITMAP5;
+		explode case3 type	BITMAPONLY | BITMAP1;
+		explode case4 type	BITMAPONLY | BITMAP2;
+		explode case5 type	BITMAPONLY | BITMAP3;
+		explode case6 type	BITMAPONLY | BITMAP3;
+		explode container1 type	BITMAPONLY | BITMAP4;
+		explode container2 type	BITMAPONLY | BITMAP5;
+		explode door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode energy type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode gun type	SHATTER | BITMAP5;
+		explode plate1 type	BITMAPONLY | BITMAP1;
+		explode plate2 type	BITMAPONLY | BITMAP2;
+		explode radar type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode arm type	BITMAPONLY | BITMAP1;
+	explode barrel type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode base type	BITMAPONLY | BITMAP3;
+	explode case1 type	BITMAPONLY | BITMAP4;
+	explode case2 type	BITMAPONLY | BITMAP5;
+	explode case3 type	BITMAPONLY | BITMAP1;
+	explode case4 type	BITMAPONLY | BITMAP2;
+	explode case5 type	BITMAPONLY | BITMAP3;
+	explode case6 type	BITMAPONLY | BITMAP3;
+	explode container1 type	BITMAPONLY | BITMAP4;
+	explode container2 type	BITMAPONLY | BITMAP5;
+	explode door1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode energy type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode flare type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode gun type	SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode plate1 type	BITMAPONLY | BITMAP1;
+	explode plate2 type	BITMAPONLY | BITMAP2;
+	explode radar type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type	BITMAPONLY | BITMAP4;
+	return( 0 );
+	}

@@ -1,0 +1,101 @@
+//This is for missions where only land attacks will work. -air is made
+Weight AIAMEXC 20
+Weight AICMEXC 20
+Weight AIAMEX 3
+Weight AICMEX 3
+Weight AIAUWMEX 0
+Weight AICUWMEX 0
+Weight CTRL_V 1
+Weight GR 1
+Weight CTRL_N 0
+Weight CTRL_H 0
+Weight CTRL_Y 0
+Weight CTRL_L 0.375
+Weight CTRL_Q 0.5
+Weight CTRL_T 0
+Weight CTRL_I 0
+Weight ENERGY 0.2
+Weight CTRL_R 0.1
+Weight CTRL_J 0.1
+Weight CTRL_X 0.05
+Weight CTRL_B 1.25
+Weight PLANT 0.3
+Weight NOAI 0
+Limit ENERGY 10
+Limit CTRL_R 3
+Limit CTRL_J 4
+Limit CTRL_X 3
+
+plan easy
+
+Limit AIBOOST 0
+Limit CTRL_P 10
+Limit GR 5
+Limit CTRL_N 0
+Limit CTRL_H 0
+Limit CTRL_Y 0
+Limit CTRL_L 5
+Limit CTRL_T 0
+Limit CTRL_Q 10
+Limit CTRL_B 1
+Limit PLANT 1
+
+plan medium
+
+Limit AIC 1
+Limit AIAMEX 3
+Limit AICMEX 3
+Limit AIAUWMEX 1
+Limit AICUWMEX 1
+Limit ARMMEX 20
+Limit CORMEX 20
+Limit ARMUWMEX 5
+Limit CORUWMEX 5
+Limit ARMMEXUP 5
+Limit CORMEXUP 5
+Limit ARMSOLAR 4
+Limit CORSOLAR 4
+Limit ARMWIN 4
+Limit CORWIN 4
+Limit ARMTIDE 2
+Limit CORTIDE 2
+Limit CTRL_P 20
+Limit GR 10
+Limit CTRL_N 0
+Limit CTRL_H 0
+Limit CTRL_Y 0
+Limit CTRL_L 10
+Limit CTRL_T 0
+Limit CTRL_Q 15
+Limit CTRL_B 2
+Limit PLANT 2
+
+plan hard
+
+Limit AIC 2
+Limit AIAMEX 25
+Limit AICMEX 25
+Limit AIAUWMEX 5
+Limit AICUWMEX 5
+Limit ARMMEX 0
+Limit CORMEX 0
+Limit ARMUWMEX 0
+Limit CORUWMEX 0
+Limit ARMMEXUP 10
+Limit CORMEXUP 10
+Limit ARMSOLAR 2
+Limit CORSOLAR 2
+Limit ARMWIN 2
+Limit CORWIN 2
+Limit ARMTIDE 1
+Limit CORTIDE 1
+Limit CTRL_P 40
+Limit GR 20
+Limit CTRL_N 0
+Limit CTRL_H 0
+Limit CTRL_Y 0
+Limit CTRL_L 15
+Limit CTRL_T 0
+Limit CTRL_Q 20
+Limit CTRL_B 5
+Limit PLANT 3

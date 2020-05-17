@@ -1,0 +1,324 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, pad, beama, beamb, maina, mainb, stepb1, stepb2,
+       stepb3, stepa2, stepa3, guna, gunb, glow, stepa1, blinka, blinkb, fork;
+
+static-var  Nano_1, ReqState_3, On_4, Busy_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RequestState()
+{
+	while( !Busy_5 AND ReqState_3 != On_4 )
+	{
+		Busy_5 = 1;
+		if( ReqState_3 and !On_4 )
+		{
+	dont-cache beama;
+	dont-cache beamb;
+	dont-cache glow;
+	dont-cache guna;
+	dont-cache gunb;
+	dont-cache maina;
+	dont-cache mainb;
+	dont-cache stepa1;
+	dont-cache stepa2;
+	dont-cache stepa3;
+	dont-cache stepb1;
+	dont-cache stepb2;
+	dont-cache stepb3;
+		move maina to x-axis [0] now;
+		move maina to x-axis [9.75] speed [10.74];
+		move mainb to x-axis [0] now;
+		move mainb to x-axis [-9.75] speed [10.74];
+//		sleep 908;
+		move stepb1 to y-axis [-2.30] speed [2.78];
+		move stepb2 to y-axis [-4.60] speed [5.56];
+		move stepb3 to y-axis [-6.80] speed [8.21];
+		move stepa2 to y-axis [-2.25] speed [2.72];
+		move stepa3 to y-axis [-4.50] speed [5.43];
+//		sleep 828;
+		turn guna to x-axis <121.65> speed <286.24>;
+		turn gunb to x-axis <121> speed <284.80>;
+		sleep 454;
+			set YARD_OPEN to 1;
+			while( !( get YARD_OPEN ) )
+			{
+				sleep 1500;
+				set YARD_OPEN to 1;
+			}
+			spin pad around y-axis speed <30>;
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_3 and On_4 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+			set YARD_OPEN to 0;
+			while( get YARD_OPEN )
+			{
+				sleep 1500;
+				set YARD_OPEN to 0;
+			}
+			spin pad around y-axis speed <0>;
+		move maina to x-axis [9.75] now;
+		move mainb to x-axis [-9.75] now;
+		move stepb1 to y-axis [-2.30] now;
+		move stepb2 to y-axis [-4.60] now;
+		move stepb3 to y-axis [-6.80] now;
+		move stepa2 to y-axis [-2.25] now;
+		move stepa3 to y-axis [-4.50] now;
+		turn guna to x-axis <121.65> now;
+		turn guna to x-axis <0> speed <282.25>;
+		turn gunb to x-axis <121> now;
+		turn gunb to x-axis <0> speed <280.84>;
+//		sleep 431;
+		move stepb1 to y-axis [0] speed [2.99];
+		move stepb2 to y-axis [0] speed [5.99];
+		move stepb3 to y-axis [0] speed [8.85];
+		move stepa2 to y-axis [0] speed [2.93];
+		move stepa3 to y-axis [0] speed [5.86];
+//		sleep 768;
+		move maina to x-axis [0] speed [10.16];
+		move mainb to x-axis [0] speed [10.16];
+		sleep 990;
+	cache beama;
+	cache beamb;
+	cache glow;
+	cache guna;
+	cache gunb;
+	cache maina;
+	cache mainb;
+	cache stepa1;
+	cache stepa2;
+	cache stepa3;
+	cache stepb1;
+	cache stepb2;
+	cache stepb3;
+		}
+		Busy_5 = 0;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade blinka;
+	dont-shade blinkb;
+	dont-cache blinka;
+	dont-cache blinkb;
+	dont-cache fork;
+	dont-cache pad;
+	dont-shade beama;
+	dont-shade beamb;
+	dont-shade fork;
+	dont-shade glow;
+	dont-shade guna;
+	dont-shade gunb;
+	dont-shade maina;
+	dont-shade mainb;
+	dont-shade pad;
+	dont-shade stepa1;
+	dont-shade stepa2;
+	dont-shade stepa3;
+	dont-shade stepb1;
+	dont-shade stepb2;
+	dont-shade stepb3;
+	Nano_1 = 0;
+	ReqState_3 = 0;
+	On_4 = 0;
+	Busy_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 500;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( !Nano_1 )
+	{
+		piecenum = beama;
+	}
+	if( Nano_1 )
+	{
+		piecenum = beamb;
+	}
+	Nano_1 = ( !Nano_1 );
+	return (0);
+}
+
+Activate()
+{
+	signal 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 1;
+	call-script RequestState();
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+Deactivate()
+{
+	signal 2;
+	set-signal-mask 2;
+	set BUGGER_OFF to 1;
+	ReqState_3 = 0;
+	sleep 10000;
+	set-signal-mask 0;
+	if( !ReqState_3 )
+	{
+		call-script RequestState();
+	}
+	set BUGGER_OFF to 0;
+	return (0);
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beama type BITMAPONLY | BITMAP2;
+		explode beamb type BITMAPONLY | BITMAP3;
+		explode blinka type BITMAPONLY | BITMAP4;
+		explode blinkb type BITMAPONLY | BITMAP5;
+		explode fork type BITMAPONLY | BITMAP1;
+		explode glow type BITMAPONLY | BITMAP2;
+		explode guna type BITMAPONLY | BITMAP3;
+		explode gunb type BITMAPONLY | BITMAP4;
+		explode maina type BITMAPONLY | BITMAP5;
+		explode mainb type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode stepa1 type BITMAPONLY | BITMAP3;
+		explode stepa2 type BITMAPONLY | BITMAP4;
+		explode stepa3 type BITMAPONLY | BITMAP5;
+		explode stepb1 type BITMAPONLY | BITMAP1;
+		explode stepb2 type BITMAPONLY | BITMAP2;
+		explode stepb3 type BITMAPONLY | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beama type FALL | BITMAP2;
+		explode beamb type FALL | BITMAP3;
+		explode blinka type FALL | BITMAP4;
+		explode blinkb type FALL | BITMAP5;
+		explode fork type BITMAPONLY | BITMAP1;
+		explode glow type BITMAPONLY | BITMAP2;
+		explode guna type FALL | BITMAP3;
+		explode gunb type FALL | BITMAP4;
+		explode maina type BITMAPONLY | BITMAP5;
+		explode mainb type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode stepa1 type SHATTER | BITMAP3;
+		explode stepa2 type BITMAPONLY | BITMAP4;
+		explode stepa3 type FALL | BITMAP5;
+		explode stepb1 type SHATTER | BITMAP1;
+		explode stepb2 type BITMAPONLY | BITMAP2;
+		explode stepb3 type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode beama type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beamb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode blinka type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode blinkb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode fork type BITMAPONLY | BITMAP1;
+		explode glow type BITMAPONLY | BITMAP2;
+		explode guna type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode gunb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode maina type BITMAPONLY | BITMAP5;
+		explode mainb type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP2;
+		explode stepa1 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode stepa2 type BITMAPONLY | BITMAP4;
+		explode stepa3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode stepb1 type SHATTER | BITMAP1;
+		explode stepb2 type BITMAPONLY | BITMAP2;
+		explode stepb3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode beama type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beamb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode blinka type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode blinkb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode fork type BITMAPONLY | BITMAP1;
+	explode glow type BITMAPONLY | BITMAP2;
+	explode guna type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode gunb type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode maina type BITMAPONLY | BITMAP5;
+	explode mainb type BITMAPONLY | BITMAP1;
+	explode pad type BITMAPONLY | BITMAP2;
+	explode stepa1 type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode stepa2 type BITMAPONLY | BITMAP4;
+	explode stepa3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode stepb1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode stepb2 type BITMAPONLY | BITMAP2;
+	explode stepb3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return (0);
+}

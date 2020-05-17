@@ -1,0 +1,142 @@
+// Core Moho Metal Extractor
+
+piece base;
+
+static-var active,spinspeed,spinacc,spindec;
+
+#define SIG_MOVEMENT	2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\cormoho\activatescr.bos"
+#include "..\anim3d\cormoho\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "yard.h"
+
+Go()
+	{
+	show dingle1;
+	show dingle2;
+	show rotary;
+	dont-cache dingle1;
+	dont-cache dingle2;
+	dont-cache rotary;
+	dont-cache shell;
+	dont-cache stands;
+	call-script activatescr();
+	spin rotary around y-axis speed spinspeed accelerate spinacc;
+	spin dingle1 around y-axis speed spinspeed;
+	spin dingle2 around y-axis speed spinspeed;
+	}
+
+Stop()
+	{
+	stop-spin rotary around y-axis decelerate spindec;
+	stop-spin dingle1 around y-axis decelerate spindec;
+	stop-spin dingle2 around y-axis decelerate spindec;
+	wait-for-turn rotary around y-axis;
+	wait-for-turn dingle1 around y-axis;
+	wait-for-turn dingle2 around y-axis;
+	turn dingle1 to y-axis <0> speed <120>;
+	turn dingle2 to y-axis <0> speed <120>;
+	call-script deactivatescr();
+	cache dingle1;
+	cache dingle2;
+	cache rotary;
+	cache shell;
+	cache stands;
+	hide dingle1;
+	hide dingle2;
+	hide rotary;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	spinspeed=0;
+	spinacc=<1.0>;
+	spindec=<3.0>;
+	hide dingle1;
+	hide dingle2;
+	hide rotary;
+	dont-shade dingle1;
+	dont-shade dingle2;
+	dont-shade rotary;
+	dont-shade shell;
+	dont-shade stands;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SetSpeed(the_speed)
+	{
+	spinspeed=the_speed*<0.15>;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dingle1 type	BITMAPONLY | BITMAP2;
+		explode dingle2 type	BITMAPONLY | BITMAP3;
+		explode rotary type	BITMAPONLY | BITMAP4;
+		explode shell type	BITMAPONLY | BITMAP5;
+		explode stands type	BITMAPONLY | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dingle1 type	FALL | BITMAP2;
+		explode dingle2 type	FALL | BITMAP3;
+		explode rotary type	FALL | BITMAP4;
+		explode shell type	BITMAPONLY | BITMAP5;
+		explode stands type	SHATTER | BITMAP1;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode base type	BITMAPONLY | BITMAP1;
+		explode dingle1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode dingle2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rotary type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode shell type	BITMAPONLY | BITMAP5;
+		explode stands type	SHATTER | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode dingle1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode dingle2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rotary type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode shell type	BITMAPONLY | BITMAP5;
+	explode stands type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

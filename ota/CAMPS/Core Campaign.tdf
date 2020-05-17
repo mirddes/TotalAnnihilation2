@@ -1,0 +1,254 @@
+[HEADER]
+	{
+	campaignside=CORE; 
+	}
+
+[MISSION0]
+	{
+	missionfile=CC01.ota;
+	missionname=1: The Commander Reactivated...;
+	Germanmissionname=1: Der reaktivierte Commander;
+	Frenchmissionname=1: Réactivation du Commandeur;
+	Italianmissionname=1: Riattivare il Comandante...;
+	Spanishmissionname=1: El Comandante reactivado...;
+	}
+
+[MISSION1]
+	{
+	missionfile=CC02.ota;
+	missionname=2: Vermin;
+	Germanmissionname=2: Geschmeiß;
+	Frenchmissionname=2: La vermine;
+	Italianmissionname=2: Parassiti;
+	Spanishmissionname=2: Alimañas;
+	}
+
+[MISSION2]
+	{
+	missionfile=CC03.ota;
+	missionname=3: Ambush!;
+	Germanmissionname=3: Überfall!;
+	Frenchmissionname=3: Embuscade;
+	Italianmissionname=3: Imboscata! ;
+	Spanishmissionname=3: ¡Emboscada!;
+	}
+
+[MISSION3]
+	{
+	missionfile=CC04.ota;
+	missionname=4: Enough is Enough;
+	Germanmissionname=4: Genug ist genug;
+	Frenchmissionname=4: Cela doit cesser;
+	Italianmissionname=4: Basta! ;
+	Spanishmissionname=4: Ya es demasiado;
+	}
+
+[MISSION4]
+	{
+	missionfile=CC05.ota;
+	missionname=5: Barathrum!;
+	Germanmissionname=5: Barathrum!;
+	Frenchmissionname=5: Barathrum;
+	Italianmissionname=5: Barathrum! ;
+	Spanishmissionname=5: ¡Barathrum!;
+	}
+
+[MISSION5]
+	{
+	missionfile=CC06.ota;
+	missionname=6: The Cleansing Begins;
+	Germanmissionname=6: Die Säuberung beginnt;
+	Frenchmissionname=6: L'épuration commence;
+	Italianmissionname=6: Disinfestazione ;
+	Spanishmissionname=6: Comienza la limpieza;
+	}
+
+[MISSION6]
+	{
+	missionfile=CC07.ota;
+	missionname=7: Pulling the Noose Tight;
+	Germanmissionname=7: Die Schlinge zuziehen;
+	Frenchmissionname=7: L'étau se resserre;
+	Italianmissionname=7: Ancora oltre ;
+	Spanishmissionname=7: Estrechando el cerco;
+	}
+
+[MISSION7]
+	{
+	missionfile=CC08.ota;
+	missionname=8: The Gate to Aqueous Minor;
+	Germanmissionname=8: Das Tor nach Aqueous Minor;
+	Frenchmissionname=8: Le Passage Stellaire d'Aqueous Minor;
+	Italianmissionname= 8: Il varco per Aqueous Minor;
+	Spanishmissionname=8: La Puerta a Aquous Minor;
+	}
+
+[MISSION8]
+	{
+	missionfile=CC09.ota;
+	missionname=9: The Purgation of Aqueous Minor;
+	Germanmissionname=9: Die Reinigung von Aqueous Minor;
+	Frenchmissionname=9: La purge d'Aqueous Minor;
+	Italianmissionname=9: Epurazione di Aqueous Minor ;
+	Spanishmissionname=9: La Purga de Aqueous Minor;
+	}
+
+[MISSION9]
+	{
+	missionfile=CC10.ota;
+	missionname=10: The Gauntlet;
+	Germanmissionname=10: Der Fehdehandschuh;
+	Frenchmissionname=10: Le Gantelet;
+	Italianmissionname=10: Gauntlet ;
+	Spanishmissionname=10: Gauntlet;
+	}
+
+[MISSION10]
+	{
+	missionfile=CC11.ota;
+	missionname=11: Isle Parche;
+	Germanmissionname=11: Die Insel Parche;
+	Frenchmissionname=11: L'île Parche;
+	Italianmissionname=11: Isola Parche ;
+	Spanishmissionname=11: Isla Parche;
+	}
+
+[MISSION11]
+	{
+	missionfile=CC12.ota;
+	missionname=12: A Traitor Leads The Way;
+	Germanmissionname=12: Ein Verräter zeigt den Weg;
+	Frenchmissionname=12: Le traître mène la danse;
+	Italianmissionname=12: Condotti dal traditore ;
+	Spanishmissionname=12: Un traidor abre el camino;
+	}
+
+[MISSION12]
+	{
+	missionfile=CC13.ota;
+	missionname=13: Rougpelt;
+	Germanmissionname=13: Rougpelt;
+	Frenchmissionname=13: Rougpelt;
+	Italianmissionname=13: Rougpelt ;
+	Spanishmissionname=13: Rougpelt;
+	}
+
+[MISSION13]
+	{
+	missionfile=CC14.ota;
+	missionname=14: Scouring Rougpelt;
+	Germanmissionname=14: Rougpelt blankputzen;
+	Frenchmissionname=14: La campagne de Rougpelt;
+	Italianmissionname=14: Pulizia di Rougpelt ;
+	Spanishmissionname=14: Barriendo Rougpelt;
+	}
+
+[MISSION14]
+	{
+	missionfile=CC15.ota;
+	missionname=15: Xantippe's Abyss;
+	Germanmissionname=15: Die Xanthippenschlucht;
+	Frenchmissionname=15: L'Abysse de Xantippe;
+	Italianmissionname=15: Abisso Xantippe ;
+	Spanishmissionname=15: Abismo de Xantippe;
+	}
+
+[MISSION15]
+	{
+	missionfile=CC16.ota;
+	missionname=16: Departing Rougpelt;
+	Germanmissionname=16: Abschied von Rougpelt;
+	Frenchmissionname=16: Quitter Rougpelt;
+	Italianmissionname=16: Lasciare Rougpelt ;
+	Spanishmissionname=16: Partida de Rougpelt;
+	}
+
+[MISSION16]
+	{
+	missionfile=CC17.ota;
+	missionname=17: The Lost Isle;
+	Germanmissionname=17: Die verlorene Insel;
+	Frenchmissionname=17: L'île perdue;
+	Italianmissionname=17: L'Isola Perduta ;
+	Spanishmissionname=17: La isla perdida;
+	}
+
+[MISSION17]
+	{
+	missionfile=CC18.ota;
+	missionname=18: Slolam Pilago;
+	Germanmissionname=18: Auf Nigh Pilago gehen die Lichter aus;
+	Frenchmissionname=18: Slolam Pilago;
+	Italianmissionname=18: Slolam Pilago ;
+	Spanishmissionname=18: Slolam Pilago;
+	}
+
+[MISSION18]
+	{
+	missionfile=CC19.ota;
+	missionname=19: The Vebreen Fleet;
+	Germanmissionname=19: Die Vebreen-Flotte;
+	Frenchmissionname=19: La flotte de Vebreen;
+	Italianmissionname=19: L'atollo Vebreen ;
+	Spanishmissionname=19: La flota de Vebreen;
+	}
+
+[MISSION19]
+	{
+	missionfile=CC20.ota;
+	missionname=20: The Gate to Aegus;
+	Germanmissionname=20: Das Tor nach Aegus;
+	Frenchmissionname=20: Le Passage Stellaire d'Aegus;
+	Italianmissionname=20: Varco per Aegus ;
+	Spanishmissionname=20: La Puerta a Aegus;
+	}
+
+[MISSION20]
+	{
+	missionfile=CC21.ota;
+	missionname=21: Aegus...Empyrrean's Guardian;
+	Germanmissionname=21: Aegus ...;
+	Frenchmissionname=21: Aegus;
+	Italianmissionname=21: Aegus...Il guardiano di Empyrrean ;
+	Spanishmissionname=21: Aegus...guardián de Empyrrean;
+	}
+
+[MISSION21]
+	{
+	missionfile=CC22.ota;
+	missionname=22: A Big Empyrrean Welcome;
+	Germanmissionname=22: Ein Willkommensgruß nach Empyrrean;
+	Frenchmissionname=22: Bienvenue sur Empyrrean;
+	Italianmissionname=22: Benvenuti su Empyrrean ;
+	Spanishmissionname=22: Toda una bienvenida a Empyrrean;
+	}
+
+[MISSION22]
+	{
+	missionfile=CC23.ota;
+	missionname=23: The Fortress Falls;
+	Germanmissionname=23: Die Festung fällt;
+	Frenchmissionname=23: La chute de la forteresse;
+	Italianmissionname=23: Presa della fortezza;
+	Spanishmissionname=23: Cae la fortaleza;	
+	}
+
+[MISSION23]
+	{
+	missionfile=CC24.ota;
+	missionname=24: Surrounded and Pounded;
+	Germanmissionname=24: Umzingelt und weichgeklopft;
+	Frenchmissionname=24: Epuisement des dernières ressources;
+	Italianmissionname=24: Circondati e battuti ;
+	Spanishmissionname=24: Rodeados;
+	}
+
+[MISSION24]
+	{
+	missionfile=CC25.ota;
+	missionname=25: Empyrrean's Final Stand;
+	Germanmissionname=25: Die letzte Stellung von Empyrrean;
+	Frenchmissionname=25: La fin d'Empyrrean;
+	Italianmissionname=25: Resistenza finale ;
+	Spanishmissionname=25: La última defensa en Empyrrean;
+	}

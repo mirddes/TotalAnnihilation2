@@ -1,0 +1,398 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  beam, nano, arm, turret, plate, tail1, tail2, tail,
+       door1, door2, shell, upperfront, lowerfront, upperback, lowerback, nose,
+       tracks1, tube1, side1b, side1a, tracks2, tube2, side2a, side2b,
+       body, wake1, wake2, wake3, base;
+
+static-var  Nano_1, ReqState_2, Busy_3, On_4, depth_5, swimming_6, moving;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_5 == 2 )
+			{
+				smoketype = 256 | 3;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( swimming_6 AND depth_5 > 3 )
+		{
+			turn side1a to y-axis <0> speed <40>;
+			turn side2a to y-axis <0> speed <40>;
+			turn tube1 to y-axis <0> speed <40>;
+			turn tube2 to y-axis <0> speed <40>;
+			turn tail1 to z-axis <-90> speed <180>;
+			turn tail2 to z-axis <90> speed <180>;
+			move side1a to x-axis [0] speed [4];
+			move side2a to x-axis [0] speed [4];
+			move shell to y-axis [3.3] speed [3.3];
+			sleep 250;
+			move tube1 to z-axis [3] speed [6];
+			move tube2 to z-axis [3] speed [6];
+			move tube1 to y-axis [-0.2] speed [0.4];
+			move tube2 to y-axis [-0.2] speed [0.4];
+			turn side1a to z-axis <115> speed <115>;
+			turn side2a to z-axis <-115> speed <115>;
+			move side1b to z-axis [-6.2] speed [12.4];
+			move side2b to z-axis [-6.2] speed [12.4];
+			move side1b to x-axis [-0.4] speed [1.6];
+			move side2b to x-axis [0.4] speed [1.6];
+			move side1b to y-axis [-0.7] speed [1.4];
+			move side2b to y-axis [-0.7] speed [1.4];
+			move nose to y-axis [1.75] speed [1.75];
+			move lowerfront to y-axis [0.75] speed [1];
+			show tracks1;
+			show tracks2;
+			sleep 250;
+			move tail to z-axis [5] speed [10];
+			move lowerback to z-axis [-2.5] speed [10];
+			move lowerback to y-axis [0.75] speed [3];
+			sleep 500;
+			set ARMORED to 1;
+			hide tail;
+			hide tail1;
+			hide tail2;
+			hide tube1;
+			hide tube2;
+			turn upperfront to x-axis <102> speed <360>;
+			turn upperback to x-axis <-72> speed <240>;
+			sleep 250;
+			show body;
+			hide shell;
+			hide lowerback;
+			hide upperback;
+			hide lowerfront;
+			hide upperfront;
+			hide side1a;
+			hide side1b;
+			hide side2a;
+			hide side2b;			
+			swimming_6 = 0;
+		}
+		if( ( depth_5 < 4 AND depth_5 != 0 ) AND ( !swimming_6 ) )
+		{
+			hide body;
+			show shell;
+			show lowerback;
+			show upperback;
+			show lowerfront;
+			show upperfront;
+			show side1a;
+			show side1b;
+			show side2a;
+			show side2b;
+			show tube1;
+			show tube2;
+			turn side1a to z-axis <0> speed <115>;
+			turn side2a to z-axis <0> speed <115>;
+			move side1b to z-axis [0] speed [6.2];
+			move side2b to z-axis [0] speed [6.2];
+			move side1b to x-axis [0] speed [0.4];
+			move side2b to x-axis [0] speed [0.4];
+			move side1b to y-axis [0] speed [1.4];
+			move side2b to y-axis [0] speed [1.4];
+			turn upperfront to x-axis <0> speed <360>;
+			turn upperback to x-axis <0> speed <240>;
+			sleep 250;
+			move shell to y-axis [0] speed [3.3];
+			move nose to y-axis [0] speed [1.75];
+			move lowerfront to y-axis [0] speed [0.75];
+			move lowerback to z-axis [0] speed [5];
+			move lowerback to y-axis [0] speed [1.5];
+			sleep 400;
+			set ARMORED to 0;
+			show tail;
+			show tail1;
+			show tail2;
+			hide tracks1;
+			hide tracks2;
+			hide plate;
+			move tail to z-axis [0] speed [6.5];
+			move tube1 to y-axis [0] speed [0.4];
+			move tube2 to y-axis [0] speed [0.4];
+			move tube1 to x-axis [0] speed [0.4];
+			move tube2 to x-axis [0] speed [0.4];
+			move tube1 to z-axis [0] speed [4];
+			move tube2 to z-axis [0] speed [4];
+			sleep 750;
+			turn tail1 to z-axis <0> speed <300>;
+			turn tail2 to z-axis <0> speed <300>;
+			turn side1a to y-axis <-10> speed <20>;
+			turn side2a to y-axis <10> speed <20>;
+			turn tube1 to y-axis <10> speed <20>;
+			turn tube2 to y-axis <-10> speed <20>;
+			move side1a to x-axis [-0.5] speed [1];
+			move side2a to x-axis [0.5] speed [1];
+			sleep 500;
+			swimming_6 = 1;
+		}
+		sleep 300;
+	}
+	return (0);
+}
+
+Create()
+{
+	nano_1 = 0;
+	ReqState_2 = 0;
+	Busy_3 = 0;
+	On_4 = 0;
+	swimming_6 = 1;
+	moving=0;
+	hide body;
+	hide tracks1;
+	hide tracks2;
+	turn side1a to y-axis <-10> NOW;
+	turn side2a to y-axis <10> NOW;
+	turn tube1 to y-axis <10> NOW;
+	turn tube2 to y-axis <-10> NOW;
+	move side1a to x-axis [-0.5] NOW;
+	move side1b to x-axis [0.5] NOW;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+	return (0);
+}
+
+StartMoving()
+{
+	moving=1;
+	while (moving)
+	{
+		if( swimming_6 )
+		{
+			emit-sfx 256 | 3 from wake1;
+			emit-sfx 256 | 3 from wake2;
+			emit-sfx 256 | 3 from wake3;
+		}
+		sleep 250;
+	}
+	return (0);
+}
+
+StopMoving()
+{
+	moving=0;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_5 = Func_Var_1;	
+	// 0 -> Transported: Unit is being loaded
+	// 1 -> Sea: Unit does not have upright=1 and is going into sea. Or unit has upright=1 and is going into shore. (From unloading, or ground, or deep sea for upright unit)
+	// 2 -> Sea: Unit has upright=1 and goes into deep sea. (From shore, or unloading)
+	// 3 -> ????
+	// 4 -> Land: Unit is being created, goes from sea (or shore if upright=1) to dry ground, or is unloaded
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+	return (0);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Nano_1 = Func_Var_1;
+	ReqState_2 = 1;	
+	while( busy_3 )
+	{
+		sleep 500;
+	}
+	if( ReqState_2 and !on_4 )
+	{
+		busy_3 = 1;
+		On_4 = 1;		
+		turn door1 to z-axis <0> now;
+		turn door1 to z-axis <-70.66> speed <182.13>;
+		turn door2 to z-axis <0> now;
+		turn door2 to z-axis <70.66> speed <182.13>;
+		sleep 388;
+		move door1 to y-axis [-2.35] speed [6];
+		move door2 to y-axis [-2.25] speed [5.78];
+		sleep 389;
+		move plate to y-axis [2] speed [5];
+		turn arm to x-axis <90> speed <230.82>;
+		turn nano to x-axis <-66.16> speed <169.65>;
+		sleep 410;
+		busy_3 = 0;
+	}
+	if( ReqState_2 )
+	{
+		signal 16;
+		set-signal-mask 16;
+		turn turret to y-axis Func_Var_1 speed <200>;
+		wait-for-turn turret around y-axis;
+		set INBUILDSTANCE to 1;
+	}
+	return (0);
+}
+
+StopBuilding()
+{
+	ReqState_2 = 0;
+	sleep 2000;
+	while ( busy_3 )
+	{
+		sleep 500;
+	}
+	if( !ReqState_2 AND on_4 )
+	{
+		busy_3 = 1;
+		On_4 = 0;
+		signal 16;
+		set INBUILDSTANCE to 0;
+		turn turret to y-axis <0> speed <200>;
+//			wait-for-turn turret around y-axis;
+		move plate to y-axis [2] now;
+		move door1 to y-axis [-2.35] now;
+		move door2 to y-axis [-2.25] now;
+		turn door1 to z-axis <-72.02> now;
+		turn door2 to z-axis <72.02> now;
+		turn arm to x-axis <90.02> now;
+		turn arm to x-axis <0> speed <232>;
+		turn nano to x-axis <-63.01> now;
+		turn nano to x-axis <0> speed <170.53>;
+		move plate to y-axis [0] speed [5];
+		sleep 388;
+		move door1 to y-axis [0] speed [9.4];
+		move door2 to y-axis [0] speed [9];
+		sleep 250;
+		turn door1 to z-axis <0> speed <181.20>;
+		turn door2 to z-axis <0> speed <181.20>;
+		sleep 390;
+		busy_3 = 0;
+	}
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+	return (0);
+}
+
+TargetHeading(Func_Var_1)
+{
+	Nano_1 = ( 0 - Func_Var_1 );
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( !swimming_6 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode body type BITMAPONLY | BITMAP1;
+			explode nano type BITMAPONLY | BITMAP2;
+			explode turret type BITMAPONLY | BITMAP3;
+			explode side1a type BITMAPONLY | BITMAP4;
+			explode side1b type BITMAPONLY | BITMAP5;
+			explode door1 type BITMAPONLY | BITMAP1;
+			explode tail1 type BITMAPONLY | BITMAP2;
+			explode arm type BITMAPONLY | BITMAP3;
+			explode tail type BITMAPONLY | BITMAP4;
+			explode side2a type BITMAPONLY | BITMAP5;
+			explode side2b type BITMAPONLY | BITMAP1;
+			explode door2 type BITMAPONLY | BITMAP2;
+			explode tail2 type BITMAPONLY | BITMAP3;
+			explode lowerback type BITMAPONLY | BITMAP2;
+			explode lowerfront type BITMAPONLY | BITMAP3;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode nano type BITMAPONLY | BITMAP2;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode side1a type BITMAPONLY | BITMAP4;
+		explode side1b type BITMAPONLY | BITMAP5;
+		explode door1 type FALL | BITMAP1;
+		explode tail1 type BITMAPONLY | BITMAP2;
+		explode arm type BITMAPONLY | BITMAP3;
+		explode tail type BITMAPONLY | BITMAP4;
+		explode side2a type BITMAPONLY | BITMAP5;
+		explode side2b type BITMAPONLY |  BITMAP1;
+		explode door2 type FALL | BITMAP2;
+		explode tail2 type BITMAPONLY | BITMAP3;
+		explode lowerback type FALL | BITMAP2;
+		explode lowerfront type FALL | BITMAP3;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type BITMAPONLY | BITMAP1;
+		explode nano type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode side1a type FALL | EXPLODE_ON_HIT | BITMAP4;
+		explode side1b type FALL | EXPLODE_ON_HIT | BITMAP5;
+		explode door1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode tail1 type FALL | FIRE | BITMAP2;
+		explode arm type SHATTER | BITMAP3;
+		explode tail type BITMAPONLY | BITMAP4;
+		explode side2a type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP5;
+		explode side2b type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP1;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode tail2 type FALL | FIRE | BITMAP3;
+		explode lowerback type FALL | SMOKE | BITMAP2;
+		explode lowerfront type FALL | SMOKE | BITMAP3;
+		return (0);
+	}
+	corpsetype = 4;
+	explode body type BITMAPONLY | BITMAP1;
+	explode nano type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode side1a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode side1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode tail1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode arm type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode tail type BITMAPONLY | BITMAP4;
+	explode side2a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode side2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode tail2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lowerback type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode lowerfront type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return (0);
+}

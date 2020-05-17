@@ -1,0 +1,35 @@
+[armannis_dead]
+{
+world=All Worlds;
+description=Messenger Wreckage;
+category=arm_corpses;
+object=armannis_dead;
+featuredead=armannis_heap;
+footprintx=6;
+footprintz=6;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=2550;
+damage=3600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armannis_heap]
+{
+world=All Worlds;
+description=Messenger Wreckage;
+category=arm_corpses;
+object=5x5a;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1275;
+damage=3600;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

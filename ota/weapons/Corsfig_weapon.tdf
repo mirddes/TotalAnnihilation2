@@ -1,0 +1,134 @@
+[CORSFIG_WEAPON]
+	{
+	ID=76;
+	name=Guided Missiles;
+	rendertype=1;
+	lineofsight=1;
+
+	model=missile;
+
+	range=510;
+	reloadtime=3;
+	weapontimer=6;
+	weaponvelocity=522;
+	startvelocity=420;
+	weaponacceleration=146;
+	turnrate=19384;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=Rocklit3;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=50;
+		ARMTHUND=140;
+		ARMBRAWL=140;
+		ARMPEEP=140;
+		ARMFIG=140;
+		ARMCA=140;
+		ARMACA=140;
+		ARMATLAS=140;
+		ARMPNIX=140;
+		ARMHAWK=140;
+		ARMLANCE=140;
+		CORFINK=140;
+		CORVENG=140;
+		CORVAMP=140;
+		CORHURC=140;
+		CORTITAN=140;
+		CORACA=140;
+		CORSHAD=140;
+		CORAPE=140;
+		CORCA=140;
+		CORVALK=140;
+		}
+	}
+
+[CORSFIG_WEAPON2]
+	{
+	ID=97;
+	name=Guided Missiles;
+	rendertype=1;
+	lineofsight=1;
+
+	model=missile;
+
+	range=510;
+	reloadtime=3;
+	weapontimer=6;
+	weaponvelocity=522;
+	startvelocity=420;
+	weaponacceleration=146;
+	turnrate=19384;
+	areaofeffect=48;
+	metalpershot=0;
+
+	soundstart=Rocklit3;
+	soundhit=xplosml2;
+
+	firestarter=70;
+	smokedelay=.1;
+	guidance=1;
+	tracks=1;
+	selfprop=1;
+	smoketrail=1;
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=50;
+		ARMTHUND=140;
+		ARMBRAWL=140;
+		ARMPEEP=140;
+		ARMFIG=140;
+		ARMCA=140;
+		ARMACA=140;
+		ARMATLAS=140;
+		ARMPNIX=140;
+		ARMHAWK=140;
+		ARMLANCE=140;
+		CORFINK=140;
+		CORVENG=140;
+		CORVAMP=140;
+		CORHURC=140;
+		CORTITAN=140;
+		CORACA=140;
+		CORSHAD=140;
+		CORAPE=140;
+		CORCA=140;
+		CORVALK=140;
+		}
+	}
+

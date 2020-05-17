@@ -1,0 +1,17 @@
+[armplat_dead]
+	{
+	world=All Worlds;
+	description=Wreckage;
+	category=arm_corpses;
+	object=armplat_dead;
+	footprintx=7;
+	footprintz=7;
+	height=20;
+	blocking=1;
+	hitdensity=100;
+	metal=1778;
+	damage=1456;
+	reclaimable=1;
+	featurereclamate=smudge01;
+	seqnamereclamate=tree1reclamate;
+	}

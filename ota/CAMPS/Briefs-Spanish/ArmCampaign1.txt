@@ -1,0 +1,10 @@
+MISIÓN 1.0001CLANE
+Establecer una guardia en torno a la Puerta Galáctica.
+
+&Y*PRIORIDAD CRÍTICA*&
+Los agentes del Núcleo han abierto una brecha en nuestra seguridad y se encuentran en Empyrrean. Peor aún, el Comandante no está en el planeta y el Núcleo le ha tendido una emboscada cerca de la Puerta Galáctica por la que volverá.. Conduce a tus unidades hasta la Puerta para protegerla. Si el Comandante no regresa sano y salvo, estamos perdidos.
+
+INFORMACIÓN
+La Puerta está en el Cráter del norte. &RHabrá patrullas del Núcleo.&
+
+FIN

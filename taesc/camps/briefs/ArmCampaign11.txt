@@ -1,0 +1,10 @@
+MISSION 11.0003ARMT
+Capture the Core Gate
+
+&YPRIORITY CRITICAL&
+Core resistance is increasing, a sure indication that we near another Gate - and through that Gate another Core world. This battle will secure Tergiverse IV for Arm and open another door. We must prevail!
+
+INFO FEED
+There is a depression to the northeast. The Gate is thought to be located there. Expect stiff resistance from the guards posted there. &GThe combined use of air and ground units will be especially effective on this mission.& 
+
+END

@@ -1,0 +1,244 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  gp, counterbase, base, counteraim, flare, turret, wake1, wake2, 
+       wake3, wake4, wake5, wake6, wake7, wake8, sleeve, barrel;
+
+static-var  depth_1, busy_2, aiming_3;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+RockUnit(anglex, anglez)
+{
+	turn base to x-axis ( anglex ) speed <50>;
+	turn base to z-axis ( anglez ) speed <50>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis ( 0 - anglez * 0.5) speed <15>;
+	turn base to x-axis ( 0 - anglex * 0.5 ) speed <15>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis ( anglex * 0.25 ) speed <12>;
+	turn base to z-axis ( anglez * 0.25 ) speed <12>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis 0 speed <4>;
+	turn base to z-axis 0 speed <4>;
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( busy_2 )
+	{
+		return(0);
+	}
+	busy_2 = 1;
+	turn base to z-axis Func_Var_2 speed <105>;
+	turn base to x-axis Func_Var_1 speed <105>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <30>;
+	turn base to x-axis <0> speed <30>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	busy_2 = 0;
+	return (0);
+}
+
+StartMoving(count)
+{
+	signal 4;
+	set-signal-mask 4;
+	while( TRUE )
+	{
+		count = 0;
+		if( depth_1 <= 3 )
+		{
+			emit-sfx 5 from wake1;
+			emit-sfx 5 from wake2;
+			emit-sfx 5 from wake3;
+			emit-sfx 5 from wake4;
+			emit-sfx 5 from wake5;
+			emit-sfx 5 from wake6;
+			emit-sfx 5 from wake7;
+			emit-sfx 5 from wake8;
+			emit-sfx 3 from wake1;
+			emit-sfx 3 from wake2;
+			emit-sfx 3 from wake3;
+			emit-sfx 3 from wake4;
+			emit-sfx 3 from wake5;
+			emit-sfx 3 from wake6;
+			emit-sfx 3 from wake7;
+			emit-sfx 3 from wake8;
+		}
+		while( count < 9 )
+		{
+			turn counterbase to y-axis get XZ_ATAN(0) now;
+			turn base to y-axis (0 - get XZ_ATAN(0)) speed <50>;
+			turn counteraim to y-axis get XZ_ATAN(0) speed <50>;
+			if( !aiming_3 )
+			{
+				turn turret to y-axis (0 - get XZ_ATAN(0)) speed <50>;
+			}
+			++count;
+			sleep 33;
+		}
+	}
+	return (0);
+}
+
+StopMoving()
+{
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_1 = Func_Var_1;
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	dont-cache flare;
+	busy_2 = 0;
+	aiming_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+		turn counterbase to y-axis get XZ_ATAN(0) now;
+		turn base to y-axis (0 - get XZ_ATAN(0)) now;
+		turn counteraim to y-axis get XZ_ATAN(0) NOW;
+		turn turret to y-axis (0 - get XZ_ATAN(0)) NOW;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	set-signal-mask 2;
+	sleep 5000;
+	set-signal-mask 0;
+	aiming_3 = 0;
+	turn sleeve to x-axis <0> speed <60>;
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	aiming_3 = 1;
+	turn turret to y-axis ( heading - get XZ_ATAN(0)) speed <210>;
+	turn sleeve to x-axis ( <0> - pitch ) speed <70>;
+	wait-for-move barrel along z-axis;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show flare;
+	move barrel to z-axis [-1] speed [100];
+	sleep 50;
+	move barrel to z-axis [0] speed [1];
+	sleep 100;
+	hide flare;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = sleeve;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	hide wake1;
+	hide wake2;
+	hide wake3;
+	hide wake4;
+	hide wake5;
+	hide wake6;
+	hide wake7;
+	hide wake8;
+	if( depth_1 >= 4 )
+	{
+		if( severity <= 25 )
+		{
+			corpsetype = 1;
+			explode barrel type BITMAPONLY | BITMAP1;
+			explode base type BITMAPONLY | BITMAP2;
+			explode sleeve type BITMAPONLY | BITMAP3;
+			explode turret type BITMAPONLY | BITMAP4;
+			return (0);
+		}
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | BITMAP3;
+		explode turret type SHATTER | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type SHATTER | BITMAP4;
+		return (0);
+	}
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+	explode sleeve type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

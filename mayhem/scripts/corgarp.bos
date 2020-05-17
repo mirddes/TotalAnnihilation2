@@ -1,0 +1,161 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+//#include "unitsweaps.h"
+
+piece  base, emit, turret, ltread, rtread, fronttread, treadsupports, barrel,
+       sleeve, wake;
+
+static-var  Moving_1, depth_2, busy_3, x_slope, z_slope;
+
+Create()
+{
+	hide emit;
+	depth_2 = 4;
+	Moving_1 = 0;
+	busy_3 = 0;
+}
+
+StartMoving()
+{
+	signal 8;
+	set-signal-mask 8;
+	Moving_1 = 1;
+	var lxsnxs, lzsnzs;	
+	while( Moving_1 )
+	{
+		if( depth_2 == 3 )
+		{
+			spin fronttread around x-axis speed <200>;
+			emit-sfx 259 from wake;
+		}
+		if( depth_2 == 2 )
+		{
+			spin fronttread around x-axis speed <200>;
+		}
+		if( depth_2 >= 4 )
+		{
+			spin fronttread around x-axis speed <300>;
+		}
+		sleep 300;		
+		lxsnxs=x_slope;// old slope
+		lzsnzs=z_slope;// old slope
+		if( depth_2!=0 )// Not transported: read the ground slope
+		{
+			x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(wake)) - get GROUND_HEIGHT(get PIECE_XZ(fronttread)), get XZ_HYPOT(get PIECE_XZ(wake) - get PIECE_XZ(fronttread)));
+			while(x_slope>32768)
+			{	x_slope=x_slope - 65536;	}
+			z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(rtread)) - get GROUND_HEIGHT(get PIECE_XZ(ltread)), get XZ_HYPOT(get PIECE_XZ(rtread) - get PIECE_XZ(ltread)));
+			while(z_slope>32768)
+			{	z_slope=z_slope - 65536;	}
+		}
+		if( depth_2==0 )// Transported: turn unit back to upright
+		{
+			x_slope=0;
+			z_slope=0;
+		}
+		lxsnxs=lxsnxs - x_slope;// slope delta with time
+		lzsnzs=lzsnzs - z_slope;// slope delta with time
+		if(lxsnxs<0)
+		{	lxsnxs=0 - lxsnxs;	}// absoluted
+		if(lzsnzs<0)
+		{	lzsnzs=0 - lzsnzs;	}// absoluted
+		turn base to x-axis x_slope speed lxsnxs*3;
+		turn base to z-axis z_slope speed lzsnzs*3;
+	}
+	
+}
+
+StopMoving()
+{
+	Moving_1 = 0;
+	spin fronttread around x-axis speed <0>;
+	signal 4;
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_2 = Func_Var_1;
+}
+
+RestoreAfterDelay()
+{
+	sleep 4000;
+	set-signal-mask 0;
+	turn turret to y-axis <0> speed <90>;
+	turn sleeve to x-axis <0> speed <60>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <225>;
+	turn sleeve to x-axis <0> - pitch speed <60>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	show emit;
+	move barrel to z-axis [-2] speed [500];
+	sleep 150;
+	hide emit;
+	move barrel to z-axis [0] speed [3];
+	sleep 1800;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = emit;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide emit;
+	if( depth_2 >= 4 AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode barrel type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode ltread type BITMAPONLY | BITMAP4;
+		explode rtread type BITMAPONLY | BITMAP4;
+		explode turret type BITMAPONLY | BITMAP4;
+		explode fronttread type FALL | EXPLODE_ON_HIT | BITMAP3;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel type FALL | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP2;
+		explode ltread type BITMAPONLY | BITMAP3;
+		explode rtread type BITMAPONLY | BITMAP3;
+		explode fronttread type BITMAPONLY | BITMAP3;
+		explode sleeve type FALL | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP2;
+	explode ltread type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode rtread type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode fronttread type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode treadsupports type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+}

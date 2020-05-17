@@ -1,0 +1,45 @@
+[UNITINFO]
+{
+UnitName=ARMDEFUS;
+Version=1;
+Side=ARM;
+Objectname=ARMFUS;
+Designation=AE-DPF;
+Name=Fusion Reactor;
+Description=Decoy FAKE Reactor (105 E);
+FootprintX=5;
+FootprintZ=4;
+BuildCostEnergy=4911;
+BuildCostMetal=453;
+MaxDamage=3100;
+MaxWaterDepth=0;
+MaxSlope=10;
+EnergyUse=-105;
+BuildTime=9060;
+BMcode=0;
+Builder=1;
+ThreeD=1;
+ZBuffer=1;
+NoAutoFire=0;
+SightDistance=250;
+SoundCategory=ARM_SOLAR;
+ExplodeAs=ATOMIC_BLAST;
+SelfDestructAs=LARGE_BUILDINGEX;
+Category=ALL ARM LEVEL2 CTRL_E E15 NOWEAPON NOTAIR NOTSUB;
+TEDClass=ENERGY;
+Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+YardMap=ccccc ccccc ccccc ccccc;
+Corpse=armdefus_dead;
+GermanName=Fusionreaktor;
+GermanDescription=Reaktor-Double;
+UnitNumber=333;
+FrenchName=Réacteur nucléaire;
+Frenchdescription=Réacteur Appât;
+SpanishName=Reactor de Fusión;
+SpanishDescription=Reactor Señuelo;
+ItalianName=Reattore a Fusione;
+ItalianDescription=Reattore Esca;
+ActivateWhenBuilt=1;
+//onoffable=1;
+shootme=1;
+}

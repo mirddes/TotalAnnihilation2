@@ -1,0 +1,10 @@
+MISSION 5.0005ARME
+Eliminer la base de la ligue Core. Détruire les unités ennemies. Prendre le contrôle du Passage Stellaire.
+
+&Y*PRIORITE TOTALE ET ABSOLUE*&
+Détruisez le campement ennemi afin d'éliminer définitivement la présence Core sur Empyrrean. Trouvez le Passage Stellaire qui a permis à l'armée Core d'envahir notre planète-mère. &GEmparez-vous de ce Passage&, il servira à poursuivre le combat dans une autre galaxie.
+
+INFOS STRATEGIQUES
+Construisez rapidement une importante base. Les forces Core sont nombreuses et leurs patrouilles fréquentes. L'ennemi a fait de gros progrès en matière d'armement. &G Vous devez donc produire, vous aussi, des unités évoluées.& La marine d'Empyrrean mettra quelques unités à votre disposition. L'emploi du nouveau tank Triton est recommandé pour cette mission.
+
+FIN

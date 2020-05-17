@@ -1,0 +1,151 @@
+[CORTRON_WEAPON]
+	{
+	ID=144;
+	name=Atomic Blast Weapon;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=tronmisl;
+
+	range=32000;
+	reloadtime=180;
+
+	noautorange=1;
+	weapontimer=5;
+	flighttime=400;
+
+	weaponvelocity=350;
+	weaponacceleration=50;
+	turnrate=32768;
+	areaofeffect=362;
+	edgeeffectiveness=0.25;
+	startfire=0;
+
+	energypershot=150000;
+	metalpershot=1800;
+
+	stockpile=1;
+	targetable=1;
+	commandfire=1;
+	cruise=1;
+
+	soundstart=misicbm1;
+	soundhit=xplomed4;
+
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+	propeller=1;
+
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+
+	shakemagnitude=24;
+	shakeduration=1.5;
+
+	explosiongaf=tronboom;
+	explosionart=tronboom;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=1;
+		armaas=2000;
+		armaca=2000;
+		armack=2000;
+		armacsub=2000;
+		armacv=2000;
+		armah=2000;
+		armamph=2000;
+		armanac=2000;
+		armaser=2000;
+		armatlas=2000;
+		armawac=2000;
+		armbats=2000;
+		armbrawl=2000;
+		armbs=2000;
+		armbull=2000;
+		armbv=2000;
+		armca=2000;
+		armcarry=2000;
+		armch=2000;
+		armck=2000;
+		armcroc=2000;
+		armcrus=2000;
+		armcs=2000;
+		armcsa=2000;
+		armcuda=2000;
+		armcv=2000;
+		armdecom=2000;
+		armfark=2000;
+		armfast=2000;
+		armfav=2000;
+		armfido=2000;
+		armfig=2000;
+		armflash=2000;
+		armflea=2000;
+		armham=2000;
+		armhawk=2000;
+		armhrk=2000;
+		armjam=2000;
+		armjeth=2000;
+		armlance=2000;
+		armlatnk=2000;
+		armlcrwl=2000;
+		armmanni=2000;
+		armmark=2000;
+		armmart=2000;
+		armmav=2000;
+		armmerl=2000;
+		armmh=2000;
+		armmls=2000;
+		armmlv=2000;
+		armmship=2000;
+		armpeep=2000;
+		armpnix=2000;
+		armpt=2000;
+		armpw=2000;
+		armrectr=2000;
+		armrock=2000;
+		armroy=2000;
+		armrtank=2000;
+		armsam=2000;
+		armscab=2000;
+		armscram=2000;
+		armseap=2000;
+		armseer=2000;
+		armsehak=2000;
+		armsfig=2000;
+		armsh=2000;
+		armaas=2000;
+		armsjam=2000;
+		armsnipe=2000;
+		armspid=2000;
+		armspy=2000;
+		armss=2000;
+		armstar=2000;
+		armstraf=2000;
+		armstump=2000;
+		armsub=2000;
+		armsubk=2000;
+		armthovr=2000;
+		armthund=2000;
+		armship=2000;
+		armvader=2000;
+		armwar=2000;
+		armyork=2000;
+		armzeus=2000;
+		armcom=1500;
+		armtship=2000;
+		corscorp=2000;
+		}
+	}

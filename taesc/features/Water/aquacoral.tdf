@@ -1,0 +1,462 @@
+[AquaCoral01]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral01;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=1;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[AquaCoral02]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral02;
+	
+
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[AquaCoral03]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral03;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[AquaCoral04]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral04;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[AquaCoral05]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral05;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[AquaCoral06]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral06;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral07]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral07;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral08]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral08;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral09]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral09;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral10]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral10;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral11]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral11;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral12]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral12;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral13]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral13;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral14]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral14;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral15]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral15;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral16]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral16;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral17]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral17;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral18]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral18;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral19]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral19;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+
+[aquacoral20]
+	{
+	world=water;
+	description=Coral;
+	category=aquacorals;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=1;
+	filename=aquacoral;
+	seqname=aquacoral20;
+	
+	
+	animtrans=0;
+	shadtrans=1;
+	blocking=0;
+	hitdensity=100;
+	damage=2000;
+	indestructible=1;
+	nodisplayinfo=1;
+	permanent=1;
+	}
+

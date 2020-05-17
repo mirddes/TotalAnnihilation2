@@ -1,0 +1,231 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, Plane, Rwing, Lwing, Rsonar, Lsonar, Rtail, Ltail,
+       Rgun, Lgun, Rflare1, Rflare2, Rflare3, Lflare1, Lflare2, Lflare3;
+
+static-var  gun_1;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	hide Rflare1;
+	hide Rflare2;
+	hide Rflare3;
+	hide Lflare1;
+	hide Lflare2;
+	hide Lflare3;
+	gun_1 = Plane;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	turn Rwing to z-axis <90> speed <100>;
+	turn Lwing to z-axis <-90> speed <100>;
+	turn Rtail to z-axis <20> speed <80>;
+	turn Ltail to z-axis <-20> speed <80>;
+	move Rsonar to z-axis [3.8] speed [20];
+	move Lsonar to z-axis [3.8] speed [20];
+	move Rgun to z-axis [2] speed [10];
+	move Lgun to z-axis [2] speed [10];
+	spin Rsonar around x-axis speed <80>;
+	spin Lsonar around x-axis speed <80>;
+}
+
+Deactivate()
+{
+	stop-spin Rsonar around x-axis;
+	stop-spin Lsonar around x-axis;
+	turn Rsonar to x-axis <0> speed <80>;
+	turn Rsonar to x-axis <0> speed <80>;
+	move Rgun to z-axis [0] speed [10];
+	move Lgun to z-axis [0] speed [10];
+	turn Rtail to z-axis <0> speed <80>;
+	turn Ltail to z-axis <0> speed <80>;
+	move Rsonar to z-axis [0] speed [20];
+	move Lsonar to z-axis [0] speed [20];
+	turn Rwing to z-axis <0> speed <100>;
+	turn Lwing to z-axis <0> speed <100>;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 1 )
+	{
+		piecenum = Rflare1;
+	}
+	if( gun_1 == 2 )
+	{
+		piecenum = Lflare1;
+	}
+	if( gun_1 == 3 )
+	{
+		piecenum = Rflare2;
+	}
+	if( gun_1 == 4 )
+	{
+		piecenum = Lflare2;
+	}
+	if( gun_1 == 5 )
+	{
+		piecenum = Rflare3;
+	}
+	if( gun_1 == 6 )
+	{
+		piecenum = Lflare3;
+	}
+}
+
+AimPrimary()
+{
+	return (1);
+}
+
+FirePrimary()
+{
+	if( gun_1 == 1 )
+	{
+		show Rflare1;
+		sleep 200;
+		hide Rflare1;
+	}
+	if( gun_1 == 2 )
+	{
+		show Lflare1;
+		sleep 200;
+		hide Lflare1;
+	}
+	if( gun_1 == 3 )
+	{
+		show Rflare2;
+		sleep 200;
+		hide Rflare2;
+	}
+	if( gun_1 == 4 )
+	{
+		show Lflare2;
+		sleep 200;
+		hide Lflare2;
+	}
+	if( gun_1 == 5 )
+	{
+		show Rflare3;
+		sleep 200;
+		hide Rflare3;
+	}
+	if( gun_1 == 6 )
+	{
+		show Lflare3;
+		sleep 200;
+		hide Lflare3;
+	}
+	++gun_1;
+	if( gun_1 == 7 )
+	{
+		gun_1 = Plane;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = Plane;
+}
+
+Killed(severity, corpsetype)
+{
+	hide Rflare1;
+	hide Rflare2;
+	hide Rflare3;
+	hide Lflare1;
+	hide Lflare2;
+	hide Lflare3;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Plane type BITMAPONLY | BITMAP4;
+		explode Rwing type BITMAPONLY | BITMAP3;
+		explode Rsonar type BITMAPONLY | BITMAP2;
+		explode Lwing type BITMAPONLY | BITMAP3;
+		explode Lsonar type BITMAPONLY | BITMAP2;
+		explode Rgun type BITMAPONLY | BITMAP5;
+		explode Lgun type BITMAPONLY | BITMAP5;
+		explode Rtail type BITMAPONLY | BITMAP3;
+		explode Ltail type BITMAPONLY | BITMAP3;
+		explode Rflare1 type BITMAPONLY | BITMAP1;
+		explode Lflare1 type BITMAPONLY | BITMAP1;
+		explode Rflare2 type BITMAPONLY | BITMAP1;
+		explode Lflare2 type BITMAPONLY | BITMAP1;
+		explode Rflare3 type BITMAPONLY | BITMAP1;
+		explode Lflare3 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode Plane type BITMAPONLY | BITMAP4;
+		explode Rwing type EXPLODE_ON_HIT | BITMAP3;
+		explode Rsonar type SHATTER | BITMAP2;
+		explode Lwing type EXPLODE_ON_HIT | BITMAP3;
+		explode Lsonar type FALL | BITMAP2;
+		explode Rgun type FALL | BITMAP5;
+		explode Lgun type FALL | BITMAP5;
+		explode Rtail type FALL | SMOKE | BITMAP3;
+		explode Ltail type FALL | SMOKE | BITMAP3;
+		explode Rflare1 type BITMAPONLY | BITMAP1;
+		explode Lflare1 type BITMAPONLY | BITMAP1;
+		explode Rflare2 type BITMAPONLY | BITMAP1;
+		explode Lflare2 type BITMAPONLY | BITMAP1;
+		explode Rflare3 type BITMAPONLY | BITMAP1;
+		explode Lflare3 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Plane type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Rwing type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rsonar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Lwing type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Lsonar type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Rgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Lgun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Rtail type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Ltail type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Rflare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Lflare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Rflare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Lflare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Rflare3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Lflare3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

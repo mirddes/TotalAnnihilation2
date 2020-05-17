@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Red River North;
+	missiondescription=21 X 14  Smaller segment of Red River.;
+	planet=Red Planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=23;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2500;
+	maxwindspeed=3500;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 4, 6;
+	size=21 x 14;
+	memory=32 mb;
+	useonlyunits=Red River North.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=848;
+				ZPos=480;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=10032;
+				ZPos=6192;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=640;
+				ZPos=6160;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=10048;
+				ZPos=688;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=3536;
+				ZPos=3520;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=7696;
+				ZPos=3312;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=4720;
+				ZPos=400;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=7376;
+				ZPos=1008;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=2912;
+				ZPos=5632;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=6576;
+				ZPos=6272;
+				}
+			}
+		}
+	}

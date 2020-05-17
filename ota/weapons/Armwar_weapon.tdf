@@ -1,0 +1,71 @@
+[ARMWAR_EMG]
+	{
+	ID=171;
+	name=E.M.G.;
+	rendertype=4;
+	color=1;
+	lineofsight=1;
+	turret=1;
+	range=180;
+	reloadtime=.4;
+	weapontimer=1;
+	weaponvelocity=300;
+	sprayangle=1024;
+	areaofeffect=8;
+	burst=2;
+	burstrate=.2;
+	soundstart=armsml2;
+	soundhit=lasrhit1;
+	soundtrigger=1;
+	tolerance=5000;
+
+	startsmoke=1;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=12;
+		}
+	}
+
+[ARMWAR_LCANNON]
+	{
+	ID=176;
+	name=Light Cannon;
+	rendertype=4;
+	ballistic=1;
+	turret=1;
+
+	range=240;
+	reloadtime=2.13;
+	weaponvelocity=170;
+	areaofeffect=32;
+	soundstart=canlite3;
+	soundhit=xplosml3;
+	tolerance=3000;
+
+	explosiongaf=fx;
+	explosionart=explode4;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2o;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplash;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=60;
+		}
+	}
+

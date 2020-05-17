@@ -1,0 +1,36 @@
+[CORCREM_DEAD]
+{
+world=All Worlds;
+description=Cremator Wreckage;
+category=core_corpses;
+object=CORCREM_DEAD;
+featuredead=CORCREM_HEAP;
+footprintx=3;
+footprintz=3;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=528;
+damage=1700;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[CORCREM_HEAP]
+{
+world=All Worlds;
+description=Cremator Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=264;
+damage=1700;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

@@ -1,0 +1,10 @@
+MISSIONE 7.0002ARMTH
+Difendere Larab Harbor, proteggere l’Estrattore Moho e distruggere tutte le unità avversarie. 
+
+&Y*PRIORITÀ SPECIALE*&
+La fortezza ARM e il deposito di rifornimenti a Larab Harbor devono essere protetti dagli assalti Core. Il metallo è molto raro su questo pianeta, quindi è necessario proteggere l’Estrattore Moho a tutti i costi: in caso contrario la missione fallirà inesorabilmente.
+
+INFORMAZIONI UTILI
+Abbiamo ragione di credere che all’interno dell’uragano che si sta avvicinando a Larab sia nascosta una flotta Core. Siate pronti! &YIl nemico tenterà senz’altro di attaccare l’Estrattore Moho.&
+
+FINE

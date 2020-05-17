@@ -1,0 +1,62 @@
+[wetaquaore1]  // Small
+	{
+	world=WetDesert;
+	description=Metal;
+	category=metal;
+	animating=0;
+   	 footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=wetaquaore;
+	seqname=wetaquaore1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=84;
+	damage=32009;
+	indestructible=1;
+	}
+
+[wetaquaore2]  // Medium
+	{
+	world=WetDesert;
+	description=Metal;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=wetaquaore;
+	seqname=wetaquaore2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=133;
+	damage=32009;
+	indestructible=1;
+	}
+
+[wetaquaore3]  // Huge
+	{
+	world=WetDesert;
+	description=Metal;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=0;
+	filename=wetaquaore;
+	seqname=wetaquaore3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=220;
+	damage=32009;
+	indestructible=1;
+	}

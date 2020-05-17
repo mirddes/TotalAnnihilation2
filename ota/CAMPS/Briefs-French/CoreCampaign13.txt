@@ -1,0 +1,7 @@
+MISSION 13.1CORE
+Eliminez les gardes du Passage. Emparez-vous de l'Atlas et utilisez-le pour rejoindre le continent. Détruisez la garnison qui y est basée, puis capturez la tour-radar évoluée.
+
+STATISTIQUES DE PROBABILITES:
+Prenez tous les éléments qui peuvent vous être utiles (&R54%, marge d'erreur:2%&). Utilisez votre Canon Désintégrateur sur le reste (&R98%, marge d'erreur:6%&). Il n'est pas nécessaire de construire une base (&R68%, marge d'erreur:3%&). Vous trouverez l'énergie dont vous avez besoin sur les plantes (&R88%, marge d'erreur:1%&). La mer est dangereuse... (&R99%, marge d'erreur:3%&) utilisez l'Atlas.
+
+Exécution

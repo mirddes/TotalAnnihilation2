@@ -1,0 +1,7 @@
+MISSION 9.1CORE
+Etablissez une base. Construisez un chantier naval. Maintenez fermement votre position sur Aqueous Minor.
+
+STATISTIQUES DE PROBABILITES:
+Sur Aqueous Minor, l'utilisation de navires devrait donner d'excellents résultats (&R89%, marge d'erreur:3%&). Au sol, employez des armes lourdes pour défendre votre base (&R73%, marge d'erreur:7%&).
+
+Exécution

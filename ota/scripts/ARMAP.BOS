@@ -1,0 +1,217 @@
+// Arm Aircraft Plant Script
+
+piece base,pad,beam1,beam2;
+
+static-var spray,unitviewer;
+
+#define	SIG_ACTIVATE	2
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armap\activatescr.bos"
+#include "..\anim3d\armap\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "yard.h"
+
+Go()
+	{
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache nano1;
+	dont-cache nano2;
+	dont-cache pad;
+	dont-cache plate1;
+	dont-cache plate2;
+	dont-cache pad;
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache pad;
+	cache door1;
+	cache door2;
+	cache plate1;
+	cache plate2;
+	cache nano1;
+	cache nano2;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	dont-shade light;
+	dont-cache light;
+	dont-cache radar;
+	dont-shade radar;
+
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade pad;
+	dont-shade cylinder;
+	dont-shade plate1;
+	dont-shade plate2;
+	unitviewer = FALSE;
+	spray=0;
+	call-script InitState();
+	start-script SmokeUnit();
+	while(get BUILD_PERCENT_LEFT)
+		{
+		sleep 1000;
+		}
+	spin radar around y-axis speed <150>;
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	if( spray == 0 )
+		{
+		piecenum=beam1;
+		}
+	if( spray != 0 )
+		{
+		piecenum=beam2;
+		}
+	spray = !spray;
+	}
+
+Demo()
+	{
+	unitviewer = TRUE;
+	}
+
+Activate()
+	{
+	signal SIG_ACTIVATE;
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	if (!unitviewer)
+		{
+		sleep 5000;
+		}
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding()
+	{
+	spin pad around y-axis speed <30>;
+	}
+
+StopBuilding()
+	{
+	stop-spin pad around y-axis;
+	}
+
+QueryBuildInfo(piecenum)
+	{
+	piecenum=pad;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	BITMAPONLY | BITMAP2;
+		explode beam2 type	BITMAPONLY | BITMAP3;
+		explode door1 type	BITMAPONLY | BITMAP4;
+		explode door2 type	BITMAPONLY | BITMAP5;
+		explode light type	BITMAPONLY | BITMAP1;
+		explode nano1 type	BITMAPONLY | BITMAP2;
+		explode nano2 type	BITMAPONLY | BITMAP3;
+		explode pad type	BITMAPONLY | BITMAP4;
+		explode plate1 type	BITMAPONLY | BITMAP5;
+		explode plate2 type	BITMAPONLY | BITMAP1;
+		explode post1 type	BITMAPONLY | BITMAP2;
+		explode post2 type	BITMAPONLY | BITMAP3;
+		explode radar type	BITMAPONLY | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	FALL | BITMAP2;
+		explode beam2 type	FALL | BITMAP3;
+		explode door1 type	BITMAPONLY | BITMAP4;
+		explode door2 type	BITMAPONLY | BITMAP5;
+		explode light type	FALL | BITMAP1;
+		explode nano1 type	SHATTER | BITMAP2;
+		explode nano2 type	BITMAPONLY | BITMAP3;
+		explode pad type	BITMAPONLY | BITMAP4;
+		explode plate1 type	BITMAPONLY | BITMAP5;
+		explode plate2 type	BITMAPONLY | BITMAP1;
+		explode post1 type	FALL | BITMAP2;
+		explode post2 type	FALL | BITMAP3;
+		explode radar type	FALL | BITMAP4;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode door1 type	BITMAPONLY | BITMAP4;
+		explode door2 type	BITMAPONLY | BITMAP5;
+		explode light type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nano1 type	SHATTER | BITMAP2;
+		explode nano2 type	BITMAPONLY | BITMAP3;
+		explode pad type	BITMAPONLY | BITMAP4;
+		explode plate1 type	BITMAPONLY | BITMAP5;
+		explode plate2 type	BITMAPONLY | BITMAP1;
+		explode post1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode post2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode radar type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode beam1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode door1 type	BITMAPONLY | BITMAP4;
+	explode door2 type	BITMAPONLY | BITMAP5;
+	explode light type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nano1 type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode nano2 type	BITMAPONLY | BITMAP3;
+	explode pad type	BITMAPONLY | BITMAP4;
+	explode plate1 type	BITMAPONLY | BITMAP5;
+	explode plate2 type	BITMAPONLY | BITMAP1;
+	explode post1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode post2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode radar type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return( 0 );
+	}

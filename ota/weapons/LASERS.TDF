@@ -1,0 +1,589 @@
+/* Lasers.tdf -- Laser weapons */
+
+/* Allowed IDs = 80-99 */
+
+
+[ARM_LIGHTLASER]
+	{
+	ID=80;
+	name=Light Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=300;
+	reloadtime=.52;
+	weaponvelocity=900;
+	energypershot=10;
+	areaofeffect=8;
+	soundtrigger=1;
+
+	soundstart=lasrfir3;
+	soundhit=lasrhit2;
+
+	firestarter=30;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=60;
+	
+		}
+	}
+
+[CORE_LIGHTLASER]
+	{
+	ID=81;
+	name=Light Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=300;
+	reloadtime=.52;
+	weaponvelocity=800;
+	energypershot=10;
+	areaofeffect=8;
+	soundtrigger=1;
+
+	soundstart=lasrfir3;
+	soundhit=lasrhit2;
+
+	firestarter=30;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	tolerance=700;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+	
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=60;
+		}
+	}
+
+[ARM_LASER]
+	{
+	ID=82;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=.865;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=30;
+		}
+	}
+
+
+
+[ARM_FAST]
+	{
+	ID=83;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=210;
+	reloadtime=.8;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfast;
+	soundhit=lashit;
+
+	firestarter=50;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=40;
+		}
+	}
+
+
+[GATOR_LASER]
+	{
+	ID=85;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=1;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrlit3;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=44;
+		}
+	}
+
+[ARMAIR2AIRLASER]
+	{
+	ID=86;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=600;
+	reloadtime=.4;
+	weaponvelocity=900;
+	areaofeffect=8;
+	duration=.01;
+	soundtrigger=1;
+
+	soundstart=lasrlit1;
+	soundhit=lashit;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=6;
+		ARMTHUND=32;
+		ARMBRAWL=32;
+		ARMPEEP=32;
+		ARMFIG=32;
+		ARMCA=32;
+		ARMACA=32;
+		ARMATLAS=32;
+		ARMPNIX=32;
+		ARMHAWK=32;
+		ARMLANCE=32;
+		CORFINK=32;
+		CORVENG=32;
+		CORVAMP=32;
+		CORHURC=32;
+		CORTITAN=32;
+		CORACA=32;
+		CORSHAD=32;
+		CORAPE=32;
+		CORCA=32;
+		CORVALK=32;
+		}
+	}
+
+[CORAIR2AIRLASER]
+	{
+	ID=87;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=600;
+	reloadtime=.39;
+	weaponvelocity=900;
+	areaofeffect=8;
+	duration=.01;
+	soundtrigger=1;
+
+	soundstart=lasrlit1;
+	soundhit=lashit;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=5;
+		ARMTHUND=30;
+		ARMBRAWL=30;
+		ARMPEEP=30;
+		ARMFIG=30;
+		ARMCA=30;
+		ARMACA=30;
+		ARMATLAS=30;
+		ARMPNIX=30;
+		ARMHAWK=30;
+		ARMLANCE=30;
+		CORFINK=30;
+		CORVENG=30;
+		CORVAMP=30;
+		CORHURC=30;
+		CORTITAN=30;
+		CORACA=30;
+		CORSHAD=30;
+		CORAPE=30;
+		CORCA=30;
+		CORVALK=30;
+		}
+	}
+
+[CORE_LASER]
+	{
+	ID=88;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=.865;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=30;
+		}
+	}
+
+
+[ARMPT_LASER]
+	{
+	ID=89;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=1;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=13;
+		}
+	}
+
+
+[COREPT_LASER]
+	{
+	ID=90;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=180;
+	reloadtime=.95;
+	weaponvelocity=400;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfir1;
+	soundhit=lasrhit2;
+
+	firestarter=50;
+	beamweapon=1;
+	color=208;	/* Yellow */
+	color2=0;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=10;
+		}
+	}
+
+
+[ARM_LASERH1]
+	{
+	ID=91;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=430;
+	reloadtime=.965;
+	energypershot=75;
+	weaponvelocity=800;
+	areaofeffect=8;
+
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=180;
+		}
+	}
+
+[CORE_LASERH1]
+	{
+	ID=92;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=400;
+	reloadtime=.965;
+	energypershot=75;
+	weaponvelocity=700;
+	areaofeffect=8;
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=180;
+		}
+	}
+
+[CORE_BATSLASER]
+	{
+	ID=93;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=810;
+	reloadtime=1.1;
+	energypershot=75;
+	weaponvelocity=700;
+	areaofeffect=8;
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	tolerance=500;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=180;
+		}
+	}
+
+
+[CORE_CANLASER]
+	{
+	ID=94;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=200;
+	reloadtime=.95;
+	energypershot=75;
+	weaponvelocity=700;
+	areaofeffect=8;
+	soundstart=lasrhvy3;
+	soundhit=lasrhit1;
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=220;
+		}
+	}

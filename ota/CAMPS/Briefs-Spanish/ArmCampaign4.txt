@@ -1,0 +1,13 @@
+MISIÓN 4.0004CLANE
+Localizar las instalaciones mineras y de comunicaciones del Núcleo. Destruir todas las unidades del Núcleo.
+
+PRIORIDAD
+¡El Núcleo ha ido demasiado lejos en su contaminación de Empyrrean! La destrucción de la base de comunicaciones y minería del Núcleo en la frontera interrumpirá sus transmisiones y lo privará de minerales esenciales.
+
+INFORMACIÓN  
+&R*ALERTA* * ALERTA* * ALERTA*&
+La base del Núcleo está bien protegida. Tendrás que establecer una base para conseguir la fuerza necesaria para completar la misión. El enemigo conoce tus intenciones y quizá envíe contra ti sus sanguinarios equipos Pyro. Se te proporciona un modelo Zeus para tu protección.
+
+&RReparar unidades en cuanto sea posible.&
+
+FIN

@@ -1,0 +1,35 @@
+[armshlt_dead]
+{
+world=All Worlds;
+description=Shelter Wreckage;
+category=core_corpses;
+object=armshlt_dead;
+featuredead=armshlt_heap;
+footprintx=9;
+footprintz=9;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=6530;
+damage=5440;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armshlt_heap]
+{
+world=All Worlds;
+description=Shelter Wreckage;
+category=heaps;
+object=7x7b;
+footprintx=9;
+footprintz=9;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3265;
+damage=5440;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

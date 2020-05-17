@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Red River;
+	missiondescription=21 X 30  Large river separates two land masses.;
+	planet=Red Planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=23;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2500;
+	maxwindspeed=3500;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=100;
+	numplayers=2, 4, 6, 8, 9;
+	size=21 x 30;
+	memory=64 mb;
+	useonlyunits=Red River.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos3;
+				XPos=10272;
+				ZPos=512;
+				}
+			[special1]
+				{
+				specialwhat=StartPos4;
+				XPos=592;
+				ZPos=14352;
+				}
+			[special2]
+				{
+				specialwhat=StartPos1;
+				XPos=688;
+				ZPos=544;
+				}
+			[special3]
+				{
+				specialwhat=StartPos5;
+				XPos=1360;
+				ZPos=4480;
+				}
+			[special4]
+				{
+				specialwhat=StartPos7;
+				XPos=912;
+				ZPos=9232;
+				}
+			[special5]
+				{
+				specialwhat=StartPos8;
+				XPos=8320;
+				ZPos=4608;
+				}
+			[special6]
+				{
+				specialwhat=StartPos9;
+				XPos=4576;
+				ZPos=6528;
+				}
+			[special7]
+				{
+				specialwhat=StartPos10;
+				XPos=5840;
+				ZPos=12832;
+				}
+			[special8]
+				{
+				specialwhat=StartPos2;
+				XPos=9488;
+				ZPos=14624;
+				}
+			[special9]
+				{
+				specialwhat=StartPos6;
+				XPos=9568;
+				ZPos=8912;
+				}
+			}
+		}
+	}

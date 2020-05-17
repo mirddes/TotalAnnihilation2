@@ -1,0 +1,36 @@
+[armwolf_dead]
+{
+world=All Worlds;
+description=Sniper Wolf Wreckage;
+category=arm_corpses;
+object=3x3a;
+featuredead=armwolf_heap;
+footprintx=3;
+footprintz=3;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=5930;
+damage=8400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armwolf_heap]
+{
+world=All Worlds;
+description=Sniper Wolf Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2965;
+damage=9200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

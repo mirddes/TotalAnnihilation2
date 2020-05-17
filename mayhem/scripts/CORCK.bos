@@ -1,0 +1,467 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  torso, nanospray2, pelvis, lthigh, rthigh, rleg, lleg, gunclamp,
+       rfoot, lfoot, guncover, nanogun, nozzle, ground;
+
+static-var  Nano_1, Moving_2, ReqState_3, On_4, Busy_5; //buildingid, buildingpos, buildingtype, buildingcrc;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+MotionControl()
+{
+	while( TRUE )
+	{
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.10] now;
+		move lthigh to y-axis [0] now;
+		move rthigh to y-axis [0] now;
+		move rleg to y-axis [0] now;
+		move lleg to y-axis [0] now;
+		move gunclamp to y-axis [0] now;
+		turn lthigh to x-axis <-44.30> speed <420>;
+		turn rthigh to x-axis <12.29> speed <420>;
+		turn rleg to x-axis <17.57> speed <420>;
+		turn rfoot to x-axis <-24.96> speed <420>;
+		turn lleg to x-axis <36.21> speed <420>;
+		turn lfoot to x-axis <2.45> speed <420>;
+		sleep 70;
+		move pelvis to y-axis [-0.25] now;
+		turn lthigh to x-axis <-46.76> speed <420>;
+		turn rthigh to x-axis <20.39> speed <420>;
+		turn rfoot to x-axis <-31.29> speed <420>;
+		turn lleg to x-axis <20.39> speed <420>;
+		turn lfoot to x-axis <14.40> speed <420>;
+		sleep 70;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.40] now;
+		turn lthigh to x-axis <-46.76> speed <420>;
+		turn rthigh to x-axis <30.58> speed <420>;
+		turn rleg to x-axis <22.14> speed <420>;
+		turn rfoot to x-axis <-34.46> speed <420>;
+		turn lleg to x-axis <3.51> speed <420>;
+		turn lfoot to x-axis <9.49> speed <420>;
+		sleep 70;
+		move pelvis to y-axis [-0.50] now;
+		turn lthigh to x-axis <-44.30> speed <420>;
+		turn rthigh to x-axis <43.24> speed <420>;
+		turn rleg to x-axis <20> speed <420>;
+		turn rfoot to x-axis <-42.54> speed <420>;
+		turn lleg to x-axis <44.30> speed <420>;
+		turn lfoot to x-axis <0> speed <420>;
+		sleep 120;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.40] now;
+		turn lthigh to x-axis <-36.57> speed <420>;
+		turn rthigh to x-axis <24.96> speed <420>;
+		turn rleg to x-axis <49.22> speed <420>;
+		turn rfoot to x-axis <-54.15> speed <420>;
+		turn lleg to x-axis <44.30> speed <420>;
+		turn lfoot to x-axis <-8.77> speed <420>;
+		sleep 80;
+		move pelvis to y-axis [-0.25] now;
+		turn lthigh to x-axis <-27.07> speed <420>;
+		turn rthigh to x-axis <9.14> speed <420>;
+		turn rleg to x-axis <60.47> speed <420>;
+		turn rfoot to x-axis <-56.26> speed <420>;
+		turn lleg to x-axis <44.30> speed <420>;
+		turn lfoot to x-axis <-17.92> speed <420>;
+		sleep 70;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.90] now;
+		turn lthigh to x-axis <-16.52> speed <420>;
+		turn rthigh to x-axis <0> speed <420>;
+		turn rleg to x-axis <60.12> speed <420>;
+		turn rfoot to x-axis <-47.47> speed <420>;
+		turn lleg to x-axis <33> speed <420>;
+		turn lfoot to x-axis <-16.52> speed <420>;
+		sleep 70;
+		move pelvis to y-axis [0] now;
+		turn lthigh to x-axis <-4.92> speed <420>;
+		turn rthigh to x-axis <-19.68> speed <420>;
+		turn rleg to x-axis <60.82> speed <420>;
+		turn rfoot to x-axis <-36.57> speed <420>;
+		turn lleg to x-axis <22.51> speed <420>;
+		turn lfoot to x-axis <-17.57> speed <420>;
+		sleep 70;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.10] now;
+		turn lthigh to x-axis <4.92> speed <420>;
+		turn rthigh to x-axis <-46.41> speed <420>;
+		turn rfoot to x-axis <-19.68> speed <420>;
+		turn lleg to x-axis <23.20> speed <420>;
+		turn lfoot to x-axis <-25.31> speed <420>;
+		sleep 70;
+		move pelvis to y-axis [-0.25] now;
+		turn lthigh to x-axis <16.17> speed <420>;
+		turn rthigh to x-axis <-46> speed <420>;
+		turn rleg to x-axis <18.62> speed <420>;
+		turn rfoot to x-axis <13> speed <420>;
+		turn lleg to x-axis <22.51> speed <420>;
+		turn lfoot to x-axis <-34.46> speed <420>;
+		sleep 70;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.40] now;
+		turn lthigh to x-axis <20.39> speed <420>;
+		turn rthigh to x-axis <-46.41> speed <420>;
+		turn rleg to x-axis <-8.43> speed <420>;
+		turn rfoot to x-axis <26.36> speed <420>;
+		turn lfoot to x-axis <-35.15> speed <420>;
+		sleep 70;
+		move pelvis to y-axis [-0.50] now;
+		turn lthigh to x-axis <23.20> speed <420>;
+		turn rthigh to x-axis <-45> speed <420>;
+		turn rleg to x-axis <46> speed <420>;
+		turn rfoot to x-axis <-1.40> speed <420>;
+		turn lleg to x-axis <37.62> speed <420>;
+		turn lfoot to x-axis <-43.60> speed <420>;
+		sleep 120;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.40] now;
+		turn lthigh to x-axis <15.46> speed <420>;
+		turn rthigh to x-axis <-39.73> speed <420>;
+		turn rfoot to x-axis <-6.32> speed <420>;
+		turn lleg to x-axis <63.29> speed <420>;
+		turn lfoot to x-axis <-52.74> speed <420>;
+		sleep 80;
+		move pelvis to y-axis [-0.25] now;
+		turn lthigh to x-axis <6.67> speed <420>;
+		turn rthigh to x-axis <-30.58> speed <420>;
+		turn rfoot to x-axis <-15.46> speed <420>;
+		turn lleg to x-axis <66.45> speed <420>;
+		turn lfoot to x-axis <-51.33> speed <420>;
+		sleep 70;
+		}
+		if( Moving_2 )
+		{
+		move pelvis to y-axis [-0.10] now;
+		turn lthigh to x-axis <-2.45> speed <420>;
+		turn rthigh to x-axis <-20> speed <420>;
+		turn rleg to x-axis <41.84> speed <420>;
+		turn rfoot to x-axis <-21.79> speed <420>;
+		turn lleg to x-axis <66.80> speed <420>;
+		turn lfoot to x-axis <-55.90> speed <420>;
+		sleep 70;
+	move pelvis to y-axis [0] now;
+	turn lthigh to x-axis <-18.63> speed <420>;
+	turn rthigh to x-axis <2.81> speed <420>;
+	turn rleg to x-axis <17.57> speed <420>;
+	turn rfoot to x-axis <-20.74> speed <420>;
+	turn lleg to x-axis <54.15> speed <420>;
+	turn lfoot to x-axis <-36.57> speed <420>;
+	sleep 70;
+		}
+		if( !Moving_2 )
+		{
+			sleep 200;
+		}
+	}
+	return (0);
+}
+
+RequestState()
+{
+	while( !Busy_5 AND ( ReqState_3 != On_4 ) )
+	{
+		Busy_5 = 1;
+		if( ReqState_3 )
+		{
+	//	Static_Var_3 = 1;
+	//	sleep 50;
+	//	turn torso to y-axis Nano_1 speed <160>;
+			move lthigh to y-axis [0] now;
+			move rthigh to y-axis [0] now;
+			move rleg to y-axis [0] now;
+			move lleg to y-axis [0] now;
+			move gunclamp to y-axis [0] now;
+			move guncover to x-axis [0] now;
+			move guncover to x-axis [-0.94] speed [2];
+			sleep 426;
+			turn nanogun to z-axis <-90> speed <210>;
+//		sleep 428;
+			turn gunclamp to y-axis <90> speed <210>;
+			sleep 428;
+//		turn gunclamp to x-axis <0> speed <0>;
+			turn gunclamp to x-axis <0> speed <90>;
+			turn nanogun to z-axis <-180> speed <209>;
+//		sleep 429;
+			move nozzle to x-axis [-3.85] speed [6];
+//		turn gunclamp to x-axis <0> speed <0>;
+//		turn nanogun to z-axis <-180> speed <0>;
+			sleep Rand(701,1200);
+			set INBUILDSTANCE to 1;
+			On_4 = 1;
+		}
+		if( !ReqState_3 )
+		{
+			On_4 = 0;
+			set INBUILDSTANCE to 0;
+	//		Static_Var_3 = 0;
+			turn torso to y-axis <0> speed <160>;
+			move lthigh to y-axis [0] now;
+			move rthigh to y-axis [0] now;
+			move rleg to y-axis [0] now;
+			move lleg to y-axis [0] now;
+			move gunclamp to y-axis [0] now;
+			move guncover to x-axis [-0.94] now;
+			move nozzle to x-axis [-3.85] now;
+			move nozzle to x-axis [0] speed [8];
+			turn gunclamp to x-axis <0> now;
+	//		turn gunclamp to x-axis <0> speed <0>;
+			turn gunclamp to y-axis <90> now;
+			turn nanogun to z-axis <-180> now;
+			sleep 463;
+	//		turn gunclamp to x-axis <0> speed <0>;
+	//		turn nanogun to z-axis <-90> speed <190>;
+	//		sleep 473;
+			turn gunclamp to y-axis <0> speed <191>;
+	//		sleep 469;
+			turn nanogun to z-axis <0> speed <190>;
+	//		sleep 472;
+			move guncover to x-axis [0] speed [2];
+			sleep 600;
+	//		set INBUILDSTANCE to 0;
+	//		Static_Var_3 = 0;
+		}
+		Busy_5 = 0;
+	}
+	return (0);
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;*/
+	Nano_1 = 0;
+	Moving_2 = 0;
+	ReqState_3 = 0;
+	On_4 = 0;
+	Busy_5 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+	return (0);
+}
+
+StartBuilding(Func_Var_1)
+{
+	Nano_1 = Func_Var_1;
+	ReqState_3 = 1;
+	turn torso to y-axis Nano_1 speed <160>;
+	start-script RequestState();
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	if ((get CURRENT_ORDER_TYPE) == 25)
+	{
+		buildingid=get CURRENT_ORDER_TARGET_ID;
+		if (buildingid)
+		{
+			buildingpos=get UNIT_XZ(buildingid);
+			buildingcrc=get UNIT_TYPE_CRC(buildingid);
+			buildingtype=get CURRENT_ORDER_PAR(1);
+		}
+	}*/
+	return (0);
+}
+
+StopBuilding()
+{
+	/*if ((get UNIT_XZ(buildingid)) == 0)
+	{
+		if (get TEST_BUILD_SPOT(buildingcrc,buildingpos))
+		{
+			var unitz,unitx;
+			unitz=get UNITZ(buildingid) - (get GROUND_HEIGHT(get UNIT_XZ(buildingid)) / 131072);
+			unitx=get UNITX(buildingid);
+			buildingpos=get MAKEDWORD(unitz,unitx);
+			get ORDER_SELF_POS(25,1,buildingpos,buildingtype);
+			buildingid=0;
+			buildingpos=0;
+			buildingtype=0;
+			buildingcrc=0;
+			return (0);
+		}
+	}*/
+	ReqState_3 = 0;
+	sleep 1500;
+	if( !ReqState_3 )
+	{
+		start-script RequestState();
+	}
+	return (0);
+}
+
+StartMoving()
+{
+	Moving_2 = 1;
+	return (0);
+}
+
+StopMoving()
+{
+	Moving_2 = 0;
+	/*if ((get CURRENT_ORDER_TYPE) == 25 AND (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2))
+	{
+		sleep 1000;
+		if (!Moving_2 AND !ReqState_3)
+		{
+			get ORDER_SELF(45,0);
+		}
+	}*/
+	return (0);
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = nanospray2;
+	return (0);
+}
+
+TargetHeading(Func_Var_1)
+{
+	Nano_1 = ( 0 - Func_Var_1 );
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode gunclamp type BITMAPONLY | BITMAP2;
+		explode guncover type BITMAPONLY | BITMAP3;
+		explode lfoot type BITMAPONLY | BITMAP4;
+		explode lleg type BITMAPONLY | BITMAP5;
+		explode lthigh type BITMAPONLY | BITMAP1;
+		explode nanogun type BITMAPONLY | BITMAP2;
+		explode nanospray2 type BITMAPONLY | BITMAP3;
+		explode nozzle type BITMAPONLY | BITMAP4;
+		explode pelvis type BITMAPONLY | BITMAP5;
+		explode rfoot type BITMAPONLY | BITMAP1;
+		explode rleg type BITMAPONLY | BITMAP2;
+		explode rthigh type BITMAPONLY | BITMAP3;
+		explode ground type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode torso type BITMAPONLY | BITMAP1;
+		explode gunclamp type FALL | BITMAP2;
+		explode guncover type FALL | BITMAP3;
+		explode lfoot type FALL | BITMAP4;
+		explode lleg type FALL | BITMAP5;
+		explode lthigh type FALL | BITMAP1;
+		explode nanogun type FALL | BITMAP2;
+		explode nanospray2 type FALL | BITMAP3;
+		explode nozzle type FALL | BITMAP4;
+		explode pelvis type SHATTER | BITMAP5;
+		explode rfoot type FALL | BITMAP1;
+		explode rleg type FALL | BITMAP2;
+		explode rthigh type FALL | BITMAP3;
+		explode ground type FALL | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode torso type BITMAPONLY | BITMAP1;
+		explode gunclamp type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode guncover type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode nanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode nanospray2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode nozzle type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode pelvis type SHATTER | BITMAP5;
+		explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	explode torso type BITMAPONLY | BITMAP1;
+	explode gunclamp type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode guncover type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode nanogun type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode nanospray2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode nozzle type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode pelvis type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode rfoot type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode rleg type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode rthigh type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode ground type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

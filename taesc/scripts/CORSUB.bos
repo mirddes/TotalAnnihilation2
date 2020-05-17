@@ -1,0 +1,100 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  tube1, tube2, base, wake;
+
+static-var  Static_Var_1;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent * healthpercent;
+	if( healthpercent < 66 )
+	{
+		emit-sfx 256 | 3 from base;
+		sleep sleeptime;
+		emit-sfx 256 | 3 from tube1;
+		if( Rand( 1, 66 ) > healthpercent )
+		{
+			emit-sfx 256 | 3 from tube1;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from tube2;
+			sleep sleeptime;
+		}
+	}
+	start-script SmokeUnit();
+}
+
+Create()
+{
+	Static_Var_1 = 0;
+	start-script SmokeUnit();
+	Set ARMORED to 1;
+}
+
+StartMoving()
+{
+	signal 2;
+	set-signal-mask 2;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from wake;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal 2;
+}
+
+FirePrimary()
+{
+	Static_Var_1 = !Static_Var_1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Static_Var_1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tube1 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode tube1 type BITMAPONLY | BITMAP1;
+		explode tube2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode tube1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode tube2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+}

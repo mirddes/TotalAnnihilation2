@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=Ring Atoll;
+	missiondescription=21 X 21  Powerful tides. Ground units can use shallow water.;
+	planet=Archipelago;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=30;
+	solarstrength=15;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=100;
+	maxwindspeed=4000;
+	gravity=128;
+	numplayers=2, 5, 10;
+	size=21 x 21;
+	memory=32 mb;
+	useonlyunits=Ring Atoll.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Hover;
+		SurfaceMetal=7;
+		MohoMetal=45;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=7408;
+				ZPos=1936;
+				}
+			[special1]
+				{
+				specialwhat=StartPos4;
+				XPos=8992;
+				ZPos=6512;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=2768;
+				ZPos=2080;
+				}
+			[special3]
+				{
+				specialwhat=StartPos2;
+				XPos=5312;
+				ZPos=9376;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=1312;
+				ZPos=6832;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=9072;
+				ZPos=3952;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=1472;
+				ZPos=4464;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=7568;
+				ZPos=8704;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=4912;
+				ZPos=1232;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=2832;
+				ZPos=8528;
+				}
+			}
+		}
+	}

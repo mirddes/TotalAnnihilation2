@@ -1,0 +1,204 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  laser1, laser2, base, lwing, rwing, turret, barrels;
+
+static-var  gun_1, aironly_2, reload_3;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	hide laser1;
+	hide laser2;
+	gun_1 = 0;
+	aironly_2 = 0;
+	reload_3 = 0;
+	start-script SmokeUnit();
+}
+
+Activate()
+{
+	turn Rwing to z-axis <-90> speed <100>;
+	turn Lwing to z-axis <90> speed <100>;
+	move turret to y-axis [-0.7] speed [0.7];
+	return (0);
+}
+
+Deactivate()
+{
+	turn Rwing to z-axis <0> speed <100>;
+	turn Lwing to z-axis <0> speed <100>;
+	move turret to y-axis [0] speed [0.7];
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 3000;
+	turn turret to y-axis <0> speed <150>;
+	turn barrels to x-axis <0> speed <200>;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+AimTertiary(heading, pitch)
+{
+	aironly_2 = 1;
+	signal 4;
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <390>;
+	turn barrels to x-axis pitch speed <240>;
+	while( reload_3 )
+	{
+		wait-for-move barrels along z-axis;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrels around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	while( aironly_2 OR reload_3 )
+	{
+		sleep 250;
+		wait-for-move barrels along z-axis;
+	}
+	turn turret to y-axis heading speed <390>;
+	turn barrels to x-axis pitch speed <240>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn barrels around x-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	reload_3 = 1;
+	if( !gun_1 )
+	{
+		show laser1;
+		move barrels to z-axis [-0.1] speed [500];
+		sleep 150;
+		hide laser1;
+		move barrels to z-axis [0] speed [0.095];
+	}
+	if( gun_1 )
+	{
+		show laser2;
+		move barrels to z-axis [-0.1] speed [500];
+		sleep 150;
+		hide laser2;
+		move barrels to z-axis [0] speed [0.095];
+	}
+	gun_1 = !gun_1;
+	wait-for-move barrels along z-axis;
+	reload_3 = 0;
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		show laser1;
+		sleep 150;
+		hide laser1;
+		gun_1 = 1;
+		return (0);
+	}
+	show laser2;
+	sleep 150;
+	hide laser2;
+	gun_1 = 0;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+}
+
+Killed(severity, corpsetype)
+{
+	hide laser1;
+	hide laser2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode laser1 type BITMAPONLY | BITMAP2;
+		explode laser2 type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP3;
+		explode lwing type BITMAPONLY | BITMAP5;
+		explode rwing type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode laser1 type FALL | SMOKE | BITMAP2;
+		explode laser2 type FALL | SMOKE | BITMAP3;
+		explode turret type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode lwing type BITMAPONLY | BITMAP5;
+		explode rwing type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode laser1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode laser2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lwing type BITMAPONLY | BITMAP5;
+	explode rwing type BITMAPONLY | BITMAP1;
+}

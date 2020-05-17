@@ -1,0 +1,381 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare, barrel, sleeve, turret, flarea, guna, turreta, flareb,
+       gunb, turretb, m1, m2, m3, m4, mislauncher, misturret,
+       chassis, rocker, base;
+
+static-var  wait_1, gun_2, gun_3, restore_1, restore_2, reset_1, reset_2;
+
+RestoreCannon()
+{
+	sleep 16000;
+	if( !restore_1 )
+	{
+		signal 2;
+		turn turret to y-axis <0> speed <25>;
+		turn sleeve to x-axis <0> speed <12>;
+	}
+	reset_1 = 0;
+	return (0);
+}
+
+RestoreAncilliary()
+{
+	sleep 4000;
+	if( !restore_2 )
+	{
+		signal 4;
+		signal 16;
+		turn turreta to y-axis <0> speed <120>;
+		turn turretb to y-axis <0> speed <120>;
+		turn guna to z-axis <0> speed <120>;
+		turn gunb to z-axis <0> speed <120>;
+		turn misturret to y-axis <0> speed <150>;
+		turn mislauncher to x-axis <0> speed <120>;
+	}
+	reset_2 = 0;
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	/*set GRANT_UNITINFO to 1;
+	get SET_UNITINFO(uiHealTime,20);*/
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Restore_1 AND ( !Reset_1 ) )
+		{
+			Restore_1 = FALSE;
+			Reset_1 = 1;
+			start-script RestoreCannon();
+		}
+		if( Restore_2 AND ( !Reset_2 ) )
+		{
+			Restore_2 = FALSE;
+			Reset_2 = 1;
+			start-script RestoreAncilliary();
+		}
+	}
+	return (0);
+}
+
+Create()
+{
+	hide flare;
+	hide flarea;
+	hide flareb;
+	dont-cache flare;
+	dont-cache flarea;
+	dont-cache flareb;
+	spin flare around z-axis speed <600>;
+	wait_1 = 0;
+	gun_2 = 0;
+	gun_3 = 0;
+	restore_1 = 0;
+	restore_2 = 0;
+	reset_1 = 0;
+	reset_2 = 0;
+	set ARMORED to TRUE;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <40>;
+	turn rocker to y-axis heading speed <40>;
+	turn chassis to y-axis ( 0 - heading ) speed <40>;
+	turn sleeve to x-axis <0> - pitch speed <18>;
+	while( wait_1 )
+	{
+		wait-for-move barrel along z-axis;
+	}
+	wait-for-turn turret around y-axis;
+	wait-for-turn sleeve around x-axis;
+	restore_1 = 1;
+	return (1);
+}
+
+AimSecondary(heading, pitch)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn turreta to y-axis heading speed <200>;
+	turn turretb to y-axis heading speed <200>;	
+	wait-for-turn turretb around y-axis;
+	wait-for-turn turreta around y-axis;
+	restore_2 = 1;
+	return (1);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 16;
+	set-signal-mask 16;
+	turn misturret to y-axis heading speed <480>;
+	turn mislauncher to x-axis ( 0 - pitch ) speed <250>;
+	wait-for-turn misturret around y-axis;
+	wait-for-turn mislauncher around x-axis;
+	restore_2 = 1;
+	return(1);
+}
+
+FirePrimary()
+{
+	wait_1 = 1;
+	show flare;
+	move barrel to z-axis [-4.2] speed [500];
+	move sleeve to z-axis [-1] speed [200];
+	turn rocker to x-axis <-4> speed <40>;
+	sleep 125;
+	hide flare;
+	turn rocker to x-axis <0> speed <20>;
+	move barrel to z-axis [0] speed [1];
+	sleep 100;
+	move sleeve to z-axis [0] speed [2];
+	wait-for-move barrel along z-axis;
+	wait_1 = 0;
+	return (0);
+}
+
+FireSecondary()
+{
+	if( !gun_2 )
+	{
+		gun_2 = 1;
+		turn guna to z-axis <0> now;
+		show flarea;
+		sleep 150;
+		hide flarea;
+		sleep 200;
+		turn guna to z-axis <120> speed <400>;
+		return (0);
+	}
+	if( gun_2 )
+	{
+		gun_2 = 0;
+		turn gunb to z-axis <0> now;
+		show flareb;
+		sleep 150;
+		hide flareb;
+		sleep 200;
+		turn gunb to z-axis <120> speed <400>;
+		return (0);
+	}
+}
+
+FireTertiary()
+{
+	if( !gun_3 )
+	{
+		hide m1;
+		gun_3 = 1;
+		move m1 to z-axis [-1] NOW;
+		sleep 1200;
+		show m1;
+		move m1 to z-axis [0] speed [1];
+		return(0);
+	}
+	if( gun_3 == 1 )
+	{
+		hide m2;
+		gun_3 = 2;
+		move m2 to z-axis [-1] NOW;
+		sleep 1200;
+		show m2;
+		move m2 to z-axis [0] speed [1];
+		return(0);
+	}
+	if( gun_3 == 2 )
+	{
+		hide m3;
+		gun_3 = 3;
+		move m3 to z-axis [-1] NOW;
+		sleep 1200;
+		show m3;
+		move m3 to z-axis [0] speed [1];
+		return(0);
+	}
+	if( gun_3 == 3 )
+	{
+		hide m4;
+		gun_3 = 0;
+		move m4 to z-axis [-1] NOW;
+		sleep 1200;
+		show m4;
+		move m4 to z-axis [0] speed [1];
+		return(0);
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare;
+	return (0);
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+QuerySecondary(piecenum)
+{
+	if( !gun_2 )
+	{
+		piecenum = flarea;
+	}
+	if( gun_2 )
+	{
+		piecenum = flareb;
+	}
+	return (0);
+}
+
+AimFromSecondary(piecenum)
+{
+	if( !gun_2 )
+	{
+		piecenum = turreta;
+	}
+	if( gun_2 )
+	{
+		piecenum = turretb;
+	}
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	if( !gun_3 )
+	{
+		piecenum = m1;
+		return(0);
+	}
+	if( gun_3 == 1 )
+	{
+		piecenum = m2;
+		return(0);
+	}
+	if( gun_3 == 2 )
+	{
+		piecenum = m3;
+		return(0);
+	}
+	if( gun_3 == 3 )
+	{
+		piecenum = m4;
+		return(0);
+	}
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = mislauncher;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare;
+	hide flarea;
+	hide flareb;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type BITMAPONLY | BITMAP3;
+		explode barrel type BITMAPONLY | BITMAP4;
+		explode guna type BITMAPONLY | BITMAP4;
+		explode gunb type BITMAPONLY | BITMAP5;
+		explode turreta type BITMAPONLY | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode mislauncher type BITMAPONLY | BITMAP3;
+		explode m1 type FALL | BITMAP4;
+		explode m2 type FALL | BITMAP4;
+		explode m3 type FALL | BITMAP4;
+		explode m4 type FALL | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP2;
+		explode sleeve type FALL | BITMAP3;
+		explode barrel type FALL | BITMAP4;
+		explode guna type FALL | BITMAP4;
+		explode gunb type SHATTER | BITMAP5;
+		explode turreta type BITMAPONLY | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode mislauncher type BITMAPONLY | BITMAP3;
+		explode m1 type FALL | SMOKE | BITMAP4;
+		explode m2 type FALL | SMOKE | BITMAP4;
+		explode m3 type FALL | SMOKE | BITMAP4;
+		explode m4 type FALL | SMOKE | BITMAP4;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode sleeve type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode guna type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode gunb type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode turreta type BITMAPONLY | BITMAP1;
+		explode turretb type BITMAPONLY | BITMAP2;
+		explode mislauncher type BITMAPONLY | BITMAP3;
+		explode m1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode m2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode m3 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		explode m4 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAP4;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode turret type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode sleeve type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode barrel type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode guna type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode gunb type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode turreta type BITMAPONLY | BITMAP1;
+	explode turretb type BITMAPONLY | BITMAP2;
+	explode mislauncher type BITMAPONLY | BITMAP3;
+	explode m1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode m2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode m3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode m4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	return (0);
+}

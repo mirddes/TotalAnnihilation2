@@ -1,0 +1,10 @@
+MISSION 18.004ARMR
+Core has taken hostages! Should the hostages be ill treated, it is up to you to exact vengeance upon the Core instigators. Destroy them all!
+
+&YPRIORITY&
+Core has captured Arm units and has threatened to make an example of them. Should they do so, you must demand vengeance! - don't build... &Rdestroy all Core units on the scene!&
+
+INFO FEED
+This is Rougpelt, expect meteor showers.
+
+END

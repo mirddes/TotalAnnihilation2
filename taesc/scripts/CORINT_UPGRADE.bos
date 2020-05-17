@@ -1,0 +1,37 @@
+piece  GP, rotate, sleeve2, barrel2, sleeve3, barrel3, sleeve4, barrel4, sleeve5, barrel5, sleeve6, barrel6;
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+Create()
+	{
+		while(get BUILD_PERCENT_LEFT)
+		{
+			sleep 1;
+		}
+
+		hide rotate;
+		
+		hide sleeve2;
+		hide barrel2;
+
+		hide sleeve3;
+		hide barrel3;
+
+		hide sleeve4;
+		hide barrel4;
+
+		hide sleeve5;
+		hide barrel5;
+
+		hide sleeve6;
+		hide barrel6;
+		
+		hide GP;
+	}
+	
+SweetSpot(piecenum)
+{
+	piecenum = GP;
+}	
+//3.174558

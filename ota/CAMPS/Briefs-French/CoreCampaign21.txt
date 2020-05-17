@@ -1,0 +1,7 @@
+MISSION 21.1CORE
+Détruisez les unités ennemies. Envahissez Aegus.
+
+STATISTIQUES DE PROBABILITES:
+Aegus est une des lunes d'Empyrrean (&R99%, marge d'erreur:1%&). Elle représente une excellente base pour lancer l'assaut final sur la planète-mère de la faction Arm (&R82%, marge d'erreur:3%&). La faible pesanteur, l'absence d'océan et l'atmosphère inexistante sur cette planète limitent votre équipement aux unités terrestres (&R99, marge d'erreur:5%&). Aegus est la clef de la victoire.
+
+Exécution

@@ -1,0 +1,521 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  emitplasl, emitplasr, plasbase, plasturret, plasgunL, plasgunR, sleeves, base,	
+	   flame1a, flame2a, flame3a, flame4a, flame1b, flame2b, flame3b, flame4b, cover, plasneck, inside ;
+
+static-var  gun_1, Busy_3, Open_4;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome ; 
+//static-var 	firedelay, firing;
+
+// Signal definitions
+#define SIG_AIM				2
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!Open_4)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!Open_4)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+
+
+
+Flames()
+{
+	while(1)
+	{
+		if(Open_4)
+		{
+			show flame1a;
+			show flame3b;
+		}
+		sleep 100;
+		hide flame1a;
+		hide flame3b;
+		if(Open_4)
+		{
+			show flame2a;
+			show flame4b;
+		}
+		sleep 100;
+		hide flame2a;
+		hide flame4b;
+		if(Open_4)
+		{
+			show flame3a;
+			show flame1b;
+		}
+		sleep 100;
+		hide flame3a;
+		hide flame1b;
+		if(Open_4)
+		{
+			show flame4a;
+			show flame2b;
+		}
+		sleep 100;
+		hide flame4a;
+		hide flame2b;
+	}
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from plasbase;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+Create()
+{
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+//	firedelay = 600;
+//	firing = 0;
+	
+	hide cover;
+	
+	hide plasneck;
+	hide inside;
+	hide emitplasl;
+	hide emitplasr;
+	
+	hide flame1a;
+	hide flame2a;
+	hide flame3a;
+	hide flame4a;
+	
+	hide flame1b;
+	hide flame2b;
+	hide flame3b;
+	hide flame4b;
+
+	dont-cache cover;
+
+	dont-cache flame1a;
+	dont-cache flame2a;
+	dont-cache flame3a;
+	dont-cache flame4a;
+	
+	dont-cache flame1b;
+	dont-cache flame2b;
+	dont-cache flame3b;
+	dont-cache flame4b;
+	
+	dont-cache plasneck;
+	dont-cache emitplasl;
+	dont-cache emitplasr;
+	dont-cache plasgunL;
+	dont-cache plasgunR;
+	dont-cache plasturret;
+	dont-cache sleeves;
+	dont-cache inside;
+	
+	dont-shade cover;
+
+	dont-shade flame1a;
+	dont-shade flame2a;
+	dont-shade flame3a;
+	dont-shade flame4a;
+	
+	dont-shade flame1b;
+	dont-shade flame2b;
+	dont-shade flame3b;
+	dont-shade flame4b;
+	
+	dont-shade plasneck;
+	dont-shade emitplasl;
+	dont-shade emitplasr;
+	dont-shade plasgunL;
+	dont-shade plasgunR;
+	dont-shade plasturret;
+	dont-shade sleeves;
+	dont-shade inside;
+	
+	gun_1 = 0;
+	set ARMORED to 1;
+	Busy_3 = 0;
+	Open_4 = 0;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+	start-script flames();
+	show cover;	
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	set-signal-mask 0;
+	Busy_3 = 1;
+	Open_4 = 0;
+	turn plasturret to y-axis <0> speed <160.000000>;
+	turn plasturret to x-axis <0.000000> speed <160.000000>;
+	wait-for-turn plasturret around y-axis;
+	wait-for-turn plasturret around x-axis;	
+	move plasgunl to z-axis [0] speed [40];
+	move plasgunr to z-axis [0] speed [40];
+	wait-for-move plasgunl along z-axis;
+	wait-for-move plasgunr along z-axis;
+	move sleeves to z-axis [0] speed [40];
+	wait-for-move sleeves along z-axis;
+	move plasneck to y-axis [0] speed [40];
+	wait-for-move plasneck along y-axis;
+	hide plasneck;
+	hide inside;
+	set ARMORED to 1;
+	Busy_3 = 0;
+}
+
+
+AimPrimary(heading, pitch)
+{
+	while( Busy_3 )
+	{
+		sleep 250;
+	}
+	if( !Open_4 )
+	{
+		Busy_3 = 1;
+		show inside;
+		show plasneck;
+		move plasneck to y-axis [14.94935] speed [40];
+		wait-for-move plasneck along y-axis;
+		move sleeves to z-axis [3.9] speed [40];
+		wait-for-move sleeves along z-axis;
+		move plasgunl to z-axis [7.334826] speed [40];
+		move plasgunr to z-axis [7.334826] speed [40];
+		wait-for-move plasgunl along z-axis;
+		wait-for-move plasgunr along z-axis;
+		Open_4 = 1;
+		Busy_3 = 0;
+		set ARMORED to 0;
+		if(( shield_on || dome_on))
+		{
+			set ARMORED to 1;
+		}
+	}
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn plasturret to y-axis heading speed <160.000000>;
+	turn plasturret to x-axis <0.000000> - pitch speed <160.000000>;
+	wait-for-turn plasturret around y-axis;
+	wait-for-turn plasturret around x-axis;
+//	while( firing )
+//	{
+//		sleep firedelay;
+//		wait-for-turn plasturret around y-axis;
+//		wait-for-turn plasturret around x-axis;
+//		firing = 0;
+//	}
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+//	firing = 1;
+	if( gun_1 == 0 )
+	{
+		move plasgunL to z-axis [5.000000] now;
+//		show emitplasl;
+		sleep 150;
+//		hide emitplasl;
+		move plasgunL to z-axis [7.334826] speed [3.000000];
+		gun_1 = 1;
+	}
+	if( gun_1 == 1 )
+	{
+		move plasgunR to z-axis [5.000000] now;
+//		show emitplasr;
+		sleep 150;
+//		hide emitplasr;
+		move plasgunR to z-axis [7.334826] speed [3.000000];
+		gun_1 = 0;
+	}
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = emitplasl;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = emitplasr;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = plasturret;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = plasbase;
+}
+
+Killed(severity, corpsetype)
+{
+	hide emitplasl;
+	hide emitplasr;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode emitplasl type BITMAPONLY | BITMAP1;
+		explode emitplasr type BITMAPONLY | BITMAP1;
+		explode plasbase type BITMAPONLY | BITMAP1;
+		explode plasgunL type BITMAPONLY | BITMAP1;
+		explode plasgunR type BITMAPONLY | BITMAP1;
+		explode plasturret type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode emitplasl type FALL | BITMAP1;
+		explode emitplasr type FALL | BITMAP1;
+		explode plasbase type BITMAPONLY | BITMAP1;
+		explode plasturret type BITMAPONLY | BITMAP1;
+		explode plasgunL type BITMAPONLY | BITMAP5;
+		explode plasgunR type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode emitplasl type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode emitplasr type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode plasbase type BITMAPONLY | BITMAP1;
+		explode plasturret type SHATTER | BITMAP1;
+		explode plasgunL type BITMAPONLY | BITMAP5;
+		explode plasgunR type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode emitplasl type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode emitplasr type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode plasbase type BITMAPONLY | BITMAP1;
+	explode plasturret type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode plasgunL type BITMAPONLY | BITMAP5;
+	explode plasgunR type BITMAPONLY | BITMAP5;
+}

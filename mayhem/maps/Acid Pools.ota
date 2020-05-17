@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=Acid Pools;
+	missiondescription=32 X 23  Masses of land with narrow passages.;
+	planet=Acid;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=23;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=2000;
+	maxwindspeed=4000;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=1;
+	waterdamage=10;
+	numplayers=2, 4, 5, 6, 8, 9, 10;
+	size=32 x 23;
+	memory=64 mb;
+	useonlyunits=Acid Pools.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=Acid;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=2896;
+				ZPos=2960;
+				}
+			[special1]
+				{
+				specialwhat=StartPos5;
+				XPos=7920;
+				ZPos=1376;
+				}
+			[special2]
+				{
+				specialwhat=StartPos2;
+				XPos=14960;
+				ZPos=8336;
+				}
+			[special3]
+				{
+				specialwhat=StartPos3;
+				XPos=11568;
+				ZPos=1600;
+				}
+			[special4]
+				{
+				specialwhat=StartPos4;
+				XPos=1568;
+				ZPos=8928;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=9856;
+				ZPos=10192;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=14656;
+				ZPos=3408;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=5088;
+				ZPos=10112;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=9456;
+				ZPos=6176;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=4592;
+				ZPos=5424;
+				}
+			}
+		}
+	}

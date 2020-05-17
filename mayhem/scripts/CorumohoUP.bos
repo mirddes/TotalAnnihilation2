@@ -1,0 +1,38 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  barrela, barrelb, launchera, launcherb, coil1a, coil2a,
+       coil3a, coil1b, coil2b, coil3b, base, GP;
+
+Create()
+{
+	while (get BUILD_PERCENT_LEFT)
+	{
+		sleep 200;
+	}
+	sleep 600;
+	hide barrela;
+	hide barrelb; 
+	hide launchera; 
+	hide launcherb;
+	hide coil1a;
+	hide coil2a;
+	hide coil3a;
+	hide coil1b;
+	hide coil2b;
+	hide coil3b;
+	hide base;
+	sleep 400;
+	set ARMORED to 1;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+}

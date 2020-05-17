@@ -1,0 +1,62 @@
+[IceAquaOre1]  // Small
+	{
+	world=ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+   	 footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=iceAquaOre;
+	seqname=iceaquaore1;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=86;
+	damage=32009;
+	indestructible=1;
+	}
+
+[IceAquaOre2]  // Medium
+	{
+	world=ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=iceAquaOre;
+	seqname=iceaquaore2;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=127;
+	damage=32009;
+	indestructible=1;
+	}
+
+[IceAquaOre3]  // Huge
+	{
+	world=ice;
+	description=Metal Deposit;
+	category=metal;
+	animating=0;
+    	footprintx=3;
+    	footprintz=3;
+	height=4;
+	filename=iceAquaOre;
+	seqname=iceaquaore3;
+	seqnameshad=;
+
+	animtrans=0;
+	shadtrans=1;
+	hitdensity=5;
+	metal=223;
+	damage=32009;
+	indestructible=1;
+	}

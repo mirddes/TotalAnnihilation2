@@ -1,0 +1,802 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  beam1, beam2, beam3, beam4, beam5, beam6, beam7, beam8,
+	   pivot1, pivot2, pivot3, pivot4, pivot5, pivot6, pivot7, pivot8,
+	   plate1, plate2, plate3, plate4, plate5, plate6, plate7, plate8,
+	   nano1, nano2, nano3, nano4, nano5, nano6, nano7, nano8,
+	   door1, door2, door3, door4, door5, door6, door7, door8,
+       base, body, platform, pad, pad2, fusion1, dome1, fusion2, dome2, bits,
+       heightstick ;
+
+static-var  spray, unitviewer, statechg_DesiredState, statechg_StateChanging, open;
+static-var	shield_on, nbr_shield, dome_on, nbr_dome ;  
+
+// Signal definitions
+#define SIG_ACTIVATE			2
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open)
+				{
+					set ARMORED to 1;
+				}	
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(!open)
+				{
+					set ARMORED to 1;
+				}	
+			}
+		}	
+		sleep rand(4000,6000);
+		if(!shgen_count)
+		{
+			sleep rand(60000,90000);
+		}
+	}
+}	
+activatescr()
+{
+	if( TRUE )
+	{
+		move platform to y-axis [0.000000] now;
+		move platform to y-axis [11.650000] speed [15.000000];
+		sleep 758;
+	}
+	if( TRUE )
+	{
+		turn door1 to z-axis <-90.021978> speed <231.000000>;
+		turn door2 to z-axis <-90.021978> speed <231.000000>;
+		turn door3 to z-axis <-90.021978> speed <231.000000>;
+		turn door4 to z-axis <90.021978> speed <231.000000>;
+		turn door5 to z-axis <90.021978> speed <231.000000>;
+		turn door6 to z-axis <90.021978> speed <231.000000>;
+		turn door8 to z-axis <90.021978> speed <231.000000>;
+		turn door8 to z-axis <-90.021978> speed <231.000000>;
+		sleep 389;
+	}
+	if( TRUE )
+	{
+		move door1 to y-axis [-7.300000] speed [19.000000];
+		move door2 to y-axis [-7.300000] speed [18.000000];
+		move door3 to y-axis [-7.300000] speed [19.000000];
+		move door4 to y-axis [-7.300000] speed [18.000000];
+		move door5 to y-axis [-7.300000] speed [19.000000];
+		move door6 to y-axis [-7.300000] speed [18.000000];
+		move door7 to y-axis [-7.300000] speed [19.000000];
+		move door8 to y-axis [-7.300000] speed [18.000000];
+		sleep 389;
+	}
+	if( TRUE )
+	{
+		move plate1 to y-axis [8.000000] speed [25.000000];
+		move plate2 to y-axis [8.000000] speed [25.000000];
+		move plate3 to y-axis [8.000000] speed [25.000000];
+		move plate4 to y-axis [8.000000] speed [25.000000];
+		move plate5 to y-axis [8.000000] speed [25.000000];
+		move plate6 to y-axis [8.000000] speed [25.000000];
+		move plate7 to y-axis [8.000000] speed [25.000000];
+		move plate8 to y-axis [8.000000] speed [25.000000];
+		sleep 390;
+	}
+	if( TRUE )
+	{
+		move nano1 to y-axis [5.600000] speed [14.000000];
+		move nano2 to y-axis [5.600000] speed [14.000000];
+		move nano3 to y-axis [5.600000] speed [14.000000];
+		move nano4 to y-axis [5.600000] speed [14.000000];
+		move nano5 to y-axis [5.600000] speed [14.000000];
+		move nano6 to y-axis [5.600000] speed [14.000000];
+		move nano7 to y-axis [5.600000] speed [14.000000];
+		move nano8 to y-axis [5.600000] speed [14.000000];
+		sleep 392;
+	}
+	if( TRUE )
+	{
+		turn nano1 to z-axis <-115.027473> speed <297.000000>;
+		turn nano2 to z-axis <-115.027473> speed <297.000000>;
+		turn nano3 to z-axis <-115.027473> speed <297.000000>;
+		turn nano4 to z-axis <115.027473> speed <297.000000>;
+		turn nano5 to z-axis <115.027473> speed <297.000000>;
+		turn nano6 to z-axis <115.027473> speed <297.000000>;
+		turn nano7 to z-axis <115.027473> speed <297.000000>;
+		turn nano8 to z-axis <-115.027473> speed <297.000000>;
+		sleep 388;
+	}
+	sleep 427;
+}
+
+deactivatescr()
+{
+	if( TRUE )
+	{
+		move platform to y-axis [11.650000] now;
+		
+		move plate1 to y-axis [8.000000] now;
+		move plate2 to y-axis [8.000000] now;
+		move plate3 to y-axis [8.000000] now;
+		move plate4 to y-axis [8.000000] now;
+		move plate5 to y-axis [8.000000] now;
+		move plate6 to y-axis [8.000000] now;
+		move plate7 to y-axis [8.000000] now;
+		move plate8 to y-axis [8.000000] now;
+		
+		move door1 to y-axis [-7.300000] now;
+		move door2 to y-axis [-7.300000] now;
+		move door3 to y-axis [-7.300000] now;
+		move door4 to y-axis [-7.300000] now;
+		move door5 to y-axis [-7.300000] now;
+		move door6 to y-axis [-7.300000] now;
+		move door7 to y-axis [-7.300000] now;
+		move door8 to y-axis [-7.300000] now;
+		
+		move door1 to y-axis [-7.300000] now;
+		move door2 to y-axis [-7.300000] now;
+		move door3 to y-axis [-7.300000] now;
+		move door4 to y-axis [-7.300000] now;
+		move door5 to y-axis [-7.300000] now;
+		move door6 to y-axis [-7.300000] now;
+		move door7 to y-axis [-7.300000] now;
+		move door8 to y-axis [-7.300000] now;
+		
+		move nano1 to y-axis [5.600000] now;
+		move nano2 to y-axis [5.600000] now;
+		move nano3 to y-axis [5.600000] now;
+		move nano4 to y-axis [5.600000] now;
+		move nano5 to y-axis [5.600000] now;
+		move nano6 to y-axis [5.600000] now;
+		move nano7 to y-axis [5.600000] now;
+		move nano8 to y-axis [5.600000] now;
+		
+		turn door1 to z-axis <-90.021978> now;
+		turn door2 to z-axis <-90.021978> now;
+		turn door3 to z-axis <-90.021978> now;
+		turn door4 to z-axis <90.021978> now;
+		turn door5 to z-axis <90.021978> now;
+		turn door6 to z-axis <90.021978> now;
+		turn door7 to z-axis <90.021978> now;
+		turn door8 to z-axis <-90.021978> now;
+		
+		turn nano1 to z-axis <-115.357143> now;
+		turn nano2 to z-axis <-115.357143> now;
+		turn nano3 to z-axis <-115.357143> now;
+		turn nano4 to z-axis <115.357143> now;
+		turn nano5 to z-axis <115.357143> now;
+		turn nano6 to z-axis <115.357143> now;
+		turn nano7 to z-axis <115.357143> now;
+		turn nano8 to z-axis <-115.357143> now;
+		sleep 468;
+	}
+	if( TRUE )
+	{
+		move nano1 to y-axis [0.000000] speed [11.000000];
+		move nano2 to y-axis [0.000000] speed [11.000000];
+		move nano3 to y-axis [0.000000] speed [11.000000];
+		move nano4 to y-axis [0.000000] speed [11.000000];
+		move nano5 to y-axis [0.000000] speed [11.000000];
+		move nano6 to y-axis [0.000000] speed [11.000000];
+		move nano7 to y-axis [0.000000] speed [11.000000];
+		move nano8 to y-axis [0.000000] speed [11.000000];
+		sleep 471;
+	}
+	if( TRUE )
+	{
+		move plate1 to y-axis [0.000000] speed [21.000000];
+		move plate2 to y-axis [0.000000] speed [21.000000];
+		move plate3 to y-axis [0.000000] speed [21.000000];
+		move plate4 to y-axis [0.000000] speed [21.000000];
+		move plate5 to y-axis [0.000000] speed [21.000000];
+		move plate6 to y-axis [0.000000] speed [21.000000];
+		move plate7 to y-axis [0.000000] speed [21.000000];
+		move plate8 to y-axis [0.000000] speed [21.000000];
+		sleep 471;
+	}
+	if( TRUE )
+	{
+		move door1 to y-axis [0.000000] speed [15.000000];
+		move door2 to y-axis [0.000000] speed [15.000000];
+		move door3 to y-axis [0.000000] speed [15.000000];
+		move door4 to y-axis [0.000000] speed [15.000000];
+		move door5 to y-axis [0.000000] speed [15.000000];
+		move door6 to y-axis [0.000000] speed [15.000000];
+		move door7 to y-axis [0.000000] speed [15.000000];
+		move door8 to y-axis [0.000000] speed [15.000000];
+		sleep 472;
+	}
+	if( TRUE )
+	{
+		turn door1 to z-axis <0.000000> speed <189.000000>;
+		turn door2 to z-axis <0.000000> speed <189.000000>;
+		turn door3 to z-axis <0.000000> speed <189.000000>;
+		turn door4 to z-axis <0.000000> speed <189.000000>;
+		turn door5 to z-axis <0.000000> speed <189.000000>;
+		turn door6 to z-axis <0.000000> speed <189.000000>;
+		turn door7 to z-axis <0.000000> speed <189.000000>;
+		turn door8 to z-axis <0.000000> speed <189.000000>;
+		sleep 474;
+	}
+	if( TRUE )
+	{
+		move platform to y-axis [0.000000] speed [15.000000];
+		sleep 759;
+	}
+	sleep 47;
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+OpenYard()
+{
+	set YARD_OPEN to 1;
+	while( !get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 1;
+	}
+	set BUGGER_OFF to 0;
+}
+
+CloseYard()
+{
+	set YARD_OPEN to 0;
+	while( get YARD_OPEN )
+	{
+		set BUGGER_OFF to 1;
+		sleep 1500;
+		set YARD_OPEN to 0;
+	}
+	set BUGGER_OFF to 0;
+}
+
+Go()
+{
+	dont-cache door1;
+	dont-cache door2;
+	dont-cache door3;
+	dont-cache door4;
+	dont-cache door5;
+	dont-cache door6;
+	dont-cache door7;
+	dont-cache door8;
+	
+	dont-cache nano1;
+	dont-cache nano2;
+	dont-cache nano3;
+	dont-cache nano4;
+	dont-cache nano5;
+	dont-cache nano6;
+	dont-cache nano7;
+	dont-cache nano8;
+		
+	dont-cache plate1;
+	dont-cache plate2;
+	dont-cache plate3;
+	dont-cache plate4;
+	dont-cache plate5;
+	dont-cache plate6;
+	dont-cache plate7;
+	dont-cache plate8;
+	
+	
+	dont-cache pad;
+	dont-cache pad2;
+	dont-cache platform;
+	
+	dont-cache fusion1;
+	dont-cache fusion2;
+	
+	dont-cache bits;
+	dont-cache dome1;
+	dont-cache dome2;
+	
+	call-script activatescr();
+	call-script OpenYard();
+	set INBUILDSTANCE to 1;
+	open = 1;
+	set ARMORED to 0;
+	if(( shield_on || dome_on))
+	{
+		set ARMORED to 1;
+	}	
+}
+
+Stop()
+{
+	set INBUILDSTANCE to 0;
+	call-script CloseYard();
+	call-script deactivatescr();
+	
+	cache door1;
+	cache door2;
+	cache door3;
+	cache door4;
+	cache door5;
+	cache door6;
+	cache door7;
+	cache door8;
+	
+	cache nano1;
+	cache nano2;
+	cache nano3;
+	cache nano4;
+	cache nano5;
+	cache nano6;
+	cache nano7;
+	cache nano8;
+	
+	cache plate1;
+	cache plate2;
+	cache plate3;
+	cache plate4;
+	cache plate5;
+	cache plate6;
+	cache plate7;
+	cache plate8;
+	
+	cache platform;
+	cache pad;
+	cache pad2;
+	
+	cache fusion1;
+	cache fusion2;
+	
+	cache bits;
+	cache dome1;
+	cache dome2;
+	
+	set ARMORED to 1;
+	open = 0;
+}
+
+InitState()
+{
+	statechg_DesiredState = TRUE;
+	statechg_StateChanging = FALSE;
+}
+
+RequestState(requestedstate, currentstate)
+{
+	if( statechg_StateChanging )
+	{
+		statechg_DesiredState = requestedstate;
+		return (0);
+	}
+	statechg_StateChanging = TRUE;
+	currentstate = statechg_DesiredState;
+	statechg_DesiredState = requestedstate;
+	while( statechg_DesiredState != currentstate )
+	{
+		if( statechg_DesiredState == 0 )
+		{
+			call-script Go();
+			currentstate = 0;
+		}
+		if( statechg_DesiredState == 1 )
+		{
+			call-script Stop();
+			currentstate = 1;
+		}
+	}
+	statechg_StateChanging = FALSE;
+}
+
+Create()
+{
+	nbr_shield = 0;
+	nbr_dome = 0;
+
+	shield_on = 0;
+	dome_on = 0;
+	
+	open = 0;
+	
+	turn pivot2 to y-axis <45> now;
+	turn pivot3 to y-axis <90> now;
+	turn pivot4 to y-axis <-45> now;
+	turn pivot6 to y-axis <45> now;
+	turn pivot7 to y-axis <90> now;
+	turn pivot8 to y-axis <-45> now;
+	
+	
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade door3;
+	dont-shade door4;
+	dont-shade door5;
+	dont-shade door6;
+	dont-shade door7;
+	dont-shade door8;
+	
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade nano3;
+	dont-shade nano4;
+	dont-shade nano5;
+	dont-shade nano6;
+	dont-shade nano7;
+	dont-shade nano8;
+	
+	dont-shade plate1;
+	dont-shade plate2;
+	dont-shade plate3;
+	dont-shade plate4;
+	dont-shade plate5;
+	dont-shade plate6;
+	dont-shade plate7;
+	dont-shade plate8;
+	
+	dont-shade pad;
+	dont-shade pad2;
+	
+	dont-shade platform;
+	
+	dont-shade fusion1;
+	dont-shade fusion2;
+	dont-shade dome1;
+	dont-shade dome2;
+	dont-shade bits;
+	
+	
+	unitviewer = FALSE;
+	spray = 0;
+//	move base to y-axis [1.000000] now;
+	call-script InitState();
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	set ARMORED to 1;
+	start-script detect();
+	start-script SmokeUnit();
+//	move base to y-axis [0.000000] speed [2.000000];
+	set ARMORED to 1;
+}
+
+QueryNanoPiece(piecenum)
+{
+	if( spray == 0 )
+	{
+		piecenum = beam1;
+	}
+	if( spray == 1 )
+	{
+		piecenum = beam2;
+	}
+	if( spray == 2 )
+	{
+		piecenum = beam3;
+	}
+	if( spray == 3 )
+	{
+		piecenum = beam4;
+	}
+	if( spray == 4 )
+	{
+		piecenum = beam5;
+	}
+	if( spray == 5 )
+	{
+		piecenum = beam6;
+	}
+	if( spray == 6 )
+	{
+		piecenum = beam7;
+	}
+	if( spray == 7 )
+	{
+		piecenum = beam8;
+	}
+	++spray;
+	if( spray == 8 )
+	{
+		spray = 0;
+	}
+}
+
+Demo()
+{
+	unitviewer = TRUE;
+}
+
+Activate()
+{
+	signal SIG_ACTIVATE;
+	start-script RequestState(0);
+}
+
+Deactivate()
+{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	if( !unitviewer )
+	{
+		sleep 5000;
+	}
+	set-signal-mask 0;
+	start-script RequestState(1);
+}
+
+StartBuilding()
+{
+//	spin2 pad around y-axis speed <30.005495>;
+}
+
+StopBuilding()
+{
+//	stop-spin2 pad around y-axis;
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = pad;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = heightstick;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP1;
+		explode beam2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nano1 type BITMAPONLY | BITMAP1;
+		explode nano2 type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP1;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP5;
+		explode platform type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP1;
+		explode beam2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nano1 type BITMAPONLY | BITMAP1;
+		explode nano2 type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP1;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP5;
+		explode platform type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode beam1 type BITMAPONLY | BITMAP1;
+		explode beam2 type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode nano1 type BITMAPONLY | BITMAP1;
+		explode nano2 type BITMAPONLY | BITMAP1;
+		explode pad type BITMAPONLY | BITMAP1;
+		explode plate1 type BITMAPONLY | BITMAP1;
+		explode plate2 type BITMAPONLY | BITMAP5;
+		explode platform type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode beam1 type BITMAPONLY | BITMAP1;
+	explode beam2 type BITMAPONLY | BITMAP1;
+	explode door1 type BITMAPONLY | BITMAP1;
+	explode door2 type BITMAPONLY | BITMAP5;
+	explode nano1 type BITMAPONLY | BITMAP1;
+	explode nano2 type BITMAPONLY | BITMAP1;
+	explode pad type BITMAPONLY | BITMAP1;
+	explode plate1 type BITMAPONLY | BITMAP1;
+	explode plate2 type BITMAPONLY | BITMAP5;
+	explode platform type BITMAPONLY | BITMAP1;
+}

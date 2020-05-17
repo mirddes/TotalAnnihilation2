@@ -1,0 +1,737 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece	r1, r2, r3, r4, r5, firepoint, base, body, spinner, axis, b1, b2, b3, b4, s1, s2, wake1, wake2,
+		arm1a, arm1b, arm1c, arm2a, arm2b, arm2c, arm3a, arm3b, arm3c,
+		arm4a, arm4b, arm4c, arm5a, arm5b, arm5c, arm6a, arm6b, arm6c,
+		rotate1, rotate2, rotate3, rotate4, rotate5, 
+		shield, bubble, circle, cover, flashtur, flashpoint, bubblea,
+		pivot1, pivot2, pivot3, pivot4, pivot5, pivot6;
+
+static-var bMoving, amphib, firing, firedelay, gun_1, shared, gun_2, firing_3, firedelay_3, 
+		   blinking, shield_on, previoushealth, salvo, hit, spark, onoff;
+
+
+#define SIG_AIM		2
+#define SIG_AIM3	4
+//#define SIG_FIRE	4
+//#define SIG_HIT 	8
+#define SIG_MOVE	32
+
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+#define BLINK_SHIELD\
+	if(shield_on)\
+	{\
+		if(!blinking)\
+		{\
+			blinking=TRUE;\
+			hide bubblea;\
+			hide cover;\
+			sleep 12;\
+			hide bubble;\
+			sleep 10;\
+			show bubble;\
+			sleep 12;\
+			show bubblea;\
+			show cover;\
+			blinking=FALSE;\
+		}\
+	}
+
+
+buzz()
+{
+//	signal 2;
+//	set-signal-mask 2;
+	while(1)
+	{
+/*
+		++spark;
+		if( spark == 1 )
+		{
+			show bubble;
+			show bubblea;
+			sleep 1000;
+			hide bubble;
+			hide bubblea;
+		}
+		if ( spark >= 15 )
+		{
+			spark = 0;
+		}	
+*/
+		if (!firing && onoff)
+		{
+			spin b1 around y-axis speed rand(<240>,<500>);
+			spin b2 around y-axis speed rand(<240>,<500>);
+			spin b3 around y-axis speed rand(<240>,<500>);
+			spin b4 around y-axis speed rand(<240>,<500>);
+			if(rand(-1,1))
+			{
+				show b1;
+			}
+			if(rand(-1,1))
+			{
+				show b2;
+			}
+			if(rand(-1,1))
+			{
+				show b3;
+			}
+			if(rand(-1,1))
+			{
+				show b4;
+			}
+			sleep rand(50,150);
+			spin b1 around y-axis speed rand(<-240>,<-500>);
+			spin b2 around y-axis speed rand(<-240>,<-500>);
+			spin b3 around y-axis speed rand(<-240>,<-500>);
+			spin b4 around y-axis speed rand(<-240>,<-500>);
+			if(rand(0,1))
+			{
+				hide b1;
+			}
+			if(rand(0,1))
+			{
+				hide b2;
+			}
+			if(rand(0,1))
+			{
+				hide b3;
+			}
+			if(rand(0,1))
+			{
+				hide b4;
+			}
+			sleep rand(150,250);
+		}
+//		if (firing OR firing_2)
+//		{
+//			explode firepoint type BITMAPONLY | BITMAP5;
+//			sleep rand (250, 750);
+//		}
+		hide b1;
+		hide b2;
+		hide b3;
+		hide b4;
+		sleep rand (200, 1000);
+	}			
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = SFXTYPE_BLACKSMOKE;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = SFXTYPE_WHITESMOKE;
+			}
+			emit-sfx smoketype from body;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	
+	bMoving=1;
+	
+	while(bMoving)
+	{
+		emit-sfx 256 | 2 from s1;
+		emit-sfx 256 | 2 from s2;
+		sleep rand(200,300);
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+	
+	bMoving=0;
+}
+
+Create()
+{
+	shield_on = 0;
+	blinking = 0;
+	spark = 0;
+	onoff = 0;
+	
+	hide cover;
+	
+	hide rotate1;
+	hide rotate2;
+	hide rotate3;
+	hide rotate4;
+	hide rotate5;
+	
+	hide r1;
+	hide r2;
+	hide r3;
+	hide r4;
+	hide r5;
+	
+	dont-cache circle;
+	dont-cache bubble;
+	dont-cache bubblea;
+	dont-cache cover;
+	
+	hide circle;
+	hide bubble;
+	hide bubblea;
+	
+//	spin bubble around y-axis speed <12.666>;
+//	spin bubble around x-axis speed <13.1337>;
+//	spin bubble around z-axis speed <14.42>;
+
+//	spin bubble around y-axis speed <1000>;
+//	spin bubblea around y-axis speed <-500>;
+//	spin bubble around x-axis speed <2000>;
+//	spin bubblea around x-axis speed <-1000>;
+//	spin bubble around z-axis speed <3000>;
+
+//	move bubble to y-axis [15] now;
+
+	
+//	move r1 to z-axis [37.5] now;
+//	move r2 to z-axis [-75] now;
+//	move r3 to z-axis [112.5] now;
+//	move r4 to z-axis [-150] now;
+
+//	move r1 to z-axis [72] now; 
+//	move r2 to z-axis [-108] now; 
+//	move r3 to z-axis [144] now; 
+//	move r4 to z-axis [-180] now; 
+//	move r5 to z-axis [216] now;
+	
+	firing = 0;
+	firing_3 = 0;
+	firedelay = 850;
+	firedelay_3 = 850;
+	salvo = 0;
+
+	bMoving = 0;
+	amphib = 4;
+	gun_1 = 0;
+	gun_2 = 0;
+	shared = 0;
+	hit = 0;
+	
+	dont-cache b1;
+	dont-cache b2;
+	dont-cache b3;
+	dont-cache b4;
+	
+	hide b1;
+	hide b2;
+	hide b3;
+	hide b4;
+	
+	turn pivot1 to y-axis <60> now;
+	turn pivot3 to y-axis <-60> now;
+	turn pivot4 to y-axis <60> now;
+	turn pivot6 to y-axis <-60> now;
+	
+	turn arm1a to z-axis <-25> now;
+	turn arm1b to z-axis <25> now;
+	turn arm1c to z-axis <25> now;
+	turn arm2a to z-axis <-25> now;
+	turn arm2b to z-axis <25> now;
+	turn arm2c to z-axis <25> now;
+		
+	turn axis to z-axis <-25> now;
+		
+	turn arm3a to z-axis <-25> now;
+	turn arm3b to z-axis <25> now;
+	turn arm3c to z-axis <25> now;
+	turn arm4a to z-axis <25> now;
+	turn arm4b to z-axis <-25> now;
+	turn arm4c to z-axis <-25> now;
+	turn arm5a to z-axis <25> now;
+	turn arm5b to z-axis <-25> now;
+	turn arm5c to z-axis <-25> now;
+	turn arm6a to z-axis <25> now;
+	turn arm6b to z-axis <-25> now;
+	turn arm6c to z-axis <-25> now;
+	
+	
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 1000;
+	}
+
+//	shield_on = 1;
+
+	set ARMORED to 1;
+	
+	previoushealth=get HEALTH;
+
+//	show cover;
+
+//	spin rotate1 around y-axis speed <44>;
+//	spin rotate2 around y-axis speed <-88>;
+//	spin rotate3 around y-axis speed <132>;
+//	spin rotate4 around y-axis speed <-176>;
+//	spin rotate5 around y-axis speed <220>;
+	
+//	show cover;
+//	show bubble;
+//	show bubblea;
+	
+//	start-script EmitSFX();
+	start-script SmokeUnit();
+//	call-script buzz();
+	start-script buzz();
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	amphib = Func_Var_1;
+}
+
+
+Activate()
+{
+//	signal SIG_ACTIVATE;
+//	set-signal-mask SIG_ACTIVATE;
+	
+//	shared = 1;
+	set ACTIVATION to 1;
+
+	turn arm1a to z-axis <0> speed <15.00>;
+	turn arm1b to z-axis <0> speed <15.00>;
+	turn arm1c to z-axis <0> speed <15.00>;
+	turn arm2a to z-axis <0> speed <15.00>;
+	turn arm2b to z-axis <0> speed <15.00>;
+	turn arm2c to z-axis <0> speed <15.00>;
+		
+	turn axis to z-axis <0> speed <15.00>;
+		
+	turn arm3a to z-axis <0> speed <15.00>;
+	turn arm3b to z-axis <0> speed <15.00>;
+	turn arm3c to z-axis <0> speed <15.00>;
+	turn arm4a to z-axis <0> speed <15.00>;
+	turn arm4b to z-axis <0> speed <15.00>;
+	turn arm4c to z-axis <0> speed <15.00>;
+	turn arm5a to z-axis <0> speed <15.00>;
+	turn arm5b to z-axis <0> speed <15.00>;
+	turn arm5c to z-axis <0> speed <15.00>;
+	turn arm6a to z-axis <0> speed <15.00>;
+	turn arm6b to z-axis <0> speed <15.00>;
+	turn arm6c to z-axis <0> speed <15.00>;
+	
+	onoff = 1;
+	
+//	turn pivot1 to y-axis <60> speed <20.00>;
+//	turn pivot3 to y-axis <-60> speed <20.00>;
+//	turn pivot4 to y-axis <60> speed <20.00>;
+//	turn pivot6 to y-axis <-60> speed <20.00>;
+	
+//	start-script sharing();
+	
+	
+//	call-script buzz();
+	
+	
+	
+//	sleep 1;
+}
+
+Deactivate()
+{
+//	signal SIG_ACTIVATE;
+//	set-signal-mask SIG_ACTIVATE;
+	
+//	shared = 0;
+	set ACTIVATION to 0;
+	
+//	turn pivot1 to y-axis <0> speed <20.00>;
+//	turn pivot3 to y-axis <0> speed <20.00>;
+//	turn pivot4 to y-axis <0> speed <20.00>;
+//	turn pivot6 to y-axis <0> speed <20.00>;
+	
+	onoff = 0;
+
+	turn arm1a to z-axis <-25> speed <15.00>;
+	turn arm1b to z-axis <25> speed <15.00>;
+	turn arm1c to z-axis <25> speed <15.00>;
+	turn arm2a to z-axis <-25> speed <15.00>;
+	turn arm2b to z-axis <25> speed <15.00>;
+	turn arm2c to z-axis <25> speed <15.00>;
+		
+	turn axis to z-axis <-25> speed <15.00>;
+		
+	turn arm3a to z-axis <-25> speed <15.00>;
+	turn arm3b to z-axis <25> speed <15.00>;
+	turn arm3c to z-axis <25> speed <15.00>;
+	turn arm4a to z-axis <25> speed <15.00>;
+	turn arm4b to z-axis <-25> speed <15.00>;
+	turn arm4c to z-axis <-25> speed <15.00>;
+	turn arm5a to z-axis <25> speed <15.00>;
+	turn arm5b to z-axis <-25> speed <15.00>;
+	turn arm5c to z-axis <-25> speed <15.00>;
+	turn arm6a to z-axis <25> speed <15.00>;
+	turn arm6b to z-axis <-25> speed <15.00>;
+	turn arm6c to z-axis <-25> speed <15.00>;
+
+//	firing = 1;
+//	call-script buzz();
+}
+
+RestoreAfterDelay()
+{
+	sleep 1000;
+	set-signal-mask 0;
+//	hit = 0;
+//	hide bubble;
+//	hide bubblea;
+}
+/*
+AimPrimary(Heading, Pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	while (!get ACTIVATION)
+	{
+		sleep 100;
+	}
+	while (firing)
+	{
+		sleep 50;
+	}
+	return(1);
+}
+
+FirePrimary()
+{
+	firing = 1;
+//	hide b1;
+//	hide b2;
+//	hide b3;
+//	hide b4;
+	
+///	spin spinner around y-axis speed <360>;
+
+
+	sleep 15000;	
+	firing = 0;
+
+//	spin spinner around y-axis speed <0>;
+	
+	sleep 1;
+//	call-script buzz();
+}
+
+QueryPrimary(p)
+{
+	p = firepoint;
+}
+
+AimFromPrimary(p)
+{
+	p = base;
+}
+
+*/
+
+AimPrimary(Heading, Pitch)
+{
+	signal SIG_AIM3;
+	set-signal-mask SIG_AIM3;
+	while (!get ACTIVATION)
+	{
+		sleep 100;
+	}
+	while (firing_3)
+	{
+		sleep 100;
+	}
+	start-script RestoreAfterDelay();
+	return(1);
+}
+
+FirePrimary()
+{
+//	set ARMORED to 1;
+	
+//	show bubble;
+//	show bubblea;
+	
+//	signal SIG_FIRE;
+//	set-signal-mask SIG_FIRE;
+	
+	firing_3 = 1;
+
+	turn arm1a to z-axis <-25> speed <500.00>;
+	turn arm1b to z-axis <25> speed <500.00>;
+	turn arm1c to z-axis <25> speed <500.00>;
+	turn arm2a to z-axis <-25> speed <500.00>;
+	turn arm2b to z-axis <25> speed <500.00>;
+	turn arm2c to z-axis <25> speed <500.00>;
+		
+	turn axis to z-axis <-25> speed <500.00>;
+		
+	turn arm3a to z-axis <-25> speed <500.00>;
+	turn arm3b to z-axis <25> speed <500.00>;
+	turn arm3c to z-axis <25> speed <500.00>;
+	turn arm4a to z-axis <25> speed <500.00>;
+	turn arm4b to z-axis <-25> speed <500.00>;
+	turn arm4c to z-axis <-25> speed <500.00>;
+	turn arm5a to z-axis <25> speed <500.00>;
+	turn arm5b to z-axis <-25> speed <500.00>;
+	turn arm5c to z-axis <-25> speed <500.00>;
+	turn arm6a to z-axis <25> speed <500.00>;
+	turn arm6b to z-axis <-25> speed <500.00>;
+	turn arm6c to z-axis <-25> speed <500.00>;
+		
+	sleep 150;
+		
+	turn arm1a to z-axis <0> speed <25.00>;
+	turn arm1b to z-axis <0> speed <25.00>;
+	turn arm1c to z-axis <0> speed <25.00>;
+	turn arm2a to z-axis <0> speed <25.00>;
+	turn arm2b to z-axis <0> speed <25.00>;
+	turn arm2c to z-axis <0> speed <25.00>;
+		
+	turn axis to z-axis <0> speed <25.00>;
+		
+	turn arm3a to z-axis <0> speed <25.00>;
+	turn arm3b to z-axis <0> speed <25.00>;
+	turn arm3c to z-axis <0> speed <25.00>;
+	turn arm4a to z-axis <0> speed <25.00>;
+	turn arm4b to z-axis <0> speed <25.00>;
+	turn arm4c to z-axis <0> speed <25.00>;
+	turn arm5a to z-axis <0> speed <25.00>;
+	turn arm5b to z-axis <0> speed <25.00>;
+	turn arm5c to z-axis <0> speed <25.00>;
+	turn arm6a to z-axis <0> speed <25.00>;
+	turn arm6b to z-axis <0> speed <25.00>;
+	turn arm6c to z-axis <0> speed <25.00>;
+	
+	sleep firedelay_3;
+	
+	firing_3 = 0;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = firepoint;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = base;
+}
+
+
+/*
+AimSecondary(Heading, Pitch)
+{
+	signal SIG_AIM2;
+	set-signal-mask SIG_AIM2;
+	while (!get ACTIVATION)
+	{
+		sleep 100;
+	}
+	while (firing_2)
+	{
+		sleep 100;
+	}
+	start-script RestoreAfterDelay();
+	return(1);
+}
+
+FireSecondary()
+{
+//	set ARMORED to 1;
+	
+	show bubble;
+	show bubblea;
+
+	if (gun_2 == 0)
+	{
+		firing_2 = 1;
+		explode r1 type BITMAPONLY | BITMAP1;
+		sleep firedelay_2;
+		firing_2 = 0;
+	}
+	if (gun_2 == 1)
+	{
+		firing_2 = 1;
+		explode r2 type BITMAPONLY | BITMAP1;
+		sleep firedelay_2;
+		firing_2 = 0;
+	}
+	if (gun_2 == 2)
+	{
+		firing_2 = 1;
+		explode r3 type BITMAPONLY | BITMAP1;
+		sleep firedelay_2;
+		firing_2 = 0;
+	}
+	if (gun_2 == 3)
+	{
+		firing_2 = 1;
+		explode r4 type BITMAPONLY | BITMAP1;
+		sleep firedelay_2;
+		firing_2 = 0;
+	}
+	if (gun_2 == 4)
+	{
+		firing_2 = 1;
+		explode r5 type BITMAPONLY | BITMAP1;
+		sleep firedelay_2;
+		firing_2 = 0;
+	}
+	++gun_2;
+	if(gun_2 > 4)
+	{
+		gun_2 = 0;
+	}
+}
+
+QuerySecondary(piecenum)
+{
+	if ((gun_2 == 0))
+	{
+	piecenum = r1;
+	}
+	if ((gun_2 == 1))
+	{
+	piecenum = r2;
+	}
+	if ((gun_2 == 2))
+	{
+	piecenum = r3;
+	}
+	if ((gun_2 == 3))
+	{
+	piecenum = r4;
+	}
+	if ((gun_2 == 4))
+	{
+	piecenum = r5;
+	}
+}
+
+AimFromSecondary(piecenum)
+{
+	piecenum = base;
+}
+*/
+
+
+SweetSpot(piecenum)
+{
+	piecenum = body;
+}
+
+
+
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1a type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2b type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm3c type BITMAPONLY | BITMAP1;
+		explode spinner type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode axis type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1a type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2b type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm3c type BITMAPONLY | BITMAP1;
+		explode spinner type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode axis type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode arm1a type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm2b type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode arm3c type BITMAPONLY | BITMAP1;
+		explode spinner type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode axis type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode arm1a type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arm2b type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arm3c type BITMAPONLY | BITMAP1;
+	explode spinner type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode axis type SHATTER | EXPLODE_ON_HIT | BITMAP5;
+}

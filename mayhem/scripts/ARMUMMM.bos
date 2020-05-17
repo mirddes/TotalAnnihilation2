@@ -1,0 +1,267 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  ground, base, lid1, lid2, lid3, lid4, bubble1, bubble2,
+       bubble3, bubble4, bubble5, housing, dome, building, pipe1, pipe2,
+       pipe3, stack1, stack2, bubble6, bubble7;
+
+static-var timer_1, On_2, busy_4, state_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype, smokepiece)
+{
+	while( TRUE )
+	{
+		smokepiece = Rand( 1, 2 );
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				if( smokepiece == 1 )
+				{
+					emit-sfx 259 from housing;
+				}
+				if( smokepiece == 2 )
+				{
+					emit-sfx 259 from bubble1;
+				}
+				if( smokepiece == 3 )
+				{
+					emit-sfx 259 from bubble5;
+				}
+			}
+			emit-sfx 259 from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	if( busy_4 )
+	{
+		return (0);
+	}
+	busy_4 = 1;
+	while( on_2 != state_5 )
+	{
+		if( on_2 AND !state_5 )
+		{
+			dont-cache lid1;
+			dont-cache lid2;
+			dont-cache lid3;
+			dont-cache lid4;
+			dont-cache dome;
+			emit-sfx 259 from bubble3;
+			turn lid2 to x-axis <0.598901> now;
+			turn lid2 to x-axis <30.005495> speed <45>;
+			turn lid3 to x-axis <0.598901> now;
+			turn lid3 to x-axis <-26.005495> speed <39>;
+			sleep 772;
+			emit-sfx 259 from bubble2;
+			emit-sfx 259 from bubble4;
+			turn lid1 to x-axis <35.005495> speed <22>;
+			turn lid4 to x-axis <-30.005495> speed <19>;
+			turn lid2 to x-axis <60.010989> speed <19>;
+			turn lid3 to x-axis <-74.016484> speed <30>;
+			set ARMORED to 0;
+			sleep 574;
+			emit-sfx 259 from bubble1;
+			emit-sfx 259 from bubble5;
+			turn dome to x-axis <0> now;
+			turn dome to x-axis <180.043956> speed <112>;
+			state_5 = 1;
+		}
+		if( !on_2 AND state_5 )
+		{
+			cache dome;
+			turn dome to x-axis <180.280220> now;
+			turn dome to x-axis <0> speed <112>;
+			emit-sfx 259 from bubble1;
+			emit-sfx 259 from bubble5;
+			sleep 787;
+			cache lid1;
+			cache lid2;
+			cache lid3;
+			cache lid4;
+			turn lid1 to x-axis <35.263736> now;
+			turn lid4 to x-axis <-30.406593> now;
+			turn lid2 to x-axis <60.813187> now;
+			turn lid3 to x-axis <-74.197802> now;
+			turn lid1 to x-axis <0> speed <25>;
+			turn lid4 to x-axis <0> speed <22>;
+			turn lid2 to x-axis <30.005495> speed <22>;
+			turn lid3 to x-axis <-26.005495> speed <34>;
+			emit-sfx 259 from bubble2;
+			emit-sfx 259 from bubble4;
+			sleep 1374;
+			turn lid2 to x-axis <0> speed <21>;
+			turn lid3 to x-axis <0> speed <20>;
+			set ARMORED to 1;
+			state_5 = 0;
+			sleep 684;
+			emit-sfx 259 from bubble3;
+		}
+	}
+	busy_4 = 0;
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/
+
+Create()
+{
+	dont-shade lid1;
+	dont-shade lid2;
+	dont-shade lid3;
+	dont-shade lid4;
+	dont-shade dome;
+	On_2 = 0;
+	timer_1 = 0;
+	busy_4 = 0;
+	state_5 = 0;
+	sleep 50;
+	if( !( get BUILD_PERCENT_LEFT ) )
+	{
+		set ACTIVATION to 0;
+	}
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();
+	set ARMORED to 1;
+}
+
+Activate()
+{
+	on_2 = 1;
+	timer_1 = 0;
+	if( !busy_4 )
+	{
+		start-script RequestState();
+	}
+	while( on_2 )
+	{	
+		emit-sfx 259 from bubble6;
+		sleep 250;
+		emit-sfx 259 from bubble7;
+		sleep 2000;
+	}
+}
+
+Deactivate()
+{
+	on_2 = 0;
+	if( !busy_4 )
+	{
+		start-script RequestState();
+	}
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	if( !timer_1 )
+	{
+		timer_1 = 10;
+		if( on_2 )
+		{
+			set ACTIVATION to 0;
+		}
+		while( timer_1 )
+		{			
+			--timer_1;
+			sleep 1000;
+		}
+		if( !on_2 )
+		{	
+			set ACTIVATION to 1;
+		}
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lid1 type BITMAPONLY | BITMAP3;
+		explode lid2 type BITMAPONLY | BITMAP4;
+		explode lid3 type BITMAPONLY | BITMAP5;
+		explode lid4 type BITMAPONLY | BITMAP1;
+		explode housing type BITMAPONLY | BITMAP1;
+		explode dome type BITMAPONLY | BITMAP2;
+		explode building type BITMAPONLY | BITMAP3;
+		explode stack1 type BITMAPONLY | BITMAP4;
+		explode stack2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lid1 type FALL | BITMAP3;
+		explode lid2 type FALL | BITMAP4;
+		explode lid3 type FALL | BITMAP5;
+		explode lid4 type FALL | BITMAP1;
+		explode housing type BITMAPONLY | BITMAP1;
+		explode dome type BITMAPONLY | BITMAP2;
+		explode building type BITMAPONLY | BITMAP3;
+		explode stack1 type BITMAPONLY | BITMAP4;
+		explode stack2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		explode lid1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode lid2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode lid3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode lid4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode housing type BITMAPONLY | BITMAP1;
+		explode dome type BITMAPONLY | BITMAP2;
+		explode building type BITMAPONLY | BITMAP3;
+		explode stack1 type BITMAPONLY | BITMAP4;
+		explode stack2 type BITMAPONLY | BITMAP5;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type BITMAPONLY | BITMAP1;
+	explode lid1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode lid2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode lid3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode lid4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode housing type BITMAPONLY | BITMAP1;
+	explode dome type BITMAPONLY | BITMAP2;
+	explode building type BITMAPONLY | BITMAP3;
+	explode stack1 type BITMAPONLY | BITMAP4;
+	explode stack2 type BITMAPONLY | BITMAP5;
+}

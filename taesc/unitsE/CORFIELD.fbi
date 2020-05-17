@@ -1,0 +1,45 @@
+[UNITINFO]
+	{
+	UnitName=CORFIELD;
+	Version=1.2;
+	SIDE=CORE;
+	Objectname=CORFIELD;
+	Designation=F-MPS4;
+	Name=Monolith;
+	Description=Charge Field Emitter (50 E, Boosts Energy Defenses/Resources);
+	FootprintX=4;
+	FootprintZ=4;
+	BuildCostEnergy=24650;
+	BuildCostMetal=1495;
+	MaxDamage=3825;
+	MaxWaterDepth=0;
+	MaxSlope=15;
+	EnergyUse=50;
+	BuildTime=27050;
+	WorkerTime=0;
+	BMcode=0;
+	Builder=0;
+	ThreeD=1;
+	ZBuffer=1;
+	NoAutoFire=1;
+	SightDistance=512;
+	RadarDistance=0;
+	SoundCategory=CORE_MAKER;
+	EnergyStorage=0;
+	MetalStorage=0;
+	ExplodeAs=ATOMIC_BLAST;
+	SelfDestructAs=ATOMIC_BLASTSML;
+	Category=CORE NAIR NSUB NSHP NLND NEXP ALL LEV2 ;
+	TEDClass=FORT;
+	Copyright=Copyright 1997 Humongous Entertainment. All rights reserved.;
+	YardMap=oooo oooo oooo oooo ;
+	Corpse=corfield_dead;
+	UnitNumber=293478;
+	ShootMe=1;
+	EnergyMake=0;
+	DefaultMissionType=GUARD_NOMOVE;
+	buildangle=4096;
+	downloadable=1;
+	damagemodifier=0.25;
+//	onoffable=1;
+	}

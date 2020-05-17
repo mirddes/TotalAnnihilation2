@@ -1,0 +1,66 @@
+/* Meteors.tdf -- meteor shower weapons */
+
+/* Allowed IDs = 225-230 */
+
+
+[METEOR]
+	{
+	ID=225;
+	name=Meteor;
+	rendertype=1;
+	meteor=1;
+
+	model=asteroid6;
+
+	weaponvelocity=300;
+	areaofeffect=100;
+	edgeeffectiveness=0.5;
+
+	soundhit=xplomed2;
+	soundwater=splshbig;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=100;
+		}
+	}
+
+[HAILSTORM]
+	{
+	ID=226;
+	name=Hail storm;
+	rendertype=1;
+	meteor=1;
+
+	model=hail1;
+
+	weaponvelocity=150;
+	areaofeffect=32;
+	edgeeffectiveness=0.5;
+
+	soundhit=xplomed2;
+	soundwater=splshbig;
+
+	explosiongaf=fx;
+	explosionart=parablast;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=50;
+		}
+	}

@@ -1,0 +1,35 @@
+[Corrattle_dead]
+{
+world=All Worlds;
+description=Rattlesnake Wreckage;
+category=core_corpses;
+object=Corrattle_dead;
+featuredead=Corrattle_heap;
+footprintx=4;
+footprintz=4;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=7425;
+damage=12832;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corrattle_heap]
+{
+world=All Worlds;
+description=Rattlesnake Wreckage;
+category=heaps;
+object=4x4C;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3712;
+damage=14816;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,10 @@
+MISSION 8.0003ARMTH
+Capture the Galactic Gate.
+
+&Y*SPECIAL PRIORITY& &Y1A PRIME*&
+A squad of Skeeter scout boats has found a heavily guarded island to the north. Energy emission levels indicate that it may be the site of a Core Galactic Gate. Find that Gate and capture it. By doing so you will secure Thalassean for Arm! ...and open the door to another Core world. 
+
+INFO FEED
+Immediate construction of a secure base is critical. Core will not relinquish the Gate without a fight! &GBe careful not to destroy the Gate with offshore bombardments!&
+
+END

@@ -1,0 +1,7 @@
+MISSION 10.2CORE
+Errichten Sie eine Basis und eine Schiffswerft. Produzieren Sie ein Transportschiff und transportieren Sie damit den Commander durch die schmale Passage, die auch als Fehdehandschuh bekannt ist.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Der Fehdehandschuh ist stark befestigt (&R83%,Irrtum:3%&). Es wird daher nötig sein, sich mit U-Booten und anderen Marineeinheiten einen Weg freizuschaufeln, um den Transport erfolgreich hinter der Meerenge abzusetzen (&R64%,Irrtum:8%&).
+
+WALTEN SIE IHRES AMTES.

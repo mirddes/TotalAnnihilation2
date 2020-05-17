@@ -1,0 +1,35 @@
+[coruMOHO_dead]
+{
+world=All Worlds;
+description=Underwater Moho Wreckage;
+category=core_corpses;
+object=coruMOHO_dead;
+featuredead=coruMOHO_heap;
+footprintx=5;
+footprintz=5;
+height=10;
+blocking=0;
+hitdensity=100;
+metal=1210;
+damage=2658;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coruMOHO_heap]
+{
+world=All Worlds;
+description=Underwater Moho Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=5;
+blocking=0;
+hitdensity=100;
+metal=605;
+damage=2658;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

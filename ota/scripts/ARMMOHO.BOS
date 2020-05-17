@@ -1,0 +1,86 @@
+// Arm Moho Metal Extractor Script
+
+piece base;
+
+static-var spinspeed;
+#define SMOKEPIECE1 base
+
+#include "StateChg.h"
+#include "smokeunit.h"
+#include "exptype.h"
+
+Go()
+	{
+	spin extractor around y-axis speed spinspeed accelerate <0.5>;
+	}
+
+Stop()
+	{
+	stop-spin extractor around y-axis decelerate <1.0>;
+	wait-for-turn extractor around y-axis;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"
+
+Create()
+	{
+	dont-shade extractor;
+	dont-cache extractor;
+	spinspeed=0;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+SetSpeed(the_speed)
+	{
+	spinspeed = the_speed * <0.25>;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+		explode extractor type	BITMAPONLY | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+		explode extractor type	SHATTER | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+		explode extractor type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode base type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode extractor type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	return( 0 );
+	}

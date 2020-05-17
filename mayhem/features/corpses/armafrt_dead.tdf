@@ -1,0 +1,34 @@
+[armafrt_dead]
+{
+world=All Worlds;
+description=Pantheon Wreckage;
+category=arm_corpses;
+object=armafrt_dead;
+featuredead=armafrt_heap;
+footprintx=3;
+footprintz=3;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=349;
+damage=1052;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[armafrt_heap]
+{
+world=All Worlds;
+description=Pantheon Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=175;
+damage=1058;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

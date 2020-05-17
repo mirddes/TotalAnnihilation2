@@ -1,0 +1,95 @@
+[MetalVent01]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent01;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MetalVent02]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent02;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MetalVent03]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent03;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MetalVent04]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent04;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MetalVent05]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent05;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}
+
+[MetalVent06]
+	{
+	world=Metal;
+	description=Thermal Vent;
+	category=steamvents;
+	animating=1;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=vents;
+	seqname=vent06;
+	geothermal=1;
+	hitdensity=0;
+	indestructible=1;
+	}

@@ -1,0 +1,7 @@
+MISSION 13.1CORE
+Die Wachposten am Tor ausschalten. Erobern Sie das Atlas-Transportflugzeug und fliegen Sie damit zum Festland. Zerstören Sie den kleinen Wachposten dort und erobern Sie den Verbesserten Radarturm.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Erobern Sie das, was Ihnen nützlich erscheint (&R54%,Irrtum:2%&). Für den Rest haben Sie ja noch den Disintegrator (&R98%,Irrtum:6%&). Die Errichtung einer Einheit ist unnötig (&R68%,Irrtum:3%&). Die Flora versorgt Sie mit der nötigen Energie (&R88%,Irrtum:1%&). Die Gewässer sind unsicher (&R99%,Irrtum:3%&) Nehmen Sie die Atlas.
+
+WALTEN SIE IHRES AMTES.

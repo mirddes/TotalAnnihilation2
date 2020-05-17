@@ -1,0 +1,369 @@
+[Car12]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car12;
+	seqnameshad=carshad12;
+	seqnamereclamate=carec12;
+	metal=30;
+
+	seqnamedie=carboom02;
+	featuredead=carscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car13]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=15;
+	filename=cars2;
+	seqname=car13;
+	seqnameshad=carshad13;
+	seqnamereclamate=carec13;
+	metal=30;
+
+	seqnamedie=carboom02;
+	featuredead=carscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car14]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=15;
+	filename=cars2;
+	seqname=car14;
+	seqnameshad=carshad14;
+	seqnamereclamate=carec14;
+	metal=20;
+
+	seqnamedie=carboom02;
+	featuredead=carscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car15]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=15;
+	filename=cars2;
+	seqname=car15;
+	seqnameshad=carshad15;
+	seqnamereclamate=carec15;
+	metal=30;
+
+	seqnamedie=carboom02;
+	featuredead=carscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car16]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car16;
+	seqnameshad=carshad16;
+	seqnamereclamate=carec16;
+	metal=25;
+
+	seqnamedie=carboom01;
+	featuredead=carscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car17]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car17;
+	seqnameshad=carshad17;
+	seqnamereclamate=carec17;
+	metal=20;
+
+	seqnamedie=carboom01;
+	featuredead=carscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car18]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car18;
+	seqnameshad=carshad18;
+	seqnamereclamate=carec18;
+	metal=35;
+
+	seqnamedie=carboom01;
+	featuredead=carscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car19]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car19;
+	seqnameshad=carshad19;
+	seqnamereclamate=carec19;
+	metal=25;
+
+	seqnamedie=carboom01;
+	featuredead=carscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car20]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car20;
+	seqnameshad=carshad20;
+	seqnamereclamate=carec20;
+	metal=24;
+
+	seqnamedie=carboom01;
+	featuredead=carscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[Car21]
+	{
+	world=urban;
+	description=Car;
+	category=cars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=15;
+	filename=cars2;
+	seqname=car21;
+	seqnameshad=carshad21;
+	seqnamereclamate=carec21;
+	metal=30;
+
+	seqnamedie=carboom01;
+	featuredead=carscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=carscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+
+[CarScar03]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=2;
+	height=0;
+	filename=cars2;
+	seqname=carscar03;
+
+	featuredead=carscar03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[CarScar04]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=1;
+	height=0;
+	filename=cars2;
+	seqname=carscar04;
+
+	featuredead=carscar04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[CarScar05]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=1;
+	footprintz=1;
+	height=0;
+	filename=cars2;
+	seqname=carscar05;
+
+	featuredead=carscar05;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}

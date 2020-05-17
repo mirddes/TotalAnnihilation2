@@ -1,0 +1,10 @@
+MISSIONE 20.001ARMD
+Distruggere i custodi e le unità Core ancora funzionanti, e assumere il controllo di Dump. 
+
+&YPRIORITÀ&
+Dump è l’unica luna di Core Prime: distruggete tutte le unità che troverete su di essa. Da qui partirà la nostra invasione di Core Prime.
+
+INFORMAZIONI UTILI
+Su Dump non ci sono né atmosfera né acqua; per questo motivo le nostre unità aeree non saranno in grado di alzarsi in volo, e quelle anfibie saranno completamente inutili. Questo satellite è usato dal nemico principalmente come deposito di residuati bellici, testimonianza di millenni di guerre passate; &GRecuperate Il metallo& che sarete in grado di trovare per costruire unità Arm da utilizzare per l’attacco.
+ 
+FINE

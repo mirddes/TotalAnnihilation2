@@ -1,0 +1,35 @@
+[armXFUS_dead]
+{
+world=All Worlds;
+description=Metal Making Fusion Wreckage;
+category=heaps;
+object=ARMXFUS_dead;
+featuredead=ARMXFUS_heap;
+footprintx=10;
+footprintz=7;
+height=50;
+blocking=1;
+hitdensity=100;
+metal=32780;
+damage=21680;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armXFUS_heap]
+{
+world=All Worlds;
+description=Metal Making Fusion Rubble;
+category=heaps;
+object=10x6A;
+footprintx=6;
+footprintz=6;
+height=8;
+blocking=0;
+hitdensity=100;
+metal=16390;
+damage=27480;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

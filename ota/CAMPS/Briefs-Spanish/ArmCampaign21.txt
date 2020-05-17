@@ -1,0 +1,10 @@
+MISIÓN 21.001CLANCP
+Destruir todas las unidades del Núcleo en la zona. Afianzar una base segura en Núcleo Uno.
+
+&YPRIORIDAD CRÍTICA&
+Establece una base lo antes posible para defenderte de los contrataques. Luego barre la zona en busca de las unidades del Núcleo que puedan quedar. ¡Éste será el principio del fin para el Núcleo!
+
+INFORMACIÓN
+Núcleo Uno es un mundo rico en metal. &GUn extractor de metal lo sacará de donde quiera que esté.& Conseguir metal no será un problema. ¡La oposición del Núcleo, sí! Muévete deprisa para eliminar todas las unidades, almacenes y laboratorios del Núcleo.
+ 
+FIN

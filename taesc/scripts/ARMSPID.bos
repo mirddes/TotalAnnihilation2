@@ -1,0 +1,291 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1c, flare2c, base,  leg1, leg2,
+       leg3, leg4, leg5, leg6, turretc, barrel1c, barrel2c;
+
+static-var  bMoving, gun_1, gun_2, gun_3;
+
+// Signal definitions
+#define SIG_AIM				2
+#define SIG_AIM_2			4
+#define SIG_AIM_3			8
+#define SIG_R				16
+
+walk2()
+{
+	while( bMoving )
+	{
+		if( bMoving )
+		{
+			turn leg1 to y-axis <43.791209> now;
+			turn leg1 to y-axis <0.000000> speed <218.967033>;
+			turn leg1 to z-axis <0.604396> now;
+			turn leg1 to z-axis <0.000000> speed <3.038462>;
+			turn leg2 to z-axis <0.000000> now;
+			turn leg2 to z-axis <31.016484> speed <155.104396>;
+			turn leg3 to y-axis <34.670330> now;
+			turn leg3 to y-axis <34.060440> speed <3.038462>;
+			turn leg3 to z-axis <31.626374> now;
+			turn leg3 to z-axis <0.604396> speed <155.104396>;
+			turn leg4 to y-axis <-40.142857> now;
+			turn leg4 to y-axis <-40.142857> speed <0.000000>;
+			turn leg4 to z-axis <-31.016484> now;
+			turn leg4 to z-axis <-0.604396> speed <152.060440>;
+			turn leg5 to y-axis <-37.098901> now;
+			turn leg5 to y-axis <0.000000> speed <185.516484>;
+			turn leg5 to z-axis <0.000000> now;
+			turn leg5 to z-axis <0.000000> speed <0.000000>;
+			turn leg6 to y-axis <0.000000> now;
+			turn leg6 to y-axis <-30.412088> speed <152.060440>;
+			turn leg6 to z-axis <-45.010989> now;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			turn leg1 to z-axis <31.626374> speed <158.142857>;
+			turn leg2 to y-axis <34.670330> speed <173.351648>;
+			turn leg2 to z-axis <31.016484> speed <0.000000>;
+			turn leg3 to y-axis <0.000000> speed <170.307692>;
+			turn leg3 to z-axis <0.000000> speed <3.038462>;
+			turn leg4 to y-axis <0.000000> speed <200.719780>;
+			turn leg5 to z-axis <-31.016484> speed <155.104396>;
+			turn leg6 to z-axis <2.428571> speed <237.219780>;
+			sleep 200;
+		}
+		if( bMoving )
+		{
+			turn leg1 to y-axis <55.956044> speed <279.796703>;
+			turn leg1 to z-axis <31.016484> speed <3.038462>;
+			turn leg2 to y-axis <34.670330> speed <0.000000>;
+			turn leg2 to z-axis <0.604396> speed <152.060440>;
+			turn leg3 to z-axis <31.626374> speed <158.142857>;
+			turn leg4 to y-axis <-0.604396> speed <3.038462>;
+			turn leg4 to z-axis <-31.016484> speed <152.060440>;
+			turn leg5 to y-axis <-31.626374> speed <158.142857>;
+			turn leg5 to z-axis <-31.016484> speed <0.000000>;
+			turn leg6 to y-axis <3.038462> speed <167.269231>;
+			sleep 200;
+		}
+		turn leg1 to y-axis <43.791209> speed <60.824176>;
+		turn leg1 to z-axis <0.604396> speed <152.060440>;
+		turn leg2 to y-axis <0.000000> speed <173.351648>;
+		turn leg2 to z-axis <0.000000> speed <3.038462>;
+		turn leg3 to y-axis <34.670330> speed <173.351648>;
+		turn leg3 to z-axis <31.626374> speed <0.000000>;
+		turn leg4 to y-axis <-40.142857> speed <197.681319>;
+		turn leg4 to z-axis <-31.016484> speed <0.000000>;
+		turn leg5 to y-axis <-37.098901> speed <27.368132>;
+		turn leg5 to z-axis <0.000000> speed <155.104396>;
+		turn leg6 to y-axis <0.000000> speed <15.203297>;
+		turn leg6 to z-axis <-45.010989> speed <237.219780>;
+		sleep 200;
+	}
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+MotionControl(Func_Var_1)
+{
+	while( TRUE )
+	{
+		Func_Var_1 = bMoving;
+		if( Func_Var_1 )
+		{
+			call-script walk2();
+		}
+		if( !Func_Var_1 )
+		{
+			sleep 100;
+		}
+	}
+}
+
+Create()
+{
+	hide flare1c;
+	hide flare2c;
+	bMoving = FALSE;
+	gun_1 = 0;
+	gun_2 = 2;
+	gun_3 = 4;
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	bMoving = TRUE;
+}
+
+StopMoving()
+{
+	bMoving = FALSE;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+
+//=====================================================================================
+
+RestoreAfterDelay()
+{
+	signal SIG_R;
+	set-signal-mask SIG_R;
+	sleep 6000;
+	turn turretc to y-axis 0 speed <90.021978>;
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turretc to y-axis heading speed <900.021978>;
+	wait-for-turn turretc around y-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	if( gun_1 == 0 )
+	{
+		move barrel1c to z-axis [-1.250000] speed [500.000000];
+		wait-for-move barrel1c along z-axis;
+		move barrel1c to z-axis [0.000000] speed [3.000000];
+	}
+	if( gun_1 == 1 )
+	{
+		move barrel2c to z-axis [-1.250000] speed [500.000000];
+		wait-for-move barrel2c along z-axis;
+		move barrel2c to z-axis [0.000000] speed [3.000000];
+	}
+	++gun_1;
+	if( gun_1 == 2 )
+	{
+		gun_1 = 0;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turretc;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare1c;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare2c;
+	}
+}
+
+//======================================================================
+
+
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide flare1c;
+	hide flare2c;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode barrel1c type BITMAPONLY | BITMAP1;
+		explode barrel2c type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1c type BITMAPONLY | BITMAP1;
+		explode flare2c type BITMAPONLY | BITMAP5;
+		explode leg1 type BITMAPONLY | BITMAP1;
+		explode leg2 type BITMAPONLY | BITMAP1;
+		explode leg3 type BITMAPONLY | BITMAP1;
+		explode leg4 type BITMAPONLY | BITMAP1;
+		explode leg5 type BITMAPONLY | BITMAP5;
+		explode leg6 type BITMAPONLY | BITMAP1;
+		explode turretc type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel1c type FALL | BITMAP1;
+		explode barrel2c type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1c type FALL | BITMAP1;
+		explode flare2c type FALL | BITMAP5;
+		explode leg1 type FALL | BITMAP1;
+		explode leg2 type FALL | BITMAP1;
+		explode leg3 type FALL | BITMAP1;
+		explode leg4 type FALL | BITMAP1;
+		explode leg5 type FALL | BITMAP5;
+		explode leg6 type FALL | BITMAP1;
+		explode turretc type SHATTER | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode barrel1c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode flare1c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode flare2c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode leg5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode leg6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turretc type SHATTER | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel1c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode flare1c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode flare2c type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg5 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode leg6 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turretc type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	return (0);
+}

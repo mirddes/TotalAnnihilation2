@@ -1,0 +1,36 @@
+[cormdoom_dead]
+{
+world=All Worlds;
+description=War Machine Wreckage;
+category=core_corpses;
+object=cormdoom_dead;
+featuredead=cormdoom_heap;
+footprintx=3;
+footprintz=3;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=5400;
+damage=8678;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormdoom_heap]
+{
+world=All Worlds;
+description=War Machine Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2700;
+damage=9020;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

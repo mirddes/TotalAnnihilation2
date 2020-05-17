@@ -1,0 +1,10 @@
+MISSION 9.0001ARMT
+Capture the Hydration Plant.
+
+&YPRIORITY&
+We have withheld our air unit capabilities in our struggle against Core, until now... Core will be expecting us to attack by using our ground forces. The time has come to surprise them. &GBuild an Aircraft Plant& and use the Air Units to take out their minimal Air Defense emplacements. &GBuild an Atlas Air Transport Unit& to carry you over their ground forces and capture the Hydration Plant. 
+
+INFO FEED
+The Hydration Plant is located within fortified and patrolled territory. Your best chance of success is to fly over the Core defenses. Expect heavy Core ground forces, minimal air defense. As always, expect guards at the Gate.
+
+END

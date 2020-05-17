@@ -1,0 +1,1294 @@
+
+
+/*========================================
+   Transport featuring auto-unload script:
+   - Automatic deployment of all loaded units when instructed to unload one.
+   - Deployment of units into two different formations, square in front of transport when the unload cursor is in front, circles around transport when the unload cursor is in the back or in the center.
+   - Detection of failed unload attempts due to invalid unload locations and increasing formation size when it occurs.
+   - Easily customiseable via lots of #define
+   - If a loaded unit has been stolen (by a regular air transport for instance), then it detects that and skips it.
+   - If asked to unload units while it belives it has 0 loaded units, then revert to manual one at a time unload. Useful to retrieve loaded units that haven't been registered, due to an abrupt killing of the script at the wrong moment, a savegame - modify unit - loadgame sequence, and things like that.
+   - Return before trying to unload out of the [100] or maybe [250] limit to prevent crashes => NO MORE CRASHES IN WATER!!
+   - Choice between animation of the units moving in and out or instantaneous load/unload. With or without explosions.
+   - Unit may be upright=1 to prevent units from being dropped sideway, scripted slope leaning to compensate.
+   - Slope leaning inhibited when the transport is transported or when over water.
+   - Take the ground height difference into account in loading and unloading trajectory.
+   - Script independent of unitlimit. But in return the loading is still manual.
+   - Attempt to determine unitlimit, so as to limit loading to units that belong to the same player.
+   - Abort auto unload if asked to move during the autounload sequence.
+   - Fully compatible with both TotalA and Spring. Well, save the only-load-player-units that isn't Spring compatible.
+
+   - Spring compatibility now LOST!
+   - Added use of H2WEIGHT.h, which make it possible to have some units take more cargo room than others.
+
+   Original script by Influenza with help from SOI Sentinel and Brave Sir Robin
+   Entirely rewritten and improved by zwzsg
+   zwzsg, quit trying to make unreable APIs. Dummies who need APIs won't be able to understand any of this shit
+
+========================================*/
+
+
+
+#define GROUP_UNLOAD 1
+//#define GROUP_UNLOAD 0//--> no group unload, manual one-unit-per-click unload. For instance, in Spring there's already the zone unload, so you could set it to 0. But formations are neat even in Spring though.
+//#define GROUP_UNLOAD 1//--> auto group unload in formation
+//#define GROUP_UNLOAD 2//--> both manual unload (when the unit is "off") and auto group unload (when the unit is "on"). Because Wotan wanted it so.
+
+
+#define LIMITED_CARGO_HOLD TRUE // Use the TCLASS list
+
+#define LEAN_ON_SLOPE FALSE// To avoid kbots being dropped sideway, it's best to make the transport upright=1; and to enable that scripted slope leaning, but it remove the wobbling of hovercraft.
+
+#define LOAD_ONLY_PLAYER_UNITS TRUE
+// You can use that to prevent stealing of enemy units.
+// When enabled, this script determine the unitlimit, by itself.
+//
+// This add the team thing. It checks the ID 1951, 1901, 1851... 51 to see if they are commanders, and if so, it suppose it's the commander of the second player and use that to calculate unitlimit. So:
+// - if the unitlimit is not a multiple of 50
+// - if the unitlimit is 2000 or higher
+// - if the second player died
+// - if the first player built commander decoy and your are unlucky (probability 1/50 per decoy)
+// Then it gets confused and use a wrong unitlimit or can't find the unitlimit. However, save if decoys tricks it, it will uses then a higher unitlimit, so it can still load all player units, just also some or all enemy units. To solve the issue with decoys, well, if it's for a big mod like Absolute Annihilation, just modify the arm and core decoys 3do so are a bit taller.
+// Normally, it shouldn't crash even if the unitlimit is as low as 200 like for unpatched TA 1.0. That's why I start at 1951 btw.
+// Oh, and each transport hover determine the unitlimit at the time of his birth. So, let's say you build a hover, then player 2 comm dies, then you build another, the first one won't load enemy units but the second may. Well, it won't if you are player 1 and you try to load player 3 units, but will if you are player 3 and load player 4 units.
+// Oh, and I haven't fully tested that team thing, so if it behave incorrecly, post a bug report more precise than you can.
+// Oh, and I said team, but I meant units-belonging-to-same-player. As I said before, script can't really determine alliances in TA.
+
+
+
+
+#include "sfxtype.h"
+#include "exptype.h"
+#define TA
+
+piece	load_shoulder, load_arm, unload_shoulder, unload_arm, goal_shoulder, goal_arm,
+		a1, a2, unload, ar, adjust, s1, s2,
+		door1, door2, turret, arm1, arm2, arm3, arm4, arm5, magnet, link, base, wake1, wake2;
+
+static-var  is_moving, units_inside,
+			terrain_code, x_slope, z_slope,
+			#if LOAD_ONLY_PLAYER_UNITS
+			self_id, units_per_player,
+			unitteam,
+			#endif
+			#if GROUP_UNLOAD
+			u1-2, u3-4, u5-6, u7-8, u9-10, u11-12, u13-14, u15-16, u17-18, u19-20, u21-22, u23-24, u25-26, u27-28, u29-30, u31-32, u33-34, u35-36, u37-38, u39-40, u41-42, u43-44, u45-46, u47-48, u49-50,
+			#endif
+			#if LIMITED_CARGO_HOLD
+			cargo_hold,
+			#endif
+			unused;
+			// I ain't totally sure of the maximum number of variables before they start overlapping. Hope this isn't over.
+
+static-var  Static_Var_1, Static_Var_2, Static_Var_3, Static_Var_4, Static_Var_5;
+// Signal definitions:
+#define SIG_MOVE 32
+
+
+
+// The transport script values:
+
+#define MAX_UNITS_INSIDE 50// Must not be higher than 50 for Group Unload
+
+#define MAX_CARGO_HOLD 14400
+
+#define INSTA_LOAD TRUE
+#define INSTA_UNLOAD FALSE
+#define EXPLODE_WHEN_LOADING TRUE
+#define EXPLODE_WHEN_UNLOADING TRUE
+#define FLAME_WHEN_LOADING FALSE
+#define FLAME_WHEN_UNLOADING FALSE
+
+#define QUIT_AUTO_UNLOAD_WHEN_MOVING TRUE
+// Stop the autounload, but still finish trying to unload the current unit, when the transport starts moving. Also force the transport to wait till it's fully stopped before starting autounloading.
+// I'm not 100% sure that part works flawlessly, so I would advise to let it FALSE unless you really want it:
+// For instance if the transport turns without "moving", it might keeps on unloading, or if the auto-unloading abortion occurs while it's trying to unload on unfit place the unit being currently unloaded might not be correctly re-registered as in and so won't be unloaded during next auto-unloaded and you'll have to click unload once more to retrieve it.
+
+#define DISAPPEAR_RADIUS [10]// Must not be null. Radius under which the unit is so close it's in, radius under which the unit stops being shown over the transport
+#define TOLERANCE [1]// Tolerance when checking if a unit is at the same position than a piece because when the transport is moving, any attached unit update its position with a small delay, resulting in the attached unit being a couple pixel away from the piece it is attached to.
+
+#define LOAD_MAXIMUM_RADIUS [95]// Over around [100], risk of crashing TotalA.exe, but actually it seems that for attached units the limit is higher.
+#define LOAD_SPEED [80]
+#define LOAD_DISTANCE [80]
+
+#define MANUAL_UNLOAD_MAXIMUM_RADIUS [95]// Over around [100], risk of crashing TotalA.exe, but actually it seems that for attached units the limit is higher.
+#define MANUAL_UNLOAD_SPEED [120]
+#define MANUAL_UNLOAD_MINIMUM_RADIUS [20]// If the unload radius is too small, it will be upped to this
+
+#define AUTO_UNLOAD_MAX_DISTANCE_BEFORE_STARTING [85]// Set to [85] which is the same value as XTA Spring ArmTHovr because Spring is harcoded to stop at that distance to target before unloading
+#define AUTO_UNLOAD_MAXIMUM_RADIUS [160]// Over around [100], risk of crashing TotalA.exe, but actually it seems that for attached units the limit is higher.
+#define AUTO_UNLOAD_DISTANCE_FIRST_ROW [40]
+#define AUTO_UNLOAD_SIDE_SPACING [20]
+#define AUTO_UNLOAD_FRONT_SPACING [20]
+#define AUTO_UNLOAD_UNITS_PER_ROW 5 // Only used in shape==2, which anyway is rendered obsolete now by the better shape==1
+#define AUTO_UNLOAD_SPEED [300]
+#define AUTO_UNLOAD_SQUARE_CORRECTION_ANGULAR_SPEED <60>
+#define AUTO_UNLOAD_CIRCLE_CORRECTION_ANGULAR_SPEED <240>
+#define AUTO_UNLOAD_FIRST_RADIUS [30]
+#define AUTO_UNLOAD_RADIUS_INCREMENT [20]
+#define AUTO_UNLOAD_ARC_LENGTH [18]
+#define AUTO_UNLOAD_RADIAL_PROPORTION 2/3 // Fractionnal Exceptionnaly Allowed, from 0 (full frontward), to 1 (full radial)
+#define PIECE_TO_EXPLODE_WHEN_IT_GOES_WRONG base
+
+// At first, it took, for 20 units:
+// Complete loading sequence: 10.2s
+// Comple square auto-unloading sequence 20.8s
+// Comple circles auto-unloading sequence 13.0s
+
+
+
+
+// The transport script macros:
+
+#define OPENING_DOOR_ANIMATION \
+	turn door2 to z-axis <150> now; \
+	turn door1 to z-axis 0- <150> now;
+
+#define CLOSING_DOOR_ANIMATION \
+	turn door2 to z-axis <0> speed <60>; \
+	turn door1 to z-axis <00> speed <60>;
+
+#if LIMITED_CARGO_HOLD
+#include "H2WEIGHT.h"
+#endif
+
+#if GROUP_UNLOAD
+
+#if MAX_UNITS_INSIDE>50
+#WeSaidNoMoreThanFifty// Purposefully cause Scriptor to error
+#endif
+
+#define INIT_LOADED_ID(value_at_which_init) \
+	u49-50=value_at_which_init; \
+	u47-48=value_at_which_init; \
+	u45-46=value_at_which_init; \
+	u43-44=value_at_which_init; \
+	u41-42=value_at_which_init; \
+	u39-40=value_at_which_init; \
+	u37-38=value_at_which_init; \
+	u35-36=value_at_which_init; \
+	u33-34=value_at_which_init; \
+	u31-32=value_at_which_init; \
+	u29-30=value_at_which_init; \
+	u27-28=value_at_which_init; \
+	u25-26=value_at_which_init; \
+	u23-24=value_at_which_init; \
+	u21-22=value_at_which_init; \
+	u19-20=value_at_which_init; \
+	u17-18=value_at_which_init; \
+	u15-16=value_at_which_init; \
+	u13-14=value_at_which_init; \
+	u11-12=value_at_which_init; \
+	u9-10=value_at_which_init; \
+	u7-8=value_at_which_init; \
+	u5-6=value_at_which_init; \
+	u3-4=value_at_which_init; \
+	u1-2=value_at_which_init;
+
+
+#define STORE_LOADED_ID(unit_to_store) \
+if(units_inside==50) \
+	{u49-50=(u49-50 - (u49-50/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==49) \
+	{u49-50=(u49-50/65536)*65536 + unit_to_store;} \
+if(units_inside==48) \
+	{u47-48=(u47-48 - (u47-48/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==47) \
+	{u47-48=(u47-48/65536)*65536 + unit_to_store;} \
+if(units_inside==46) \
+	{u45-46=(u45-46 - (u45-46/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==45) \
+	{u45-46=(u45-46/65536)*65536 + unit_to_store;} \
+if(units_inside==44) \
+	{u43-44=(u43-44 - (u43-44/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==43) \
+	{u43-44=(u43-44/65536)*65536 + unit_to_store;} \
+if(units_inside==42) \
+	{u41-42=(u41-42 - (u41-42/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==41) \
+	{u41-42=(u41-42/65536)*65536 + unit_to_store;} \
+if(units_inside==40) \
+	{u39-40=(u39-40 - (u39-40/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==39) \
+	{u39-40=(u39-40/65536)*65536 + unit_to_store;} \
+if(units_inside==38) \
+	{u37-38=(u37-38 - (u37-38/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==37) \
+	{u37-38=(u37-38/65536)*65536 + unit_to_store;} \
+if(units_inside==36) \
+	{u35-36=(u35-36 - (u35-36/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==35) \
+	{u35-36=(u35-36/65536)*65536 + unit_to_store;} \
+if(units_inside==34) \
+	{u33-34=(u33-34 - (u33-34/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==33) \
+	{u33-34=(u33-34/65536)*65536 + unit_to_store;} \
+if(units_inside==32) \
+	{u31-32=(u31-32 - (u31-32/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==31) \
+	{u31-32=(u31-32/65536)*65536 + unit_to_store;} \
+if(units_inside==30) \
+	{u29-30=(u29-30 - (u29-30/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==29) \
+	{u29-30=(u29-30/65536)*65536 + unit_to_store;} \
+if(units_inside==28) \
+	{u27-28=(u27-28 - (u27-28/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==27) \
+	{u27-28=(u27-28/65536)*65536 + unit_to_store;} \
+if(units_inside==26) \
+	{u25-26=(u25-26 - (u25-26/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==25) \
+	{u25-26=(u25-26/65536)*65536 + unit_to_store;} \
+if(units_inside==24) \
+	{u23-24=(u23-24 - (u23-24/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==23) \
+	{u23-24=(u23-24/65536)*65536 + unit_to_store;} \
+if(units_inside==22) \
+	{u21-22=(u21-22 - (u21-22/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==21) \
+	{u21-22=(u21-22/65536)*65536 + unit_to_store;} \
+if(units_inside==20) \
+	{u19-20=(u19-20 - (u19-20/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==19) \
+	{u19-20=(u19-20/65536)*65536 + unit_to_store;} \
+if(units_inside==18) \
+	{u17-18=(u17-18 - (u17-18/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==17) \
+	{u17-18=(u17-18/65536)*65536 + unit_to_store;} \
+if(units_inside==16) \
+	{u15-16=(u15-16 - (u15-16/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==15) \
+	{u15-16=(u15-16/65536)*65536 + unit_to_store;} \
+if(units_inside==14) \
+	{u13-14=(u13-14 - (u13-14/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==13) \
+	{u13-14=(u13-14/65536)*65536 + unit_to_store;} \
+if(units_inside==12) \
+	{u11-12=(u11-12 - (u11-12/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==11) \
+	{u11-12=(u11-12/65536)*65536 + unit_to_store;} \
+if(units_inside==10) \
+	{u9-10=(u9-10 - (u9-10/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==9) \
+	{u9-10=(u9-10/65536)*65536 + unit_to_store;} \
+if(units_inside==8) \
+	{u7-8=(u7-8 - (u7-8/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==7) \
+	{u7-8=(u7-8/65536)*65536 + unit_to_store;} \
+if(units_inside==6) \
+	{u5-6=(u5-6 - (u5-6/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==5) \
+	{u5-6=(u5-6/65536)*65536 + unit_to_store;} \
+if(units_inside==4) \
+	{u3-4=(u3-4 - (u3-4/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==3) \
+	{u3-4=(u3-4/65536)*65536 + unit_to_store;} \
+if(units_inside==2) \
+	{u1-2=(u1-2 - (u1-2/65536)*65536) + unit_to_store*65536;} \
+if(units_inside==1) \
+	{u1-2=(u1-2/65536)*65536 + unit_to_store;} \
+if(units_inside<=0 || units_inside>MAX_UNITS_INSIDE) \
+	{ \
+	explode PIECE_TO_EXPLODE_WHEN_IT_GOES_WRONG type SHATTER | BITMAP5; \
+	show PIECE_TO_EXPLODE_WHEN_IT_GOES_WRONG; \
+	}
+
+
+#define GET_ID_TO_UNLOAD(unit_to_retrieve) \
+if(units_inside==50) \
+	{unit_to_retrieve=(u49-50)/65536;} \
+if(units_inside==49) \
+	{unit_to_retrieve=(u49-50 - (u49-50/65536)*65536);} \
+if(units_inside==48) \
+	{unit_to_retrieve=(u47-48)/65536;} \
+if(units_inside==47) \
+	{unit_to_retrieve=(u47-48 - (u47-48/65536)*65536);} \
+if(units_inside==46) \
+	{unit_to_retrieve=(u45-46)/65536;} \
+if(units_inside==45) \
+	{unit_to_retrieve=(u45-46 - (u45-46/65536)*65536);} \
+if(units_inside==44) \
+	{unit_to_retrieve=(u43-44)/65536;} \
+if(units_inside==43) \
+	{unit_to_retrieve=(u43-44 - (u43-44/65536)*65536);} \
+if(units_inside==42) \
+	{unit_to_retrieve=(u41-42)/65536;} \
+if(units_inside==41) \
+	{unit_to_retrieve=(u41-42 - (u41-42/65536)*65536);} \
+if(units_inside==40) \
+	{unit_to_retrieve=(u39-40)/65536;} \
+if(units_inside==39) \
+	{unit_to_retrieve=(u39-40 - (u39-40/65536)*65536);} \
+if(units_inside==38) \
+	{unit_to_retrieve=(u37-38)/65536;} \
+if(units_inside==37) \
+	{unit_to_retrieve=(u37-38 - (u37-38/65536)*65536);} \
+if(units_inside==36) \
+	{unit_to_retrieve=(u35-36)/65536;} \
+if(units_inside==35) \
+	{unit_to_retrieve=(u35-36 - (u35-36/65536)*65536);} \
+if(units_inside==34) \
+	{unit_to_retrieve=(u33-34)/65536;} \
+if(units_inside==33) \
+	{unit_to_retrieve=(u33-34 - (u33-34/65536)*65536);} \
+if(units_inside==32) \
+	{unit_to_retrieve=(u31-32)/65536;} \
+if(units_inside==31) \
+	{unit_to_retrieve=(u31-32 - (u31-32/65536)*65536);} \
+if(units_inside==30) \
+	{unit_to_retrieve=(u29-30)/65536;} \
+if(units_inside==29) \
+	{unit_to_retrieve=(u29-30 - (u29-30/65536)*65536);} \
+if(units_inside==28) \
+	{unit_to_retrieve=(u27-28)/65536;} \
+if(units_inside==27) \
+	{unit_to_retrieve=(u27-28 - (u27-28/65536)*65536);} \
+if(units_inside==26) \
+	{unit_to_retrieve=(u25-26)/65536;} \
+if(units_inside==25) \
+	{unit_to_retrieve=(u25-26 - (u25-26/65536)*65536);} \
+if(units_inside==24) \
+	{unit_to_retrieve=(u23-24)/65536;} \
+if(units_inside==23) \
+	{unit_to_retrieve=(u23-24 - (u23-24/65536)*65536);} \
+if(units_inside==22) \
+	{unit_to_retrieve=(u21-22)/65536;} \
+if(units_inside==21) \
+	{unit_to_retrieve=(u21-22 - (u21-22/65536)*65536);} \
+if(units_inside==20) \
+	{unit_to_retrieve=(u19-20)/65536;} \
+if(units_inside==19) \
+	{unit_to_retrieve=(u19-20 - (u19-20/65536)*65536);} \
+if(units_inside==18) \
+	{unit_to_retrieve=(u17-18)/65536;} \
+if(units_inside==17) \
+	{unit_to_retrieve=(u17-18 - (u17-18/65536)*65536);} \
+if(units_inside==16) \
+	{unit_to_retrieve=(u15-16)/65536;} \
+if(units_inside==15) \
+	{unit_to_retrieve=(u15-16 - (u15-16/65536)*65536);} \
+if(units_inside==14) \
+	{unit_to_retrieve=(u13-14)/65536;} \
+if(units_inside==13) \
+	{unit_to_retrieve=(u13-14 - (u13-14/65536)*65536);} \
+if(units_inside==12) \
+	{unit_to_retrieve=(u11-12)/65536;} \
+if(units_inside==11) \
+	{unit_to_retrieve=(u11-12 - (u11-12/65536)*65536);} \
+if(units_inside==10) \
+	{unit_to_retrieve=(u9-10)/65536;} \
+if(units_inside==9) \
+	{unit_to_retrieve=(u9-10 - (u9-10/65536)*65536);} \
+if(units_inside==8) \
+	{unit_to_retrieve=(u7-8)/65536;} \
+if(units_inside==7) \
+	{unit_to_retrieve=(u7-8 - (u7-8/65536)*65536);} \
+if(units_inside==6) \
+	{unit_to_retrieve=(u5-6)/65536;} \
+if(units_inside==5) \
+	{unit_to_retrieve=(u5-6 - (u5-6/65536)*65536);} \
+if(units_inside==4) \
+	{unit_to_retrieve=(u3-4)/65536;} \
+if(units_inside==3) \
+	{unit_to_retrieve=(u3-4 - (u3-4/65536)*65536);} \
+if(units_inside==2) \
+	{unit_to_retrieve=(u1-2)/65536;} \
+if(units_inside==1) \
+	{unit_to_retrieve=(u1-2 - (u1-2/65536)*65536);} \
+if(units_inside<=0 || units_inside>MAX_UNITS_INSIDE) \
+	{ \
+	explode PIECE_TO_EXPLODE_WHEN_IT_GOES_WRONG type SHATTER | BITMAP5; \
+	show PIECE_TO_EXPLODE_WHEN_IT_GOES_WRONG; \
+	CLOSING_DOOR_ANIMATION \
+	set BUSY to 0; \
+	return; \
+	}
+
+#else // so, if NOT GROUP_UNLOAD
+
+#define INIT_LOADED_ID(value_at_which_init)
+#define STORE_LOADED_ID(unit_to_store)
+#define GET_ID_TO_UNLOAD(unit_to_retrieve)
+
+#endif // end if GROUP_UNLOAD 
+
+#ifndef MAX_ID
+#define MAX_ID 70
+#define MIN_ID 69
+#define UNIT_ALLIED 74
+#define MY_ID 71
+#define UNIT_TEAM 72
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+
+// Lowest valid unit ID number
+
+#define door3 door1
+#define door4 door2
+
+StartDoorOpen()
+{
+	signal 4;
+	set-signal-mask 4;
+	turn door1 to z-axis <-90.021978> speed <50.010989>;
+	turn door2 to z-axis <90.021978> speed <50.010989>;
+}
+StartDoorClose()
+{
+	signal 4;
+	set-signal-mask 4;
+	turn door1 to z-axis <0.000000> speed <20.000000>;
+	turn door2 to z-axis <0.000000> speed <20.000000>;
+}
+
+BoomCalc(posxz, posy)
+{
+	var Func_Var_3, Func_Var_4, Func_Var_5;
+	Func_Var_3 = get PIECE_XZ(turret) - posxz;
+	Func_Var_4 = posy - get PIECE_Y(turret) - [15.000000];
+	Func_Var_5 = get XZ_HYPOT(Func_Var_3);
+	Static_Var_2 = get HYPOT(Func_Var_5,Func_Var_4) - [15.000000];
+	Static_Var_3 = get XZ_ATAN(Func_Var_3);
+	Static_Var_4 = get ATAN(Func_Var_4,Func_Var_5);
+	Static_Var_5 = Static_Var_2 < [80.000000];
+}
+
+BoomExtend()
+{
+	start-script StartDoorOpen();
+	turn turret to y-axis Static_Var_3 speed <80.016484>;
+	turn magnet to x-axis Static_Var_4 speed <40.005495>;
+	turn arm1 to x-axis <0.000000> - Static_Var_4 speed <40.005495>;
+	move arm2 to z-axis Static_Var_2 / 4 speed [30.000000];
+	move arm3 to z-axis Static_Var_2 / 4 speed [30.000000];
+	move arm4 to z-axis Static_Var_2 / 4 speed [30.000000];
+	move arm5 to z-axis Static_Var_2 / 4 speed [30.000000];
+	wait-for-turn turret around y-axis;
+	wait-for-turn arm1 around x-axis;
+	wait-for-move arm2 along z-axis;
+	wait-for-move arm3 along z-axis;
+	wait-for-move arm4 along z-axis;
+	wait-for-move arm5 along z-axis;
+}
+
+BoomReset()
+{
+	turn turret to y-axis <0.000000> speed <40.005495>;
+	turn magnet to x-axis <0.000000> speed <30.005495>;
+	turn arm1 to x-axis <0.000000> speed <30.005495>;
+	move arm2 to z-axis [0.000000] speed [25.000000];
+	move arm3 to z-axis [0.000000] speed [25.000000];
+	move arm4 to z-axis [0.000000] speed [25.000000];
+	move arm5 to z-axis [0.000000] speed [25.000000];
+	start-script StartDoorClose();
+}
+
+BoomToPad()
+{
+	start-script StartDoorOpen();
+	turn turret to y-axis <0.000000> speed <50.010989>;
+	turn magnet to x-axis <0.000000> speed <30.005495>;
+	turn arm1 to x-axis <0.000000> speed <30.005495>;
+	move arm2 to z-axis [0.000000] speed [30.000000];
+	move arm3 to z-axis [0.000000] speed [30.000000];
+	move arm4 to z-axis [0.000000] speed [30.000000];
+	move arm5 to z-axis [0.000000] speed [30.000000];
+	wait-for-turn turret around y-axis;
+	wait-for-turn arm1 around x-axis;
+	wait-for-move arm2 along z-axis;
+	wait-for-move arm3 along z-axis;
+	wait-for-move arm4 along z-axis;
+	wait-for-move arm5 along z-axis;
+	turn magnet to x-axis <-30.005495> speed <30.005495>;
+	turn arm1 to x-axis <30.005495> speed <30.005495>;
+	wait-for-turn arm1 around x-axis;
+}
+
+TransportPickup(unitid)
+{
+	if(get ACTIVATION == 1)
+	{
+		return;
+	}
+	var h,w;
+	call-script BoomCalc(get UNIT_XZ(unitid),get UNIT_Y(unitid) + get UNIT_HEIGHT(unitid));
+	if( Static_Var_5 )
+	{
+		set BUSY to 1;
+		if(units_inside<0)
+			{
+			units_inside=0;
+			#if LIMITED_CARGO_HOLD
+			cargo_hold=0;
+			#endif
+			}
+		#if GROUP_UNLOAD
+		if(units_inside>=MAX_UNITS_INSIDE)//For some odd reason, when shift-enqueing "load" orders, it sometimes catch one more unit than the transportcapacity value defined in the unit FBI. You can remove that part and see, it's harmless: The part that store the ID won't be able to store it so will show some explosion, the part that unload will see it's an unstored ID and so will use manual unload for fist unit.
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		#if LOAD_ONLY_PLAYER_UNITS
+		if (get UNIT_TEAM(unitid) != unitteam)
+		//if ((unit_to_load - 1)/units_per_player!=(self_ID - 1)/units_per_player) 
+		//use line above if xon dll is not present
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		#if LIMITED_CARGO_HOLD
+		h=get UNIT_HEIGHT(unitid);
+		CALC_WEIGHT;
+		if(cargo_hold + w>MAX_CARGO_HOLD)
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		call-script BoomExtend();
+		move link to y-axis [0.000000] - get UNIT_HEIGHT(unitid) now;
+		attach-unit unitid to link;
+		call-script BoomToPad();
+		attach-unit unitid to 0 - 1;
+		call-script BoomReset();
+		++units_inside;
+		#if LIMITED_CARGO_HOLD
+		cargo_hold=cargo_hold + w;
+		#endif
+		STORE_LOADED_ID(unitid)
+		//CLOSING_DOOR_ANIMATION
+		set BUSY to 0;
+	}
+}
+
+TransportDrop(unitid, position)
+{
+	if(get ACTIVATION == 1)
+	{
+		return;
+	}
+	var h,w;
+	call-script BoomCalc(position,get GROUND_HEIGHT(position) + get UNIT_HEIGHT(unitid));
+	if( Static_Var_5 )
+	{
+		set BUSY to 1;
+
+		call-script BoomToPad();
+		move link to y-axis [0.000000] - get UNIT_HEIGHT(unitid) now;
+		attach-unit unitid to link;
+		call-script BoomExtend();
+		drop-unit unitid;
+		--units_inside;
+
+		#if LIMITED_CARGO_HOLD
+		h=get UNIT_HEIGHT(unitid);
+		CALC_WEIGHT;
+		cargo_hold=cargo_hold - w;
+		#endif		
+		if(get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get UNIT_XZ(unitid))<=TOLERANCE)//If it failed dropping
+			{
+			attach-unit unitid to 0 - 1;
+			++units_inside;
+			#if LIMITED_CARGO_HOLD
+			h=get UNIT_HEIGHT(unitid);
+			CALC_WEIGHT;
+			cargo_hold=cargo_hold + w;
+			#endif
+			}
+			
+		call-script BoomReset();
+		set BUSY to 0;
+	}
+}
+
+TransportPickup2(unit_to_load)
+	{
+	#if LIMITED_CARGO_HOLD
+	var h,w;
+	#endif
+	if(get XZ_HYPOT(get UNIT_XZ(unit_to_load) - get PIECE_XZ(load_shoulder))<=LOAD_MAXIMUM_RADIUS)
+		{
+		set BUSY to 1;
+		if(units_inside<0)
+			{
+			units_inside=0;
+			#if LIMITED_CARGO_HOLD
+			cargo_hold=0;
+			#endif
+			}
+		#if GROUP_UNLOAD
+		if(units_inside>=MAX_UNITS_INSIDE)//For some odd reason, when shift-enqueing "load" orders, it sometimes catch one more unit than the transportcapacity value defined in the unit FBI. You can remove that part and see, it's harmless: The part that store the ID won't be able to store it so will show some explosion, the part that unload will see it's an unstored ID and so will use manual unload for fist unit.
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		#if LOAD_ONLY_PLAYER_UNITS
+		if (get UNIT_TEAM(unit_to_load) != unitteam)
+		//if ((unit_to_load - 1)/units_per_player!=(self_ID - 1)/units_per_player) 
+		//use line above if xon dll is not present
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		#if LIMITED_CARGO_HOLD
+		h=get UNIT_HEIGHT(unit_to_load);
+		CALC_WEIGHT;
+		if(cargo_hold + w>MAX_CARGO_HOLD)
+			{
+			sleep 320;
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		#if ((!INSTA_LOAD) || (EXPLODE_WHEN_LOADING) || (FLAME_WHEN_LOADING))
+		turn load_shoulder to y-axis get XZ_ATAN(get PIECE_XZ(load_shoulder) - get UNIT_XZ(unit_to_load)) now;
+		move load_arm to z-axis get XZ_HYPOT(get UNIT_XZ(unit_to_load) - get PIECE_XZ(load_shoulder)) now;
+		move load_arm to y-axis get GROUND_HEIGHT(get UNIT_XZ(unit_to_load)) - get PIECE_Y(load_shoulder) now;
+		#endif
+		#if FLAME_WHEN_LOADING
+		emit-sfx SFXTYPE_VTOL from load_arm;
+		#endif
+		#if !INSTA_LOAD
+		turn load_arm to y-axis get XZ_ATAN(get UNIT_XZ(unit_to_load) - get PIECE_XZ(load_shoulder)) now;
+		attach-unit unit_to_load to load_arm;
+		move load_arm to z-axis DISAPPEAR_RADIUS speed LOAD_SPEED;
+		move load_arm to y-axis 0 speed (1 - 2*(get GROUND_HEIGHT(get UNIT_XZ(unit_to_load)) < get PIECE_Y(load_shoulder)))*(((((get GROUND_HEIGHT(get UNIT_XZ(unit_to_load)) - get PIECE_Y(load_shoulder))*48) / get XZ_HYPOT(get PIECE_XZ(load_shoulder) - get UNIT_XZ(unit_to_load))) * LOAD_SPEED)/48);// K, have fun deciphering this one!
+		wait-for-move load_arm along z-axis;
+		#endif
+		attach-unit unit_to_load to -1;
+		sleep 1;
+		if((get UNIT_XZ(unit_to_load)) == (get PIECE_XZ(base)))
+		{
+			OPENING_DOOR_ANIMATION
+			#if EXPLODE_WHEN_LOADING
+			explode load_arm type BITMAPONLY | BITMAP5;
+			#endif
+			++units_inside;
+			#if LIMITED_CARGO_HOLD
+			cargo_hold=cargo_hold + w;
+			#endif
+			STORE_LOADED_ID(unit_to_load)
+			CLOSING_DOOR_ANIMATION
+		}
+		set BUSY to 0;
+		}
+	}
+
+
+
+TransportDrop2(unit_to_manual_unload, position_to_manual_unload)
+	{
+	#if LIMITED_CARGO_HOLD
+	var h,w;
+	#endif
+	
+	
+	
+	// Auto Unload:
+	
+	var unit_to_auto_unload, val1, val2, val3, val4, val5, same, last_goal, shape;
+	#define z_to_unload val1
+	#define x_to_unload val2
+	#define pos_on_row val3
+	#define num_row val4
+	#define radius_to_unload val1
+	#define angle_to_unload val2
+	#define pos_on_circle val3
+	#define num_circle val4
+	#define max_pos val5
+	// those define were so rectangular and multi circular use the same variables but under different names, because there is a limit to the number of local variable there can be in a TA script
+	
+	if(get XZ_HYPOT(get PIECE_XZ(base) - position_to_manual_unload)>AUTO_UNLOAD_MAX_DISTANCE_BEFORE_STARTING)
+		{
+		sleep 120;
+		return;
+		}
+	
+	shape=1;//(get XZ_HYPOT(get PIECE_XZ(base) - position_to_manual_unload)>[8]) && ((((get XZ_ATAN(get PIECE_XZ(base) - position_to_manual_unload)>0 - 16384) && (get XZ_ATAN(get PIECE_XZ(base) - position_to_manual_unload)< 16384)) || (get XZ_ATAN(get PIECE_XZ(base) - position_to_manual_unload)> 49152)));
+//
+//	The variable shape determine the shape of the formation. It can only be 0,1, or 2.
+//	The currrent formula makes it uses shape 0 when clicking behind or in the center, and shape 1 when clicking in front. The current formula doesn't use shape 2, as I feel shape 1 is like shape 2 but much better.
+//
+//		Shape==0 		Shape==1 		Shape==2
+//		   ooo   		
+//		  oxxxo  		+++++++++		+++++
+//		 ox213xo 		+ooooooo+		ooooo
+//		ox4   5xo		+oxxxxxo+		xxxxx
+//		ox6   7xo		+ox546xo+		97680
+//	 	 ox809xo 		+ox213xo+		42135
+//		  oxxxo  
+//		   ooo   
+	
+	set BUSY to 1;
+	OPENING_DOOR_ANIMATION
+	#if QUIT_AUTO_UNLOAD_WHEN_MOVING
+	while(is_moving)
+		{
+		sleep 100;
+		}
+	#endif
+	
+	if(shape==0)
+		{
+		num_circle=0;
+		pos_on_circle=0;
+		same=FALSE;
+		}
+
+	if(shape==1)
+		{
+		num_row=0;
+		pos_on_row=0;
+		same=FALSE;
+		}
+	
+	if(shape==2)
+		{
+		num_row=0;
+		pos_on_row=0;
+		same=FALSE;
+		}
+	
+
+	while(units_inside>0)
+		{
+		if(shape==0)
+			{
+			radius_to_unload=(AUTO_UNLOAD_FIRST_RADIUS) + (num_circle * (AUTO_UNLOAD_RADIUS_INCREMENT));
+			max_pos=(((radius_to_unload/1000)*6283)/AUTO_UNLOAD_ARC_LENGTH);// This is tricky: we must not go over 2^31, yet we must always have numbers much greater than 1 (otherwise decimals are lost)
+			angle_to_unload=((pos_on_circle+1)/2)*65536/max_pos;
+			// max_number_of_pos_per_circle = radius*2pi/ arc_between_each_pos
+			// angle to unload = (half-position / max_number_of_pos_per_circle) * angle_of_full_turn
+			//     half position because each even numbered pos is the same as the odd one just with a minus sign
+			//     and multiplication before division to avoid losing the decimal since scripts can only handle integers
+			//     and +1 to pos so pos 0 and pos 1 aren't on same null angle but only 0 is
+			if(((pos_on_circle/2)*2)==pos_on_circle)
+				{
+				angle_to_unload=0 - angle_to_unload;
+				}
+			if(((num_circle/2)*2)!=num_circle)
+				{
+				angle_to_unload=angle_to_unload - 32768/max_pos;
+				}
+			turn goal_shoulder to y-axis angle_to_unload now;
+			move goal_arm to z-axis radius_to_unload now;
+			move goal_arm to x-axis 0 now;
+			}
+		if(shape==1)
+			{
+//		+++++++++
+//		+LJHGIKM+
+//		+ExxxxxF+
+//		+Cx546xD+
+//		+Ax213xB+
+			if(pos_on_row<2*num_row)
+				{
+				z_to_unload=((pos_on_row/2)*AUTO_UNLOAD_FRONT_SPACING)+AUTO_UNLOAD_DISTANCE_FIRST_ROW;
+				x_to_unload=((2*(((pos_on_row+1)/2)==((pos_on_row+2)/2))-1)*num_row)*AUTO_UNLOAD_SIDE_SPACING;
+				}
+			if(pos_on_row>=2*num_row)
+				{
+				z_to_unload=(num_row * (AUTO_UNLOAD_FRONT_SPACING))+AUTO_UNLOAD_DISTANCE_FIRST_ROW;
+				x_to_unload=(2*(((pos_on_row+1)/2)==((pos_on_row+2)/2))-1)*((pos_on_row +1 - 2*num_row)/2)*AUTO_UNLOAD_SIDE_SPACING;
+				}
+			turn goal_shoulder to y-axis 0 now;
+			move goal_arm to z-axis z_to_unload now;
+			move goal_arm to x-axis x_to_unload now;
+			}
+		if(shape==2)
+			{
+			z_to_unload=(AUTO_UNLOAD_DISTANCE_FIRST_ROW) + (num_row * (AUTO_UNLOAD_FRONT_SPACING));
+			x_to_unload=((1+pos_on_row)/2)*AUTO_UNLOAD_SIDE_SPACING;
+			if(((pos_on_row/2)*2)!=pos_on_row)
+				{
+				x_to_unload=0 - x_to_unload;
+				}
+			if((AUTO_UNLOAD_UNITS_PER_ROW/2)*2==AUTO_UNLOAD_UNITS_PER_ROW)
+				{
+				x_to_unload=x_to_unload + AUTO_UNLOAD_SIDE_SPACING/2;
+				}
+			turn goal_shoulder to y-axis 0 now;
+			move goal_arm to z-axis z_to_unload now;
+			move goal_arm to x-axis x_to_unload now;
+			}
+		
+		if(get XZ_HYPOT(get PIECE_XZ(base) - get PIECE_XZ(goal_arm))>AUTO_UNLOAD_MAXIMUM_RADIUS)
+			{
+			// The goal is too far and TotalA.exe risk crashing if we move an attached unit there
+			CLOSING_DOOR_ANIMATION
+			set BUSY to 1;
+			sleep 2000;
+			set BUSY to 0;
+			return;
+			}
+		#if !INSTA_UNLOAD
+		turn unload_shoulder to y-axis 0 now;
+		move unload_arm to x-axis 0 now;
+		move unload_arm to y-axis 0 now;
+		move unload_arm to z-axis 0 now;
+		turn unload_arm to y-axis 0 now;
+		wait-for-move unload_arm along z-axis;
+		#endif
+		
+		GET_ID_TO_UNLOAD(unit_to_auto_unload)
+		while((get XZ_HYPOT(get PIECE_XZ(base) - get UNIT_XZ(unit_to_auto_unload))>TOLERANCE) && (get XZ_HYPOT(get PIECE_XZ(load_shoulder) - get UNIT_XZ(unit_to_auto_unload))>TOLERANCE) && (get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get UNIT_XZ(unit_to_auto_unload))>TOLERANCE))// If the unit we got the ID of has been stolen, then get the next ID
+			{
+			--units_inside;
+			#if LIMITED_CARGO_HOLD
+			h=get UNIT_HEIGHT(unit_to_auto_unload);
+			CALC_WEIGHT;
+			cargo_hold=cargo_hold - w;
+			#endif
+			if(units_inside<=0)
+				{
+				CLOSING_DOOR_ANIMATION
+				set BUSY to 0;
+				return;
+				}
+			GET_ID_TO_UNLOAD(unit_to_auto_unload)
+			}
+		#if !INSTA_UNLOAD
+		if(!same)
+			{
+			turn unload_shoulder to y-axis get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) now;
+			move unload_arm to x-axis 0 now;
+			move unload_arm to y-axis 0 now;
+			move unload_arm to z-axis DISAPPEAR_RADIUS now;
+			turn unload_arm to y-axis get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) now;
+			}
+		if(same)
+			{
+			turn unload_shoulder to y-axis get XZ_ATAN(get PIECE_XZ(unload_shoulder) - last_goal) now;
+			move unload_arm to x-axis 0 now;
+			move unload_arm to z-axis get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - last_goal) now;
+			move unload_arm to y-axis get GROUND_HEIGHT(last_goal) - get PIECE_Y(unload_shoulder) now;;
+			turn unload_arm to y-axis get XZ_ATAN(last_goal - get PIECE_XZ(goal_arm)) now;
+			wait-for-move unload_arm along z-axis;
+			attach-unit unit_to_auto_unload to unload_arm;
+			turn unload_shoulder to y-axis get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) speed (shape!=0)*(AUTO_UNLOAD_SQUARE_CORRECTION_ANGULAR_SPEED)+(shape==0)*(AUTO_UNLOAD_CIRCLE_CORRECTION_ANGULAR_SPEED);
+			wait-for-turn unload_shoulder around y-axis;
+			}
+		last_goal=get PIECE_XZ(goal_arm);
+		
+		attach-unit unit_to_auto_unload to unload_arm;
+		sleep 1;
+		if (get XZ_HYPOT(get UNIT_XZ(unit_to_auto_unload) - get PIECE_XZ(base))>TOLERANCE)// If it is not the transport itself
+			{
+			move unload_arm to z-axis get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) speed AUTO_UNLOAD_SPEED;
+			move unload_arm to y-axis get GROUND_HEIGHT(get PIECE_XZ(goal_arm)) - get PIECE_Y(unload_shoulder) speed (1 - 2*(get GROUND_HEIGHT(get PIECE_XZ(goal_arm)) < get PIECE_Y(unload_shoulder)))*(((((get GROUND_HEIGHT(get PIECE_XZ(goal_arm)) - get PIECE_Y(unload_shoulder))*48) / get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))) * AUTO_UNLOAD_SPEED)/48);// K, have fun deciphering this one!
+			wait-for-move unload_arm along z-axis;
+			turn unload_arm to y-axis 0 now;
+			if(shape==0)
+				{
+				turn unload_arm to y-axis (get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))<32768)*(get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))*AUTO_UNLOAD_RADIAL_PROPORTION)+(get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))>=32768)*((get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) - 65536)*AUTO_UNLOAD_RADIAL_PROPORTION) now;
+				if (pos_on_circle==max_pos - 1)
+					{
+					turn unload_arm to y-axis 32768*((32768*AUTO_UNLOAD_RADIAL_PROPORTION>=16384) || (32768*AUTO_UNLOAD_RADIAL_PROPORTION<=0 - 16384)) now;
+					}
+				}
+			wait-for-turn unload_arm around y-axis;
+			#endif
+		#if INSTA_UNLOAD// hash-if !VALUE ... hash-else makes Scriptor fails. And hash-if in comments are counted!
+		turn unload_shoulder to y-axis get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) now;
+		move unload_arm to x-axis 0 now;
+		move unload_arm to y-axis get GROUND_HEIGHT(get PIECE_XZ(goal_arm)) - get PIECE_Y(unload_shoulder) now;
+		move unload_arm to z-axis get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) now;
+		turn unload_arm to y-axis 0 now;
+		if(shape==0)
+			{
+			turn unload_arm to y-axis (get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))<32768)*(get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))*AUTO_UNLOAD_RADIAL_PROPORTION)+(get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm))>=32768)*((get XZ_ATAN(get PIECE_XZ(unload_shoulder) - get PIECE_XZ(goal_arm)) - 65536)*AUTO_UNLOAD_RADIAL_PROPORTION) now;
+			if (pos_on_circle==max_pos - 1)
+				{
+				turn unload_arm to y-axis 32768*((32768*AUTO_UNLOAD_RADIAL_PROPORTION>=16384) || (32768*AUTO_UNLOAD_RADIAL_PROPORTION<=0 - 16384)) now;
+				}
+			}
+		attach-unit unit_to_auto_unload to unload_arm;
+		sleep 1;
+		if (get XZ_HYPOT(get UNIT_XZ(unit_to_auto_unload) - get PIECE_XZ(base))>TOLERANCE)// If it is not the transport itself
+			{
+			#endif
+		
+			drop-unit unit_to_auto_unload;
+			--units_inside;
+			#if LIMITED_CARGO_HOLD
+			h=get UNIT_HEIGHT(unit_to_auto_unload);
+			CALC_WEIGHT;
+			cargo_hold=cargo_hold - w;
+			#endif
+			#if !INSTA_UNLOAD
+			sleep 1;
+			#endif
+			move unload_arm to z-axis 0 now;
+			move unload_arm to y-axis 0 now;
+			wait-for-move unload_arm along z-axis;
+			same=FALSE;
+			if(get XZ_HYPOT(get PIECE_XZ(unload_shoulder) - get UNIT_XZ(unit_to_auto_unload))<=TOLERANCE)//If it failed dropping
+				{
+				same=TRUE;
+				++units_inside;
+				#if LIMITED_CARGO_HOLD
+				h=get UNIT_HEIGHT(unit_to_auto_unload);
+				CALC_WEIGHT;
+				cargo_hold=cargo_hold + w;
+				#endif
+				attach-unit unit_to_auto_unload to 0 - 1;
+				}
+			#if EXPLODE_WHEN_UNLOADING
+			if(!same)
+				{
+				explode goal_arm type BITMAPONLY | BITMAP5;
+				}
+			#endif
+			#if FLAME_WHEN_UNLOADING
+			if(!same)
+				{
+				emit-sfx SFXTYPE_VTOL from goal_arm;
+				}
+			#endif
+			if(shape==0)
+				{
+				++pos_on_circle;
+				if(pos_on_circle>=max_pos)
+					{
+					pos_on_circle=0;
+					++num_circle;
+					}
+				}
+			if(shape==1)
+				{
+				++pos_on_row;
+				if(pos_on_row>=4*num_row+1)
+					{
+					pos_on_row=0;
+					++num_row;
+					}//end change row
+				}
+			if(shape==2)
+				{
+				++pos_on_row;
+				if(pos_on_row>=AUTO_UNLOAD_UNITS_PER_ROW)
+					{
+					pos_on_row=0;
+					++num_row;
+					}//end change row
+				}//end last shape choice
+			}//end not the transport itself// Can't happen when ID are stored, but anyway
+		#if QUIT_AUTO_UNLOAD_WHEN_MOVING
+		if(is_moving)// It is important to note that the TransportDrop() is called as soon as the transport starts decelerating, sometimes long before it's fully stopped. And that StopMoving that set is_moving to FALSE is only called when it's fully stopped. So there's some wait till full stop up there.
+			{
+			CLOSING_DOOR_ANIMATION
+			set BUSY to 0;
+			return;
+			}
+		#endif
+		}//end while(units_inside>0)
+	CLOSING_DOOR_ANIMATION
+	set BUSY to 0;
+	return;
+	#endif
+	}
+
+
+
+#define REFRESH_WAKE 300
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	is_moving=TRUE;
+	while( is_moving )
+	{
+		emit-sfx 2 from wake1;
+		emit-sfx 2 from wake2;
+		sleep 300;
+	}
+}
+
+StopMoving()
+	{
+	//signal SIG_MOVE;// Actually, let's let the StarMoving script run so it keeps on creating wakes while the unit is standing still on water
+	is_moving=FALSE;
+	}
+
+
+setSFXoccupy(setSFXoccupy_argument)
+{
+	terrain_code = setSFXoccupy_argument;
+
+	// 0 -> Transported: Unit is being loaded
+    // 1 -> Sea: Unit does not have upright=1 and is going into sea. Or unit has upright=1 and is going into shore. (From unloading, or ground, or deep sea for upright unit)
+    // 2 -> Sea: Unit has upright=1 and goes into deep sea. (From shore, or unloading)
+    // 3 -> ????
+    // 4 -> Land: Unit is being created, goes from sea (or shore if upright=1) to dry ground, or is unloaded
+	
+	// I dunno if shore stand for shallow water or low level ground.
+}
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+TrackStatus()
+{
+	var unit_ID;
+	var x, z, xz;
+	var distance;
+	var min, max;
+	var myid;
+	
+	min = get MIN_ID;
+	max = get MAX_ID;
+	myid=get MY_ID;
+	
+	dont-cache a1;
+	dont-cache a2;
+	
+	while(1)
+	{
+	      turn adjust to x-axis 0 now;
+	      turn adjust to z-axis 0 now;
+	      move s1 to x-axis 0 - [600] now;
+	      move s2 to x-axis [600] now;
+	      turn adjust to z-axis get ATAN(get PIECE_Y(s1) - get PIECE_Y(s2),get XZ_HYPOT(get PIECE_XZ(s1) - get PIECE_XZ(s2))) now;
+	      move s1 to x-axis 0 now;
+	      move s2 to x-axis 0 now;
+	      move s1 to z-axis [600] now;
+	      move s2 to z-axis 0 - [600] now;
+	      turn adjust to x-axis get ATAN(get PIECE_Y(s1) - get PIECE_Y(s2),get XZ_HYPOT(get PIECE_XZ(s1) - get PIECE_XZ(s2))) now;
+	      move s1 to z-axis 0 now;
+	      move s2 to z-axis 0 now;
+	      wait-for-turn adjust around x-axis;
+	      wait-for-turn adjust around z-axis;
+		hide a1;
+		hide a2;
+		if((get STANDINGFIREORDERS) == 0 && (get ACTIVATION) == 1 && is_moving == 0)
+		{
+			if(cargo_hold < MAX_CARGO_HOLD)
+			{
+				if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+				{
+					show a2;
+				}	
+				for (unit_ID = min; unit_ID <= max; ++unit_ID)
+				{
+					if(get UNIT_ALLIED(unit_ID))
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= LOAD_DISTANCE && distance > [1])
+						{
+							if(get UNIT_IS_ON_THIS_COMP(myid))
+							{
+								call-script TransportPickup2(unit_ID);
+							}
+						}
+					}
+				}
+			}
+		}
+		if((get STANDINGFIREORDERS) == 1 && (get ACTIVATION) == 1 && is_moving == 0)
+		{
+			if(get UNIT_IS_ON_THIS_COMP(get MY_ID)) 
+			{
+				show a1;
+			}	
+			if(units_inside)
+			{
+				for (unit_ID = (min); unit_ID <= (max); ++unit_ID)
+				{
+					if (unit_ID != myid)
+					{
+						if (((get UNIT_XZ(unit_ID)) == (get PIECE_XZ(base))) && ((get UNIT_Y(unit_ID)) == (get PIECE_Y(base))))
+						{
+							if(get UNIT_IS_ON_THIS_COMP(myid))
+							{
+								call-script TransportDrop2(unit_ID, get PIECE_XZ(base));
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+		sleep 500;
+	}
+}
+
+Create()
+{
+	hide a1;
+	hide a2;
+	
+	unitteam= (get UNIT_TEAM(get MY_ID));
+	INIT_LOADED_ID(65537) // Not necessary, but would prevent crashes in case we retrieve an ID not stored yet
+	units_inside=0;
+	is_moving=FALSE;
+	terrain_code=0;
+/*	#if LOAD_ONLY_PLAYER_UNITS
+	units_per_player=1073741819;
+	self_id=0 - 1;
+	#endif
+*/
+//use line above if xon dll is not present
+	#if LEAN_ON_SLOPE
+	x_slope=0;
+	z_slope=0;
+	#endif
+	#if LIMITED_CARGO_HOLD
+	cargo_hold=0;
+	#endif
+	set ACTIVATION to TRUE;
+	
+/*	#if LOAD_ONLY_PLAYER_UNITS
+	sleep 70;
+	var uid;
+	for(uid=1950;uid>=50;uid=uid - 50;)
+		{
+		if (get UNIT_HEIGHT(uid+1)==3123927 || get UNIT_HEIGHT(uid+1)==2850635)
+			{
+			units_per_player=uid;
+			}
+		}
+	uid=1;
+	while(self_id<0)
+		{
+		if (get UNIT_XZ(uid)==get PIECE_XZ(base))
+			{
+			if (get UNIT_Y(uid)==get PIECE_Y(base))
+				{
+				self_ID=uid;
+				}
+			}
+		++uid;
+		}
+	#endif
+	//Note: it is very possible that the self_ID catch the ID value of the factory instead of the ID value of the unit. It doesn't really matter as it later used only to determine the player number.
+*/
+//use line above if xon dll is not present
+
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script SmokeUnit();	
+	start-script trackstatus();
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type BITMAPONLY | BITMAP1;
+		explode arm3 type BITMAPONLY | BITMAP5;
+		explode base type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode link type BITMAPONLY | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode wake1 type BITMAPONLY | BITMAP1;
+		explode wake2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type SHATTER | BITMAP1;
+		explode arm3 type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode link type FALL | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode wake1 type FALL | BITMAP1;
+		explode wake2 type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode arm1 type BITMAPONLY | BITMAP1;
+		explode arm2 type SHATTER | BITMAP1;
+		explode arm3 type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode door1 type BITMAPONLY | BITMAP1;
+		explode door2 type BITMAPONLY | BITMAP5;
+		explode link type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode turret type BITMAPONLY | BITMAP1;
+		explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode arm1 type BITMAPONLY | BITMAP1;
+	explode arm2 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode arm3 type SHATTER | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	explode door1 type BITMAPONLY | BITMAP1;
+	explode door2 type BITMAPONLY | BITMAP5;
+	explode link type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode turret type BITMAPONLY | BITMAP1;
+	explode wake1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wake2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

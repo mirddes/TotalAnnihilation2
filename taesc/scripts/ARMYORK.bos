@@ -1,0 +1,225 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  flare1, flare2, flare3, flare4, turret, base, wheel1, wheel2,
+       wheel3, wheel4, wheel5, wheel6, gun1, gun4, gun2, gun3;
+
+static-var  Gun_1, Reset_2, Busy_3;
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	if( !Reset_2 )
+	{
+		turn turret to y-axis <0> speed <600>;
+		turn turret to x-axis <0> speed <600>;
+//		wait-for-turn turret around y-axis;
+//		wait-for-turn turret around x-axis;
+		signal 2;
+	}
+	Busy_3 = 0;
+	return (0);
+}
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+		if( Reset_2 and !Busy_3 )
+		{
+			Reset_2 = 0;
+			Busy_3 = 1;
+			start-script RestoreAfterDelay();
+		}
+	}
+	return (0);
+}
+
+HitByWeapon(Func_Var_1, Func_Var_2)
+{
+	turn base to z-axis Func_Var_2 speed <105>;
+	turn base to x-axis Func_Var_1 speed <105>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to z-axis <0> speed <30>;
+	turn base to x-axis <0> speed <30>;
+	return (0);
+}
+
+StartMoving()
+{
+	spin wheel1 around x-axis speed <150>;
+	spin wheel2 around x-axis speed <150>;
+	spin wheel3 around x-axis speed <150>;
+	spin wheel4 around x-axis speed <150>;
+	spin wheel5 around x-axis speed <150>;
+	spin wheel6 around x-axis speed <150>;
+	return (0);
+}
+
+StopMoving()
+{
+	spin wheel1 around x-axis speed <0>;
+	spin wheel2 around x-axis speed <0>;
+	spin wheel3 around x-axis speed <0>;
+	spin wheel4 around x-axis speed <0>;
+	spin wheel5 around x-axis speed <0>;
+	spin wheel6 around x-axis speed <0>;
+	return (0);
+}
+
+Create()
+{
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	
+	dont-cache flare1;
+	dont-cache flare2;
+	dont-cache flare3;
+	dont-cache flare4;
+	
+	Gun_1 = 0;
+	Reset_2 = 0;
+	Busy_3 = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	return (0);
+}
+
+FirePrimary()
+{
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+//	set-signal-mask 0;
+	set-signal-mask 2;
+	turn turret to y-axis heading speed <650>;
+	turn turret to x-axis ( <0> - pitch ) speed <600>;
+	wait-for-turn turret around y-axis;
+	wait-for-turn turret around x-axis;
+	Reset_2 = 1;
+	return (1);
+}
+
+FireTertiary()
+{
+	if( !Gun_1 )
+	{
+		move gun1 to z-axis [-4] now;
+//		show flare1;
+		sleep 150;
+//		hide flare1;
+		move gun1 to z-axis [0] speed [15];
+	}
+	if( Gun_1 == 1 )
+	{
+		move gun4 to z-axis [-4] now;
+//		show flare4;
+		sleep 150;
+//		hide flare4;
+		move gun4 to z-axis [0] speed [15];
+	}
+	if( Gun_1 == 2 )
+	{
+		move gun2 to z-axis [-4] now;
+//		show flare2;
+		sleep 150;
+//		hide flare2;
+		move gun2 to z-axis [0] speed [15];
+	}
+	if( Gun_1 > 2 )
+	{
+		move gun3 to z-axis [-4] now;
+//		show flare3;
+		sleep 150;
+//		hide flare3;
+		move gun3 to z-axis [0] speed [15];
+		Gun_1 = -1;
+	}
+//	sleep 50;
+	++Gun_1;
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	piecenum = turret;
+	return (0);
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = Gun_1;
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	var Func_Var_3, Func_Var_4;
+	hide flare1;
+	hide flare2;
+	hide flare3;
+	hide flare4;
+	if( severity <= 25 )
+	{
+		corpsetype = 2 - ( 0 == Rand( 0, 1 ) );
+		explode turret type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode turret type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode turret type SHATTER | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	explode turret type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+	return (0);
+}

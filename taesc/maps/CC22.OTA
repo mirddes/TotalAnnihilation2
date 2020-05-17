@@ -1,0 +1,1679 @@
+[GlobalHeader]
+	{
+	missionname=A Big Empyrrean Welcome;
+	maxunits=1000;
+	planet=Green planet;
+	missionhint=;
+	brief=CoreCampaign22;
+	narration=core22;
+	glamour=core22;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=0;
+	solarstrength=120;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=600;
+	maxwindspeed=2000;
+	gravity=112;
+	numplayers=2;
+	size=5 x 10;
+	memory=16 mb;
+	useonlyunits=CC22.tdf;
+	CaptureUnitType=ARMBRTHA;
+	CommanderKilled=1;
+	AllUnitsKilled=1;
+	AllUnitsKilledOfType=ARMBRTHA;
+	SCHEMACOUNT=3;
+	[Schema 0]
+		{
+		Type=Easy;
+		aiprofile=MISSIONS;
+		SurfaceMetal=4;
+		MohoMetal=50;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[unitsE]
+			{
+			[unit0]
+				{
+				Unitname=ARMGATE;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=592;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit1]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1088;
+				YPos=86;
+				ZPos=432;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit2]
+				{
+				Unitname=CORCK;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=480;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit3]
+				{
+				Unitname=CORCOM;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=496;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit4]
+				{
+				Unitname=ARMBRTHA;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4752;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,a CORCOM;
+				}
+			[unit5]
+				{
+				Unitname=ARMCK;
+				
+				XPos=1552;
+				YPos=85;
+				ZPos=4768;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 865 4735,;
+				}
+			[unit6]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=832;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit7]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit8]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1632;
+				YPos=85;
+				ZPos=4816;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit9]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit10]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1392;
+				YPos=85;
+				ZPos=4784;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit11]
+				{
+				Unitname=ARMESTOR;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit12]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1088;
+				YPos=85;
+				ZPos=4688;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit13]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1152;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 300,a CORCOM;
+				}
+			[unit14]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1264;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit15]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1344;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit16]
+				{
+				Unitname=ARMPW;
+				
+				XPos=768;
+				YPos=85;
+				ZPos=1088;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit17]
+				{
+				Unitname=ARMPW;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=1104;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit18]
+				{
+				Unitname=ARMPW;
+				
+				XPos=1872;
+				YPos=85;
+				ZPos=992;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit19]
+				{
+				Unitname=ARMPW;
+				
+				XPos=2000;
+				YPos=85;
+				ZPos=224;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit20]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit21]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2304;
+				YPos=85;
+				ZPos=2864;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit22]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2192;
+				YPos=85;
+				ZPos=2976;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit23]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1216;
+				YPos=86;
+				ZPos=352;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit24]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1776;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit25]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1584;
+				YPos=85;
+				ZPos=4400;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit26]
+				{
+				Unitname=ARMPEEP;
+				
+				XPos=1024;
+				YPos=85;
+				ZPos=4928;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 1211 290,;
+				}
+			[unit27]
+				{
+				Unitname=ARMSTUMP;
+				
+				XPos=736;
+				YPos=85;
+				ZPos=2128;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 30,p 2193 2273;
+				}
+			[unit28]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=752;
+				YPos=85;
+				ZPos=4576;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit29]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=1520;
+				YPos=85;
+				ZPos=4592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit30]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=192;
+				YPos=85;
+				ZPos=3888;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,p 2034 3559,;
+				}
+			[unit31]
+				{
+				Unitname=CORCK;
+				
+				XPos=1072;
+				YPos=86;
+				ZPos=544;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit32]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=2064;
+				YPos=85;
+				ZPos=864;
+				Player=2;
+				HealthPercentage=100;
+				Angle=180;
+				Kills=0;
+				}
+			[unit33]
+				{
+				Unitname=ARMRAD;
+				
+				XPos=1120;
+				YPos=85;
+				ZPos=1296;
+				Player=2;
+				HealthPercentage=100;
+				Angle=180;
+				Kills=0;
+				}
+			[unit34]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1360;
+				YPos=85;
+				ZPos=1264;
+				Player=2;
+				HealthPercentage=100;
+				Angle=180;
+				Kills=0;
+				}
+			}
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=1200;
+				ZPos=496;
+				}
+			}
+		}
+	[Schema 1]
+		{
+		Type=Medium;
+		aiprofile=MISSIONS;
+		SurfaceMetal=4;
+		MohoMetal=50;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[unitsE]
+			{
+			[unit0]
+				{
+				Unitname=ARMGATE;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=592;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit1]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1088;
+				YPos=86;
+				ZPos=432;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit2]
+				{
+				Unitname=CORCK;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=480;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit3]
+				{
+				Unitname=CORCOM;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=496;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit4]
+				{
+				Unitname=ARMBRTHA;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4752;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,a CORCOM;
+				}
+			[unit5]
+				{
+				Unitname=ARMCK;
+				
+				XPos=1552;
+				YPos=85;
+				ZPos=4768;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 865 4735,;
+				}
+			[unit6]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=832;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit7]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit8]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1632;
+				YPos=85;
+				ZPos=4816;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit9]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit10]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1392;
+				YPos=85;
+				ZPos=4784;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit11]
+				{
+				Unitname=ARMESTOR;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit12]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1088;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 300,a CORCOM;
+				}
+			[unit13]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1088;
+				YPos=85;
+				ZPos=4688;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit14]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1152;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 300,a CORCOM;
+				}
+			[unit15]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1168;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit16]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1264;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit17]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1232;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit18]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1344;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit19]
+				{
+				Unitname=ARMPW;
+				
+				XPos=768;
+				YPos=85;
+				ZPos=1088;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit20]
+				{
+				Unitname=ARMPW;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=1104;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit21]
+				{
+				Unitname=ARMPW;
+				
+				XPos=1872;
+				YPos=85;
+				ZPos=992;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit22]
+				{
+				Unitname=ARMPW;
+				
+				XPos=2000;
+				YPos=85;
+				ZPos=224;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit23]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit24]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2304;
+				YPos=85;
+				ZPos=2864;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit25]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2192;
+				YPos=85;
+				ZPos=2976;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit26]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1216;
+				YPos=86;
+				ZPos=352;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit27]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1712;
+				YPos=85;
+				ZPos=4368;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit28]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1776;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit29]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1584;
+				YPos=85;
+				ZPos=4400;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit30]
+				{
+				Unitname=ARMPEEP;
+				
+				XPos=1024;
+				YPos=85;
+				ZPos=4928;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 1211 290,;
+				}
+			[unit31]
+				{
+				Unitname=ARMSTUMP;
+				
+				XPos=736;
+				YPos=85;
+				ZPos=2128;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 30,p 2193 2273;
+				}
+			[unit32]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=752;
+				YPos=85;
+				ZPos=4576;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit33]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=1520;
+				YPos=85;
+				ZPos=4592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit34]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=192;
+				YPos=85;
+				ZPos=3888;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,p 2034 3559,;
+				}
+			[unit35]
+				{
+				Unitname=ARMPW;
+				
+				XPos=96;
+				YPos=85;
+				ZPos=1328;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit36]
+				{
+				Unitname=ARMPW;
+				
+				XPos=208;
+				YPos=85;
+				ZPos=1472;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit37]
+				{
+				Unitname=ARMPW;
+				
+				XPos=288;
+				YPos=85;
+				ZPos=1616;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit38]
+				{
+				Unitname=ARMPW;
+				
+				XPos=368;
+				YPos=85;
+				ZPos=1424;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit39]
+				{
+				Unitname=ARMPW;
+				
+				XPos=144;
+				YPos=85;
+				ZPos=1744;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			}
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=1200;
+				ZPos=496;
+				}
+			}
+		}
+	[Schema 2]
+		{
+		Type=Hard;
+		aiprofile=DEFAULT;
+		SurfaceMetal=4;
+		MohoMetal=50;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[unitsE]
+			{
+			[unit0]
+				{
+				Unitname=ARMGATE;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=592;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit1]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1088;
+				YPos=86;
+				ZPos=432;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit2]
+				{
+				Unitname=CORCK;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=480;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit3]
+				{
+				Unitname=CORCOM;
+				
+				XPos=1168;
+				YPos=86;
+				ZPos=496;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit4]
+				{
+				Unitname=ARMBRTHA;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4752;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,a CORCOM;
+				}
+			[unit5]
+				{
+				Unitname=ARMCK;
+				
+				XPos=1552;
+				YPos=85;
+				ZPos=4768;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 865 4735,;
+				}
+			[unit6]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=832;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit7]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit8]
+				{
+				Unitname=ARMWIN;
+				
+				XPos=1632;
+				YPos=85;
+				ZPos=4816;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit9]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=4832;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit10]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1392;
+				YPos=85;
+				ZPos=4784;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit11]
+				{
+				Unitname=ARMESTOR;
+				
+				XPos=1200;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit12]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1088;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 300,a CORCOM;
+				}
+			[unit13]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1088;
+				YPos=85;
+				ZPos=4688;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit14]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1152;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 300,a CORCOM;
+				}
+			[unit15]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1168;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit16]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1264;
+				YPos=85;
+				ZPos=4608;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit17]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1232;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit18]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1344;
+				YPos=85;
+				ZPos=4672;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,p 1187 371,;
+				}
+			[unit19]
+				{
+				Unitname=ARMPW;
+				
+				XPos=768;
+				YPos=85;
+				ZPos=1088;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit20]
+				{
+				Unitname=ARMPW;
+				
+				XPos=992;
+				YPos=85;
+				ZPos=1104;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit21]
+				{
+				Unitname=ARMPW;
+				
+				XPos=1872;
+				YPos=85;
+				ZPos=992;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit22]
+				{
+				Unitname=ARMPW;
+				
+				XPos=2000;
+				YPos=85;
+				ZPos=224;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit23]
+				{
+				Unitname=ARMSOLAR;
+				
+				XPos=1312;
+				YPos=86;
+				ZPos=592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit24]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2304;
+				YPos=85;
+				ZPos=2864;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit25]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=2192;
+				YPos=85;
+				ZPos=2976;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 139 2932;
+				}
+			[unit26]
+				{
+				Unitname=CORPYRO;
+				
+				XPos=1216;
+				YPos=86;
+				ZPos=352;
+				Player=1;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit27]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1712;
+				YPos=85;
+				ZPos=4368;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit28]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1776;
+				YPos=85;
+				ZPos=4480;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit29]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1584;
+				YPos=85;
+				ZPos=4400;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 2264 4001,p 1613 1834,;
+				}
+			[unit30]
+				{
+				Unitname=ARMPEEP;
+				
+				XPos=1024;
+				YPos=85;
+				ZPos=4928;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=p 1211 290,;
+				}
+			[unit31]
+				{
+				Unitname=ARMSTUMP;
+				
+				XPos=736;
+				YPos=85;
+				ZPos=2128;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 30,p 2193 2273;
+				}
+			[unit32]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=752;
+				YPos=85;
+				ZPos=4576;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit33]
+				{
+				Unitname=ARMLLT;
+				
+				XPos=1520;
+				YPos=85;
+				ZPos=4592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				}
+			[unit34]
+				{
+				Unitname=ARMHAM;
+				
+				XPos=192;
+				YPos=85;
+				ZPos=3888;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,p 2034 3559,;
+				}
+			[unit35]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1728;
+				YPos=85;
+				ZPos=3424;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,a CORCOM,;
+				}
+			[unit36]
+				{
+				Unitname=ARMFAST;
+				
+				XPos=1824;
+				YPos=85;
+				ZPos=3520;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 240,a CORCK,;
+				}
+			[unit37]
+				{
+				Unitname=ARMVADER;
+				
+				XPos=1376;
+				YPos=171;
+				ZPos=2784;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=a CORCOM;
+				}
+			[unit38]
+				{
+				Unitname=ARMZEUS;
+				
+				XPos=1936;
+				YPos=85;
+				ZPos=592;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=wa;
+				}
+			[unit39]
+				{
+				Unitname=ARMZEUS;
+				
+				XPos=464;
+				YPos=85;
+				ZPos=896;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 30,a CORPYRO;
+				}
+			[unit40]
+				{
+				Unitname=ARMFIDO;
+				
+				XPos=416;
+				YPos=85;
+				ZPos=3456;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 200,p 1994 1389,;
+				}
+			[unit41]
+				{
+				Unitname=ARMZEUS;
+				
+				XPos=976;
+				YPos=85;
+				ZPos=4176;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,p 1512 4141,;
+				}
+			[unit42]
+				{
+				Unitname=ARMPW;
+				
+				XPos=144;
+				YPos=85;
+				ZPos=1344;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit43]
+				{
+				Unitname=ARMPW;
+				
+				XPos=112;
+				YPos=85;
+				ZPos=1536;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit44]
+				{
+				Unitname=ARMPW;
+				
+				XPos=352;
+				YPos=85;
+				ZPos=1424;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit45]
+				{
+				Unitname=ARMPW;
+				
+				XPos=432;
+				YPos=85;
+				ZPos=1664;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit46]
+				{
+				Unitname=ARMPW;
+				
+				XPos=304;
+				YPos=85;
+				ZPos=1760;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit47]
+				{
+				Unitname=ARMPW;
+				
+				XPos=240;
+				YPos=85;
+				ZPos=1632;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 60,p 1798 3564,;
+				}
+			[unit48]
+				{
+				Unitname=ARMFIG;
+				
+				XPos=2032;
+				YPos=85;
+				ZPos=4192;
+				Player=2;
+				HealthPercentage=100;
+				Angle=0;
+				Kills=0;
+				InitialMission=w 120,p 212 425,;
+				}
+			}
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=1200;
+				ZPos=496;
+				}
+			}
+		}
+	}

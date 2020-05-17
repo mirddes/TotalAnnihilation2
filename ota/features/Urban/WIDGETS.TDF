@@ -1,0 +1,686 @@
+[widget01]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=machines;
+	seqname=widget01;
+	seqnameshad=widgetshad01;
+	seqnamereclamate=widgetrec01;
+	metal=25;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+[widget02]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=machines;
+	seqname=widget02;
+	seqnameshad=widgetshad02;
+	seqnamereclamate=widgetrec02;
+	metal=35;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+[widget03]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=17;
+	filename=machines;
+	seqname=widget03;
+	seqnameshad=widgetshad03;
+	seqnamereclamate=widgetrec03;
+	metal=40;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+[widget04]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=machines;
+	seqname=widget04;
+	seqnameshad=widgetshad04;
+	seqnamereclamate=widgetrec04;
+	metal=45;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+[widget05]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=machines;
+	seqname=widget05;
+	seqnameshad=widgetshad05;
+	seqnamereclamate=widgetrec05;
+	metal=30;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar01;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar01;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+[widget06]
+	{
+	world=urban;
+	description=Transit Node;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=15;
+	filename=machines;
+	seqname=widget06;
+	seqnameshad=widgetshad06;
+	seqnamereclamate=widgetrec06;
+	metal=20;
+
+	seqnamedie=widgetboom01;
+	featuredead=widgetscar02;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar02;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=85;
+	damage=100;
+	}
+
+
+
+[widget07]
+	{
+	world=urban;
+	description=Microwave Relay;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=55;
+	filename=machines;
+	seqname=widget07;
+	seqnameshad=widgetshad07;
+	seqnamereclamate=widgetrec07;
+	metal=50;
+
+	seqnamedie=widgetboom02;
+	featuredead=widgetscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=200;
+	}
+
+[widget08]
+	{
+	world=urban;
+	description=Microwave Relay;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=50;
+	filename=machines;
+	seqname=widget08;
+	seqnameshad=widgetshad08;
+	seqnamereclamate=widgetrec08;
+	metal=60;
+
+	seqnamedie=widgetboom02;
+	featuredead=widgetscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=200;
+	}
+
+[widget09]
+	{
+	world=urban;
+	description=Microwave Relay;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=45;
+	filename=machines;
+	seqname=widget09;
+	seqnameshad=widgetshad09;
+	seqnamereclamate=widgetrec09;
+	metal=25;
+
+	seqnamedie=widgetboom02;
+	featuredead=widgetscar04;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar04;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=200;
+	}
+
+[widget10]
+	{
+	world=urban;
+	description=Microwave Relay;
+	category=machines;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=55;
+	filename=machines;
+	seqname=widget10;
+	seqnameshad=widgetshad10;
+	seqnamereclamate=widgetrec10;
+	metal=60;
+
+	seqnamedie=widgetboom02;
+	featuredead=widgetscar03;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar03;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=95;
+	damage=200;
+	}
+
+
+
+[widget11]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget11;
+	seqnameshad=widgetshad11;
+	seqnamereclamate=widgetrec11;
+	metal=35;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget12]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget12;
+	seqnameshad=widgetshad12;
+	seqnamereclamate=widgetrec12;
+	metal=30;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget13]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget13;
+	seqnameshad=widgetshad13;
+	seqnamereclamate=widgetrec13;
+	metal=40;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget14]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget14;
+	seqnameshad=widgetshad14;
+	seqnamereclamate=widgetrec14;
+	metal=20;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget15]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget15;
+	seqnameshad=widgetshad15;
+	seqnamereclamate=widgetrec15;
+	metal=30;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar05;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar05;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget16]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget16;
+	seqnameshad=widgetshad16;
+	seqnamereclamate=widgetrec16;
+	metal=45;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar06;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget17]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget17;
+	seqnameshad=widgetshad17;
+	seqnamereclamate=widgetrec17;
+	metal=40;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar06;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+[widget18]
+	{
+	world=urban;
+	description=Climatic Optimizer;
+	category=machines;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=80;
+	filename=machines;
+	seqname=widget18;
+	seqnameshad=widgetshad18;
+	seqnamereclamate=widgetrec18;
+	metal=35;
+
+	seqnamedie=widgetboom03;
+	featuredead=widgetscar06;
+	
+	animtrans=0;
+	shadtrans=1;
+	flamable=0;
+	reclaimable=1;
+	featurereclamate=widgetscar06;
+	reproduce=0;
+	reproducearea=6;
+	blocking=1;
+	hitdensity=100;
+	damage=250;
+	}
+
+
+
+
+[widgetscar01]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=machines;
+	seqname=widgetscar01;
+
+	featuredead=widgetscar01;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[widgetscar02]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=2;
+	height=0;
+	filename=machines;
+	seqname=widgetscar02;
+
+	featuredead=widgetscar02;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[widgetscar03]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=2;
+	footprintz=3;
+	height=0;
+	filename=machines;
+	seqname=widgetscar03;
+
+	featuredead=widgetscar03;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[widgetscar04]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=2;
+	height=0;
+	filename=machines;
+	seqname=widgetscar04;
+
+	featuredead=widgetscar04;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[widgetscar05]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=machines;
+	seqname=widgetscar05;
+
+	featuredead=widgetscar05;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+[widgetscar06]
+	{
+	world=urban;
+	description=Damaged Terrain;
+	category=scars;
+	animating=0;
+	footprintx=3;
+	footprintz=3;
+	height=0;
+	filename=machines;
+	seqname=widgetscar06;
+
+	featuredead=widgetscar06;
+
+	animtrans=1;
+	flamable=0;
+	reclaimable=0;
+	reproduce=0;
+	reproducearea=6;
+	blocking=0;
+	hitdensity=0;
+	}
+
+

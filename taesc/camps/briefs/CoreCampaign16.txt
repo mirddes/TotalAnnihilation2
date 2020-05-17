@@ -1,0 +1,10 @@
+MISSION 16.4CORE
+
+INTELL-TAP:
+The Arm Gate has been located atop the ruins to the northeast. The guard garrison includes the Arm's experimental Spider Tanks. Be warned that the Spiders are armed with a paralyzing beam. Destroy the Spiders and capture the Gate.
+
+&YExpect meteor showers.&
+
+&RCapture the Arm Galactic Gate.&
+
+DO SO NOW.

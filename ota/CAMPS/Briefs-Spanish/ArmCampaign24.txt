@@ -1,0 +1,12 @@
+MISIÓN 24.004CLANCP
+Tomar el control de la cúpula en la Plaza Central.
+
+&YPRIORIDAD&
+Hemos localizado la Conciencia Central que dirige la maquinaria de guerra del Núcleo. Se encuentra bajo la gran cúpula de la Plaza Central. Destruye las guarniciones de guardia allí estacionadas y toma la cúpula. ¡Cuándo tengamos el control de la Conciencia Central, el Núcleo estará tan debilitado que la victoria definitiva corresponderá al Clan!
+
+INFORMACIÓN
+La Plaza Central tiene varias entradas. Todas ellas estarán bien vigiladas. También la cúpula contará con una vigilancia extraordinaria. El Núcleo se defenderá hasta el límite. Tú también tendrás que llegar al límite, Comandante.
+
+Comandante, queremos verte en la cima de la cúpula.
+ 
+FIN

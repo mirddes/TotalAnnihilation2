@@ -1,0 +1,270 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, missile, plate, arm, door1, door2, domes;
+
+static-var  ready_1, busy_2, gun_2, reload_4;
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	dont-shade door1;
+	dont-shade door2;
+	dont-shade missile;
+	dont-shade plate;
+	dont-shade arm;
+	ready_1 = 0;
+	gun_2 = 0;
+	busy_2 = FALSE;
+	reload_4 = 1;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+	sleep 175000;
+	reload_4 = 0;
+}
+
+AimPrimary(heading, pitch)
+{
+	while( busy_2 )
+	{
+		sleep 250;
+	}
+	if( !ready_1 )
+	{
+		busy_2 = TRUE;
+		dont-cache door1;
+		dont-cache door2;
+		dont-cache missile;
+		dont-cache plate;
+		dont-cache arm;
+		show missile;
+		move plate to y-axis [0] now;
+		move arm to x-axis [0] now;
+		move arm to z-axis [0] now;
+		turn door1 to z-axis <0> now;
+		turn door1 to z-axis <-89.565934> speed <47.137363>;
+		turn door2 to z-axis <0> now;
+		turn door2 to z-axis <90> speed <47.379121>;
+		sleep 1900;
+		move door1 to y-axis [-6.1] speed [3.129999];
+		move door2 to y-axis [-6.1] speed [3.129999];
+		sleep 1950;
+		move plate to y-axis [8] speed [4];
+		sleep 1970;
+		turn arm to x-axis <-90> speed <45.549451>;
+		sleep 2090;
+		ready_1 = 1;
+		busy_2 = FALSE;
+	}
+	return (1);
+}
+
+FirePrimary()
+{
+	hide missile;
+	ready_1 = 0;
+	busy_2 = TRUE;
+	sleep 1000;
+	move plate to y-axis [8] now;
+	move door1 to y-axis [-6.1] now;
+	move door2 to y-axis [-6.1] now;
+	move arm to x-axis [0] now;
+	move arm to z-axis [0] now;
+	turn door1 to z-axis <-89.565934> now;
+	turn door2 to z-axis <90> now;
+	turn arm to x-axis <-90> now;
+	turn arm to x-axis <0> speed <47.379121>;
+	sleep 1900;
+	move plate to y-axis [0] speed [4.079999];
+	sleep 1960;
+	move door1 to y-axis [0] speed [3.1];
+	move door2 to y-axis [0] speed [3.1];
+	sleep 1968;
+	turn door1 to z-axis <0> speed <45.417582>;
+	turn door2 to z-axis <0> speed <45.648352>;
+	sleep 2082;
+	cache door1;
+	cache door2;
+	cache missile;
+	cache plate;
+	cache arm;
+	busy_2 = FALSE;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = missile;
+}
+
+AimTertiary(heading, pitch)
+{
+	while( busy_2 or Reload_4 )
+	{
+		sleep 500;
+	}
+	if( !gun_2 )
+	{
+		busy_2 = TRUE;
+		dont-cache door1;
+		dont-cache door2;
+		dont-cache missile;
+		dont-cache plate;
+		dont-cache arm;
+		show missile;
+		move plate to y-axis [0] now;
+		move arm to x-axis [0] now;
+		move arm to z-axis [0] now;
+		turn door1 to z-axis <0> now;
+		turn door1 to z-axis <-89.565934> speed <47.137363>;
+		turn door2 to z-axis <0> now;
+		turn door2 to z-axis <90> speed <47.379121>;
+		sleep 1900;
+		move door1 to y-axis [-6.1] speed [3.129999];
+		move door2 to y-axis [-6.1] speed [3.129999];
+		sleep 1950;
+		move plate to y-axis [8] speed [4];
+		sleep 1970;
+		turn arm to x-axis <-90> speed <45.549451>;
+		sleep 2090;
+		gun_2 = missile;
+		busy_2 = FALSE;
+	}
+	return (1);
+}
+
+FireTertiary()
+{
+	hide missile;
+	reload_4 = 1;
+	gun_2 = base;
+	busy_2 = TRUE;
+	sleep 1000;
+	move plate to y-axis [8] now;
+	move door1 to y-axis [-6.1] now;
+	move door2 to y-axis [-6.1] now;
+	move arm to x-axis [0] now;
+	move arm to z-axis [0] now;
+	turn door1 to z-axis <-89.565934> now;
+	turn door2 to z-axis <90> now;
+	turn arm to x-axis <-90> now;
+	turn arm to x-axis <0> speed <47.379121>;
+	sleep 1900;
+	move plate to y-axis [0] speed [4.079999];
+	sleep 1960;
+	move door1 to y-axis [0] speed [3.1];
+	move door2 to y-axis [0] speed [3.1];
+	sleep 1968;
+	turn door1 to z-axis <0> speed <45.417582>;
+	turn door2 to z-axis <0> speed <45.648352>;
+	sleep 2082;
+	cache door1;
+	cache door2;
+	cache missile;
+	cache plate;
+	cache arm;
+	busy_2 = FALSE;
+	sleep 175000;
+	reload_4 = 0;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = missile;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type BITMAPONLY | BITMAP1;
+		explode missile type BITMAPONLY | BITMAP2;
+		explode plate type BITMAPONLY | BITMAP3;
+		explode arm type BITMAPONLY | BITMAP4;
+		explode door1 type BITMAPONLY | BITMAP5;
+		explode door2 type BITMAPONLY | BITMAP1;
+		explode domes type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		explode missile type BITMAPONLY | BITMAP2;
+		explode plate type BITMAPONLY | BITMAP3;
+		explode arm type SHATTER | BITMAP4;
+		explode door1 type FALL | BITMAP5;
+		explode door2 type FALL | BITMAP1;
+		explode domes type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode base type BITMAPONLY | BITMAP1;
+		explode missile type BITMAPONLY | BITMAP2;
+		explode plate type BITMAPONLY | BITMAP3;
+		explode arm type SHATTER | BITMAP4;
+		explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode domes type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode base type BITMAPONLY | BITMAP1;
+	explode missile type BITMAPONLY | BITMAP2;
+	explode plate type BITMAPONLY | BITMAP3;
+	explode arm type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+	explode door1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode door2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode domes type BITMAPONLY | BITMAP2;
+}

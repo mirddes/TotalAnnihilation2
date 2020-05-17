@@ -1,0 +1,36 @@
+[armjanus_dead]
+{
+world=All Worlds;
+description=Janus Wreckage;
+category=arm_corpses;
+object=armjanus_dead;
+featuredead=armjanus_heap;
+footprintx=2;
+footprintz=2;
+height=20;
+blocking=1;
+hitdensity=100;
+metal=186;
+damage=720;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armjanus_heap]
+{
+world=All Worlds;
+description=Janus Wreckage;
+category=heaps;
+object=2x2c;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=93;
+damage=720;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

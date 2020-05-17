@@ -1,0 +1,38 @@
+[ARMSH_WEAPON]
+	{
+	ID=195;
+	name=Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=210;
+	reloadtime=.8;
+	weaponvelocity=450;
+	areaofeffect=8;
+	burstrate=.2;
+	duration=.02;
+	soundtrigger=1;
+
+	soundstart=lasrfast;
+	soundhit=lashit;
+
+	firestarter=50;
+	beamweapon=1;
+	color=232;	/* GREEN */
+	color2=234;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=45;
+		}
+	}

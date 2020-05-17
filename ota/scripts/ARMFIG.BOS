@@ -1,0 +1,128 @@
+// Arm Fighter Script
+
+piece flare1,flare2,base;
+
+static-var bRolling,fire;
+
+#define SMOKEPIECE1 base
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armfig\activatescr.bos"
+#include "..\anim3d\armfig\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+
+#define ACTIVATECMD call-script activatescr();
+#define DEACTIVATECMD call-script deactivatescr();
+#include "StateChg.h"
+
+MoveRate2()
+	{
+	if(rand(1,10)==1 && !bRolling)
+		{
+		bRolling = TRUE;
+		turn base to z-axis <240> speed <120>;
+		wait-for-turn base around z-axis;
+		turn base to z-axis <120> speed <180>;
+		wait-for-turn base around z-axis;
+		turn base to z-axis <0> speed <120>;
+		bRolling = FALSE;
+		}
+	}
+
+Create()
+	{
+	bRolling = FALSE;
+	fire = 0;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+Activate()
+	{
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	start-script RequestState( INACTIVE );
+	}
+
+FirePrimary()
+	{
+	fire = !fire;
+	}
+
+QueryPrimary(piecenum)
+	{
+	piecenum = fire;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type		BITMAPONLY | BITMAP1;
+		explode flare1 type		BITMAPONLY | BITMAP2;
+		explode flare2 type		BITMAPONLY | BITMAP3;
+		explode rearthrust type		BITMAPONLY | BITMAP4;
+		explode wing1 type		BITMAPONLY | BITMAP5;
+		explode wing1thrust type	BITMAPONLY | BITMAP1;
+		explode wing2 type		BITMAPONLY | BITMAP2;
+		explode wing2thrust type	BITMAPONLY | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type		BITMAPONLY | BITMAP1;
+		explode flare1 type		FALL | BITMAP2;
+		explode flare2 type		FALL | BITMAP3;
+		explode rearthrust type		FALL | BITMAP4;
+		explode wing1 type		SHATTER | EXPLODE_ON_HIT | BITMAP5;
+		explode wing1thrust type	FALL | BITMAP1;
+		explode wing2 type		BITMAPONLY | BITMAP2;
+		explode wing2thrust type	FALL | BITMAP3;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode base type		BITMAPONLY | BITMAP1;
+		explode flare1 type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode flare2 type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode rearthrust type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode wing1 type		SHATTER | BITMAP5;
+		explode wing1thrust type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode wing2 type		BITMAPONLY | BITMAP2;
+		explode wing2thrust type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		return( 0 );
+		}
+
+        // If severity is over 100, the unit just disintigrated.
+	corpsetype = 3;
+	explode base type		BITMAPONLY | BITMAP1;
+	explode flare1 type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode flare2 type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode rearthrust type		FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode wing1 type		SHATTER | EXPLODE_ON_HIT | BITMAP5;
+	explode wing1thrust type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode wing2 type		BITMAPONLY | BITMAP2;
+	explode wing2thrust type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	return( 0 );
+	}

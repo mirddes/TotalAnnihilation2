@@ -1,0 +1,107 @@
+[GlobalHeader]
+	{
+	missionname=The Barrier Reef;
+	missiondescription=19 X 19  Body of water separates two land masses.  Great underwater starts!;
+	planet=Green planet;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=1;
+	mapping=1;
+	tidalstrength=22;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=3300;
+	maxwindspeed=4500;
+	gravity=112;
+	maxunits=200;
+	waterdoesdamage=0;
+	waterdamage=0;
+	numplayers=10;
+	size=19 x 19;
+	memory=32 mb;
+	useonlyunits=The Barrier Reef.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=SeaBattle;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=1152;
+				ZPos=432;
+				}
+			[special1]
+				{
+				specialwhat=StartPos2;
+				XPos=6944;
+				ZPos=9328;
+				}
+			[special2]
+				{
+				specialwhat=StartPos3;
+				XPos=576;
+				ZPos=4048;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=9056;
+				ZPos=5152;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=1872;
+				ZPos=2224;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=8576;
+				ZPos=7760;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=6128;
+				ZPos=1392;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=976;
+				ZPos=8768;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=5648;
+				ZPos=3216;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=3552;
+				ZPos=5632;
+				}
+			}
+		}
+	}

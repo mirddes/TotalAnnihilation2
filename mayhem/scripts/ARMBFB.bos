@@ -1,0 +1,255 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  f1a, f2a, f1b, f2b, base, body, wing1a, wing1b, 
+       turret1, sleeve1, gun1a, gun1b, wing2a, wing2b, turret2, sleeve2,
+       gun2a, gun2b, boxes, glows, drop1, drop2;
+
+static-var  gun_1, gun_3;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	//get SET_UNITINFO(uiHealTime,20);
+	//set GRANT_UNITINFO to 0;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*
+Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}
+*/	
+
+Create()
+{
+	gun_1 = 0;
+	gun_3 = 0;
+	move body to y-axis [10] NOW;
+	sleep 100;
+	//set GRANT_UNITINFO to 1;
+	//get SET_UNITINFO(uiHealTime,0);
+	while(get BUILD_PERCENT_LEFT)
+	{
+		sleep 500;
+	}
+	
+	start-script SmokeUnit();
+	move body to y-axis [0] speed [10];
+}
+
+Activate()
+{
+		move wing1a to x-axis [-4.000000] speed [5.000000];
+		move wing2a to x-axis [4.000000] speed [5.000000];
+		move wing1b to x-axis [-4.000000] speed [2.000000];
+		move wing2b to x-axis [4.000000] speed [2.000000];
+		sleep 2000;
+		return (0);
+}
+
+Deactivate()
+{
+		move wing1a to x-axis [0.000000] speed [5.000000];
+		move wing2a to x-axis [0.000000] speed [5.000000];
+		move wing1b to x-axis [0.000000] speed [2.000000];
+		move wing2b to x-axis [0.000000] speed [2.000000];
+		sleep 2000;
+		return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	gun_1 = !gun_1;
+	if( !gun_1 )
+	{
+		piecenum = drop1;
+		return(0);
+	}
+	piecenum = drop2;
+}
+
+RestoreAfterDelay()
+{
+	sleep 5000;
+	turn turret1 to y-axis <0> speed <180>;
+	turn turret2 to y-axis <0> speed <180>;
+	turn sleeve1 to x-axis <0> speed <150>;
+	turn sleeve2 to x-axis <0> speed <150>;
+	return(0);
+}
+
+//=========3rd
+
+AimTertiary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 2;
+	if( ( gun_3 == 0 ) OR ( gun_3 == 2 ) )
+	{
+		turn turret1 to y-axis heading speed <700>;
+		if( pitch < 0 )
+		{
+			turn sleeve1 to x-axis (0 - pitch) speed <500>;
+		}
+	}
+	if( ( gun_3 == 1 ) OR ( gun_3 > 2 ) )
+	{
+		turn turret2 to y-axis heading speed <700>;
+		if( pitch < 0 )
+		{
+			turn sleeve2 to x-axis (0 - pitch) speed <500>;
+		}
+	}
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FireTertiary()
+{
+	if( !gun_3 )
+	{
+		move gun1a to z-axis [-2] speed [500];
+		sleep 150;
+		move gun1a to z-axis [0] speed [2];
+	}
+	if( gun_3 == 1 )
+	{
+		move gun2a to z-axis [-2] speed [500];
+		sleep 150;
+		move gun2a to z-axis [0] speed [2];
+	}
+	if( gun_3 == 2 )
+	{
+		move gun1b to z-axis [-2] speed [500];
+		sleep 150;
+		move gun1b to z-axis [0] speed [2];
+	}
+	++gun_3;
+	if( gun_3 > 3 )
+	{
+		move gun2b to z-axis [-2] speed [500];
+		sleep 150;
+		move gun2b to z-axis [0] speed [2];
+		gun_3 = 0;
+	}
+	return (0);
+}
+
+AimFromTertiary(piecenum)
+{
+	if( ( gun_3 == 0 ) OR ( gun_3 == 2 ) )
+	{
+		piecenum = sleeve1;
+		return(0);
+	}
+	piecenum = sleeve2;
+}
+
+QueryTertiary(piecenum)
+{
+	piecenum = gun_3;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode wing1a type BITMAPONLY | BITMAP3;
+		explode wing2b type BITMAPONLY | BITMAP4;
+		explode drop1 type BITMAPONLY | BITMAPNUKE;
+		explode drop2 type BITMAPONLY | BITMAPNUKE;
+		explode turret1 type BITMAPONLY | BITMAP3;
+		explode turret2 type BITMAPONLY | BITMAP4;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode wing1a type FALL | BITMAP3;
+		explode wing2b type FALL | BITMAP4;
+		explode wing1a type FALL | BITMAP4;
+		explode wing2b type FALL | BITMAP3;
+		explode drop1 type FALL | BITMAPNUKE;
+		explode drop2 type FALL | BITMAPNUKE;
+		explode turret1 type BITMAPONLY | BITMAP3;
+		explode turret2 type BITMAPONLY | BITMAP4;
+		explode gun1a type FALL | BITMAP1;
+		explode gun1b type FALL | BITMAP5;
+		explode gun2a type FALL | BITMAP5;
+		explode gun2b type FALL | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type BITMAPONLY | BITMAP1;
+		explode wing1a type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+		explode wing2b type SHATTER | EXPLODE_ON_HIT | BITMAP4;
+		explode drop1 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAPNUKE;
+		explode drop2 type FALL | SMOKE | EXPLODE_ON_HIT | BITMAPNUKE;
+		explode turret1 type BITMAPONLY | BITMAP3;
+		explode turret2 type BITMAPONLY | BITMAP4;
+		explode gun1a type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode gun1b type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode gun2a type FALL | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode gun2b type FALL | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode body type BITMAPONLY | BITMAP2;
+	explode wing1a type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode wing2b type SHATTER | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode drop1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode drop2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode turret1 type BITMAPONLY | BITMAP3;
+	explode turret2 type BITMAPONLY | BITMAP4;
+	explode gun1a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode gun1b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode gun2a type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode gun2b type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+}

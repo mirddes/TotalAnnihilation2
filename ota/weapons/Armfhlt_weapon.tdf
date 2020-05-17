@@ -1,0 +1,39 @@
+[ARMFHLT_LASER]
+	{
+	ID=48;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=480;
+	reloadtime=1.1;
+	energypershot=75;
+	weaponvelocity=800;
+	areaofeffect=8;
+	
+	soundstart=Lasrmas2;
+	soundhit=lasrhit1;
+
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+	
+	tolerance=8000;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=200;
+		}
+	}
+

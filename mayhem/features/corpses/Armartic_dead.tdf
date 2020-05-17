@@ -1,0 +1,35 @@
+[armartic_dead]
+{
+world=All Worlds;
+description=Artic Wreckage;
+category=arm_corpses;
+object=armartic_dead;
+featuredead=armartic_heap;
+footprintx=2;
+footprintz=2;
+height=40;
+blocking=1;
+hitdensity=100;
+metal=540;
+damage=3072;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armartic_heap]
+{
+world=All Worlds;
+description=Artic Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=270;
+damage=3072;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

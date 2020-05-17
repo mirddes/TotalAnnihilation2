@@ -1,0 +1,10 @@
+MISSION 22.002ARMCP
+Zerstören Sie das Energiedepot.
+
+&YPRIORITÄT&
+Bei den Koordinaten 6551:447 liegt ein gewaltiger Energiekomplex.  Ein Großteil der für die Verteidigung der Heimatwelt nötigen Energie ist hier zu finden. Wir müssen &RDieses Energiedepot unbedingt zerstören. Hoffentlich schwächt der Zusammenbruch dieses Komplexes das Zentralgewissen der CORE derart, daß die Verbände der ARM sich letztlich durchsetzen können.
+
+NACHRICHTENDIENSTLICHE MITTEILUNG
+Das Energiedepot besteht aus mehreren energiesammelnden und -speichernden Gebäuden auf der anderen Seite der Abwasserkanäle im Norden. Setzen Sie über und zerstören Sie alle.
+
+ENDE

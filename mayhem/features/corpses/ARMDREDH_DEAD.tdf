@@ -1,0 +1,36 @@
+[ARMDREDH_DEAD]
+{
+world=All Worlds;
+description=Samurai Wreckage;
+category=ARM_corpses;
+object=ARMDREDH_DEAD;
+featuredead=ARMDREDH_HEAP;
+footprintx=4;
+footprintz=4;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=12934;
+damage=22200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[ARMDREDH_HEAP]
+{
+world=All Worlds;
+description=Samurai Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=12934;
+damage=22200;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+

@@ -1,0 +1,35 @@
+[CORSUMO_WEAPON]
+	{
+	ID=174;
+	name=High Energy Laser;
+	rendertype=0;
+	lineofsight=1;
+	turret=1;
+
+	range=300;
+	reloadtime=1.05;
+	energypershot=100;
+	weaponvelocity=700;
+	areaofeffect=12;
+	soundstart=lasrhvy3;
+	soundhit=lasrhit1;
+	firestarter=90;
+	beamweapon=1;
+	color=96;	/* blue */
+	color2=98;
+
+	explosiongaf=fx;
+	explosionart=explode5;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom1;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashsm;
+
+	[DAMAGE]
+		{
+		default=290;
+		}
+	}
+

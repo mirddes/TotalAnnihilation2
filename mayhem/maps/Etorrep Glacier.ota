@@ -1,0 +1,104 @@
+[GlobalHeader]
+	{
+	missionname=Etorrep Glacier;
+	missiondescription=5 X 8  Strong winds coming from ocean.;
+	planet=Ice;
+	missionhint=;
+	brief=;
+	narration=;
+	glamour=;
+	lineofsight=0;
+	mapping=0;
+	tidalstrength=15;
+	solarstrength=20;
+	lavaworld=0;
+	killmul=50;
+	timemul=0;
+	minwindspeed=500;
+	maxwindspeed=5000;
+	gravity=128;
+	numplayers=2, 3;
+	size=6 x 9;
+	memory=16 mb;
+	useonlyunits=Etorrep Glacier.tdf;
+	SCHEMACOUNT=1;
+	[Schema 0]
+		{
+		Type=Network 1;
+		aiprofile=DEFAULT;
+		SurfaceMetal=3;
+		MohoMetal=40;
+		HumanMetal=1000;
+		ComputerMetal=1000;
+		HumanEnergy=1000;
+		ComputerEnergy=1000;
+		MeteorWeapon=;
+		MeteorRadius=0;
+		MeteorDensity=0;
+		MeteorDuration=0;
+		MeteorInterval=0;
+		[specials]
+			{
+			[special0]
+				{
+				specialwhat=StartPos1;
+				XPos=96;
+				ZPos=2704;
+				}
+			[special1]
+				{
+				specialwhat=StartPos3;
+				XPos=1216;
+				ZPos=1888;
+				}
+			[special2]
+				{
+				specialwhat=StartPos2;
+				XPos=2336;
+				ZPos=2624;
+				}
+			[special3]
+				{
+				specialwhat=StartPos4;
+				XPos=1664;
+				ZPos=656;
+				}
+			[special4]
+				{
+				specialwhat=StartPos5;
+				XPos=784;
+				ZPos=608;
+				}
+			[special5]
+				{
+				specialwhat=StartPos6;
+				XPos=2464;
+				ZPos=384;
+				}
+			[special6]
+				{
+				specialwhat=StartPos7;
+				XPos=96;
+				ZPos=400;
+				}
+			[special7]
+				{
+				specialwhat=StartPos8;
+				XPos=480;
+				ZPos=2128;
+				}
+			[special8]
+				{
+				specialwhat=StartPos9;
+				XPos=1984;
+				ZPos=2240;
+				}
+			[special9]
+				{
+				specialwhat=StartPos10;
+				XPos=1392;
+				ZPos=2944;
+				}
+			}
+		}
+	}

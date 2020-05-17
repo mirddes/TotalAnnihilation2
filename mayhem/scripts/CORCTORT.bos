@@ -1,0 +1,440 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, door1, door2, turret, nano, beam, 
+	   leg1, foot1, leg2, foot2, leg3, foot3, leg4, foot4,
+	   g1, g2, g3, g4, hip1, hip2, hip3, hip4;
+
+static-var  Heading_1, bMoving, Request_3, State_4, Busy_5, depth_6, speed1, speed2, speed3, speed4, speed5, speed6, x_slope, z_slope;
+//buildingid, buildingpos, buildingtype, buildingcrc;
+			
+#define FBIMAXVELOCITY		[0.85] * 12
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	var lxsnxs, lzsnzs;
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			if( depth_6 == 3 )
+			{
+				smoketype = 259;
+			}
+			emit-sfx smoketype from turret;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		while( sleeptime >= 200 )
+		{
+			sleep 200;
+			sleeptime = sleeptime - 200;
+			if( bMoving )
+			{
+				lxsnxs=x_slope;// old slope
+				lzsnzs=z_slope;// old slope
+				if( depth_6 != 0 )// Not transported: read the ground slope
+				{
+					x_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot2)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot2)));
+					while(x_slope>32768)
+					{	x_slope=x_slope - 65536;	}
+					z_slope=get ATAN(get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get GROUND_HEIGHT(get PIECE_XZ(foot4)), get XZ_HYPOT(get PIECE_XZ(foot1) - get PIECE_XZ(foot4)));
+					while(z_slope>32768)
+					{	z_slope=z_slope - 65536;	}
+				}
+				if( depth_6 == 0 )// Transported: reset slope to zero
+				{
+					x_slope=0;
+					z_slope=0;
+				}
+				lxsnxs=lxsnxs - x_slope;// slope delta with time
+				lzsnzs=lzsnzs - z_slope;// slope delta with time
+				if(lxsnxs<0)
+				{	lxsnxs=0 - lxsnxs;	}// absoluted
+				if(lzsnzs<0)
+				{	lzsnzs=0 - lzsnzs;	}// absoluted
+				turn base to x-axis x_slope speed lxsnxs*4;
+				turn base to z-axis z_slope speed lzsnzs*4;
+			}
+		}
+		sleep sleeptime;
+	}
+}
+
+RequestState()
+{
+	while( ( !Busy_5 ) AND Request_3 != State_4 )
+	{
+		Busy_5 = 1;
+		if( Request_3 AND ( !State_4 ) )
+		{
+			turn leg1 to y-axis <0> now;
+			turn leg2 to y-axis <0> now;
+			turn leg3 to y-axis <0> now;
+			turn leg4 to y-axis <0> now;
+			turn foot1 to y-axis <0> now;
+			turn foot2 to y-axis <0> now;
+			turn foot3 to y-axis <0> now;
+			turn foot4 to y-axis <0> now;
+			turn door1 to z-axis <0> now;
+			turn door2 to z-axis <0> now;
+			turn door1 to z-axis <-180> speed <140>;
+			turn door2 to z-axis <180> speed <140>;
+			sleep 1400;
+			move turret to y-axis [4.2] speed [11];
+			move nano to y-axis [0.7] speed [3];
+			sleep 450;
+			turn nano to y-axis Heading_1 speed <160>;
+			wait-for-turn nano around y-axis;
+			set INBUILDSTANCE to 1;
+			State_4 = 1;
+		}
+		if( ( !Request_3 ) AND State_4 )
+		{
+			State_4 = 0;
+			set INBUILDSTANCE to 0;
+			turn nano to y-axis <0> speed <160>;
+			wait-for-turn nano around y-axis; 
+			turn door1 to z-axis <-180> now;
+			turn door2 to z-axis <180> now;
+			move turret to y-axis [4.2] now;
+			move nano to y-axis [0.7] now;
+			move turret to y-axis [0] speed [11];
+			move nano to y-axis [0] speed [3];
+			sleep 450;
+			turn door1 to z-axis <0> speed <140>;
+			turn door2 to z-axis <0> speed <140>;
+			sleep 1400;
+		}
+		Busy_5 = 0;
+	}
+}
+
+/*Cloak(cloakdist, shieldID)
+{
+	//if the shield is cloaked and this unit hasn't run this bit yet, then go
+	if( cloakdist )
+	{
+		if ((get GET_CLOAKED) == 0)
+		{
+			get SET_CLOAKED(1);
+		}
+		while( (get DISTANCE (get MY_ID, shieldID)) <= cloakdist AND get GET_CLOAKED(shieldID) )
+		{
+			sleep 133;
+		}
+		get SET_CLOAKED(0);
+	}
+}*/	
+
+Create()
+{
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;*/
+	var fbimv;
+	fbimv=FBIMAXVELOCITY;
+	speed1=fbimv / 22542 * <1>;
+	speed2=speed1 * 2;
+	speed3=fbimv / 19602 * <1>;
+	speed4=speed3 * 2;
+	speed5=speed4 * 2;
+	speed6=fbimv;
+	Heading_1 = 0;
+	bMoving = FALSE;
+	Request_3 = 0;
+	State_4 = 0;
+	Busy_5 = 0;
+	x_slope = 0;
+	z_slope = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script SmokeUnit();
+}
+
+MotionControl()
+{
+	var f1limit, f2limit, f3limit, f4limit;
+	f1limit = 0;
+	f2limit = 0;
+	f3limit = 0;
+	f4limit = 0;
+	bMoving=1;
+	while (bMoving)
+	{
+		turn hip4 to y-axis <-20> speed speed1;
+		turn leg4 to y-axis <40> speed speed2;
+		turn foot4 to y-axis <-20> speed speed1;
+		turn hip1 to y-axis <20> speed speed1;
+		turn leg1 to y-axis <-40> speed speed2;
+		turn foot1 to y-axis <20> speed speed1;
+		turn leg2 to z-axis <30> speed <300>;
+		turn foot2 to z-axis <-15> speed <167>;
+		turn foot2 to x-axis <0> speed <167>;
+		turn hip2 to y-axis <-20> speed speed3;
+		turn leg2 to y-axis <40> speed speed4;
+		turn foot2 to y-axis <-20> speed speed3;
+		move foot3 to y-axis [3] speed [30];
+		turn hip3 to y-axis <20> speed speed3;
+		turn leg3 to y-axis <-40> speed speed5;
+		turn foot3 to y-axis <20> speed speed4;
+		move body to z-axis [1] speed speed6;
+		wait-for-move body along z-axis;
+		move body to z-axis [0] speed speed6;
+		wait-for-turn leg2 around y-axis;
+		turn leg2 to z-axis <0> speed <400>;
+		turn foot2 to z-axis <0> speed <222>;
+		turn foot2 to x-axis <25> speed <50>;
+		/*f2limit = get GROUND_HEIGHT(get PIECE_XZ(foot2)) - get PIECE_Y(g2);
+		f3limit = get GROUND_HEIGHT(get PIECE_XZ(foot3)) - get PIECE_Y(g3);
+		if (f2limit < [-1])
+		{
+			f2limit = [-1];
+		}
+		if (f3limit < [-1])
+		{
+			f3limit = [-1];
+		}*/
+		move foot2 to y-axis f2limit speed [40];
+		move foot3 to y-axis f3limit speed [40];
+		wait-for-move foot2 along y-axis;
+		sleep 100;
+		if (bMoving)
+		{
+			turn hip2 to y-axis <20> speed speed1;
+			turn leg2 to y-axis <-40> speed speed2;
+			turn foot2 to y-axis <20> speed speed1;
+			turn hip3 to y-axis <-20> speed speed1;
+			turn leg3 to y-axis <40> speed speed2;
+			turn foot3 to y-axis <-20> speed speed1;
+			turn leg4 to z-axis <-30> speed <300>;
+			turn foot4 to z-axis <15> speed <167>;
+			turn foot4 to x-axis <0> speed <167>;
+			turn hip4 to y-axis <20> speed speed3;
+			turn leg4 to y-axis <-40> speed speed4;
+			turn foot4 to y-axis <20> speed speed3;
+			move body to z-axis [1] speed speed6;
+			move foot1 to y-axis [3] speed [30];
+			turn hip1 to y-axis <-20> speed speed3;
+			turn leg1 to y-axis <40> speed speed5;
+			turn foot1 to y-axis <-20> speed speed4;
+			wait-for-move body along z-axis;
+			move body to z-axis [0] speed speed6;
+			wait-for-turn leg4 around y-axis;
+			turn leg4 to z-axis <0> speed <400>;
+			turn foot4 to z-axis <0> speed <222>;
+			turn foot4 to x-axis <25> speed <50>;
+			/*f4limit = get GROUND_HEIGHT(get PIECE_XZ(foot4)) - get PIECE_Y(g4);
+			f1limit = get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get PIECE_Y(g1);
+			if (f4limit < [-1])
+			{
+				f4limit = [-1];
+			}
+			if (f1limit < [-1])
+			{
+				f1limit = [-1];
+			}*/
+			move foot4 to y-axis f4limit speed [40];
+			move foot1 to y-axis f1limit speed [40];
+			wait-for-move foot4 along y-axis;
+			sleep 100;
+		}
+	}
+	turn hip1 to y-axis <0> speed <60>;
+	turn hip2 to y-axis <0> speed <60>;
+	turn hip3 to y-axis <0> speed <60>;
+	turn hip4 to y-axis <0> speed <60>;
+	turn leg1 to y-axis <0> speed <120>;
+	turn leg2 to y-axis <0> speed <120>;
+	turn leg3 to y-axis <0> speed <120>;
+	turn leg4 to y-axis <0> speed <120>;
+	turn foot1 to x-axis <0> speed <120>;
+	turn foot2 to x-axis <0> speed <120>;
+	turn foot3 to x-axis <0> speed <120>;
+	turn foot4 to x-axis <0> speed <120>;
+	turn foot1 to y-axis <0> speed <120>;
+	turn foot2 to y-axis <0> speed <120>;
+	turn foot3 to y-axis <0> speed <120>;
+	turn foot4 to y-axis <0> speed <120>;
+	turn foot1 to z-axis <0> speed <120>;
+	turn foot2 to z-axis <0> speed <120>;
+	turn foot3 to z-axis <0> speed <120>;
+	turn foot4 to z-axis <0> speed <120>;
+	/*f4limit = get GROUND_HEIGHT(get PIECE_XZ(foot4)) - get PIECE_Y(g4);
+	f1limit = get GROUND_HEIGHT(get PIECE_XZ(foot1)) - get PIECE_Y(g1);
+	f2limit = get GROUND_HEIGHT(get PIECE_XZ(foot2)) - get PIECE_Y(g2);
+	f3limit = get GROUND_HEIGHT(get PIECE_XZ(foot3)) - get PIECE_Y(g3);
+	if (f4limit < [-1])
+	{
+		f4limit = [-1];
+	}
+	if (f1limit < [-1])
+	{
+		f1limit = [-1];
+	}
+	if (f2limit < [-1])
+	{
+		f2limit = [-1];
+	}
+	if (f3limit < [-1])
+	{
+		f3limit = [-1];
+	}*/
+	move foot4 to y-axis f4limit speed [40];
+	move foot1 to y-axis f1limit speed [40];
+	move foot2 to y-axis f2limit speed [40];
+	move foot3 to y-axis f3limit speed [40];
+	move body to z-axis [0] now;
+}
+
+StartMoving()
+{
+	if (!bMoving)
+	{
+		bMoving=1;
+		start-script MotionControl();
+	}
+}
+
+StopMoving()
+{
+	bMoving = 0;
+	/*if ((get CURRENT_ORDER_TYPE) == 25 AND (get PLAYER_TYPE(get UNIT_TEAM(get MY_ID)) == 2))
+	{
+		sleep 1000;
+		if (!bMoving AND !Request_3)
+		{
+			get ORDER_SELF(45,0);
+		}
+	}*/
+}
+
+setSFXoccupy(Func_Var_1)
+{
+	depth_6 = Func_Var_1;
+}
+
+StartBuilding(Func_Var_1)
+{
+	Heading_1 = Func_Var_1;
+	Request_3 = 1;
+	start-script RequestState();
+	/*buildingid=0;
+	buildingpos=0;
+	buildingtype=0;
+	buildingcrc=0;
+	if ((get CURRENT_ORDER_TYPE) == 25)
+	{
+		buildingid=get CURRENT_ORDER_TARGET_ID;
+		if (buildingid)
+		{
+			buildingpos=get UNIT_XZ(buildingid);
+			buildingcrc=get UNIT_TYPE_CRC(buildingid);
+			buildingtype=get CURRENT_ORDER_PAR(1);
+		}
+	}*/
+	return (0);
+}
+
+StopBuilding()
+{
+	/*if ((get UNIT_XZ(buildingid)) == 0)
+	{
+		if (get TEST_BUILD_SPOT(buildingcrc,buildingpos))
+		{
+			var unitz,unitx;
+			unitz=get UNITZ(buildingid) - (get GROUND_HEIGHT(get UNIT_XZ(buildingid)) / 131072);
+			unitx=get UNITX(buildingid);
+			buildingpos=get MAKEDWORD(unitz,unitx);
+			get ORDER_SELF_POS(25,1,buildingpos,buildingtype);
+			buildingid=0;
+			buildingpos=0;
+			buildingtype=0;
+			buildingcrc=0;
+			return (0);
+		}
+	}*/
+	Request_3 = 0;
+	if( !Request_3 )
+	{
+		start-script RequestState();
+	}
+}
+
+QueryNanoPiece(piecenum)
+{
+	piecenum = beam;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( ( depth_6 >= 4 ) AND severity <= 25 )
+	{
+		corpsetype = 1;
+		explode body type BITMAPONLY | BITMAP1;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		explode turret type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode body type BITMAPONLY | BITMAP1;
+		explode foot1 type BITMAPONLY | BITMAP3;
+		explode foot2 type BITMAPONLY | BITMAP3;
+		explode foot3 type BITMAPONLY | BITMAP3;
+		explode foot4 type BITMAPONLY | BITMAP3;
+		explode turret type SHATTER | BITMAP2;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode body type SHATTER | BITMAP1;
+		explode leg1 type FALL | BITMAP4;
+		explode leg2 type FALL | BITMAP4;
+		explode leg3 type FALL | BITMAP4;
+		explode leg4 type FALL | BITMAP4;
+		explode foot1 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot2 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot3 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode foot4 type FALL | EXPLODE_ON_HIT | BITMAP3;
+		explode turret type SHATTER | BITMAP2;
+		explode nano type FALL | BITMAP3;
+		return (0);
+	}
+	corpsetype = 3;
+	explode body type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode leg1 type FALL | BITMAP4;
+	explode leg2 type FALL | BITMAP4;
+	explode leg3 type FALL | BITMAP4;
+	explode leg4 type FALL | BITMAP4;
+	explode foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot3 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode foot4 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode turret type SHATTER | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode nano type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+}

@@ -1,0 +1,950 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  base, body, glow, dome1, dome2, dome3, lightning1, lightning2, lightning3,
+	 lightning4, lightning5, lightning6, lightning7, lightning8, lightning9,
+	 emp1, glow1, tubing, tube1, tube2, energy, sparkle1, sparkle2, sparkle3, 
+	 sparkle4, sparkle5, sparkle6, sparkle7, sparkle8, sparkle9, armor, 
+	 arm1_1, arm1_2, arm1_3, arm1_4, arm1_5, arm1_6, arm1_7, arm1_8,
+	 arm2_1, arm2_2, arm2_3, arm2_4, arm2_5, arm2_6, arm2_7, arm2_8,
+	 arm3_1, arm3_2, arm3_3, arm3_4, arm3_5, arm3_6, arm3_7, arm3_8,
+	 cover, this, metal ;
+
+static-var shared, upgraded;
+static-var shield_on, charge_on, nbr_charge, nbr_shield, dome_on, nbr_dome ; 
+
+#define SIG_HIT 	4
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+#define talfus 6970681
+#define talckfus 6136734
+#define armfus 3319069
+#define armckfus 3384605
+#define corfus 4247847
+#define corckfus 4247847
+#define corsfus 5093181
+#define armsfus 4813814
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+HitByWeapon()
+{
+	signal SIG_HIT;
+	set-signal-mask SIG_HIT;
+	if(upgraded)
+	{
+		show arm1_1;
+		show arm2_1;
+		show arm3_1;
+		sleep 80;
+		show arm1_2;
+		show arm2_2;
+		show arm3_2; 
+		sleep 80;
+		show arm1_3;
+		show arm2_3;
+		show arm3_3; 
+		sleep 80;
+		show arm1_4;
+		show arm2_4;
+		show arm3_4; 
+		sleep 80;
+		show arm1_5;
+		show arm2_5;
+		show arm3_5; 
+		sleep 80;
+		show arm1_6;
+		show arm2_6;
+		show arm3_6; 
+		sleep 80;
+		show arm1_7;
+		show arm2_7;
+		show arm3_7; 
+		sleep 80;
+		show arm1_8;
+		show arm2_8;
+		show arm3_8;
+		
+		sleep 10000;
+		
+		hide arm1_8;
+		hide arm2_8;
+		hide arm3_8;
+		sleep 80;
+		hide arm1_7;
+		hide arm2_7;
+		hide arm3_7; 
+		sleep 80;
+		hide arm1_6;
+		hide arm2_6;
+		hide arm3_6; 
+		sleep 80;
+		hide arm1_5;
+		hide arm2_5;
+		hide arm3_5; 
+		sleep 80;
+		hide arm1_4;
+		hide arm2_4;
+		hide arm3_4; 
+		sleep 80;
+		hide arm1_3;
+		hide arm2_3;
+		hide arm3_3;
+		sleep 80;
+		hide arm1_2;
+		hide arm2_2;
+		hide arm3_2; 
+		sleep 80;
+		hide arm1_1;
+		hide arm2_1;
+		hide arm3_1; 
+		sleep 80; 
+	}
+}
+
+lightning(id)
+{
+	while(shared)
+	{
+		if(id)
+		{
+			move lightning2 to y-axis [18] speed rand([10],[20]);
+			move lightning5 to y-axis [18] speed rand([10],[20]);
+			move lightning8 to y-axis [18] speed rand([10],[20]);
+			wait-for-move lightning2 along y-axis;
+			wait-for-move lightning5 along y-axis;
+			wait-for-move lightning8 along y-axis;
+			move lightning2 to y-axis [0] now;
+			move lightning5 to y-axis [0] now;
+			move lightning8 to y-axis [0] now;
+		}
+		if(!id)
+		{
+			move lightning3 to y-axis [18] speed rand([10],[20]);
+			move lightning6 to y-axis [18] speed rand([10],[20]);
+			move lightning9 to y-axis [18] speed rand([10],[20]);
+			wait-for-move lightning3 along y-axis;
+			wait-for-move lightning6 along y-axis;
+			wait-for-move lightning9 along y-axis;
+			move lightning3 to y-axis [0] now;
+			move lightning6 to y-axis [0] now;
+			move lightning9 to y-axis [0] now;
+		}
+	}
+}
+
+buzz()
+{
+//	turn lightning1 to y-axis <33> now;
+//	turn lightning2 to y-axis <33> now;
+//	turn lightning3 to y-axis <33> now;
+	
+	dont-cache lightning1;
+	dont-cache lightning2;
+	dont-cache lightning3;
+	dont-cache lightning4;
+	dont-cache lightning5;
+	dont-cache lightning6;
+	dont-cache lightning7;
+	dont-cache lightning8;
+	dont-cache lightning9;
+
+	while(shared)
+	{
+		spin lightning1 around x-axis speed rand(<240>,<500>);
+		spin lightning2 around x-axis speed rand(<240>,<500>);
+		spin lightning3 around x-axis speed rand(<240>,<500>);
+		spin lightning4 around x-axis speed rand(<240>,<500>);
+		spin lightning5 around x-axis speed rand(<240>,<500>);
+		spin lightning6 around x-axis speed rand(<240>,<500>);
+		spin lightning7 around x-axis speed rand(<240>,<500>);
+		spin lightning8 around x-axis speed rand(<240>,<500>);
+		spin lightning9 around x-axis speed rand(<240>,<500>);
+
+		if(rand(-1,1))
+		{
+			show lightning1;
+		}
+		if(rand(-1,1))
+		{
+			show lightning2;
+		}
+		if(rand(-1,1))
+		{
+			show lightning3;
+		}
+		if(rand(-1,1))
+		{
+			show lightning4;
+		}
+		if(rand(-1,1))
+		{
+			show lightning5;
+		}
+		if(rand(-1,1))
+		{
+			show lightning6;
+		}
+		if(rand(-1,1))
+		{
+			show lightning7;
+		}
+		if(rand(-1,1))
+		{
+			show lightning8;
+		}
+		if(rand(-1,1))
+		{
+			show lightning9;
+		}
+
+		sleep rand(50,150);
+		spin lightning1 around x-axis speed rand(<-240>,<-500>);
+		spin lightning2 around x-axis speed rand(<-240>,<-500>);
+		spin lightning3 around x-axis speed rand(<-240>,<-500>);
+		spin lightning4 around x-axis speed rand(<-240>,<-500>);
+		spin lightning5 around x-axis speed rand(<-240>,<-500>);
+		spin lightning6 around x-axis speed rand(<-240>,<-500>);
+		spin lightning7 around x-axis speed rand(<-240>,<-500>);
+		spin lightning8 around x-axis speed rand(<-240>,<-500>);
+		spin lightning9 around x-axis speed rand(<-240>,<-500>);
+
+		if(rand(0,1))
+		{
+			hide lightning1;
+		}
+		if(rand(0,1))
+		{
+			hide lightning2;
+		}
+		if(rand(0,1))
+		{
+			hide lightning3;
+		}
+		if(rand(0,1))
+		{
+			hide lightning4;
+		}
+		if(rand(0,1))
+		{
+			hide lightning5;
+		}
+		if(rand(0,1))
+		{
+			hide lightning6;
+		}
+		if(rand(0,1))
+		{
+			hide lightning7;
+		}
+		if(rand(0,1))
+		{
+			hide lightning8;
+		}
+		if(rand(0,1))
+		{
+			hide lightning9;
+		}
+
+		sleep rand(150,250);
+	}
+	hide lightning1;
+	hide lightning2;
+	hide lightning3;
+	hide lightning4;
+	hide lightning5;
+	hide lightning6;
+	hide lightning7;
+	hide lightning8;
+	hide lightning9;
+}
+
+/*
+sparking()
+{
+	dont-cache sparkle1;
+	dont-cache sparkle2;
+	dont-cache sparkle3;
+	dont-cache sparkle4;
+	dont-cache sparkle5;
+	dont-cache sparkle6;
+	dont-cache sparkle7;
+	dont-cache sparkle8;
+	dont-cache sparkle9;
+
+	set ARMORED to TRUE;
+	
+	show arm1_1;
+	show arm2_1;
+	show arm3_1;
+	sleep 500;
+	show arm1_2;
+	show arm2_2;
+	show arm3_2; 
+	sleep 500;
+	show arm1_3;
+	show arm2_3;
+	show arm3_3; 
+	sleep 500;
+	show arm1_4;
+	show arm2_4;
+	show arm3_4; 
+	sleep 500;
+	show arm1_5;
+	show arm2_5;
+	show arm3_5; 
+	sleep 500;
+	show arm1_6;
+	show arm2_6;
+	show arm3_6; 
+	sleep 500;
+	show arm1_7;
+	show arm2_7;
+	show arm3_7; 
+	sleep 500;
+	show arm1_8;
+	show arm2_8;
+	show arm3_8; 
+
+	while(upgraded)
+	{
+		spin sparkle1 around x-axis speed rand(<240>,<500>);
+		spin sparkle2 around x-axis speed rand(<240>,<500>);
+		spin sparkle3 around x-axis speed rand(<240>,<500>);
+		spin sparkle4 around x-axis speed rand(<240>,<500>);
+		spin sparkle5 around x-axis speed rand(<240>,<500>);
+		spin sparkle6 around x-axis speed rand(<240>,<500>);
+		spin sparkle7 around x-axis speed rand(<240>,<500>);
+		spin sparkle8 around x-axis speed rand(<240>,<500>);
+		spin sparkle9 around x-axis speed rand(<240>,<500>);
+
+		if(rand(-1,1))
+		{
+			show sparkle1;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle2;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle3;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle4;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle5;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle6;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle7;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle8;
+		}
+		if(rand(-1,1))
+		{
+			show sparkle9;
+		}
+
+		sleep rand(50,150);
+		spin sparkle1 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle2 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle3 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle4 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle5 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle6 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle7 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle8 around x-axis speed rand(<-240>,<-500>);
+		spin sparkle9 around x-axis speed rand(<-240>,<-500>);
+
+		if(rand(0,1))
+		{
+			hide sparkle1;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle2;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle3;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle4;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle5;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle6;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle7;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle8;
+		}
+		if(rand(0,1))
+		{
+			hide sparkle9;
+		}
+
+		sleep rand(150,250);
+	}
+	hide sparkle1;
+	hide sparkle2;
+	hide sparkle3;
+	hide sparkle4;
+	hide sparkle5;
+	hide sparkle6;
+	hide sparkle7;
+	hide sparkle8;
+	hide sparkle9;
+}
+*/
+	
+sharing()
+{
+	signal 2;
+	set-signal-mask 2;
+	start-script lightning(0);
+	start-script lightning(1);
+	start-script buzz();
+	while(shared)
+	{
+		move lightning1 to y-axis [18] speed rand([10],[20]);
+		move lightning4 to y-axis [18] speed rand([10],[20]);
+		move lightning7 to y-axis [18] speed rand([10],[20]);
+		wait-for-move lightning1 along y-axis;
+		wait-for-move lightning4 along y-axis;
+		wait-for-move lightning7 along y-axis;
+		move lightning1 to y-axis [0] now;
+		move lightning4 to y-axis [0] now;
+		move lightning7 to y-axis [0] now;
+	}
+}
+
+#define armfusSize ([16] + [1.25])
+#define armckfusSize ([16] + [1.25])
+#define corfusSize ([16] + [1.25])
+#define corckfusSize ([16] + [1.25])
+#define talfusSize ([22.4] + [2.5])
+#define talckfusSize ([22.4] + [2.5])
+#define corsfusSize ([32] + [5])
+#define armsfusSize ([32] + [5])
+
+#define mySize armsfusSize
+
+Detect()
+{
+	shared = 0;
+	sleep rand(500,5000);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+//	var h;
+//	var shgen_id;
+//	var shgen_count;
+		
+	while (1)
+	{
+		nbr_charge = 0;
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+//		shgen_count = 0;
+				
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+						//	shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+						//	shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+						//	shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+						//	shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_CHARGE)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= BOOST_RADIUS)
+						{
+							++nbr_charge;
+//							++nbr_charge;
+						}
+					}
+				}
+				if((get UNIT_BUILD_PERCENT_LEFT(unit_ID)) == 0)
+				{
+					height = get UNIT_HEIGHT(unit_ID);
+					if((height == corsfus) || (height == armsfus))
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= mySize + corsfusSize)
+						{
+							++nbr_charge;
+							++nbr_charge;
+							++nbr_charge;
+						}
+					}
+				}
+			}
+			if((!get UNIT_ALLIED(unit_ID)) == 1)	
+			{	
+				if(get UNIT_HEIGHT(unit_id)==METAL_UPGRADE_HEIGHT)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==100)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						{
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+							--nbr_charge;
+						}
+					}
+				}
+			}
+		}
+		if (nbr_charge < 6)
+		{
+			shared = 0;
+			set ACTIVATION to 0;
+		}
+		if (nbr_charge >= 6)
+		{
+			shared = 1;
+			set ACTIVATION to 1;
+			start-script sharing();
+		}
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(upgraded)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+				if(upgraded)
+				{
+					set ARMORED to 1;	
+				}
+			}
+		}	
+		sleep rand(4000,6000);
+	}
+}
+
+
+
+upgrade()
+{
+	var xz, x, z, unit_ID, distance;
+	var max, min;
+	max = get MAX_ID;
+	min = get MIN_ID;
+	var myid;
+	myid= get MY_ID;
+//	if (get UNIT_IS_ON_THIS_COMP(get(MY_ID)))
+//	{
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if(unit_ID != myid)
+			{
+				if(get UNIT_HEIGHT(unit_ID) == 3952378)
+				{
+					xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+					SECURE_XZ;
+					distance=get XZ_HYPOT(xz);
+					if (distance <= [25])
+					{
+						if (get UNIT_IS_ON_THIS_COMP(get(MY_ID)))
+						{
+							if (get UNIT_IS_ON_THIS_COMP(unit_ID))
+							{
+								drop-unit unit_ID;
+								attach-unit unit_ID to this;
+							}
+						}
+						show emp1;
+						show glow1;
+						show tubing;
+						show tube1;
+						show tube2;
+						dont-cache glow1;
+						upgraded = 1;
+//						start-script sparking();
+						set ARMORED to 1;
+						set INBUILDSTANCE to 0;
+						return(0);
+					}
+				}
+			}
+		}
+//	}
+}
+
+Create()
+{
+	nbr_charge = 0;
+	nbr_shield = 0;
+	nbr_dome = 0;	
+	
+	charge_on = 0;
+	shield_on = 0;
+	dome_on = 0;
+	
+	upgraded = 0;
+	
+	hide arm1_1;
+	hide arm2_1;
+	hide arm3_1;
+	hide arm1_2;
+	hide arm2_2;
+	hide arm3_2;
+	hide arm1_3;
+	hide arm2_3;
+	hide arm3_3;
+	hide arm1_4;
+	hide arm2_4;
+	hide arm3_4;
+	hide arm1_5;
+	hide arm2_5;
+	hide arm3_5;
+	hide arm1_6;
+	hide arm2_6;
+	hide arm3_6;
+	hide arm1_7;
+	hide arm2_7;
+	hide arm3_7;
+	hide arm1_8;
+	hide arm2_8;
+	hide arm3_8;
+	
+	hide sparkle1;
+	hide sparkle2;
+	hide sparkle3;
+	hide sparkle4;
+	hide sparkle5;
+	hide sparkle6;
+	hide sparkle7;
+	hide sparkle8;
+	hide sparkle9;
+	
+	hide lightning1;
+	hide lightning2;
+	hide lightning3;
+	hide lightning4;
+	hide lightning5;
+	hide lightning6;
+	hide lightning7;
+	hide lightning8;
+	hide lightning9;
+
+	hide emp1;
+	hide glow1;
+	hide tubing;
+	hide tube1;
+	hide tube2;
+
+	turn body to y-axis <-45.00> now;
+	turn dome1 to y-axis <45.00> now;
+	turn dome2 to y-axis <45.00> now;
+	turn dome3 to y-axis <45.00> now;
+
+	turn lightning4 to y-axis <60.00> now;
+	turn lightning5 to y-axis <60.00> now;
+	turn lightning6 to y-axis <60.00> now;
+	
+	turn lightning7 to y-axis <-60.00> now;
+	turn lightning8 to y-axis <-60.00> now;
+	turn lightning9 to y-axis <-60.00> now;
+	
+	turn sparkle4 to y-axis <60.00> now;
+	turn sparkle5 to y-axis <60.00> now;
+	turn sparkle6 to y-axis <60.00> now;
+	
+	turn sparkle7 to y-axis <-60.00> now;
+	turn sparkle8 to y-axis <-60.00> now;
+	turn sparkle9 to y-axis <-60.00> now;
+	
+	dont-shade glow;
+	dont-shade dome1;
+	dont-shade dome2;
+	dont-shade dome3;
+	
+	dont-shade tube1;
+	dont-shade tube2;
+	
+	dont-shade metal;
+	
+	dont-cache cover;
+	
+	dont-cache metal;
+	
+	
+	hide cover;
+	hide glow;
+	
+	
+
+	move energy to y-axis [3.00] now; 
+		
+	set INBUILDSTANCE to 1;
+	
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+//	start-script upgrade();
+}
+
+StopBuilding()
+{
+
+	sleep 1;
+	set INBUILDSTANCE to 1;
+	call-script upgrade();
+}
+
+StartBuilding()
+{
+	set INBUILDSTANCE to 0;
+	set ACTIVATION to 0;
+}
+
+QueryBuildInfo(piecenum)
+{
+	piecenum = this;
+}
+
+
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( upgraded == 1 )
+	{
+		if( severity <= 80 )
+		{
+			corpsetype = 1;
+			explode base type BITMAPONLY | BITMAP1;
+			return (0);
+		}
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 4;
+	explode base type BITMAPONLY | BITMAP1;
+}

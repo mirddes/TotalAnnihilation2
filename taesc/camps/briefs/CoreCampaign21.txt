@@ -1,0 +1,11 @@
+MISSION 21.1CORE
+
+INTELL-TAP:
+Aegus is Empyrrean's moon. It will serve as a perfect staging area for the final assault on the Arm homeworld. The moon's low gravity, lack of atmosphere and seas makes this a land unit mission. The Arm Galactic Gate is critical to our invasion of Empyrrean.
+
+&RCapture the Arm Gate.&
+
+&R*WARNING*WARNING*WARNING*&
+&RArm has set the final Gate on implode sequence. Capture the Gate before it implodes.& 
+
+DO SO NOW.

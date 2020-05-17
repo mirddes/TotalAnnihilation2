@@ -1,0 +1,28 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+
+piece  base, shell, hole, height;
+
+Create()
+{
+	set ARMORED to 1;
+	move shell to y-axis [10] now;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1;
+	}
+	hide base;
+	hide shell;
+	hide hole;
+	hide height;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = shell;
+}	
+
+//3.174558

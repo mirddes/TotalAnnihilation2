@@ -1,0 +1,1566 @@
+[coraap_heap]
+{
+world=All Worlds;
+description=Adv Air Plant Wreckage;
+category=heaps;
+object=6x6a;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=789;
+damage=1760;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coraca_heap]
+{
+world=All Worlds;
+description=Adv Cons Air Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=177;
+damage=296;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corack_heap]
+{
+world=All Worlds;
+description=Adv Cons Kbot Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=143;
+damage=856;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coracv_heap]
+{
+world=All Worlds;
+description=Adv Cons Vehicle Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=182;
+damage=976;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corah_heap]
+{
+world=All Worlds;
+description=Slinger Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=51;
+damage=316;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corak_heap]
+{
+world=All Worlds;
+description=AK Wreckage;
+category=heaps;
+object=2x2c;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=25;
+damage=212;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coralab_heap]
+{
+world=All Worlds;
+description=Adv Kbot Lab Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=674;
+damage=2536;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coramph_heap]
+{
+world=All Worlds;
+description=Gimp Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=299;
+damage=920;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corap_heap]
+{
+world=All Worlds;
+description=Air Plant Wreckage;
+category=heaps;
+object=6x6b;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=292;
+damage=1540;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corape_heap]
+{
+world=All Worlds;
+description=Rapier Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=192;
+damage=752;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corarad_heap]
+{
+world=All Worlds;
+description=Adv Radar Wreckage;
+category=heaps;
+object=2x2c;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=73;
+damage=208;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corasp_heap]
+{
+world=All Worlds;
+description=Repair Pad Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=146;
+damage=552;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coravp_heap]
+{
+world=All Worlds;
+description=Adv Vehicle Plant Wreckage;
+category=heaps;
+object=6x6c;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=665;
+damage=2464;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corbuild_heap]
+{
+world=All Worlds;
+description=Building Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=88;
+damage=1449;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corbuzz_heap]
+{
+world=All Worlds;
+description=Buzzsaw Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=15516;
+damage=18500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corcan_heap]
+{
+world=All Worlds;
+description=Can Wreckage;
+category=heaps;
+object=2x2f;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=176;
+damage=2240;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corck_heap]
+{
+world=All Worlds;
+description=Cons Kbot Wreckage;
+category=heaps;
+object=2x2f;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=57;
+damage=568;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corckfus_heap]
+{
+world=All Worlds;
+description=Cloaking Fusion Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=5;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3193;
+damage=4312;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corcrash_heap]
+{
+world=All Worlds;
+description=Crasher Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=41;
+damage=384;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corcv_heap]
+{
+world=All Worlds;
+description=Cons Vehicle Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=80;
+damage=670;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Cordev1_heap]
+{
+world=All Worlds;
+description=Implosion Device Wreckage;
+category=heaps;
+object=7x7a;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3418;
+damage=3288;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cordoom_heap]
+{
+world=All Worlds;
+description=Doomsday Wreckage;
+category=heaps;
+object=3x3e;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1310;
+damage=3512;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corestor_heap]
+{
+world=All Worlds;
+description=Energy Store Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=120;
+damage=856;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[coreter_heap]
+{
+world=All Worlds;
+description=Deleter Wreckage;
+category=heaps;
+object=3x3f;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=56;
+damage=416;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfast_heap]
+{
+world=All Worlds;
+description=Freaker Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=91;
+damage=504;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfav_heap]
+{
+world=All Worlds;
+description=Weasel Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=17;
+damage=77;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfink_heap]
+{
+world=All Worlds;
+description=Fink Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=16;
+damage=72;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corflak_heap]
+{
+world=All Worlds;
+description=Cobra Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=283;
+damage=1824;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfmd_heap]
+{
+world=All Worlds;
+description=Fortitude Wreckage;
+category=heaps;
+object=5x5d;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=844;
+damage=1560;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corfus_heap]
+{
+world=All Worlds;
+description=Fusion Wreckage;
+category=heaps;
+object=5x5d;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2002;
+damage=4800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corgant_heap]
+{
+world=All Worlds;
+description=Gantry Wreckage;
+category=heaps;
+object=7x7b;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3138;
+damage=6100;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corgate_heap]
+{
+world=All Worlds;
+description=Gate Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2994;
+damage=5118;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corgator_heap]
+{
+world=All Worlds;
+description=Instigator Wreckage;
+category=heaps;
+object=2x2f;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=44;
+damage=522;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corgeo_heap]
+{
+world=All Worlds;
+description=Geo Wreckage;
+category=heaps;
+object=4x4b;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=242;
+damage=744;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corgol_heap]
+{
+world=All Worlds;
+description=Goliath Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=299;
+damage=2276;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corhlt_heap]
+{
+world=All Worlds;
+description=Gaat Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=212;
+damage=1280;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corhp_heap]
+{
+world=All Worlds;
+description=Hover Plant Wreckage;
+category=heaps;
+object=6x6d;
+footprintx=7;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=302;
+damage=2485;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corhrk_heap]
+{
+world=All Worlds;
+description=Dominator Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=163;
+damage=496;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corhurc_heap]
+{
+world=All Worlds;
+description=Hurricaine Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=213;
+damage=384;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corint_heap]
+{
+world=All Worlds;
+description=Intimidator Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2398;
+damage=3780;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corkrog_heap]
+{
+world=All Worlds;
+description=Krogoth Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=11796;
+damage=26934;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corlab_heap]
+{
+world=All Worlds;
+description=Kbot Lab Wreckage;
+category=heaps;
+object=6x6b;
+footprintx=6;
+footprintz=6;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=209;
+damage=2080;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corlevlr_heap]
+{
+world=All Worlds;
+description=Leveler Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=102;
+damage=650;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corllt_heap]
+{
+world=All Worlds;
+description=LLT Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=46;
+damage=568;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormakr_heap]
+{
+world=All Worlds;
+description=Metal Maker Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=3;
+damage=120;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormart_heap]
+{
+world=All Worlds;
+description=Pillager Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=170;
+damage=840;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormex_heap]
+{
+world=All Worlds;
+description=Mex Wreckage;
+category=heaps;
+object=3x3e;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=24;
+damage=140;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormh_heap]
+{
+world=All Worlds;
+description=Nixer Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=178;
+damage=552;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormist_heap]
+{
+world=All Worlds;
+description=Slasher Wreckage;
+category=heaps;
+object=3x3f;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=46;
+damage=524;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormlv_heap]
+{
+world=All Worlds;
+description=Spoiler Wreckage;
+category=heaps;
+object=3x3f;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=69;
+damage=1120;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Cormmkr_heap]
+{
+world=All Worlds;
+description=Moho Maker Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=40;
+damage=500;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormoho_heap]
+{
+world=All Worlds;
+description=Moho Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=522;
+damage=1758;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormort_heap]
+{
+world=All Worlds;
+description=Morty Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=141;
+damage=736;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cormstor_heap]
+{
+world=All Worlds;
+description=Metal Store Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=96;
+damage=1045;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cornecro_heap]
+{
+world=All Worlds;
+description=Necro Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=208;
+damage=670;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corpun_heap]
+{
+world=All Worlds;
+description=Punisher Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=4;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=578;
+damage=3048;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corpyro_heap]
+{
+world=All Worlds;
+description=Pyro Wreckage;
+category=heaps;
+object=2x2c;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=130;
+damage=760;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corrad_heap]
+{
+world=All Worlds;
+description=Radar Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=22;
+damage=41;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corraid_heap]
+{
+world=All Worlds;
+description=Raider Wreckage;
+category=heaps;
+object=2x2e;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=65;
+damage=846;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[correap_heap]
+{
+world=All Worlds;
+description=Reaper Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=189;
+damage=1611;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corrl_heap]
+{
+world=All Worlds;
+description=Pulverizer Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=31;
+damage=240;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corroach_heap]
+{
+world=All Worlds;
+description=Roach Wreckage;
+category=heaps;
+object=1x1c;
+footprintx=1;
+footprintz=1;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=78;
+damage=156;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corseal_heap]
+{
+world=All Worlds;
+description=Croc Wreckage;
+category=heaps;
+object=3x3e;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=118;
+damage=915;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corsent_heap]
+{
+world=All Worlds;
+description=Copperhead Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=306;
+damage=1096;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corsh_heap]
+{
+world=All Worlds;
+description=Scrubber Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=44;
+damage=160;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corshad_heap]
+{
+world=All Worlds;
+description=Shadow Wreckage;
+category=heaps;
+object=3x3f;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=74;
+damage=252;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corsilo_heap]
+{
+world=All Worlds;
+description=Silencer Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=4300;
+damage=4096;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corsnap_heap]
+{
+world=All Worlds;
+description=Snapper Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=94;
+damage=720;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corsolar_heap]
+{
+world=All Worlds;
+description=Solar Wreckage;
+category=heaps;
+object=5x5c;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=42;
+damage=256;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corspec_heap]
+{
+world=All Worlds;
+description=Spectre Wreckage;
+category=heaps;
+object=2x2b;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=60;
+damage=248;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corspy_heap]
+{
+world=All Worlds;
+description=Parasite Wreckage;
+category=heaps;
+object=1x1a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=112;
+damage=272;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corstorm_heap]
+{
+world=All Worlds;
+description=Storm Wreckage;
+category=heaps;
+object=2x2c;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=47;
+damage=496;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corsumo_heap]
+{
+world=All Worlds;
+description=Sumo Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=355;
+damage=4750;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cortarg_heap]
+{
+world=All Worlds;
+description=Targeting Facility Wreckage;
+category=heaps;
+object=4x4d;
+footprintx=5;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1596;
+damage=5400;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Corthovr_heap]
+{
+world=All Worlds;
+description=Turtle Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=388;
+damage=864;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corthud_heap]
+{
+world=All Worlds;
+description=Thud Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=63;
+damage=640;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cortitan_heap]
+{
+world=All Worlds;
+description=Titan Wreckage;
+category=heaps;
+object=4x4f;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=146;
+damage=300;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[cortoast_heap]
+{
+world=All Worlds;
+description=Toaster Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=519;
+damage=5004;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cortron_heap]
+{
+world=All Worlds;
+description=Neutron Wreckage;
+category=heaps;
+object=3x3a;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=1250;
+damage=2520;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[cortruck_heap]
+{
+world=All Worlds;
+description=Truck Wreckage;
+category=heaps;
+object=2x2d;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=87;
+damage=2627;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[Coruwes_heap]
+{
+world=All Worlds;
+description=Underwater Energy Store Wreckage;
+category=heaps;
+object=4x4d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=134;
+damage=1521;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[Coruwfus_heap]
+{
+world=All Worlds;
+description=Underwater Fusion Wreckage;
+category=heaps;
+object=5x5a;
+footprintx=5;
+footprintz=5;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=2740;
+damage=4275;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[Coruwmex_heap]
+{
+world=All Worlds;
+description=Underwater Mex Wreckage;
+category=heaps;
+object=3x3b;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=29;
+damage=355;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[Coruwms_heap]
+{
+world=All Worlds;
+description=Underwater Metal Store Wreckage;
+category=heaps;
+object=4x4d;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=126;
+damage=1750;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corvalk_heap]
+{
+world=All Worlds;
+description=Valkyrie Wreckage;
+category=heaps;
+object=3x3c;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=47;
+damage=128;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corvamp_heap]
+{
+world=All Worlds;
+description=Vamp Wreckage;
+category=heaps;
+object=3x3d;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=140;
+damage=392;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[corveng_heap]
+{
+world=All Worlds;
+description=Avenger Wreckage;
+category=heaps;
+object=2x2e;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=57;
+damage=162;
+reclaimable=1;
+seqnamereclamate=tree1reclamate;
+}
+[Corvipe_heap]
+{
+world=All Worlds;
+description=Viper Wreckage;
+category=heaps;
+object=2x2f;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=269;
+damage=2470;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corvoyr_heap]
+{
+world=All Worlds;
+description=Voyeur Wreckage;
+category=heaps;
+object=2x2a;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=47;
+damage=280;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corvp_heap]
+{
+world=All Worlds;
+description=Vehicle Plant Wreckage;
+category=heaps;
+object=7x7b;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=216;
+damage=2040;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corvrad_heap]
+{
+world=All Worlds;
+description=Informer Wreckage;
+category=heaps;
+object=2x2f;
+footprintx=2;
+footprintz=2;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=52;
+damage=208;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corvroc_heap]
+{
+world=All Worlds;
+description=Diplomat Wreckage;
+category=heaps;
+object=3x3e;
+footprintx=3;
+footprintz=3;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=171;
+damage=2410;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[corwin_heap]
+{
+world=All Worlds;
+description=Wind Gen Wreckage;
+category=heaps;
+object=4x4a;
+footprintx=4;
+footprintz=4;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=22;
+damage=143;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

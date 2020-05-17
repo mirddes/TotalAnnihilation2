@@ -1,0 +1,26 @@
+#define TA			// This is a TA script
+
+#include "exptype.h"
+#include "sfxtype.h"
+//#include "unitsweaps.h"
+
+piece  base, GP;
+
+Create()
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 200;
+	}
+	sleep 1400;
+	hide base;
+}
+
+SweetSpot(p)
+{
+	p=base;
+}
+
+Killed(severity, corpsetype)
+{
+}

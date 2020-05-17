@@ -1,0 +1,11 @@
+MISSION 7.1TCORE
+Arm vermin have made planetfall on Temblor. That is good. They are chasing you Commander. The beacon has been safely transported to Gelidus. Your task here is to hold Arm as long as possible and reduce their numbers. Push to the south, destroying and Arm units that you encounter.
+
+INTELL-TAP:
+The Arm forces are relatively weak at this point. They will be in retreat until reinforcements arrive. They will be attempting to slow your progress by deploying land mines. Clear out the land mines and destroy all Arm units.  
+
+&RTemblor is an unstable planet. Expect frequent earthquakes.&
+
+To complete this mission you must destroy all Arm units and land mines.
+
+DO SO NOW.

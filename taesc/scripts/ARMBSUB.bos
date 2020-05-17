@@ -1,0 +1,169 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  base, body, booster2, booster1, torpedoes, flare1, flare2, flare3, flare4, reactors, dome1, dome2, top_torp, 
+	   bubbles1, bubbles2, bubbles3, bubbles4, bubbles5, bubbles6, bubbles7, bubbles8;
+
+static-var  gun_1;
+
+// Signal definitions
+#define SIG_MOVE			2
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	healthpercent = get HEALTH;
+	sleeptime = healthpercent*healthpercent;
+	if( healthpercent < 66 )
+	{
+		emit-sfx 256 | 3 from base;
+		sleep sleeptime;
+		emit-sfx 256 | 3 from flare2;
+		if( Rand( 1, 66 ) > healthpercent )
+		{
+			emit-sfx 256 | 3 from booster1;
+			sleep sleeptime;
+			emit-sfx 256 | 3 from dome2;
+			sleep sleeptime;
+		}
+	}
+	start-script smokeunit();
+}
+
+
+Create()
+{
+	Set ARMORED to 1;
+	gun_1 = 0;
+	start-script SmokeUnit();
+	set ACTIVATION to TRUE;
+	
+}
+
+StartMoving()
+{
+	signal SIG_MOVE;
+	set-signal-mask SIG_MOVE;
+	while( TRUE )
+	{
+		emit-sfx 256 | 3 from bubbles1;
+		emit-sfx 256 | 3 from bubbles2;
+		emit-sfx 256 | 3 from bubbles3;
+		emit-sfx 256 | 3 from bubbles4;
+		emit-sfx 256 | 3 from bubbles5;
+		emit-sfx 256 | 3 from bubbles6;
+		emit-sfx 256 | 3 from bubbles7;
+		emit-sfx 256 | 3 from bubbles8;
+		sleep 250;
+	}
+}
+
+StopMoving()
+{
+	signal SIG_MOVE;
+}
+
+/*
+FirePrimary()
+{
+	gun_1 = !gun_1;
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = gun_1;
+}
+*/
+
+QueryPrimary(piecenum)
+{
+	piecenum = flare1;
+}
+
+QuerySecondary(piecenum)
+{
+	piecenum = flare2;
+}
+
+
+FireTertiary()
+{
+	if( gun_1 == 0 )
+	{
+		sleep 150;
+	}
+	if( gun_1 == 1 )
+	{
+		sleep 150;
+	}
+	++gun_1;
+	if( gun_1 >= 2 )
+	{
+		gun_1 = 0;
+	}
+}
+
+/*
+AimFromTertiary(piecenum)
+{
+	piecenum = base;
+}
+*/
+
+QueryTertiary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare3;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare4;
+	}
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode flare1 type BITMAPONLY | BITMAP1;
+		explode flare2 type BITMAPONLY | BITMAP1;
+		explode booster1 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode flare1 type BITMAPONLY | BITMAP1;
+		explode flare2 type BITMAPONLY | BITMAP1;
+		explode booster1 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+		explode flare1 type BITMAPONLY | BITMAP1;
+		explode flare2 type BITMAPONLY | BITMAP1;
+		explode booster1 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode base type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode flare1 type BITMAPONLY | BITMAP1;
+	explode flare2 type BITMAPONLY | BITMAP1;
+	explode booster1 type BITMAPONLY | BITMAP1;
+}

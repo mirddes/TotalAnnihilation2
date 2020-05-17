@@ -1,0 +1,9 @@
+MISSION 7.3CORE
+Auf Crustal 2 konnten wir eine größere ARM-Einheit isolieren. Die ARM haben dort eine entsprechende Metallfarm aufgebaut. Die Eroberung der dortigen Moho-Minen erspart uns die Mühe, selbst welche errichten zu müssen.
+
+Erobern Sie die Mohos und zerquetschen Sie das feindliche Geschmeiß.
+
+WAHRSCHEINLICHKEITSBERECHNUNG:
+Flugeinheiten erhöhen die Erfolgswahrscheinlichkeit (&R72%,Irrtum:2%&). Steuern Sie diese Einheiten aber mit Vorsicht, denn sie könnten eine Mine zerstören, bevor Sie sie erobert haben (&R88%,Irrtum:1%&).
+
+WALTEN SIE IHRES AMTES.

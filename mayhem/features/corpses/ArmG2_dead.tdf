@@ -1,0 +1,39 @@
+[ArmG2_dead]
+{
+world=All Worlds;
+description=G2 Wreckage;
+category=arm_corpses;
+object=ArmG2_dead;
+featuredead=ArmG2_heap;
+footprintx=4;
+footprintz=4;
+height=30;
+blocking=1;
+hitdensity=100;
+metal=10380;
+damage=11100;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+[ArmG2_heap]
+{
+world=All Worlds;
+description=G2 Wreckage;
+category=heaps;
+object=4x4c;
+footprintx=4;
+footprintz=4;
+height=5;
+blocking=0;
+hitdensity=100;
+metal=5190;
+damage=11950;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+
+
+

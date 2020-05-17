@@ -1,0 +1,476 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+#include "ESCUnitsHeight.h"
+
+piece  flare1, flare2, base, turret1, barrel1, barrel2, turret2;
+
+static-var	shield_on, charge_on, nbr_charge, nbr_shield, dome_on, nbr_dome; 
+static-var  gun_1, firedelay, firing;
+
+// Signal definitions
+#define SIG_AIM				2
+
+#define SECURE_XZ\
+if(xz<0)\
+{\
+xz=0 - xz;\
+}\
+x=xz/65536;\
+z=xz - x*65536;\
+if(z>32767)\
+{\
+z=65536 - z;\
+/*x=x+(1-2*(xz<0));*/\
+x=x+(xz>0);\
+}\
+if(707333111<get XZ_HYPOT((x/2)*65536 + (z/2)))\
+{\
+xz=500333222;\
+}
+
+// Lowest valid unit ID number
+#ifndef MIN_ID
+#define MIN_ID 69
+#endif
+
+// Highest valid unit ID number
+#ifndef MAX_ID
+#define MAX_ID 70
+#endif
+
+// ID of current unit
+#ifndef MY_ID
+#define MY_ID 71
+#endif
+
+// Player number of the unit given in parameter
+#ifndef UNIT_TEAM
+#define UNIT_TEAM 72
+#endif
+
+// Like BUILD_PERCENT_LEFT, but comes with a unit parameter
+#ifndef UNIT_BUILD_PERCENT_LEFT
+#define UNIT_BUILD_PERCENT_LEFT 73
+#endif
+
+// Is unit allied to the current COB script
+#ifndef UNIT_ALLIED
+#define UNIT_ALLIED 74
+#endif
+
+// Is unit owned by the local computer
+#ifndef UNIT_IS_ON_THIS_COMP
+#define UNIT_IS_ON_THIS_COMP 75
+#endif
+
+// Kills * 100
+#ifndef VETERAN_LEVEL
+#define VETERAN_LEVEL 32
+#endif
+
+Detect()
+{
+	sleep rand(500,1500);
+	var distance, unit_ID, xz, x, z;
+	var max, min, height;
+	var h;
+	var shgen_id;
+	var shgen_count;
+	
+	max = (get MAX_ID);
+	min = (get MIN_ID);
+	
+	while(1)
+	{
+		nbr_charge = 0;
+		nbr_shield = 0;
+		nbr_dome = 0;
+		
+		shgen_count = 0;
+		
+		for (unit_ID = min; unit_ID <= max; ++unit_ID)
+		{
+			if((get UNIT_ALLIED(unit_ID)) == 1)
+			{
+				if(get UNIT_HEIGHT(unit_id)==ALL_CHARGE)
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						
+						if (distance > MOBILE_RADIUS_6)			//60-90 seconds
+						{
+							shgen_count = 0;
+						}
+						if (distance <= MOBILE_RADIUS_6)		//60 seconds
+						{
+							shgen_count = 5;
+						}
+						if (distance <= MOBILE_RADIUS_5)		//45 seconds
+						{
+							shgen_count = 4;
+						}
+						if (distance <= MOBILE_RADIUS_4)		//30 seconds
+						{
+							shgen_count = 3;
+						}
+						if (distance <= MOBILE_RADIUS_3)		//15 seconds
+						{
+							shgen_count = 2;
+						}
+						if (distance <= BOOST_RADIUS)
+						{
+							shgen_count = 1;
+							++nbr_charge;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_1)		//ARM T3 non-upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							++nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-in progress
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)>=1)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_1)
+						{
+							shgen_count = 1;
+							--nbr_shield;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_2)		//ARM T3 upgraded-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_2)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+				if(get UNIT_HEIGHT(unit_id)==ALL_SHIELD_3)		//CORE T3 standard-built
+				{
+					if(get UNIT_BUILD_PERCENT_LEFT(unit_id)==0)
+					{
+						xz = get UNIT_XZ(unit_ID) - get PIECE_XZ(base);
+						SECURE_XZ;
+						distance=get XZ_HYPOT(xz);
+						if (distance <= SHIELD_RADIUS_3)
+						{
+							shgen_count = 1;
+							++nbr_dome;
+						}
+					}
+				}
+			}
+		}
+		if(nbr_charge>=1)
+		{
+			if(!charge_on)
+			{
+				charge_on = 1;
+				sleep 1;
+				firedelay = 0;			//0.75 seconds
+//				if (upgraded)
+//				{
+//					firedelay = 0;
+//				}
+			}
+		}
+		if(nbr_charge==0)
+		{
+			if(charge_on)
+			{
+				charge_on = 0;
+				sleep 1;
+				firedelay = 1450;		//1.5 seconds
+//				if (upgraded)
+//				{
+//					firedelay = 350;
+//				}
+			}
+		}	
+		if(nbr_shield>=1)
+		{
+			if(!shield_on)
+			{
+				shield_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_shield==0)
+		{
+			if(shield_on)
+			{
+				shield_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		if(nbr_dome>=1)
+		{
+			if(!dome_on)
+			{
+				dome_on = 1;
+				sleep 50;
+				set ARMORED to 1;
+			}
+		}
+		if(nbr_dome==0)
+		{
+			if(dome_on)
+			{
+				dome_on = 0;
+				sleep 50;
+				set ARMORED to 0;
+			}
+		}	
+		sleep rand(3000,4000);
+		if(shgen_count == 0)
+		{
+			sleep rand(60000,90000);
+		}
+		if(shgen_count == 1)
+		{
+			sleep rand(3000,4000);
+		}
+		if(shgen_count == 2)
+		{
+			sleep rand(8500,13500);
+		}
+		if(shgen_count == 3)
+		{
+			sleep rand(22500,28500);
+		}
+		if(shgen_count == 4)
+		{
+			sleep rand(30000,43500);
+		}
+		if(shgen_count == 5)
+		{
+			sleep rand(45000,58500);
+		}
+	}
+}	
+
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	while( TRUE )
+	{
+		healthpercent = get HEALTH;
+		if( healthpercent < 66 )
+		{
+			smoketype = 256 | 2;
+			if( Rand( 1, 66 ) < healthpercent )
+			{
+				smoketype = 256 | 1;
+			}
+			emit-sfx smoketype from base;
+		}
+		sleeptime = healthpercent * 50;
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+}
+
+/*
+RockUnit(anglex, anglez)
+{
+	signal 4;
+	set-signal-mask 4;
+	turn base to x-axis anglex speed <15.000000>;
+	turn base to z-axis anglez speed <15.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis <0.000000> - anglex speed <12.000000>;
+	turn base to z-axis <0.000000> - anglez speed <12.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis anglex / <0.005495> speed <9.000000>;
+	turn base to z-axis anglez / <0.005495> speed <9.000000>;
+	wait-for-turn base around z-axis;
+	wait-for-turn base around x-axis;
+	turn base to x-axis <0.000000> speed <3.000000>;
+	turn base to z-axis <0.000000> speed <3.000000>;
+}
+*/
+
+Create()
+{
+	nbr_charge = 0;
+	nbr_shield = 0;
+	nbr_dome = 0;
+	
+	charge_on = 0;
+	shield_on = 0;
+	dome_on = 0;
+	
+	hide flare1;
+	hide flare2;
+	
+	dont-cache flare1;
+	dont-cache flare2;
+	
+	dont-shade barrel1;
+	dont-shade barrel2;
+	dont-shade base;
+	dont-shade turret1;
+	dont-shade turret2;
+	dont-shade flare1;
+	dont-shade flare2;
+	gun_1 = 0;
+	firedelay = 1450;
+	firing = 0;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 1000;
+	}
+	start-script detect();
+	start-script SmokeUnit();
+}
+
+AimPrimary(heading, pitch)
+{
+	signal SIG_AIM;
+	set-signal-mask SIG_AIM;
+	turn turret1 to y-axis heading speed <150.027473>;
+	turn turret2 to x-axis <0.000000> - pitch speed <150.027473>;
+	wait-for-turn turret1 around y-axis;
+	wait-for-turn turret2 around x-axis;
+	while( firing )
+	{
+//		sleep firedelay;
+//		wait-for-turn turret1 around y-axis;
+//		wait-for-turn turret2 around x-axis;
+//		firing = 0;
+		sleep 50;
+	}
+	return (1);
+}
+
+FirePrimary()
+{
+	if( !gun_1 )
+	{
+		firing = 1;
+//		show flare1;
+		sleep 50;
+//		hide flare1;
+		gun_1 = 1;
+		sleep firedelay;
+		firing = 0;
+		return (0);
+	}
+	firing = 1;
+//	show flare2;
+	sleep 50;
+//	hide flare2;
+	sleep firedelay;
+	firing = 0;
+	gun_1 = 0;
+}
+
+QueryPrimary(piecenum)
+{
+	if( gun_1 == 0 )
+	{
+		piecenum = flare1;
+	}
+	if( gun_1 == 1 )
+	{
+		piecenum = flare2;
+	}
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = turret2;
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = base;
+}
+
+Killed(severity, corpsetype)
+{
+	hide flare1;
+	hide flare2;
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode barrel1 type BITMAPONLY | BITMAP1;
+		explode barrel2 type BITMAPONLY | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode flare1 type BITMAPONLY | BITMAP1;
+//		explode flare2 type BITMAPONLY | BITMAP5;
+		explode turret1 type BITMAPONLY | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode barrel1 type FALL | BITMAP1;
+		explode barrel2 type FALL | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode flare1 type FALL | BITMAP1;
+//		explode flare2 type FALL | BITMAP5;
+		explode turret1 type SHATTER | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	if( severity <= 99 )
+	{
+		corpsetype = 3;
+		explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode base type BITMAPONLY | BITMAP1;
+//		explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//		explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode turret1 type SHATTER | BITMAP1;
+		explode turret2 type BITMAPONLY | BITMAP1;
+		return (0);
+	}
+	corpsetype = 3;
+	explode barrel1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode barrel2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode base type BITMAPONLY | BITMAP1;
+//	explode flare1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+//	explode flare2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode turret1 type SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode turret2 type BITMAPONLY | BITMAP1;
+}

@@ -1,0 +1,52 @@
+[CORMH_WEAPON]
+	{
+	ID=39;
+	name=Rocket;
+	rendertype=1;
+	lineofsight=1;
+	vlaunch=1;
+
+	model=cormhmsl;
+
+	range=650;
+	reloadtime=9;
+
+	noautorange=1;
+	weapontimer=5;
+	flighttime=10;
+
+	weaponvelocity=400;
+	weaponacceleration=40;
+	turnrate=24384;
+	areaofeffect=80;
+	metalpershot=0;
+
+	soundstart=Rockhvy1;
+	soundhit=xplomed4;
+
+	firestarter=100;
+	smokedelay=.1;
+	selfprop=1;
+	smoketrail=1;
+
+	twophase=1;
+	guidance=1;
+	tolerance=4000;
+
+	explosiongaf=fx;
+	explosionart=explode3;
+
+	waterexplosiongaf=fx;
+	waterexplosionart=h2oboom2;
+
+	lavaexplosiongaf=fx;
+	lavaexplosionart=lavasplashlg;
+
+	startsmoke=1;
+
+	[DAMAGE]
+		{
+		default=320;
+		}
+	}
+

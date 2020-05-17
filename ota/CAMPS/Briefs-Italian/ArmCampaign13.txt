@@ -1,0 +1,10 @@
+MISSIONE 13.002ARMB
+Distruggere la base Core nei pressi della zona nota come Landown.
+
+&YPRIORITÀ&
+L’esercito Core ha accumulato un’enorme riserva di materiale bellico, e sta tentando di costruire una grossa base dall’altro lato della barriera nota come "passaggio di Landown". 
+
+INFORMAZIONI UTILI
+Dovrete trovare un modo per attraversare la zona di Landown, in modo da poter interrompere le operazioni Core. &GUtilizzate le vie aeree.&
+
+FINE

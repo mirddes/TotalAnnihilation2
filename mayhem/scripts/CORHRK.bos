@@ -1,0 +1,407 @@
+#define TA			// This is a TA script
+
+#include "sfxtype.h"
+#include "exptype.h"
+
+piece  missile1, missile2, torso, Thigh1, Thigh2, Leg2, Foot2, Leg1,
+       Foot1, head, launcher, ground;
+
+static-var  Rocket_1, Open_2, Moving_3, busy_4, delay_5;
+
+SmokeUnit(healthpercent, sleeptime, smoketype)
+{
+	while( TRUE )
+	{
+		healthpercent = ( get HEALTH );
+		if( healthpercent < 66 )
+		{
+			smoketype = ( 256 | 2 );
+			if( Rand(1,66) < healthpercent )
+			{
+				smoketype = ( 256 | 1 );
+			}
+			emit-sfx smoketype from torso;
+		}
+		sleeptime = ( healthpercent * 50 );
+		if( sleeptime < 200 )
+		{
+			sleeptime = 200;
+		}
+		sleep sleeptime;
+	}
+	return (0);
+}
+
+MotionControl(justmoved)
+{
+	justmoved = TRUE;
+	while( TRUE )
+	{
+		while( Moving_3 )
+		{
+			move torso to y-axis [-0.15] speed [10];
+			move Thigh1 to y-axis [0.15] speed [10];
+			move Thigh1 to z-axis [-0.05] speed [10];
+			move Thigh2 to y-axis [-0.20] speed [10];
+			move Thigh2 to z-axis [-0.05] speed [10];
+			turn Thigh1 to x-axis <12.31> speed <360>;
+			turn Thigh2 to x-axis <-45.36> speed <360>;
+			turn Leg2 to x-axis <-19.34> speed <360>;
+			turn Foot2 to x-axis <65.05> speed <360>;
+			turn Leg1 to x-axis <4.92> speed <360>;
+			turn Foot1 to x-axis <-4.57> speed <360>;
+			sleep 90;
+			move torso to y-axis [-0.05] speed [10];
+			move Thigh1 to y-axis [0.10] speed [10];
+			move Thigh2 to y-axis [0] speed [10];
+			turn Thigh1 to x-axis <16.88> speed <360>;
+			turn Thigh2 to x-axis <-55.91> speed <360>;
+			turn Leg2 to x-axis <5.97> speed <360>;
+			turn Foot2 to x-axis <49.93> speed <360>;
+			turn Leg1 to x-axis <-1.41> speed <360>;
+			turn Foot1 to x-axis <4.57> speed <360>;
+			sleep 120;
+			if( Moving_3 )
+			{
+				move torso to y-axis [0] speed [10];
+				move Thigh2 to y-axis [-0.15] speed [10];
+				turn Thigh1 to x-axis <20.40> speed <360>;
+				turn Thigh2 to x-axis <-30.59> speed <360>;
+				turn Leg2 to x-axis <-9.49> speed <360>;
+				turn Foot2 to x-axis <40.09> speed <360>;
+				turn Leg1 to x-axis <-5.98> speed <360>;
+				turn Foot1 to x-axis <12.30> speed <360>;
+				sleep 117;
+				move torso to y-axis [-0.30] speed [10];
+				move Thigh1 to y-axis [0.25] speed [10];
+				move Thigh2 to y-axis [0.35] speed [10];
+				turn Thigh1 to x-axis <19.34> speed <360>;
+				turn Thigh2 to x-axis <-13.36> speed <360>;
+				turn Leg2 to x-axis <-5.63> speed <360>;
+				turn Foot2 to x-axis <18.99> speed <360>;
+				turn Leg1 to x-axis <-21.80> speed <360>;
+				turn Foot1 to x-axis <29.88> speed <360>;
+				sleep 113;
+			}
+			if( Moving_3 )
+			{
+				move torso to y-axis [-0.15] speed [10];
+				move Thigh1 to y-axis [-0.15] speed [10];
+				move Thigh2 to y-axis [-0.15] speed [10];
+				turn Thigh1 to x-axis <4.57> speed <360>;
+				turn Thigh2 to x-axis <-1.44> speed <360>;
+				turn Leg2 to x-axis <-9> speed <360>;
+				turn Leg2 to y-axis <0.35> speed <360>;
+				turn Foot2 to x-axis <10.72> speed <360>;
+				turn Leg1 to x-axis <-41.14> speed <360>;
+				turn Foot1 to x-axis <46.76> speed <360>;
+				sleep 52;
+				move torso to y-axis [-0.10] speed [10];
+				move Thigh1 to x-axis [0] speed [10];
+				move Thigh1 to y-axis [0.10] speed [10];
+				move Thigh2 to y-axis [-0.15] speed [10];
+				turn Thigh1 to x-axis <-18.46> speed <360>;
+				turn Thigh2 to x-axis <-0.13> speed <360>;
+				turn Leg2 to x-axis <-5.77> speed <360>;
+				turn Foot2 to x-axis <5.84> speed <360>;
+				turn Leg1 to x-axis <-30.41> speed <360>;
+				turn Foot1 to x-axis <51.34> speed <360>;
+				sleep 53;
+				move torso to y-axis [-0.05] speed [10];
+				move Thigh1 to x-axis [0.05] speed [10];
+				move Thigh1 to y-axis [-0.25] speed [10];
+				move Thigh2 to y-axis [-0.10] speed [10];
+				turn Thigh1 to x-axis <-38.68> speed <360>;
+				turn Thigh2 to x-axis <4.22> speed <360>;
+				turn Leg2 to x-axis <-0.70> speed <360>;
+				turn Foot2 to x-axis <0.35> speed <360>;
+				turn Leg1 to x-axis <-19.69> speed <360>;
+				turn Foot1 to x-axis <55.91> speed <360>;
+				sleep 113;
+			}
+			if( Moving_3 )
+			{
+				move torso to y-axis [0] speed [10];
+				move Thigh1 to x-axis [0] speed [10];
+				move Thigh1 to y-axis [-0.15] speed [10];
+				move Thigh2 to y-axis [-0.15] speed [10];
+				turn Thigh1 to x-axis <-53.80> speed <360>;
+				turn Thigh2 to x-axis <12.30> speed <360>;
+				turn Leg2 to x-axis <-0.35> speed <360>;
+				turn Foot2 to x-axis <0.35> speed <360>;
+				turn Leg1 to x-axis <4.22> speed <360>;
+				turn Foot1 to x-axis <49.58> speed <360>;
+				sleep 104;
+				move Thigh1 to x-axis [0.05] speed [10];
+				move Thigh1 to y-axis [-0.05] speed [10];
+				move Thigh2 to y-axis [-0.10] speed [10];
+				turn Thigh1 to x-axis <-35.16> speed <360>;
+				turn Thigh2 to x-axis <22.15> speed <360>;
+				turn Leg2 to x-axis <-9.49> speed <360>;
+				turn Foot2 to x-axis <19.34> speed <360>;
+				turn Leg1 to x-axis <-5.98> speed <360>;
+				turn Foot1 to x-axis <41.49> speed <360>;
+				sleep 115;
+			}
+			if( Moving_3 )
+			{
+				move torso to y-axis [-0.30] speed [10];
+				move Thigh1 to x-axis [0.05] speed [10];
+				move Thigh1 to y-axis [0.15] speed [10];
+				move Thigh2 to y-axis [-0.05] speed [10];
+				turn Thigh1 to x-axis <-8.44> speed <360>;
+				turn Thigh2 to x-axis <18.29> speed <360>;
+				turn Leg2 to x-axis <-24.26> speed <360>;
+				turn Foot2 to x-axis <31.29> speed <360>;
+				turn Leg1 to x-axis <-10.20> speed <360>;
+				turn Foot1 to x-axis <18.64> speed <360>;
+				sleep 108;
+				move torso to y-axis [-0.25] speed [10];
+				move Thigh1 to x-axis [0.05] speed [10];
+				move Thigh1 to y-axis [0] speed [10];
+				move Thigh2 to y-axis [-0.15] speed [10];
+				turn Thigh1 to x-axis <2.11> speed <360>;
+				turn Thigh2 to x-axis <8.79> speed <360>;
+				turn Leg2 to x-axis <-36.57> speed <360>;
+				turn Foot2 to x-axis <41.14> speed <360>;
+				turn Leg1 to x-axis <-5.27> speed <360>;
+				turn Foot1 to x-axis <2.46> speed <360>;
+				sleep 110;
+			}
+			if( Moving_3 )
+			{
+				move torso to y-axis [-0.20] speed [10];
+				move Thigh1 to y-axis [0.10] speed [10];
+				move Thigh2 to y-axis [-0.05] speed [10];
+				turn Thigh1 to x-axis <5.27> speed <360>;
+				turn Thigh2 to x-axis <-8.09> speed <360>;
+				turn Leg2 to x-axis <-34.46> speed <360>;
+				turn Foot2 to x-axis <53.80> speed <360>;
+				turn Leg1 to x-axis <2.81> speed <360>;
+				turn Foot1 to x-axis <-7.74> speed <360>;
+				sleep 62;
+				move torso to y-axis [-0.17] speed [10];
+				move Thigh1 to x-axis [0] speed [10];
+				move Thigh1 to y-axis [0.15] speed [10];
+				move Thigh2 to y-axis [0.05] speed [10];
+				turn Thigh1 to x-axis <8.79> speed <360>;
+				turn Thigh2 to x-axis <-26.73> speed <360>;
+				turn Leg2 to x-axis <-26.90> speed <360>;
+				turn Leg2 to y-axis <0.17> speed <360>;
+				turn Foot2 to x-axis <59.42> speed <360>;
+				turn Leg1 to x-axis <3.86> speed <360>;
+				turn Foot1 to x-axis <-6.15> speed <360>;
+				sleep 61;
+			}
+			justmoved = TRUE;
+		}
+		if( !Moving_3 AND justmoved )
+		{
+			move Thigh1 to y-axis [0] speed [10];
+			move Thigh2 to x-axis [0] speed [10];
+			move Thigh2 to y-axis [0] speed [10];
+			move Foot2 to x-axis [0] speed [10];
+			move Leg1 to x-axis [0] speed [10];
+			sleep 200;
+			justmoved = FALSE;
+		}
+		sleep 100;
+	}
+	return (0);
+}
+
+Create()
+{
+	Rocket_1 = 0;
+	Moving_3 = 0;
+	Open_2 = 0;
+	Busy_4 = 0;
+	Delay_5 = 0;
+	hide missile1;
+	hide missile2;
+	while( get BUILD_PERCENT_LEFT )
+	{
+		sleep 400;
+	}
+	start-script MotionControl();
+	start-script SmokeUnit();
+}
+
+StartMoving()
+{
+	Moving_3 = 1;
+	return (0);
+}
+
+StopMoving()
+{
+	Moving_3 = 0;
+	return (0);
+}
+
+RestoreAfterDelay()
+{
+	sleep 15000;
+	set-signal-mask 0;
+//	turn head to y-axis <0> speed <90>;
+//	turn launcher to x-axis <0> speed <45>;
+	Open_2 = 0;
+	Rocket_1 = 0;
+	turn launcher to x-axis <0> speed <180>;
+	move Missile1 to z-axis [0] speed [20];
+	move Missile2 to z-axis [0] speed [20];
+	wait-for-turn head around y-axis;
+	wait-for-turn launcher around x-axis;
+	if( !Open_2 )
+	{
+		signal 2;
+		set-signal-mask 0;
+	}
+	return (0);
+}
+
+AimPrimary(heading, pitch)
+{
+	signal 2;
+	set-signal-mask 0;
+	set-signal-mask 2;
+	while( Delay_5 )
+	{
+		sleep 250;
+	}
+	while( !Open_2 )
+	{
+		Open_2 = 1;
+		show Missile1;
+		show Missile2;
+		turn Launcher to x-axis <-90> speed <150>;
+		sleep 200;
+		move Missile1 to z-axis [6] speed [7.5];
+		move Missile2 to z-axis [6] speed [7.5];
+		sleep 1000;
+	}
+//	turn head to y-axis heading speed <150>;
+//	turn launcher to x-axis 0 - pitch speed <80>;
+//	wait-for-turn head around y-axis;
+//	wait-for-turn launcher around x-axis;
+	wait-for-move Missile1 along z-axis;
+	start-script RestoreAfterDelay();
+	return (1);
+}
+
+FirePrimary()
+{
+	Delay_5 = 1;
+	if( !Rocket_1 )
+	{
+		hide missile1;
+		move missile1 to z-axis [0] NOW;
+	}
+	if( Rocket_1 )
+	{
+		hide missile2;
+		move missile2 to z-axis [0] NOW;
+		Open_2 = 0;
+		turn launcher to x-axis <0> speed <90>;
+	}
+	Rocket_1 = !Rocket_1;
+	sleep 2000;
+	show Missile1;
+	sleep 2000;
+	show Missile2;
+	Delay_5 = 0;
+}
+
+AimFromPrimary(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+QueryPrimary(piecenum)
+{
+	piecenum = Rocket_1;
+//	if( Rocket_1 == 1 )
+//	{
+//		piecenum = missile1;
+//	}
+//	if( Rocket_1 == 2 )
+//	{
+//		piecenum = missile2;
+//	}
+	return (0);
+}
+
+SweetSpot(piecenum)
+{
+	piecenum = torso;
+	return (0);
+}
+
+Killed(severity, corpsetype)
+{
+	if( severity <= 25 )
+	{
+		corpsetype = 1;
+		explode missile1 type BITMAPONLY | BITMAP1;
+		explode missile2 type BITMAPONLY | BITMAP2;
+		explode torso type BITMAPONLY | BITMAP3;
+		explode Thigh1 type BITMAPONLY | BITMAP4;
+		explode Thigh2 type BITMAPONLY | BITMAP5;
+		explode Leg2 type BITMAPONLY | BITMAP1;
+		explode Foot2 type BITMAPONLY | BITMAP2;
+		explode Leg1 type BITMAPONLY | BITMAP3;
+		explode Foot1 type BITMAPONLY | BITMAP4;
+		explode head type BITMAPONLY | BITMAP5;
+		explode launcher type BITMAPONLY | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	if( severity <= 50 )
+	{
+		corpsetype = 2;
+		explode missile1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode missile2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode torso type SHATTER | BITMAP3;
+		explode Thigh1 type FALL | BITMAP4;
+		explode Thigh2 type FALL | BITMAP5;
+		explode Leg2 type FALL | BITMAP1;
+		explode Foot2 type FALL | BITMAP2;
+		explode Leg1 type FALL | BITMAP3;
+		explode Foot1 type FALL | BITMAP4;
+		explode head type FALL | SMOKE | BITMAP5;
+		explode launcher type BITMAPONLY | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	corpsetype = 3;
+	if( severity <= 99 )
+	{
+		explode missile1 type FALL | SMOKE | FIRE | BITMAP1;
+		explode missile2 type FALL | SMOKE | FIRE | BITMAP2;
+		explode torso type SHATTER | BITMAP3;
+		explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+		explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+		explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+		explode head type FALL | SMOKE | FIRE | BITMAP5;
+		explode launcher type BITMAPONLY | BITMAP1;
+		explode ground type BITMAPONLY | BITMAP2;
+		return (0);
+	}
+	explode missile1 type FALL | SMOKE | FIRE | BITMAP1;
+	explode missile2 type FALL | SMOKE | FIRE | BITMAP2;
+	explode torso type SHATTER | EXPLODE_ON_HIT | BITMAP3;
+	explode Thigh1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode Thigh2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP5;
+	explode Leg2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP1;
+	explode Foot2 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode Leg1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode Foot1 type FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP4;
+	explode head type FALL | SMOKE | FIRE | BITMAP5;
+	explode launcher type BITMAPONLY | BITMAP1;
+	explode ground type BITMAPONLY | BITMAP2;
+	return (0);
+}

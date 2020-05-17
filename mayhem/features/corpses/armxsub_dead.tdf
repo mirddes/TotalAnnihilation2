@@ -1,0 +1,35 @@
+[armxsub_dead]
+{
+world=All Worlds;
+description=Poseidon Wreckage;
+category=arm_corpses;
+object=armxsub_dead;
+featuredead=armxsub_heap;
+footprintx=4;
+footprintz=4;
+height=15;
+blocking=1;
+hitdensity=100;
+metal=12600;
+damage=16800;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}
+[armxsub_heap]
+{
+world=All Worlds;
+description=Poseidon Wreckage;
+category=arm_corpses;
+object=7x7c;
+footprintx=7;
+footprintz=7;
+height=4;
+blocking=0;
+hitdensity=100;
+metal=6300;
+damage=23960;
+reclaimable=1;
+featurereclamate=smudge01;
+seqnamereclamate=tree1reclamate;
+}

@@ -1,0 +1,213 @@
+// Arm Advanced KBOT Lab Script
+
+piece base,pad,beam1,beam2;
+
+static-var spray,unitviewer;
+
+#define	SIG_ACTIVATE	2
+#define SMOKEPIECE1 quarter1
+#define SMOKEPIECE2 quarter2
+#define SMOKEPIECE3 quarter3
+#define SMOKEPIECE4 quarter4
+#define ANIM_VARIABLE TRUE
+
+#include "StateChg.h"
+#include "..\anim3d\armalab\activatescr.bos"
+#include "..\anim3d\armalab\deactivatescr.bos"
+#include "smokeunit.h"
+#include "exptype.h"
+#include "yard.h"
+
+Go()
+	{
+	dont-cache beam1;
+	dont-cache beam2;
+	dont-cache centerbar1;
+	dont-cache centerbar2;
+	dont-cache nano1;
+	dont-cache nano2;
+	dont-cache pad;
+	dont-cache quarter1;
+	dont-cache quarter2;
+	dont-cache quarter3;
+	dont-cache quarter4;
+	call-script activatescr();		// Get into ready position
+	call-script OpenYard();
+	set INBUILDSTANCE to TRUE;
+	}
+
+Stop()
+	{
+	set INBUILDSTANCE to FALSE;
+	call-script CloseYard();
+	call-script deactivatescr();
+	cache beam1;
+	cache beam2;
+	cache centerbar1;
+	cache centerbar2;
+	cache nano1;
+	cache nano2;
+	cache pad;
+	cache quarter1;
+	cache quarter2;
+	cache quarter3;
+	cache quarter4;
+	}
+
+#define ACTIVATECMD call-script Go();
+#define DEACTIVATECMD call-script Stop();
+#include "StateChg.h"	// Second time (of two)
+
+Create()
+	{
+	dont-shade beam1;
+	dont-shade beam2;
+	dont-shade centerbar1;
+	dont-shade centerbar2;
+	dont-shade nano1;
+	dont-shade nano2;
+	dont-shade pad;
+	dont-shade quarter1;
+	dont-shade quarter2;
+	dont-shade quarter3;
+	dont-shade quarter4;
+	unitviewer = FALSE;
+	spray=0;
+	call-script InitState();
+	start-script SmokeUnit();
+	}
+
+QueryNanoPiece(piecenum)
+	{
+	if( spray == 0 )
+		{
+		piecenum=beam1;
+		}
+	if( spray != 0 )
+		{
+		piecenum=beam2;
+		}
+	spray = !spray;
+	}
+
+Demo()
+	{
+	unitviewer = TRUE;
+	}
+
+Activate()
+	{
+	signal SIG_ACTIVATE;
+	start-script RequestState( ACTIVE );
+	}
+
+Deactivate()
+	{
+	signal SIG_ACTIVATE;
+	set-signal-mask SIG_ACTIVATE;
+	if (!unitviewer)
+		{
+		sleep 5000;
+		}
+	set-signal-mask 0;
+	start-script RequestState( INACTIVE );
+	}
+
+StartBuilding()
+	{
+	spin pad around y-axis speed <30>;
+	}
+
+
+StopBuilding()
+	{
+	stop-spin pad around y-axis;
+	}
+
+QueryBuildInfo(piecenum)
+	{
+	piecenum=pad;
+	}
+
+SweetSpot(piecenum)
+	{
+	piecenum=base;
+	}
+
+Killed( severity, corpsetype )
+	{
+	if (severity <= 25)
+		{
+		corpsetype = 1;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	BITMAPONLY | BITMAP2;
+		explode beam2 type	BITMAPONLY | BITMAP3;
+		explode centerbar1 type	BITMAPONLY | BITMAP4;
+		explode centerbar2 type	BITMAPONLY | BITMAP5;
+		explode nano1 type	BITMAPONLY | BITMAP1;
+		explode nano2 type	BITMAPONLY | BITMAP2;
+		explode pad type	BITMAPONLY | BITMAP3;
+		explode quarter1 type	BITMAPONLY | BITMAP4;
+		explode quarter2 type	BITMAPONLY | BITMAP5;
+		explode quarter3 type	BITMAPONLY | BITMAP1;
+		explode quarter4 type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 50)
+		{
+		corpsetype = 2;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	FALL | FIRE | BITMAP2;
+		explode beam2 type	FALL | SMOKE | BITMAP3;
+		explode centerbar1 type	BITMAPONLY | BITMAP4;
+		explode centerbar2 type	BITMAPONLY | BITMAP5;
+		explode nano1 type	SHATTER | BITMAP1;
+		explode nano2 type	SHATTER | BITMAP2;
+		explode pad type	BITMAPONLY | BITMAP3;
+		explode quarter1 type	BITMAPONLY | BITMAP4;
+		explode quarter2 type	BITMAPONLY | BITMAP5;
+		explode quarter3 type	BITMAPONLY | BITMAP1;
+		explode quarter4 type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	if (severity <= 99)
+		{
+		corpsetype = 3;
+
+		// Blow off the pieces in varied ways
+		explode base type	BITMAPONLY | BITMAP1;
+		explode beam1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+		explode beam2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+		explode centerbar1 type	BITMAPONLY | BITMAP4;
+		explode centerbar2 type	BITMAPONLY | BITMAP5;
+		explode nano1 type	SHATTER | BITMAP1;
+		explode nano2 type	SHATTER | BITMAP2;
+		explode pad type	BITMAPONLY | BITMAP3;
+		explode quarter1 type	BITMAPONLY | BITMAP4;
+		explode quarter2 type	BITMAPONLY | BITMAP5;
+		explode quarter3 type	BITMAPONLY | BITMAP1;
+		explode quarter4 type	BITMAPONLY | BITMAP2;
+		return( 0 );
+		}
+
+	corpsetype = 3;
+	explode base type	BITMAPONLY | BITMAP1;
+	explode beam1 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP2;
+	explode beam2 type	FALL | SMOKE | FIRE | EXPLODE_ON_HIT | BITMAP3;
+	explode centerbar1 type	BITMAPONLY | BITMAP4;
+	explode centerbar2 type	BITMAPONLY | BITMAP5;
+	explode nano1 type	SHATTER | EXPLODE_ON_HIT | BITMAP1;
+	explode nano2 type	SHATTER | EXPLODE_ON_HIT | BITMAP2;
+	explode pad type	BITMAPONLY | BITMAP3;
+	explode quarter1 type	BITMAPONLY | BITMAP4;
+	explode quarter2 type	BITMAPONLY | BITMAP5;
+	explode quarter3 type	BITMAPONLY | BITMAP1;
+	explode quarter4 type	BITMAPONLY | BITMAP2;
+	return( 0 );
+	}
